@@ -6,7 +6,6 @@ target/
 .classpath
 
 # --- EclipseIDE stuff START
-.settings/
 .metadata
 *.log
 
