@@ -6,7 +6,8 @@ import org.apache.olingo.server.api.serializer.SerializerResult;
 
 final class JPAValueSerializerResult implements SerializerResult {
   /**
-   * 
+   *
+
    */
   private final InputStream result;
 

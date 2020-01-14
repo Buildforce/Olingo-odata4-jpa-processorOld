@@ -85,7 +85,7 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
   }
 
   @Test
-  public void checkGetProptertyComplexType() throws ODataJPAModelException {
+  public void checkGetPropertyComplexType() throws ODataJPAModelException {
 
     PluralAttribute<?, ?, ?> jpaAttribute = helper.getCollectionAttribute(helper.getEntityType(
         Person.class), "inhouseAddress");
@@ -95,7 +95,7 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
   }
 
   @Test
-  public void checkGetProptertyIgnoreFalse() throws ODataJPAModelException {
+  public void checkGetPropertyIgnoreFalse() throws ODataJPAModelException {
 
     PluralAttribute<?, ?, ?> jpaAttribute = helper.getCollectionAttribute(helper.getEntityType(
         Person.class), "inhouseAddress");
@@ -105,7 +105,7 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
   }
 
   @Test
-  public void checkGetProptertyDBFieldName() throws ODataJPAModelException {
+  public void checkGetPropertyDBFieldName() throws ODataJPAModelException {
 
     PluralAttribute<?, ?, ?> jpaAttribute = helper.getCollectionAttribute(helper.getEntityType(
         Organization.class), "comment");

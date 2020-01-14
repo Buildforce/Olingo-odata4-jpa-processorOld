@@ -116,7 +116,7 @@ public class TestJPAODataRequestProcessor {
 
   @ParameterizedTest
   @MethodSource("updatePrimitiveValueMethodsProvider")
-  public void checkUpdatePrimitveValueThrowsNotImplemented(final Executable m) {
+  public void checkUpdatePrimitiveValueThrowsNotImplemented(final Executable m) {
 
     final ODataJPAProcessorException act = assertThrows(ODataJPAProcessorException.class, m);
     assertEquals(HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), act.getStatusCode());

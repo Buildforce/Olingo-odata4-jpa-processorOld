@@ -36,7 +36,7 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
  * @author Oliver Grande
  *
  */
-public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertableResult {
+public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertibleResult {
   private static final Map<String, List<Tuple>> EMPTY_RESULT;
   private final Map<JPAAssociationPath, JPAExpandResult> childrenResult;
   private final Map<String, List<Tuple>> jpaResult;
@@ -101,7 +101,8 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see org.apache.org.jpa.processor.core.converter.JPAExpandResult#getChildren()
    */
   @Override
@@ -111,7 +112,8 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see org.apache.org.jpa.processor.core.converter.JPAExpandResult#getCount()
    */
   @Override
@@ -121,7 +123,8 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see org.apache.org.jpa.processor.core.converter.JPAExpandResult#getEntityType()
    */
   @Override
@@ -143,7 +146,8 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see org.apache.org.jpa.processor.core.converter.JPAExpandResult#getResult(java.lang.String)
    */
   @Override
@@ -153,7 +157,8 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see org.apache.org.jpa.processor.core.converter.JPAExpandResult#hasCount()
    */
   @Override
@@ -190,7 +195,7 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
 
   @Override
   public Optional<JPAKeyBoundary> getKeyBoundary(final JPAODataRequestContextAccess requestContext,
-      final List<JPANavigationProptertyInfo> hops) throws ODataJPAQueryException {
+      final List<JPANavigationPropertyInfo> hops) throws ODataJPAQueryException {
     try {
       if ((requestContext.getUriInfo().getExpandOption() != null
           || collectionPropertyRequested(requestContext))
@@ -206,7 +211,7 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
     } catch (ODataJPAModelException e) {
       throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
-    return JPAConvertableResult.super.getKeyBoundary(requestContext, hops);
+    return JPAConvertibleResult.super.getKeyBoundary(requestContext, hops);
   }
 
   private boolean collectionPropertyRequested(final JPAODataRequestContextAccess requestContext)
@@ -218,7 +223,7 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertab
       } else {
         for (final SelectItem item : selectOptions.getSelectItems()) {
           final String pathItem = item.getResourcePath().getUriResourceParts().stream().map(path -> (path
-              .getSegmentValue())).collect(Collectors.joining(JPAPath.PATH_SEPERATOR));
+              .getSegmentValue())).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
           if (this.jpaEntityType.getCollectionAttribute(pathItem) != null) {
             return true;
           }

@@ -101,7 +101,7 @@ public class JPAExamplePagingProviderTest {
   }
 
   @Test
-  public void testReturnNullIfEntitySetIsUnknownButMaxpagesizeHeader() throws ODataApplicationException {
+  public void testReturnNullIfEntitySetIsUnknownButMaxPagesizeHeader() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createPersonCut(5);
     final JPAODataPage act = cut.getFirstPage(info, 3, countQuery, null);
@@ -110,7 +110,7 @@ public class JPAExamplePagingProviderTest {
   }
 
   @Test
-  public void testReturnRespectMaxpagesizeHeader() throws ODataApplicationException {
+  public void testReturnRespectMaxPagesizeHeader() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(5);
     final JPAODataPage act = cut.getFirstPage(info, 3, countQuery, null);

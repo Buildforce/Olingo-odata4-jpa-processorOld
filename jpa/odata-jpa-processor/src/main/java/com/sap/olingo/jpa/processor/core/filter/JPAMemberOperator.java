@@ -65,13 +65,13 @@ public class JPAMemberOperator implements JPAOperator {
 
   private JPAPath determineAttributePath() throws ODataApplicationException {
 
-    final String attributePath = Util.determineProptertyNavigationPath(member.getResourcePath().getUriResourceParts());
+    final String attributePath = Util.determinePropertyNavigationPath(member.getResourcePath().getUriResourceParts());
     JPAPath selectItemPath = null;
     try {
       selectItemPath = jpaEntityType.getPath(attributePath);
       if (selectItemPath == null && association != null) {
         selectItemPath = jpaEntityType.getPath(attributePath.isEmpty() ? association.getAlias() : association.getAlias()
-            + JPAPath.PATH_SEPERATOR + attributePath);
+            + JPAPath.PATH_SEPARATOR + attributePath);
       }
     } catch (ODataJPAModelException e) {
       throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
@@ -83,7 +83,7 @@ public class JPAMemberOperator implements JPAOperator {
     Path<?> p = root;
     for (final JPAElement jpaPathElement : selectItemPath.getPath()) {
       if (jpaPathElement instanceof JPADescriptionAttribute) {
-        p = determineDescriptionCriteraPath(selectItemPath, p, jpaPathElement);
+        p = determineDescriptionCriteriaPath(selectItemPath, p, jpaPathElement);
       } else if (jpaPathElement instanceof JPACollectionAttribute) {
         if (!((JPACollectionAttribute) jpaPathElement).isComplex()) try {
           p = p.get(((JPACollectionAttribute) jpaPathElement).getTargetAttribute().getInternalName());
@@ -97,7 +97,7 @@ public class JPAMemberOperator implements JPAOperator {
     return p;
   }
 
-  private Path<?> determineDescriptionCriteraPath(final JPAPath selectItemPath, Path<?> p,
+  private Path<?> determineDescriptionCriteriaPath(final JPAPath selectItemPath, Path<?> p,
       final JPAElement jpaPathElement) {
 
     final Set<?> allJoins = root.getJoins();

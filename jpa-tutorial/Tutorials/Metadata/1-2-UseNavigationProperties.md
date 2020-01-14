@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class BusinessPartnerRoleKey implements Serializable {
 
     private static final long serialVersionUID = 1L;
-	
+
     @Id
     @Column(name = "\"BusinessPartnerID\"")
     private String businessPartnerID;
@@ -72,7 +72,7 @@ public class BusinessPartnerRole {
   @Id
   @Column(name = "\"BusinessPartnerID\"")
   private String businessPartnerID;
-  
+
   @Id
   @Column(name = "\"BusinessPartnerRole\"")
   private String roleCategory;
@@ -94,8 +94,10 @@ public class BusinessPartnerRole {
   }
 }
 ```
-The only thing in addition is a JPA Association _private BusinessPartner businessPartner_, which enables us to navigate from a Role to the corresponding Business Partner. 
-To be able to do the same in the other direction, so navigate from a Business Partner to its Roles, we need to add a corresponding association also at the Business Partner 
+The only thing in addition is a JPA Association _private BusinessPartner businessPartner_, which enables us to navigate from a Role to the corresponding Business Partner.
+
+To be able to do the same in the other direction, so navigate from a Business Partner to its Roles, we need to add a corresponding association also at the Business Partner
+
 (note that we linked both using _mappedBy_):
 ```Java
 public class BusinessPartner implements Serializable {
@@ -111,19 +113,21 @@ public class BusinessPartner implements Serializable {
 	}
     ...
 ```
-Last but not least we have to declare the new entity within the persistence.xml:  
+Last but not least we have to declare the new entity within the persistence.xml:
+
 ```XML
-	<?xml version="1.0" encoding="UTF-8"?>  
-	...  
-	\<persistence-unit name="Tutorial"\>  
-		\<class\>tutorial.model.BusinessPartner\</class\>  
-		\<class\>tutorial.model.BusinessPartnerRole\</class\>  
-		\<properties\>  
-	...  
+	<?xml version="1.0" encoding="UTF-8"?>
+
+	...
+	\<persistence-unit name="Tutorial"\>
+		\<class\>tutorial.model.BusinessPartner\</class\>
+		\<class\>tutorial.model.BusinessPartnerRole\</class\>
+		\<properties\>
+	...
 ```
 
-If we call _http://localhost:8080/Tutorial/Tutorial.svc/$metadata_ we can see that the metadata document now shows the second entity as well as the introduced navigation. The following picture should give an overview of the metadata mapping:    
+If we call _http://localhost:8080/Tutorial/Tutorial.svc/$metadata_ we can see that the metadata document now shows the second entity as well as the introduced navigation. The following picture should give an overview of the metadata mapping:
 
-![JPA - OData Mapping](Metadata/Mapping2.png)  
+![JPA - OData Mapping](Metadata/Mapping2.png)
 
-Please go ahead with [Tutorial 1.3: Text Associations](1-3-TextAssociations.md)    
+Please go ahead with [Tutorial 1.3: Text Associations](1-3-TextAssociations.md)

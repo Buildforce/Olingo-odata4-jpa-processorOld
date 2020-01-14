@@ -16,10 +16,10 @@ import com.sap.olingo.jpa.processor.core.api.example.JPAExampleCUDRequestHandler
 @RestController
 @RequestMapping("${punit}/v1/**")
 public class ODataController {
-  
+
   @Autowired
   private JPAODataCRUDContextAccess serviceContext;
-  
+
   @RequestMapping(value = "**", method = { RequestMethod.GET, RequestMethod.PATCH, // NOSONAR
       RequestMethod.POST, RequestMethod.DELETE })
   public void crud(final HttpServletRequest req, final HttpServletResponse resp) throws ODataException {

@@ -26,7 +26,7 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataPage;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataTransactionFactory;
 import com.sap.olingo.jpa.processor.core.api.JPAServiceDebugger;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllicalAccessException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
 
 public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestContext, JPAODataRequestContextAccess,
@@ -53,7 +53,7 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   JPAODataRequestContextImpl(final JPAODataPage page, final JPASerializer serializer,
-      final JPAODataRequestContextAccess context) throws JPAIllicalAccessException {
+      final JPAODataRequestContextAccess context) throws JPAIllegalAccessException {
     copyContextValues(context);
     this.serializer = serializer;
     this.jpaCUDRequestHandler = new JPADefaultCUDRequestHandler();
@@ -130,9 +130,9 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   @Override
-  public void setJPAODataPage(@Nonnull final JPAODataPage page) throws JPAIllicalAccessException {
+  public void setJPAODataPage(@Nonnull final JPAODataPage page) throws JPAIllegalAccessException {
     if (this.uriInfo != null)
-      throw new JPAIllicalAccessException();
+      throw new JPAIllegalAccessException();
     this.setUriInfo(page.getUriInfo());
     this.page = Objects.requireNonNull(page);
   }
@@ -154,9 +154,9 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   @Override
-  public void setUriInfo(@Nonnull final UriInfo uriInfo) throws JPAIllicalAccessException {
+  public void setUriInfo(@Nonnull final UriInfo uriInfo) throws JPAIllegalAccessException {
     if (this.page != null)
-      throw new JPAIllicalAccessException();
+      throw new JPAIllegalAccessException();
     this.uriInfo = Objects.requireNonNull(uriInfo);
   }
 
@@ -215,7 +215,8 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
 
     /*
      * (non-Javadoc)
-     * 
+     *
+
      * @see org.apache.olingo.server.api.debug.DebugSupport#createDebugResponse(java.lang.String,
      * org.apache.olingo.server.api.debug.DebugInformation)
      */
@@ -227,7 +228,8 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
 
     /*
      * (non-Javadoc)
-     * 
+     *
+
      * @see org.apache.olingo.server.api.debug.DebugSupport#init(org.apache.olingo.server.api.OData)
      */
     @Override
@@ -237,7 +239,8 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
 
     /*
      * (non-Javadoc)
-     * 
+     *
+
      * @see org.apache.olingo.server.api.debug.DebugSupport#isUserAuthorized()
      */
     @Override

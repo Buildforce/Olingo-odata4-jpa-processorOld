@@ -3,7 +3,8 @@ package com.sap.olingo.jpa.processor.core.query;
 /**
  * The exception shall be raised in case no selection left, so it is not necessary to perform a query. <br>
  * It is expected that the exception is handled internally.
- * 
+ *
+
  * @author Oliver Grande
  * Created: 14.07.2019
  *

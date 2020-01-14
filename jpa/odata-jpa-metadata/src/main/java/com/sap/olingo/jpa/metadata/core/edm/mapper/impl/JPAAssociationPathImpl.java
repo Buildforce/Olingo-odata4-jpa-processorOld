@@ -91,7 +91,8 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAAssociationPath#getAlias()
    */
   @Override
@@ -111,7 +112,8 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAAssociationPath#getJoinColumnsList()
    */
   @Override
@@ -139,7 +141,8 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAAssociationPath#getLeaf()
    */
   @Override
@@ -171,7 +174,8 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAAssociationPath#getPath()
    */
   @Override
@@ -197,7 +201,8 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAAssociationPath#getSourceType()
    */
   @Override
@@ -207,7 +212,8 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAAssociationPath#getTargetType()
    */
   @Override
@@ -217,7 +223,8 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAAssociationPath#isCollection()
    */
   @Override
@@ -264,7 +271,7 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
 
     name.append(parent.getExternalName());
     for (final JPAElement pathElement : associationPath.getPath()) {
-      name.append(JPAPath.PATH_SEPERATOR);
+      name.append(JPAPath.PATH_SEPARATOR);
       name.append(pathElement.getExternalName());
 
     }

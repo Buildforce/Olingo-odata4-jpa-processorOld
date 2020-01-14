@@ -168,7 +168,7 @@ public class TestJPAOperationConverter {
       assertEquals(HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), e.getStatusCode());
       return;
     }
-    fail("Exception expecetd");
+    fail("Exception expected.");
   }
 }
 

@@ -28,7 +28,7 @@ import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
 
 public class TestJPAVisitor {
 
-  private JPAFilterComplierAccess compiler;
+  private JPAFilterCompilerAccess compiler;
   private JPAAbstractQuery query;
   private JPAExpressionVisitor cut;
   private JPAODataDatabaseOperations extension;
@@ -38,7 +38,7 @@ public class TestJPAVisitor {
   public void setUp() {
     extension = mock(JPAODataDatabaseOperations.class);
     converter = new JPAOperationConverter(mock(CriteriaBuilder.class), extension);
-    compiler = mock(JPAFilterComplierAccess.class);
+    compiler = mock(JPAFilterCompilerAccess.class);
     query = mock(JPAAbstractQuery.class);
 
     when(compiler.getConverter()).thenReturn(converter);
@@ -49,7 +49,7 @@ public class TestJPAVisitor {
     cut = new JPAVisitor(compiler);
   }
 
-//return new JPAFunctionOperator(jpaFunction, odataParams, this.jpaComplier.getParent().getRoot(), jpaComplier.getConverter().cb); 
+//return new JPAFunctionOperator(jpaFunction, odataParams, this.jpaCompiler.getParent().getRoot(), jpaCompiler.getConverter().cb);
 
   @Test
   public void createFunctionOperation() throws ExpressionVisitException, ODataApplicationException {
@@ -64,7 +64,7 @@ public class TestJPAVisitor {
 
     when(member.getResourcePath()).thenReturn(info);
     when(info.getUriResourceParts()).thenReturn(resources);
-//  final JPAFunction jpaFunction = this.jpaComplier.getSd().getFunction(((UriResourceFunction) resource).getFunction());
+//  final JPAFunction jpaFunction = this.jpaCompiler.getSd().getFunction(((UriResourceFunction) resource).getFunction());
     JPAServiceDocument sd = mock(JPAServiceDocument.class);
     JPADataBaseFunction jpaFunction = mock(JPADataBaseFunction.class);
     EdmFunction edmFunction = mock(EdmFunction.class);

@@ -32,7 +32,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
-import com.sap.olingo.jpa.processor.core.query.JPAConvertableResult;
+import com.sap.olingo.jpa.processor.core.query.JPAConvertibleResult;
 
 /**
  * Abstract super class for result converter, which convert Tuple based results.
@@ -60,7 +60,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
   protected String buildConcatenatedKey(final Tuple row, final List<JPAPath> leftColumns) {
     final StringBuilder buffer = new StringBuilder();
     for (final JPAPath item : leftColumns) {
-      buffer.append(JPAPath.PATH_SEPERATOR);
+      buffer.append(JPAPath.PATH_SEPARATOR);
       // TODO Tuple returns the converted value in case a @Convert(converter = annotation is given
       buffer.append(row.get(item.getAlias()));
     }
@@ -69,7 +69,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
   }
 
   protected String buildPath(final String prefix, final JPAAssociationAttribute association) {
-    return EMPTY_PREFIX.equals(prefix) ? association.getExternalName() : prefix + JPAPath.PATH_SEPERATOR + association
+    return EMPTY_PREFIX.equals(prefix) ? association.getExternalName() : prefix + JPAPath.PATH_SEPARATOR + association
         .getExternalName();
   }
 
@@ -114,7 +114,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
       for (final JPAAssociationAttribute a : jpaStructuredType.getDeclaredAssociations()) {
         path = jpaConversionTargetEntity.getAssociationPath(buildPath(prefix, a));
         final JPAExpandResult child = jpaQueryResult.getChild(path);
-        final String linkURI = rootURI + JPAPath.PATH_SEPERATOR + path.getAlias();
+        final String linkURI = rootURI + JPAPath.PATH_SEPARATOR + path.getAlias();
         if (child != null) {
           // TODO Check how to convert Organizations('3')/AdministrativeInformation?$expand=Created/User
           entityExpandLinks.add(getLink(path, row, child, linkURI));
@@ -145,7 +145,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
 
   protected final String determinePrefix(String alias) {
     final String prefix = alias;
-    final int index = prefix.lastIndexOf(JPAPath.PATH_SEPERATOR);
+    final int index = prefix.lastIndexOf(JPAPath.PATH_SEPARATOR);
     if (index < 0)
       return EMPTY_PREFIX;
     else
@@ -153,7 +153,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
   }
 
   String buildPath(final JPAAttribute attribute, final String prefix) {
-    return EMPTY_PREFIX.equals(prefix) ? attribute.getExternalName() : prefix + JPAPath.PATH_SEPERATOR + attribute
+    return EMPTY_PREFIX.equals(prefix) ? attribute.getExternalName() : prefix + JPAPath.PATH_SEPARATOR + attribute
         .getExternalName();
   }
 
@@ -170,7 +170,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
     }
 
     final List<Property> values = complexValueBuffer.get(bufferKey).getValue();
-    final int splitIndex = attribute.getExternalName().length() + JPAPath.PATH_SEPERATOR.length();
+    final int splitIndex = attribute.getExternalName().length() + JPAPath.PATH_SEPARATOR.length();
     final String attributeName = splitIndex < externalName.length() ? externalName.substring(splitIndex) : externalName;
     convertAttribute(value, attribute.getStructuredType().getPath(attributeName), complexValueBuffer, values,
         parentRow, buildPath(attribute, prefix), odataEntity);
@@ -209,10 +209,10 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
     }
   }
 
-  Integer determineCount(final JPAAssociationPath assoziation, final Tuple parentRow, final JPAExpandResult child)
+  Integer determineCount(final JPAAssociationPath association, final Tuple parentRow, final JPAExpandResult child)
       throws ODataJPAQueryException {
     try {
-      Long count = child.getCount(buildConcatenatedKey(parentRow, assoziation.getLeftColumnsList()));
+      Long count = child.getCount(buildConcatenatedKey(parentRow, association.getLeftColumnsList()));
       return count != null ? Integer.valueOf(count.intValue()) : null;
     } catch (ODataJPAModelException e) {
       throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_RESULT_CONV_ERROR,
@@ -220,18 +220,18 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
     }
   }
 
-  private Link getLink(final JPAAssociationPath assoziation, final Tuple parentRow, final JPAExpandResult child,
+  private Link getLink(final JPAAssociationPath association, final Tuple parentRow, final JPAExpandResult child,
       final String linkURI) throws ODataApplicationException {
     final Link link = new Link();
-    link.setTitle(assoziation.getLeaf().getExternalName());
+    link.setTitle(association.getLeaf().getExternalName());
     link.setRel(Constants.NS_NAVIGATION_LINK_REL + link.getTitle());
     link.setType(Constants.ENTITY_NAVIGATION_LINK_TYPE);
     try {
-      final EntityCollection expandCollection = ((JPAConvertableResult) child).getEntityCollection(
-          buildConcatenatedKey(parentRow, assoziation.getLeftColumnsList()));
+      final EntityCollection expandCollection = ((JPAConvertibleResult) child).getEntityCollection(
+          buildConcatenatedKey(parentRow, association.getLeftColumnsList()));
 
-      expandCollection.setCount(determineCount(assoziation, parentRow, child));
-      if (assoziation.getLeaf().isCollection()) {
+      expandCollection.setCount(determineCount(association, parentRow, child));
+      if (association.getLeaf().isCollection()) {
         link.setInlineEntitySet(expandCollection);
         link.setHref(linkURI);
       } else {
@@ -248,9 +248,9 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
     return link;
   }
 
-  private Link getLink(final JPAAssociationPath assoziation, final String linkURI) {
+  private Link getLink(final JPAAssociationPath association, final String linkURI) {
     final Link link = new Link();
-    link.setTitle(assoziation.getLeaf().getExternalName());
+    link.setTitle(association.getLeaf().getExternalName());
     link.setRel(Constants.NS_NAVIGATION_LINK_REL + link.getTitle());
     link.setType(Constants.ENTITY_NAVIGATION_LINK_TYPE);
     link.setHref(linkURI);

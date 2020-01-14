@@ -26,7 +26,8 @@ public @interface EdmAction {
 
   /**
    * Define additional facet information for the return type of an action
-   * 
+   *
+
    * @return return type of this action
    */
   ReturnType returnType() default @ReturnType();

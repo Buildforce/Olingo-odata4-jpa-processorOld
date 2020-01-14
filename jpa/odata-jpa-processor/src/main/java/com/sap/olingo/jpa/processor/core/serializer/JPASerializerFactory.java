@@ -44,9 +44,9 @@ public final class JPASerializerFactory {
     // Assumption: Type of last resource path item rules the type of the response
     final List<UriResource> resourceParts = uriInfo.getUriResourceParts();
     final UriResource lastItem = resourceParts.get(resourceParts.size() - 1);
-    final boolean isColletion = determineIsCollection(lastItem);
+    final boolean isCollection = determineIsCollection(lastItem);
 
-    return createSerializer(responseFormat, uriInfo, lastItem.getKind(), isColletion, responseVersion);
+    return createSerializer(responseFormat, uriInfo, lastItem.getKind(), isCollection, responseVersion);
   }
 
   private boolean determineIsCollection(final UriResource lastItem) {
@@ -60,24 +60,24 @@ public final class JPASerializerFactory {
   }
 
   JPASerializer createSerializer(final ContentType responseFormat, final UriInfo uriInfo, final EdmTypeKind edmTypeKind,
-      final boolean isColletion, final Optional<List<String>> responseVersion) throws SerializerException,
+      final boolean isCollection, final Optional<List<String>> responseVersion) throws SerializerException,
       ODataJPASerializerException {
 
     final ODataSerializer serializer = odata.createSerializer(responseFormat,
         responseVersion.orElse(Collections.emptyList()));
     switch (edmTypeKind) {
       case ENTITY:
-        if (isColletion)
+        if (isCollection)
           return new JPASerializeEntityCollection(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat);
         else
           return new JPASerializeEntity(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat);
       case COMPLEX:
-        if (isColletion)
+        if (isCollection)
           return new JPASerializeComplexCollection(serviceMetadata, serializer, responseFormat);
         else
           return new JPASerializeComplex(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat);
       case PRIMITIVE:
-        if (isColletion)
+        if (isCollection)
           return new JPASerializePrimitiveCollection(serviceMetadata, serializer, responseFormat);
         else
           return new JPASerializePrimitive(serviceMetadata, serializer, uriInfo, responseFormat);
@@ -88,13 +88,13 @@ public final class JPASerializerFactory {
   }
 
   JPASerializer createSerializer(final ContentType responseFormat, final UriInfo uriInfo,
-      final UriResourceKind uriResourceKind, boolean isColletion, final Optional<List<String>> responseVersion)
+      final UriResourceKind uriResourceKind, boolean isCollection, final Optional<List<String>> responseVersion)
       throws SerializerException, ODataJPASerializerException {
 
     switch (uriResourceKind) {
       case entitySet:
       case navigationProperty:
-        return createSerializerCollectionRequest(responseFormat, uriInfo, isColletion, responseVersion);
+        return createSerializerCollectionRequest(responseFormat, uriInfo, isCollection, responseVersion);
       case complexProperty:
         return createSerializerComplexPropertyRequest(responseFormat, uriInfo, responseVersion);
       case primitiveProperty:
@@ -129,11 +129,11 @@ public final class JPASerializerFactory {
   }
 
   private JPASerializer createSerializerCollectionRequest(final ContentType responseFormat, final UriInfo uriInfo,
-      boolean isColletion, final Optional<List<String>> responseVersion) throws SerializerException {
+      boolean isCollection, final Optional<List<String>> responseVersion) throws SerializerException {
 
     final ODataSerializer serializer = odata.createSerializer(responseFormat,
         responseVersion.orElse(Collections.emptyList()));
-    if (isColletion)
+    if (isCollection)
       return new JPASerializeEntityCollection(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat);
     else
       return new JPASerializeEntity(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat);

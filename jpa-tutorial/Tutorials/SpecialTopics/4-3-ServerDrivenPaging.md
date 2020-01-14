@@ -63,7 +63,8 @@ public class Servlet extends HttpServlet {
       // Log error
     }
   }
-  ...  
+  ...
+
 ```
 Now we are ready to start the web server.
 In case we try to retrieve all the Companies: _http://localhost:8080/Tutorial/Tutorial.svc/Companies_, only the first five are returned. We can do the same for _http://localhost:8080/Tutorial/Tutorial.svc/AdministrativeDivisions_ and get just ten. By using the provided next link _http://localhost:8080/Tutorial/Tutorial.svc/AdministrativeDivisions?$skiptoken=<...>_ we get the next page. If we want to go back after doing that at least 10 times to the second page we will get an error message stating _	"Requested page '<...>' is gone."_

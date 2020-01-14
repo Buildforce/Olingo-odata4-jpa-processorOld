@@ -9,7 +9,7 @@ import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitEx
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 
-public interface JPAFilterComplier {
+public interface JPAFilterCompiler {
 
   Expression<Boolean> compile() throws ExpressionVisitException, ODataApplicationException;
 

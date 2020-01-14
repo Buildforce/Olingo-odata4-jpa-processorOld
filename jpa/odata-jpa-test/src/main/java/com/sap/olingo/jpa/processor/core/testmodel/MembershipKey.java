@@ -8,7 +8,8 @@ import javax.persistence.Id;
 public class MembershipKey implements Serializable {
 
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = -2197928070426048826L;
 

@@ -1,8 +1,10 @@
 # 2.1 Preparation
-Up to now we only generated the metadata document, which may got a little bit boring. In the next set ot tutorials we want to retrieve data to see what OData, Olingo and the JPA Processor really can do for use.  
+Up to now we only generated the metadata document, which may got a little bit boring. In the next set ot tutorials we want to retrieve data to see what OData, Olingo and the JPA Processor really can do for use.
+
 If we want to retrieve data we first have to create the tables on the database and insert some rows. As a preparation we declared right in the beginning a dependency to Flyway.
-We use it to process a SQL document. This document must be stored in folder _/src/main/resources/db/migration_ and shall have the name _V1_0__olingo.sql_. Best you just copy it from here: 
-[SQL Document](migration/V1_0__olingo.sql).  
+We use it to process a SQL document. This document must be stored in folder _/src/main/resources/db/migration_ and shall have the name _V1_0__olingo.sql_. Best you just copy it from here:
+
+[SQL Document](migration/V1_0__olingo.sql).
 
 The class we have to use for retrieving data, _JPAODataGetHandler_, requires a _javax.sql.DataSource_ and not an _EntityManager_. To make our life a little bit easier, we
 create a factory to create Data Sources:
@@ -78,5 +80,6 @@ public class DataSourceHelper {
 		return ds;
 	}
 }
-```  
+```
+
 With this, we can rebuild our service implementation and start to retrieve data: [Tutorial 2.2: Retrieving Data](2-2-RetrievingData.md)

@@ -34,19 +34,19 @@ public class JPATupleCollectionConverter extends JPATupleResultConverter {
 
   @Override
   public Map<String, List<Object>> getResult(final JPAExpandResult dbResult,
-      final Collection<JPAPath> reqestedSelection) throws ODataApplicationException {
+      final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
 
     jpaQueryResult = dbResult;
     final JPACollectionResult jpaResult = (JPACollectionResult) dbResult;
-    final JPAAssociationAttribute attribute = jpaResult.getAssoziation().getLeaf();
+    final JPAAssociationAttribute attribute = jpaResult.getAssociation().getLeaf();
     final boolean isComplex = attribute.isComplex();
 
     final Map<String, List<Tuple>> childResult = jpaResult.getResults();
     final Map<String, List<Object>> result = new HashMap<>(childResult.size());
     try {
-      final JPAStructuredType st = determineCollectionRoot(jpaResult.getEntityType(), jpaResult.getAssoziation()
+      final JPAStructuredType st = determineCollectionRoot(jpaResult.getEntityType(), jpaResult.getAssociation()
           .getPath());
-      final String prefix = determinePrefix(jpaResult.getAssoziation().getAlias());
+      final String prefix = determinePrefix(jpaResult.getAssociation().getAlias());
 
       for (Entry<String, List<Tuple>> tuple : childResult.entrySet()) {
         final List<Object> collection = new ArrayList<>();
@@ -56,7 +56,7 @@ public class JPATupleCollectionConverter extends JPATupleResultConverter {
           if (isComplex) {
             final ComplexValue value = new ComplexValue();
             final Map<String, ComplexValue> complexValueBuffer = new HashMap<>();
-            complexValueBuffer.put(jpaResult.getAssoziation().getAlias(), value);
+            complexValueBuffer.put(jpaResult.getAssociation().getAlias(), value);
             for (final TupleElement<?> element : row.getElements()) {
               final JPAPath path = st.getPath(determineAlias(element.getAlias(), prefix));
               convertAttribute(row.get(element.getAlias()), path, complexValueBuffer,
@@ -65,7 +65,7 @@ public class JPATupleCollectionConverter extends JPATupleResultConverter {
             }
             collection.add(value);
           } else {
-            collection.add(convertPrimitiveCollectionAttribute(row.get(jpaResult.getAssoziation().getAlias()),
+            collection.add(convertPrimitiveCollectionAttribute(row.get(jpaResult.getAssociation().getAlias()),
                 (JPACollectionAttribute) attribute));
           }
         }

@@ -56,11 +56,12 @@
           <Annotation Term="Core.Description" String="These navigation properties do not allow DeleteLink requests" />
         </Property>
       </ComplexType>
-      <ComplexType Name="TestType" Abstract="true" OpenType="true" BaseType="Core.Unknow">
+      <ComplexType Name="TestType" Abstract="true" OpenType="true" BaseType="Core.Unknown">
         <Annotation Term="Core.Description" String="This type is only for test purposes" />
         <Property Name="Deletable" Type="Edm.Boolean" DefaultValue="true">
           <Annotation Term="Core.Description" String="Entities can be deleted" />
-        </Property>    
+        </Property>
+
         <Property Name="NonDeletableNavigationProperties" Type="Collection(Edm.NavigationPropertyPath)">
           <Annotation Term="Core.Description" String="These navigation properties do not allow DeleteLink requests" />
         </Property>
@@ -72,35 +73,39 @@
         </Property>
         <Property Name="TestGeo" Type="Edm.GeometryPoint" SRID="3857" >
           <Annotation Term="Core.Description" String="For test only" />
-        </Property>               
+        </Property>
+
       </ComplexType>
-      
+
       <Function Name="TestTheRest1" IsBound="false" EntitySetPath="timeslices">
         <Annotation Term="Core.Description" String="This function is only for test purposes" />
         <Parameter Name="Dec" Type="Edm.Decimal" Precision="10" Scale="5"  />
         <Parameter Name="Geo"  Type="Edm.GeometryPoint" SRID="3857" Nullable="true" />
         <Parameter Name="Text"  Type="Collection(Edm.String)"  MaxLength="512"/>
         <ReturnType Type="Collection(Edm.Decimal)" Precision="10" Scale="5" MaxLength="20" Nullable="true"  SRID="3857"/>
-      </Function> 
-      
+      </Function>
+
       <Action Name="UpsertTimeExample" IsBound="true" EntitySetPath="timeslices">
         <Parameter Name="timeslices" Type="Collection(Edm.EntityType)" Nullable="false"/>
         <Parameter Name="To" Type="Edm.PrimitiveType" Nullable="false"/>
         <Parameter Name="Values" Type="Edm.EntityType" Nullable="true"/>
         <ReturnType Type="Collection(Edm.EntityType)" Nullable="false"/>
-      </Action>      
+      </Action>
+
       <Action Name="TestTheRest2">
       </Action>
-      
+
       <TypeDefinition Name="TestTypeDecimal" UnderlyingType="Edm.Decimal"  Precision="10" Scale="5" >
         <Annotation Term="Core.Description" String="This function is only for test purposes" />
       </TypeDefinition>
       <TypeDefinition Name="TestTypeGeo" UnderlyingType="Edm.GeographyPolygon" SRID="variable"  >
         <Annotation Term="Core.Description" String="This function is only for test purposes" />
-      </TypeDefinition>  
+      </TypeDefinition>
+
       <TypeDefinition Name="TestTypeString" UnderlyingType="Edm.String" MaxLength="256"  Unicode="false" >
         <Annotation Term="Core.Description" String="This function is only for test purposes" />
       </TypeDefinition>
-    </Schema>	  
+    </Schema>
+
   </edmx:DataServices>
 </edmx:Edmx>

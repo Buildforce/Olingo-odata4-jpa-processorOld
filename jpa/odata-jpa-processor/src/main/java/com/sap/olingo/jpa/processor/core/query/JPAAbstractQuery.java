@@ -50,7 +50,7 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 
 public abstract class JPAAbstractQuery {
 
-  protected static final String SELECT_ITEM_SEPERATOR = ",";
+  protected static final String SELECT_ITEM_SEPARATOR = ",";
   protected static final String SELECT_ALL = "*";
   protected final EntityManager em;
   protected final CriteriaBuilder cb;
@@ -126,7 +126,7 @@ public abstract class JPAAbstractQuery {
       JPAEntityType et) throws ODataApplicationException {
     // .../Organizations('3')
     // .../BusinessPartnerRoles(BusinessPartnerID='6',RoleCategory='C')
-    javax.persistence.criteria.Expression<Boolean> compundCondition = whereCondition;
+    javax.persistence.criteria.Expression<Boolean> compoundCondition = whereCondition;
 
     if (keyPredicates != null) {
       for (final UriParameter keyPredicate : keyPredicates) {
@@ -136,13 +136,13 @@ public abstract class JPAAbstractQuery {
         } catch (ODataJPAModelException e) {
           throw new ODataJPAQueryException(e, HttpStatusCode.BAD_REQUEST);
         }
-        if (compundCondition == null)
-          compundCondition = equalCondition;
+        if (compoundCondition == null)
+          compoundCondition = equalCondition;
         else
-          compundCondition = cb.and(compundCondition, equalCondition);
+          compoundCondition = cb.and(compoundCondition, equalCondition);
       }
     }
-    return compundCondition;
+    return compoundCondition;
   }
 
   public abstract From<?, ?> getRoot();
@@ -155,18 +155,18 @@ public abstract class JPAAbstractQuery {
 
   protected abstract Locale getLocale();
 
-  protected void generateDesciptionJoin(final HashMap<String, From<?, ?>> joinTables, final Set<JPAPath> pathSet,
+  protected void generateDescriptionJoin(final HashMap<String, From<?, ?>> joinTables, final Set<JPAPath> pathSet,
       final From<?, ?> target) {
 
     for (final JPAPath descriptionFieldPath : pathSet) {
-      final JPADescriptionAttribute desciptionField = ((JPADescriptionAttribute) descriptionFieldPath.getLeaf());
+      final JPADescriptionAttribute descriptionField = ((JPADescriptionAttribute) descriptionFieldPath.getLeaf());
       Join<?, ?> join = createJoinFromPath(descriptionFieldPath.getAlias(), descriptionFieldPath.getPath(), target,
           JoinType.LEFT);
-      if (desciptionField.isLocationJoin())
-        join.on(createOnCondition(join, desciptionField, getLocale().toString()));
+      if (descriptionField.isLocationJoin())
+        join.on(createOnCondition(join, descriptionField, getLocale().toString()));
       else
-        join.on(createOnCondition(join, desciptionField, getLocale().getLanguage()));
-      joinTables.put(desciptionField.getInternalName(), join);
+        join.on(createOnCondition(join, descriptionField, getLocale().getLanguage()));
+      joinTables.put(descriptionField.getInternalName(), join);
     }
   }
 
@@ -191,18 +191,18 @@ public abstract class JPAAbstractQuery {
     return join;
   }
 
-  private Expression<Boolean> createOnCondition(Join<?, ?> join, JPADescriptionAttribute desciptionField,
+  private Expression<Boolean> createOnCondition(Join<?, ?> join, JPADescriptionAttribute descriptionField,
       String localValue) {
 
-    Expression<Boolean> result = cb.equal(determienLocalePath(join, desciptionField.getLocaleFieldName()), localValue);
-    for (JPAPath value : desciptionField.getFixedValueAssignment().keySet()) {
+    Expression<Boolean> result = cb.equal(determineLocalePath(join, descriptionField.getLocaleFieldName()), localValue);
+    for (JPAPath value : descriptionField.getFixedValueAssignment().keySet()) {
       result = cb.and(result,
-          cb.equal(determienLocalePath(join, value), desciptionField.getFixedValueAssignment().get(value)));
+          cb.equal(determineLocalePath(join, value), descriptionField.getFixedValueAssignment().get(value)));
     }
     return result;
   }
 
-  private javax.persistence.criteria.Expression<?> determienLocalePath(final Join<?, ?> join,
+  private javax.persistence.criteria.Expression<?> determineLocalePath(final Join<?, ?> join,
       final JPAPath jpaPath) {
     Path<?> p = join;
     for (final JPAElement pathElement : jpaPath.getPath()) {
@@ -215,26 +215,26 @@ public abstract class JPAAbstractQuery {
 
   protected javax.persistence.criteria.Expression<Boolean> addWhereClause(
       javax.persistence.criteria.Expression<Boolean> whereCondition,
-      final javax.persistence.criteria.Expression<Boolean> additioanlExpression) {
+      final javax.persistence.criteria.Expression<Boolean> additionalExpression) {
 
-    if (additioanlExpression != null) {
+    if (additionalExpression != null) {
       if (whereCondition == null)
-        whereCondition = additioanlExpression;
+        whereCondition = additionalExpression;
       else
-        whereCondition = cb.and(whereCondition, additioanlExpression);
+        whereCondition = cb.and(whereCondition, additionalExpression);
     }
     return whereCondition;
   }
 
   protected javax.persistence.criteria.Expression<Boolean> orWhereClause(
       javax.persistence.criteria.Expression<Boolean> whereCondition,
-      final javax.persistence.criteria.Expression<Boolean> additioanlExpression) {
+      final javax.persistence.criteria.Expression<Boolean> additionalExpression) {
 
-    if (additioanlExpression != null) {
+    if (additionalExpression != null) {
       if (whereCondition == null)
-        whereCondition = additioanlExpression;
+        whereCondition = additionalExpression;
       else
-        whereCondition = cb.or(whereCondition, additioanlExpression);
+        whereCondition = cb.or(whereCondition, additionalExpression);
     }
     return whereCondition;
   }

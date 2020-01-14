@@ -64,11 +64,11 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
     newPath.add(pathRoot);
     if (original.path != null) {
       newPath.addAll(original.path.getPath());
-      this.path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPERATOR + original.path.getAlias(), "",
+      this.path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPARATOR + original.path.getAlias(), "",
           newPath);
     } else {
       newPath.add(this);
-      this.path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPERATOR + original.getExternalName(), "",
+      this.path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPARATOR + original.getExternalName(), "",
           newPath);
     }
   }
@@ -161,7 +161,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
   }
 
   @Override
-  void checkConsistancy() throws ODataJPAModelException {
+  void checkConsistency() throws ODataJPAModelException {
     // Collection Properties do not support EdmProtectedBy
     if (hasProtection() ||
         (isComplex() && !getStructuredType().getProtections().isEmpty())) {
@@ -195,11 +195,11 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
 
   @Override
   FullQualifiedName determineType() throws ODataJPAModelException {
-    return determineTypeByPersistanceType(getRowType().getPersistenceType());
+    return determineTypeByPersistenceType(getRowType().getPersistenceType());
   }
 
   @Override
-  String getDeafultValue() throws ODataJPAModelException {
+  String getDefaultValue() throws ODataJPAModelException {
     // No defaults for collection properties
     return null;
   }

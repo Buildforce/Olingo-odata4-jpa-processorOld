@@ -90,7 +90,7 @@ public class TestJPACustomScalarFunctions {
   }
 
   @Test
-  public void testFilterOnFunctionComuteValue() throws IOException, ODataException {
+  public void testFilterOnFunctionCommuteValue() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=com.sap.olingo.jpa.PopulationDensity(Area=Area div 1000000,Population=Population) gt 1000");

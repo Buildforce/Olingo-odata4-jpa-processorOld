@@ -60,7 +60,7 @@ public class TestJPAQueryWhereClause extends TestBase {
   public void testFilterOneEnumEquals() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
-        "Organizations?$filter=ABCClass eq com.sap.olingo.jpa.ABCClassifiaction'A'");
+        "Organizations?$filter=ABCClass eq com.sap.olingo.jpa.ABCclassification'A'");
     helper.assertStatus(200);
 
     ArrayNode orgs = helper.getValues();

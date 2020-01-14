@@ -14,11 +14,11 @@ package tutorial.model;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration()
-public enum ABCClassifiaction {
+public enum ABCclassification {
   A, B, C;
 }
 ```
-This enumeration is tagged with a `@EdmEnumeration` so it will be converted into an OData Enumeration, if it is found. As described in [Tutorial 1.8 Functions](1-8-Functions.md) it is neccesary to provide the package name to look for the enumerations. Therefore it is required to change our Servlet as follows:
+This enumeration is tagged with a `@EdmEnumeration` so it will be converted into an OData Enumeration, if it is found. As described in [Tutorial 1.8 Functions](1-8-Functions.md) it is necessary to provide the package name to look for the enumerations. Therefore it is required to change our Servlet as follows:
 ```Java
 ...
 handler.getJPAODataContext().setTypePackage("tutorial.operations", "tutorial.model");
@@ -26,11 +26,11 @@ handler.getJPAODataContext().setTypePackage("tutorial.operations", "tutorial.mod
 ```
 With that we can already have a look at the metadata document, http://localhost:8080/Tutorial/Tutorial.svc/$metadata, which bases on the following mapping:
 
-![Mapping of ABCClassifiaction](Metadata/MappingSimpleEnum.png)
+![Mapping of ABCclassification](Metadata/MappingSimpleEnum.png)
 
 As you can see all not given values are filled with default value, which are _false_ for _isFlags_, and _Edm.Int32_, so _Integer_, as _UnderlingType_. The numbering of the members determined via the _ordinal()_ method of the enumeration.
 
-Next we want to extend the company class with a property for the _ABC Class_. So we need to add a corresponding attribute to Company. Even so OData handles enumeration always as numeric values, the _ABC Class_ shall be stored as a String, which is signaled via JPA annotation` @Enumerated(value = EnumType.STRING)`. Please not that in case the property is used in an _orderby_ clause a client expect an order of a number, but would get a order of strings:
+Next we want to extend the company class with a property for the _ABC Class_. So we need to add a corresponding attribute to Company. Even so OData handles enumeration always as numeric values, the _ABC Class_ shall be stored as a String, which is signaled via JPA annotation` @Enumerated(value = EnumType.STRING)`. Please note that in case the property is used in an _orderby_ clause a client expect an order of a number, but would get a order of strings:
 
 ```Java
 package tutorial.model;
@@ -49,14 +49,14 @@ public class Company extends BusinessPartner {
 
 @Enumerated(value = EnumType.STRING)
 @Column(name = "\"ABCClass\"")
-private ABCClassifiaction abcClass;
+private ABCclassification abcClass;
 ```
 If we have a look at the metadata again, we will find the following:
 
-![Mapping of ABCClassifiaction](Metadata/MappingSimpleEnumCompany.png)
+![Mapping of ABCclassification](Metadata/MappingSimpleEnumCompany.png)
 ## Flag Based Enumeration
 
-Here we take over the example given in [Schema Definition Language Documentation](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752565). Our use-case is that we want to be able to get insights into the access rights of a Person. The rights should be  _Read_, _Write_, _Create_ or _Delete_. A person may have multiple right at the same time thats why we need members, which are flags. The flags shall be encoded as short values:
+Here we take over the example given in [Schema Definition Language Documentation](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752565). Our use-case is that we want to be able to get insights into the access rights of a Person. The rights should be  _Read_, _Write_, _Create_ or _Delete_. A person may have multiple right at the same time that's why we need members, which are flags. The flags shall be encoded as short values:
 
 ```Java
 package tutorial.model;
@@ -82,7 +82,7 @@ public enum AccessRights {
   }
 }
 ```
-The EdmEnumeration annotation has been enriched, so the JPA processor knows that the members are flags and that the value shall not be determined via `ordinal()` but via a converter, which we can later use, when we add a column to the Person. The converter converts from respectively into an array of enumeration instances. This is neccesary, as here more than one member may be selected at a time. A simple converter can look as follows:
+The EdmEnumeration annotation has been enriched, so the JPA processor knows that the members are flags and that the value shall not be determined via `ordinal()` but via a converter, which we can later use, when we add a column to the Person. The converter converts from respectively into an array of enumeration instances. This is necessary since here more than one member may be selected at a time. A simple converter can look as follows:
 ```Java
 package tutorial.model;
 

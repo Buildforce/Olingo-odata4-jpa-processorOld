@@ -11,8 +11,8 @@ import java.util.Map;
 
 import javax.persistence.metamodel.Attribute;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssoziation;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssoziation.valueAssignment;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssociation;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssociation.valueAssignment;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
@@ -42,9 +42,9 @@ final class IntermediateDescriptionProperty extends IntermediateSimpleProperty i
     if (this.edmProperty == null) {
       super.lazyBuildEdmItem();
       if (jpaMember instanceof AnnotatedElement) {
-        final EdmDescriptionAssoziation assozation = ((AnnotatedElement) jpaMember).getAnnotation(
-            EdmDescriptionAssoziation.class);
-        if (assozation != null) {
+        final EdmDescriptionAssociation association = ((AnnotatedElement) jpaMember).getAnnotation(
+            EdmDescriptionAssociation.class);
+        if (association != null) {
           // determine generic type of a collection in case of an OneToMany association
           if (jpaMember instanceof Field) {
             final Field jpaField = (Field) jpaMember;
@@ -56,14 +56,14 @@ final class IntermediateDescriptionProperty extends IntermediateSimpleProperty i
           } else
             targetEntity = schema.getEntityType(jpaAttribute.getJavaType());
 
-          descriptionProperty = (IntermediateSimpleProperty) targetEntity.getAttribute(assozation
+          descriptionProperty = (IntermediateSimpleProperty) targetEntity.getAttribute(association
               .descriptionAttribute());
           if (descriptionProperty == null)
             // The attribute %2$s has not been found at entity %1$s
-            throw new ODataJPAModelException(MessageKeys.INVALID_DESCIPTION_PROPERTY, targetEntity.getInternalName(),
-                assozation.descriptionAttribute());
-          languageAttribute = assozation.languageAttribute();
-          localeAttribute = assozation.localeAttribute();
+            throw new ODataJPAModelException(MessageKeys.INVALID_DESCRIPTION_PROPERTY, targetEntity.getInternalName(),
+                association.descriptionAttribute());
+          languageAttribute = association.languageAttribute();
+          localeAttribute = association.localeAttribute();
 
           if (languageAttribute.isEmpty() && localeAttribute.isEmpty() ||
               !languageAttribute.isEmpty() && !localeAttribute.isEmpty())
@@ -73,11 +73,11 @@ final class IntermediateDescriptionProperty extends IntermediateSimpleProperty i
             throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.DESCRIPTION_FIELD_WRONG_TYPE,
                 targetEntity.getInternalName(), this.internalName);
 
-          edmProperty.setType(JPATypeConvertor.convertToEdmSimpleType(descriptionProperty.getType())
+          edmProperty.setType(JPATypeConverter.convertToEdmSimpleType(descriptionProperty.getType())
               .getFullQualifiedName());
           edmProperty.setMaxLength(descriptionProperty.getEdmItem().getMaxLength());
 
-          fixedValues = convertFixedValues(assozation.valueAssignments());
+          fixedValues = convertFixedValues(association.valueAssignments());
           localFieldPath = convertAttributeToPath(!languageAttribute.isEmpty() ? languageAttribute : localeAttribute);
         } else
           throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.DESCRIPTION_ANNOTATION_MISSING,
@@ -119,14 +119,14 @@ final class IntermediateDescriptionProperty extends IntermediateSimpleProperty i
   private HashMap<JPAPath, String> convertFixedValues(final valueAssignment[] valueAssignments)
       throws ODataJPAModelException {
     final HashMap<JPAPath, String> result = new HashMap<>();
-    for (final EdmDescriptionAssoziation.valueAssignment value : valueAssignments) {
+    for (final EdmDescriptionAssociation.valueAssignment value : valueAssignments) {
       result.put(convertAttributeToPath(value.attribute()), value.value());
     }
     return result;
   }
 
   private JPAPath convertAttributeToPath(final String attribute) throws ODataJPAModelException {
-    final String[] pathItems = attribute.split(JPAPath.PATH_SEPERATOR);
+    final String[] pathItems = attribute.split(JPAPath.PATH_SEPARATOR);
     if (pathItems.length > 1) {
       final List<JPAElement> targetPath = new ArrayList<>();
       IntermediateSimpleProperty nextHop = (IntermediateSimpleProperty) targetEntity.getAttribute(pathItems[0]);

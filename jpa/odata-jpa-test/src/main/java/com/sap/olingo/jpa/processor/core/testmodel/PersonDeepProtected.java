@@ -16,7 +16,8 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
 @Table(schema = "\"OLINGO\"", name = "PersonProtected")
 public class PersonDeepProtected {// #NOSONAR use equal method from BusinessPartner
 //  CREATE VIEW
-//  AS 
+//  AS
+
 //SELECT b."ID",b."ETag",b."NameLine1",b."NameLine2",b."CreatedBy",b."CreatedAt",b."UpdatedBy",b."UpdatedAt"
 
   @Id
@@ -42,7 +43,7 @@ public class PersonDeepProtected {// #NOSONAR use equal method from BusinessPart
   @Embedded
   @EdmProtections({
       @EdmProtectedBy(name = "Creator", path = "created/by"),
-      @EdmProtectedBy(name = "Updator", path = "updated/by")
+      @EdmProtectedBy(name = "Updater", path = "updated/by")
   })
   private AdministrativeInformation protectedAdminInfo = new AdministrativeInformation();
 

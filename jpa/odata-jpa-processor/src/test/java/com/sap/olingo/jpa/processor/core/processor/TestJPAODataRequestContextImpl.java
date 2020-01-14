@@ -19,7 +19,7 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataGroupProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataPage;
 import com.sap.olingo.jpa.processor.core.api.JPAODataTransactionFactory;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllicalAccessException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
 
 public class TestJPAODataRequestContextImpl {
@@ -62,12 +62,12 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testThrowsExceptionOnEntityManagerIsNull() throws JPAIllicalAccessException {
+  public void testThrowsExceptionOnEntityManagerIsNull() throws JPAIllegalAccessException {
     assertThrows(NullPointerException.class, () -> cut.setEntityManager(null));
   }
 
   @Test
-  public void testReturnsSetPage() throws JPAIllicalAccessException {
+  public void testReturnsSetPage() throws JPAIllegalAccessException {
     final UriInfo uriInfo = mock(UriInfo.class);
     final JPAODataPage exp = new JPAODataPage(uriInfo, 0, 10, "12354");
     cut.setJPAODataPage(exp);
@@ -76,52 +76,52 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testReturnsSetUriInfo() throws JPAIllicalAccessException {
+  public void testReturnsSetUriInfo() throws JPAIllegalAccessException {
     final UriInfo exp = mock(UriInfo.class);
     cut.setUriInfo(exp);
     assertEquals(exp, cut.getUriInfo());
   }
 
   @Test
-  public void testReturnsSetJPASerializer() throws JPAIllicalAccessException {
+  public void testReturnsSetJPASerializer() throws JPAIllegalAccessException {
     final JPASerializer exp = mock(JPASerializer.class);
     cut.setJPASerializer(exp);
     assertEquals(exp, cut.getSerializer());
   }
 
   @Test
-  public void testThrowsExceptionOnSetPageIfUriInfoExists() throws JPAIllicalAccessException {
+  public void testThrowsExceptionOnSetPageIfUriInfoExists() throws JPAIllegalAccessException {
     final UriInfo uriInfo = mock(UriInfo.class);
     final JPAODataPage page = new JPAODataPage(uriInfo, 0, 10, "12354");
     cut.setUriInfo(uriInfo);
-    assertThrows(JPAIllicalAccessException.class, () -> cut.setJPAODataPage(page));
+    assertThrows(JPAIllegalAccessException.class, () -> cut.setJPAODataPage(page));
   }
 
   @Test
-  public void testThrowsExceptionOnPageIsNull() throws JPAIllicalAccessException {
+  public void testThrowsExceptionOnPageIsNull() throws JPAIllegalAccessException {
     assertThrows(NullPointerException.class, () -> cut.setJPAODataPage(null));
   }
 
   @Test
-  public void testThrowsExceptionOnSetUriInfoIfUriInfoExists() throws JPAIllicalAccessException {
+  public void testThrowsExceptionOnSetUriInfoIfUriInfoExists() throws JPAIllegalAccessException {
     final UriInfo uriInfo = mock(UriInfo.class);
     final JPAODataPage page = new JPAODataPage(uriInfo, 0, 10, "12354");
     cut.setJPAODataPage(page);
-    assertThrows(JPAIllicalAccessException.class, () -> cut.setUriInfo(uriInfo));
+    assertThrows(JPAIllegalAccessException.class, () -> cut.setUriInfo(uriInfo));
   }
 
   @Test
-  public void testThrowsExceptionOnUriInfoIsNull() throws JPAIllicalAccessException {
+  public void testThrowsExceptionOnUriInfoIsNull() throws JPAIllegalAccessException {
     assertThrows(NullPointerException.class, () -> cut.setUriInfo(null));
   }
 
   @Test
-  public void testThrowsExceptionOnSerializerIsNull() throws JPAIllicalAccessException {
+  public void testThrowsExceptionOnSerializerIsNull() throws JPAIllegalAccessException {
     assertThrows(NullPointerException.class, () -> cut.setJPASerializer(null));
   }
 
   @Test
-  public void testCopyConstructorCopysExternalAndAddsUriInfo() throws JPAIllicalAccessException {
+  public void testCopyConstructorCopysExternalAndAddsUriInfo() throws JPAIllegalAccessException {
     fillContextForCopyConstructor();
     final JPASerializer serializer = mock(JPASerializer.class);
     final UriInfo uriInfo = mock(UriInfo.class);
@@ -168,14 +168,14 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testReturnsDefaultTransactionFactory() throws JPAIllicalAccessException {
+  public void testReturnsDefaultTransactionFactory() throws JPAIllegalAccessException {
     final EntityManager em = mock(EntityManager.class);
     cut.setEntityManager(em);
     assertTrue(cut.getTransactionFactory() instanceof JPAODataDefaultTransactionFactory);
   }
 
   @Test
-  public void testReturnsProvidedTransactionFactory() throws JPAIllicalAccessException {
+  public void testReturnsProvidedTransactionFactory() throws JPAIllegalAccessException {
     final JPAODataTransactionFactory exp = mock(JPAODataTransactionFactory.class);
     cut.setTransactionFactory(exp);
     assertEquals(exp, cut.getTransactionFactory());

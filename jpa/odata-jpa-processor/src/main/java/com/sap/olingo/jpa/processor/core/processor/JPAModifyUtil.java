@@ -31,7 +31,8 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException.Me
  * in a Map the internal, JAVA attribute, names. Based on the JAVA naming
  * conventions the corresponding Setter is called, as long as the Setter has the
  * correct type.
- * 
+ *
+
  * @author Oliver Grande
  *
  */
@@ -44,7 +45,8 @@ public final class JPAModifyUtil {
    * <br>
    * For JPA entities having only one key, so do not use an IdClass, the
    * corresponding value in <code>jpaKeys</code> is returned
-   * 
+   *
+
    * @param et
    * @param jpaKeys
    * @return
@@ -66,7 +68,8 @@ public final class JPAModifyUtil {
   }
 
   /**
-   * 
+   *
+
    * @param et
    * @param instance
    * @return
@@ -95,7 +98,8 @@ public final class JPAModifyUtil {
    * existing setter and getter on the level of the sourceInstance. In case of to n associations it is expected that the
    * getter always returns a collection. In case structured properties are passed either a getter returns always an
    * instance or the corresponding type has a parameter less constructor.
-   * 
+   *
+
    * @param parentInstance
    * @param newInstance
    * @param pathInfo
@@ -126,8 +130,8 @@ public final class JPAModifyUtil {
   public void setForeignKey(Object parentInstance, Object newInstance, JPAAssociationPath pathInfo)
       throws ODataJPAProcessorException {
     try {
-      for (JPAOnConditionItem joinCloumn : pathInfo.getJoinColumnsList()) {
-        setAttribute(newInstance, joinCloumn.getRightPath().getLeaf(), getAttribute(parentInstance, joinCloumn
+      for (JPAOnConditionItem joinColumn : pathInfo.getJoinColumnsList()) {
+        setAttribute(newInstance, joinColumn.getRightPath().getLeaf(), getAttribute(parentInstance, joinColumn
             .getLeftPath().getLeaf()));
       }
     } catch (ODataJPAModelException | NoSuchMethodException | IllegalAccessException | IllegalArgumentException
@@ -138,19 +142,20 @@ public final class JPAModifyUtil {
 
   /**
    * Fills instance without filling its embedded components.
-   * 
+   *
+
    * @param jpaAttributes Map of attributes and values that shall be changed
-   * @param instanze JPA POJO instance to take the changes
+   * @param instance JPA POJO instance to take the changes
    * @param st Entity Type
    * @throws ODataJPAProcessorException Thrown when ever a problem with invoking a getter or setter occurs except
    * InvocationTargetException occurs.
    * @throws ODataJPAInvocationTargetException Thrown when InvocationTargetException was thrown.
    * ODataJPAInvocationTargetException contains the original cause and the OData path to the property which should be
-   * changed. The path starts with the entity type. The path parts a separated by {@code JPAPath.PATH_SEPERATOR}.
+   * changed. The path starts with the entity type. The path parts a separated by {@code JPAPath.PATH_SEPARATOR}.
    */
-  public void setAttributes(final Map<String, Object> jpaAttributes, final Object instanze, final JPAStructuredType st)
+  public void setAttributes(final Map<String, Object> jpaAttributes, final Object instance, final JPAStructuredType st)
       throws ODataJPAProcessorException, ODataJPAInvocationTargetException {
-    Method[] methods = instanze.getClass().getMethods();
+    Method[] methods = instance.getClass().getMethods();
     for (Method meth : methods) {
       if (meth.getName().substring(0, 3).equals("set")) {
         String attributeName = meth.getName().substring(3, 4).toLowerCase() + meth.getName().substring(4);
@@ -160,13 +165,13 @@ public final class JPAModifyUtil {
             try {
               Class<?>[] parameters = meth.getParameterTypes();
               if (parameters.length == 1 && (value == null || value.getClass() == parameters[0])) {
-                meth.invoke(instanze, value);
+                meth.invoke(instance, value);
               }
             } catch (IllegalAccessException | IllegalArgumentException e) {
               throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
             } catch (InvocationTargetException e) {
               try {
-                throw new ODataJPAInvocationTargetException(e.getCause(), st.getExternalName() + JPAPath.PATH_SEPERATOR
+                throw new ODataJPAInvocationTargetException(e.getCause(), st.getExternalName() + JPAPath.PATH_SEPARATOR
                     + st.getAttribute(attributeName).getExternalName());
               } catch (ODataJPAModelException e1) {
                 throw new ODataJPAProcessorException(e1, HttpStatusCode.INTERNAL_SERVER_ERROR);
@@ -182,20 +187,21 @@ public final class JPAModifyUtil {
    * Fills instance and its embedded components. In case of embedded
    * components it first tries to get an existing instance. If that is non
    * provided a new one is created and set.
-   * 
+   *
+
    * @param jpaAttributes Map of attributes and values that shall be changed
-   * @param instanze JPA POJO instance to take the changes
+   * @param instance JPA POJO instance to take the changes
    * @param st Entity Type
    * @throws ODataJPAProcessorException Thrown when ever a problem with invoking a getter or setter occurs except
    * InvocationTargetException occurs.
    * @throws ODataJPAInvocationTargetException Thrown when InvocationTargetException was thrown.
    * ODataJPAInvocationTargetException contains the original cause and the OData path to the property which should be
-   * changed. The path starts with the entity type. The path parts a separated by {@code JPAPath.PATH_SEPERATOR}.
+   * changed. The path starts with the entity type. The path parts a separated by {@code JPAPath.PATH_SEPARATOR}.
    */
-  public void setAttributesDeep(final Map<String, Object> jpaAttributes, final Object instanze,
+  public void setAttributesDeep(final Map<String, Object> jpaAttributes, final Object instance,
       final JPAStructuredType st) throws ODataJPAProcessorException, ODataJPAInvocationTargetException {
 
-    final Method[] methods = instanze.getClass().getMethods();
+    final Method[] methods = instance.getClass().getMethods();
     for (final Method meth : methods) {
       if (meth.getName().substring(0, 3).equals("set")) {
         final String attributeName = meth.getName().substring(3, 4).toLowerCase() + meth.getName().substring(4);
@@ -207,12 +213,12 @@ public final class JPAModifyUtil {
               final JPAAttribute attribute = st.getAttribute(attributeName);
               if (!attribute.isComplex() || value == null) {
                 if (value == null || parameters[0].isAssignableFrom(value.getClass())) {
-                  meth.invoke(instanze, value);
+                  meth.invoke(instance, value);
                 }
               } else if (attribute.isCollection()) {
-                setEmbeddedCollectionAttributeDeep(instanze, st, meth, value, parameters, attribute);
+                setEmbeddedCollectionAttributeDeep(instance, st, meth, value, parameters, attribute);
               } else {
-                setEmbeddedAttributeDeep(instanze, st, meth, value, parameters, attribute);
+                setEmbeddedAttributeDeep(instance, st, meth, value, parameters, attribute);
               }
             } catch (IllegalAccessException | IllegalArgumentException | ODataJPAModelException
                 | NoSuchMethodException | SecurityException | InstantiationException e) {
@@ -227,15 +233,15 @@ public final class JPAModifyUtil {
   }
 
   @SuppressWarnings("unchecked")
-  private void setEmbeddedAttributeDeep(final Object instanze, final JPAStructuredType st, final Method meth,
+  private void setEmbeddedAttributeDeep(final Object instance, final JPAStructuredType st, final Method meth,
       final Object value, Class<?>[] parameters, final JPAAttribute attribute)
       throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException,
       ODataJPAModelException, ODataJPAProcessorException, ODataJPAInvocationTargetException {
 
-    Object embedded = readCurrentState(instanze, attribute);
+    Object embedded = readCurrentState(instance, attribute);
     if (embedded == null) {
       embedded = createInstance(parameters[0]);
-      meth.invoke(instanze, embedded);
+      meth.invoke(instance, embedded);
     }
     if (embedded != null) {
       if (this.st == null)
@@ -248,12 +254,12 @@ public final class JPAModifyUtil {
   }
 
   @SuppressWarnings("unchecked")
-  private void setEmbeddedCollectionAttributeDeep(final Object instanze, final JPAStructuredType st, final Method meth,
+  private void setEmbeddedCollectionAttributeDeep(final Object instance, final JPAStructuredType st, final Method meth,
       final Object value, Class<?>[] parameters, final JPAAttribute attribute)
       throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException,
       ODataJPAModelException, ODataJPAProcessorException, ODataJPAInvocationTargetException {
 
-    Collection<Object> embedded = (Collection<Object>) readCurrentState(instanze, attribute);
+    Collection<Object> embedded = (Collection<Object>) readCurrentState(instance, attribute);
     if (embedded == null) {
       // List; Set; Queue
       if (parameters[0].isAssignableFrom(List.class)) {
@@ -261,7 +267,7 @@ public final class JPAModifyUtil {
       } else {
         embedded = (Collection<Object>) createInstance(parameters[0]);
       }
-      meth.invoke(instanze, embedded);
+      meth.invoke(instance, embedded);
     }
     if (embedded != null) {
       if (this.st == null)
@@ -343,7 +349,7 @@ public final class JPAModifyUtil {
     try {
       pathPart = st.getAttribute(attributeName).getExternalName();
       if (this.st != null && this.st.equals(st)) {
-        String path = st.getExternalName() + JPAPath.PATH_SEPERATOR + pathPart + JPAPath.PATH_SEPERATOR
+        String path = st.getExternalName() + JPAPath.PATH_SEPARATOR + pathPart + JPAPath.PATH_SEPARATOR
             + ((ODataJPAInvocationTargetException) e).getPath();
         this.st = null;
         throw new ODataJPAInvocationTargetException(e.getCause(), path);
@@ -352,7 +358,7 @@ public final class JPAModifyUtil {
       throw new ODataJPAProcessorException(e1, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (e instanceof ODataJPAInvocationTargetException)
-      throw new ODataJPAInvocationTargetException(e.getCause(), pathPart + JPAPath.PATH_SEPERATOR
+      throw new ODataJPAInvocationTargetException(e.getCause(), pathPart + JPAPath.PATH_SEPARATOR
           + ((ODataJPAInvocationTargetException) e).getPath());
     else
       throw new ODataJPAInvocationTargetException(e.getCause(), pathPart);

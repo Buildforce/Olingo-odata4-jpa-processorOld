@@ -7,23 +7,24 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOperation;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOperationResultParameter;
 
-class IntermediatOperationResultParameter implements JPAOperationResultParameter {
+class IntermediateOperationResultParameter implements JPAOperationResultParameter {
   /**
-   * 
+   *
+
    */
   private final JPAOperation jpaOperation;
   private final ReturnType jpaReturnType;
   private final Class<?> type;
   private final boolean isCollection;
 
-  public IntermediatOperationResultParameter(final JPAOperation jpaOperation, final ReturnType jpaReturnType) {
+  public IntermediateOperationResultParameter(final JPAOperation jpaOperation, final ReturnType jpaReturnType) {
     this.jpaOperation = jpaOperation;
     this.jpaReturnType = jpaReturnType;
     this.type = jpaReturnType.type();
     this.isCollection = jpaReturnType.isCollection();
   }
 
-  public IntermediatOperationResultParameter(final JPAOperation jpaOperation, final ReturnType jpaReturnType,
+  public IntermediateOperationResultParameter(final JPAOperation jpaOperation, final ReturnType jpaReturnType,
       final Class<?> returnType,
       boolean isCollection) {
     this.jpaOperation = jpaOperation;
@@ -35,7 +36,7 @@ class IntermediatOperationResultParameter implements JPAOperationResultParameter
       this.type = returnType;
   }
 
-  public IntermediatOperationResultParameter(final JPAOperation jpaOperation, final ReturnType jpaReturnType,
+  public IntermediateOperationResultParameter(final JPAOperation jpaOperation, final ReturnType jpaReturnType,
       final Class<?> returnType) {
     this.jpaOperation = jpaOperation;
     this.jpaReturnType = jpaReturnType;

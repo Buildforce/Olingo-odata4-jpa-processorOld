@@ -13,8 +13,8 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.ODataFunction;
-import com.sap.olingo.jpa.processor.core.testmodel.ABCClassifiaction;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
+import com.sap.olingo.jpa.processor.core.testmodel.ABCclassification;
 import com.sap.olingo.jpa.processor.core.testmodel.AccessRights;
 import com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
@@ -91,12 +91,12 @@ public class ExampleJavaFunctions implements ODataFunction {
   }
 
   @EdmFunction(name = "", returnType = @ReturnType())
-  public ABCClassifiaction returnEnumerationType(@EdmParameter(name = "Rights") AccessRights rights) {
-    return ABCClassifiaction.A;
+  public ABCclassification returnEnumerationType(@EdmParameter(name = "Rights") AccessRights rights) {
+    return ABCclassification.A;
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType(type = ABCClassifiaction.class))
-  public List<ABCClassifiaction> returnEnumerationCollection() {
+  @EdmFunction(name = "", returnType = @ReturnType(type = ABCclassification.class))
+  public List<ABCclassification> returnEnumerationCollection() {
     return new ArrayList<>();
   }
 }

@@ -38,28 +38,28 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
 
   @Override
   public JPAODataPage getNextPage(final String skiptoken) {
-    final CacheEntry privousePage = pageCache.get(skiptoken.replaceAll("'", ""));
-    if (privousePage != null) {
+    final CacheEntry previousPage = pageCache.get(skiptoken.replaceAll("'", ""));
+    if (previousPage != null) {
       // Calculate next page
-      final Integer skip = privousePage.getPage().getSkip() + privousePage.getPage().getTop();
+      final Integer skip = previousPage.getPage().getSkip() + previousPage.getPage().getTop();
       // Create a new skiptoken if next page is not the last one
       String nextToken = null;
-      if (skip + privousePage.getPage().getTop() < privousePage.getMaxTop())
+      if (skip + previousPage.getPage().getTop() < previousPage.getMaxTop())
         nextToken = UUID.randomUUID().toString();
-      final int top = (int) ((skip + privousePage.getPage().getTop()) < privousePage.getMaxTop() ? privousePage
-          .getPage().getTop() : privousePage.getMaxTop() - skip);
-      final JPAODataPage page = new JPAODataPage(privousePage.getPage().getUriInfo(),
+      final int top = (int) ((skip + previousPage.getPage().getTop()) < previousPage.getMaxTop() ? previousPage
+          .getPage().getTop() : previousPage.getMaxTop() - skip);
+      final JPAODataPage page = new JPAODataPage(previousPage.getPage().getUriInfo(),
           skip, top, nextToken);
       if (nextToken != null)
-        addToChach(page, privousePage.getMaxTop());
+        addToChach(page, previousPage.getMaxTop());
       return page;
     }
-    // skiptoken not found => let JPA Processor handle this
+    // skip token not found => let JPA Processor handle this
     return null;
   }
 
   @Override
-  public JPAODataPage getFirstPage(final UriInfo uriInfo, final Integer preferedPageSize,
+  public JPAODataPage getFirstPage(final UriInfo uriInfo, final Integer preferredPageSize,
       final JPACountQuery countQuery, final EntityManager em) throws ODataApplicationException {
 
     final UriResource root = uriInfo.getUriResourceParts().get(0);
@@ -74,7 +74,7 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
         // Determine end of list
         final Long count = topValue != null ? (topValue + skipValue) : countQuery.countResults();
         // Determine page size
-        final Integer size = preferedPageSize != null && preferedPageSize < maxSize ? preferedPageSize : maxSize;
+        final Integer size = preferredPageSize != null && preferredPageSize < maxSize ? preferredPageSize : maxSize;
         // Create a unique skiptoken if needed
         String skiptoken = null;
         if (size < count)

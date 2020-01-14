@@ -149,12 +149,12 @@ public class TestJPAActionProcessor {
   }
 
   @Test
-  public void testCallsConstructorWithoutParemeter() throws InstantiationException,
+  public void testCallsConstructorWithoutParameter() throws InstantiationException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException,
       SecurityException, ODataApplicationException {
     TestJavaActionNoParameter.resetCalls();
 
-    setConstructorAndMethod("unboundReturnPrimitivetNoParameter");
+    setConstructorAndMethod("unboundReturnPrimitiveNoParameter");
 
     cut.performAction(request, response, requestFormat);
 
@@ -163,7 +163,7 @@ public class TestJPAActionProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testCallsConstructorWithParemeter() throws ODataJPAProcessException, InstantiationException,
+  public void testCallsConstructorWithParameter() throws ODataJPAProcessException, InstantiationException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException,
       SecurityException, ODataApplicationException {
     TestJavaActions.constructorCalls = 0;

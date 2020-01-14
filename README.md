@@ -6,7 +6,6 @@
 ![GitHub last commit (develop)](https://img.shields.io/github/last-commit/SAP/OLINGO-JPA-PROCESSOR-V4/develop.svg)
 [![GitHub pre-release](https://img.shields.io/github/release-pre/sap/olingo-jpa-processor-v4.svg?color=orange&label=pre-release)](https://github.com/SAP/olingo-jpa-processor-v4/releases/)
 
-
 The JPA Processor shall fill the gap between [Olingo V4](https://olingo.apache.org/doc/odata4/index.html) and the database if [JPA](https://en.wikipedia.org/wiki/Java_Persistence_API) is used for object-relational mapping.
 
 At the current state the JPA Processor provide support for:
@@ -61,7 +60,6 @@ The flowing extensions/changes are planned:
 * Enable server side paging at $expand
 * Overload Operations
 
-
 # License
 Copyright (c) 2017 SAP SE or an SAP affiliate company. All rights reserved.
 This file is licensed under the Apache Software License, v.2 except as noted otherwise in the [License file](/LICENSE.txt).
@@ -74,8 +72,10 @@ This file is licensed under the Apache Software License, v.2 except as noted oth
 |0.2.6|- Solution for issue [#21](https://github.com/SAP/olingo-jpa-processor-v4/issues/21)<br> - JPA Join tables can be used e.g. for Many To Many relationship (issue [#22](https://github.com/SAP/olingo-jpa-processor-v4/issues/22)). If such relation shall be used in a filter a corresponding JPA entity is required, which can be hidden from the API using @EdmIgnore. Please be aware that in case both source and target are subtypes Eclipselink (version 2.7.1 used) may get confused when generating a subquery for filtering, see [Bug 529565](https://bugs.eclipse.org/bugs/show_bug.cgi?id=529565) | No|
 |0.2.7|- Solution for issue [#29](https://github.com/SAP/olingo-jpa-processor-v4/issues/29)<br> - Solution for issue [#35](https://github.com/SAP/olingo-jpa-processor-v4/issues/35)<br> - Solution for issue [#37](https://github.com/SAP/olingo-jpa-processor-v4/issues/37)<br>|No|
 |0.2.8|- Support of Collection Properties<br> - New tutorials 1.7 Suppressing Elements and 1.13 Collection Properties |No|
-|0.2.9|- Support on top level server driven paging<br> - New tutorial 4.3 Server Driven Paging |No|  
-|0.2.10|- Handling of Content-Id in batch requests<br> - Update to Olingo 4.5.0<br> - Update tutorial 1.6, 3.3, 3.5 and 3.6  |No|  
+|0.2.9|- Support on top level server driven paging<br> - New tutorial 4.3 Server Driven Paging |No|
+
+|0.2.10|- Handling of Content-Id in batch requests<br> - Update to Olingo 4.5.0<br> - Update tutorial 1.6, 3.3, 3.5 and 3.6  |No|
+
 |0.3.1|- Support of instance based authorizations<br> - Solution for issue [#60](https://github.com/SAP/olingo-jpa-processor-v4/issues/60)<br> - Solution for issue [#49](https://github.com/SAP/olingo-jpa-processor-v4/issues/49)<br> - Correct typo in interface JPAODataPagingProvider <br> - New tutorials 2.3, 4.4  |Yes|
 |0.3.2|- Lift unit tests to JUnit 5<br> - Correction of http return codes on empty responses |No|
 |0.3.3|- Support of PUT requests on collection properties and simple primitive properties<br> - Update to Olingo 4.6.0 <br> - Solution for issue [#69](https://github.com/SAP/olingo-jpa-processor-v4/issues/69) <br> - Solution for issue [#71](https://github.com/SAP/olingo-jpa-processor-v4/issues/71)<br>- Update tutorial [4.4](jpa-tutorial/Tutorials/SpecialTopics/4-4-InstanceBasedAuthorizations.md)|No

@@ -9,11 +9,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.metamodel.EntityType;
 
@@ -34,11 +30,11 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAProtectionInfo;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateEntityTypeAccess;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateNavigationPropertyAccess;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediatePropertyAccess;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateReferenceList;
-import com.sap.olingo.jpa.processor.core.testmodel.ABCClassifiaction;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateEntityTypeAccess;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateNavigationPropertyAccess;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateReferenceList;
+import com.sap.olingo.jpa.processor.core.testmodel.ABCclassification;
 import com.sap.olingo.jpa.processor.core.testmodel.TestDataConstants;
 
 public class TestIntermediateEntityType extends TestMappingRoot {
@@ -49,8 +45,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   public void setup() throws ODataJPAModelException {
     IntermediateModelElement.setPostProcessor(new DefaultEdmPostProcessor());
     final Reflections r = mock(Reflections.class);
-    when(r.getTypesAnnotatedWith(EdmEnumeration.class)).thenReturn(new HashSet<>(Arrays.asList(new Class<?>[] {
-        ABCClassifiaction.class })));
+    when(r.getTypesAnnotatedWith(EdmEnumeration.class)).thenReturn(new HashSet<>(Collections.singletonList(ABCclassification.class)));
 
     etList = emf.getMetamodel().getEntities();
     schema = new IntermediateSchema(new JPADefaultEdmNameBuilder(PUNIT_NAME), emf.getMetamodel(), r);
@@ -75,7 +70,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   public void checkGetAllProperties() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
-    assertEquals(TestDataConstants.NO_DEC_ATTRIBUTES_BUISNESS_PARTNER, et.getEdmItem()
+    assertEquals(TestDataConstants.NO_DEC_ATTRIBUTES_BUSINESS_PARTNER, et.getEdmItem()
         .getProperties()
         .size(), "Wrong number of entities");
   }
@@ -116,7 +111,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkGetPathByNameIgnoreCompexType() throws ODataJPAModelException {
+  public void checkGetPathByNameIgnoreComplexType() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
     assertNull(et.getPath("Address/RegionCodePublisher"));
@@ -151,14 +146,14 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkGetAssoziationOfComplexTypeByNameCorrectEntity() throws ODataJPAModelException {
+  public void checkGetAssociationOfComplexTypeByNameCorrectEntity() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
     assertEquals("Address/AdministrativeDivision", et.getAssociationPath("Address/AdministrativeDivision").getAlias());
   }
 
   @Test
-  public void checkGetAssoziationOfComplexTypeByNameJoinColumns() throws ODataJPAModelException {
+  public void checkGetAssociationOfComplexTypeByNameJoinColumns() throws ODataJPAModelException {
     int actCount = 0;
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
@@ -186,7 +181,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
 
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
-    assertEquals(TestDataConstants.NO_DEC_ATTRIBUTES_BUISNESS_PARTNER - 1, et.getEdmItem()
+    assertEquals(TestDataConstants.NO_DEC_ATTRIBUTES_BUSINESS_PARTNER - 1, et.getEdmItem()
         .getProperties().size(), "Wrong number of entities");
   }
 
@@ -229,7 +224,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   public void checkGetAllAttributesWithBaseType() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "Organization"), schema);
-    int exp = TestDataConstants.NO_ATTRIBUTES_BUISNESS_PARTNER
+    int exp = TestDataConstants.NO_ATTRIBUTES_BUSINESS_PARTNER
         + TestDataConstants.NO_ATTRIBUTES_POSTAL_ADDRESS
         + TestDataConstants.NO_ATTRIBUTES_COMMUNICATION_DATA
         + 2 * TestDataConstants.NO_ATTRIBUTES_CHANGE_INFO
@@ -244,9 +239,9 @@ public class TestIntermediateEntityType extends TestMappingRoot {
 
     assertNotNull(et.getPath("Type"));
     assertNotNull(et.getPath("Name1"));
-    assertNotNull(et.getPath("Address" + JPAPath.PATH_SEPERATOR + "Region"));
-    assertNotNull(et.getPath("AdministrativeInformation" + JPAPath.PATH_SEPERATOR
-        + "Created" + JPAPath.PATH_SEPERATOR + "By"));
+    assertNotNull(et.getPath("Address" + JPAPath.PATH_SEPARATOR + "Region"));
+    assertNotNull(et.getPath("AdministrativeInformation" + JPAPath.PATH_SEPARATOR
+        + "Created" + JPAPath.PATH_SEPARATOR + "By"));
   }
 
   @Test
@@ -386,28 +381,28 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkGetProptertyByDBFieldName() throws ODataJPAModelException {
+  public void checkGetPropertyByDBFieldName() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
     assertEquals("Type", et.getPropertyByDBField("\"Type\"").getExternalName());
   }
 
   @Test
-  public void checkGetProptertyByDBFieldNameFromSuperType() throws ODataJPAModelException {
+  public void checkGetPropertyByDBFieldNameFromSuperType() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "Organization"), schema);
     assertEquals("Type", et.getPropertyByDBField("\"Type\"").getExternalName());
   }
 
   @Test
-  public void checkGetProptertyByDBFieldNameFromEmbedded() throws ODataJPAModelException {
+  public void checkGetPropertyByDBFieldNameFromEmbedded() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertEquals("CodeID", et.getPropertyByDBField("\"CodeID\"").getExternalName());
   }
 
   @Test
-  public void checkAllPathContainsComplexCollcetion() throws ODataJPAModelException {
+  public void checkAllPathContainsComplexCollection() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "Collection"), schema);
     final List<JPAPath> act = et.getPathList();
@@ -434,7 +429,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkAllPathContainsPrimitiveCollcetion() throws ODataJPAModelException {
+  public void checkAllPathContainsPrimitiveCollection() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "Collection"), schema);
     final List<JPAPath> act = et.getPathList();
@@ -461,7 +456,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkAllPathContainsDeepComplexWithPrimitiveCollcetion() throws ODataJPAModelException {
+  public void checkAllPathContainsDeepComplexWithPrimitiveCollection() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "CollectionDeep"), schema);
     final List<JPAPath> act = et.getPathList();
@@ -477,7 +472,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkAllPathContainsDeepComplexWithComplexCollcetion() throws ODataJPAModelException {
+  public void checkAllPathContainsDeepComplexWithComplexCollection() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "CollectionDeep"), schema);
 
@@ -523,7 +518,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
     assertNotNull(act);
     assertInherited(act);
     assertComplexAnnotated(act, "Creator", "Created");
-    assertComplexAnnotated(act, "Updator", "Updated");
+    assertComplexAnnotated(act, "Updater", "Updated");
     assertComplexDeep(act);
     assertEquals(4, act.size());
   }

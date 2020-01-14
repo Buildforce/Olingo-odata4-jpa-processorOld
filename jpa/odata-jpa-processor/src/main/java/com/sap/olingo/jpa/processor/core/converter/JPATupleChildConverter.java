@@ -59,14 +59,14 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
   }
 
   public Map<String, List<Object>> getCollectionResult(final JPACollectionResult jpaResult,
-      final Collection<JPAPath> reqestedSelection) throws ODataApplicationException {
+      final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
 
-    return new JPATupleCollectionConverter(sd, uriHelper, serviceMetadata).getResult(jpaResult, reqestedSelection);
+    return new JPATupleCollectionConverter(sd, uriHelper, serviceMetadata).getResult(jpaResult, requestedSelection);
   }
 
   @Override
   public Map<String, EntityCollection> getResult(final JPAExpandResult jpaResult,
-      final Collection<JPAPath> reqestedSelection) throws ODataApplicationException {
+      final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
 
     jpaQueryResult = jpaResult;
     this.setName = determineSetName(jpaQueryResult, sd);
@@ -82,7 +82,7 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
 
       for (int i = 0; i < rows.size(); i++) {
         final Tuple row = rows.set(i, null);
-        final Entity odataEntity = convertRow(jpaConversionTargetEntity, row, reqestedSelection);
+        final Entity odataEntity = convertRow(jpaConversionTargetEntity, row, requestedSelection);
         odataEntity.setMediaContentType(determineContentType(jpaConversionTargetEntity, row));
         entities.add(odataEntity);
       }
@@ -93,7 +93,7 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
   }
 
   protected Entity convertRow(final JPAEntityType rowEntity, final Tuple row,
-      final Collection<JPAPath> reqestedSelection) throws ODataApplicationException {
+      final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
 
     final Map<String, ComplexValue> complexValueBuffer = new HashMap<>();
     final Entity odataEntity = new Entity();
@@ -104,10 +104,10 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
     // part of $select. As Olingo adds the key properties (with null) anyhow this can be done here already
     createId(rowEntity, row, odataEntity);
     createEtag(rowEntity, row, odataEntity);
-    if (reqestedSelection.isEmpty())
+    if (requestedSelection.isEmpty())
       convertRowWithOutSelection(rowEntity, row, complexValueBuffer, odataEntity, properties);
     else
-      convertRowWithSelection(row, reqestedSelection, complexValueBuffer, odataEntity, properties);
+      convertRowWithSelection(row, requestedSelection, complexValueBuffer, odataEntity, properties);
     createCollectionProperties(rowEntity, row, properties);
     odataEntity.getNavigationLinks().addAll(createExpand(rowEntity, row, EMPTY_PREFIX, odataEntity.getId().toString()));
 
@@ -131,10 +131,10 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
     }
   }
 
-  private void convertRowWithSelection(final Tuple row, final Collection<JPAPath> reqestedSelection,
+  private void convertRowWithSelection(final Tuple row, final Collection<JPAPath> requestedSelection,
       final Map<String, ComplexValue> complexValueBuffer, final Entity odataEntity, final List<Property> properties)
       throws ODataApplicationException {
-    for (final JPAPath p : reqestedSelection) {
+    for (final JPAPath p : requestedSelection) {
       try {
         final Object value = row.get(p.getAlias());
 
@@ -172,7 +172,7 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
         final JPACollectionAttribute collection = (JPACollectionAttribute) path.getLeaf();
         final JPAExpandResult child = jpaQueryResult.getChild(collection.asAssociation());
         if (child != null) {
-          addCollcetion(row, result, collection, child);
+          addCollection(row, result, collection, child);
         }
       }
     } catch (ODataJPAModelException e) {
@@ -181,7 +181,7 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
     }
   }
 
-  private void addCollcetion(final Tuple row, List<Property> result, final JPACollectionAttribute collection,
+  private void addCollection(final Tuple row, List<Property> result, final JPACollectionAttribute collection,
       final JPAExpandResult child) throws ODataJPAModelException {
     final Collection<Object> collectionResult = ((JPACollectionResult) child).getPropertyCollection(
         buildConcatenatedKey(row, collection.asAssociation().getLeftColumnsList()));

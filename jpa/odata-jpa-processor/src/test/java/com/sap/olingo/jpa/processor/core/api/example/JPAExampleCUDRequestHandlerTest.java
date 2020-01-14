@@ -81,7 +81,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
   }
 
   @Test
-  public void checkCreateEntityWithPrimitiveCollcetion() throws ODataJPAProcessException, ODataJPAModelException {
+  public void checkCreateEntityWithPrimitiveCollection() throws ODataJPAProcessException, ODataJPAModelException {
 
     doReturn(helper.getJPAEntityType("Organizations")).when(requestEntity).getEntityType();
 
@@ -100,7 +100,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
   }
 
   @Test
-  public void checkCreateEntityWithComplexCollcetion() throws ODataJPAProcessException, ODataJPAModelException {
+  public void checkCreateEntityWithComplexCollection() throws ODataJPAProcessException, ODataJPAModelException {
 
     doReturn(helper.getJPAEntityType("Persons")).when(requestEntity).getEntityType();
 
@@ -131,7 +131,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
   }
 
   @Test
-  public void checkCreateEntityWithComplexCollcetionInitialyNull() throws ODataJPAProcessException,
+  public void checkCreateEntityWithComplexCollectionInitiallyNull() throws ODataJPAProcessException,
       ODataJPAModelException {
     assertNull(new Collection().getNested());
 
@@ -242,11 +242,11 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNull(((Organization) act.getModifyedEntity()).getName1());
+    assertNull(((Organization) act.getModifiedEntity()).getName1());
   }
 
   @Test
-  public void checkDeletePrimitiveCollctionProperty() throws ODataJPAProcessException, ODataJPAModelException {
+  public void checkDeletePrimitiveCollectionProperty() throws ODataJPAProcessException, ODataJPAModelException {
     final String id = "1";
     final Organization beforImage = new Organization(id);
     beforImage.getComment().add("YAC");
@@ -260,7 +260,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNull(((Organization) act.getModifyedEntity()).getComment());
+    assertNull(((Organization) act.getModifiedEntity()).getComment());
   }
 
   @Test
@@ -278,11 +278,11 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNull(((Organization) act.getModifyedEntity()).getAddress());
+    assertNull(((Organization) act.getModifiedEntity()).getAddress());
   }
 
   @Test
-  public void checkDeleteComplexCollctionProperty() throws ODataJPAProcessException, ODataJPAModelException {
+  public void checkDeleteComplexCollectionProperty() throws ODataJPAProcessException, ODataJPAModelException {
 
     final String id = "2";
     final Person beforImage = new Person();
@@ -298,7 +298,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNull(((Person) act.getModifyedEntity()).getInhouseAddress());
+    assertNull(((Person) act.getModifiedEntity()).getInhouseAddress());
   }
 
   @Test
@@ -322,8 +322,8 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNull(((Organization) act.getModifyedEntity()).getAddress().getPOBox());
-    assertEquals("Hamburg", ((Organization) act.getModifyedEntity()).getAddress().getCityName());
+    assertNull(((Organization) act.getModifiedEntity()).getAddress().getPOBox());
+    assertEquals("Hamburg", ((Organization) act.getModifiedEntity()).getAddress().getCityName());
   }
 
   @Test
@@ -366,7 +366,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.PATCH);
 
     assertFalse(act.wasCreate());
-    assertEquals("Example SE", ((Organization) act.getModifyedEntity()).getName1());
+    assertEquals("Example SE", ((Organization) act.getModifiedEntity()).getName1());
   }
 
   @Test
@@ -394,8 +394,8 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNotNull(((Organization) act.getModifyedEntity()).getAddress());
-    final PostalAddressData afterImage = ((Organization) act.getModifyedEntity()).getAddress();
+    assertNotNull(((Organization) act.getModifiedEntity()).getAddress());
+    final PostalAddressData afterImage = ((Organization) act.getModifiedEntity()).getAddress();
 
     assertEquals("45", afterImage.getHouseNumber());
     assertEquals("Test", afterImage.getCityName());
@@ -404,7 +404,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
   }
 
   @Test
-  public void checkPatchEmptyComplexCollctionProperty() throws ODataJPAProcessException, ODataJPAModelException {
+  public void checkPatchEmptyComplexCollectionProperty() throws ODataJPAProcessException, ODataJPAModelException {
 
     final String id = "2";
     final Person beforImage = new Person();
@@ -421,12 +421,12 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNotNull(((Person) act.getModifyedEntity()).getInhouseAddress());
-    assertTrue(((Person) act.getModifyedEntity()).getInhouseAddress().isEmpty());
+    assertNotNull(((Person) act.getModifiedEntity()).getInhouseAddress());
+    assertTrue(((Person) act.getModifiedEntity()).getInhouseAddress().isEmpty());
   }
 
   @Test
-  public void checkPatchComplexCollctionProperty() throws ODataJPAProcessException, ODataJPAModelException {
+  public void checkPatchComplexCollectionProperty() throws ODataJPAProcessException, ODataJPAModelException {
 
     final String id = "2";
     final Person beforImage = new Person();
@@ -452,8 +452,8 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.PATCH);
 
     assertFalse(act.wasCreate());
-    assertNotNull(((Person) act.getModifyedEntity()).getInhouseAddress());
-    final List<InhouseAddress> actInhouseAddrs = ((Person) act.getModifyedEntity()).getInhouseAddress();
+    assertNotNull(((Person) act.getModifiedEntity()).getInhouseAddress());
+    final List<InhouseAddress> actInhouseAddrs = ((Person) act.getModifiedEntity()).getInhouseAddress();
     assertEquals(2, actInhouseAddrs.size());
     assertTrue(actInhouseAddrs.get(0).getBuilding() == null || actInhouseAddrs.get(0).getBuilding().isEmpty());
     assertTrue(actInhouseAddrs.get(1).getBuilding() == null || actInhouseAddrs.get(1).getBuilding().isEmpty());
@@ -475,8 +475,8 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertFalse(act.wasCreate());
-    assertNotNull(((Organization) act.getModifyedEntity()).getComment());
-    final List<String> actComments = ((Organization) act.getModifyedEntity()).getComment();
+    assertNotNull(((Organization) act.getModifiedEntity()).getComment());
+    final List<String> actComments = ((Organization) act.getModifiedEntity()).getComment();
     assertEquals(2, actComments.size());
     assertTrue(actComments.contains("YAT"));
     assertTrue(actComments.contains("This is a test"));
@@ -518,7 +518,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     final JPAUpdateResult act = cut.updateEntity(requestEntity, em, HttpMethod.DELETE);
 
     assertNotNull(act);
-    assertEquals(parent, act.getModifyedEntity());
+    assertEquals(parent, act.getModifiedEntity());
     assertEquals(1, parent.getChildren().size());
     assertEquals("DE51", parent.getChildren().get(0).getDivisionCode());
   }

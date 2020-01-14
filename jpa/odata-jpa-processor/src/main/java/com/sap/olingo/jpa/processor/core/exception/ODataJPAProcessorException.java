@@ -10,7 +10,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageKey;
  */
 public class ODataJPAProcessorException extends ODataJPAProcessException {
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = -7188499882306858747L;
 
@@ -34,7 +35,7 @@ public class ODataJPAProcessorException extends ODataJPAProcessException {
     WRONG_RETURN_TYPE,
     RETURN_NULL,
     RETURN_MISSING_ENTITY,
-    ATTRIBUTE_RETRIVAL_FAILED,
+    ATTRIBUTE_RETRIEVAL_FAILED,
     ODATA_MAXPAGESIZE_NOT_A_NUMBER,
     SETTER_NOT_FOUND,
     GETTER_NOT_FOUND,
@@ -47,7 +48,7 @@ public class ODataJPAProcessorException extends ODataJPAProcessException {
 
   }
 
-  private static final String BUNDEL_NAME = "processor-exceptions-i18n";
+  private static final String BUNDLE_NAME = "processor-exceptions-i18n";
 
   public ODataJPAProcessorException(final Throwable e, final HttpStatusCode statusCode) {
     super(e, statusCode);
@@ -78,7 +79,7 @@ public class ODataJPAProcessorException extends ODataJPAProcessException {
 
   @Override
   protected String getBundleName() {
-    return BUNDEL_NAME;
+    return BUNDLE_NAME;
   }
 
 }

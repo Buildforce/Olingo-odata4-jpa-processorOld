@@ -122,7 +122,8 @@ public class JPAExpandItemWrapper implements JPAExpandItem {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.query.JPAExpandItem#getEntityType()
    */
   @Override

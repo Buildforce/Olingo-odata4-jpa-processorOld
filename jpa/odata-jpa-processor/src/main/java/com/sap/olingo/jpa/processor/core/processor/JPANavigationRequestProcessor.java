@@ -41,14 +41,14 @@ import com.sap.olingo.jpa.processor.core.converter.JPATupleChildConverter;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.query.JPACollectionItemInfo;
 import com.sap.olingo.jpa.processor.core.query.JPACollectionJoinQuery;
-import com.sap.olingo.jpa.processor.core.query.JPAConvertableResult;
+import com.sap.olingo.jpa.processor.core.query.JPAConvertibleResult;
 import com.sap.olingo.jpa.processor.core.query.JPAExpandItemInfo;
 import com.sap.olingo.jpa.processor.core.query.JPAExpandItemInfoFactory;
 import com.sap.olingo.jpa.processor.core.query.JPAExpandJoinQuery;
 import com.sap.olingo.jpa.processor.core.query.JPAExpandQueryResult;
 import com.sap.olingo.jpa.processor.core.query.JPAJoinQuery;
 import com.sap.olingo.jpa.processor.core.query.JPAKeyBoundary;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationProptertyInfo;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationPropertyInfo;
 import com.sap.olingo.jpa.processor.core.query.Util;
 
 public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestProcessor {
@@ -81,7 +81,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       throw new ODataJPAProcessorException(QUERY_PREPARATION_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }
 
-    final JPAConvertableResult result = query.execute();
+    final JPAConvertibleResult result = query.execute();
     // Read Expand and Collection
     final Optional<JPAKeyBoundary> keyBoundary = result.getKeyBoundary(requestContext, query.getNavigationInfo());
     result.putChildren(readExpandEntities(request.getAllHeaders(), query.getNavigationInfo(), uriInfo, keyBoundary));
@@ -135,7 +135,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       final int serializerHandle = debugger.startRuntimeMeasurement(serializer, "serialize");
       final SerializerResult serializerResult = serializer.serialize(request, entityCollection);
       debugger.stopRuntimeMeasurement(serializerHandle);
-      createSuccessResponce(response, responseFormat, serializerResult);
+      createSuccessResponse(response, responseFormat, serializerResult);
     } else {
       // A request returns 204 No Content if the requested resource has the null value, or if the service applies a
       // return=minimal preference. In this case, the response body MUST be empty.
@@ -236,7 +236,8 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
    * <a href=
    * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398298"
    * >OData Version 4.0 Part 1 - 11.2.4.2 System Query Option $expand</a><p>
-   * 
+   *
+
    * For a detailed description of the URI syntax see:
    * <a href=
    * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part2-url-conventions/odata-v4.0-errata02-os-part2-url-conventions-complete.html#_Toc406398162"
@@ -250,7 +251,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
    * @throws ODataException
    */
   private Map<JPAAssociationPath, JPAExpandResult> readExpandEntities(final Map<String, List<String>> headers,
-      final List<JPANavigationProptertyInfo> parentHops, final UriInfoResource uriResourceInfo,
+      final List<JPANavigationPropertyInfo> parentHops, final UriInfoResource uriResourceInfo,
       final Optional<JPAKeyBoundary> keyBoundary) throws ODataException {
 
     final int handle = debugger.startRuntimeMeasurement(this, "readExpandEntities");

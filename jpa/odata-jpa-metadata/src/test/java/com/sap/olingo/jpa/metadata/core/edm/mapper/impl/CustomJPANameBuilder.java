@@ -1,5 +1,6 @@
 /**
- * 
+ *
+
  */
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
@@ -19,8 +20,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 public class CustomJPANameBuilder implements JPAEdmNameBuilder {
 
   @Override
-  public String buildComplexTypeName(EmbeddableType<?> jpaEnbeddedType) {
-    return new StringBuilder("T_").append(jpaEnbeddedType.getJavaType().getSimpleName()).toString();
+  public String buildComplexTypeName(EmbeddableType<?> jpaEmbeddedType) {
+    return new StringBuilder("T_").append(jpaEmbeddedType.getJavaType().getSimpleName()).toString();
   }
 
   @Override
@@ -37,7 +38,7 @@ public class CustomJPANameBuilder implements JPAEdmNameBuilder {
   public String buildEntityTypeName(EntityType<?> jpaEntityType) {
     final StringBuilder externalName = new StringBuilder();
     final IntStream name = jpaEntityType.getName().chars();
-    name.forEach(i -> this.appeendChar(externalName, i));
+    name.forEach(i -> this.appendChar(externalName, i));
     externalName.deleteCharAt(0);
     return externalName.toString();
   }
@@ -67,7 +68,7 @@ public class CustomJPANameBuilder implements JPAEdmNameBuilder {
     return "test";
   }
 
-  private void appeendChar(final StringBuilder builder, int i) {
+  private void appendChar(final StringBuilder builder, int i) {
     if (Character.isUpperCase(i))
       builder.append('_').append(Character.toChars(i)[0]);
     else

@@ -37,7 +37,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAJoinTable;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateNavigationPropertyAccess;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateNavigationPropertyAccess;
 
 /**
  * A navigation property describes a relation of one entity type to another entity type and allows to navigate to it.
@@ -187,7 +187,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
       edmNaviProperty.setName(getExternalName());
       edmNaviProperty.setType(buildFQN(targetType.getExternalName()));
       edmNaviProperty.setCollection(jpaAttribute.isCollection());
-      // Optional --> ReleationAnnotation
+      // Optional --> RelationAnnotation
       if (jpaAttribute.getJavaMember() instanceof AnnotatedElement) {
         final AnnotatedElement annotatedElement = (AnnotatedElement) jpaAttribute.getJavaMember();
         switch (jpaAttribute.getPersistentAttributeType()) {
@@ -220,7 +220,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
 
 //      Determine referential constraint
         buildJoinColumns(mappedBy, isSourceOne, annotatedElement);
-        determienReferentialConstraints(annotatedElement);
+        determineReferentialConstraints(annotatedElement);
       }
       // TODO determine ContainsTarget
       determinePartner(mappedBy);
@@ -358,10 +358,10 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
         .getCanonicalName());
     // Process annotations after post processing, as external name could have been changed
     getAnnotations(edmAnnotations, this.jpaAttribute.getJavaMember(), internalName, AppliesTo.NAVIGATION_PROPERTY);
-    checkConsistancy();
+    checkConsistency();
   }
 
-  private void checkConsistancy() throws ODataJPAModelException {
+  private void checkConsistency() throws ODataJPAModelException {
     final EdmProtectedBy jpaProtectedBy = ((AnnotatedElement) this.jpaAttribute.getJavaMember())
         .getAnnotation(EdmProtectedBy.class);
     if (jpaProtectedBy != null) {
@@ -377,7 +377,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
     }
   }
 
-  private void determienReferentialConstraints(final AnnotatedElement annotatedElement) throws ODataJPAModelException {
+  private void determineReferentialConstraints(final AnnotatedElement annotatedElement) throws ODataJPAModelException {
 
     final AssociationOverride overwrite = annotatedElement.getAnnotation(AssociationOverride.class);
     if (overwrite != null || joinTable != null)
@@ -426,7 +426,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
         partner = targetType.getAssociation(mappedBy);
         edmNaviProperty.setPartner(partner.getExternalName());
       } else {
-        partner = targetType.getCorrespondingAssiciation(sourceType, getInternalName());
+        partner = targetType.getCorrespondingAssociation(sourceType, getInternalName());
         if (partner != null
             && ((IntermediateNavigationProperty) partner).isMapped()) {
           edmNaviProperty.setPartner(partner.getExternalName());

@@ -17,9 +17,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class ImageLoader {
-  /**
-   * 
-   */
   private static final String SELECT_PERSON_IMAGE =
       "SELECT * FROM \"OLINGO\".\"PersonImage\" WHERE ID = '$&1'";
   private static final String SELECT_ORGANIZATION_IMAGE =
@@ -110,7 +107,7 @@ public class ImageLoader {
     else {
       for (int i = 0; i < image.length; i++) {
         if (image[i] != storedImage[i]) {
-          fail("[Image]: missmatch at" + Integer.toString(i));
+          fail("[Image]: mismatch at" + Integer.toString(i));
           break;
         }
       }

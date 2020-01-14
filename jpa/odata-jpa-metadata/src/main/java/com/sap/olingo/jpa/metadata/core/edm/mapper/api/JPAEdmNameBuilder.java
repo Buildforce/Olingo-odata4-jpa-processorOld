@@ -1,5 +1,6 @@
 /**
- * 
+ *
+
  */
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
@@ -20,12 +21,13 @@ import org.apache.olingo.commons.api.edm.provider.CsdlEntityType;
 public interface JPAEdmNameBuilder {
 
   /**
-   * 
-   * @param jpaEnbeddedType
+   *
+
+   * @param jpaEmbeddedType
    * @return
    */
   @Nonnull
-  String buildComplexTypeName(final EmbeddableType<?> jpaEnbeddedType);
+  String buildComplexTypeName(final EmbeddableType<?> jpaEmbeddedType);
 
   /**
    * Container names are <a

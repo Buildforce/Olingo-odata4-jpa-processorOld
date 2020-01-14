@@ -10,7 +10,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
  * Such a pair is used to forward the lowest and highest key value from a query to the dependent $expand query in case
  * the original query was restricted by <code>$top</code> and/or <code>$skip</code>.<br>
  * The pair is seen as closed interval, that is min and max are seen as part of the result.
- * 
+ *
+
  * @author Oliver Grande
  * Created: 13.10.2019
  * @since 0.3.6

@@ -22,11 +22,12 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 
 /**
  * This class holds utility methods for type conversions between JPA Java types and OData Types.
- * 
- */
-public final class JPATypeConvertor {
+ *
 
-  private JPATypeConvertor() {}
+ */
+public final class JPATypeConverter {
+
+  private JPATypeConverter() {}
 
   public static EdmPrimitiveTypeKind convertToEdmSimpleType(final Class<?> type) throws ODataJPAModelException {
     return convertToEdmSimpleType(type, null);
@@ -35,13 +36,15 @@ public final class JPATypeConvertor {
   /**
    * This utility method converts a given jpa Type to equivalent EdmPrimitiveTypeKind for maintaining compatibility
    * between Java and OData Types.
-   * 
+   *
+
    * @param jpaType
    * The JPA Type input.
    * @return The corresponding EdmPrimitiveTypeKind.
    * @throws ODataJPAModelException
    * @throws org.apache.olingo.odata2.jpa.processor.api.exception.ODataJPARuntimeException
-   * 
+   *
+
    * @see EdmPrimitiveTypeKind
    */
 
@@ -205,7 +208,7 @@ public final class JPATypeConvertor {
     } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.GeospatialCollection.class)) {
       return EdmPrimitiveTypeKind.GeometryCollection;
     }
-    
+
     if (jpaType.equals(com.vividsolutions.jts.geom.Point.class)) {
 	  return EdmPrimitiveTypeKind.GeometryPoint;
 	} else if (jpaType.equals(com.vividsolutions.jts.geom.MultiPoint.class)) {
@@ -223,7 +226,7 @@ public final class JPATypeConvertor {
 	} else if (jpaType.equals(com.vividsolutions.jts.geom.Geometry.class)) {
 	  return EdmPrimitiveTypeKind.Geometry;
 	}
-    
+
     // Type (%1$s) of attribute (%2$s) is not supported. Mapping not possible
     throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED,
         jpaType.getName(), currentAttribute.getName());

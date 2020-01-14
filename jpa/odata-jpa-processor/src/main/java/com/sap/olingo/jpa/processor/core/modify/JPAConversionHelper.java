@@ -117,13 +117,13 @@ public class JPAConversionHelper {
     final InputStream requestInputStream = request.getBody();
     final EdmEntitySetInfo targetEntityInfo = Util.determineModifyEntitySetAndKeys(uriResourceParts);
     try {
-      final ODataDeserializer deserializer = createDeserrializer(odata, requestFormat,
+      final ODataDeserializer deserializer = createDeserializer(odata, requestFormat,
           request.getHeaders(HttpHeader.ODATA_VERSION));
       final UriResource lastPart = uriResourceParts.get(uriResourceParts.size() - 1);
       if (lastPart instanceof UriResourceProperty) {
         // Convert requests on property level into request on entity level
         final Entity requestEntity = new Entity();
-        final String startProperty = targetEntityInfo.getNavigationPath().split(JPAPath.PATH_SEPERATOR)[0];
+        final String startProperty = targetEntityInfo.getNavigationPath().split(JPAPath.PATH_SEPARATOR)[0];
         int i = uriResourceParts.size() - 1;
         for (; i > 0; i--) {
           if (uriResourceParts.get(i) instanceof UriResourceProperty
@@ -158,7 +158,8 @@ public class JPAConversionHelper {
   }
 
   /**
-   * 
+   *
+
    * @param odata
    * @param request
    * @param edmEntitySet
@@ -182,7 +183,8 @@ public class JPAConversionHelper {
   /**
    * Creates nested map of attributes and there (new) values. Primitive values are instances of e.g. Integer. Embedded
    * Types are returned as maps.
-   * 
+   *
+
    * @param odata
    * @param st
    * @param odataProperties
@@ -249,7 +251,8 @@ public class JPAConversionHelper {
   }
 
   /**
-   * 
+   *
+
    * @param keyPredicates
    * @return
    * @throws ODataJPAFilterException
@@ -291,7 +294,7 @@ public class JPAConversionHelper {
           Object value = meth.invoke(instance);
           getterMap.put(attributeName, value);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-          throw new ODataJPAProcessorException(MessageKeys.ATTRIBUTE_RETRIVAL_FAILED,
+          throw new ODataJPAProcessorException(MessageKeys.ATTRIBUTE_RETRIEVAL_FAILED,
               HttpStatusCode.INTERNAL_SERVER_ERROR, e, attributeName);
         }
       }
@@ -400,7 +403,7 @@ public class JPAConversionHelper {
         + odata.createUriHelper().buildCanonicalURL(edmEntitySet, createdEntity);
   }
 
-  private ODataDeserializer createDeserrializer(final OData odata, final ContentType requestFormat,
+  private ODataDeserializer createDeserializer(final OData odata, final ContentType requestFormat,
       final List<String> version) throws DeserializerException {
     return odata.createDeserializer(requestFormat, version);
   }

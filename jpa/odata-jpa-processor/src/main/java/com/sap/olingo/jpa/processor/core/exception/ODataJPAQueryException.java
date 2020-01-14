@@ -10,7 +10,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageKey;
  */
 public class ODataJPAQueryException extends ODataJPAProcessException { // NOSONAR
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = -7188499882306858747L;
 
@@ -45,7 +46,7 @@ public class ODataJPAQueryException extends ODataJPAProcessException { // NOSONA
 
   }
 
-  private static final String BUNDEL_NAME = "processor-exceptions-i18n";
+  private static final String BUNDLE_NAME = "processor-exceptions-i18n";
 
   public ODataJPAQueryException(final Throwable e, final HttpStatusCode statusCode) {
     super(e, statusCode);
@@ -71,7 +72,7 @@ public class ODataJPAQueryException extends ODataJPAProcessException { // NOSONA
 
   @Override
   protected String getBundleName() {
-    return BUNDEL_NAME;
+    return BUNDLE_NAME;
   }
 
 }

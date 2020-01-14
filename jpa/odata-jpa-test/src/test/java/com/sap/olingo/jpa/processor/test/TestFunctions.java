@@ -70,7 +70,7 @@ public class TestFunctions {
     pc.setParameter("CodeID", "NUTS2");
     pc.registerStoredProcedureParameter("DivisionCode", String.class, ParameterMode.IN);
     pc.setParameter("DivisionCode", "BE25");
-//    pc.setParameter("CodePublisher", "Eurostat");  
+//    pc.setParameter("CodePublisher", "Eurostat");
 //    pc.setParameter("CodeID", "NUTS2");
 //    pc.setParameter("DivisionCode", "BE25");
 

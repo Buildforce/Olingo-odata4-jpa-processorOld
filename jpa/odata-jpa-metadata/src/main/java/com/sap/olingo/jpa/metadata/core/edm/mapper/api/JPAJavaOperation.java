@@ -10,7 +10,8 @@ public interface JPAJavaOperation {
   public Method getMethod();
 
   /**
-   * 
+   *
+
    * @return The constructor to be used to create a new instance
    */
   public Constructor<?> getConstructor();

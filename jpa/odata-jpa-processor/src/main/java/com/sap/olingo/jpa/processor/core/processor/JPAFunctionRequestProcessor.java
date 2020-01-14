@@ -113,9 +113,9 @@ public final class JPAFunctionRequestProcessor extends JPAOperationRequestProces
       final List<Object> parameter = new ArrayList<>();
       final Parameter[] methodParameter = jpaFunction.getMethod().getParameters();
 
-      for (final Parameter declairedParameter : methodParameter) {
+      for (final Parameter declaredParameter : methodParameter) {
         for (final UriParameter providedParameter : uriResourceFunction.getParameters()) {
-          JPAParameter jpaParameter = jpaFunction.getParameter(declairedParameter.getName());
+          JPAParameter jpaParameter = jpaFunction.getParameter(declaredParameter.getName());
           if (jpaParameter.getName().equals(providedParameter.getName())) {
             parameter.add(getValue(uriResourceFunction.getFunction(), jpaParameter, providedParameter.getText()));
             break;

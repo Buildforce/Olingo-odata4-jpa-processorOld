@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.ODataFunction;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.ExampleJavaEmConstructor;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.ExampleJavaFunctions;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.ExampleJavaOneFunction;
@@ -68,7 +68,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionForNonPrimitiveParameter() throws ODataJPAModelException {
+  public void checkThrowsExceptionForNonPrimitiveParameter() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "errorNonPrimitiveParameter");
 
     assertThrows(ODataJPAModelException.class, () -> {
@@ -137,7 +137,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExceptionIfAnnotatedReturnTypeNEDeclairedType() throws ODataJPAModelException {
+  public void checkThrowsExceptionIfAnnotatedReturnTypeNEDeclaredType() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "errorReturnType");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -202,19 +202,19 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   public void checkReturnsEnumerationTypeAsReturnType() throws ODataJPAModelException {
 
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "returnEnumerationType");
-    assertEquals("com.sap.olingo.jpa.ABCClassifiaction", act.getEdmItem().getReturnType().getType());
+    assertEquals("com.sap.olingo.jpa.ABCclassification", act.getEdmItem().getReturnType().getType());
   }
 
   @Test
   public void checkReturnsEnumerationCollectionTypeAsReturnType() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "returnEnumerationCollection");
 
-    assertEquals("com.sap.olingo.jpa.ABCClassifiaction", act.getEdmItem().getReturnType().getType());
+    assertEquals("com.sap.olingo.jpa.ABCclassification", act.getEdmItem().getReturnType().getType());
     assertTrue(act.getEdmItem().getReturnType().isCollection());
   }
 
   @Test
-  public void checkThrowsExcpetionOnNotSupportedReturnType() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnNotSupportedReturnType() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "wrongReturnType");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -234,14 +234,14 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionOnPrivateConstructor() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnPrivateConstructor() throws ODataJPAModelException {
     assertThrows(ODataJPAModelException.class, () -> {
       createFunction(ExampleJavaPrivateConstructor.class, "sum");
     });
   }
 
   @Test
-  public void checkThrowsExcpetionOnNoConstructorAsSpecified() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnNoConstructorAsSpecified() throws ODataJPAModelException {
     assertThrows(ODataJPAModelException.class, () -> {
       createFunction(ExampleJavaTwoParameterConstructor.class, "sum");
     });
@@ -250,9 +250,9 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   private IntermediateJavaFunction createFunction(Class<? extends ODataFunction> clazz, String method)
       throws ODataJPAModelException {
     for (Method m : Arrays.asList(clazz.getMethods())) {
-      EdmFunction functionDescribtion = m.getAnnotation(EdmFunction.class);
-      if (functionDescribtion != null && method.equals(m.getName())) {
-        return new IntermediateJavaFunction(new JPADefaultEdmNameBuilder(PUNIT_NAME), functionDescribtion, m,
+      EdmFunction functionDescription = m.getAnnotation(EdmFunction.class);
+      if (functionDescription != null && method.equals(m.getName())) {
+        return new IntermediateJavaFunction(new JPADefaultEdmNameBuilder(PUNIT_NAME), functionDescription, m,
             helper.schema);
       }
     }

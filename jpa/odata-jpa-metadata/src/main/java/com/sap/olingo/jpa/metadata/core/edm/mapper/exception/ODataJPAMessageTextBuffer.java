@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
-  private static final String PATH_SEPERATOR = ".";
+  private static final String PATH_SEPARATOR = ".";
 
   public static Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
@@ -36,18 +36,19 @@ public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageBufferRead#getText(java.lang.Object,
    * java.lang.String)
    */
   @Override
-  public String getText(final Object execption, final String id) {
-    return bundle.getString(execption.getClass().getSimpleName() + PATH_SEPERATOR + id);
+  public String getText(final Object exception, final String id) {
+    return bundle.getString(exception.getClass().getSimpleName() + PATH_SEPARATOR + id);
   }
 
   @Override
-  public String getText(final Object execption, final String ID, final String... parameters) {
-    final String message = getText(execption, ID);
+  public String getText(final Object exception, final String ID, final String... parameters) {
+    final String message = getText(exception, ID);
     final StringBuilder builder = new StringBuilder();
     final Formatter f = new Formatter(builder, locale);
 

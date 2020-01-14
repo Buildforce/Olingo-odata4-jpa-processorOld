@@ -283,15 +283,15 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(MessageKeys.RETURN_NULL, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
-    if (updateResult.getModifyedEntity() != null && !requestEntity.getEntityType().getTypeClass().isInstance(
-        updateResult.getModifyedEntity())) {
+    if (updateResult.getModifiedEntity() != null && !requestEntity.getEntityType().getTypeClass().isInstance(
+        updateResult.getModifiedEntity())) {
       // This shall tolerate that e.g. EclipseLink return at least in case of InheritanceType.TABLE_PER_CLASS an
       // instance of a sub class even so the super class was requested.
       if (!foreignTransaction)
         ownTransaction.rollback();
       debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(MessageKeys.WRONG_RETURN_TYPE, HttpStatusCode.INTERNAL_SERVER_ERROR,
-          updateResult.getModifyedEntity().getClass().toString(), requestEntity.getEntityType().getTypeClass()
+          updateResult.getModifiedEntity().getClass().toString(), requestEntity.getEntityType().getTypeClass()
               .toString());
     }
     if (!foreignTransaction)
@@ -299,7 +299,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
     if (updateResult.wasCreate()) {
       createCreateResponse(request, response, responseFormat, requestEntity.getEntityType(), edmEntitySetInfo
-          .getEdmEntitySet(), updateResult.getModifyedEntity());
+          .getEdmEntitySet(), updateResult.getModifiedEntity());
       debugger.stopRuntimeMeasurement(handle);
     } else {
       createUpdateResponse(request, response, responseFormat, requestEntity, edmEntitySetInfo, updateResult);
@@ -502,12 +502,12 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
     String location = helper.convertKeyToLocal(odata, request, edmEntitySet, et, result);
     if (prefer.getReturn() == Return.MINIMAL) {
-      createMinimalCreateResponce(response, location);
+      createMinimalCreateResponse(response, location);
     } else {
       Entity createdEntity = convertEntity(et, result, request.getAllHeaders());
       EntityCollection entities = new EntityCollection();
       entities.getEntities().add(createdEntity);
-      createSuccessResponce(response, responseFormat, serializer.serialize(request, entities));
+      createSuccessResponse(response, responseFormat, serializer.serialize(request, entities));
       response.setHeader(HttpHeader.LOCATION, location);
     }
   }
@@ -592,7 +592,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     }
   }
 
-  private void createMinimalCreateResponce(final ODataResponse response, String location) {
+  private void createMinimalCreateResponse(final ODataResponse response, String location) {
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     response.setHeader(HttpHeader.PREFERENCE_APPLIED, "return=minimal");
     response.setHeader(HttpHeader.LOCATION, location);
@@ -670,7 +670,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
       response.setHeader(HttpHeader.PREFERENCE_APPLIED, "return=minimal");
     } else {
-      if (updateResult.getModifyedEntity() == null)
+      if (updateResult.getModifiedEntity() == null)
         throw new ODataJPAProcessorException(MessageKeys.RETURN_MISSING_ENTITY, HttpStatusCode.INTERNAL_SERVER_ERROR);
 
       Entity updatedEntity = null;
@@ -684,15 +684,15 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       if (path != null) {
         // PATCH .../Organizations('1')/AdministrativeInformation/Updated/User
         final JPARequestEntity linkedEntity = requestEntity.getRelatedEntities().get(path).get(0);
-        final Object linkedResult = getLinkedResult(updateResult.getModifyedEntity(), path, Optional.empty());
+        final Object linkedResult = getLinkedResult(updateResult.getModifiedEntity(), path, Optional.empty());
         updatedEntity = convertEntity(linkedEntity.getEntityType(), linkedResult, request.getAllHeaders());
       } else {
-        updatedEntity = convertEntity(requestEntity.getEntityType(), updateResult.getModifyedEntity(), request
+        updatedEntity = convertEntity(requestEntity.getEntityType(), updateResult.getModifiedEntity(), request
             .getAllHeaders());
       }
       EntityCollection entities = new EntityCollection();
       entities.getEntities().add(updatedEntity);
-      createSuccessResponce(response, responseFormat, serializer.serialize(request, entities));
+      createSuccessResponse(response, responseFormat, serializer.serialize(request, entities));
     }
   }
 

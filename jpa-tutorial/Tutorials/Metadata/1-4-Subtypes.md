@@ -1,7 +1,10 @@
 # 1.4: Subtypes
-Currently we have one entity representing all our business partner, but indeed they are either companies or persons. We want to be able to distinguish between both, 
-even so we still use only one database table. As the first step we create two new classes:  
-First the Person:    
+Currently we have one entity representing all our business partner, but indeed they are either companies or persons. We want to be able to distinguish between both,
+
+even so we still use only one database table. As the first step we create two new classes:
+
+First the Person:
+
 ```Java
 package tutorial.model;
 
@@ -55,7 +58,7 @@ public class Company extends BusinessPartner {
 ```
 In the example a person shall have a birth day and different property names than a company. So the attributes are in both classes.
 In addition we want ensure that no one retrieves business partner. To achieve this we make the Business Partner abstract:
- 
+
 ```Java
 @Inheritance
 @DiscriminatorColumn(name = "\"Type\"")
@@ -67,6 +70,6 @@ public abstract class BusinessPartner implements Serializable {
 	...
 ```
 Like before we have to add the new entities to the persistence.xml and can have a look at the result _http://localhost:8080/Tutorial/Tutorial.svc/$metadata_.
-![JPA - OData Mapping](Metadata/Mapping5.png)   
+![JPA - OData Mapping](Metadata/Mapping5.png)
 
 Next step: [Tutorial 1.5: Use Complex Types](1-5-UsingComplexTypes.md)

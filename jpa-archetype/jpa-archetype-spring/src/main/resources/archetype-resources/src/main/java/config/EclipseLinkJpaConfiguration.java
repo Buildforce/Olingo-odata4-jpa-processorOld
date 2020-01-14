@@ -26,7 +26,7 @@ import org.springframework.transaction.jta.JtaTransactionManager;
 public class EclipseLinkJpaConfiguration extends JpaBaseConfiguration {
   @Value("${odata.jpa.punit_name}")
   private String punit;
-  
+
   protected EclipseLinkJpaConfiguration(DataSource dataSource, JpaProperties properties,
       ObjectProvider<JtaTransactionManager> jtaTransactionManager,
       ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
@@ -48,7 +48,7 @@ public class EclipseLinkJpaConfiguration extends JpaBaseConfiguration {
     map.put(PersistenceUnitProperties.TRANSACTION_TYPE, "RESOURCE_LOCAL");
     return map;
   }
-  
+
   @Bean
   public LocalContainerEntityManagerFactoryBean customerEntityManagerFactory(
       final EntityManagerFactoryBuilder builder, @Autowired final DataSource ds) {

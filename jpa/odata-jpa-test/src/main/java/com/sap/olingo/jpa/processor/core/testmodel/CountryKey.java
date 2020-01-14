@@ -8,7 +8,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CountryKey implements Serializable {
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = 229175464207091262L;
 

@@ -1,5 +1,6 @@
 /**
- * 
+ *
+
  */
 package com.sap.olingo.jpa.processor.core.errormodel;
 

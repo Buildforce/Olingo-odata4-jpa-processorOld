@@ -14,7 +14,6 @@ Body:
 --abc
 Content-Type: multipart/mixed; boundary=xyz
 
-
 --xyz
 Content-Type: application/http
 Content-Transfer-Encoding: binary
@@ -154,7 +153,6 @@ Since OData version 3 an insert request has to contain a Content-Id. Up to now w
 --abc
 Content-Type: multipart/mixed; boundary=xyz
 
-
 --xyz
 Content-Type: application/http
 Content-Transfer-Encoding: binary
@@ -243,4 +241,4 @@ private Object findEntity(final JPARequestEntity requestEntity, EntityManager em
 
 Please note that error handling has been skipped and that the interface of method `processRelatedEntities` has refactored.
 
-After we have executed the batch POST request, we can check if everthing went well with the following GET request:  `.../Tutorial/Tutorial.svc/AdministrativeDivisions?$filter=contains(DivisionCode, 'DEF')&$expand=Parent`
+After we have executed the batch POST request, we can check if everything went well with the following GET request:  `.../Tutorial/Tutorial.svc/AdministrativeDivisions?$filter=contains(DivisionCode, 'DEF')&$expand=Parent`

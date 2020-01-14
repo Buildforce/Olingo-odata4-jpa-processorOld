@@ -21,7 +21,8 @@ final class JPAUnaryBooleanOperatorImp implements JPAUnaryBooleanOperator {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAUnaryBooleanOperator#get()
    */
   @Override
@@ -31,7 +32,8 @@ final class JPAUnaryBooleanOperatorImp implements JPAUnaryBooleanOperator {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAUnaryBooleanOperator#getLeft()
    */
   @Override
@@ -41,7 +43,8 @@ final class JPAUnaryBooleanOperatorImp implements JPAUnaryBooleanOperator {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAUnaryBooleanOperator#getOperator()
    */
   @Override

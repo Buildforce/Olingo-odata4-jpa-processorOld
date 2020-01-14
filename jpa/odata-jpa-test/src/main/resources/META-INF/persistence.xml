@@ -9,7 +9,8 @@
 
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AccessRightsConverter</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AddressDeepProtected</class>
-		<class>com.sap.olingo.jpa.processor.core.testmodel.AddressDeepThreeProtections</class> 
+		<class>com.sap.olingo.jpa.processor.core.testmodel.AddressDeepThreeProtections</class>
+
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescription</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescriptionKey</class>
@@ -23,8 +24,8 @@
 		<class>com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerWithGroups</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.ByteConverter</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation</class>
-		<class>com.sap.olingo.jpa.processor.core.testmodel.CollcetionInnerComplex</class>
-		<class>com.sap.olingo.jpa.processor.core.testmodel.CollcetionNestedComplex</class>
+		<class>com.sap.olingo.jpa.processor.core.testmodel.CollectionInnerComplex</class>
+		<class>com.sap.olingo.jpa.processor.core.testmodel.CollectionNestedComplex</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.Collection</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.CollectionDeep</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.CollectionFirstLevelComplex</class>
@@ -52,8 +53,10 @@
 		<class>com.sap.olingo.jpa.processor.core.testmodel.OrganizationImage</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.Person</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.PersonImage</class>
-		<class>com.sap.olingo.jpa.processor.core.testmodel.PersonDeepProtected</class> 
-		<class>com.sap.olingo.jpa.processor.core.testmodel.PersonDeepProtectedHidden</class> 
+		<class>com.sap.olingo.jpa.processor.core.testmodel.PersonDeepProtected</class>
+
+		<class>com.sap.olingo.jpa.processor.core.testmodel.PersonDeepProtectedHidden</class>
+
 		<class>com.sap.olingo.jpa.processor.core.testmodel.PostalAddressData</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.PostalAddressDataWithGroup</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.StringConverter</class>
@@ -90,7 +93,8 @@
 		<class>com.sap.olingo.jpa.processor.core.errormodel.KeyPartOfGroup</class>
 		<class>com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedNoPath</class>
 		<class>com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedWrongPath</class>
-		<class>com.sap.olingo.jpa.processor.core.errormodel.PersonDeepCollectionProtected</class> 
+		<class>com.sap.olingo.jpa.processor.core.errormodel.PersonDeepCollectionProtected</class>
+
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AddressDeepProtected</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.InhouseAddressWithProtection</class>
 		<class>com.sap.olingo.jpa.processor.core.errormodel.Team</class>
@@ -109,7 +113,8 @@
 			<!--  -->
 			<property name="openjpa.DynamicEnhancementAgent" value="true"/>
 			<property name="openjpa.RuntimeUnenhancedClasses" value="unsupported"/>
-			<property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true"/>			
+			<property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true"/>
+
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -32,7 +32,7 @@ public class PersonDeepProtectedHidden extends BusinessPartnerProtected {// #NOS
   @Embedded
   @EdmProtections({
       @EdmProtectedBy(name = "Creator", path = "created/by"),
-      @EdmProtectedBy(name = "Updator", path = "updated/by")
+      @EdmProtectedBy(name = "Updater", path = "updated/by")
   })
   private AdministrativeInformation protectedAdminInfo = new AdministrativeInformation();
 

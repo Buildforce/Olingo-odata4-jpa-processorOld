@@ -45,7 +45,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.processor.core.api.JPAClaimsPair;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimsProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllicalAccessException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
@@ -64,7 +64,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
 
   @Override
   @BeforeEach
-  public void setup() throws ODataException, JPAIllicalAccessException {
+  public void setup() throws ODataException, JPAIllegalAccessException {
     super.setup();
     contextSpy = Mockito.spy(context);
     JPAEdmProvider providerSpy = Mockito.spy(context.getEdmProvider());
@@ -232,7 +232,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
 
     JPAODataClaimsProvider claims = new JPAODataClaimsProvider();
     claims.add("Creator", new JPAClaimsPair<>("*"));
-    claims.add("Updator", new JPAClaimsPair<>("*"));
+    claims.add("Updater", new JPAClaimsPair<>("*"));
     claims.add("BuildingNumber", new JPAClaimsPair<>(building));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "PersonProtecteds?$select=ID,FirstName", claims);
@@ -552,7 +552,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     requestContext.setEntityManager(emf.createEntityManager());
     try {
       requestContext.setUriInfo(uriInfo);
-    } catch (JPAIllicalAccessException e) {
+    } catch (JPAIllegalAccessException e) {
       fail();
     }
     cut = new JPAJoinQuery(null, contextSpy, headers, requestContext);

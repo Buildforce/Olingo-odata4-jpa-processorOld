@@ -33,7 +33,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateEntityTypeAccess;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateEntityTypeAccess;
 
 /**
  * <a href=
@@ -304,7 +304,8 @@ final class IntermediateEntityType extends IntermediateStructuredType implements
   /**
    * Creates the key of an entity. In case the POJO is declared with an embedded ID the key fields get resolved, so that
    * they occur as separate properties within the metadata document
-   * 
+   *
+
    * @param propertyList
    * @return
    * @throws ODataJPAModelException

@@ -59,20 +59,20 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
     if (parameterList == null) {
       parameterList = new ArrayList<>();
       Class<?>[] types = javaAction.getParameterTypes();
-      Parameter[] declairedParameters = javaAction.getParameters();
-      for (int i = 0; i < declairedParameters.length; i++) {
-        Parameter declairedParameter = declairedParameters[i];
-        EdmParameter definedParameter = declairedParameter.getAnnotation(EdmParameter.class);
+      Parameter[] declaredParameters = javaAction.getParameters();
+      for (int i = 0; i < declaredParameters.length; i++) {
+        Parameter declaredParameter = declaredParameters[i];
+        EdmParameter definedParameter = declaredParameter.getAnnotation(EdmParameter.class);
         if (definedParameter == null)
           // Function parameter %1$s of method %2$s at class %3$s without required annotation
           throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.ACTION_PARAM_ANNOTATION_MISSING,
-              declairedParameter.getName(), javaAction.getName(), javaAction
+              declaredParameter.getName(), javaAction.getName(), javaAction
                   .getDeclaringClass().getName());
         JPAParameter parameter = new IntermediateOperationParameter(
             nameBuilder,
             definedParameter,
             nameBuilder.buildPropertyName(definedParameter.name()),
-            declairedParameter.getName(),
+            declaredParameter.getName(),
             types[i]);
         parameterList.add(parameter);
       }
@@ -82,9 +82,9 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
   }
 
   @Override
-  public JPAParameter getParameter(Parameter declairedParameter) throws ODataJPAModelException {
+  public JPAParameter getParameter(Parameter declaredParameter) throws ODataJPAModelException {
     for (JPAParameter param : getParameter()) {
-      if (param.getInternalName().equals(declairedParameter.getName()))
+      if (param.getInternalName().equals(declaredParameter.getName()))
         return param;
     }
     return null;
@@ -92,7 +92,7 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
 
   @Override
   public JPAOperationResultParameter getResultParameter() {
-    return new IntermediatOperationResultParameter(this, jpaAction.returnType(), javaAction.getReturnType(),
+    return new IntermediateOperationResultParameter(this, jpaAction.returnType(), javaAction.getReturnType(),
         IntermediateOperationHelper.isCollection(javaAction.getReturnType()));
   }
 
@@ -128,7 +128,7 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
   private FullQualifiedName determineParameterType(final BindingPosition bindingPosition, final int i,
       final JPAParameter jpaParameter) throws ODataJPAModelException {
 
-    final EdmPrimitiveTypeKind edmType = JPATypeConvertor.convertToEdmSimpleType(jpaParameter.getType());
+    final EdmPrimitiveTypeKind edmType = JPATypeConverter.convertToEdmSimpleType(jpaParameter.getType());
     if (edmType != null)
       return edmType.getFullQualifiedName();
     final IntermediateEnumerationType enumType = schema.getEnumerationType(jpaParameter.getType());
@@ -179,12 +179,12 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
   private CsdlReturnType determineEdmResultType(final ReturnType definedReturnType, final Method javaOperation)
       throws ODataJPAModelException {
     final CsdlReturnType edmResultType = new CsdlReturnType();
-    final Class<?> declairedReturnType = javaOperation.getReturnType();
+    final Class<?> declaredReturnType = javaOperation.getReturnType();
 
-    if (declairedReturnType == void.class)
+    if (declaredReturnType == void.class)
       return null;
 
-    if (IntermediateOperationHelper.isCollection(declairedReturnType)) {
+    if (IntermediateOperationHelper.isCollection(declaredReturnType)) {
       if (definedReturnType.type() == Object.class)
         // Type parameter expected for %1$s
         throw new ODataJPAModelException(MessageKeys.ACTION_RETURN_TYPE_EXP, javaOperation.getName(), javaOperation
@@ -194,7 +194,7 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
           schema, javaOperation.getName()));
     } else {
       edmResultType.setCollection(false);
-      edmResultType.setType(IntermediateOperationHelper.determineReturnType(definedReturnType, declairedReturnType,
+      edmResultType.setType(IntermediateOperationHelper.determineReturnType(definedReturnType, declaredReturnType,
           schema, javaOperation.getName()));
     }
     edmResultType.setNullable(definedReturnType.isNullable());

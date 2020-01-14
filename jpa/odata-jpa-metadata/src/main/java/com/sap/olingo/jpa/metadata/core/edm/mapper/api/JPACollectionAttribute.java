@@ -18,7 +18,8 @@ public interface JPACollectionAttribute extends JPAAttribute {
    * </code><br><br>
    * creates a simple collection attribute. For this collection attribute jpa processor requires that a corresponding
    * entity exists. This entity has to have a property pointing to the same database column, which is returned.
-   * 
+   *
+
    * @return In case of simple collections attributes the corresponding attribute of the target entity type otherwise
    * null.
    * @throws ODataJPAModelException

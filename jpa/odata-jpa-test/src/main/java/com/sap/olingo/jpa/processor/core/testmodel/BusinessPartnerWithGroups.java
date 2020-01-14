@@ -26,12 +26,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.*;
 import org.apache.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAnnotation;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssoziation;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmVisibleFor;
 
 @Entity(name = "BusinessPartnerWithGroups")
 @Table(schema = "\"OLINGO\"", name = "\"BusinessPartner\"")

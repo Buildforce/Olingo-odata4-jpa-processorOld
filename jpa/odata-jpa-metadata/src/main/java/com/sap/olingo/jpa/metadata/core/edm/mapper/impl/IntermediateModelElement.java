@@ -19,7 +19,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAnnotation;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.annotation.AppliesTo;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateModelItemAccess;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateModelItemAccess;
 
 abstract class IntermediateModelElement implements IntermediateModelItemAccess {
 
@@ -59,8 +59,9 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
 
   /*
    * (non-Javadoc)
-   * 
-   * @see com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateModelItemAccess#ignore()
+   *
+
+   * @see com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateModelItemAccess#ignore()
    */
   @Override
   public boolean ignore() {
@@ -69,9 +70,10 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
-   * com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateModelItemAccess#setExternalName(java.lang.String)
+   * com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateModelItemAccess#setExternalName(java.lang.String)
    */
   @Override
   public void setExternalName(final String externalName) {
@@ -80,8 +82,9 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
 
   /*
    * (non-Javadoc)
-   * 
-   * @see com.sap.olingo.jpa.metadata.core.edm.mapper.extention.IntermediateModelItemAccess#setIgnore(boolean)
+   *
+
+   * @see com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateModelItemAccess#setIgnore(boolean)
    */
   @Override
   public void setIgnore(final boolean ignore) {
@@ -129,7 +132,8 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
   /**
    * Convert annotations at an annotatable element into OData annotations
    * {@link com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAnnotation}
-   * 
+   *
+
    * @param edmAnnotations
    * @param member
    * @param internalName
@@ -175,7 +179,8 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
   /**
    * https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
    * @param javaType
-   * 
+   *
+
    * @return
    */
   protected Class<?> boxPrimitive(Class<?> javaType) {// NOSONAR
@@ -201,7 +206,8 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
   }
 
   /**
-   * 
+   *
+
    * @param name
    * @return
    */

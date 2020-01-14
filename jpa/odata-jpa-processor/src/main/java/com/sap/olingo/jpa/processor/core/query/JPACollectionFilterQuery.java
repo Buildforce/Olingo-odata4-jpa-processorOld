@@ -24,7 +24,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
-import com.sap.olingo.jpa.processor.core.filter.JPAFilterElementComplier;
+import com.sap.olingo.jpa.processor.core.filter.JPAFilterElementCompiler;
 import com.sap.olingo.jpa.processor.core.filter.JPAOperationConverter;
 
 /**
@@ -32,7 +32,8 @@ import com.sap.olingo.jpa.processor.core.filter.JPAOperationConverter;
  * <code>CollectionDeeps?$select=ID&$filter=FirstLevel/SecondLevel/Address/any(s:s/TaskID eq 'DEV')</code> or
  * <code>CollectionDeeps?$filter=FirstLevel/SecondLevel/Comment/$count eq 2</code>.
  * This is done as sub-query instead of a join to have more straightforward way to implement OR or AND conditions
- * 
+ *
+
  * @author Oliver Grande
  *
  */
@@ -42,7 +43,7 @@ public final class JPACollectionFilterQuery extends JPANavigationQuery {
       final JPAAbstractQuery parent, final List<UriResource> uriResourceParts, final VisitableExpression expression,
       final From<?, ?> from, final List<String> groups) throws ODataApplicationException {
 
-    this(odata, sd, em, parent, determineAssoziation(parent.jpaEntity, uriResourceParts), expression, from, groups);
+    this(odata, sd, em, parent, determineAssociation(parent.jpaEntity, uriResourceParts), expression, from, groups);
   }
 
   public JPACollectionFilterQuery(final OData odata, final JPAServiceDocument sd, final EntityManager em,
@@ -52,10 +53,10 @@ public final class JPACollectionFilterQuery extends JPANavigationQuery {
     super(odata, sd, determineEntityType(parent, associationPath), em, parent, from, associationPath);
     // Create a sub-query having the key of the parent as result type
     this.subQuery = parent.getQuery().subquery(this.jpaEntity.getKeyType());
-    this.filterComplier = new JPAFilterElementComplier(odata, sd, em, jpaEntity,
+    this.filterCompiler = new JPAFilterElementCompiler(odata, sd, em, jpaEntity,
         new JPAOperationConverter(cb, getContext().getOperationConverter()), null, this, expression, association,
         groups);
-    this.aggregationType = getAggregationType(this.filterComplier.getExpressionMember());
+    this.aggregationType = getAggregationType(this.filterCompiler.getExpressionMember());
     createRoots(this.association);
   }
 
@@ -67,7 +68,7 @@ public final class JPACollectionFilterQuery extends JPANavigationQuery {
       return parent.jpaEntity;
   }
 
-  private static JPAAssociationPath determineAssoziation(final JPAEntityType jpaEntity,
+  private static JPAAssociationPath determineAssociation(final JPAEntityType jpaEntity,
       final List<UriResource> uriResourceParts) throws ODataJPAQueryException {
     final StringBuilder pathName = new StringBuilder();
     int i = 0;
@@ -76,10 +77,10 @@ public final class JPACollectionFilterQuery extends JPANavigationQuery {
             || uriResourceParts.get(i) instanceof UriResourceLambdaAll
             || uriResourceParts.get(i) instanceof UriResourceCount)) {
       pathName.append(uriResourceParts.get(i).toString());
-      pathName.append(JPAPath.PATH_SEPERATOR);
+      pathName.append(JPAPath.PATH_SEPARATOR);
       i++;
     }
-    pathName.deleteCharAt(pathName.lastIndexOf(JPAPath.PATH_SEPERATOR));
+    pathName.deleteCharAt(pathName.lastIndexOf(JPAPath.PATH_SEPARATOR));
     try {
       return jpaEntity.getCollectionAttribute(pathName.toString()).asAssociation();
     } catch (ODataJPAModelException e) {

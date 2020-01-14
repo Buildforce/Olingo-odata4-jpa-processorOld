@@ -57,7 +57,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
   }
 
   @Test
-  public void testReturnsGoneIfPagingProviderRetunrsNullForSkiptoken() throws IOException, ODataException {
+  public void testReturnsGoneIfPagingProviderReturnsNullForSkiptoken() throws IOException, ODataException {
     final JPAODataPagingProvider provider = mock(JPAODataPagingProvider.class);
     when(provider.getNextPage("xyz")).thenReturn(null);
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$skiptoken=xyz", provider);

@@ -73,12 +73,11 @@ public class AdministrativeDivision {
 
 }
 ```
-You may have noticed that the return type is not explicitly given for Siblings. In such a case it is assumed that the entity shall be used as return type. 
+You may have noticed that the return type is not explicitly given for Siblings. In such a case it is assumed that the entity shall be used as return type.
 
 IsComposable and function overload are not supported.
 
 Details about how to apply functions can be found her: [Using Functions](../RetrieveData/2-3-UsingFunctions.md)
-
 
 ## Using Java Classes
 If some more complicated calculations or mapping shall be performed it may be appropriate to implement a method of a JAVA class as _function_. To make a class respectively one of its method accessible via an OData request it has to be marked with the tag interface `ODataFunction`. When the metadata are created the JPA Process searches for classes implementing this interface. To reduce the search space in addition a list of top level packages need to be given via:
@@ -102,7 +101,7 @@ package tutorial.operations;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunctionParameter;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.ODataFunction;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 
 public class JavaFunctions implements ODataFunction {
 

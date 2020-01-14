@@ -23,7 +23,8 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 
 /**
  * Provides an entity as tuple result. This is primarily done to reuse the existing tuple converter.
- * 
+ *
+
  * @author Oliver Grande
  *
  */

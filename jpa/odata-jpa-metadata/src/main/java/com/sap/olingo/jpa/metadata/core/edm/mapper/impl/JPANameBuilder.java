@@ -11,7 +11,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 
 /**
  * Build the internal name for Intermediate Model Elements
- * 
+ *
+
  * @author Oliver Grande
  *
  */

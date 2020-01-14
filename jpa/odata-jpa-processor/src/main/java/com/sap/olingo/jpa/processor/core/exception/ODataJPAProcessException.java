@@ -12,7 +12,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageText
 public abstract class ODataJPAProcessException extends ODataApplicationException {
 
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = -3178033271311091314L;
   private static final String UNKNOWN_MESSAGE = "No message text found";
@@ -44,7 +45,8 @@ public abstract class ODataJPAProcessException extends ODataApplicationException
   }
 
   /**
-   * 
+   *
+
    * @param id
    * @param messageText
    * @param statusCode
@@ -56,7 +58,8 @@ public abstract class ODataJPAProcessException extends ODataApplicationException
   }
 
   /**
-   * 
+   *
+
    * @param id
    * @param messageText
    * @param statusCode

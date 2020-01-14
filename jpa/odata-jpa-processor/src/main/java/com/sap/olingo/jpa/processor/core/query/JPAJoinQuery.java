@@ -40,7 +40,7 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 
 public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery {
 
-  private static List<JPANavigationProptertyInfo> determineNavigationInfo(
+  private static List<JPANavigationPropertyInfo> determineNavigationInfo(
       final JPAODataCRUDContextAccess sessionContext, final UriInfoResource uriResource) throws ODataException {
 
     return Util.determineNavigationPath(sessionContext.getEdmProvider().getServiceDocument(), uriResource
@@ -95,7 +95,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
   }
 
   @Override
-  public JPAConvertableResult execute() throws ODataApplicationException {
+  public JPAConvertibleResult execute() throws ODataApplicationException {
     // Pre-process URI parameter, so they can be used at different places
     final int handle = debugger.startRuntimeMeasurement(this, "execute");
 
@@ -134,7 +134,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
     }
   }
 
-  public List<JPANavigationProptertyInfo> getNavigationInfo() {
+  public List<JPANavigationPropertyInfo> getNavigationInfo() {
     return navigationInfo;
   }
 
@@ -194,7 +194,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
 
               } else if (uriResource instanceof UriResourceProperty) {
                 pathString.append(((UriResourceProperty) uriResource).getProperty().getName());
-                pathString.append(JPAPath.PATH_SEPERATOR);
+                pathString.append(JPAPath.PATH_SEPARATOR);
               }
             } catch (ODataJPAModelException e) {
               throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_RESULT_CONV_ERROR,
@@ -207,14 +207,14 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
     return naviAttributes;
   }
 
-  private JPAConvertableResult returnEmptyResult(final Collection<JPAPath> selectionPath) {
+  private JPAConvertibleResult returnEmptyResult(final Collection<JPAPath> selectionPath) {
     if (lastInfo.getAssociationPath() != null
         && (lastInfo.getAssociationPath().getLeaf() instanceof JPACollectionAttribute))
       return new JPACollectionQueryResult(jpaEntity, lastInfo.getAssociationPath(), selectionPath);
     return new JPAExpandQueryResult(jpaEntity, selectionPath);
   }
 
-  private JPAConvertableResult returnResult(final Collection<JPAPath> selectionPath,
+  private JPAConvertibleResult returnResult(final Collection<JPAPath> selectionPath,
       final HashMap<String, List<Tuple>> result) {
     if (lastInfo.getAssociationPath() != null
         && (lastInfo.getAssociationPath().getLeaf() instanceof JPACollectionAttribute))

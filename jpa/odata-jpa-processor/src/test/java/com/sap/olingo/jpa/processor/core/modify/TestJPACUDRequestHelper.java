@@ -59,7 +59,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.query.EdmEntitySetInfo;
-import com.sap.olingo.jpa.processor.core.testmodel.ABCClassifiaction;
+import com.sap.olingo.jpa.processor.core.testmodel.ABCclassification;
 import com.sap.olingo.jpa.processor.core.testmodel.AccessRights;
 import com.sap.olingo.jpa.processor.core.testmodel.AccessRightsConverter;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
@@ -109,7 +109,7 @@ public class TestJPACUDRequestHelper {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testConvertInputStreamComplexColectionProperty() throws UnsupportedEncodingException,
+  public void testConvertInputStreamComplexCollectionProperty() throws UnsupportedEncodingException,
       ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     final EdmEntitySet edmEntitySet = mock(EdmEntitySet.class);
@@ -211,7 +211,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamEntitySetThrowsExceptioOnAnnotationMissmatch() throws UnsupportedEncodingException,
+  public void testConvertInputStreamEntitySetThrowsExceptioOnAnnotationMismatch() throws UnsupportedEncodingException,
       ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     prepareEntitySet();
@@ -338,7 +338,7 @@ public class TestJPACUDRequestHelper {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testConvertPropertiesEmptyComplexCollcetionProperty() throws ODataJPAProcessException,
+  public void testConvertPropertiesEmptyComplexCollectionProperty() throws ODataJPAProcessException,
       ODataJPAModelException {
 
     final List<Property> odataProperties = new ArrayList<>();
@@ -372,7 +372,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertPropertiesEmptySimpleCollcetionProperty() throws ODataJPAProcessException,
+  public void testConvertPropertiesEmptySimpleCollectionProperty() throws ODataJPAProcessException,
       ODataJPAModelException {
 
     final List<Property> odataProperties = new ArrayList<>();
@@ -393,7 +393,7 @@ public class TestJPACUDRequestHelper {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testConvertPropertiesOneComplexCollcetionProperty() throws ODataJPAProcessException,
+  public void testConvertPropertiesOneComplexCollectionProperty() throws ODataJPAProcessException,
       ODataJPAModelException {
 
     final List<Property> odataProperties = new ArrayList<>();
@@ -540,7 +540,7 @@ public class TestJPACUDRequestHelper {
     Answer<?> a = (new Answer<Object>() {
       @Override
       public Object answer(InvocationOnMock invocation) {
-        return ABCClassifiaction.class;
+        return ABCclassification.class;
       }
     });
     when(attribute.getType()).thenAnswer(a);
@@ -555,7 +555,7 @@ public class TestJPACUDRequestHelper {
 
     assertNotNull(act);
     assertEquals(1, act.size());
-    assertEquals(ABCClassifiaction.B, act.get("aBCClass"));
+    assertEquals(ABCclassification.B, act.get("aBCClass"));
   }
 
   @Test
@@ -593,7 +593,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertPropertiesOneSimpleCollcetionProperty() throws ODataJPAProcessException,
+  public void testConvertPropertiesOneSimpleCollectionProperty() throws ODataJPAProcessException,
       ODataJPAModelException {
 
     final List<Property> odataProperties = new ArrayList<>();
@@ -616,7 +616,7 @@ public class TestJPACUDRequestHelper {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testConvertPropertiesTwoComplexCollcetionProperty() throws ODataJPAProcessException,
+  public void testConvertPropertiesTwoComplexCollectionProperty() throws ODataJPAProcessException,
       ODataJPAModelException {
 
     final List<Property> odataProperties = new ArrayList<>();
@@ -664,7 +664,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertPropertiesTwoSimpleCollcetionProperty() throws ODataJPAProcessException,
+  public void testConvertPropertiesTwoSimpleCollectionProperty() throws ODataJPAProcessException,
       ODataJPAModelException {
 
     final List<Property> odataProperties = new ArrayList<>();

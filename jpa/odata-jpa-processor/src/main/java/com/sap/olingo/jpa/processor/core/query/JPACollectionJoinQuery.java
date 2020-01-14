@@ -43,7 +43,7 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException.MessageKeys;
 
 public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
-  private final JPAAssociationPath assoziation;
+  private final JPAAssociationPath association;
   private final Optional<JPAKeyBoundary> keyBoundary;
 
   public JPACollectionJoinQuery(final OData odata, final JPAODataCRUDContextAccess context, final EntityManager em,
@@ -52,33 +52,33 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
 
     super(odata, context, item.getEntityType(), requestContext,
         requestHeaders, new ArrayList<>(item.getHops().subList(0, item.getHops().size() - 1)));
-    this.assoziation = item.getExpandAssociation();
+    this.association = item.getExpandAssociation();
     this.keyBoundary = keyBoundary;
   }
 
   @Override
   public JPACollectionQueryResult execute() throws ODataApplicationException {
-    final int handle = debugger.startRuntimeMeasurement(this, "executeStandradQuery");
+    final int handle = debugger.startRuntimeMeasurement(this, "executeStandardQuery");
     try {
       final TypedQuery<Tuple> tupleQuery = createTupleQuery();
       final int resultHandle = debugger.startRuntimeMeasurement(tupleQuery, "getResultList");
       final List<Tuple> intermediateResult = tupleQuery.getResultList();
       debugger.stopRuntimeMeasurement(resultHandle);
 
-      Map<String, List<Tuple>> result = convertResult(intermediateResult, assoziation, 0, Long.MAX_VALUE);
+      Map<String, List<Tuple>> result = convertResult(intermediateResult, association, 0, Long.MAX_VALUE);
 
       try {
         final Set<JPAPath> requestedSelection = new HashSet<>();
         buildSelectionAddNavigationAndSelect(uriResource, requestedSelection, uriResource.getSelectOption());
         debugger.stopRuntimeMeasurement(handle);
-        return new JPACollectionQueryResult(result, new HashMap<String, Long>(1), jpaEntity, this.assoziation,
+        return new JPACollectionQueryResult(result, new HashMap<String, Long>(1), jpaEntity, this.association,
             requestedSelection);
       } catch (ODataJPAModelException e) {
         throw new ODataApplicationException(e.getLocalizedMessage(), HttpStatusCode.INTERNAL_SERVER_ERROR
             .getStatusCode(), ODataJPAModelException.getLocales().nextElement(), e);
       }
     } catch (JPANoSelectionException e) {
-      return new JPACollectionQueryResult(this.jpaEntity, assoziation, Collections.emptyList());
+      return new JPACollectionQueryResult(this.jpaEntity, association, Collections.emptyList());
     }
   }
 
@@ -92,13 +92,13 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     // - .../Organizations('1')/Comment --> Select navigation target
     // - .../Et/St/St --> Select navigation target --> Select navigation target via complex properties
     // - .../Organizations?$select=ID,Comment --> Select collection attributes given by select clause
-    // - .../Persons('99')/InhousAddress?$select=Building --> Select attributes of complex collection given by select
+    // - .../Persons('99')/InhouseAddress?$select=Building --> Select attributes of complex collection given by select
     // clause
     try {
       if (SelectOptionUtil.selectAll(select))
         // If the collection is part of a navigation take all the attributes
-        expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? this.assoziation.getAlias() : pathPrefix
-            + JPAPath.PATH_SEPERATOR + this.assoziation.getAlias(), true);
+        expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? this.association.getAlias() : pathPrefix
+            + JPAPath.PATH_SEPARATOR + this.association.getAlias(), true);
       else {
         for (SelectItem sItem : select.getSelectItems()) {
           final JPAPath selectItemPath = selectItemAsPath(pathPrefix, sItem);
@@ -106,13 +106,13 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
             if (selectItemPath.getLeaf().isComplex()) {
               final JPAAttribute attribute = selectItemPath.getLeaf();
               expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? attribute.getExternalName() : pathPrefix
-                  + JPAPath.PATH_SEPERATOR + attribute.getExternalName(), true);
+                  + JPAPath.PATH_SEPARATOR + attribute.getExternalName(), true);
             } else {
               jpaPathList.add(selectItemPath);
             }
           } else if (selectItemPath.getLeaf().isComplex()) {
-            expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? this.assoziation.getAlias() : pathPrefix
-                + JPAPath.PATH_SEPERATOR + this.assoziation.getAlias(), true);
+            expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? this.association.getAlias() : pathPrefix
+                + JPAPath.PATH_SEPARATOR + this.association.getAlias(), true);
           }
         }
       }
@@ -127,8 +127,8 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
       ODataJPAQueryException {
 
     String pathItem = sItem.getResourcePath().getUriResourceParts().stream().map(path -> (path
-        .getSegmentValue())).collect(Collectors.joining(JPAPath.PATH_SEPERATOR));
-    pathItem = pathPrefix == null || pathPrefix.isEmpty() ? pathItem : pathPrefix + JPAPath.PATH_SEPERATOR
+        .getSegmentValue())).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
+    pathItem = pathPrefix == null || pathPrefix.isEmpty() ? pathItem : pathPrefix + JPAPath.PATH_SEPARATOR
         + pathItem;
     final JPAPath selectItemPath = jpaEntity.getPath(pathItem);
     if (selectItemPath == null)
@@ -168,7 +168,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     // the wrong column. E.g. if Organization Comment shall be read Eclipse Link automatically selects also the Order
     // column and if the join column is added later the select clause would look as follows: SELECT t0."Text,
     // t0."Order", t1,"ID". Eclipse Link will then return the value of the Order column for the alias of the ID column.
-    createAdditionSelctionForJoinTable(selections);
+    createAdditionSelectionForJoinTable(selections);
 
     // Build select clause
     for (final JPAPath jpaPath : jpaPathList) {
@@ -196,30 +196,30 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
   Map<String, List<Tuple>> convertResult(final List<Tuple> intermediateResult, final JPAAssociationPath associationPath,
       final long skip, final long top) throws ODataApplicationException {
     String joinKey = "";
-    long skiped = 0;
+    long skipped = 0;
     long taken = 0;
 
     List<Tuple> subResult = null;
     final Map<String, List<Tuple>> convertedResult = new HashMap<>();
     for (final Tuple row : intermediateResult) {
-      String actuallKey;
+      String actualKey;
       try {
-        actuallKey = buildConcatenatedKey(row, associationPath);
+        actualKey = buildConcatenatedKey(row, associationPath);
       } catch (ODataJPAModelException e) {
         throw new ODataJPAQueryException(e, HttpStatusCode.BAD_REQUEST);
       }
 
-      if (!actuallKey.equals(joinKey)) {
+      if (!actualKey.equals(joinKey)) {
         subResult = new ArrayList<>();
-        convertedResult.put(actuallKey, subResult);
-        joinKey = actuallKey;
-        skiped = taken = 0;
+        convertedResult.put(actualKey, subResult);
+        joinKey = actualKey;
+        skipped = taken = 0;
       }
-      if (skiped >= skip && taken < top) {
+      if (skipped >= skip && taken < top) {
         taken += 1;
         subResult.add(row);
       } else {
-        skiped += 1;
+        skipped += 1;
       }
     }
     return convertedResult;
@@ -232,12 +232,12 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
       final List<JPAPath> joinColumns = associationPath.getRightColumnsList();
       return joinColumns.stream()
           .map(c -> (row.get(c.getAlias())).toString())
-          .collect(joining(JPAPath.PATH_SEPERATOR));
+          .collect(joining(JPAPath.PATH_SEPARATOR));
     } else {
       final List<JPAPath> joinColumns = associationPath.getLeftColumnsList();
       return joinColumns.stream()
-          .map(c -> (row.get(assoziation.getAlias() + ALIAS_SEPERATOR + c.getAlias())).toString())
-          .collect(joining(JPAPath.PATH_SEPERATOR));
+          .map(c -> (row.get(association.getAlias() + ALIAS_SEPARATOR + c.getAlias())).toString())
+          .collect(joining(JPAPath.PATH_SEPARATOR));
     }
   }
 
@@ -277,7 +277,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     if (whereClause != null)
       cq.where(whereClause);
 
-    final List<Order> orderBy = createOrderByJoinCondition(assoziation);
+    final List<Order> orderBy = createOrderByJoinCondition(association);
     orderBy.addAll(createOrderByList(joinTables, null));
     cq.orderBy(orderBy);
 
@@ -300,7 +300,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
       throw e;
     }
 
-    for (JPANavigationProptertyInfo info : this.navigationInfo) {
+    for (JPANavigationPropertyInfo info : this.navigationInfo) {
       if (info.getFilterCompiler() != null) {
         try {
           whereCondition = addWhereClause(whereCondition, info.getFilterCompiler().compile());
@@ -316,22 +316,22 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
   }
 
   private From<?, ?> determineParentFrom() throws ODataJPAQueryException {
-    for (JPANavigationProptertyInfo item : this.navigationInfo) {
-      if (item.getAssociationPath() == assoziation)
+    for (JPANavigationPropertyInfo item : this.navigationInfo) {
+      if (item.getAssociationPath() == association)
         return item.getFromClause();
     }
     throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_FILTER_ERROR,
         HttpStatusCode.BAD_REQUEST);
   }
 
-  private void createAdditionSelctionForJoinTable(final List<Selection<?>> selections) throws ODataJPAQueryException {
+  private void createAdditionSelectionForJoinTable(final List<Selection<?>> selections) throws ODataJPAQueryException {
     final From<?, ?> parent = determineParentFrom(); // e.g. JoinSource
     try {
-      for (JPAPath p : assoziation.getLeftColumnsList()) {
+      for (JPAPath p : association.getLeftColumnsList()) {
         final Path<?> selection = ExpressionUtil.convertToCriteriaPath(parent, p.getPath());
         // If source and target of an association use the same name for their key we get conflicts with the alias.
         // Therefore it is necessary to unify them.
-        selection.alias(assoziation.getAlias() + ALIAS_SEPERATOR + p.getAlias());
+        selection.alias(association.getAlias() + ALIAS_SEPARATOR + p.getAlias());
         selections.add(selection);
       }
     } catch (ODataJPAModelException e) {

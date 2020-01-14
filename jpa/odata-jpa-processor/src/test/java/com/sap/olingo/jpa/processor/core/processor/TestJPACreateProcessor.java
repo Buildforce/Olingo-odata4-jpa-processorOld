@@ -194,7 +194,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
     processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
   }
-  
+
   @Test
   public void testThrowExpectedExceptionInCaseOfError() throws ODataException {
     ODataResponse response = new ODataResponse();
@@ -367,7 +367,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testCallsValidateChangesOnSuccessfullProcessing() throws ODataException {
+  public void testCallsValidateChangesOnSuccessfulProcessing() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -379,7 +379,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesNotCallsValidateChangesOnForginTransaction() throws ODataException {
+  public void testDoesNotCallsValidateChangesOnForeignTransaction() throws ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareSimpleRequest();
 
@@ -456,7 +456,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testOwnTranactionCommited() throws ODataJPAModelException, ODataException {
+  public void testOwnTransactionCommitted() throws ODataJPAModelException, ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 

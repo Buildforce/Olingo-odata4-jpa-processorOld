@@ -59,7 +59,7 @@ final class JPASerializeComplex implements JPAOperationSerializer {
 
     final ContextURL contextUrl = ContextURL.with()
         .entitySet(targetEdmEntitySet)
-        .navOrPropertyPath(Util.determineProptertyNavigationPath(uriInfo.getUriResourceParts()))
+        .navOrPropertyPath(Util.determinePropertyNavigationPath(uriInfo.getUriResourceParts()))
         .selectList(selectList)
         .build();
     final ComplexSerializerOptions options = ComplexSerializerOptions.with()

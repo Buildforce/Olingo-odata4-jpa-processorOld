@@ -25,7 +25,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder;
 import com.sap.olingo.jpa.processor.core.api.JPAODataContextAccessDouble;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllicalAccessException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import com.sap.olingo.jpa.processor.core.query.JPAAbstractJoinQuery;
 import com.sap.olingo.jpa.processor.core.query.JPAJoinQuery;
@@ -45,7 +45,7 @@ public class TestQueryBase extends TestBase {
   }
 
   @BeforeEach
-  public void setup() throws ODataException, JPAIllicalAccessException {
+  public void setup() throws ODataException, JPAIllegalAccessException {
     buildUriInfo("BusinessPartners", "BusinessPartner");
 
     helper = new TestHelper(emf, PUNIT_NAME);
@@ -83,7 +83,7 @@ public class TestQueryBase extends TestBase {
     return odataType;
   }
 
-  protected EdmType buildRequestContext(final String esName, final String etName) throws JPAIllicalAccessException {
+  protected EdmType buildRequestContext(final String esName, final String etName) throws JPAIllegalAccessException {
     final EdmType odataType = buildUriInfo(esName, etName);
     requestContext = new JPAODataRequestContextImpl();
     requestContext.setEntityManager(emf.createEntityManager());

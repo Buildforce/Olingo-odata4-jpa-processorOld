@@ -11,8 +11,8 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.ODataAction;
-import com.sap.olingo.jpa.processor.core.testmodel.ABCClassifiaction;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataAction;
+import com.sap.olingo.jpa.processor.core.testmodel.ABCclassification;
 import com.sap.olingo.jpa.processor.core.testmodel.AccessRights;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
 import com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation;
@@ -57,8 +57,8 @@ public class ExampleJavaActions implements ODataAction {
   }
 
   @EdmAction
-  public ABCClassifiaction returnEnumeration(@EdmParameter(name = "Rights") AccessRights rights) {
-    return ABCClassifiaction.B;
+  public ABCclassification returnEnumeration(@EdmParameter(name = "Rights") AccessRights rights) {
+    return ABCclassification.B;
   }
 
   @EdmAction(name = "", returnType = @ReturnType(type = String.class))

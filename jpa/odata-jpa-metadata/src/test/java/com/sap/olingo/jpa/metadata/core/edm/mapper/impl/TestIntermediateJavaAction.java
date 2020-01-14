@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extention.ODataAction;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataAction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.ExampleJavaActions;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.ExampleJavaEmConstructor;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.ExampleJavaPrivateConstructor;
@@ -150,7 +150,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   public void checkReturnsEnumerationTypeAsReturnType() throws ODataJPAModelException {
     IntermediateJavaAction act = createAction(ExampleJavaActions.class, "returnEnumeration");
 
-    assertEquals("com.sap.olingo.jpa.ABCClassifiaction", act.getEdmItem().getReturnType().getType());
+    assertEquals("com.sap.olingo.jpa.ABCclassification", act.getEdmItem().getReturnType().getType());
   }
 
   @Test
@@ -262,7 +262,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkProvidesParameterByDeclaired() throws ODataJPAModelException, NoSuchMethodException,
+  public void checkProvidesParameterByDeclared() throws ODataJPAModelException, NoSuchMethodException,
       SecurityException {
 
     Method m = ExampleJavaActions.class.getMethod("unboundWithImport", short.class, int.class);
@@ -290,7 +290,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionForNonPrimitiveParameter() throws ODataJPAModelException {
+  public void checkThrowsExceptionForNonPrimitiveParameter() throws ODataJPAModelException {
     IntermediateJavaAction act = createAction(ExampleJavaActions.class, "errorNonPrimitiveParameter");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -306,21 +306,21 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionOnPrivateConstructor() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnPrivateConstructor() throws ODataJPAModelException {
     assertThrows(ODataJPAModelException.class, () -> {
       createAction(ExampleJavaPrivateConstructor.class, "mul");
     });
   }
 
   @Test
-  public void checkThrowsExcpetionOnNoConstructorAsSpecified() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnNoConstructorAsSpecified() throws ODataJPAModelException {
     assertThrows(ODataJPAModelException.class, () -> {
       createAction(ExampleJavaTwoParameterConstructor.class, "mul");
     });
   }
 
   @Test
-  public void checkThrowsExcpetionOnIsBoundWithoutEntityTypeParameter() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnIsBoundWithoutEntityTypeParameter() throws ODataJPAModelException {
     IntermediateJavaAction act = createAction(ExampleJavaActions.class, "boundWithOutBindingParameter");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -328,7 +328,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionOnIsBoundWithoutParameter() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnIsBoundWithoutParameter() throws ODataJPAModelException {
     IntermediateJavaAction act = createAction(ExampleJavaActions.class, "boundWithOutParameter");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -336,7 +336,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionOnIsBoundBindingParameterNotFirst() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnIsBoundBindingParameterNotFirst() throws ODataJPAModelException {
     IntermediateJavaAction act = createAction(ExampleJavaActions.class, "boundBindingParameterSecondParameter");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -344,7 +344,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionOnEntitySetGivenUnbound() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnEntitySetGivenUnbound() throws ODataJPAModelException {
     IntermediateJavaAction act = createAction(ExampleJavaActions.class, "errorUnboundWithEntitySetPath");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -352,7 +352,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExcpetionOnEntitySetGivenNoEntityReturnType() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnEntitySetGivenNoEntityReturnType() throws ODataJPAModelException {
     IntermediateJavaAction act = createAction(ExampleJavaActions.class, "errorPrimitiveTypeWithEntitySetPath");
     assertThrows(ODataJPAModelException.class, () -> {
       act.getEdmItem();
@@ -362,9 +362,9 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   private IntermediateJavaAction createAction(Class<? extends ODataAction> clazz, String method)
       throws ODataJPAModelException {
     for (Method m : Arrays.asList(clazz.getMethods())) {
-      EdmAction actionDescribtion = m.getAnnotation(EdmAction.class);
-      if (actionDescribtion != null && method.equals(m.getName())) {
-        return new IntermediateJavaAction(new JPADefaultEdmNameBuilder(PUNIT_NAME), actionDescribtion, m, helper.schema);
+      EdmAction actionDescription = m.getAnnotation(EdmAction.class);
+      if (actionDescription != null && method.equals(m.getName())) {
+        return new IntermediateJavaAction(new JPADefaultEdmNameBuilder(PUNIT_NAME), actionDescription, m, helper.schema);
       }
     }
     return null;

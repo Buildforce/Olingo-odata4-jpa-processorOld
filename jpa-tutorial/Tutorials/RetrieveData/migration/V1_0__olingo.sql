@@ -1,7 +1,7 @@
 SET schema "OLINGO";
-    
+
 --------BUSINESS PARTNER---------------------------------------------------------------------------------------------------------
-CREATE TABLE "BusinessPartner" (   
+CREATE TABLE "BusinessPartner" (
 	"ID" VARCHAR(32) NOT NULL ,
 	"ETag" BIGINT,
 	"Type" VARCHAR(2),
@@ -26,14 +26,14 @@ CREATE TABLE "BusinessPartner" (
     "Telecom.Fax" VARCHAR(100),
     "Telecom.Email" VARCHAR(100),
 	"CreatedBy" VARCHAR(32) NOT NULL ,
-	"CreatedAt" TIMESTAMP,   
+	"CreatedAt" TIMESTAMP,
 	"UpdatedBy" VARCHAR(32) NOT NULL ,
 	"UpdatedAt" TIMESTAMP,
     "Country" VARCHAR(4),
     "ABCClass" VARCHAR(1),
     "AccessRights" INTEGER,
 	 PRIMARY KEY ("ID"));
-     
+
 insert into "BusinessPartner" values ('1', 0, '2', '','',6000.5,null,'First Org.','',null,'Test Road', '23','', 'Test City','94321','ISO', '3166-2','US-CA', 'USA', '', '','','', '99','2016-01-20 09:21:23', '', null, 'USA', 'A', null);
 insert into "BusinessPartner" values ('2', 0, '2', '','',null,null,'Second Org.','',null,'Test Road', '45','', 'Test City','76321','ISO', '3166-2','US-TX', 'USA', '', '','','', '97','2016-01-20 09:21:23', '', null, 'USA', 'B', null);
 insert into "BusinessPartner" values ('3', 0, '2', '','',null,null,'Third Org.','',null,'Test Road', '223','', 'Test City','94322','ISO', '3166-2','US-CA', 'USA', '', '','','', '99','2016-01-20 09:21:23', '', null, 'USA', 'C', null);
@@ -44,14 +44,14 @@ insert into "BusinessPartner" values ('7', 0, '2', '','',null,null,'Seventh Org.
 insert into "BusinessPartner" values ('8', 0, '2', '','',null,null,'Eighth Org.','',null,'Test Road', '453','', 'Test City','29221','ISO', '3166-2','US-SC', 'USA', '', '','','', '99','2016-01-20 09:21:23', '', null, 'USA', null, null);
 insert into "BusinessPartner" values ('9', 0, '2', '','',null,null,'Ninth Org.','',null,'Test Road', '93','', 'Test City','55021','ISO', '3166-2','US-MN', 'USA', '', '','','', '99','2016-01-20 09:21:23', '', null, 'USA', null, null);
 insert into "BusinessPartner" values ('10', 0, '2', '','',null,null,'Tenth Org.','',null,'Test Road', '12','', 'Test City','03921','ISO', '3166-2','US-ME', 'USA', '', '','','', '99','2016-01-20 09:21:23', '', null, 'DEU', null, null);
-insert into "BusinessPartner" values ('99', 0, '1', '','',null,null,'Max','Mustermann',null,'Test Star�e', '12','', 'Teststadt','10115','ISO', '3166-2','DE-BE', 'DEU', '', '','','', '99','2016-01-20 09:21:23', '', null, 'DEU', null, 1); 
-insert into "BusinessPartner" values ('98', 0, '1', '','',null,null,'John','Doe',null,'Test Road', '55','', 'Test City','76321','ISO', '3166-2','US-TX', 'USA', '', '','','', '99','2016-01-20 09:21:23', '', null, 'DEU', null, 2); 
-insert into "BusinessPartner" values ('97', 0, '1', '','',null,null,'Urs','M�ller',null,'Test Star�e', '23','', 'Test Dorf','4123','ISO', '3166-2','CH-BL', 'CHE', '', '','','', '99','2016-07-20 09:21:23', '', null, 'CHE', null, 9); 
+insert into "BusinessPartner" values ('99', 0, '1', '','',null,null,'Max','Mustermann',null,'Test Straße', '12','', 'Teststadt','10115','ISO', '3166-2','DE-BE', 'DEU', '', '','','', '99','2016-01-20 09:21:23', '', null, 'DEU', null, 1);
+insert into "BusinessPartner" values ('98', 0, '1', '','',null,null,'John','Doe',null,'Test Road', '55','', 'Test City','76321','ISO', '3166-2','US-TX', 'USA', '', '','','', '99','2016-01-20 09:21:23', '', null, 'DEU', null, 2);
+insert into "BusinessPartner" values ('97', 0, '1', '','',null,null,'Urs','Müller',null,'Test Straße', '23','', 'Test Dorf','4123','ISO', '3166-2','CH-BL', 'CHE', '', '','','', '99','2016-07-20 09:21:23', '', null, 'CHE', null, 9);
 
 --------BUSINESS PARTNER ROLE----------------------------------------------------------------------------------------------------
-CREATE TABLE "BusinessPartnerRole" ( 
+CREATE TABLE "BusinessPartnerRole" (
 	"BusinessPartnerID" NVARCHAR(32) NOT NULL ,
-	"BusinessPartnerRole" NVARCHAR(10) NOT NULL, 
+	"BusinessPartnerRole" NVARCHAR(10) NOT NULL,
      PRIMARY KEY ("BusinessPartnerID","BusinessPartnerRole"));
 
 insert into "BusinessPartnerRole" values ('1',  'A');
@@ -68,83 +68,77 @@ CREATE TABLE "AdministrativeDivisionDescription"(
 	"CodeID" NVARCHAR(10) NOT NULL,
 	"DivisionCode" NVARCHAR(10) NOT NULL,
 	"LanguageISO" NVARCHAR(4) NOT NULL ,
-	"Name" NVARCHAR(100) NOT NULL, 
-     PRIMARY KEY ("CodePublisher", "CodeID", "DivisionCode","LanguageISO")); 
+	"Name" NVARCHAR(100) NOT NULL,
 
+     PRIMARY KEY ("CodePublisher", "CodeID", "DivisionCode","LanguageISO"));
 
-insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','CH0','de','Schweiz');     
-     
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','DEU','de','Deutschland');    
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','USA','de','Vereinigte Staaten von Amerika');   
+insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','CH0','de','Schweiz');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','DEU','de','Deutschland');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','USA','de','Vereinigte Staaten von Amerika');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','DEU','en','Germany');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','USA','en','United States of America');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','BEL','de','Belgien');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','BEL','en','Belgium');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','CHE','de','Schweiz');
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','CHE','en','Switzerland');     
-     
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BW','de','Baden-Württemberg');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BY','de','Bayern Bayern');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BE','de','Berlin');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BB','de','Brandenburg');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HB','de','Bremen');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HH','de','Hamburg');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HE','de','Hessen');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-MV','de','Mecklenburg-Vorpommern');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NI','de','Niedersachsen');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NW','de','Nordrhein-Westfalen');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-RP','de','Rheinland-Pfalz');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SL','de','Saarland');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SN','de','Sachsen');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-ST','de','Sachsen-Anhalt');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SH','de','Schleswig-Holstein');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-TH','de','Thüringen');  
-
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BW','en','Baden-Württemberg');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BY','en','Bavaria');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BE','en','Berlin');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BB','en','Brandenburg');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HB','en','Bremen');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HH','en','Hamburg');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HE','en','Hesse');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-MV','en','Mecklenburg-Western Pomerania');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NI','en','Lower Saxony');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NW','en','North Rhine-Westphalia');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-RP','en','Rhineland-Palatinate');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SL','en','Saarland');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SN','en','Saxony');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-ST','en','Saxony-Anhalt');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SH','en','Schleswig-Holstein');  
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-TH','en','Thuringia');  
-
-
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-AG','de','Aargau'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-AR','de','Appenzell Ausserrhoden'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-AI','de','Appenzell Innerrhoden'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-BL','de','Basel-Landschaft'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-BS','de','Basel-Stadt'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-BE','de','Bern'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-FR','de','Freiburg'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-GE','de','Genf'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-GL','de','Glarus'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-GR','de','Graubünden'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-JU','de','Jura'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-LU','de','Luzern'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-NE','de','Neuenburg'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-NW','de','Nidwalden'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-OW','de','Obwalden'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SH','de','Schaffhausen'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SZ','de','Schwyz'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SO','de','Solothurn'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SG','de','St. Gallen'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-TI','de','Tessin'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-TG','de','Thurgau'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-UR','de','Uri'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-VD','de','Waadt'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-VS','de','Wallis'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-ZG','de','Zug'); 
-insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-ZH','de','Zürich'); 
-
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-1','CHE','en','Switzerland');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BW','de','Baden-Württemberg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BY','de','Bayern Bayern');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BE','de','Berlin');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BB','de','Brandenburg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HB','de','Bremen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HH','de','Hamburg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HE','de','Hessen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-MV','de','Mecklenburg-Vorpommern');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NI','de','Niedersachsen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NW','de','Nordrhein-Westfalen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-RP','de','Rheinland-Pfalz');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SL','de','Saarland');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SN','de','Sachsen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-ST','de','Sachsen-Anhalt');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SH','de','Schleswig-Holstein');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-TH','de','Thüringen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BW','en','Baden-Württemberg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BY','en','Bavaria');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BE','en','Berlin');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-BB','en','Brandenburg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HB','en','Bremen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HH','en','Hamburg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-HE','en','Hesse');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-MV','en','Mecklenburg-Western Pomerania');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NI','en','Lower Saxony');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-NW','en','North Rhine-Westphalia');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-RP','en','Rhineland-Palatinate');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SL','en','Saarland');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SN','en','Saxony');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-ST','en','Saxony-Anhalt');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-SH','en','Schleswig-Holstein');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','DE-TH','en','Thuringia');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-AG','de','Aargau');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-AR','de','Appenzell Ausserrhoden');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-AI','de','Appenzell Innerrhoden');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-BL','de','Basel-Landschaft');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-BS','de','Basel-Stadt');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-BE','de','Bern');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-FR','de','Freiburg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-GE','de','Genf');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-GL','de','Glarus');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-GR','de','Graubünden');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-JU','de','Jura');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-LU','de','Luzern');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-NE','de','Neuenburg');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-NW','de','Nidwalden');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-OW','de','Obwalden');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SH','de','Schaffhausen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SZ','de','Schwyz');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SO','de','Solothurn');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-SG','de','St. Gallen');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-TI','de','Tessin');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-TG','de','Thurgau');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-UR','de','Uri');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-VD','de','Waadt');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-VS','de','Wallis');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-ZG','de','Zug');
+insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','CH-ZH','de','Zürich');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-AL','de','Alabama');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-AK','de','Alaska');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-AZ','de','Arizona');
@@ -196,7 +190,6 @@ insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-WA',
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-WV','de','West Virginia');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-WI','de','Wisconsin');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-WY','de','Wyoming');
-
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-AL','en','Alabama');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-AK','en','Alaska');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-AZ','en','Arizona');
@@ -248,12 +241,9 @@ insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-WV',
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-WI','en','Wisconsin');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-WY','en','Wyoming');
 insert into "AdministrativeDivisionDescription" values( 'ISO', '3166-2','US-DC','en','District of Columbia');
-     
-
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','BE1','de','Region Brüssel-Hauptstadt');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','BE2','de','Flämische Region');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','BE3','de','Wallonische Region');
-
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE10','de','Region Brüssel-Hauptstadt');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE21','de','Provinz Antwerpen');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE22','de','Provinz Limburg');
@@ -265,7 +255,6 @@ insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE32
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE33','de','Provinz Lüttich');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE34','de','Provinz Luxemburg');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE35','de','Provinz Namur');
-
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE100','de','Bezirk Brüssel-Hauptstadt');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE211','de','Bezirk Antwerpen');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE212','de','Bezirk Mechelen');
@@ -310,11 +299,9 @@ insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE34
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE351','de','Bezirk Dinant');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE352','de','Bezirk Namur');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE353','de','Bezirk Philippeville');
-
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','BE1','en','Brussels-Capital Region');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','BE2','en','Flemish Region');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS1','BE3','en','Walloon Region');
-
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE10','en','Brussels-Capital Region');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE21','en','Antwerp');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE22','en','Limburg');
@@ -326,7 +313,6 @@ insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE32
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE33','en','Liège');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE34','en','Luxembourg (Belgium)');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS2','BE35','en','Namur');
-
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE100','en','Arrondissement of Brussels-Capital');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE211','en','Arrondissement of Antwerp');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE212','en','Arrondissement of Mechelen');
@@ -362,7 +348,7 @@ insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE33
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE332','en','Arrondissement of Liège');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE334','en','Arrondissement of Waremme');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE335','en','Arrondissement of Verviers, municipalities of the French Community');
-insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE336','en','Arrondissement of Verviers,municipalities of the German Community');	
+insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE336','en','Arrondissement of Verviers,municipalities of the German Community');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE341','en','Arrondissement of Arlon');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE342','en','Arrondissement of Bastogne');
 insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE343','en','Arrondissement of Marche-en-Famenne');
@@ -384,13 +370,13 @@ CREATE TABLE "AdministrativeDivision"(
 	"Area" INTEGER, --DECIMAL(34,0),
 	"Population" BIGINT,
 	PRIMARY KEY ("CodePublisher", "CodeID", "DivisionCode"));
-	
-insert into "AdministrativeDivision" values( 'ISO', '3166-1','BEL','BEL',null,null,null,0,0);	
+
+insert into "AdministrativeDivision" values( 'ISO', '3166-1','BEL','BEL',null,null,null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-1','DEU','DEU',null,null,null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-1','USA','USA',null,null,null,0,0);
-insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-BRU','BEL','3166-1','BEL',null,0,0);	
-insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-VLG','BEL','3166-1','BEL',null,0,0);	
-insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WAL','BEL','3166-1','BEL',null,0,0);		
+insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-BRU','BEL','3166-1','BEL',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-VLG','BEL','3166-1','BEL',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WAL','BEL','3166-1','BEL',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-VAN','BEL','3166-2','BE-VLG',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-VLI','BEL','3166-2','BE-VLG',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-VOV','BEL','3166-2','BE-VLG',null,0,0);
@@ -400,23 +386,23 @@ insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WBR','BEL','316
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WHT','BEL','3166-2','BE-WAL',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WLG','BEL','3166-2','BE-WAL',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WLX','BEL','3166-2','BE-WAL',null,0,0);
-insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WNA','BEL','3166-2','BE-WAL',null,0,0);	
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BW','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BY','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BE','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BB','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-HB','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-HH','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-HE','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-MV','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-NI','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-NW','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-RP','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-SL','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-SN','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-ST','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-SH','DEU', '3166-1','DEU',null,0,0);  
-insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-TH','DEU', '3166-1','DEU',null,0,0); 
+insert into "AdministrativeDivision" values( 'ISO', '3166-2','BE-WNA','BEL','3166-2','BE-WAL',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BW','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BY','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BE','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-BB','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-HB','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-HH','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-HE','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-MV','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-NI','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-NW','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-RP','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-SL','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-SN','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-ST','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-SH','DEU', '3166-1','DEU',null,0,0);
+insert into "AdministrativeDivision" values( 'ISO', '3166-2', 'DE-TH','DEU', '3166-1','DEU',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','US-AL','USA','3166-1','USA',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','US-AK','USA','3166-1','USA',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','US-AZ','USA','3166-1','USA',null,0,0);
@@ -468,11 +454,11 @@ insert into "AdministrativeDivision" values( 'ISO', '3166-2','US-WV','USA','3166
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','US-WI','USA','3166-1','USA',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','US-WY','USA','3166-1','USA',null,0,0);
 insert into "AdministrativeDivision" values( 'ISO', '3166-2','US-DC','USA','3166-1','USA',null,0,0);
---Eurostat 
+
+--Eurostat
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS1','BE1', 'BEL',null,null,null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS1','BE2', 'BEL',null,null,null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS1','BE3', 'BEL',null,null,null,0,0);
-
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS2','BE10','BEL','NUTS1','BE1',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS2','BE21','BEL','NUTS1','BE2',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS2','BE22','BEL','NUTS1','BE2',null,0,0);
@@ -484,7 +470,6 @@ insert into "AdministrativeDivision" values( 'Eurostat','NUTS2','BE32','BEL','NU
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS2','BE33','BEL','NUTS1','BE3',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS2','BE34','BEL','NUTS1','BE3',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS2','BE35','BEL','NUTS1','BE3',null,0,0);
-
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE100','BEL','NUTS2','BE10',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE211','BEL','NUTS2','BE21',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE212','BEL','NUTS2','BE21',null,0,0);
@@ -525,11 +510,10 @@ insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE341','BEL','N
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE342','BEL','NUTS2','BE34',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE343','BEL','NUTS2','BE34',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE344','BEL','NUTS2','BE34',null,0,0);
-insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE345','BEL','NUTS2','BE34',null,0,0);	
+insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE345','BEL','NUTS2','BE34',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE351','BEL','NUTS2','BE35',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE352','BEL','NUTS2','BE35',null,0,0);
 insert into "AdministrativeDivision" values( 'Eurostat','NUTS3','BE353','BEL','NUTS2','BE35',null,0,0);
-
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '33011','BEL','NUTS3','BE253',null,130610415,35098);
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '33016','BEL','NUTS3','BE253',null,3578335,1037);
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '33021','BEL','NUTS3','BE253',null,119330610,19968);
@@ -542,74 +526,74 @@ insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31003','BEL','
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31004','BEL','NUTS3','BE251',null,17411180,20028);
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31005','BEL','NUTS3','BE251',null,138402202,118335);
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31006','BEL','NUTS3','BE251',null,89520475,10885);
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31012','BEL','NUTS3','BE251',null,53764838,13861);	
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31012','BEL','NUTS3','BE251',null,53764838,13861);
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31022','BEL','NUTS3','BE251',null,79645460,23133);
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31033','BEL','NUTS3','BE251',null,45232765,20371);
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31040','BEL','NUTS3','BE251',null,60335913,22424);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31042','BEL','NUTS3','BE251',null,48862499,2720);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31043','BEL','NUTS3','BE251',null,56443228,33485);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32003','BEL','NUTS3','BE252',null,149401818,16564);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32006','BEL','NUTS3','BE252',null,55893936,9995);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32010','BEL','NUTS3','BE252',null,39185258,8712);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32011','BEL','NUTS3','BE252',null,54999796,12357);	
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31040','BEL','NUTS3','BE251',null,60335913,22424);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31042','BEL','NUTS3','BE251',null,48862499,2720);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '31043','BEL','NUTS3','BE251',null,56443228,33485);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32003','BEL','NUTS3','BE252',null,149401818,16564);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32006','BEL','NUTS3','BE252',null,55893936,9995);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32010','BEL','NUTS3','BE252',null,39185258,8712);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32011','BEL','NUTS3','BE252',null,54999796,12357);
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '32030','BEL','NUTS3','BE252',null,62938759,3282);
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34002','BEL','NUTS3','BE254',null,41788652,14580);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34003','BEL','NUTS3','BE254',null,21748127,9803);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34009','BEL','NUTS3','BE254',null,16815679,11687);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34013','BEL','NUTS3','BE254',null,29140007,27476);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34022','BEL','NUTS3','BE254',null,80020386,75577);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34023','BEL','NUTS3','BE254',null,10008346,13113);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34025','BEL','NUTS3','BE254',null,13150180,5756);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34027','BEL','NUTS3','BE254',null,33070836,33099);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34040','BEL','NUTS3','BE254',null,44343752,37385);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34041','BEL','NUTS3','BE254',null,38761463,31345);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34042','BEL','NUTS3','BE254',null,63242438,24301);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34043','BEL','NUTS3','BE254',null,10776650,2155);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35002','BEL','NUTS3','BE255',null,13079087,17333);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35005','BEL','NUTS3','BE255',null,42254065,11771);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35006','BEL','NUTS3','BE255',null,45334695,13972);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35011','BEL','NUTS3','BE255',null,75653353,19312);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35013','BEL','NUTS3','BE255',null,37723883,70813);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35014','BEL','NUTS3','BE255',null,35383003,9231);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35029','BEL','NUTS3','BE255',null,42169175,12611);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36006','BEL','NUTS3','BE256',null,37836247,10079);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36007','BEL','NUTS3','BE256',null,16157265,10748);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36008','BEL','NUTS3','BE256',null,25483137,27449);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36010','BEL','NUTS3','BE256',null,24758200,9519);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36011','BEL','NUTS3','BE256',null,25931415,8625);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36012','BEL','NUTS3','BE256',null,35341058,10964);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36015','BEL','NUTS3','BE256',null,59793935,60707);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36019','BEL','NUTS3','BE256',null,46240034,11196);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37002','BEL','NUTS3','BE257',null,25935511,8376);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37007','BEL','NUTS3','BE257',null,29348057,11039);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37010','BEL','NUTS3','BE257',null,16621841,7715);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37011','BEL','NUTS3','BE257',null,34421545,6798);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37012','BEL','NUTS3','BE257',null,30201523,5266);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37015','BEL','NUTS3','BE257',null,68504357,20110);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37017','BEL','NUTS3','BE257',null,21760376,9441);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37018','BEL','NUTS3','BE257',null,68420735,14283);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37020','BEL','NUTS3','BE257',null,34576094,9072);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38002','BEL','NUTS3','BE258',null,80009790,5007);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38008','BEL','NUTS3','BE258',null,23896896,10854);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38014','BEL','NUTS3','BE258',null,43959624,22202);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38016','BEL','NUTS3','BE258',null,31004430,11434);	
-insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38025','BEL','NUTS3','BE258',null,96339703,11509);	
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34002','BEL','NUTS3','BE254',null,41788652,14580);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34003','BEL','NUTS3','BE254',null,21748127,9803);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34009','BEL','NUTS3','BE254',null,16815679,11687);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34013','BEL','NUTS3','BE254',null,29140007,27476);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34022','BEL','NUTS3','BE254',null,80020386,75577);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34023','BEL','NUTS3','BE254',null,10008346,13113);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34025','BEL','NUTS3','BE254',null,13150180,5756);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34027','BEL','NUTS3','BE254',null,33070836,33099);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34040','BEL','NUTS3','BE254',null,44343752,37385);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34041','BEL','NUTS3','BE254',null,38761463,31345);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34042','BEL','NUTS3','BE254',null,63242438,24301);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '34043','BEL','NUTS3','BE254',null,10776650,2155);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35002','BEL','NUTS3','BE255',null,13079087,17333);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35005','BEL','NUTS3','BE255',null,42254065,11771);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35006','BEL','NUTS3','BE255',null,45334695,13972);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35011','BEL','NUTS3','BE255',null,75653353,19312);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35013','BEL','NUTS3','BE255',null,37723883,70813);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35014','BEL','NUTS3','BE255',null,35383003,9231);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '35029','BEL','NUTS3','BE255',null,42169175,12611);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36006','BEL','NUTS3','BE256',null,37836247,10079);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36007','BEL','NUTS3','BE256',null,16157265,10748);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36008','BEL','NUTS3','BE256',null,25483137,27449);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36010','BEL','NUTS3','BE256',null,24758200,9519);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36011','BEL','NUTS3','BE256',null,25931415,8625);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36012','BEL','NUTS3','BE256',null,35341058,10964);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36015','BEL','NUTS3','BE256',null,59793935,60707);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '36019','BEL','NUTS3','BE256',null,46240034,11196);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37002','BEL','NUTS3','BE257',null,25935511,8376);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37007','BEL','NUTS3','BE257',null,29348057,11039);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37010','BEL','NUTS3','BE257',null,16621841,7715);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37011','BEL','NUTS3','BE257',null,34421545,6798);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37012','BEL','NUTS3','BE257',null,30201523,5266);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37015','BEL','NUTS3','BE257',null,68504357,20110);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37017','BEL','NUTS3','BE257',null,21760376,9441);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37018','BEL','NUTS3','BE257',null,68420735,14283);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '37020','BEL','NUTS3','BE257',null,34576094,9072);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38002','BEL','NUTS3','BE258',null,80009790,5007);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38008','BEL','NUTS3','BE258',null,23896896,10854);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38014','BEL','NUTS3','BE258',null,43959624,22202);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38016','BEL','NUTS3','BE258',null,31004430,11434);
+insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38025','BEL','NUTS3','BE258',null,96339703,11509);
 
 CREATE TABLE "Comment" (
 	"BusinessPartnerID" VARCHAR(32) NOT NULL ,
 	"Order" INTEGER NOT NULL,
 	"Text" VARCHAR(280),
 	 PRIMARY KEY ("BusinessPartnerID", "Order"));
-	 
-insert into "Comment" values( '1', 1, 'This is just a test');	
-insert into "Comment" values( '1', 3, 'This is another test');	
+
+insert into "Comment" values( '1', 1, 'This is just a test');
+insert into "Comment" values( '1', 3, 'This is another test');
 
 --------DUMMY FOR TESTING--------------------------------------------------------------------------------------------------------
 CREATE TABLE "DummyToBeIgnored" (
 	"ID" NVARCHAR(32) NOT NULL ,
 	 PRIMARY KEY ("ID"));
-	 
---------User defined scalat functions--------------------------------------------------------------------------------------------
+
+--------User defined scalar functions--------------------------------------------------------------------------------------------
 CREATE FUNCTION  OLINGO."PopulationDensity" ("Area" BIGINT, "Population" BIGINT )
 	RETURNS DOUBLE
 BEGIN ATOMIC
@@ -635,20 +619,20 @@ CREATE FUNCTION  "Siblings" ("Publisher" VARCHAR(10), "ID" VARCHAR(10), "Divisio
 		"ParentCodeID" VARCHAR(10),
 		"ParentDivisionCode" VARCHAR(10),
 		"AlternativeCode" VARCHAR(10),
-		"Area" int, 
-		"Population" BIGINT)
+		"Area" int,
+"Population" BIGINT)
 	READS SQL DATA
-	RETURN TABLE( SELECT * 
-				FROM "AdministrativeDivision" as a 
-				WHERE 
+	RETURN TABLE( SELECT *
+FROM "AdministrativeDivision" as a
+WHERE
 					EXISTS (SELECT "CodePublisher"
 							FROM "AdministrativeDivision" as b
-							WHERE b."CodeID" = "ID"
-							AND   b."DivisionCode" = "Division" 
-							AND   b."CodePublisher" = a."CodePublisher"
+WHERE b."CodeID" = "ID"
+							AND   b."DivisionCode" = "Division"
+AND   b."CodePublisher" = a."CodePublisher"
 							AND   b."ParentCodeID" = a."ParentCodeID"
-							AND   b."ParentDivisionCode" = a."ParentDivisionCode") 
-					AND NOT( a."CodePublisher" = "Publisher"
+							AND   b."ParentDivisionCode" = a."ParentDivisionCode")
+AND NOT( a."CodePublisher" = "Publisher"
 					AND  a."CodeID" = "ID"
 					AND  a."DivisionCode" = "Division" )
 				);

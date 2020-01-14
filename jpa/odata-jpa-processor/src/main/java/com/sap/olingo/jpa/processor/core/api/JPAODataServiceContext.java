@@ -35,7 +35,8 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 
 public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODataCRUDContextAccess {
   /**
-   * 
+   *
+
    */
   @Deprecated
   private final JPAODataGetHandler jpaODataGetHandler;
@@ -338,7 +339,8 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
 
     /**
-     * 
+     *
+
      * @param postProcessor
      * @return
      */
@@ -348,7 +350,8 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
 
     /**
-     * 
+     *
+
      * @param jpaOperationConverter
      * @return
      */
@@ -380,7 +383,8 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
 
     /**
-     * 
+     *
+
      * @param references
      * @return
      */
@@ -409,7 +413,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
     /**
      * Set an externally created entity manager factory.<br>
-     * This is necessary e.g. in case a spring based service shall run without a <code>persistance.xml</code>.
+     * This is necessary e.g. in case a spring based service shall run without a <code>persistence.xml</code>.
      * @param emf
      * @return
      */
@@ -443,7 +447,8 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
     /*
      * (non-Javadoc)
-     * 
+     *
+
      * @see org.apache.olingo.server.api.debug.DebugSupport#createDebugResponse(java.lang.String,
      * org.apache.olingo.server.api.debug.DebugInformation)
      */
@@ -455,7 +460,8 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
     /*
      * (non-Javadoc)
-     * 
+     *
+
      * @see org.apache.olingo.server.api.debug.DebugSupport#init(org.apache.olingo.server.api.OData)
      */
     @Override
@@ -465,7 +471,8 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
     /*
      * (non-Javadoc)
-     * 
+     *
+
      * @see org.apache.olingo.server.api.debug.DebugSupport#isUserAuthorized()
      */
     @Override

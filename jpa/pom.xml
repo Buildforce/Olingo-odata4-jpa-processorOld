@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.source>1.8</project.build.source>
-		<maven.complier.version>3.8.0</maven.complier.version>
+		<maven.compiler.version>3.8.0</maven.compiler.version>
 		<odata.version>4.7.0</odata.version>
 		<jackson.version>2.9.8</jackson.version>
 		<powermock.version>1.7.1</powermock.version>
@@ -73,8 +73,10 @@
 								<vulas.core.uploadDir>${project.build.directory}/vulas/upload</vulas.core.uploadDir>
 								<vulas.core.app.sourceDir>${project.build.directory}/classes,${project.basedir}/src/main/java,${project.basedir}/src/main/python</vulas.core.app.sourceDir>
 
-								<!-- vulas:instr : Instruments JAR/WAR files found in source dir, 
-									and writes to target dir. Files in include dir are put into /WEB-INF/lib 
+								<!-- vulas:instr : Instruments JAR/WAR files found in source dir,
+
+									and writes to target dir. Files in include dir are put into /WEB-INF/lib
+
 									of output WARs. Files in lib dir are part of the class path when instrumenting. -->
 								<vulas.core.instr.sourceDir>${project.build.directory}</vulas.core.instr.sourceDir>
 								<vulas.core.instr.targetDir>${project.build.directory}/vulas/target</vulas.core.instr.targetDir>
@@ -128,7 +130,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven.complier.version}</version>
+					<version>${maven.compiler.version}</version>
 					<configuration>
 						<source>${project.build.source}</source>
 						<target>${project.build.source}</target>
@@ -159,7 +161,8 @@
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
 				<version>${coveralls.version}</version>
-            </plugin>			
+            </plugin>
+
 		</plugins>
 	</build>
 </project>

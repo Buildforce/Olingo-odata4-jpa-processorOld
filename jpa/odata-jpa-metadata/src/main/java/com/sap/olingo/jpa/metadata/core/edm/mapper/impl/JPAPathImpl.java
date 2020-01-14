@@ -57,7 +57,8 @@ final class JPAPathImpl implements JPAPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAPath#getAlias()
    */
   @Override
@@ -67,7 +68,8 @@ final class JPAPathImpl implements JPAPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAPath#getDBFieldName()
    */
   @Override
@@ -77,7 +79,8 @@ final class JPAPathImpl implements JPAPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAPath#getLeaf()
    */
   @Override
@@ -87,7 +90,8 @@ final class JPAPathImpl implements JPAPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAPath#getPath()
    */
   @Override
@@ -106,7 +110,8 @@ final class JPAPathImpl implements JPAPath {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAPath#ignore()
    */
   @Override

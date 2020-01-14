@@ -27,7 +27,7 @@ import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
  *
  */
 //TODO handle $it ...
-public final class JPAFilterElementComplier extends JPAAbstractFilter {
+public final class JPAFilterElementCompiler extends JPAAbstractFilter {
   final JPAOperationConverter converter;
   final EntityManager em;
   final OData odata;
@@ -36,7 +36,7 @@ public final class JPAFilterElementComplier extends JPAAbstractFilter {
   final JPAAbstractQuery parent;
   final List<String> groups;
 
-  public JPAFilterElementComplier(final OData odata, final JPAServiceDocument sd, final EntityManager em,
+  public JPAFilterElementCompiler(final OData odata, final JPAServiceDocument sd, final EntityManager em,
       final JPAEntityType jpaEntityType, final JPAOperationConverter converter,
       final List<UriResource> uriResourceParts, final JPAAbstractQuery parent, final VisitableExpression expression,
       final JPAAssociationPath association, final List<String> groups) {
@@ -54,13 +54,14 @@ public final class JPAFilterElementComplier extends JPAAbstractFilter {
 
   /*
    * (non-Javadoc)
-   * 
-   * @see com.sap.olingo.jpa.processor.core.filter.JPAFilterComplier#compile()
+   *
+
+   * @see com.sap.olingo.jpa.processor.core.filter.JPAFilterCompiler#compile()
    */
   @Override
   @SuppressWarnings("unchecked")
   public Expression<Boolean> compile() throws ExpressionVisitException, ODataApplicationException {
-    final int handle = parent.getDebugger().startRuntimeMeasurement("JPAFilterCrossComplier", "compile");
+    final int handle = parent.getDebugger().startRuntimeMeasurement("JPAFilterCrossCompiler", "compile");
 
     final ExpressionVisitor<JPAOperator> visitor = new JPAVisitor(this);
     final Expression<Boolean> finalExpression = (Expression<Boolean>) expression.accept(visitor).get();

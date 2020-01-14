@@ -121,7 +121,7 @@ public class AdministrativeDivision {
   @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
   private List<AdministrativeDivision> children;
 ```
-Please not, that with the current design it is not possible to create a link between regions of different code publisher.
+Please note, that with the current design it is not possible to create a link between regions of different code publisher.
 Having done that, we can create a association from the address to a administrative division:
 ```Java
 @Embeddable

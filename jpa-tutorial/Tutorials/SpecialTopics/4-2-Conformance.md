@@ -36,7 +36,7 @@ The following lists shall give you a rough overview of the topics where the JPA 
 |28|SHOULD support deep inserts ([section 11.4.2.2](https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752299))| X |
 
 ## OData Intermediate Conformance Level
-|No|Requirment|State|
+|No|Requirement|State|
 |:--- |:--- |:--- |
 |1|MUST conform to the OData Minimal Conformance Level| - |
 |2|MUST successfully parse the [OData-ABNF] and either follow the specification or return 501 Not Implemented for any unsupported functionality ([section 9.3.1](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752255))| X |
@@ -62,7 +62,7 @@ The following lists shall give you a rough overview of the topics where the JPA 
 |17|SHOULD support $orderby asc and desc on individual properties ([section 11.2.5.2](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752288))| X |
 
 ## OData Advanced Conformance Level
-|No|Requirment|State|
+|No|Requirement|State|
 |:--- |:--- |:--- |
 |1|MUST conform to at least the OData Intermediate Conformance Level| - |
 |2|MUST publish metadata at $metadata according to [OData-CSDL](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html) ([section 11.1.2](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752281))| X |

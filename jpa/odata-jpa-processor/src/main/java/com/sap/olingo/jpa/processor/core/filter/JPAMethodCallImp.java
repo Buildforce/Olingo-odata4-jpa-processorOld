@@ -24,7 +24,8 @@ class JPAMethodCallImp implements JPAMethodCall {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAFunctionCall#get()
    */
   @Override
@@ -34,7 +35,8 @@ class JPAMethodCallImp implements JPAMethodCall {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAFunctionCall#get(String prefix, String suffix)
    */
   @Override
@@ -51,7 +53,8 @@ class JPAMethodCallImp implements JPAMethodCall {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAFunctionCall#getFunction()
    */
   @Override
@@ -61,7 +64,8 @@ class JPAMethodCallImp implements JPAMethodCall {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAFunctionCall#getParameter(int)
    */
   @Override
@@ -71,7 +75,8 @@ class JPAMethodCallImp implements JPAMethodCall {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPAFunctionCall#noParameters()
    */
   @Override

@@ -83,7 +83,7 @@ public class TestHelper {
     return null;
   }
 
-  public EmbeddableType<?> getEmbeddedableType(String typeName) {
+  public EmbeddableType<?> getEmbeddableType(String typeName) {
     for (EmbeddableType<?> embeddableType : jpaMetamodel.getEmbeddables()) {
       if (embeddableType.getJavaType().getSimpleName().equals(typeName)) {
         return embeddableType;

@@ -20,7 +20,6 @@
 
 -->
 
-
 <profiles version="2">
 	<profile kind="CleanUpProfile" name="odata lib cleanup profile"
 		version="2">

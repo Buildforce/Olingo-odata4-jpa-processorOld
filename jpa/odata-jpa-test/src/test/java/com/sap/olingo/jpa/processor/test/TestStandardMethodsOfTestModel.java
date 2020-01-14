@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sap.olingo.jpa.processor.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,8 +35,8 @@ import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRoleKey;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRoleProtected;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRoleWithGroup;
 import com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation;
-import com.sap.olingo.jpa.processor.core.testmodel.CollcetionInnerComplex;
-import com.sap.olingo.jpa.processor.core.testmodel.CollcetionNestedComplex;
+import com.sap.olingo.jpa.processor.core.testmodel.CollectionInnerComplex;
+import com.sap.olingo.jpa.processor.core.testmodel.CollectionNestedComplex;
 import com.sap.olingo.jpa.processor.core.testmodel.Collection;
 import com.sap.olingo.jpa.processor.core.testmodel.CollectionDeep;
 import com.sap.olingo.jpa.processor.core.testmodel.CollectionFirstLevelComplex;
@@ -118,13 +115,13 @@ public class TestStandardMethodsOfTestModel {
         arguments(CollectionSecondLevelComplex.class),
         arguments(User.class),
         arguments(CountryRestriction.class),
-        arguments(CollcetionInnerComplex.class),
+        arguments(CollectionInnerComplex.class),
         arguments(Collection.class),
         arguments(CollectionPartOfComplex.class),
         arguments(PersonImage.class),
         arguments(Person.class),
         arguments(AdministrativeDivisionDescription.class),
-        arguments(CollcetionNestedComplex.class),
+        arguments(CollectionNestedComplex.class),
         arguments(CollectionDeep.class),
         arguments(CollectionFirstLevelComplex.class),
         arguments(PersonDeepProtectedHidden.class),
@@ -163,7 +160,7 @@ public class TestStandardMethodsOfTestModel {
     final Method[] methods = clazz.getMethods();
     final Constructor<?> constructor = clazz.getConstructor();
     assertNotNull(constructor);
-    final Object instanze = constructor.newInstance();
+    final Object instance = constructor.newInstance();
 
     for (final Method setter : methods) {
       if ("set".equals(setter.getName().substring(0, 3))
@@ -175,8 +172,8 @@ public class TestStandardMethodsOfTestModel {
         final Class<?> paramType = setter.getParameterTypes()[0];
         final Object exp = getExpected(paramType);
         if (exp != null) {
-          setter.invoke(instanze, exp);
-          assertEquals(exp, getter.invoke(instanze));
+          setter.invoke(instance, exp);
+          assertEquals(exp, getter.invoke(instance));
         }
       }
     }
@@ -190,12 +187,12 @@ public class TestStandardMethodsOfTestModel {
     final Method[] methods = clazz.getMethods();
     final Constructor<?> constructor = clazz.getConstructor();
     assertNotNull(constructor);
-    final Object instanze = constructor.newInstance();
+    final Object instance = constructor.newInstance();
 
     for (final Method hashcode : methods) {
       if ("hashCode".equals(hashcode.getName())
           && hashcode.getParameterCount() == 0) {
-        assertNotEquals(0, hashcode.invoke(instanze));
+        assertNotEquals(0, hashcode.invoke(instance));
       }
     }
   }

@@ -47,14 +47,14 @@ public class TestJPAExpandQueryResult extends TestBase {
   private HashMap<String, List<Tuple>> queryResult = new HashMap<>(1);
   private List<Tuple> tuples = new ArrayList<>();
   private JPAEntityType et;
-  private List<JPANavigationProptertyInfo> hops;
+  private List<JPANavigationPropertyInfo> hops;
 
   @BeforeEach
   public void setup() throws ODataException {
     helper = new TestHelper(emf, PUNIT_NAME);
     final UriResourceEntitySet uriEts = mock(UriResourceEntitySet.class);
-    final JPANavigationProptertyInfo hop0 = new JPANavigationProptertyInfo(helper.sd, uriEts, null, null);
-    final JPANavigationProptertyInfo hop1 = new JPANavigationProptertyInfo(helper.sd, uriEts, helper.getJPAEntityType(
+    final JPANavigationPropertyInfo hop0 = new JPANavigationPropertyInfo(helper.sd, uriEts, null, null);
+    final JPANavigationPropertyInfo hop1 = new JPANavigationPropertyInfo(helper.sd, uriEts, helper.getJPAEntityType(
         "Organizations").getAssociationPath("Roles"), null);
 
     hops = Arrays.asList(hop0, hop1);
@@ -114,6 +114,20 @@ public class TestJPAExpandQueryResult extends TestBase {
   }
 
   @Test
+  public void checkGetKeyBoundaryEmptyBoundaryNoResult() throws ODataJPAModelException, ODataJPAQueryException {
+
+    queryResult.put("root", Collections.emptyList());
+
+    cut = new JPAExpandQueryResult(queryResult, null, helper.getJPAEntityType("Organizations"),
+        Collections.emptyList());
+    when(uriInfo.getTopOption()).thenReturn(top);
+    when(uriInfo.getExpandOption()).thenReturn(expand);
+    when(top.getValue()).thenReturn(2);
+    final Optional<JPAKeyBoundary> act = cut.getKeyBoundary(requestContext, hops);
+    assertFalse(act.isPresent());
+  }
+
+  @Test // Test among other things
   public void checkGetKeyBoundaryOneResultWithTop() throws ODataJPAModelException, ODataJPAQueryException {
 
     final Map<String, Object> key = new HashMap<>(1);

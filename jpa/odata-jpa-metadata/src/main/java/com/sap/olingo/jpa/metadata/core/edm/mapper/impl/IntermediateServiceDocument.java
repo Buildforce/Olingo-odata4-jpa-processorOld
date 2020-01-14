@@ -84,7 +84,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getAllSchemas()
    */
   @Override
@@ -96,7 +97,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getEdmEntityContainer()
    */
   @Override
@@ -106,7 +108,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getEdmSchemas()
    */
   @Override
@@ -116,7 +119,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getEntity(org.apache.olingo.commons.api.edm.
    * EdmType)
@@ -131,7 +135,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument#getComplexType(org.apache.olingo.commons.api.edm
    * .EdmComplexType)
@@ -146,7 +151,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getEntity(org.apache.olingo.commons.api.edm.
    * FullQualifiedName)
@@ -161,7 +167,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getEntity(java.lang.String)
    */
   @Override
@@ -172,7 +179,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getEntitySet(com.sap.olingo.jpa.metadata.core.
    * edm.mapper.api.JPAEntityType)
@@ -184,7 +192,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getFunction(org.apache.olingo.commons.api.edm.
    * EdmFunction)
@@ -199,7 +208,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getAction(org.apache.olingo.commons.api.edm.
    * EdmFunction)
@@ -214,7 +224,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getReferences()
    */
   @Override
@@ -224,7 +235,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocument#getTerm(org.apache.olingo.commons.api.edm.
    * FullQualifiedName)
    */
@@ -235,7 +247,8 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * org.apache.olingo.server.api.etag.CustomETagSupport#hasETag(org.apache.olingo.commons.api.edm.EdmBindingTarget)
    */

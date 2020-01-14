@@ -25,7 +25,8 @@ import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
 
 /**
  * Cross compiles Olingo generated AST of an OData filter into JPA criteria builder where condition.
- * 
+ *
+
  * Details can be found:
  * <ul>
  * <li><a href=
@@ -42,7 +43,7 @@ import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
  *
  */
 //TODO handle $it ...
-public final class JPAFilterCrossComplier extends JPAAbstractFilter {
+public final class JPAFilterCrossCompiler extends JPAAbstractFilter {
   final JPAOperationConverter converter;
   // TODO Check if it is allowed to select via navigation
   // ...Organizations?$select=Roles/RoleCategory eq 'C'
@@ -56,7 +57,7 @@ public final class JPAFilterCrossComplier extends JPAAbstractFilter {
   final List<String> groups;
   private From<?, ?> root;
 
-  public JPAFilterCrossComplier(final OData odata, final JPAServiceDocument sd,
+  public JPAFilterCrossCompiler(final OData odata, final JPAServiceDocument sd,
       final JPAEntityType jpaEntityType, final JPAOperationConverter converter,
       final JPAAbstractQuery parent, From<?, ?> from, final JPAAssociationPath assization,
       final JPAODataRequestContextAccess requestContext) {
@@ -65,11 +66,11 @@ public final class JPAFilterCrossComplier extends JPAAbstractFilter {
     this.root = from;
   }
 
-  public JPAFilterCrossComplier(final OData odata, final JPAServiceDocument sd,
+  public JPAFilterCrossCompiler(final OData odata, final JPAServiceDocument sd,
       final JPAEntityType jpaEntityType, final JPAOperationConverter converter, final JPAAbstractQuery parent,
-      final JPAAssociationPath assization, final JPAODataRequestContextAccess requestContext) {
+      final JPAAssociationPath association, final JPAODataRequestContextAccess requestContext) {
 
-    super(jpaEntityType, requestContext.getUriInfo(), assization);
+    super(jpaEntityType, requestContext.getUriInfo(), association);
     final Optional<JPAODataGroupProvider> groupsProvider = requestContext.getGroupsProvider();
     this.uriResourceParts = requestContext.getUriInfo().getUriResourceParts();
     this.converter = converter;
@@ -83,13 +84,14 @@ public final class JPAFilterCrossComplier extends JPAAbstractFilter {
 
   /*
    * (non-Javadoc)
-   * 
-   * @see com.sap.olingo.jpa.processor.core.filter.JPAFilterComplier#compile()
+   *
+
+   * @see com.sap.olingo.jpa.processor.core.filter.JPAFilterCompiler#compile()
    */
   @Override
   @SuppressWarnings("unchecked")
   public Expression<Boolean> compile() throws ExpressionVisitException, ODataApplicationException {
-    final int handle = parent.getDebugger().startRuntimeMeasurement("JPAFilterCrossComplier", "compile");
+    final int handle = parent.getDebugger().startRuntimeMeasurement("JPAFilterCrossCompiler", "compile");
 
     if (expression == null) {
       parent.getDebugger().stopRuntimeMeasurement(handle);

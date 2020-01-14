@@ -34,7 +34,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
-import com.sap.olingo.jpa.processor.core.filter.JPAFilterElementComplier;
+import com.sap.olingo.jpa.processor.core.filter.JPAFilterElementCompiler;
 import com.sap.olingo.jpa.processor.core.filter.JPAFilterExpression;
 import com.sap.olingo.jpa.processor.core.filter.JPAMemberOperator;
 
@@ -47,7 +47,7 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
   protected From<?, ?> queryRoot = null;
   protected final From<?, ?> from;
   protected final JPAAssociationPath association;
-  protected JPAFilterElementComplier filterComplier;
+  protected JPAFilterElementCompiler filterCompiler;
 
   public JPANavigationQuery(final OData odata, final JPAServiceDocument sd, final EdmEntityType edmEntityType,
       final EntityManager em, final JPAAbstractQuery parent, From<?, ?> from, final JPAAssociationPath association,
@@ -125,13 +125,13 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
 
     Expression<Boolean> whereCondition = null;
     for (final JPAOnConditionItem onItem : conditionItems) {
-      Path<?> paretPath = parentFrom;
+      Path<?> parentPath = parentFrom;
       Path<?> subPath = subRoot;
       for (final JPAElement jpaPathElement : onItem.getRightPath().getPath())
-        paretPath = paretPath.get(jpaPathElement.getInternalName());
+        parentPath = parentPath.get(jpaPathElement.getInternalName());
       for (final JPAElement jpaPathElement : onItem.getLeftPath().getPath())
         subPath = subPath.get(jpaPathElement.getInternalName());
-      final Expression<Boolean> equalCondition = cb.equal(paretPath, subPath);
+      final Expression<Boolean> equalCondition = cb.equal(parentPath, subPath);
       if (whereCondition == null)
         whereCondition = equalCondition;
       else
@@ -145,10 +145,10 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
       throws ODataApplicationException {
 
     Expression<Boolean> whereCondition = where;
-    if (filterComplier != null && aggregationType == null)
+    if (filterCompiler != null && aggregationType == null)
       try {
-        if (filterComplier.getExpressionMember() != null)
-          whereCondition = addWhereClause(whereCondition, filterComplier.compile());
+        if (filterCompiler.getExpressionMember() != null)
+          whereCondition = addWhereClause(whereCondition, filterCompiler.compile());
       } catch (ExpressionVisitException e) {
         throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
       }
@@ -192,13 +192,13 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
     Expression<Boolean> whereCondition = null;
 
     for (final JPAPath onItem : jpaEntity.getKeyPath()) {
-      Path<?> paretPath = parentFrom;
+      Path<?> parentPath = parentFrom;
       Path<?> subPath = subRoot;
       for (final JPAElement jpaPathElement : onItem.getPath()) {
-        paretPath = paretPath.get(jpaPathElement.getInternalName());
+        parentPath = parentPath.get(jpaPathElement.getInternalName());
         subPath = subPath.get(jpaPathElement.getInternalName());
       }
-      final Expression<Boolean> equalCondition = cb.equal(paretPath, subPath);
+      final Expression<Boolean> equalCondition = cb.equal(parentPath, subPath);
       whereCondition = addWhereClause(whereCondition, equalCondition);
     }
     return whereCondition;
@@ -218,7 +218,7 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
       final List<JPAOnConditionItem> conditionItems) throws ODataApplicationException {
 
     final List<Expression<?>> groupByLIst = new ArrayList<>();
-    if (filterComplier != null && this.aggregationType != null) {
+    if (filterCompiler != null && this.aggregationType != null) {
       for (final JPAOnConditionItem onItem : conditionItems) {
         Path<?> subPath = subRoot;
         for (final JPAElement jpaPathElement : onItem.getRightPath().getPath())
@@ -228,7 +228,7 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
       subQuery.groupBy(groupByLIst);
 
       try {
-        subQuery.having(this.filterComplier.compile());
+        subQuery.having(this.filterCompiler.compile());
       } catch (ExpressionVisitException e) {
         throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
       }

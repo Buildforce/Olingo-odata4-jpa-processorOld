@@ -26,7 +26,7 @@ import org.apache.olingo.commons.api.edm.FullQualifiedName;
 import org.apache.olingo.commons.api.edm.provider.CsdlStructuralType;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssoziation;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssociation;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
@@ -40,7 +40,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
 abstract class IntermediateStructuredType extends IntermediateModelElement implements JPAStructuredType {
-// 
+//
+
   protected final Map<String, IntermediateProperty> declaredPropertiesList;
   protected final Map<String, IntermediateNavigationProperty> declaredNaviPropertiesList;
   protected final Map<String, JPAPathImpl> resolvedPathMap;
@@ -258,9 +259,9 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
         case MANY_TO_MANY:
         case MANY_TO_ONE:
           if (jpaAttribute.getJavaMember() instanceof AnnotatedElement) {
-            final EdmDescriptionAssoziation jpaDescription = ((AnnotatedElement) jpaAttribute.getJavaMember())
+            final EdmDescriptionAssociation jpaDescription = ((AnnotatedElement) jpaAttribute.getJavaMember())
                 .getAnnotation(
-                    EdmDescriptionAssoziation.class);
+                    EdmDescriptionAssociation.class);
             if (jpaDescription != null) {
               final IntermediateDescriptionProperty descProperty = new IntermediateDescriptionProperty(nameBuilder,
                   jpaAttribute, schema);
@@ -388,7 +389,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
     return jpaAttributes;
   }
 
-  JPAAssociationAttribute getCorrespondingAssiciation(final IntermediateStructuredType sourceType,
+  JPAAssociationAttribute getCorrespondingAssociation(final IntermediateStructuredType sourceType,
       final String sourceRelationshipName) throws ODataJPAModelException {
     final Attribute<?, ?> jpaAttribute = findCorrespondingAssociation(sourceType, sourceRelationshipName);
     return jpaAttribute == null ? null : new IntermediateNavigationProperty(nameBuilder, sourceType, jpaAttribute,
@@ -427,7 +428,8 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
 
   /**
    * Method follows resolved semantic
-   * 
+   *
+
    * @param dbFieldName
    * @return
    * @throws ODataJPAModelException
@@ -659,7 +661,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
   }
 
   private String buildPath(final String pathRoot, final String pathElement) {
-    return pathRoot + JPAPath.PATH_SEPERATOR + pathElement;
+    return pathRoot + JPAPath.PATH_SEPARATOR + pathElement;
   }
 
   private void lazyBuildCompleteProtectionList() throws ODataJPAModelException {
@@ -687,7 +689,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
         } else if (attribute.isComplex()) { // Protection at attribute overrides protection within complex
           for (final JPAProtectionInfo info : attribute.getStructuredType().getProtections()) {
             // Copy and extend path
-            final String pathName = attribute.getExternalName() + JPAPath.PATH_SEPERATOR + info.getPath().getAlias();
+            final String pathName = attribute.getExternalName() + JPAPath.PATH_SEPARATOR + info.getPath().getAlias();
             final JPAPath path = this.getPath(pathName, false);
             protectedAttributes.add(new ProtectionInfo(path, info));
           }
@@ -701,7 +703,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
     final StringBuilder path = new StringBuilder();
     for (int i = 0; i < pathList.size() - 1; i++) {
       path.append(pathList.get(i).getExternalName());
-      path.append(JPAPath.PATH_SEPERATOR);
+      path.append(JPAPath.PATH_SEPARATOR);
     }
     path.deleteCharAt(path.length() - 1);
     final JPAPath parentPath = intermediatePathMap.get(path.toString());

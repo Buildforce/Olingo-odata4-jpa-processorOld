@@ -175,8 +175,8 @@ public class TestSchemaReader {
     assertTrue(actCt.isAbstract());
     assertTrue(actCt.isOpenType());
     assertNotNull(actCt.getBaseType());
-    assertEquals("Core.Unknow", actCt.getBaseType());
-    assertEquals("Core.Unknow", actCt.getBaseTypeFQN().getFullQualifiedNameAsString());
+    assertEquals("Core.Unknown", actCt.getBaseType());
+    assertEquals("Core.Unknown", actCt.getBaseTypeFQN().getFullQualifiedNameAsString());
     assertEquals(0, actCt.getAnnotations().size()); // Annotations are ignored
   }
 
@@ -315,11 +315,11 @@ public class TestSchemaReader {
 
     final CsdlFunction actFunc = act.get(0);
     assertEquals(4, actFunc.getParameters().size());
-    final CsdlParameter actMendatory = actFunc.getParameter("Entity");
-    assertNotNull(actMendatory);
-    assertEquals("Entity", actMendatory.getName());
-    assertEquals("Edm.EntityType", actMendatory.getType());
-    assertFalse(actMendatory.isNullable());
+    final CsdlParameter actMandatory = actFunc.getParameter("Entity");
+    assertNotNull(actMandatory);
+    assertEquals("Entity", actMandatory.getName());
+    assertEquals("Edm.EntityType", actMandatory.getType());
+    assertFalse(actMandatory.isNullable());
 
     final CsdlParameter actNullable = actFunc.getParameter("MaxDistance");
     assertTrue(actNullable.isNullable());

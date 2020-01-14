@@ -8,14 +8,16 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 public interface JPAFunction extends JPAOperation {
 
   /**
-   * 
+   *
+
    * @return List of import parameter
    * @throws ODataJPAModelException
    */
   public List<JPAParameter> getParameter() throws ODataJPAModelException;
 
   /**
-   * 
+   *
+
    * @param internalName
    * @return
    * @throws ODataJPAModelException
@@ -23,7 +25,8 @@ public interface JPAFunction extends JPAOperation {
   public JPAParameter getParameter(String internalName) throws ODataJPAModelException;
 
   /**
-   * 
+   *
+
    * @return The type of function
    */
   public EdmFunctionType getFunctionType();

@@ -277,7 +277,7 @@ public class TestCriteriaBuilder {
     TypedQuery<Tuple> tq = em.createQuery(cq);
     DatabaseQuery dq = ((EJBQueryImpl<Tuple>) tq).getDatabaseQuery();
     final List<Tuple> act = tq.getResultList();
-    // Ensure EclipsLink problem still exists: ("WHERE ((NULL, NULL, NULL, NULL) IN "));
+    // Ensure EclipseLink problem still exists: ("WHERE ((NULL, NULL, NULL, NULL) IN "));
     Assertions.assertEquals(0, act.size());
   }
 

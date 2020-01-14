@@ -150,7 +150,7 @@ public class JPAODataBatchProcessorTest {
   }
 
   @Test
-  public void whenNoExceptionOccuredThenCommit() throws ODataApplicationException, ODataLibraryException {
+  public void whenNoExceptionOccurredThenCommit() throws ODataApplicationException, ODataLibraryException {
 
     when(response.getStatusCode()).thenReturn(HttpStatusCode.OK.getStatusCode());
     when(facade.handleODataRequest(request)).thenReturn(response);

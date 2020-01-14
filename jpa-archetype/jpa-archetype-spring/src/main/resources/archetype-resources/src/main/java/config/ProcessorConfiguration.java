@@ -15,9 +15,10 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
 public class ProcessorConfiguration {
   @Value("${odata.jpa.punit_name}")
   private String punit;
-  @Value("${odata.jpa.root_packages}") 
+  @Value("${odata.jpa.root_packages}")
+
   private String rootPackages;
-  
+
   @Bean
   public JPAODataCRUDContextAccess sessionContext(@Autowired final EntityManagerFactory emf) throws ODataException {
 

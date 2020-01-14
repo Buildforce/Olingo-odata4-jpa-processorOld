@@ -1,6 +1,10 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Marks an association to an entity that contains a language/locale dependent description of a coded value. E.g the
@@ -11,17 +15,11 @@ import java.lang.annotation.*;
  * multiple descriptions are available, the right one the chosen the Description Attribute has to be named<p>
  * @author Oliver Grande
  *
- * @deprecated
- * This annotation is no longer acceptable due its misspelling.
- *  <p> Use {@link EdmDescriptionAssociation} instead.
- *
  */
-
-@Deprecated
 @Target({ ElementType.FIELD })
 @Retention(value = RetentionPolicy.RUNTIME)
 @Inherited
-public @interface EdmDescriptionAssoziation {
+public @interface EdmDescriptionAssociation {
   String descriptionAttribute();
 
   String languageAttribute() default "";

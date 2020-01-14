@@ -9,7 +9,8 @@ import javax.persistence.Embeddable;
 public class JoinRelationKey implements Serializable {
 
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = 5206755977104102088L;
 

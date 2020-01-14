@@ -165,11 +165,11 @@
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_cN-9w0s1EeaVhr02lt1ZOA" name="setCodeID" visibility="public">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_cN-9xEs1EeaVhr02lt1ZOA" name="codeID" type="_Ny9eo0s1EeaVhr02lt1ZOA"/>
                     </ownedOperation>
-                    <ownedOperation xmi:type="uml:Operation" xmi:id="_cN-9xUs1EeaVhr02lt1ZOA" name="getDivisonCode" visibility="public">
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_cN-9xUs1EeaVhr02lt1ZOA" name="getDivisionCode" visibility="public">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_cN_k0Es1EeaVhr02lt1ZOA" type="_Ny9eo0s1EeaVhr02lt1ZOA" direction="return"/>
                     </ownedOperation>
-                    <ownedOperation xmi:type="uml:Operation" xmi:id="_cN_k0Us1EeaVhr02lt1ZOA" name="setDivisonCode" visibility="public">
-                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_cN_k0ks1EeaVhr02lt1ZOA" name="divisonCode" type="_Ny9eo0s1EeaVhr02lt1ZOA"/>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_cN_k0Us1EeaVhr02lt1ZOA" name="setDivisionCode" visibility="public">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_cN_k0ks1EeaVhr02lt1ZOA" name="divisionCode" type="_Ny9eo0s1EeaVhr02lt1ZOA"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_cN_k00s1EeaVhr02lt1ZOA" name="getSerialversionuid" visibility="public" isStatic="true">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_cN_k1Es1EeaVhr02lt1ZOA" type="_Ny_64ks1EeaVhr02lt1ZOA" direction="return"/>

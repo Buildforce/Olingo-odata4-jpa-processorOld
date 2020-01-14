@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllicalAccessException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerWithGroups;
 import com.sap.olingo.jpa.processor.core.util.SelectOptionDouble;
 import com.sap.olingo.jpa.processor.core.util.TestGroupBase;
@@ -36,7 +36,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectAllWithOneGroupReturnsAlsoThose() throws ODataException, JPAIllicalAccessException {
+  public void checkSelectAllWithOneGroupReturnsAlsoThose() throws ODataException, JPAIllegalAccessException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();
@@ -51,7 +51,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectAllWithTwoGroupReturnsAlsoThose() throws ODataException, JPAIllicalAccessException {
+  public void checkSelectAllWithTwoGroupReturnsAlsoThose() throws ODataException, JPAIllegalAccessException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();

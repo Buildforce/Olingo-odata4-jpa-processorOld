@@ -23,7 +23,8 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPABooleanOperator#get()
    */
   @Override
@@ -33,7 +34,8 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPABooleanOperator#getOperator()
    */
   @SuppressWarnings("unchecked")
@@ -44,7 +46,8 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPABooleanOperator#getLeft()
    */
   @Override
@@ -54,7 +57,8 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.filter.JPABooleanOperator#getRight()
    */
   @Override

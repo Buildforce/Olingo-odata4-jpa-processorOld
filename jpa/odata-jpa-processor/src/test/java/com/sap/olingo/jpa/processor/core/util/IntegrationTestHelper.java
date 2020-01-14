@@ -133,7 +133,7 @@ public class IntegrationTestHelper {
 
   }
 
-  public HttpServletResponseDouble getResponce() {
+  public HttpServletResponseDouble getResponse() {
     return resp;
   }
 

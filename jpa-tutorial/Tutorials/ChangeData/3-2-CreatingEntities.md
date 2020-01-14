@@ -14,7 +14,7 @@ Here we concentrate on performing changes and override `createEntity`. The metho
 
 `createEntity` shall either returns an instance of the newly created POJO or a map like the one provided by `getData` including calculated fields.
 
-Lets start creating a new AdministrativeDivision. As a first step we generate setter and getter methods. This can be done in Eclipse after opening `AdministrativeDivision.java` by choosing _Alt+Shift+S_ and then _Generate Getters and Setters..._ select all others then _children_ and _parent_. Please note that all attributes should be typed with wrapper classes instead of primitive types. Assoziations with multiplicity _ToMany_ shall always return an collection, so we change the getter for Children as follows:
+Lets start creating a new AdministrativeDivision. As a first step we generate setter and getter methods. This can be done in Eclipse after opening `AdministrativeDivision.java` by choosing _Alt+Shift+S_ and then _Generate Getters and Setters..._ select all others then _children_ and _parent_. Please note that all attributes should be typed with wrapper classes instead of primitive types. Associations with cardinality _ToMany_ shall always return an collection, so we change the getter for Children as follows:
 
 ```Java
 public List<AdministrativeDivision> getChildren() {
@@ -23,7 +23,6 @@ public List<AdministrativeDivision> getChildren() {
 	return children;
 }
 ```
-
 
 Having done that we can start with a simple implementation of our create method. We just take the values out of the map and put them into a new POJO instance:
 
@@ -71,7 +70,8 @@ public class CUDRequestHandler extends JPAAbstractCUDRequestHandler {
 
 }
 ```
-As the last step before we can test our implementation, we have to make a small change at the Service implementation. Up to know we haven't provided the `JPAODataCRUDHandler` our own handler implementation. As the handler may contain request specific information e.g. to be able to perform checks within `validateChange`, the handler is part of the request context. 
+As the last step before we can test our implementation, we have to make a small change at the Service implementation. Up to know we haven't provided the `JPAODataCRUDHandler` our own handler implementation. As the handler may contain request specific information e.g. to be able to perform checks within `validateChange`, the handler is part of the request context.
+
 So we have to add ` handler.getJPAODataRequestContext().setCUDRequestHandler(new CUDRequestHandler());`:
 
 ```Java

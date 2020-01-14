@@ -1,7 +1,8 @@
-package com.sap.olingo.jpa.metadata.core.edm.mapper.extention;
+package com.sap.olingo.jpa.metadata.core.edm.mapper.extension;
 
 /**
- * 
+ *
+
  * @author Oliver Grande
  *
  */

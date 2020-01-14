@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class CollcetionInnerComplex {
+public class CollectionInnerComplex {
 
   @Column(name = "\"Figure1\"")
   private Long figure1;

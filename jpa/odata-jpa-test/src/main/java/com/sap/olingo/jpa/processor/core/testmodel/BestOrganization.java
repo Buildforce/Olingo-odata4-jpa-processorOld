@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAsEntitySet;
 
-//Problem with multi-level inheritance hierarchy Inheritance Type SINGLE_TABLE. Therefore inherit also from 
+//Problem with multi-level inheritance hierarchy Inheritance Type SINGLE_TABLE. Therefore inherit also from
+
 //Business Partner
 @Entity(name = "BestOrganization")
 @DiscriminatorValue(value = "2")

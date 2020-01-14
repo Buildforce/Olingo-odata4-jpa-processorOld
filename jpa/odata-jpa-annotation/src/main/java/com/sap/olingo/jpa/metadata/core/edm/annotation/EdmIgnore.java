@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
 import java.lang.annotation.ElementType;

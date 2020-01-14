@@ -18,7 +18,8 @@ public @interface EdmFunction {
   /**
    * Define if the return type for the function. It can be a collection (entity set) or
    * an single entity (entity).
-   * 
+   *
+
    */
   @interface ReturnType {
 
@@ -41,7 +42,8 @@ public @interface EdmFunction {
 
     /**
      * Define the return type for the function import.<p>
-     * 
+     *
+
      * @return Class of java parameter (row) type. This can be either a simple type like <code> Integer.class</code> or
      * the POJO defining an Entity. If the type is not set and the
      * function is defined at an JPA Entity POJO, the corresponding Entity Type is used. In addition, in case of an
@@ -96,7 +98,8 @@ public @interface EdmFunction {
 
   /**
    * Define the return type of this function
-   * 
+   *
+
    * @return return type of this function
    */
   ReturnType returnType();

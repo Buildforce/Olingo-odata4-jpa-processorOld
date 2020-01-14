@@ -1,5 +1,6 @@
 # 1.13 Collection Properties
-If you like to express a composition relationship between an entity type and another type, OData provides the option to create collections of complex or primitive types. 
+If you like to express a composition relationship between an entity type and another type, OData provides the option to create collections of complex or primitive types.
+
 As a small example we want to allow our users to comment companies. So a comment belongs exactly to one company and shall be deleted if the company gets deleted. As JPA provides an analog concept with the annotation `@ElementCollection` and `@CollectionTable` we use those to realize the new requirement. We extend Company as follows:
 ```Java
 public class Company extends BusinessPartner {
@@ -12,14 +13,14 @@ public class Company extends BusinessPartner {
 
   @Enumerated(value = EnumType.STRING)
   @Column(name = "\"ABCClass\"")
-  private ABCClassifiaction abcClass;
+  private ABCclassification abcClass;
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(schema = "\"OLINGO\"", name = "\"Comment\"",
       joinColumns = @JoinColumn(name = "\"BusinessPartnerID\""))
   @Column(name = "\"Text\"")
   private List<String> comment = new ArrayList<>();
-  
+
   ...
 
 }
@@ -27,7 +28,7 @@ public class Company extends BusinessPartner {
 The resulting metadata will look as follows:
 ```XML
 	<EntityType Name="Company" BaseType="Tutorial.BusinessPartner">
-		<Property Name="AbcClass" Type="Tutorial.ABCClassifiaction"/>
+		<Property Name="AbcClass" Type="Tutorial.ABCclassification"/>
 		<Property Name="Comment" Type="Collection(Edm.String)" MaxLength="255"/>
 		<Property Name="Name2" Type="Edm.String" MaxLength="255"/>
 		<Property Name="Name1" Type="Edm.String" MaxLength="255"/>
@@ -79,6 +80,6 @@ public class Comment {
     this.businessPartnerID = ID;
   }
 }
-``` 
+```
 
 Not supported are nested collection properties as well as navigation properties being part of a collection.

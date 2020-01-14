@@ -40,7 +40,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.processor.core.api.JPAODataContextAccessDouble;
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllicalAccessException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
@@ -52,7 +52,7 @@ public class TestJPAQueryFromClause extends TestBase {
   private JPAODataCRUDContextAccess sessionContext;
 
   @BeforeEach
-  public void setup() throws ODataException, JPAIllicalAccessException {
+  public void setup() throws ODataException, JPAIllegalAccessException {
     final UriInfo uriInfo = Mockito.mock(UriInfo.class);
     final EdmEntitySet odataEs = Mockito.mock(EdmEntitySet.class);
     final EdmType odataType = Mockito.mock(EdmEntityType.class);
@@ -136,7 +136,7 @@ public class TestJPAQueryFromClause extends TestBase {
   }
 
   @Test
-  public void checkFromListDescriptionAssozationAllFields() throws ODataApplicationException, ODataJPAModelException,
+  public void checkFromListDescriptionAssociationAllFields() throws ODataApplicationException, ODataJPAModelException,
       JPANoSelectionException {
     List<JPAAssociationPath> orderBy = new ArrayList<>();
     List<JPAPath> descriptionPathList = new ArrayList<>();
@@ -152,7 +152,7 @@ public class TestJPAQueryFromClause extends TestBase {
   }
 
   @Test
-  public void checkFromListDescriptionAssozationAllFields2() throws ODataApplicationException, ODataJPAModelException,
+  public void checkFromListDescriptionAssociationAllFields2() throws ODataApplicationException, ODataJPAModelException,
       JPANoSelectionException {
     List<JPAAssociationPath> orderBy = new ArrayList<>();
     List<JPAPath> descriptionPathList = new ArrayList<>();
@@ -168,7 +168,7 @@ public class TestJPAQueryFromClause extends TestBase {
   }
 
   @Test
-  public void checkThrowsIfEliminatedByGroups() throws JPAIllicalAccessException, ODataException,
+  public void checkThrowsIfEliminatedByGroups() throws JPAIllegalAccessException, ODataException,
       JPANoSelectionException {
 
     final JPAODataRequestContextImpl requestContext = buildRequestContextToTestGroups();
@@ -186,7 +186,7 @@ public class TestJPAQueryFromClause extends TestBase {
   }
 
   @Test
-  public void checkDoesNotThrowsIfGroupProvided() throws JPAIllicalAccessException, ODataException,
+  public void checkDoesNotThrowsIfGroupProvided() throws JPAIllegalAccessException, ODataException,
       JPANoSelectionException {
     final JPAODataGroupsProvider groups = new JPAODataGroupsProvider();
     final JPAODataRequestContextImpl requestContext = buildRequestContextToTestGroups();
@@ -205,13 +205,13 @@ public class TestJPAQueryFromClause extends TestBase {
 
   }
 
-  private JPAODataRequestContextImpl buildRequestContextToTestGroups() throws JPAIllicalAccessException {
+  private JPAODataRequestContextImpl buildRequestContextToTestGroups() throws JPAIllegalAccessException {
     final UriInfo uriInfo = Mockito.mock(UriInfo.class);
     final EdmEntitySet odataEs = Mockito.mock(EdmEntitySet.class);
     final EdmType odataType = Mockito.mock(EdmEntityType.class);
     final List<UriResource> resources = new ArrayList<>();
     final UriResourceEntitySet esResource = Mockito.mock(UriResourceEntitySet.class);
-    final UriResourcePrimitiveProperty ppResoucre = Mockito.mock(UriResourcePrimitiveProperty.class);
+    final UriResourcePrimitiveProperty ppResource = Mockito.mock(UriResourcePrimitiveProperty.class);
     final EdmProperty ppProperty = Mockito.mock(EdmProperty.class);
     Mockito.when(uriInfo.getUriResourceParts()).thenReturn(resources);
     Mockito.when(esResource.getKeyPredicates()).thenReturn(new ArrayList<>(0));
@@ -221,11 +221,11 @@ public class TestJPAQueryFromClause extends TestBase {
     Mockito.when(odataEs.getName()).thenReturn("BusinessPartnerWithGroupss");
     Mockito.when(odataType.getNamespace()).thenReturn(PUNIT_NAME);
     Mockito.when(odataType.getName()).thenReturn("BusinessPartnerWithGroups");
-    Mockito.when(ppResoucre.isCollection()).thenReturn(true);
-    Mockito.when(ppResoucre.getProperty()).thenReturn(ppProperty);
+    Mockito.when(ppResource.isCollection()).thenReturn(true);
+    Mockito.when(ppResource.getProperty()).thenReturn(ppProperty);
     Mockito.when(ppProperty.getName()).thenReturn("Comment");
     resources.add(esResource);
-    resources.add(ppResoucre);
+    resources.add(ppResource);
 
     final JPAODataRequestContextImpl requestContext = new JPAODataRequestContextImpl();
     requestContext.setEntityManager(emf.createEntityManager());

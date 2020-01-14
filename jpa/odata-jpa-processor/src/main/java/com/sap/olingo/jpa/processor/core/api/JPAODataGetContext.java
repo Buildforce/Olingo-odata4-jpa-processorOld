@@ -16,7 +16,8 @@ public interface JPAODataGetContext {
   public void initDebugger(final String debugFormat);
 
   /**
-   * 
+   *
+
    * @param postProcessor
    * @throws ODataException
    */
@@ -40,14 +41,16 @@ public interface JPAODataGetContext {
   public void setErrorProcessor(final ErrorProcessor errorProcessor);
 
   /**
-   * 
+   *
+
    * @param postProcessor
    * @throws ODataException
    */
   public void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataException;
 
   /**
-   * 
+   *
+
    * @param postProcessor
    * @throws ODataException
    */

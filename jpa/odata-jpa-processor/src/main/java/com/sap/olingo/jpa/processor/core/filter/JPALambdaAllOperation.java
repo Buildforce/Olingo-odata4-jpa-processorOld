@@ -13,8 +13,8 @@ import org.apache.olingo.server.api.uri.queryoption.expression.UnaryOperatorKind
 
 final class JPALambdaAllOperation extends JPALambdaOperation {
 
-  JPALambdaAllOperation(final JPAFilterComplierAccess jpaComplier, final Member member) {
-    super(jpaComplier, member);
+  JPALambdaAllOperation(final JPAFilterCompilerAccess jpaCompiler, final Member member) {
+    super(jpaCompiler, member);
   }
 
   public Subquery<?> getNotExistsQuery() throws ODataApplicationException {

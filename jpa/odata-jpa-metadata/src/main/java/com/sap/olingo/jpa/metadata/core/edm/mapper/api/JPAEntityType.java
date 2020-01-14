@@ -20,7 +20,8 @@ public interface JPAEntityType extends JPAStructuredType {
   public JPACollectionAttribute getCollectionAttribute(final String externalName) throws ODataJPAModelException;
 
   /**
-   * 
+   *
+
    * @return Mime type of streaming content
    * @throws ODataJPAModelException
    */
@@ -59,7 +60,8 @@ public interface JPAEntityType extends JPAStructuredType {
   public boolean hasCompoundKey();
 
   /**
-   * 
+   *
+
    * @return
    * @throws ODataJPAModelException
    */
@@ -68,7 +70,8 @@ public interface JPAEntityType extends JPAStructuredType {
   public JPAPath getStreamAttributePath() throws ODataJPAModelException;
 
   /**
-   * 
+   *
+
    * @return Name of the database table
    */
   public String getTableName();

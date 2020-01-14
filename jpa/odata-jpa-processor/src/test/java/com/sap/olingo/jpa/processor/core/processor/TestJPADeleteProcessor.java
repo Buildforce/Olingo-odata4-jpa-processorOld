@@ -211,7 +211,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testCallsValidateChangesOnSuccessfullProcessing() throws ODataException {
+  public void testCallsValidateChangesOnSuccessfulProcessing() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = mock(ODataRequest.class);
 
@@ -223,7 +223,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesNotCallsValidateChangesOnForginTransaction() throws ODataException {
+  public void testDoesNotCallsValidateChangesOnForeignTransaction() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = mock(ODataRequest.class);
 

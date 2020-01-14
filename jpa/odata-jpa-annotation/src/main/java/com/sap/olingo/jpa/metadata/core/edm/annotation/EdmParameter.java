@@ -32,7 +32,8 @@ public @interface EdmParameter {
 
   /**
    * Define the parameter type in case of stored procedure or user defined function.<p>
-   * 
+   *
+
    * @return Class of java parameter (row) type. This can be either a simple type like <code> Integer.class</code> or
    * the POJO defining an Entity.
    */

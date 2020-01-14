@@ -28,7 +28,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
-import com.sap.olingo.jpa.processor.core.filter.JPAFilterElementComplier;
+import com.sap.olingo.jpa.processor.core.filter.JPAFilterElementCompiler;
 import com.sap.olingo.jpa.processor.core.filter.JPAOperationConverter;
 
 public final class JPANavigationFilterQuery extends JPANavigationQuery {
@@ -44,7 +44,7 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
     this.subQuery = parent.getQuery().subquery(this.jpaEntity.getKeyType());
 
     this.locale = parent.getLocale();
-    this.filterComplier = null;
+    this.filterCompiler = null;
     this.aggregationType = null;
     createRoots(association);
   }
@@ -62,16 +62,17 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 
     this.locale = parent.getLocale();
 
-    this.filterComplier = new JPAFilterElementComplier(odata, sd, em, jpaEntity, new JPAOperationConverter(cb,
+    this.filterCompiler = new JPAFilterElementCompiler(odata, sd, em, jpaEntity, new JPAOperationConverter(cb,
         getContext().getOperationConverter()), null, this, expression, null, groups);
-    this.aggregationType = getAggregationType(this.filterComplier.getExpressionMember());
+    this.aggregationType = getAggregationType(this.filterCompiler.getExpressionMember());
     createRoots(association);
     createDescriptionJoin();
   }
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see com.sap.olingo.jpa.processor.core.query.JPANavigationQuery#getRoot()
    */
   @Override
@@ -82,7 +83,8 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 
   /*
    * (non-Javadoc)
-   * 
+   *
+
    * @see
    * com.sap.olingo.jpa.processor.core.query.JPANavigationQuery#getSubQueryExists(javax.persistence.criteria.Subquery)
    */
@@ -106,7 +108,7 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 
   private void createDescriptionJoin() throws ODataApplicationException {
     final HashMap<String, From<?, ?>> joinTables = new HashMap<>();
-    generateDesciptionJoin(joinTables, determineAllDescriptionPath(), getRoot());
+    generateDescriptionJoin(joinTables, determineAllDescriptionPath(), getRoot());
   }
 
   private <T> void createSubQueryAggregation(final Subquery<?> childQuery, final Subquery<T> query)
@@ -130,8 +132,8 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 
   private Set<JPAPath> determineAllDescriptionPath() throws ODataApplicationException {
     Set<JPAPath> allPath = new HashSet<>();
-    if (filterComplier != null) {
-      for (JPAPath path : filterComplier.getMember()) {
+    if (filterCompiler != null) {
+      for (JPAPath path : filterCompiler.getMember()) {
         if (path.getLeaf() instanceof JPADescriptionAttribute)
           allPath.add(path);
       }

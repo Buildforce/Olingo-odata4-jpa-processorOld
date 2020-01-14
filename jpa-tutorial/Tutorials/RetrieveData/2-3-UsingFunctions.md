@@ -1,6 +1,6 @@
 # 2.3 Using Functions
 
-In tutorial [Functions](../Metadata/1-8-Functions.md) the metadata for overall three user defined functions have been created. Now we want see what we need to do to use them. 
+In tutorial [Functions](../Metadata/1-8-Functions.md) the metadata for overall three user defined functions have been created. Now we want see what we need to do to use them.
 
 The required SQL statements to create them on the database are part of the [migration document](../RetrieveData/migration/V1_0__olingo.sql).
 
@@ -16,7 +16,8 @@ Making queries on functions is more difficult. The reason for this is that JPA, 
 * `SELECT * FROM TABLE (<FUNCTIONNAME>(<PARAMETER LIST>))`: E.g. HSQLDB, Derby
 * `SELECT * FROM <FUNCTIONNAME>(<PARAMETER LIST>)`: E.g. SAP HANA,  PostgreSQL
 
-This requires a database specific implementation. The JPA Processor provides the interface 
+This requires a database specific implementation. The JPA Processor provides the interface
+
 [JPAODataDatabaseProcessor](../../../jpa/odata-jpa-processor/src/main/java/com/sap/olingo/jpa/processor/core/api/JPAODataDatabaseProcessor.java) for this. As of now the interface is in __beta__ state. For this tutorial we want to copy class [JPA_HSQLDB_DatabaseProcessor](../../../jpa/odata-jpa-processor/src/main/java/com/sap/olingo/jpa/processor/core/database/JPA_HSQLDB_DatabaseProcessor.java), beta as well, to package `tutorial.service` with the new name `HSQLDatabaseProcessor`. After that we need to register the database processor at our service context. This is done, within the `Listener`:
 
 ```Java

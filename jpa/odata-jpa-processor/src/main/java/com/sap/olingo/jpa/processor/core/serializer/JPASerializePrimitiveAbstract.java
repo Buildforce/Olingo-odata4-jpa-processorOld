@@ -11,7 +11,7 @@ import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
 
 public abstract class JPASerializePrimitiveAbstract implements JPASerializer, JPAOperationSerializer {
-  protected static final char PATH_SEPERATOR = '/';
+  protected static final char PATH_SEPARATOR = '/';
   protected final ServiceMetadata serviceMetadata;
   protected final UriInfo uriInfo;
 
@@ -38,7 +38,7 @@ public abstract class JPASerializePrimitiveAbstract implements JPASerializer, JP
             value = property.getValue();
             property = ((ComplexValue) value).getValue().get(0);
 
-            path.append(PATH_SEPERATOR);
+            path.append(PATH_SEPARATOR);
           } else {
             found = true;
           }

@@ -16,7 +16,7 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAServiceDebugger;
 import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
 
-interface JPAFilterComplierAccess {
+interface JPAFilterCompilerAccess {
 
   JPAAbstractQuery getParent();
 
@@ -36,7 +36,7 @@ interface JPAFilterComplierAccess {
 
   JPAServiceDebugger getDebugger();
 
-  JPAAssociationPath getAssoziation();
+  JPAAssociationPath getAssociation();
 
   Optional<JPAODataClaimProvider> getClaimsProvider();
 

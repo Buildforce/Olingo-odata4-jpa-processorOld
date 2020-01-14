@@ -71,7 +71,6 @@ The XML file is as of now dominated by information about the logging and the dat
 
 Only one persistence unit is supported, which means also only one OData schema within a Data Services Document is supported. The other one is the declaration of the JPA entity class _<class>tutorial.model.BusinessPartner</class>_. Over the time we will add more here.
 
-
 Now its time to create our web service. First we want to maintain the _web.xml_ file. This should be located in _/src/main/webapp/WEB-INF_. The service shall be accessible under the path _/Tutorial.svc/_:
 ```XML
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

@@ -15,7 +15,7 @@ public class JPAClaimsPairTest {
   }
 
   @Test
-  public void checkCreateIntegerPairNoUpperBoundry() {
+  public void checkCreateIntegerPairNoUpperBoundary() {
     final JPAClaimsPair<Integer> cut = new JPAClaimsPair<>(7);
     assertFalse(cut.hasUpperBoundary);
   }
@@ -28,7 +28,7 @@ public class JPAClaimsPairTest {
   }
 
   @Test
-  public void checkCreateIntegerPairUpperBoundry() {
+  public void checkCreateIntegerPairUpperBoundary() {
     final JPAClaimsPair<Integer> cut = new JPAClaimsPair<>(7, 10);
     assertTrue(cut.hasUpperBoundary);
   }

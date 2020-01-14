@@ -8,7 +8,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AdministrativeDivisionDescriptionKey implements Serializable {
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = 4843041820527005995L;
 
@@ -61,8 +62,8 @@ public class AdministrativeDivisionDescriptionKey implements Serializable {
     return divisionCode;
   }
 
-  public void setDivisionCode(String divisonCode) {
-    this.divisionCode = divisonCode;
+  public void setDivisionCode(String divisionCode) {
+    this.divisionCode = divisionCode;
   }
 
   public void setLanguage(String language) {

@@ -431,7 +431,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testCallsValidateChangesOnSuccessfullProcessing() throws ODataException {
+  public void testCallsValidateChangesOnSuccessfulProcessing() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -443,7 +443,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesNotCallsValidateChangesOnForginTransaction() throws ODataException {
+  public void testDoesNotCallsValidateChangesOnForeignTransaction() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -511,7 +511,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesRollbackIfUpdateRaisesAbitaryError() throws ODataException {
+  public void testDoesRollbackIfUpdateRaisesArbitraryError() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -527,7 +527,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesRollbackOnEmptyResponce() throws ODataException {
+  public void testDoesRollbackOnEmptyResponse() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -542,7 +542,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesRollbackOnWrongResponce() throws ODataException {
+  public void testDoesRollbackOnWrongResponse() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
     JPAUpdateResult result = new JPAUpdateResult(false, "");
@@ -592,7 +592,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testOwnTranactionCommited() throws ODataJPAModelException, ODataException {
+  public void testOwnTransactionCommited() throws ODataJPAModelException, ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 

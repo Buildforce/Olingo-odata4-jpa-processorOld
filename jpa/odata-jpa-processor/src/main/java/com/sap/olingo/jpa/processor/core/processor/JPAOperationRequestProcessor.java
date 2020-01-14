@@ -125,7 +125,7 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
 
     if (result != null || result instanceof EntityCollection && !((EntityCollection) result).getEntities().isEmpty()) {
       final SerializerResult serializerResult = ((JPAOperationSerializer) serializer).serialize(result, returnType);
-      createSuccessResponce(response, responseFormat, serializerResult);
+      createSuccessResponse(response, responseFormat, serializerResult);
     } else
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
   }

@@ -24,7 +24,8 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 
 /**
  * Copy template of a database processor for PostgreSQL
- * 
+ *
+
  * @author Oliver Grande
  * Created: 04.07.2019
  *
@@ -39,7 +40,7 @@ class JPA_POSTSQL_DatabaseProcessor extends JPAAbstractDatabaseProcessor { // NO
       throws ODataApplicationException {
 
     /*
-     * Even so PostgesSQL has text search, as of know no generic implementation made for search
+     * Even so PostgreSQL has text search, as of know no generic implementation made for search
      */
     throw new ODataJPADBAdaptorException(ODataJPADBAdaptorException.MessageKeys.NOT_SUPPORTED_SEARCH,
         HttpStatusCode.NOT_IMPLEMENTED);

@@ -44,7 +44,7 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
     try {
       final JPAAction jpaAction = sd.getAction(resource.getAction());
 
-      final Object instance = createInstanze(jpaAction.getConstructor());
+      final Object instance = createInstance(jpaAction.getConstructor());
 
       final List<Object> parameter = new ArrayList<>();
       final Parameter[] methodParameter = jpaAction.getMethod().getParameters();
@@ -54,14 +54,14 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
           deserializer.actionParameters(request.getBody(), resource.getAction()).getActionParameters();
 
       for (int i = 0; i < methodParameter.length; i++) {
-        final Parameter declairedParameter = methodParameter[i];
+        final Parameter declaredParameter = methodParameter[i];
         if (i == 0 && resource.getAction().isBound()) {
           parameter.add(createBindingParameter((UriResourceEntitySet) resourceList.get(resourceList.size() - 2),
-              jpaAction.getParameter(declairedParameter)));
+              jpaAction.getParameter(declaredParameter)));
         } else {
           // Any nullable parameter values not specified in the request MUST be assumed to have the null value.
           // This is guaranteed by Olingo => no code needed
-          final String externalName = jpaAction.getParameter(declairedParameter).getName();
+          final String externalName = jpaAction.getParameter(declaredParameter).getName();
           final org.apache.olingo.commons.api.data.Parameter param = actionParameter.get(externalName);
           if (param != null)
             parameter.add(JPAConversionHelper.convertParameter(param, sd));
@@ -122,7 +122,7 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
     return null;
   }
 
-  protected Object createInstanze(final Constructor<?> c) throws InstantiationException, IllegalAccessException,
+  protected Object createInstance(final Constructor<?> c) throws InstantiationException, IllegalAccessException,
       InvocationTargetException {
     Object instance;
     if (c.getParameterCount() == 1)

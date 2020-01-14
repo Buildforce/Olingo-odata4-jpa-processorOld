@@ -24,16 +24,16 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPACollectionAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParamaterFacet;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameterFacet;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPATypeConvertor;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPATypeConverter;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 
 public final class ExpressionUtil {
   public static final int CONTAINY_ONLY_LANGU = 1;
   public static final int CONTAINS_LANGU_COUNTRY = 2;
-  public static final String SELECT_ITEM_SEPERATOR = ",";
+  public static final String SELECT_ITEM_SEPARATOR = ",";
 
   private ExpressionUtil() {}
 
@@ -88,7 +88,7 @@ public final class ExpressionUtil {
 
     try {
       final CsdlProperty edmProperty = (CsdlProperty) attribute.getProperty();
-      final EdmPrimitiveTypeKind edmTypeKind = JPATypeConvertor.convertToEdmSimpleType(attribute);
+      final EdmPrimitiveTypeKind edmTypeKind = JPATypeConverter.convertToEdmSimpleType(attribute);
 
       // TODO literal does not convert decimals without scale properly
       String targetValue = null;
@@ -113,7 +113,7 @@ public final class ExpressionUtil {
     }
   }
 
-  public static Object convertValueOnFacet(final OData odata, JPAParamaterFacet returnType, final String value)
+  public static Object convertValueOnFacet(final OData odata, JPAParameterFacet returnType, final String value)
       throws ODataJPAFilterException {
     try {
       final EdmPrimitiveTypeKind edmTypeKind = EdmPrimitiveTypeKind.valueOfFQN(returnType.getTypeFQN());
@@ -136,7 +136,7 @@ public final class ExpressionUtil {
     if (languageHeaders != null) {
       final String languageHeader = languageHeaders.get(0);
       if (languageHeader != null) {
-        final String[] localeList = languageHeader.split(SELECT_ITEM_SEPERATOR);
+        final String[] localeList = languageHeader.split(SELECT_ITEM_SEPARATOR);
         final String locale = localeList[0];
         final String[] languCountry = locale.split("-");
         if (languCountry.length == CONTAINS_LANGU_COUNTRY)

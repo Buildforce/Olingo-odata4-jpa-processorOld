@@ -8,21 +8,24 @@ cache:
         - $HOME/.m2
 
 jobs:
-    include:  
+    include:
         - name: "JDK: openjdk8 + coverage"
           jdk: openjdk8
-          script: cd ./jpa && mvn clean verify 
+          script: cd ./jpa && mvn clean verify
+
           after_success:
               - mvn -q test jacoco:report coveralls:report
+
         - name: "JDK: openjdk11"
           jdk: openjdk11
           script: cd ./jpa && mvn -q verify
         - name: "JDK: openjdk12"
           jdk: openjdk12
-          script: cd ./jpa && mvn -q verify          
+          script: cd ./jpa && mvn -q verify
+
         - name: "JDK: oraclejdk8"
           jdk: oraclejdk8
-          script: cd ./jpa && mvn -q verify   
+          script: cd ./jpa && mvn -q verify
 
 branches:
     only:

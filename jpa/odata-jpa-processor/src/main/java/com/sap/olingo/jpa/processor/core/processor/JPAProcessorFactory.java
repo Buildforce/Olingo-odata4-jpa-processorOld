@@ -25,7 +25,7 @@ import org.apache.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataPage;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllicalAccessException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
 import com.sap.olingo.jpa.processor.core.query.JPACountQuery;
@@ -89,7 +89,7 @@ public final class JPAProcessorFactory {
       requestContext = new JPAODataRequestContextImpl(page, serializerFactory
           .createSerializer(responseFormat, page.getUriInfo(), Optional.ofNullable(header.get(
               HttpHeader.ODATA_MAX_VERSION))), context);
-    } catch (JPAIllicalAccessException e) {
+    } catch (JPAIllegalAccessException e) {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
 
@@ -144,8 +144,8 @@ public final class JPAProcessorFactory {
       } else {
         final JPACountQuery countQuery = new JPAJoinQuery(odata, sessionContext, headers,
             new JPAODataRequestContextImpl(uriInfo, requestContext));
-        final Integer preferedPagesize = getPreferedPagesize(headers);
-        final JPAODataPage firstPage = sessionContext.getPagingProvider().getFirstPage(uriInfo, preferedPagesize,
+        final Integer preferredPagesize = getPreferredPageSize(headers);
+        final JPAODataPage firstPage = sessionContext.getPagingProvider().getFirstPage(uriInfo, preferredPagesize,
             countQuery, requestContext.getEntityManager());
         page = firstPage != null ? firstPage : page;
       }
@@ -153,11 +153,11 @@ public final class JPAProcessorFactory {
     return page;
   }
 
-  private Integer getPreferedPagesize(final Map<String, List<String>> headers) throws ODataJPAProcessorException {
+  private Integer getPreferredPageSize(final Map<String, List<String>> headers) throws ODataJPAProcessorException {
 
-    final List<String> preferedHeaders = getHeader("Prefer", headers);
-    if (preferedHeaders != null) {
-      for (String header : preferedHeaders) {
+    final List<String> preferredHeaders = getHeader("Prefer", headers);
+    if (preferredHeaders != null) {
+      for (String header : preferredHeaders) {
         if (header.startsWith("odata.maxpagesize")) {
           try {
             return Integer.valueOf((header.split("=")[1]));

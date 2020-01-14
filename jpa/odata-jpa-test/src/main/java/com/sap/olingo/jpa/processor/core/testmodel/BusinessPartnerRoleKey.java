@@ -7,7 +7,8 @@ import javax.persistence.Id;
 public class BusinessPartnerRoleKey implements Serializable {
 
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = -2350388598203342905L;
 

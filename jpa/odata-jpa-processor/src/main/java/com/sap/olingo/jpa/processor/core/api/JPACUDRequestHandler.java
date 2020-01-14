@@ -10,7 +10,8 @@ import com.sap.olingo.jpa.processor.core.processor.JPARequestEntity;
 
 public interface JPACUDRequestHandler {
   /**
-   * 
+   *
+
    * @param requestEntity
    * @param em
    * @throws ODataJPAProcessException
@@ -51,7 +52,8 @@ public interface JPACUDRequestHandler {
    * <a href=
    * "http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752306"
    * >OData Version 4.0 Part 1 - 11.4.9 Managing Values and Properties Directly</a><br>
-   * 
+   *
+
    * @param requestEntity See {@link com.sap.olingo.jpa.processor.core.processor.JPARequestEntity JPARequestEntity}
    * @param em Instance of an entity manager with an open transaction.
    * @param httpMethod The original http method: PATCH, PUT, DELETE

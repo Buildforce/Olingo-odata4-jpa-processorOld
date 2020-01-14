@@ -6,7 +6,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 
 public interface JPAAssociationPath {
 
-  String PATH_SEPERATOR = "/";
+  String PATH_SEPARATOR = "/";
 
   String getAlias();
 

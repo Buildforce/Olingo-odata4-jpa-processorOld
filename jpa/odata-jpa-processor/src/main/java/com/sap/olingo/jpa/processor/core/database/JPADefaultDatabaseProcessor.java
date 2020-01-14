@@ -63,7 +63,7 @@ public class JPADefaultDatabaseProcessor extends JPAAbstractDatabaseProcessor im
       /*
        * HAS requires an bitwise AND. This is not part of SQL and so not part of the criterion builder. Different
        * databases have different ways to support this. One group uses a function, which is called BITAND e.g. H2,
-       * HSQLDB, SAP HANA, DB2 or ORACLE, others have created an operator '&' like PostgesSQL or MySQL.
+       * HSQLDB, SAP HANA, DB2 or ORACLE, others have created an operator '&' like PostgreSQL or MySQL.
        * To provide a unique, but slightly slower, solution a workaround is used, see
        * https://stackoverflow.com/questions/20570481/jpa-oracle-bit-operations-using-criteriabuilder#25508741
        */

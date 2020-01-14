@@ -330,7 +330,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetForeignKeyTrhowsExceptionOnMissingGetter() throws ODataJPAModelException,
+  public void testSetForeignKeyThrowsExceptionOnMissingGetter() throws ODataJPAModelException,
       ODataJPAProcessorException {
     final OrganizationWithoutGetter source = new OrganizationWithoutGetter("100");
     final BusinessPartnerRole target = new BusinessPartnerRole();
@@ -343,7 +343,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetForeignKeyTrhowsExceptionOnMissingSetter() throws ODataJPAModelException,
+  public void testSetForeignKeyThrowsExceptionOnMissingSetter() throws ODataJPAModelException,
       ODataJPAProcessorException {
     final Organization source = new Organization("100");
     final BusinessPartnerRoleWithoutSetter target = new BusinessPartnerRoleWithoutSetter();
@@ -357,11 +357,11 @@ public class TestModifyUtil extends TestBase {
 
   private JPAEntityType createSingleKeyEntityType() throws ODataJPAModelException {
     final List<JPAAttribute> keyAttributes = new ArrayList<>();
-    final JPAAttribute keyAttribut = mock(JPAAttribute.class);
+    final JPAAttribute keyAttribute = mock(JPAAttribute.class);
     final JPAEntityType et = mock(JPAEntityType.class);
 
-    when(keyAttribut.getInternalName()).thenReturn("iD");
-    keyAttributes.add(keyAttribut);
+    when(keyAttribute.getInternalName()).thenReturn("iD");
+    keyAttributes.add(keyAttribute);
     when(et.getKey()).thenReturn(keyAttributes);
     return et;
   }

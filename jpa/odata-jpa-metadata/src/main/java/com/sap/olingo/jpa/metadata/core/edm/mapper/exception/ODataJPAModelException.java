@@ -6,13 +6,14 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.exception;
  */
 public class ODataJPAModelException extends ODataJPAException {
   /**
-   * 
+   *
+
    */
   private static final long serialVersionUID = -7188499882306858747L;
 
   public enum MessageKeys implements ODataJPAMessageKey {
 
-    INVALID_DESCIPTION_PROPERTY,
+    INVALID_DESCRIPTION_PROPERTY,
     INVALID_COLLECTION_TYPE,
 
     TYPE_NOT_SUPPORTED,
@@ -37,7 +38,7 @@ public class ODataJPAModelException extends ODataJPAException {
     ENUMERATION_UNSUPPORTED_TYPE,
     ENUMERATION_NO_NEGATIVE_VALUE,
 
-    TYPE_MAPPER_COULD_NOT_INSANTIATE,
+    TYPE_MAPPER_COULD_NOT_INSTANTIATE,
     NOT_SUPPORTED_ATTRIBUTE_TYPE,
     NOT_SUPPORTED_NO_IMPLICIT_COLUMNS,
     NOT_SUPPORTED_NO_IMPLICIT_COLUMNS_COMPEX,
@@ -76,7 +77,7 @@ public class ODataJPAModelException extends ODataJPAException {
 
   }
 
-  private static final String BUNDEL_NAME = "metadata-exceptions-i18n";
+  private static final String BUNDLE_NAME = "metadata-exceptions-i18n";
 
   public ODataJPAModelException(final Throwable e) {
     super(e);
@@ -100,7 +101,7 @@ public class ODataJPAModelException extends ODataJPAException {
 
   @Override
   protected String getBundleName() {
-    return BUNDEL_NAME;
+    return BUNDLE_NAME;
   }
 
   public String getId() {

@@ -24,14 +24,17 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
  * A Property is described on the one hand by its Name and Type and on the other
  * hand by its Property Facets. The type is a qualified name of either a
  * primitive type, a complex type or a enumeration type. Primitive types are
- * mapped by {@link JPATypeConvertor}.
- * 
+ * mapped by {@link JPATypeConverter}.
+ *
+
  * <p>
  * For details about Property metadata see: <a href=
  * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406397954"
  * >OData Version 4.0 Part 3 - 6 Structural Property </a>
- * 
- * 
+ *
+
+ *
+
  * @author Oliver Grande
  *
  */
@@ -68,7 +71,7 @@ class IntermediateSimpleProperty extends IntermediateProperty {
   }
 
   @Override
-  void checkConsistancy() throws ODataJPAModelException {
+  void checkConsistency() throws ODataJPAModelException {
     final Column jpaColumn = ((AnnotatedElement) jpaAttribute.getJavaMember()).getAnnotation(Column.class);
     if (jpaColumn != null && isPartOfGroup() && !jpaColumn.nullable())
       throw new ODataJPAModelException(NOT_SUPPORTED_MANDATORY_PART_OF_GROUP, jpaAttribute.getDeclaringType()
@@ -111,7 +114,7 @@ class IntermediateSimpleProperty extends IntermediateProperty {
 
   @Override
   FullQualifiedName determineType() throws ODataJPAModelException {
-    return determineTypeByPersistanceType(jpaAttribute.getPersistentAttributeType());
+    return determineTypeByPersistenceType(jpaAttribute.getPersistentAttributeType());
   }
 
   String getContentType() {
@@ -123,7 +126,7 @@ class IntermediateSimpleProperty extends IntermediateProperty {
   }
 
   @Override
-  String getDeafultValue() throws ODataJPAModelException {
+  String getDefaultValue() throws ODataJPAModelException {
     String valueString = null;
     if (jpaAttribute.getJavaMember() instanceof Field
         && jpaAttribute.getPersistentAttributeType() == PersistentAttributeType.BASIC) {
