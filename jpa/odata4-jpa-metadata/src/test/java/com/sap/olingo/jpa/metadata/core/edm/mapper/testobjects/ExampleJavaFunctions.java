@@ -71,7 +71,7 @@ public class ExampleJavaFunctions implements ODataFunction {
 
   @EdmFunction(name = "", returnType = @ReturnType(type = ChangeInformation.class))
   public List<ChangeInformation> returnEmbeddableCollection() {
-    return Arrays.asList(new ChangeInformation[] { new ChangeInformation() });
+    return Arrays.asList(new ChangeInformation());
   }
 
   @EdmFunction(name = "", returnType = @ReturnType())

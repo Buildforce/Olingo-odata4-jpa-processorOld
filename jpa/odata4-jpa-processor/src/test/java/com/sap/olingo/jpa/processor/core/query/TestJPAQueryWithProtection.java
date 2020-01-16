@@ -273,7 +273,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath("UserId");
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertEqual(act);
   }
 
@@ -294,7 +294,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath("UserId");
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertLike(act);
   }
 
@@ -314,7 +314,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath("UserId");
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertBetween(act);
   }
 
@@ -335,7 +335,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath("UserId");
     attributes.add(aSpy);
 
-    assertThrows(ODataJPAQueryException.class, () -> ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(
+    assertThrows(ODataJPAQueryException.class, () -> cut.createProtectionWhere(Optional.of(
         claims)));
 
   }
@@ -357,7 +357,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath(claimName);
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertEquals(BooleanOperator.OR, ((CompoundExpressionImpl) act).getOperator());
     for (Expression<?> part : ((CompoundExpressionImpl) act).getChildExpressions())
       assertEqual(part);
@@ -379,7 +379,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath(claimName);
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertEqual(act);
   }
 
@@ -399,7 +399,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath(claimName);
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertBetween(act);
   }
 
@@ -420,7 +420,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath(claimName);
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertEquals(BooleanOperator.AND, ((CompoundExpressionImpl) act).getOperator());
     for (Expression<?> part : ((CompoundExpressionImpl) act).getChildExpressions())
       assertEqual(part);
@@ -443,7 +443,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn(pathList).when(aSpy).getProtectionPath(claimName);
     attributes.add(aSpy);
 
-    final Expression<Boolean> act = ((JPAJoinQuery) cut).createProtectionWhere(Optional.of(claims));
+    final Expression<Boolean> act = cut.createProtectionWhere(Optional.of(claims));
     assertEquals(BooleanOperator.AND, ((Predicate) act).getOperator());
     for (Expression<?> part : ((Predicate) act).getExpressions())
       assertEqual(part);
@@ -486,7 +486,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     final JPAElement adminAttri = Mockito.mock(JPAElement.class);
     final JPAElement complexAttri = Mockito.mock(JPAElement.class);
     final JPAAttribute simpleAttri = Mockito.mock(JPAAttribute.class);
-    final List<JPAElement> pathElements = Arrays.asList(new JPAElement[] { adminAttri, complexAttri, simpleAttri });
+    final List<JPAElement> pathElements = Arrays.asList(adminAttri, complexAttri, simpleAttri);
     doReturn(pathElements).when(jpaPath).getPath();
     doReturn("administrativeInformation").when(adminAttri).getInternalName();
     doReturn(intermediateElement).when(complexAttri).getInternalName();
@@ -520,7 +520,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     final JPAElement adminAttri = Mockito.mock(JPAElement.class);
     final JPAElement complexAttri = Mockito.mock(JPAElement.class);
     final JPAAttribute simpleAttri = Mockito.mock(JPAAttribute.class);
-    final List<JPAElement> pathElements = Arrays.asList(new JPAElement[] { adminAttri, complexAttri, simpleAttri });
+    final List<JPAElement> pathElements = Arrays.asList(adminAttri, complexAttri, simpleAttri);
     doReturn(pathElements).when(jpaPath).getPath();
     doReturn("administrativeInformation").when(adminAttri).getInternalName();
     doReturn("created").when(complexAttri).getInternalName();

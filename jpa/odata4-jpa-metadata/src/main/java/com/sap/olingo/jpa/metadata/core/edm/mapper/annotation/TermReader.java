@@ -27,23 +27,20 @@ public class TermReader {
 
   }
 
-  public Map<String, Map<String, CsdlTerm>> getTerms(String path) throws JsonParseException, JsonMappingException,
-      IOException {
+  public Map<String, Map<String, CsdlTerm>> getTerms(String path) throws IOException {
     return convertEDMX(readFromResource(path));
   }
 
-  public Map<String, Map<String, CsdlTerm>> getTerms(URI uri) throws JsonParseException, JsonMappingException,
-      MalformedURLException, IOException {
+  public Map<String, Map<String, CsdlTerm>> getTerms(URI uri) throws IOException {
     return convertEDMX(readFromURI(uri));
   }
 
-  public Edmx readFromResource(final String path) throws JsonParseException, JsonMappingException, IOException {
+  public Edmx readFromResource(final String path) throws IOException {
     byte[] b = loadXML(path);
     return xmlMapper.readValue(new String(b), Edmx.class);
   }
 
-  public Edmx readFromURI(final URI uri) throws JsonParseException, JsonMappingException, MalformedURLException,
-      IOException {
+  public Edmx readFromURI(final URI uri) throws IOException {
     return xmlMapper.readValue(uri.toURL(), Edmx.class);
 
   }

@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -89,7 +90,7 @@ public class TestJPACUDRequestHelper {
     final EdmEntitySet ets = mock(EdmEntitySet.class);
     final UriResourceEntitySet uriEs = mock(UriResourceEntitySet.class);
 
-    final InputStream is = new ByteArrayInputStream("".getBytes("UTF-8"));
+    final InputStream is = new ByteArrayInputStream("".getBytes(StandardCharsets.UTF_8));
     uriResourceParts.add(uriEs);
 
     when(uriEs.getEntitySet()).thenReturn(ets);
@@ -155,7 +156,7 @@ public class TestJPACUDRequestHelper {
     when(edmPropertyInhouse.isCollection()).thenReturn(true);
     InputStream is = new ByteArrayInputStream(
         "{\"value\": [{\"RoomNumber\": 25, \"Floor\": 2,\"TaskID\": \"DEV\", \"Building\": \"2\" }]}".getBytes(
-            "UTF-8"));
+                StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
@@ -171,7 +172,7 @@ public class TestJPACUDRequestHelper {
       EdmPrimitiveTypeException {
 
     prepareEntitySet();
-    InputStream is = new ByteArrayInputStream("{\"ID\" : \"35\"}".getBytes("UTF-8"));
+    InputStream is = new ByteArrayInputStream("{\"ID\" : \"35\"}".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
@@ -186,7 +187,7 @@ public class TestJPACUDRequestHelper {
     prepareEntitySet();
     InputStream is = new ByteArrayInputStream(
         "{\"@odata.context\": \"$metadata#test.Organisation\", \"@odata.type\": \"#test.Organisation\", \"ID\" : \"35\"}"
-            .getBytes("UTF-8"));
+            .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     when(request.getHeaders(HttpHeader.ODATA_VERSION)).thenReturn(headers);
 
@@ -202,7 +203,7 @@ public class TestJPACUDRequestHelper {
     prepareEntitySet();
     InputStream is = new ByteArrayInputStream(
         "{\"@context\": \"$metadata#test.Organisation\", \"@type\": \"#test.Organisation\", \"ID\" : \"35\"}"
-            .getBytes("UTF-8"));
+            .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     when(request.getHeaders(HttpHeader.ODATA_VERSION)).thenReturn(headers);
 
@@ -217,7 +218,7 @@ public class TestJPACUDRequestHelper {
     prepareEntitySet();
     InputStream is = new ByteArrayInputStream(
         "{\"@context\": \"$metadata#com.sap.olingo.jpa.Organization\", \"@type\": \"#com.sap.olingo.jpa.Organization\", \"ID\" : \"35\"}"
-            .getBytes("UTF-8"));
+            .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
 
     assertThrows(ODataJPAProcessorException.class, () -> cut.convertInputStream(OData.newInstance(), request,
@@ -267,7 +268,7 @@ public class TestJPACUDRequestHelper {
     when(edmPropertyName.getName()).thenReturn(COMMENT_EXT_PROPERTY_NAME);
     when(edmPropertyName.getType()).thenReturn(edmTypeName);
     when(edmPropertyName.isCollection()).thenReturn(true);
-    InputStream is = new ByteArrayInputStream("{ \"value\": [\"YAC\",\"WTN\"] }".getBytes("UTF-8"));
+    InputStream is = new ByteArrayInputStream("{ \"value\": [\"YAC\",\"WTN\"] }".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
@@ -283,7 +284,7 @@ public class TestJPACUDRequestHelper {
       ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     final ODataRequest request = preparePrimitiveSimpleProperty();
-    InputStream is = new ByteArrayInputStream("{\"value\" : \"Willi\"}".getBytes("UTF-8"));
+    InputStream is = new ByteArrayInputStream("{\"value\" : \"Willi\"}".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
@@ -296,7 +297,7 @@ public class TestJPACUDRequestHelper {
 
     final ODataRequest request = preparePrimitiveSimpleProperty();
     InputStream is = new ByteArrayInputStream(
-        "{ \"@jpa.odata.context\": \"$metadata#Organisations\", \"value\" : \"Willi\"}".getBytes("UTF-8"));
+        "{ \"@jpa.odata.context\": \"$metadata#Organisations\", \"value\" : \"Willi\"}".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
@@ -309,7 +310,7 @@ public class TestJPACUDRequestHelper {
 
     final ODataRequest request = preparePrimitiveSimpleProperty();
     InputStream is = new ByteArrayInputStream(
-        "{ \"@context\": \"$metadata#Organisations\", \"value\" : \"Willi\"}".getBytes("UTF-8"));
+        "{ \"@context\": \"$metadata#Organisations\", \"value\" : \"Willi\"}".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);

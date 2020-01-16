@@ -44,7 +44,7 @@ public class TestSchemaReader {
 
   @Test
   public void testReadXMLWithEmptyPath() throws ODataJPAModelException, IOException {
-    final String emptyString = new String();
+    final String emptyString = "";
     assertNull(cut.getSchemas(emptyString));
   }
 

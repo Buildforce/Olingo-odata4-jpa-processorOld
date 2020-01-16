@@ -74,7 +74,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
   @Test
-  public void testHookIsCalled() throws ODataJPAModelException, ODataException {
+  public void testHookIsCalled() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -87,7 +87,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testEntityTypeProvided() throws ODataJPAProcessorException, SerializerException, ODataException {
+  public void testEntityTypeProvided() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -101,7 +101,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testAttributesProvided() throws ODataJPAProcessorException, SerializerException, ODataException {
+  public void testAttributesProvided() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
     Map<String, Object> attributes = new HashMap<>(1);
@@ -123,7 +123,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testHeadersProvided() throws ODataJPAProcessorException, SerializerException, ODataException {
+  public void testHeadersProvided() throws ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareSimpleRequest();
     final Map<String, List<String>> headers = new HashMap<>();
@@ -143,8 +143,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testClaimsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testClaimsProvided() throws ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareSimpleRequest();
 
@@ -162,8 +161,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testGroupsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testGroupsProvided() throws ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareSimpleRequest();
 
@@ -236,8 +234,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponseLocationHeader() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testMinimalResponseLocationHeader() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -250,8 +247,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponseODataEntityIdHeader() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testMinimalResponseODataEntityIdHeader() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -264,7 +260,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponseStatusCode() throws ODataJPAProcessorException, SerializerException, ODataException {
+  public void testMinimalResponseStatusCode() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -277,8 +273,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponsePreferApplied() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testMinimalResponsePreferApplied() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -291,8 +286,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseStatusCode() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testRepresentationResponseStatusCode() throws ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy());
@@ -303,8 +297,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseStatusCodeMapResult() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testRepresentationResponseStatusCodeMapResult() throws ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleMapResultSpy());
@@ -315,8 +308,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseContent() throws ODataJPAProcessorException, SerializerException,
-      ODataException, IOException {
+  public void testRepresentationResponseContent() throws ODataException, IOException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy());
@@ -329,8 +321,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseContentMapResult() throws ODataJPAProcessorException, SerializerException,
-      ODataException, IOException {
+  public void testRepresentationResponseContentMapResult() throws ODataException, IOException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleMapResultSpy());
@@ -343,8 +334,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationLocationHeader() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testRepresentationLocationHeader() throws ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy());
@@ -355,8 +345,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationLocationHeaderMapResult() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testRepresentationLocationHeaderMapResult() throws ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleMapResultSpy());
@@ -456,7 +445,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testOwnTransactionCommitted() throws ODataJPAModelException, ODataException {
+  public void testOwnTransactionCommitted() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -468,8 +457,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testResponseCreateChildSameTypeContent() throws ODataJPAProcessorException, SerializerException,
-      ODataException, IOException {
+  public void testResponseCreateChildSameTypeContent() throws ODataException, IOException {
 
     when(ets.getName()).thenReturn("AdministrativeDivisions");
     final AdministrativeDivision div = new AdministrativeDivision(new AdministrativeDivisionKey("Eurostat", "NUTS1",
@@ -508,8 +496,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testResponseCreateChildDifferentTypeContent() throws ODataJPAProcessorException, SerializerException,
-      ODataException, IOException {
+  public void testResponseCreateChildDifferentTypeContent() throws ODataException, IOException {
 
     final Organization org = new Organization("Test");
     final BusinessPartnerRole role = new BusinessPartnerRole();
@@ -569,8 +556,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
       assertEquals("Roles", c.getKey().getAlias());
   }
 
-  protected ODataRequest prepareRequestToCreateChild(JPAAbstractCUDRequestHandler spy)
-      throws ODataJPAProcessorException, SerializerException, ODataException {
+  protected ODataRequest prepareRequestToCreateChild(JPAAbstractCUDRequestHandler spy) throws ODataException {
     // .../AdministrativeDivisions(DivisionCode='DE6',CodeID='NUTS1',CodePublisher='Eurostat')/Children
     final ODataRequest request = prepareSimpleRequest("return=representation");
 

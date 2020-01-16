@@ -7,17 +7,17 @@ public interface JPAElement {
    * Returns the full qualified name of an element
    * @return
    */
-  public FullQualifiedName getExternalFQN();
+  FullQualifiedName getExternalFQN();
 
   /**
    * Returns the element name published by the API
    * @return
    */
-  public String getExternalName();
+  String getExternalName();
 
   /**
    * Returns the internally used (Java) name for an element
    * @return
    */
-  public String getInternalName();
+  String getInternalName();
 }

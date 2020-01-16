@@ -106,7 +106,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
     if (isComplex())
       return null;
     else {
-      for (JPAAttribute a : ((IntermediateStructuredType) joinTable.getEntityType()).getAttributes()) {
+      for (JPAAttribute a : joinTable.getEntityType().getAttributes()) {
         if (dbFieldName.equals(((IntermediateProperty) a).getDBFieldName()))
           return a;
       }
@@ -131,7 +131,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
 
   @Override
   public boolean isComplex() {
-    return getRowType().getPersistenceType() == EMBEDDABLE ? true : false;
+    return getRowType().getPersistenceType() == EMBEDDABLE;
   }
 
   @Override

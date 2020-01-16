@@ -139,12 +139,8 @@ public abstract class BusinessPartner implements KeyAccess {
       return false;
     BusinessPartner other = (BusinessPartner) obj;
     if (iD == null) {
-      if (other.iD != null)
-        return false;
-    } else if (!iD.equals(other.iD)) {
-      return false;
-    }
-    return true;
+        return other.iD == null;
+    } else return iD.equals(other.iD);
   }
 
   public PostalAddressData getAddress() {

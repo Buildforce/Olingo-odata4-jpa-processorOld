@@ -4,12 +4,12 @@ import java.util.Map;
 
 public interface JPADescriptionAttribute extends JPAAttribute {
 
-  public boolean isLocationJoin();
+  boolean isLocationJoin();
 
-  public JPAAttribute getDescriptionAttribute();
+  JPAAttribute getDescriptionAttribute();
 
-  public JPAPath getLocaleFieldName();
+  JPAPath getLocaleFieldName();
 
-  public Map<JPAPath, String> getFixedValueAssignment();
+  Map<JPAPath, String> getFixedValueAssignment();
 
 }

@@ -151,7 +151,7 @@ public class JPAExampleCUDRequestHandler extends JPAAbstractCUDRequestHandler {
       final JPAAssociationPath pathInfo = entity.getKey();
       for (final JPARequestLink requestLink : entity.getValue()) {
         final Object targetKey = util.createPrimaryKey((JPAEntityType) pathInfo.getTargetType(), requestLink
-            .getRelatedKeys(), (JPAEntityType) pathInfo.getSourceType());
+            .getRelatedKeys(), pathInfo.getSourceType());
         final Object target = em.find(pathInfo.getTargetType().getTypeClass(), targetKey);
         util.linkEntities(instance, target, pathInfo);
       }

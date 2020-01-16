@@ -8,6 +8,6 @@ import org.apache.olingo.server.api.serializer.SerializerResult;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 
 public interface JPAOperationSerializer extends JPASerializer {
-  public SerializerResult serialize(final Annotatable result, final EdmType entityType)
+  SerializerResult serialize(final Annotatable result, final EdmType entityType)
       throws SerializerException, ODataJPASerializerException;
 }

@@ -12,7 +12,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageKey;
 public class TestODataJPAProcessorException {
   // private static String BUNDLE_NAME = "exceptions-i18n";
 
-  public static enum MessageKeys implements ODataJPAMessageKey {
+  public enum MessageKeys implements ODataJPAMessageKey {
     RESULT_NOT_FOUND;
 
     @Override

@@ -7,7 +7,7 @@ public enum WrongMember {
   Right(1), Wrong(-2);
   private final int value;
 
-  private WrongMember(final int value) {
+  WrongMember(final int value) {
     this.value = value;
   }
 

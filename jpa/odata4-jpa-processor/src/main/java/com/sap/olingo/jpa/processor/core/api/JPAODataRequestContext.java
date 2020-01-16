@@ -8,14 +8,14 @@ import org.apache.olingo.server.api.debug.DebugSupport;
 
 public interface JPAODataRequestContext {
 
-  public void setClaimsProvider(@Nullable final JPAODataClaimProvider provider);
+  void setClaimsProvider(@Nullable final JPAODataClaimProvider provider);
 
-  public void setGroupsProvider(@Nullable final JPAODataGroupProvider provider);
+  void setGroupsProvider(@Nullable final JPAODataGroupProvider provider);
 
-  public void setEntityManager(@Nonnull final EntityManager em);
+  void setEntityManager(@Nonnull final EntityManager em);
 
-  public void setDebugSupport(@Nullable final DebugSupport debugSupport);
+  void setDebugSupport(@Nullable final DebugSupport debugSupport);
 
-  public void setTransactionFactory(@Nullable final JPAODataTransactionFactory transactionFactory);
+  void setTransactionFactory(@Nullable final JPAODataTransactionFactory transactionFactory);
 
 }

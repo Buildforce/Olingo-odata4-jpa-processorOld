@@ -100,8 +100,7 @@ public class BusinessPartnerRole {
       if (other.businessPartnerID != null) return false;
     } else if (!businessPartnerID.equals(other.businessPartnerID)) return false;
     if (roleCategory == null) {
-      if (other.roleCategory != null) return false;
-    } else if (!roleCategory.equals(other.roleCategory)) return false;
-    return true;
+        return other.roleCategory == null;
+    } else return roleCategory.equals(other.roleCategory);
   }
 }

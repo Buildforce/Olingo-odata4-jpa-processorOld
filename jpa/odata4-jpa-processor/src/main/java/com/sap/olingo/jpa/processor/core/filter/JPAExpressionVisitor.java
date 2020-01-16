@@ -7,8 +7,8 @@ import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitor
 
 public interface JPAExpressionVisitor extends ExpressionVisitor<JPAOperator> {
 
-  public OData getOdata();
+  OData getOdata();
 
-  public From<?, ?> getRoot();
+  From<?, ?> getRoot();
 
 }

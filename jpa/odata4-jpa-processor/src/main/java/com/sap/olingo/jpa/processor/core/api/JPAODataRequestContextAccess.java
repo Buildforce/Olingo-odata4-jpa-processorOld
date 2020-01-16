@@ -10,22 +10,22 @@ import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
 
 public interface JPAODataRequestContextAccess {
 
-  public EntityManager getEntityManager();
+  EntityManager getEntityManager();
 
-  public UriInfoResource getUriInfo();
+  UriInfoResource getUriInfo();
 
-  public JPASerializer getSerializer();
+  JPASerializer getSerializer();
 
-  public JPAODataPage getPage();
+  JPAODataPage getPage();
 
-  public Optional<JPAODataClaimProvider> getClaimsProvider();
+  Optional<JPAODataClaimProvider> getClaimsProvider();
 
-  public Optional<JPAODataGroupProvider> getGroupsProvider();
+  Optional<JPAODataGroupProvider> getGroupsProvider();
 
-  public JPACUDRequestHandler getCUDRequestHandler();
+  JPACUDRequestHandler getCUDRequestHandler();
 
-  public JPAServiceDebugger getDebugger();
+  JPAServiceDebugger getDebugger();
 
-  public JPAODataTransactionFactory getTransactionFactory();
+  JPAODataTransactionFactory getTransactionFactory();
 
 }

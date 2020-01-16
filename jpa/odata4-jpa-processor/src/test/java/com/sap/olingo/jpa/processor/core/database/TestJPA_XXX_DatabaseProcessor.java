@@ -359,8 +359,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
       }
     });
 
-    when(functionQuery.getResultList()).thenReturn(Arrays.asList(new BusinessPartner[] { new Organization(),
-        new Organization() }));
+    when(functionQuery.getResultList()).thenReturn(Arrays.asList(new Organization(), new Organization()));
   }
 
   protected void createFunctionWithOneParameter() throws ODataJPAModelException {
@@ -389,8 +388,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
       }
     });
 
-    when(functionQuery.getResultList()).thenReturn(Arrays.asList(new BusinessPartner[] { new Organization(),
-        new Organization() }));
+    when(functionQuery.getResultList()).thenReturn(Arrays.asList(new Organization(), new Organization()));
   }
 
 }

@@ -13,5 +13,5 @@ public interface JPAODataGroupProvider {
    * Provides a list of all field groups to be taken into account
    * @return
    */
-  public List<String> getGroups();
+  List<String> getGroups();
 }

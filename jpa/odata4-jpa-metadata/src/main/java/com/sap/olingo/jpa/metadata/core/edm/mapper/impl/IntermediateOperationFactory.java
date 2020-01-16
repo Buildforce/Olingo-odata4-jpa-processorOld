@@ -34,7 +34,7 @@ public abstract class IntermediateOperationFactory {
           (Set<Class<? extends ODataOperation>>) findJavaOperations(reflections, clazz);
 
       for (final Class<? extends ODataOperation> operationClass : operationClasses) {
-        for (Method m : Arrays.asList(operationClass.getMethods())) {
+        for (Method m : operationClass.getMethods()) {
           Object operationDescription = m.getAnnotation(annotation);
           if (operationDescription != null) {
             final IntermediateOperation func = createOperation(nameBuilder, schema, m, operationDescription);

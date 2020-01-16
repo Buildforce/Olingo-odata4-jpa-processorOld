@@ -104,8 +104,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetAttributeDeepIfAttributeNull() throws ODataJPAProcessException,
-      ODataJPAInvocationTargetException {
+  public void testSetAttributeDeepIfAttributeNull() throws ODataJPAProcessException {
     partner.setType("2");
     jpaAttributes.put("iD", "Willi");
     jpaAttributes.put("type", null);
@@ -115,8 +114,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testDoNotSetAttributeDeepIfNotInMap() throws ODataJPAProcessException,
-      ODataJPAInvocationTargetException {
+  public void testDoNotSetAttributeDeepIfNotInMap() throws ODataJPAProcessException {
     partner.setType("2");
     jpaAttributes.put("iD", "Willi");
     cut.setAttributesDeep(jpaAttributes, partner, org);
@@ -125,8 +123,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetAttributesDeepShallIgnoreRequestEntities() throws ODataJPAProcessException,
-      ODataJPAInvocationTargetException {
+  public void testSetAttributesDeepShallIgnoreRequestEntities() throws ODataJPAProcessException {
     JPARequestEntity roles = mock(JPARequestEntity.class);
     jpaAttributes.put("iD", "Willi");
     jpaAttributes.put("roles", roles);
@@ -135,7 +132,7 @@ public class TestModifyUtil extends TestBase {
 
   @Test
   public void testSetAttributesDeepOneLevelViaGetter() throws ODataJPAProcessException,
-      ODataJPAInvocationTargetException, ODataJPAModelException {
+          ODataJPAModelException {
     Map<String, Object> embeddedAttributes = new HashMap<>();
     jpaAttributes.put("iD", "Willi");
     jpaAttributes.put("address", embeddedAttributes);
@@ -163,8 +160,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testDoNotSetAttributesDeepOneLevelIfNotProvided() throws ODataJPAProcessException,
-      ODataJPAInvocationTargetException {
+  public void testDoNotSetAttributesDeepOneLevelIfNotProvided() throws ODataJPAProcessException {
     jpaAttributes.put("iD", "Willi");
     jpaAttributes.put("address", null);
     cut.setAttributesDeep(jpaAttributes, partner, org);
@@ -174,8 +170,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetAttributesDeepOneLevelIfNull() throws ODataJPAProcessException,
-      ODataJPAInvocationTargetException {
+  public void testSetAttributesDeepOneLevelIfNull() throws ODataJPAProcessException {
     final PostalAddressData address = new PostalAddressData();
     address.setCityName("Test City");
 
@@ -190,7 +185,7 @@ public class TestModifyUtil extends TestBase {
 
   @Test
   public void testSetAttributesDeepOneLevelViaSetter() throws ODataJPAProcessException,
-      ODataJPAInvocationTargetException, ODataJPAModelException {
+          ODataJPAModelException {
     Map<String, Object> embeddedAttributes = new HashMap<>();
     jpaAttributes.put("iD", "Willi");
     jpaAttributes.put("communicationData", embeddedAttributes);

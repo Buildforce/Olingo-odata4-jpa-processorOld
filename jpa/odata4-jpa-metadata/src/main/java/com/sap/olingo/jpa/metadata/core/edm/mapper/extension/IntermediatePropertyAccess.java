@@ -10,7 +10,7 @@ import org.apache.olingo.commons.api.edm.provider.CsdlAnnotation;
  *
  */
 public interface IntermediatePropertyAccess extends IntermediateModelItemAccess {
-  public boolean isEtag();
+  boolean isEtag();
 
   /**
    * Enables to add annotations to a property, e.g. because the type of annotation is not enabled via
@@ -18,8 +18,8 @@ public interface IntermediatePropertyAccess extends IntermediateModelItemAccess 
    * runtime
    * @param annotations
    */
-  public void addAnnotations(final List<CsdlAnnotation> annotations);
+  void addAnnotations(final List<CsdlAnnotation> annotations);
 
-  public boolean hasProtection();
+  boolean hasProtection();
 
 }

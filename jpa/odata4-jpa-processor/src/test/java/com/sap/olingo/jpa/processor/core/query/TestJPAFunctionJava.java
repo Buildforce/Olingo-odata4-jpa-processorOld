@@ -157,6 +157,6 @@ public class TestJPAFunctionJava {
     when(param1.getText()).thenReturn("5");
     when(param2.getName()).thenReturn("B");
     when(param2.getText()).thenReturn("7");
-    return Arrays.asList(new UriParameter[] { param1, param2 });
+    return Arrays.asList(param1, param2);
   }
 }

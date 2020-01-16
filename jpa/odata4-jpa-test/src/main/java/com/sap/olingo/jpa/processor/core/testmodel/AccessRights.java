@@ -8,7 +8,7 @@ public enum AccessRights {
 
   private short value;
 
-  private AccessRights(short value) {
+  AccessRights(short value) {
     this.setValue(value);
   }
 

@@ -249,7 +249,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
 
   private IntermediateJavaFunction createFunction(Class<? extends ODataFunction> clazz, String method)
       throws ODataJPAModelException {
-    for (Method m : Arrays.asList(clazz.getMethods())) {
+    for (Method m : clazz.getMethods()) {
       EdmFunction functionDescription = m.getAnnotation(EdmFunction.class);
       if (functionDescription != null && method.equals(m.getName())) {
         return new IntermediateJavaFunction(new JPADefaultEdmNameBuilder(PUNIT_NAME), functionDescription, m,

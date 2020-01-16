@@ -168,7 +168,7 @@ public class IntegrationTestHelper {
     return result;
   }
 
-  public ArrayNode getValues() throws JsonProcessingException, IOException {
+  public ArrayNode getValues() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     JsonNode node = mapper.readTree(getRawResult());
     if (!(node.get("value") instanceof ArrayNode))
@@ -177,7 +177,7 @@ public class IntegrationTestHelper {
     return values;
   }
 
-  public ObjectNode getValue() throws JsonProcessingException, IOException {
+  public ObjectNode getValue() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     JsonNode value = mapper.readTree(getRawResult());
     if (!(value instanceof ObjectNode))
@@ -185,7 +185,7 @@ public class IntegrationTestHelper {
     return (ObjectNode) value;
   }
 
-  public ValueNode getSingleValue() throws JsonProcessingException, IOException {
+  public ValueNode getSingleValue() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     JsonNode value = mapper.readTree(getRawResult());
     if (!(value instanceof ValueNode))
@@ -193,7 +193,7 @@ public class IntegrationTestHelper {
     return (ValueNode) value;
   }
 
-  public ValueNode getSingleValue(final String nodeName) throws JsonProcessingException, IOException {
+  public ValueNode getSingleValue(final String nodeName) throws IOException {
     final ObjectMapper mapper = new ObjectMapper();
     final JsonNode node = mapper.readTree(getRawResult());
     if (!(node.get(nodeName) instanceof ValueNode))

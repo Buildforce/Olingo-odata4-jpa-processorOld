@@ -361,7 +361,7 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
 
   private IntermediateJavaAction createAction(Class<? extends ODataAction> clazz, String method)
       throws ODataJPAModelException {
-    for (Method m : Arrays.asList(clazz.getMethods())) {
+    for (Method m : clazz.getMethods()) {
       EdmAction actionDescription = m.getAnnotation(EdmAction.class);
       if (actionDescription != null && method.equals(m.getName())) {
         return new IntermediateJavaAction(new JPADefaultEdmNameBuilder(PUNIT_NAME), actionDescription, m, helper.schema);

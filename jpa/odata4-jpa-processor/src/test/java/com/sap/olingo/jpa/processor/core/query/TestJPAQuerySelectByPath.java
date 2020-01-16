@@ -265,7 +265,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertTrue(act.has(property));
     final JsonNode target = act.get(property);
     if (target instanceof ArrayNode)
-      assertEquals(0, ((ArrayNode) target).size());
+      assertEquals(0, target.size());
     else
       assertTrue(target.isNull());
   }
@@ -274,7 +274,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertTrue(act.has(property));
     final JsonNode target = act.get(property);
     if (target instanceof ObjectNode) {
-      ((ObjectNode) target).forEach(n -> assertTrue(n.isNull()));
+      target.forEach(n -> assertTrue(n.isNull()));
     } else {
       assertTrue(target.isNull());
     }
@@ -284,7 +284,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertTrue(act.has(property));
     final JsonNode target = act.get(property);
     if (target instanceof ArrayNode)
-      assertFalse(((ArrayNode) target).size() == 0);
+      assertFalse(target.size() == 0);
     else
       assertFalse(act.get(property).isNull());
   }
@@ -293,8 +293,8 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertTrue(act.has(property));
     final JsonNode target = act.get(property);
     if (target instanceof ArrayNode) {
-      assertTrue(((ArrayNode) target).size() > 0);
-      ((ArrayNode) target).forEach(n -> assertFalse(n.isNull()));
+      assertTrue(target.size() > 0);
+      target.forEach(n -> assertFalse(n.isNull()));
       assertTrue(target.get(0).get(nullProperty).isNull());
     } else {
       fail();

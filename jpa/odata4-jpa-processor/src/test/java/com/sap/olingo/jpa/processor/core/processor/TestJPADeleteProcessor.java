@@ -104,7 +104,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testHeadersProvided() throws ODataJPAProcessorException, SerializerException, ODataException {
+  public void testHeadersProvided() throws ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = mock(ODataRequest.class);
     final Map<String, List<String>> headers = new HashMap<>();
@@ -124,8 +124,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testClaimsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testClaimsProvided() throws ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = mock(ODataRequest.class);
 
@@ -143,8 +142,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testGroupsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testGroupsProvided() throws ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = mock(ODataRequest.class);
 

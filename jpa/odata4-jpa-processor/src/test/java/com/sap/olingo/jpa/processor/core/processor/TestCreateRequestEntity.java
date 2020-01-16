@@ -115,7 +115,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDataAndEtCreated() throws ODataJPAModelException, ODataException {
+  public void testCreateDataAndEtCreated() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -126,7 +126,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateEtName() throws ODataJPAModelException, ODataException {
+  public void testCreateEtName() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -136,7 +136,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDataHasProperty() throws ODataJPAModelException, ODataException {
+  public void testCreateDataHasProperty() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -147,7 +147,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateEmptyRelatedEntities() throws ODataJPAModelException, ODataException {
+  public void testCreateEmptyRelatedEntities() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -158,7 +158,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateEmptyRelationLinks() throws ODataJPAModelException, ODataException {
+  public void testCreateEmptyRelationLinks() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -169,7 +169,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDeepOneChildResultContainsEntityLink() throws ODataJPAModelException, ODataException {
+  public void testCreateDeepOneChildResultContainsEntityLink() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -185,7 +185,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDeepOneChildResultContainsEntityLinkSize() throws ODataJPAModelException, ODataException {
+  public void testCreateDeepOneChildResultContainsEntityLinkSize() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -200,7 +200,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDeepOneChildResultContainsEntityLinkEntityType() throws ODataJPAModelException, ODataException {
+  public void testCreateDeepOneChildResultContainsEntityLinkEntityType() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -218,7 +218,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDeepOneChildResultContainsEntityLinkData() throws ODataJPAModelException, ODataException {
+  public void testCreateDeepOneChildResultContainsEntityLinkData() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -238,7 +238,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDeepTwoChildResultContainsEntityLinkSize() throws ODataJPAModelException, ODataException {
+  public void testCreateDeepTwoChildResultContainsEntityLinkSize() throws ODataException {
     List<Property> properties = createProperties();
     createODataEntity(properties);
 
@@ -340,7 +340,7 @@ public class TestCreateRequestEntity {
   }
 
   @Test
-  public void testCreateDeepOneChildViaComplex() throws ODataJPAModelException, ODataException {
+  public void testCreateDeepOneChildViaComplex() throws ODataException {
     final List<Property> properties = new ArrayList<>();
     final List<Property> inlineProperties = new ArrayList<>();
     final Entity inlineEntity = mock(Entity.class);

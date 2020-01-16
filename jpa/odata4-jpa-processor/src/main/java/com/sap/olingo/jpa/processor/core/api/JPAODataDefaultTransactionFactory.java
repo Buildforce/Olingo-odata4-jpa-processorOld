@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.RollbackException;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException;;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException;
 
 public class JPAODataDefaultTransactionFactory implements JPAODataTransactionFactory {
 

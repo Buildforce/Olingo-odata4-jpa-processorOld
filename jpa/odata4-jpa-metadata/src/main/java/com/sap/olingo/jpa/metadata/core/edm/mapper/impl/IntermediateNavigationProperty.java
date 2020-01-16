@@ -251,12 +251,12 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
     if (jpaAttribute.getPersistentAttributeType() == PersistentAttributeType.ONE_TO_ONE) {
       final AnnotatedElement annotatedElement = (AnnotatedElement) jpaAttribute.getJavaMember();
       final OneToOne cardinalityOtO = annotatedElement.getAnnotation(OneToOne.class);
-      return cardinalityOtO.mappedBy() != null && !cardinalityOtO.mappedBy().isEmpty() ? true : false;
+      return cardinalityOtO.mappedBy() != null && !cardinalityOtO.mappedBy().isEmpty();
     }
     if (jpaAttribute.getPersistentAttributeType() == PersistentAttributeType.ONE_TO_MANY) {
       final AnnotatedElement annotatedElement = (AnnotatedElement) jpaAttribute.getJavaMember();
       final OneToMany cardinalityOtM = annotatedElement.getAnnotation(OneToMany.class);
-      return cardinalityOtM.mappedBy() != null && !cardinalityOtM.mappedBy().isEmpty() ? true : false;
+      return cardinalityOtM.mappedBy() != null && !cardinalityOtM.mappedBy().isEmpty();
     }
     return false;
   }

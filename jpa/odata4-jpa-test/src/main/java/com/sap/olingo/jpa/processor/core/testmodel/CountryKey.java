@@ -29,9 +29,8 @@ public class CountryKey implements Serializable {
       if (other.code != null) return false;
     } else if (!code.equals(other.code)) return false;
     if (language == null) {
-      if (other.language != null) return false;
-    } else if (!language.equals(other.language)) return false;
-    return true;
+        return other.language == null;
+    } else return language.equals(other.language);
   }
 
   @Override

@@ -8,7 +8,7 @@ public enum FileAccess {
 
   private short value;
 
-  private FileAccess(short value) {
+  FileAccess(short value) {
     this.setValue(value);
   }
 

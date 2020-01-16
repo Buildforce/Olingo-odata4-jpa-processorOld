@@ -17,6 +17,7 @@ import static org.mockito.Mockito.when;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -61,7 +62,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
   @Test
-  public void testHockIsCalled() throws ODataJPAModelException, ODataException {
+  public void testHockIsCalled() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -74,7 +75,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testHttpMethodProvided() throws ODataJPAModelException, ODataException {
+  public void testHttpMethodProvided() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -89,7 +90,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testEntityTypeProvided() throws ODataJPAModelException, ODataException {
+  public void testEntityTypeProvided() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -105,7 +106,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testJPAAttributes() throws ODataJPAModelException, ODataException, UnsupportedEncodingException {
+  public void testJPAAttributes() throws ODataException, UnsupportedEncodingException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -114,7 +115,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    InputStream is = new ByteArrayInputStream("{\"ID\" : \"35\", \"Country\" : \"USA\"}".getBytes("UTF-8"));
+    InputStream is = new ByteArrayInputStream("{\"ID\" : \"35\", \"Country\" : \"USA\"}".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     Map<String, Object> jpaAttributes = new HashMap<>();
     jpaAttributes.put("id", "35");
@@ -129,8 +130,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testProvideSimplePrimitivePutAsPatch() throws ODataJPAProcessorException, SerializerException,
-      ODataException, UnsupportedEncodingException {
+  public void testProvideSimplePrimitivePutAsPatch() throws
+          ODataException, UnsupportedEncodingException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -145,7 +146,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    InputStream is = new ByteArrayInputStream("{ \"value\": \"New Road\"}".getBytes("UTF-8"));
+    InputStream is = new ByteArrayInputStream("{ \"value\": \"New Road\"}".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     Map<String, Object> jpaAttributes = new HashMap<>();
     jpaAttributes.put("streetName", "New Road");
@@ -167,8 +168,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testProvidePrimitiveCollectionPutAsPatch() throws ODataJPAProcessorException, SerializerException,
-      ODataException, UnsupportedEncodingException {
+  public void testProvidePrimitiveCollectionPutAsPatch() throws
+          ODataException, UnsupportedEncodingException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
@@ -185,7 +186,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     final RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    final InputStream is = new ByteArrayInputStream("{ \"value\": \"[\"YAC\",\"WTN\"]\"}".getBytes("UTF-8"));
+    final InputStream is = new ByteArrayInputStream("{ \"value\": \"[\"YAC\",\"WTN\"]\"}".getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     final Map<String, Object> jpaAttributes = new HashMap<>();
     final List<String> lines = new ArrayList<>(2);
@@ -203,8 +204,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testProvideComplexCollectionPutAsPatch() throws ODataJPAProcessorException, SerializerException,
-      ODataException, UnsupportedEncodingException {
+  public void testProvideComplexCollectionPutAsPatch() throws
+          ODataException, UnsupportedEncodingException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
@@ -222,7 +223,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
     final InputStream is = new ByteArrayInputStream(
         "{ \"value\": \"[{\"RoomNumber\": 25,\"Floor\": 2,\"TaskID\": \"DEV\",\"Building\": \"2\"}]\"}"
-            .getBytes("UTF-8"));
+            .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     final Map<String, Object> jpaAttributes = new HashMap<>();
     final List<InhouseAddress> lines = new ArrayList<>(2);
@@ -238,8 +239,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testHeadersProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testHeadersProvided() throws
+          ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareSimpleRequest();
     final Map<String, List<String>> headers = new HashMap<>();
@@ -259,8 +260,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testClaimsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testClaimsProvided() throws
+          ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareSimpleRequest();
 
@@ -278,8 +279,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testGroupsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testGroupsProvided() throws
+          ODataException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareSimpleRequest();
 
@@ -299,8 +300,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponseUpdateStatusCode() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testMinimalResponseUpdateStatusCode() throws
+          ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -314,8 +315,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponseCreatedStatusCode() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testMinimalResponseCreatedStatusCode() throws
+          ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -329,8 +330,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponseUpdatePreferHeader() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testMinimalResponseUpdatePreferHeader() throws
+          ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -344,8 +345,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testMinimalResponseCreatedPreferHeader() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testMinimalResponseCreatedPreferHeader() throws
+          ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -359,8 +360,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseUpdatedStatusCode() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testRepresentationResponseUpdatedStatusCode() throws
+          ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(false,
@@ -372,8 +373,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseCreatedStatusCode() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testRepresentationResponseCreatedStatusCode() throws
+          ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(true,
@@ -385,7 +386,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseUpdatedErrorMissingEntity() throws ODataJPAProcessorException, ODataException {
+  public void testRepresentationResponseUpdatedErrorMissingEntity() throws ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(false, null)));
@@ -400,7 +401,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseCreatedErrorMissingEntity() throws ODataJPAProcessorException, ODataException {
+  public void testRepresentationResponseCreatedErrorMissingEntity() throws ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(true, null)));
@@ -415,8 +416,8 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testRepresentationResponseUpdatedWithKey() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testRepresentationResponseUpdatedWithKey() throws
+          ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(false,
@@ -557,7 +558,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testResponseErrorIfNull() throws ODataJPAProcessorException, ODataException {
+  public void testResponseErrorIfNull() throws ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(null));
@@ -572,7 +573,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testResponseUpdateLink() throws ODataJPAProcessorException, ODataException {
+  public void testResponseUpdateLink() throws ODataException {
 
     final AdministrativeDivisionKey key = new AdministrativeDivisionKey("Eurostat", "NUTS2", "DE60");
     final AdministrativeDivision resultEntity = new AdministrativeDivision(key);
@@ -592,7 +593,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testOwnTransactionCommited() throws ODataJPAModelException, ODataException {
+  public void testOwnTransactionCommited() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 

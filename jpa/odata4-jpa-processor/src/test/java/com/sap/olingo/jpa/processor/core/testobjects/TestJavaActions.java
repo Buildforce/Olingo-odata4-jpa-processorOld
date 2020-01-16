@@ -78,7 +78,7 @@ public class TestJavaActions implements ODataAction {
 
   @EdmAction(returnType = @ReturnType(type = ChangeInformation.class))
   public List<ChangeInformation> returnEmbeddableCollection() {
-    return Arrays.asList(new ChangeInformation[] { new ChangeInformation() });
+    return Arrays.asList(new ChangeInformation());
   }
 
   @EdmAction(returnType = @ReturnType(maxLength = 60,

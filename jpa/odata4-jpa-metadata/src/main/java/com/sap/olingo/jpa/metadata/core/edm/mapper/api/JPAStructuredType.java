@@ -15,7 +15,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
  *
  */
 public interface JPAStructuredType extends JPAElement {
-  public JPAAssociationAttribute getAssociation(final String internalName) throws ODataJPAModelException;
+  JPAAssociationAttribute getAssociation(final String internalName) throws ODataJPAModelException;
 
   /**
    * Searches for an AssociationPath defined by the name used in the OData metadata in all the navigation properties
@@ -29,7 +29,7 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public JPAAssociationPath getAssociationPath(final String externalName) throws ODataJPAModelException;
+  JPAAssociationPath getAssociationPath(final String externalName) throws ODataJPAModelException;
 
   /**
    * Searches in the navigation properties that are available for this type via the OData service. That is:
@@ -41,14 +41,14 @@ public interface JPAStructuredType extends JPAElement {
    * @return null if no navigation property found.
    * @throws ODataJPAModelException
    */
-  public List<JPAAssociationPath> getAssociationPathList() throws ODataJPAModelException;
+  List<JPAAssociationPath> getAssociationPathList() throws ODataJPAModelException;
 
   @CheckForNull
-  public JPAAttribute getAttribute(final String internalName) throws ODataJPAModelException;
+  JPAAttribute getAttribute(final String internalName) throws ODataJPAModelException;
 
-  public JPAAttribute getAttribute(final UriResourceProperty uriResourceItem) throws ODataJPAModelException;
+  JPAAttribute getAttribute(final UriResourceProperty uriResourceItem) throws ODataJPAModelException;
 
-  public List<JPAAttribute> getAttributes() throws ODataJPAModelException;
+  List<JPAAttribute> getAttributes() throws ODataJPAModelException;
 
   /**
    * List of the path to all collection properties of this type. That is:
@@ -60,7 +60,7 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public List<JPAPath> getCollectionAttributesPath() throws ODataJPAModelException;
+  List<JPAPath> getCollectionAttributesPath() throws ODataJPAModelException;
 
   /**
    * In case the type is within the given association path, the sub-path is returned.
@@ -70,9 +70,9 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public JPAAssociationPath getDeclaredAssociation(JPAAssociationPath associationPath) throws ODataJPAModelException;
+  JPAAssociationPath getDeclaredAssociation(JPAAssociationPath associationPath) throws ODataJPAModelException;
 
-  public JPAAssociationPath getDeclaredAssociation(final String externalName) throws ODataJPAModelException;
+  JPAAssociationPath getDeclaredAssociation(final String externalName) throws ODataJPAModelException;
 
   /**
    * List of all associations that are declared at this type. That is:
@@ -83,7 +83,7 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public List<JPAAssociationAttribute> getDeclaredAssociations() throws ODataJPAModelException;
+  List<JPAAssociationAttribute> getDeclaredAssociations() throws ODataJPAModelException;
 
   /**
    * List of all associations that are declared at this type. That is:
@@ -94,7 +94,7 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public List<JPAAttribute> getDeclaredAttributes() throws ODataJPAModelException;
+  List<JPAAttribute> getDeclaredAttributes() throws ODataJPAModelException;
 
   /**
    * List of all associations that are declared at this type. That is:
@@ -105,7 +105,7 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public List<JPACollectionAttribute> getDeclaredCollectionAttributes() throws ODataJPAModelException;
+  List<JPACollectionAttribute> getDeclaredCollectionAttributes() throws ODataJPAModelException;
 
   /**
    * List of all associations that are declared at this type. That is:
@@ -116,7 +116,7 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public JPAPath getPath(final String externalName) throws ODataJPAModelException;
+  JPAPath getPath(final String externalName) throws ODataJPAModelException;
 
   /**
    * List of all attributes that are available for this type via the OData service. That is:
@@ -128,7 +128,7 @@ public interface JPAStructuredType extends JPAElement {
    * @return List of all attributes that are available via the OData service.
    * @throws ODataJPAModelException
    */
-  public List<JPAPath> getPathList() throws ODataJPAModelException;
+  List<JPAPath> getPathList() throws ODataJPAModelException;
 
   /**
    * List of all protected Attributes including protection/claim information. That is:
@@ -140,9 +140,9 @@ public interface JPAStructuredType extends JPAElement {
    * @return
    * @throws ODataJPAModelException
    */
-  public List<JPAProtectionInfo> getProtections() throws ODataJPAModelException;
+  List<JPAProtectionInfo> getProtections() throws ODataJPAModelException;
 
-  public Class<?> getTypeClass();
+  Class<?> getTypeClass();
 
-  public boolean isAbstract();
+  boolean isAbstract();
 }

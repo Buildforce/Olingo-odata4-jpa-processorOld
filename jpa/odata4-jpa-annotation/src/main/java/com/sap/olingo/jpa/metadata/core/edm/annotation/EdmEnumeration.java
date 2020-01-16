@@ -45,7 +45,7 @@ public @interface EdmEnumeration {
    * Converter shall be optional, as java does not support <code>default null</code> a
    * dummy converter implementation is needed.
    */
-  static class DummyConverter implements AttributeConverter<Enum<?>[], Integer> {
+  class DummyConverter implements AttributeConverter<Enum<?>[], Integer> {
 
     @Override
     public Integer convertToDatabaseColumn(Enum<?>[] attributes) {

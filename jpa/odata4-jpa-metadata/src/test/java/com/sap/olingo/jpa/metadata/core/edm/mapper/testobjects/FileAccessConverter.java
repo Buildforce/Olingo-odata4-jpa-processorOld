@@ -18,7 +18,7 @@ public class FileAccessConverter implements AttributeConverter<FileAccess[], Sho
     if (dbData == null)
       return null;
     final List<FileAccess> accesses = new ArrayList<>();
-    for (FileAccess e : Arrays.asList(FileAccess.values())) {
+    for (FileAccess e : FileAccess.values()) {
       if (e.getValue() == dbData)
         accesses.add(e);
     }

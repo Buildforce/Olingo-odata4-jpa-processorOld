@@ -21,33 +21,33 @@ import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
  */
 public interface JPAODataCRUDContextAccess {
 
-  public JPAODataDatabaseProcessor getDatabaseProcessor();
+  JPAODataDatabaseProcessor getDatabaseProcessor();
 
   /**
    * @deprecated (will be removed with 1.0.0; use request context)
    * @return
    */
   @Deprecated
-  public DebugSupport getDebugSupport();
+  DebugSupport getDebugSupport();
 
-  public JPAEdmProvider getEdmProvider() throws ODataException;
+  JPAEdmProvider getEdmProvider() throws ODataException;
 
-  public JPAODataDatabaseOperations getOperationConverter();
+  JPAODataDatabaseOperations getOperationConverter();
 
-  public List<EdmxReference> getReferences();
+  List<EdmxReference> getReferences();
 
   /**
    * @deprecated (will be removed with 1.0.0; use request context)
    * @return
    */
   @Deprecated
-  public JPACUDRequestHandler getCUDRequestHandler();
+  JPACUDRequestHandler getCUDRequestHandler();
 
   /**
    * Returns a list of packages that may contain Enumerations of Java implemented OData operations
    * @return
    */
-  public String[] getPackageName();
+  String[] getPackageName();
 
   /**
    * If server side paging shall be supported <code>getPagingProvider</code> returns an implementation of a paging
@@ -56,17 +56,17 @@ public interface JPAODataCRUDContextAccess {
    * Version 4.0 Part 1 - 11.2.5.7 Server-Driven Paging</a>
    * @return
    */
-  public JPAODataPagingProvider getPagingProvider();
+  JPAODataPagingProvider getPagingProvider();
 
-  public default Optional<EntityManagerFactory> getEntityManagerFactory() {
+  default Optional<EntityManagerFactory> getEntityManagerFactory() {
     return Optional.empty();
   }
 
-  public default ErrorProcessor getErrorProcessor() {
+  default ErrorProcessor getErrorProcessor() {
     return null;
   }
 
-  public default String getMappingPath() {
+  default String getMappingPath() {
     return "";
   }
 }

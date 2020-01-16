@@ -10,5 +10,5 @@ public interface IntermediateEntityContainerAccess {
    * {@link com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAnnotation EdmAnnotation} or should be during runtime
    * @param annotations
    */
-  public void addAnnotations(final List<CsdlAnnotation> annotations);
+  void addAnnotations(final List<CsdlAnnotation> annotations);
 }

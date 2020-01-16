@@ -115,7 +115,7 @@ public class JPAOperationConverter {
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
           final StringBuilder contains = new StringBuilder();
           contains.append('%');
-          contains.append((String) ((JPALiteralOperator) jpaFunction.getParameter(1)).get());
+          contains.append((String) jpaFunction.getParameter(1).get());
           contains.append('%');
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), contains.toString());
         } else {
@@ -126,7 +126,7 @@ public class JPAOperationConverter {
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
           final StringBuilder ends = new StringBuilder();
           ends.append('%');
-          ends.append((String) ((JPALiteralOperator) jpaFunction.getParameter(1)).get());
+          ends.append((String) jpaFunction.getParameter(1).get());
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), ends.toString());
         } else {
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()),
@@ -135,7 +135,7 @@ public class JPAOperationConverter {
       case STARTSWITH:
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
           final StringBuilder starts = new StringBuilder();
-          starts.append((String) ((JPALiteralOperator) jpaFunction.getParameter(1)).get());
+          starts.append((String) jpaFunction.getParameter(1).get());
           starts.append('%');
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), starts.toString());
         } else {
@@ -143,7 +143,7 @@ public class JPAOperationConverter {
               (Expression<String>) ((JPAMethodCall) jpaFunction.getParameter(1)).get("", "%"));
         }
       case INDEXOF:
-        final String searchString = ((String) ((JPALiteralOperator) jpaFunction.getParameter(1)).get());
+        final String searchString = ((String) jpaFunction.getParameter(1).get());
         return cb.locate((Expression<String>) (jpaFunction.getParameter(0).get()), searchString);
       case SUBSTRING:
         // OData defines start position in SUBSTRING as 0 (see

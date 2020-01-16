@@ -136,8 +136,7 @@ public abstract class TestJPAModifyProcessor {
 
   }
 
-  protected ODataRequest prepareRepresentationRequest(JPAAbstractCUDRequestHandler spy)
-      throws ODataJPAProcessorException, SerializerException, ODataException {
+  protected ODataRequest prepareRepresentationRequest(JPAAbstractCUDRequestHandler spy) throws ODataException {
 
     final ODataRequest request = prepareSimpleRequest("return=representation");
 
@@ -171,7 +170,7 @@ public abstract class TestJPAModifyProcessor {
   }
 
   protected ODataRequest prepareLinkRequest(JPAAbstractCUDRequestHandler spy)
-      throws ODataJPAProcessorException, SerializerException, ODataException {
+      throws ODataException {
 
     // .../AdministrativeDivisions(DivisionCode='DE60',CodeID='NUTS2',CodePublisher='Eurostat')
     final ODataRequest request = prepareSimpleRequest("return=representation");
@@ -229,14 +228,13 @@ public abstract class TestJPAModifyProcessor {
 
   }
 
-  protected ODataRequest prepareSimpleRequest() throws ODataException, ODataJPAProcessorException, SerializerException {
+  protected ODataRequest prepareSimpleRequest() throws ODataException {
 
     return prepareSimpleRequest("return=minimal");
   }
 
   @SuppressWarnings("unchecked")
-  protected ODataRequest prepareSimpleRequest(String content) throws ODataException, ODataJPAProcessorException,
-      SerializerException {
+  protected ODataRequest prepareSimpleRequest(String content) throws ODataException {
 
     final EntityTransaction transaction = mock(EntityTransaction.class);
     when(em.getTransaction()).thenReturn(transaction);

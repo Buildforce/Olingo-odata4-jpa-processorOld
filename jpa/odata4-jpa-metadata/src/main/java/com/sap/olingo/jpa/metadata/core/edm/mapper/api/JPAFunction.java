@@ -13,7 +13,7 @@ public interface JPAFunction extends JPAOperation {
    * @return List of import parameter
    * @throws ODataJPAModelException
    */
-  public List<JPAParameter> getParameter() throws ODataJPAModelException;
+  List<JPAParameter> getParameter() throws ODataJPAModelException;
 
   /**
    *
@@ -22,14 +22,14 @@ public interface JPAFunction extends JPAOperation {
    * @return
    * @throws ODataJPAModelException
    */
-  public JPAParameter getParameter(String internalName) throws ODataJPAModelException;
+  JPAParameter getParameter(String internalName) throws ODataJPAModelException;
 
   /**
    *
 
    * @return The type of function
    */
-  public EdmFunctionType getFunctionType();
+  EdmFunctionType getFunctionType();
 
-  public boolean isBound() throws ODataJPAModelException;
+  boolean isBound() throws ODataJPAModelException;
 }

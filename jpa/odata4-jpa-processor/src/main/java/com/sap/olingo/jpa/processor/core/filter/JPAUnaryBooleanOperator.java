@@ -8,12 +8,12 @@ import org.apache.olingo.server.api.uri.queryoption.expression.UnaryOperatorKind
 public interface JPAUnaryBooleanOperator extends JPAExpressionOperator {
 
   @Override
-  public Expression<Boolean> get() throws ODataApplicationException;
+  Expression<Boolean> get() throws ODataApplicationException;
 
-  public Expression<Boolean> getLeft() throws ODataApplicationException;
+  Expression<Boolean> getLeft() throws ODataApplicationException;
 
   @SuppressWarnings("unchecked")
   @Override
-  public UnaryOperatorKind getOperator();
+  UnaryOperatorKind getOperator();
 
 }

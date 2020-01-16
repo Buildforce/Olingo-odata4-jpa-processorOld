@@ -5,10 +5,10 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 //TODO remove extension
 public interface JPAAssociationAttribute extends JPAAttribute {
 
-  public JPAStructuredType getTargetEntity() throws ODataJPAModelException;
+  JPAStructuredType getTargetEntity() throws ODataJPAModelException;
 
-  public JPAAssociationAttribute getPartner();
+  JPAAssociationAttribute getPartner();
 
-  public JPAAssociationPath getPath() throws ODataJPAModelException;
+  JPAAssociationPath getPath() throws ODataJPAModelException;
 
 }

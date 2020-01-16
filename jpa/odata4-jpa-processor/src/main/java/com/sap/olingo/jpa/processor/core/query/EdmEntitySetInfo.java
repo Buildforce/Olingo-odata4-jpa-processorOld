@@ -7,13 +7,13 @@ import org.apache.olingo.server.api.uri.UriParameter;
 
 public interface EdmEntitySetInfo {
 
-  public EdmEntitySet getEdmEntitySet();
+  EdmEntitySet getEdmEntitySet();
 
-  public List<UriParameter> getKeyPredicates();
+  List<UriParameter> getKeyPredicates();
 
-  public String getName();
+  String getName();
 
-  public String getNavigationPath();
+  String getNavigationPath();
 
-  public EdmEntitySet getTargetEdmEntitySet();
+  EdmEntitySet getTargetEdmEntitySet();
 }

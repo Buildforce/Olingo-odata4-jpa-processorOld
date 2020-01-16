@@ -79,10 +79,10 @@ public class BusinessPartnerWithGroups implements KeyAccess {
 
   @EdmAnnotation(term = "Core.IsLanguageDependent", constantExpression = @EdmAnnotation.ConstantExpression(
       type = ConstantExpressionType.Bool, value = "true"))
-  @EdmDescriptionAssoziation(languageAttribute = "key/language", descriptionAttribute = "name",
+  @EdmDescriptionAssociation(languageAttribute = "key/language", descriptionAttribute = "name",
       valueAssignments = {
-          @EdmDescriptionAssoziation.valueAssignment(attribute = "key/codePublisher", value = "ISO"),
-          @EdmDescriptionAssoziation.valueAssignment(attribute = "key/codeID", value = "3166-1") })
+          @EdmDescriptionAssociation.valueAssignment(attribute = "key/codePublisher", value = "ISO"),
+          @EdmDescriptionAssociation.valueAssignment(attribute = "key/codeID", value = "3166-1") })
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "\"DivisionCode\"", referencedColumnName = "\"Country\"")
   private Collection<AdministrativeDivisionDescription> locationName;
@@ -124,12 +124,8 @@ public class BusinessPartnerWithGroups implements KeyAccess {
       return false;
     BusinessPartnerWithGroups other = (BusinessPartnerWithGroups) obj;
     if (iD == null) {
-      if (other.iD != null)
-        return false;
-    } else if (!iD.equals(other.iD)) {
-      return false;
-    }
-    return true;
+        return other.iD == null;
+    } else return iD.equals(other.iD);
   }
 
   public AdministrativeInformation getAdministrativeInformation() {

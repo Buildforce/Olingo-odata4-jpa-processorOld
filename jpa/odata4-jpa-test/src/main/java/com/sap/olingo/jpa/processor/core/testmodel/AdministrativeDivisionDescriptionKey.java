@@ -97,9 +97,8 @@ public class AdministrativeDivisionDescriptionKey implements Serializable {
       if (other.divisionCode != null) return false;
     } else if (!divisionCode.equals(other.divisionCode)) return false;
     if (language == null) {
-      if (other.language != null) return false;
-    } else if (!language.equals(other.language)) return false;
-    return true;
+        return other.language == null;
+    } else return language.equals(other.language);
   }
 
 }

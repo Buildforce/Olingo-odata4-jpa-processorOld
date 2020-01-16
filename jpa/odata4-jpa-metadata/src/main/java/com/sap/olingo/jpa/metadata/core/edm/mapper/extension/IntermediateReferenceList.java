@@ -5,17 +5,17 @@ import java.net.URI;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
 public interface IntermediateReferenceList {
-  public IntermediateReferenceAccess addReference(final String uri) throws ODataJPAModelException;
+  IntermediateReferenceAccess addReference(final String uri) throws ODataJPAModelException;
 
-  public IntermediateReferenceAccess addReference(final String uri, final String path) throws ODataJPAModelException;
+  IntermediateReferenceAccess addReference(final String uri, final String path) throws ODataJPAModelException;
 
-  public interface IntermediateReferenceAccess {
-    public URI getURI();
+  interface IntermediateReferenceAccess {
+    URI getURI();
 
-    public String getPath();
+    String getPath();
 
-    public void addInclude(final String namespace, final String alias);
+    void addInclude(final String namespace, final String alias);
 
-    public void addInclude(final String namespace);
+    void addInclude(final String namespace);
   }
 }

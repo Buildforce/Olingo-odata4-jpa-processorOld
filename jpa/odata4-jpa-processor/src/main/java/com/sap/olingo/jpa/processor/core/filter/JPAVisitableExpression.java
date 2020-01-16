@@ -5,5 +5,5 @@ import org.apache.olingo.server.api.uri.queryoption.expression.VisitableExpressi
 
 public interface JPAVisitableExpression extends VisitableExpression {
 
-  public UriInfoResource getMember();
+  UriInfoResource getMember();
 }

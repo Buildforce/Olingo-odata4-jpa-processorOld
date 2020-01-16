@@ -256,9 +256,7 @@ public final class JPATypeConverter {
   private static boolean isBlob(final Attribute<?, ?> currentAttribute) {
     if (currentAttribute != null) {
       final AnnotatedElement annotatedElement = (AnnotatedElement) currentAttribute.getJavaMember();
-      if (annotatedElement != null && annotatedElement.getAnnotation(Lob.class) != null) {
-        return true;
-      }
+        return annotatedElement != null && annotatedElement.getAnnotation(Lob.class) != null;
     }
     return false;
   }

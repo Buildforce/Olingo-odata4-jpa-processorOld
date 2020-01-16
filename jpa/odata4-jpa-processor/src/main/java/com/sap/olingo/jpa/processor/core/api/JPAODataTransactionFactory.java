@@ -34,7 +34,7 @@ public interface JPAODataTransactionFactory {
 
   boolean hasActiveTransaction();
 
-  public static interface JPAODataTransaction {
+  interface JPAODataTransaction {
 
     /**
      *
@@ -42,12 +42,12 @@ public interface JPAODataTransactionFactory {
      * @throws ODataJPATransactionException
      * @throws RollbackException
      */
-    public void commit() throws ODataJPATransactionException, RollbackException; // NOSONAR
+    void commit() throws ODataJPATransactionException, RollbackException; // NOSONAR
 
-    public void rollback() throws ODataJPATransactionException;
+    void rollback() throws ODataJPATransactionException;
 
-    public boolean isActive() throws ODataJPATransactionException;
+    boolean isActive() throws ODataJPATransactionException;
 
-    public boolean rollbackOnly() throws ODataJPATransactionException;
+    boolean rollbackOnly() throws ODataJPATransactionException;
   }
 }

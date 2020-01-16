@@ -40,7 +40,7 @@ public class TestAnnotationPOJO {
           + "</edmx:Edmx>";
 
   @Test
-  public void TestSimpleXMLConverted() throws JsonParseException, JsonMappingException, IOException {
+  public void TestSimpleXMLConverted() throws IOException {
     JacksonXmlModule module = new JacksonXmlModule();
     module.setDefaultUseWrapper(false);
     XmlMapper xmlMapper = new XmlMapper(module);

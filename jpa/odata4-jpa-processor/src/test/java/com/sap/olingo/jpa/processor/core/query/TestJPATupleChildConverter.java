@@ -62,7 +62,7 @@ public class TestJPATupleChildConverter extends TestBase {
   public void checkConvertsOneResultOneElement() throws ODataApplicationException, ODataJPAModelException {
     HashMap<String, Object> result = new HashMap<>();
 
-    result.put("ID", new String("1"));
+    result.put("ID", "1");
     jpaQueryResult.add(new TupleDouble(result));
 
     keyPredicates.put("1", "Organizations('1')");
@@ -78,7 +78,7 @@ public class TestJPATupleChildConverter extends TestBase {
     HashMap<String, Object> result = new HashMap<>();
     keyPredicates.put("1", "'1'");
 
-    result.put("ID", new String("1"));
+    result.put("ID", "1");
     jpaQueryResult.add(new TupleDouble(result));
 
     EntityCollection act = cut.getResult(new JPAExpandQueryResult(queryResult, null, helper.getJPAEntityType(
@@ -92,11 +92,11 @@ public class TestJPATupleChildConverter extends TestBase {
     HashMap<String, Object> result;
 
     result = new HashMap<>();
-    result.put("ID", new String("1"));
+    result.put("ID", "1");
     jpaQueryResult.add(new TupleDouble(result));
 
     result = new HashMap<>();
-    result.put("ID", new String("5"));
+    result.put("ID", "5");
     jpaQueryResult.add(new TupleDouble(result));
 
     keyPredicates.put("1", "Organizations('1')");
@@ -114,8 +114,8 @@ public class TestJPATupleChildConverter extends TestBase {
     HashMap<String, Object> result;
 
     result = new HashMap<>();
-    result.put("ID", new String("1"));
-    result.put("Name1", new String("Willi"));
+    result.put("ID", "1");
+    result.put("Name1", "Willi");
     jpaQueryResult.add(new TupleDouble(result));
 
     keyPredicates.put("1", "Organizations('1')");
@@ -135,7 +135,7 @@ public class TestJPATupleChildConverter extends TestBase {
         "BusinessPartnerProtected"));
     HashMap<String, Object> result;
     result = new HashMap<>();
-    result.put("ID", new String("1"));
+    result.put("ID", "1");
     result.put("ETag", new Integer(2));
     jpaQueryResult.add(new TupleDouble(result));
 
@@ -211,7 +211,7 @@ public class TestJPATupleChildConverter extends TestBase {
 
     result = new HashMap<>();
     result.put("ID", "1");
-    result.put("Address/Region", new String("CA"));
+    result.put("Address/Region", "CA");
     jpaQueryResult.add(new TupleDouble(result));
 
     keyPredicates.put("1", "Organizations('1')");

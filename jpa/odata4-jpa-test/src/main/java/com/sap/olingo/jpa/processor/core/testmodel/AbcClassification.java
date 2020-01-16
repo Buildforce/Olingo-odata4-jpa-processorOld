@@ -4,5 +4,5 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration()
 public enum AbcClassification {
-  A, B, C;
+  A, B, C
 }

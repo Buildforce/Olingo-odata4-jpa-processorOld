@@ -138,7 +138,7 @@ final class IntermediateEntityContainer extends IntermediateModelElement impleme
 
       if (functions != null) {
         for (final JPAFunction jpaFu : functions) {
-          if (!((IntermediateFunction) jpaFu).isBound() && ((IntermediateFunction) jpaFu).hasImport())
+          if (!jpaFu.isBound() && ((IntermediateFunction) jpaFu).hasImport())
             edmFunctionImports.add(buildFunctionImport(((IntermediateFunction) jpaFu).getEdmItem()));
         }
       }

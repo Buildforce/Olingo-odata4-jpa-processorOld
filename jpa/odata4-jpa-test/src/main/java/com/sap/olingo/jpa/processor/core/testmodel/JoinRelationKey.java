@@ -39,8 +39,7 @@ public class JoinRelationKey implements Serializable {
       if (other.sourceID != null) return false;
     } else if (!sourceID.equals(other.sourceID)) return false;
     if (targetID == null) {
-      if (other.targetID != null) return false;
-    } else if (!targetID.equals(other.targetID)) return false;
-    return true;
+        return other.targetID == null;
+    } else return targetID.equals(other.targetID);
   }
 }

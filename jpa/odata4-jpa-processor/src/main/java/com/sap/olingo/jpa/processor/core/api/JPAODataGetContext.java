@@ -13,7 +13,7 @@ import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 @Deprecated
 public interface JPAODataGetContext {
 
-  public void initDebugger(final String debugFormat);
+  void initDebugger(final String debugFormat);
 
   /**
    *
@@ -21,12 +21,12 @@ public interface JPAODataGetContext {
    * @param postProcessor
    * @throws ODataException
    */
-  public void setDatabaseProcessor(final JPAODataDatabaseProcessor databaseProcessor);
+  void setDatabaseProcessor(final JPAODataDatabaseProcessor databaseProcessor);
 
   /**
    * @param jpaDebugSupport
    */
-  public void setDebugSupport(final DebugSupport jpaDebugSupport);
+  void setDebugSupport(final DebugSupport jpaDebugSupport);
 
   /**
    * Allows to provide an Olingo error processor. The error processor allows to enrich an error response. See
@@ -38,7 +38,7 @@ public interface JPAODataGetContext {
    * Error Response</a>.
    * @param errorProcessor
    */
-  public void setErrorProcessor(final ErrorProcessor errorProcessor);
+  void setErrorProcessor(final ErrorProcessor errorProcessor);
 
   /**
    *
@@ -46,7 +46,7 @@ public interface JPAODataGetContext {
    * @param postProcessor
    * @throws ODataException
    */
-  public void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataException;
+  void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataException;
 
   /**
    *
@@ -54,13 +54,13 @@ public interface JPAODataGetContext {
    * @param postProcessor
    * @throws ODataException
    */
-  public void setOperationConverter(final JPAODataDatabaseOperations jpaOperationConverter);
+  void setOperationConverter(final JPAODataDatabaseOperations jpaOperationConverter);
 
   /**
    * Registers the debug support handler.
    * @param debugSupport
    */
-  public void setReferences(final List<EdmxReference> references);
+  void setReferences(final List<EdmxReference> references);
 
   /**
    * Name of the top level package to look for
@@ -70,12 +70,12 @@ public interface JPAODataGetContext {
    * </ul>
    * @param packageName
    */
-  public void setTypePackage(final String... packageName);
+  void setTypePackage(final String... packageName);
 
   /**
    * Register a provider that is able to decides based on a given query if the server like to return only a sub set of
    * the requested results as well as a $skiptoken.
    * @param provider
    */
-  public void setPagingProvider(final JPAODataPagingProvider provider);
+  void setPagingProvider(final JPAODataPagingProvider provider);
 }

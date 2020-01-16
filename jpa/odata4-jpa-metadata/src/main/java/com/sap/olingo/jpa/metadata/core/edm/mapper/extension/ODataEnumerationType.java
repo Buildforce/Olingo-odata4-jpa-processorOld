@@ -7,5 +7,5 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.extension;
  *
  */
 public interface ODataEnumerationType {
-  public Integer getValue();
+  Integer getValue();
 }

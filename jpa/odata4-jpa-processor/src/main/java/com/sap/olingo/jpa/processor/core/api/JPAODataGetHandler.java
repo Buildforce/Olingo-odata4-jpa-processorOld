@@ -40,7 +40,7 @@ public class JPAODataGetHandler {
    */
   @Deprecated
   public JPAODataGetHandler(final String pUnit) throws ODataException {// NOSONAR
-    this(pUnit, (DataSource) null);
+    this(pUnit, null);
   }
 
   /**

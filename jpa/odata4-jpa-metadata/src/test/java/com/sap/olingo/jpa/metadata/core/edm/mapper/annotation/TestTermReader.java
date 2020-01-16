@@ -27,7 +27,7 @@ public class TestTermReader {
   }
 
   @Test
-  public void TestReadFromResource() throws JsonParseException, JsonMappingException, IOException {
+  public void TestReadFromResource() throws IOException {
     Edmx actEdmx = cut.readFromResource("annotations/Org.OData.Measures.V1.xml");
     assertNotNull(actEdmx);
     assertNotNull(actEdmx.getDataService());
@@ -38,7 +38,7 @@ public class TestTermReader {
   }
 
   @Test
-  public void TestGetTermsOneSchemaFromPath() throws JsonParseException, JsonMappingException, IOException {
+  public void TestGetTermsOneSchemaFromPath() throws IOException {
     Map<String, Map<String, CsdlTerm>> act;
     act = cut.getTerms("annotations/Org.OData.Core.V1.xml");
     assertNotNull(act.get("Org.OData.Core.V1"));
@@ -47,7 +47,7 @@ public class TestTermReader {
   }
 
   @Test
-  public void TestGetAppliesTo() throws JsonParseException, JsonMappingException, IOException {
+  public void TestGetAppliesTo() throws IOException {
     Map<String, Map<String, CsdlTerm>> act;
     act = cut.getTerms("annotations/Org.OData.Core.V1.xml");
     assertNotNull(act.get("Org.OData.Core.V1"));
@@ -59,7 +59,7 @@ public class TestTermReader {
   }
 
   @Test
-  public void TestGetTermsTwoSchemaFromPath() throws JsonParseException, JsonMappingException, IOException {
+  public void TestGetTermsTwoSchemaFromPath() throws IOException {
     Map<String, Map<String, CsdlTerm>> act;
     act = cut.getTerms("annotations/Org.Olingo.Test.V1.xml");
     assertNotNull(act.get("Org.OData.Measures.V1"));
@@ -69,8 +69,8 @@ public class TestTermReader {
   // TODO This test may not run because of proxy setting problems!! -> find alternative for Integration tests
   @Disabled
   @Test
-  public void TestReadFromURI() throws URISyntaxException, JsonParseException, JsonMappingException,
-      MalformedURLException, IOException {
+  public void TestReadFromURI() throws URISyntaxException,
+          IOException {
     URI uri = new URI("http://docs.oasis-open.org/odata/odata/v4.0/os/vocabularies/Org.OData.Core.V1.xml");
     Edmx actEdmx = cut.readFromURI(uri);
     assertNotNull(actEdmx);
@@ -84,8 +84,8 @@ public class TestTermReader {
   // TODO This test may not run because of proxy setting problems!! -> find alternative for Integration tests
   @Disabled
   @Test
-  public void TestGetTermsOneSchemaFromURI() throws URISyntaxException, JsonParseException, JsonMappingException,
-      MalformedURLException, IOException {
+  public void TestGetTermsOneSchemaFromURI() throws URISyntaxException,
+          IOException {
     URI uri = new URI("http://docs.oasis-open.org/odata/odata/v4.0/os/vocabularies/Org.OData.Core.V1.xml");
     Map<String, Map<String, CsdlTerm>> act;
     act = cut.getTerms(uri);

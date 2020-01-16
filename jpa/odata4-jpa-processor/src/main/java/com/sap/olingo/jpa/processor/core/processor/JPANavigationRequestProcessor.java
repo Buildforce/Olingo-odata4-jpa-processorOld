@@ -202,9 +202,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       if (lastItem.getKind() == UriResourceKind.complexProperty) {
         return complexHasNoContent(entities);
       }
-      if (entities.isEmpty()) {
-        return true;
-      }
+        return entities.isEmpty();
     }
     return false;
   }

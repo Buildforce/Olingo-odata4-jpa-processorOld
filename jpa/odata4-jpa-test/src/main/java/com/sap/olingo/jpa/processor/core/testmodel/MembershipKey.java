@@ -43,9 +43,8 @@ public class MembershipKey implements Serializable {
       if (other.personID != null) return false;
     } else if (!personID.equals(other.personID)) return false;
     if (teamID == null) {
-      if (other.teamID != null) return false;
-    } else if (!teamID.equals(other.teamID)) return false;
-    return true;
+        return other.teamID == null;
+    } else return teamID.equals(other.teamID);
   }
 
 }

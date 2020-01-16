@@ -15,5 +15,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(FIELD)
 public @interface EdmProtections {
-  public abstract EdmProtectedBy[] value();
+  EdmProtectedBy[] value();
 }

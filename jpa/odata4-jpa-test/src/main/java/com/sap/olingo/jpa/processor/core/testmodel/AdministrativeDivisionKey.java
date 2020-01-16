@@ -91,8 +91,7 @@ public class AdministrativeDivisionKey implements Serializable, Comparable<Admin
       if (other.codePublisher != null) return false;
     } else if (!codePublisher.equals(other.codePublisher)) return false;
     if (divisionCode == null) {
-      if (other.divisionCode != null) return false;
-    } else if (!divisionCode.equals(other.divisionCode)) return false;
-    return true;
+        return other.divisionCode == null;
+    } else return divisionCode.equals(other.divisionCode);
   }
 }

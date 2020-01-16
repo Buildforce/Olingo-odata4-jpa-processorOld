@@ -738,7 +738,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(1, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyToOneValueTwoHops() throws IOException, ODataException {
@@ -749,7 +749,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(1, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyToOneValueViaComplexType() throws IOException, ODataException {
@@ -760,7 +760,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(8, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyDescriptionViaComplexTypeWOSubselectSelectAll() throws IOException,
@@ -772,7 +772,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(3, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyDescriptionViaComplexTypeWOSubselectSelectId() throws IOException,
@@ -784,7 +784,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(3, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyDescriptionToOneValueViaComplexTypeWSubselect1() throws IOException,
@@ -796,7 +796,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(1, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyContainsProtectedDeep() throws IOException, ODataException {
@@ -811,7 +811,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(0, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyEqualsProtectedDeep() throws IOException, ODataException {
@@ -826,7 +826,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(3, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyDescriptionToOneValueViaComplexTypeWSubselect2() throws IOException,
@@ -838,7 +838,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode orgs = helper.getValues();
     assertEquals(1, orgs.size());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyAndExandThatNavigationProperty() throws IOException,
@@ -853,7 +853,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertNotNull(admin.get(3).findValue("Parent"));
     assertFalse(admin.get(3).findValue("Parent") instanceof NullNode);
     assertEquals("BE2", admin.get(3).findValue("Parent").get("DivisionCode").asText());
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyViaJoinTableSubtype() throws IOException,
@@ -867,7 +867,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(2, admin.size());
     assertEquals("98", admin.get(0).findValue("ID").asText());
 
-  };
+  }
 
   @Disabled // EclipsLinkProblem see https://bugs.eclipse.org/bugs/show_bug.cgi?id=529565
   @Test
@@ -882,7 +882,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(2, admin.size());
     assertEquals("98", admin.get(0).findValue("ID").asText());
 
-  };
+  }
 
   @Test
   public void testFilterMappedNavigationPropertyViaJoinTableSubtype() throws IOException,
@@ -896,7 +896,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(1, admin.size());
     assertEquals("First Org.", admin.get(0).findValue("Name1").asText());
 
-  };
+  }
 
   @Test
   public void testFilterNavigationPropertyViaJoinTableCount() throws IOException,
@@ -910,7 +910,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(1, admin.size());
     assertEquals("98", admin.get(0).findValue("ID").asText());
 
-  };
+  }
 
   @Test
   public void testFilterMappedNavigationPropertyViaJoinTableFilter() throws IOException,
@@ -922,7 +922,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     helper.assertStatus(200);
     ArrayNode admin = helper.getValues();
     assertEquals(2, admin.size());
-  };
+  }
 
   @Test
   public void testFilterWithAllExpand() throws ODataException, IOException {

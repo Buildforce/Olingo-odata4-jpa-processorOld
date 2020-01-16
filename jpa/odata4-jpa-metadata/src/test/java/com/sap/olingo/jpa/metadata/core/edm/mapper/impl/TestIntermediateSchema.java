@@ -24,8 +24,7 @@ public class TestIntermediateSchema extends TestMappingRoot {
   @BeforeEach
   public void setup() {
     r = mock(Reflections.class);
-    when(r.getTypesAnnotatedWith(EdmEnumeration.class)).thenReturn(new HashSet<>(Arrays.asList(new Class<?>[] {
-        AbcClassification.class, AccessRights.class })));
+    when(r.getTypesAnnotatedWith(EdmEnumeration.class)).thenReturn(new HashSet<>(Arrays.asList(AbcClassification.class, AccessRights.class)));
   }
 
   @Test

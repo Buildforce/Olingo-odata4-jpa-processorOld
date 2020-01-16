@@ -82,7 +82,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testHeadersProvided() throws ODataJPAProcessorException, SerializerException, ODataException {
+  public void testHeadersProvided() throws ODataException {
     final Map<String, List<String>> headers = new HashMap<>();
 
     when(request.getAllHeaders()).thenReturn(headers);
@@ -100,8 +100,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testClaimsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testClaimsProvided() throws ODataException {
 
     final ODataRequest request = prepareSimpleRequest();
 
@@ -119,8 +118,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testGroupsProvided() throws ODataJPAProcessorException, SerializerException,
-      ODataException {
+  public void testGroupsProvided() throws ODataException {
 
     final ODataRequest request = prepareSimpleRequest();
 

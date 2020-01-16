@@ -8,5 +8,5 @@ public interface JPAODataCRUDContext extends JPAODataGetContext {
    * @param jpaCUDRequestHandler
    */
   @Deprecated
-  public void setCUDRequestHandler(final JPACUDRequestHandler jpaCUDRequestHandler);
+  void setCUDRequestHandler(final JPACUDRequestHandler jpaCUDRequestHandler);
 }

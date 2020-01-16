@@ -8,7 +8,7 @@ public interface JPAOperation {
 
    * @return The return or result parameter of the function
    */
-  public JPAOperationResultParameter getResultParameter();
+  JPAOperationResultParameter getResultParameter();
 
-  public CsdlReturnType getReturnType();
+  CsdlReturnType getReturnType();
 }

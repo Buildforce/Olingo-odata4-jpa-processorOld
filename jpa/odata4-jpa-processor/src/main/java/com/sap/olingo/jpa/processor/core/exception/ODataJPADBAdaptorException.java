@@ -15,7 +15,7 @@ public class ODataJPADBAdaptorException extends ODataJPAProcessException {
    */
   private static final long serialVersionUID = -7188499882306858747L;
 
-  public static enum MessageKeys implements ODataJPAMessageKey {
+  public enum MessageKeys implements ODataJPAMessageKey {
     PARAMETER_MISSING,
     NOT_SUPPORTED_SEARCH,
     PARAMETER_CONVERSION_ERROR,

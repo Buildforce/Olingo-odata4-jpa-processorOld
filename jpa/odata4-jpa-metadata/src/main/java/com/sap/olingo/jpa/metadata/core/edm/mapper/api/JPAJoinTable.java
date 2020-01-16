@@ -6,21 +6,21 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 
 public interface JPAJoinTable {
 
-  public String getTableName();
+  String getTableName();
 
-  public String getAlias(String dbFieldName);
+  String getAlias(String dbFieldName);
 
-  public String getInverseAlias(String dbFieldName);
+  String getInverseAlias(String dbFieldName);
 
-  public JPAEntityType getEntityType();
+  JPAEntityType getEntityType();
 
-  public List<JPAOnConditionItem> getJoinColumns() throws ODataJPAModelException;
+  List<JPAOnConditionItem> getJoinColumns() throws ODataJPAModelException;
 
   /**
    * Returns the list of inverse join columns with exchanged left/right order.
    * @return
    * @throws ODataJPAModelException
    */
-  public List<JPAOnConditionItem> getInversJoinColumns() throws ODataJPAModelException;
+  List<JPAOnConditionItem> getInversJoinColumns() throws ODataJPAModelException;
 
 }

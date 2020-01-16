@@ -10,7 +10,7 @@ public enum WrongType {
 
   private BigDecimal value;
 
-  private WrongType(BigDecimal value) {
+  WrongType(BigDecimal value) {
     this.value = value;
   }
 

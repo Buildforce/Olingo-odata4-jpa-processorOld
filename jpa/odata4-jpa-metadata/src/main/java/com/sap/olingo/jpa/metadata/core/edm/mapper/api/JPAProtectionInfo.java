@@ -10,23 +10,23 @@ public interface JPAProtectionInfo {
    * The protected attribute
    * @return
    */
-  public JPAAttribute getAttribute();
+  JPAAttribute getAttribute();
 
   /**
    * Path within the entity type to the attribute
    * @return
    */
-  public JPAPath getPath();
+  JPAPath getPath();
 
   /**
    * Claim names that shall be used to protect this attribute
    * @return
    */
-  public String getClaimName();
+  String getClaimName();
 
   /**
    * Returns the maintained wildcard setting.
    * @return
    */
-  public boolean supportsWildcards();
+  boolean supportsWildcards();
 }

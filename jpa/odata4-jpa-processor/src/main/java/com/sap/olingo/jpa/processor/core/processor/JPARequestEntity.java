@@ -18,51 +18,51 @@ public interface JPARequestEntity {
    * Returns all OData request header
    * @return an unmodifiable Map of header names/values
    */
-  public Map<String, List<String>> getAllHeader();
+  Map<String, List<String>> getAllHeader();
 
   /**
    * For the creation of a dependent entity an instance of the requested entity (root entity) is provided. <br> The
    * instance must not be merged
    * @return
    */
-  public Optional<Object> getBeforeImage();
+  Optional<Object> getBeforeImage();
 
   /**
    * Provides the given claims of a user
    * @return
    */
-  public Optional<JPAODataClaimProvider> getClaims();
+  Optional<JPAODataClaimProvider> getClaims();
 
   /**
    * List of attributes with pojo attributes name converted into JAVA types. In case the entity contains embedded
    * attributes these are given as maps themselves.<p>
    * @return
    */
-  public Map<String, Object> getData();
+  Map<String, Object> getData();
 
   /**
    * Provides an instance of the entity metadata
    * @return
    */
-  public JPAEntityType getEntityType();
+  JPAEntityType getEntityType();
 
   /**
    * Returns a list of given filed groups
    * @return
    */
-  public List<String> getGroups();
+  List<String> getGroups();
 
   /**
    * Contains the key attributes of the entity to be update or deleted. Returns an empty Map in case of create.
    * @return
    */
-  public Map<String, Object> getKeys();
+  Map<String, Object> getKeys();
 
   /**
    * Returns an instance utility service
    * @return
    */
-  public JPAModifyUtil getModifyUtil();
+  JPAModifyUtil getModifyUtil();
 
   /**
    * <a href=
@@ -70,7 +70,7 @@ public interface JPARequestEntity {
    * 11.4.2.2 Create Related Entities When Creating an Entity</a>
    * @return
    */
-  public Map<JPAAssociationPath, List<JPARequestEntity>> getRelatedEntities();
+  Map<JPAAssociationPath, List<JPARequestEntity>> getRelatedEntities();
 
   /**
    * <a href=
@@ -78,6 +78,6 @@ public interface JPARequestEntity {
    * 11.4.2.1 Link to Related Entities When Creating an Entity</a>
    * @return
    */
-  public Map<JPAAssociationPath, List<JPARequestLink>> getRelationLinks();
+  Map<JPAAssociationPath, List<JPARequestLink>> getRelationLinks();
 
 }

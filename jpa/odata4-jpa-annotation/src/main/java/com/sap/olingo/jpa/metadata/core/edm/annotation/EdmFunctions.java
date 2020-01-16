@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface EdmFunctions {
-  public abstract EdmFunction[] value();
+  EdmFunction[] value();
 }

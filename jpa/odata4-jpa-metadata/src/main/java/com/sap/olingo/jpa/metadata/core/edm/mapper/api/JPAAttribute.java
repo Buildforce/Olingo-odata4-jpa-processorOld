@@ -12,47 +12,47 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 
 public interface JPAAttribute extends JPAElement {
 
-  public <X, Y extends Object> AttributeConverter<X, Y> getConverter();
+  <X, Y extends Object> AttributeConverter<X, Y> getConverter();
 
-  public EdmPrimitiveTypeKind getEdmType() throws ODataJPAModelException;
+  EdmPrimitiveTypeKind getEdmType() throws ODataJPAModelException;
 
-  public CsdlAbstractEdmItem getProperty() throws ODataJPAModelException;
+  CsdlAbstractEdmItem getProperty() throws ODataJPAModelException;
 
-  public JPAStructuredType getStructuredType() throws ODataJPAModelException;
+  JPAStructuredType getStructuredType() throws ODataJPAModelException;
 
   /**
    * Returns a list of names of the claims that shall be matched with this property
    * @return
    */
-  public Set<String> getProtectionClaimNames();
+  Set<String> getProtectionClaimNames();
 
   /**
    * Provides a List of path to the protected attributed
    * @return
    * @throws ODataJPAModelException
    */
-  public List<String> getProtectionPath(String claimName) throws ODataJPAModelException;
+  List<String> getProtectionPath(String claimName) throws ODataJPAModelException;
 
-  public Class<?> getType();
+  Class<?> getType();
 
-  public boolean isAssociation();
+  boolean isAssociation();
 
   /**
    * True is a to n association is involved
    * @return
    */
-  public boolean isCollection();
+  boolean isCollection();
 
-  public boolean isComplex();
+  boolean isComplex();
 
-  public boolean isEnum();
+  boolean isEnum();
 
-  public boolean isEtag();
+  boolean isEtag();
 
-  public boolean isKey();
+  boolean isKey();
 
-  public boolean isSearchable();
+  boolean isSearchable();
 
-  public boolean hasProtection();
+  boolean hasProtection();
 
 }

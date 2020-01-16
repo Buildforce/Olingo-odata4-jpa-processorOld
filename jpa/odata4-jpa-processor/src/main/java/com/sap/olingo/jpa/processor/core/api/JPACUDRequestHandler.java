@@ -16,7 +16,7 @@ public interface JPACUDRequestHandler {
    * @param em
    * @throws ODataJPAProcessException
    */
-  public void deleteEntity(final JPARequestEntity requestEntity, final EntityManager em)
+  void deleteEntity(final JPARequestEntity requestEntity, final EntityManager em)
       throws ODataJPAProcessException;
 
   /**
@@ -28,7 +28,7 @@ public interface JPACUDRequestHandler {
    * following the same rules as jpaAttributes
    * @throws ODataJPAProcessException
    */
-  public Object createEntity(final JPARequestEntity requestEntity, final EntityManager em)
+  Object createEntity(final JPARequestEntity requestEntity, final EntityManager em)
       throws ODataJPAProcessException;
 
   /**
@@ -61,8 +61,8 @@ public interface JPACUDRequestHandler {
    * It must not be null. Even if nothing was changed => update is idempotent
    * @throws ODataJPAProcessException
    */
-  public JPAUpdateResult updateEntity(final JPARequestEntity requestEntity, final EntityManager em,
-      final HttpMethod httpMethod) throws ODataJPAProcessException;
+  JPAUpdateResult updateEntity(final JPARequestEntity requestEntity, final EntityManager em,
+                               final HttpMethod httpMethod) throws ODataJPAProcessException;
 
   /**
    * Hook that is called after all changes of one transaction have been processed. The method shall enable a check of
@@ -70,5 +70,5 @@ public interface JPACUDRequestHandler {
    * request (batch request or deep-insert) and consistency constrains exist between them.
    * @throws ODataJPAProcessException
    */
-  public void validateChanges(final EntityManager em) throws ODataJPAProcessException;
+  void validateChanges(final EntityManager em) throws ODataJPAProcessException;
 }

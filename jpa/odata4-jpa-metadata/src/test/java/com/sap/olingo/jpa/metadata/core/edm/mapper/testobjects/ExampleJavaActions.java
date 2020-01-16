@@ -68,7 +68,7 @@ public class ExampleJavaActions implements ODataAction {
 
   @EdmAction(name = "", returnType = @ReturnType(type = ChangeInformation.class))
   public List<ChangeInformation> returnEmbeddableCollection() {
-    return Arrays.asList(new ChangeInformation[] { new ChangeInformation() });
+    return Arrays.asList(new ChangeInformation());
   }
 
   @EdmAction(name = "")

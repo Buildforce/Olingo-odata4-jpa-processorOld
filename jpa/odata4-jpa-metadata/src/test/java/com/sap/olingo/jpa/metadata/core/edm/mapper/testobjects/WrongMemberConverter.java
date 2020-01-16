@@ -18,7 +18,7 @@ public class WrongMemberConverter implements AttributeConverter<WrongMember[], I
     if (dbData == null)
       return null;
     final List<WrongMember> accesses = new ArrayList<>();
-    for (WrongMember e : Arrays.asList(WrongMember.values())) {
+    for (WrongMember e : WrongMember.values()) {
       if (e.getValue() == dbData)
         accesses.add(e);
     }

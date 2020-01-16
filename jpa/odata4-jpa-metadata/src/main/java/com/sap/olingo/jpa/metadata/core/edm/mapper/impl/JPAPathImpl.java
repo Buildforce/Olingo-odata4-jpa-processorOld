@@ -50,9 +50,8 @@ final class JPAPathImpl implements JPAPath {
       if (other.alias != null) return false;
     } else if (!alias.equals(other.alias)) return false;
     if (pathElements == null) {
-      if (other.pathElements != null) return false;
-    } else if (!pathElements.equals(other.pathElements)) return false;
-    return true;
+        return other.pathElements == null;
+    } else return pathElements.equals(other.pathElements);
   }
 
   /*

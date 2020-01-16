@@ -470,7 +470,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     JPAEntityType naviStartType;
     try {
       if (naviStart instanceof UriResourceEntitySet)
-        naviStartType = sd.getEntity(((UriResourceEntitySet) naviStart).getType());
+        naviStartType = sd.getEntity(naviStart.getType());
       else
         naviStartType = sd.getEntity(((UriResourceNavigation) naviStart).getProperty().getType());
       return naviStartType.getAssociationPath(associationName.toString());

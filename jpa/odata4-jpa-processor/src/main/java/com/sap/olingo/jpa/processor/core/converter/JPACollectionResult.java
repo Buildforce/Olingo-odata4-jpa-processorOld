@@ -12,7 +12,7 @@ public interface JPACollectionResult extends JPAExpandResult {
    * @param key
    * @return
    */
-  public Collection<Object> getPropertyCollection(final String key);
+  Collection<Object> getPropertyCollection(final String key);
 
-  public JPAAssociationPath getAssociation();
+  JPAAssociationPath getAssociation();
 }

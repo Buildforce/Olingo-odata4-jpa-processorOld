@@ -66,7 +66,7 @@ public class JPATupleCollectionConverter extends JPATupleResultConverter {
             collection.add(value);
           } else {
             collection.add(convertPrimitiveCollectionAttribute(row.get(jpaResult.getAssociation().getAlias()),
-                (JPACollectionAttribute) attribute));
+                    attribute));
           }
         }
         result.put(tuple.getKey(), collection);

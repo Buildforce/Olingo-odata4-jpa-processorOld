@@ -55,8 +55,8 @@ public class TestJPATupleChildConverterCompoundKey extends TestBase {
     HashMap<String, Object> result;
 
     result = new HashMap<>();
-    result.put("BusinessPartnerID", new String("3"));
-    result.put("RoleCategory", new String("C"));
+    result.put("BusinessPartnerID", "3");
+    result.put("RoleCategory", "C");
     jpaQueryResult.add(new TupleDouble(result));
 
     uriHelper.setKeyPredicates(keyPredicates, "BusinessPartnerID");
@@ -89,10 +89,10 @@ public class TestJPATupleChildConverterCompoundKey extends TestBase {
     HashMap<String, Object> result;
 
     result = new HashMap<>();
-    result.put("CodePublisher", new String("ISO"));
-    result.put("CodeID", new String("3166-1"));
-    result.put("DivisionCode", new String("DEU"));
-    result.put("Language", new String("en"));
+    result.put("CodePublisher", "ISO");
+    result.put("CodeID", "3166-1");
+    result.put("DivisionCode", "DEU");
+    result.put("Language", "en");
     jpaQueryResult.add(new TupleDouble(result));
     uriHelper.setKeyPredicates(keyPredicates, "DivisionCode");
     keyPredicates.put("DEU", "CodePublisher='ISO',CodeID='3166-1',DivisionCode='DEU',Language='en'");

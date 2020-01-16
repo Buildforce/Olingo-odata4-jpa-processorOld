@@ -26,7 +26,7 @@ public class IntermediateOperationHelper {
   static Constructor<?> determineConstructor(final Method javaFunction) throws ODataJPAModelException {
     Constructor<?> result = null;
     Constructor<?>[] constructors = javaFunction.getDeclaringClass().getConstructors();
-    for (Constructor<?> constructor : Arrays.asList(constructors)) {
+    for (Constructor<?> constructor : constructors) {
       Parameter[] parameters = constructor.getParameters();
       if (parameters.length == 0)
         result = constructor;
@@ -42,7 +42,7 @@ public class IntermediateOperationHelper {
   }
 
   static boolean isCollection(Class<?> declaredReturnType) {
-    for (Class<?> inter : Arrays.asList(declaredReturnType.getInterfaces())) {
+    for (Class<?> inter : declaredReturnType.getInterfaces()) {
       if (inter == Collection.class)
         return true;
     }

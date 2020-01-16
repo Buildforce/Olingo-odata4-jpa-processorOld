@@ -7,12 +7,12 @@ public interface JPAJavaOperation {
   /**
    * @return The Method that implements a function
    */
-  public Method getMethod();
+  Method getMethod();
 
   /**
    *
 
    * @return The constructor to be used to create a new instance
    */
-  public Constructor<?> getConstructor();
+  Constructor<?> getConstructor();
 }

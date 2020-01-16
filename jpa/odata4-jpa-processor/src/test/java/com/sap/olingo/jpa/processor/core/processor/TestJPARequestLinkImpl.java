@@ -42,7 +42,7 @@ public class TestJPARequestLinkImpl {
 
   @Disabled
   @Test
-  public void testCreateMultipleStringKeysChildren() throws ODataJPAModelException, ODataException {
+  public void testCreateMultipleStringKeysChildren() throws ODataException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -57,7 +57,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateMultipleStringKeysParent() throws ODataJPAModelException, ODataException {
+  public void testCreateMultipleStringKeysParent() throws ODataException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -73,7 +73,7 @@ public class TestJPARequestLinkImpl {
 
   @Disabled
   @Test
-  public void testCreateMultipleStringValuesChildren() throws ODataJPAModelException, ODataException {
+  public void testCreateMultipleStringValuesChildren() throws ODataException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -89,7 +89,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateMultipleStringValuesParent() throws ODataJPAModelException, ODataException {
+  public void testCreateMultipleStringValuesParent() throws ODataException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -105,7 +105,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateSingleStringKey() throws ODataJPAModelException, ODataException {
+  public void testCreateSingleStringKey() throws ODataException {
     String link = "BusinessPartners('123456')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -117,7 +117,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateSingleStringValue() throws ODataJPAModelException, ODataException {
+  public void testCreateSingleStringValue() throws ODataException {
     String link = "BusinessPartners('123456')";
     cut = new JPARequestLinkImpl(path, link, helper);
     completeJPAPath();

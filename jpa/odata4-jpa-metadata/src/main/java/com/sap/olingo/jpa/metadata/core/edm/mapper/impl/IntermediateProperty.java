@@ -116,7 +116,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
 
   @Override
   public JPAStructuredType getStructuredType() {
-    return type == null ? null : type;
+    return type;
   }
 
   @Override
@@ -454,9 +454,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
   private boolean isLob() {
     if (jpaAttribute != null) {
       final AnnotatedElement annotatedElement = (AnnotatedElement) jpaAttribute.getJavaMember();
-      if (annotatedElement != null && annotatedElement.getAnnotation(Lob.class) != null) {
-        return true;
-      }
+        return annotatedElement != null && annotatedElement.getAnnotation(Lob.class) != null;
     }
     return false;
   }

@@ -52,7 +52,7 @@ public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
     final StringBuilder builder = new StringBuilder();
     final Formatter f = new Formatter(builder, locale);
 
-    f.format(message, (Object[]) parameters);
+    f.format(message, parameters);
     f.close();
     return builder.toString();
   }

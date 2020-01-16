@@ -329,7 +329,7 @@ public final class Util {
         if (((UriResourceEntitySet) naviStart).getTypeFilterOnEntry() != null)
           naviStartType = sd.getEntity(((UriResourceEntitySet) naviStart).getTypeFilterOnEntry());
         else
-          naviStartType = sd.getEntity(((UriResourceEntitySet) naviStart).getType());
+          naviStartType = sd.getEntity(naviStart.getType());
       else if (naviStart instanceof UriResourceNavigation)
         if (((UriResourceNavigation) naviStart).getTypeFilterOnEntry() != null)
         naviStartType = sd.getEntity(((UriResourceNavigation) naviStart).getTypeFilterOnEntry());

@@ -103,7 +103,7 @@ class IntermediateJavaFunction extends IntermediateFunction implements JPAJavaFu
   @Override
   protected List<CsdlParameter> determineEdmInputParameter() throws ODataJPAModelException {
     List<CsdlParameter> parameters = new ArrayList<>();
-    for (Parameter declaredParameter : Arrays.asList(javaFunction.getParameters())) {
+    for (Parameter declaredParameter : javaFunction.getParameters()) {
       CsdlParameter parameter = new CsdlParameter();
       EdmParameter definedParameter = declaredParameter.getAnnotation(EdmParameter.class);
       parameter.setName(nameBuilder.buildPropertyName(definedParameter.name()));

@@ -31,7 +31,7 @@ public class TestFunctionReturnType implements ODataFunction {
 
   @EdmFunction(name = "ListOfPrimitiveValues", returnType = @ReturnType(type = Integer.class))
   public List<Integer> listOfPrimitiveValues(@EdmParameter(name = "A") Integer a) {
-    return Arrays.asList(new Integer[] { a, a / 2 });
+    return Arrays.asList(a, a / 2);
   }
 
   @EdmFunction(name = "ComplexType", returnType = @ReturnType)
@@ -50,7 +50,7 @@ public class TestFunctionReturnType implements ODataFunction {
     admin1.setCreated(new ChangeInformation(user, new Date(LocalDate.now().toEpochDay() * milliPerDay)));
     AdministrativeInformation admin2 = new AdministrativeInformation();
     admin2.setUpdated(new ChangeInformation(user, new Date(LocalDate.now().toEpochDay() * milliPerDay)));
-    return Arrays.asList(new AdministrativeInformation[] { admin1, admin2 });
+    return Arrays.asList(admin1, admin2);
   }
 
   @EdmFunction(name = "EntityType", returnType = @ReturnType)
@@ -68,7 +68,7 @@ public class TestFunctionReturnType implements ODataFunction {
 
   @EdmFunction(name = "ListOfEntityType", returnType = @ReturnType(type = AdministrativeDivision.class))
   public List<AdministrativeDivision> listOfEntityType(@EdmParameter(name = "A") Integer a) {
-    return Arrays.asList(new AdministrativeDivision[] { entityType(a), entityType(a / 2) });
+    return Arrays.asList(entityType(a), entityType(a / 2));
   }
 
   @EdmFunction(name = "ConvertBirthday", returnType = @ReturnType)
