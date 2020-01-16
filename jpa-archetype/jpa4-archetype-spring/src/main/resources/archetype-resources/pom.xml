@@ -16,7 +16,7 @@
 	</parent>
 
 	<properties>
-		<jpa-processor>0.3.7-SNAPSHOT</jpa-processor>
+		<jpa-processor>0.3.8</jpa-processor>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -68,12 +68,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
-			<artifactId>odata-jpa-processor</artifactId>
+			<artifactId>odata4-jpa-processor</artifactId>
 			<version>${jpa-processor}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
-			<artifactId>odata-jpa-spring-support</artifactId>
+			<artifactId>odata4-jpa-spring-support</artifactId>
 			<version>${jpa-processor}</version>
 		</dependency>
 
