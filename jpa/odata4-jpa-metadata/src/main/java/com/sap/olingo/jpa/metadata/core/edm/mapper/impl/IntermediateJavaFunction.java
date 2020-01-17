@@ -145,7 +145,8 @@ class IntermediateJavaFunction extends IntermediateFunction implements JPAJavaFu
       edmResultType.setPrecision(definedReturnType.precision());
     if (definedReturnType.scale() >= 0)
       edmResultType.setScale(definedReturnType.scale());
-    if (definedReturnType.srid() != null && !definedReturnType.srid().srid().isEmpty()) {
+    definedReturnType.srid();
+    if (!definedReturnType.srid().srid().isEmpty()) {
       final SRID srid = SRID.valueOf(definedReturnType.srid().srid());
       srid.setDimension(definedReturnType.srid().dimension());
       edmResultType.setSrid(srid);

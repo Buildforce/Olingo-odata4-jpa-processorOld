@@ -24,7 +24,7 @@ public abstract class JPASerializePrimitiveAbstract implements JPASerializer, JP
   protected final JPAPrimitivePropertyInfo determinePrimitiveProperty(final EntityCollection result,
       final List<UriResource> uriResources) {
     Property property = null;
-    Object value = null;
+    Object value;
 
     final StringBuilder path = new StringBuilder();
 

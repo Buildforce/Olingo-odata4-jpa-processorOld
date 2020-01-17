@@ -94,7 +94,7 @@ final class JPASerializeComplex implements JPAOperationSerializer {
   }
 
   private Property determineProperty(final EdmEntitySet targetEdmEntitySet, final EntityCollection result) {
-    UriResourceProperty uriProperty = null;
+    UriResourceProperty uriProperty;
     Property property = null;
 
     boolean found = false;

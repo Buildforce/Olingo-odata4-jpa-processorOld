@@ -46,7 +46,7 @@ public final class JPACountRequestProcessor extends JPAAbstractGetRequestProcess
   protected final EntityCollection countEntities(final ODataRequest request, final UriInfoResource uriInfo)
       throws ODataException {
 
-    JPAJoinQuery query = null;
+    JPAJoinQuery query;
     try {
       query = new JPAJoinQuery(odata, sessionContext, request.getAllHeaders(), requestContext);
     } catch (ODataJPAModelException e) {
@@ -55,7 +55,7 @@ public final class JPACountRequestProcessor extends JPAAbstractGetRequestProcess
     }
 
     final EntityCollection entityCollection = new EntityCollection();
-    entityCollection.setCount(Integer.valueOf(query.countResults().intValue()));
+    entityCollection.setCount(query.countResults().intValue());
     return entityCollection;
   }
 }

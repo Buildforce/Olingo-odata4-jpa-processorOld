@@ -290,7 +290,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
 
     final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
 
-    javax.persistence.criteria.Expression<Boolean> whereCondition = null;
+    javax.persistence.criteria.Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
     try {
       whereCondition = createKeyWhere(navigationInfo);

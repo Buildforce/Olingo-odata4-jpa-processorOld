@@ -137,7 +137,7 @@ public class TestStandardMethodsOfTestModel {
         arguments(com.sap.olingo.jpa.processor.core.errormodel.AdministrativeInformation.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.ChangeInformation.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.CollectionAttributeProtected.class),
-        arguments(com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedNoPath.class),
+        arguments(com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedNoPath.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedWrongPath.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.EmbeddedKeyPartOfGroup.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.NavigationAttributeProtected.class),

@@ -154,7 +154,7 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
   public List<JPAPath> getLeftColumnsList() throws ODataJPAModelException {
     final List<JPAPath> result = new ArrayList<>();
     for (final IntermediateJoinColumn column : this.joinColumns) {
-      JPAPath columnPath = null;
+      JPAPath columnPath;
       if (joinTable != null || (cardinality == PersistentAttributeType.MANY_TO_ONE)) {
         columnPath = sourceType.getPathByDBField(column.getName());
 
@@ -187,7 +187,7 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
   public List<JPAPath> getRightColumnsList() throws ODataJPAModelException {
     final List<JPAPath> result = new ArrayList<>();
     for (final IntermediateJoinColumn column : this.joinColumns) {
-      JPAPath columnPath = null;
+      JPAPath columnPath;
       if (cardinality == PersistentAttributeType.MANY_TO_ONE)
         columnPath = targetType.getPathByDBField(column.getReferencedColumnName());
       else

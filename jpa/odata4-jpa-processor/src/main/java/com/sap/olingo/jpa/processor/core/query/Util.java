@@ -144,7 +144,7 @@ public final class Util {
       for (int i = resources.size() - 1; i >= 0; i--) {
         final UriResource resourceItem = resources.get(i);
         if (resourceItem instanceof UriResourceEntitySet || resourceItem instanceof UriResourceNavigation)
-          return i == resources.size() ? -1 : i + 1;
+          return i + 1;
       }
     }
     return -1;
@@ -234,9 +234,9 @@ public final class Util {
           final List<UriResource> targetResourceList = item.getResourcePath().getUriResourceParts();
           associationName = new StringBuilder();
           associationName.append(associationNamePrefix);
-          UriResource targetResourceItem = null;
-          for (int i = 0; i < targetResourceList.size(); i++) {
-            targetResourceItem = targetResourceList.get(i);
+          UriResource targetResourceItem;
+          for (UriResource uriResource : targetResourceList) {
+            targetResourceItem = uriResource;
             if (targetResourceItem.getKind() != UriResourceKind.navigationProperty) {
               associationName.append(((UriResourceProperty) targetResourceItem).getProperty().getName());
               associationName.append(JPAAssociationPath.PATH_SEPARATOR);

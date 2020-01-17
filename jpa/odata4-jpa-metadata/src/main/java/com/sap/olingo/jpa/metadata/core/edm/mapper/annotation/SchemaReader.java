@@ -53,7 +53,7 @@ public class SchemaReader {
   private byte[] loadXML(String path) throws IOException, ODataJPAModelException {
 
     InputStream i = null;
-    byte[] image = null;
+    byte[] image;
     URL u = this.getClass().getClassLoader().getResource(path);
     if (u == null)
       throw new ODataJPAModelException(MessageKeys.FILE_NOT_FOUND, path);

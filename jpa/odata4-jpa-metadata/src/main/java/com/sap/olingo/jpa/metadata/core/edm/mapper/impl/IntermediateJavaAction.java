@@ -201,7 +201,8 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
     edmResultType.setPrecision(nullIfNotSet(definedReturnType.precision()));
     edmResultType.setScale(nullIfNotSet(definedReturnType.scale()));
     edmResultType.setMaxLength(nullIfNotSet(definedReturnType.maxLength()));
-    if (definedReturnType.srid() != null && !definedReturnType.srid().srid().isEmpty()) {
+    definedReturnType.srid();
+    if (!definedReturnType.srid().srid().isEmpty()) {
       final SRID srid = SRID.valueOf(definedReturnType.srid().srid());
       srid.setDimension(definedReturnType.srid().dimension());
       edmResultType.setSrid(srid);
@@ -216,8 +217,8 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
   }
 
   private String setEntitySetPath() throws ODataJPAModelException {
-    if (jpaAction.entitySetPath() == null || jpaAction.entitySetPath().isEmpty())
-      return null;
+    jpaAction.entitySetPath();
+    if (jpaAction.entitySetPath().isEmpty()) return null;
     if (!jpaAction.isBound())
       // Entity Set Path shall only provided for bound actions. Action method %1$s of class %2$s is unbound.
       throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.ACTION_UNBOUND_ENTITY_SET,

@@ -116,7 +116,7 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 
     List<JPAOnConditionItem> conditionItems = determineJoinColumns();
     createSelectClause(query, queryRoot, conditionItems);
-    Expression<Boolean> whereCondition = null;
+    Expression<Boolean> whereCondition;
     whereCondition = addWhereClause(
         createWhereByAssociation(from, queryRoot, conditionItems),
         createWhereByKey(queryRoot, null, this.keyPredicates, jpaEntity));

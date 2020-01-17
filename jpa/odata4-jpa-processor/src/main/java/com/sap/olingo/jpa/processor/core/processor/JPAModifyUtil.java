@@ -3,10 +3,7 @@ package com.sap.olingo.jpa.processor.core.processor;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 
@@ -100,8 +97,8 @@ public final class JPAModifyUtil {
    * instance or the corresponding type has a parameter less constructor.
    *
 
-   * @param parentInstance
-   * @param newInstance
+   * @param sourceInstance
+   * @param targetInstance
    * @param pathInfo
    * @throws ODataJPAProcessorException
    */
@@ -345,9 +342,9 @@ public final class JPAModifyUtil {
   private void handleInvocationTargetException(JPAStructuredType st, final String attributeName, Exception e)
       throws ODataJPAInvocationTargetException, ODataJPAProcessorException {
 
-    String pathPart = null;
+    String pathPart;
     try {
-      pathPart = st.getAttribute(attributeName).getExternalName();
+      pathPart = Objects.requireNonNull(st.getAttribute(attributeName)).getExternalName();
       if (this.st != null && this.st.equals(st)) {
         String path = st.getExternalName() + JPAPath.PATH_SEPARATOR + pathPart + JPAPath.PATH_SEPARATOR
             + ((ODataJPAInvocationTargetException) e).getPath();

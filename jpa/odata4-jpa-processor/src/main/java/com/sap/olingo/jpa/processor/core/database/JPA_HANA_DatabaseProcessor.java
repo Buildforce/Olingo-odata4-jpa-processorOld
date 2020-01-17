@@ -77,8 +77,8 @@ final class JPA_HANA_DatabaseProcessor implements JPAODataDatabaseProcessor {
      * "org.eclipse.persistence.internal.jpa.querydef.FunctionExpressionImpl cannot be cast to
      * org.eclipse.persistence.internal.jpa.querydef.CompoundExpressionImpl"
      */
-    List<JPAPath> searchableAttributes = null;
-    JPAPath keyPath = null;
+    List<JPAPath> searchableAttributes;
+    JPAPath keyPath;
     try {
       searchableAttributes = entityType.getSearchablePath();
       final List<JPAPath> keyPathList = entityType.getKeyPath();

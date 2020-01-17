@@ -44,14 +44,15 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 class IntermediateCollectionProperty extends IntermediateProperty implements JPACollectionAttribute,
     JPAAssociationAttribute {
   private final IntermediateStructuredType sourceType;
-  private JPAJoinTable joinTable; // lazy builded
-  private JPAAssociationPathImpl associationPath; // lazy builded
+  private JPAJoinTable joinTable; // lazy build
+  private JPAAssociationPathImpl associationPath; // lazy build
   private final JPAPath path;
 
   /**
    * Copy with in new context
-   * @param jpaElement
-   * @param intermediateStructuredType
+   * @param original
+   * @param parent
+   * @param pathRoot
    * @throws ODataJPAModelException
    */
   public IntermediateCollectionProperty(final IntermediateCollectionProperty original,

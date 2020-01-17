@@ -57,8 +57,8 @@ public class JPAOperationConverter {
           return (Expression<T>) cb.prod(jpaOperator.getLeft(cb), jpaOperator.getRightAsExpression());
       case MOD:
         if (jpaOperator.getRight() instanceof JPALiteralOperator)
-          return (Expression<T>) cb.mod(jpaOperator.getLeftAsIntExpression(), new Integer(jpaOperator.getRightAsNumber(
-              cb).toString()));
+          return (Expression<T>) cb.mod(jpaOperator.getLeftAsIntExpression(), Integer.valueOf(jpaOperator.getRightAsNumber(
+                  cb).toString()));
         else
           return (Expression<T>) cb.mod(jpaOperator.getLeftAsIntExpression(), jpaOperator.getRightAsIntExpression());
 
@@ -113,31 +113,24 @@ public class JPAOperationConverter {
         return cb.length((Expression<String>) (jpaFunction.getParameter(0).get()));
       case CONTAINS:
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
-          final StringBuilder contains = new StringBuilder();
-          contains.append('%');
-          contains.append((String) jpaFunction.getParameter(1).get());
-          contains.append('%');
-          return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), contains.toString());
+          String contains = '%' + (String) jpaFunction.getParameter(1).get() + '%';
+          return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), contains);
         } else {
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()),
               (Expression<String>) ((JPAMethodCall) jpaFunction.getParameter(1)).get("%", "%"));
         }
       case ENDSWITH:
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
-          final StringBuilder ends = new StringBuilder();
-          ends.append('%');
-          ends.append((String) jpaFunction.getParameter(1).get());
-          return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), ends.toString());
+          String ends = '%' + (String) jpaFunction.getParameter(1).get();
+          return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), ends);
         } else {
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()),
               (Expression<String>) ((JPAMethodCall) jpaFunction.getParameter(1)).get("%", ""));
         }
       case STARTSWITH:
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
-          final StringBuilder starts = new StringBuilder();
-          starts.append((String) jpaFunction.getParameter(1).get());
-          starts.append('%');
-          return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), starts.toString());
+          String starts = (String) jpaFunction.getParameter(1).get() + '%';
+          return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), starts);
         } else {
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()),
               (Expression<String>) ((JPAMethodCall) jpaFunction.getParameter(1)).get("", "%"));
@@ -219,7 +212,7 @@ public class JPAOperationConverter {
       else
         return (Expression<Integer>) jpaFunction.getParameter(parameterIndex).get();
     } else
-      return cb.literal(new Integer(parameter.get().toString()) + offset);
+      return cb.literal(Integer.parseInt(parameter.get().toString()) + offset);
   }
 
   private Expression<Boolean> equalExpression(

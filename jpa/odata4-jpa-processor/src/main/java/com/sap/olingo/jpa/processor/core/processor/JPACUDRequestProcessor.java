@@ -126,7 +126,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     final JPARequestEntity requestEntity = createRequestEntity(edmEntitySetInfo, odataEntity, request.getAllHeaders());
 
     // Create entity
-    Object result = null;
+    Object result;
     JPAODataTransaction ownTransaction = null;
     final boolean foreignTransaction = requestContext.getTransactionFactory().hasActiveTransaction();
     if (!foreignTransaction)
@@ -244,7 +244,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     final JPARequestEntity requestEntity = createRequestEntity(edmEntitySetInfo, odataEntity, request.getAllHeaders());
 
     // Update entity
-    JPAUpdateResult updateResult = null;
+    JPAUpdateResult updateResult;
 
     JPAODataTransaction ownTransaction = null;
     final boolean foreignTransaction = requestContext.getTransactionFactory().hasActiveTransaction();
@@ -673,7 +673,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       if (updateResult.getModifiedEntity() == null)
         throw new ODataJPAProcessorException(MessageKeys.RETURN_MISSING_ENTITY, HttpStatusCode.INTERNAL_SERVER_ERROR);
 
-      Entity updatedEntity = null;
+      Entity updatedEntity;
       JPAAssociationPath path;
       try {
         path = requestEntity.getEntityType().getAssociationPath(edmEntitySetInfo

@@ -365,8 +365,8 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
 
     String[] pathSegments = internalPath.split(JPAPath.PATH_SEPARATOR);
     StringBuilder externalPath = new StringBuilder();
-    for (final String segement : pathSegments) {
-      externalPath.append(nameBuilder.buildPropertyName(segement));
+    for (final String segment : pathSegments) {
+      externalPath.append(nameBuilder.buildPropertyName(segment));
       externalPath.append(JPAPath.PATH_SEPARATOR);
     }
     externalPath.deleteCharAt(externalPath.length() - 1);

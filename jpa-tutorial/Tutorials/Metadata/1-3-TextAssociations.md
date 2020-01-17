@@ -72,12 +72,9 @@ public class AdministrativeDivisionDescriptionKey implements Serializable {
         } else if (!divisionCode.equals(other.divisionCode))
             return false;
         if (language == null) {
-            if (other.language != null)
-                return false;
-        } else if (!language.equals(other.language))
-            return false;
-        return true;
-    }
+            return other.language == null;
+        } else return language.equals(other.language);
+        }
 }
 ```
 Please note, that we became a little more lazy and declared the class as _@Embeddable_. This will allow us to simplify _AdministrativeDivisionDescription_ as we do not need to declare the key attributes again. Instead of that we annotate the key attribute with _@EmbeddedId_:

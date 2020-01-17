@@ -48,7 +48,7 @@ public class JPAExampleCUDRequestHandler extends JPAAbstractCUDRequestHandler {
   public Object createEntity(final JPARequestEntity requestEntity, final EntityManager em)
       throws ODataJPAProcessException {
 
-    Object instance = null;
+    Object instance;
 
     if (requestEntity.getKeys().isEmpty()) {
       // POST an Entity

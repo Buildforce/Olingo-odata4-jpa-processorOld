@@ -2,9 +2,10 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class InstanceRestrictionKey {
+public class InstanceRestrictionKey implements Serializable {
 
   @Column(name = "\"UserName\"", length = 60)
   private String username;

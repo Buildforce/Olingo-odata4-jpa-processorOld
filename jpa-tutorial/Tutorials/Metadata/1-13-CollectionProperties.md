@@ -28,7 +28,7 @@ public class Company extends BusinessPartner {
 The resulting metadata will look as follows:
 ```XML
 	<EntityType Name="Company" BaseType="Tutorial.BusinessPartner">
-		<Property Name="AbcClass" Type="Tutorial.ABCclassification"/>
+		<Property Name="AbcClass" Type="Tutorial.AbcClassification"/>
 		<Property Name="Comment" Type="Collection(Edm.String)" MaxLength="255"/>
 		<Property Name="Name2" Type="Edm.String" MaxLength="255"/>
 		<Property Name="Name1" Type="Edm.String" MaxLength="255"/>

@@ -14,8 +14,8 @@ package tutorial.model;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration()
-public enum ABCclassification {
-  A, B, C;
+public enum AbcClassification {
+  A, B, C
 }
 ```
 This enumeration is tagged with a `@EdmEnumeration` so it will be converted into an OData Enumeration, if it is found. As described in [Tutorial 1.8 Functions](1-8-Functions.md) it is necessary to provide the package name to look for the enumerations. Therefore it is required to change our Servlet as follows:
@@ -26,7 +26,7 @@ handler.getJPAODataContext().setTypePackage("tutorial.operations", "tutorial.mod
 ```
 With that we can already have a look at the metadata document, http://localhost:8080/Tutorial/Tutorial.svc/$metadata, which bases on the following mapping:
 
-![Mapping of ABCclassification](Metadata/MappingSimpleEnum.png)
+![Mapping of AbcClassification](Metadata/MappingSimpleEnum.png)
 
 As you can see all not given values are filled with default value, which are _false_ for _isFlags_, and _Edm.Int32_, so _Integer_, as _UnderlingType_. The numbering of the members determined via the _ordinal()_ method of the enumeration.
 
@@ -49,11 +49,11 @@ public class Company extends BusinessPartner {
 
 @Enumerated(value = EnumType.STRING)
 @Column(name = "\"ABCClass\"")
-private ABCclassification abcClass;
+private AbcClassification abcClass;
 ```
 If we have a look at the metadata again, we will find the following:
 
-![Mapping of ABCclassification](Metadata/MappingSimpleEnumCompany.png)
+![Mapping of AbcClassification](Metadata/MappingSimpleEnumCompany.png)
 ## Flag Based Enumeration
 
 Here we take over the example given in [Schema Definition Language Documentation](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752565). Our use-case is that we want to be able to get insights into the access rights of a Person. The rights should be  _Read_, _Write_, _Create_ or _Delete_. A person may have multiple right at the same time that's why we need members, which are flags. The flags shall be encoded as short values:
@@ -69,7 +69,7 @@ public enum AccessRights {
 
   private short value;
 
-  private AccessRights(short value) {
+  AccessRights(short value) {
     this.setValue(value);
   }
 

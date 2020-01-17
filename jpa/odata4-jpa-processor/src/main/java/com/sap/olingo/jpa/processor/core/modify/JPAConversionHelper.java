@@ -196,8 +196,8 @@ public class JPAConversionHelper {
       final List<Property> odataProperties) throws ODataJPAProcessException {
 
     final Map<String, Object> jpaAttributes = new HashMap<>();
-    String internalName = null;
-    Object jpaAttribute = null;
+    String internalName;
+    Object jpaAttribute;
     JPAPath path;
     for (Property odataProperty : odataProperties) {
       try {

@@ -81,7 +81,8 @@ class IntermediateJoinTable implements JPAJoinTable {
     if (inverseJoinColumns == null) {
       inverseJoinColumns = new ArrayList<>(jpaJoinTable.inverseJoinColumns().length);
       for (JoinColumn column : jpaJoinTable.inverseJoinColumns()) {
-        if (column.referencedColumnName() == null || column.referencedColumnName().isEmpty())
+        column.referencedColumnName();
+        if (column.referencedColumnName().isEmpty())
           if (jpaJoinTable.joinColumns().length > 1)
             throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.NOT_SUPPORTED_NO_IMPLICIT_COLUMNS,
                 intermediateProperty.getInternalName());
@@ -101,7 +102,8 @@ class IntermediateJoinTable implements JPAJoinTable {
       joinColumns = new ArrayList<>(jpaJoinTable.inverseJoinColumns().length);
 
       for (JoinColumn column : jpaJoinTable.joinColumns()) {
-        if (column.referencedColumnName() == null || column.referencedColumnName().isEmpty())
+        column.referencedColumnName();
+        if (column.referencedColumnName().isEmpty())
           if (jpaJoinTable.joinColumns().length > 1)
             throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.NOT_SUPPORTED_NO_IMPLICIT_COLUMNS,
                 intermediateProperty.getInternalName());

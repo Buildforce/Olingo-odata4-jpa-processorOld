@@ -539,7 +539,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
 
   private Attribute<?, ?> findCorrespondingAssociation(final IntermediateStructuredType sourceType,
       final String sourceRelationshipName) {
-    Class<?> targetClass = null;
+    Class<?> targetClass;
 
     for (final Attribute<?, ?> jpaAttribute : jpaManagedType.getAttributes()) {
       if (jpaAttribute.getPersistentAttributeType() != null
@@ -673,7 +673,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
             for (final String claimName : attribute.getProtectionClaimNames()) {
               for (final String pathName : attribute.getProtectionPath(claimName)) {
                 final JPAPath path = this.getPath(pathName, false);
-                if (path == null) // Annotation EdmProtctedBy found at '%2$s' of '%1$s', but the given 'path' '%3$s'...
+                if (path == null) // Annotation EdmProtectedBy found at '%2$s' of '%1$s', but the given 'path' '%3$s'...
                   throw new ODataJPAModelException(COMPLEX_PROPERTY_WRONG_PROTECTION_PATH, attribute.getInternalName(),
                       this.getTypeClass().getSimpleName(), pathName);
                 protectedAttributes.add(new ProtectionInfo(path, claimName, attribute));

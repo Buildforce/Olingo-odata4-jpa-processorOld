@@ -434,7 +434,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
       final List<JPANavigationPropertyInfo> navigationInfo) throws ODataApplicationException {
 
     final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
-    javax.persistence.criteria.Expression<Boolean> whereCondition = null;
+    javax.persistence.criteria.Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
     try {
       whereCondition = createKeyWhere(navigationInfo);
@@ -761,7 +761,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     for (int i = 0; i < this.navigationInfo.size() - 1; i++) {
       final JPANavigationPropertyInfo naviInfo = this.navigationInfo.get(i);
 
-      EdmType castType = null;
+      EdmType castType;
       if (naviInfo.getUriResource() instanceof UriResourceNavigation)
         castType = ((UriResourceNavigation) naviInfo.getUriResource()).getTypeFilterOnEntry();
       else

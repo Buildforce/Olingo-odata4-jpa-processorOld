@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.errormodel.CollectionAttributeProtected;
-import com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedNoPath;
+import com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedNoPath;
 import com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedWrongPath;
 import com.sap.olingo.jpa.processor.core.errormodel.EmbeddedKeyPartOfGroup;
 import com.sap.olingo.jpa.processor.core.errormodel.KeyPartOfGroup;
@@ -89,7 +89,7 @@ public class TestIntermediateWrongAnnotation {
   @Test
   public void checkErrorOnProtectedComplexAttributeMissingPath() {
     final Attribute<?, ?> jpaAttribute = helper.getDeclaredAttribute(helper.getEntityType(
-        ComplextProtectedNoPath.class),
+        ComplexProtectedNoPath.class),
         "administrativeInformation");
 
     final ODataJPAModelException act = assertThrows(ODataJPAModelException.class,

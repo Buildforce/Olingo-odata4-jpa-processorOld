@@ -384,7 +384,7 @@ public class TestSchemaReader {
   }
 
   @Test
-  public void TestGetActionss() throws IOException, ODataJPAModelException {
+  public void TestGetActions() throws IOException, ODataJPAModelException {
     final List<CsdlAction> act = cut.getSchemas("annotations/Org.Olingo.Test.V1.xml")
         .get("Org.OData.Capabilities.V1").getActions();
     assertEquals(2, act.size());

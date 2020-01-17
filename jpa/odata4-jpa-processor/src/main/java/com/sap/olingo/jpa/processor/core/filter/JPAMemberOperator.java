@@ -66,7 +66,7 @@ public class JPAMemberOperator implements JPAOperator {
   private JPAPath determineAttributePath() throws ODataApplicationException {
 
     final String attributePath = Util.determinePropertyNavigationPath(member.getResourcePath().getUriResourceParts());
-    JPAPath selectItemPath = null;
+    JPAPath selectItemPath;
     try {
       selectItemPath = jpaEntityType.getPath(attributePath);
       if (selectItemPath == null && association != null) {

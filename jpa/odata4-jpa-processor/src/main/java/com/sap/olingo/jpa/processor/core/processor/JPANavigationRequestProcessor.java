@@ -73,7 +73,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
 
     final int handle = debugger.startRuntimeMeasurement(this, "retrieveData");
     // Create a JPQL Query and execute it
-    JPAJoinQuery query = null;
+    JPAJoinQuery query;
     try {
       query = new JPAJoinQuery(odata, sessionContext, request.getAllHeaders(), requestContext);
     } catch (ODataException e) {
