@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.IOException;
 
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -35,7 +36,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
   public void testNavigationToOwnEmptyPrimitiveProperty() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Persons('99')/BirthDay");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test
@@ -69,7 +70,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
   public void testNavigationToNotExistingComplexProperty() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Persons('97')/CommunicationData");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test
@@ -151,7 +152,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
   public void testNavigationToSimplePrimitiveGroupedPropertyNoGroups() throws IOException, ODataException {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf, "BusinessPartnerWithGroupss('1')/Country");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test
@@ -159,7 +160,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerWithGroupss('1')/CommunicationData");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test

@@ -44,8 +44,8 @@ public class TestJPAExpandQueryResult extends TestBase {
   private ExpandOption expand;
   private JPAODataRequestContextAccess requestContext;
   private TestHelper helper;
-  private HashMap<String, List<Tuple>> queryResult = new HashMap<>(1);
-  private List<Tuple> tuples = new ArrayList<>();
+  private final HashMap<String, List<Tuple>> queryResult = new HashMap<>(1);
+  private final List<Tuple> tuples = new ArrayList<>();
   private JPAEntityType et;
   private List<JPANavigationPropertyInfo> hops;
 

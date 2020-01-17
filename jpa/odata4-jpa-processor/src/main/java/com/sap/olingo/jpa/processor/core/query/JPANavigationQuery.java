@@ -69,7 +69,7 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
     this.association = association;
   }
 
-  public abstract <T extends Object> Subquery<T> getSubQueryExists(final Subquery<?> childQuery)
+  public abstract <T> Subquery<T> getSubQueryExists(final Subquery<?> childQuery)
       throws ODataApplicationException;
 
   @Override

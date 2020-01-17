@@ -71,15 +71,10 @@ import com.sap.olingo.jpa.processor.core.testmodel.User;
  *
  */
 public class TestStandardMethodsOfTestModel {
-
-  private final String expString = "TestString";
-  private final Integer expInteger = 20;
-  private final int expInt = 10;
   private final Boolean expBoolean = Boolean.TRUE;
   private final BigInteger expBigInt = new BigInteger("10");
   private final BigDecimal expDecimal = new BigDecimal("1.10");
   private final LocalDate expLocalDate = LocalDate.now();
-  private final long expLong = 15L;
   private final byte[] expByteArray = new byte[] { 1, 1, 1, 1 };
   private final Date expDate = Date.valueOf(expLocalDate);
   @SuppressWarnings("deprecation")
@@ -199,6 +194,10 @@ public class TestStandardMethodsOfTestModel {
 
   private Object getExpected(final Class<?> paramType) {
 
+    long expLong = 15L;
+    int expInt = 10;
+    Integer expInteger = 20;
+    String expString = "TestString";
     if (paramType == String.class)
       return expString;
     else if (paramType == Integer.class)

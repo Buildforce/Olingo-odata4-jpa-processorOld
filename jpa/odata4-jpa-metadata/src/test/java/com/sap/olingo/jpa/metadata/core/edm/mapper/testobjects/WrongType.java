@@ -8,7 +8,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 public enum WrongType {
   TEST(BigDecimal.valueOf(2L));
 
-  private BigDecimal value;
+  private final BigDecimal value;
 
   WrongType(BigDecimal value) {
     this.value = value;

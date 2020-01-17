@@ -78,7 +78,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
   }
 
   @Override
-  public <X, Y extends Object> AttributeConverter<X, Y> getConverter() {
+  public <X, Y> AttributeConverter<X, Y> getConverter() {
     return null;
   }
 

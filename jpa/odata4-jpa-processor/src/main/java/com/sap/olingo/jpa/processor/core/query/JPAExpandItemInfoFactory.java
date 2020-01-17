@@ -47,11 +47,9 @@ public final class JPAExpandItemInfoFactory {
     final ExpandOption expandOption = uriResourceInfo.getExpandOption();
 
     if (startResourceList != null && expandOption != null) {
-      final List<JPANavigationPropertyInfo> parentHops = grandParentHops;
-      final Map<JPAExpandItem, JPAAssociationPath> expandPath = Util.determineAssociations(sd, startResourceList,
-          expandOption);
+        final Map<JPAExpandItem, JPAAssociationPath> expandPath = Util.determineAssociations(sd, startResourceList, expandOption);
       for (final Entry<JPAExpandItem, JPAAssociationPath> item : expandPath.entrySet()) {
-        itemList.add(new JPAExpandItemInfo(sd, item.getKey(), item.getValue(), parentHops));
+        itemList.add(new JPAExpandItemInfo(sd, item.getKey(), item.getValue(), grandParentHops));
       }
     }
     return itemList;
@@ -62,14 +60,16 @@ public final class JPAExpandItemInfoFactory {
    * ../CollectionDeeps?$select=FirstLevel/SecondLevel
    * @param sd
    * @param uriResourceInfo
-   * @param optional
-   * @param parentHops
+   * @param grandParentHops
+   * @param groups
    * @return
    * @throws ODataApplicationException
    */
-  public List<JPACollectionItemInfo> buildCollectionItemInfo(final JPAServiceDocument sd,
-      final UriInfoResource uriResourceInfo, final List<JPANavigationPropertyInfo> grandParentHops,
-      Optional<JPAODataGroupProvider> groups) throws ODataApplicationException {
+  public List<JPACollectionItemInfo> buildCollectionItemInfo(
+          final JPAServiceDocument sd,
+          final UriInfoResource uriResourceInfo,
+          final List<JPANavigationPropertyInfo> grandParentHops,
+          Optional<JPAODataGroupProvider> groups) throws ODataApplicationException {
 
     final List<JPACollectionItemInfo> itemList = new ArrayList<>();
     final List<UriResource> startResourceList = uriResourceInfo.getUriResourceParts();

@@ -38,7 +38,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.TestDataConstants;
 public class TestIntermediateContainer extends TestMappingRoot {
   private static final String PACKAGE1 = "com.sap.olingo.jpa.metadata.core.edm.mapper.impl";
   private static final String PACKAGE2 = "com.sap.olingo.jpa.processor.core.testmodel";
-  private HashMap<String, IntermediateSchema> schemas = new HashMap<>();
+  private final HashMap<String, IntermediateSchema> schemas = new HashMap<>();
   private Set<EntityType<?>> etList;
   private IntermediateSchema schema;
 

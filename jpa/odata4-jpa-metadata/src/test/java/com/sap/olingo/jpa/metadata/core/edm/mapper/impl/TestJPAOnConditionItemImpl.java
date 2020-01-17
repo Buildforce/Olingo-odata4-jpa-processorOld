@@ -11,7 +11,6 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys;
 
 public class TestJPAOnConditionItemImpl {
-  private JPAOnConditionItemImpl cut;
 
   @Test
   public void checkThrowsExceptionOnMissingLeft() {
@@ -35,7 +34,7 @@ public class TestJPAOnConditionItemImpl {
   public void checkReturnProvidedValues() throws ODataJPAModelException {
     final JPAPath leftAttribute = mock(JPAPath.class);
     final JPAPath rightAttribute = mock(JPAPath.class);
-    cut = new JPAOnConditionItemImpl(leftAttribute, rightAttribute);
+    JPAOnConditionItemImpl cut = new JPAOnConditionItemImpl(leftAttribute, rightAttribute);
     assertEquals(leftAttribute, cut.getLeftPath());
     assertEquals(rightAttribute, cut.getRightPath());
   }

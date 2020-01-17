@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class HttpServletResponseDouble implements HttpServletResponse {
 
   private int setStatus;
-  private ServletOutputStream outputStream = new OutPutStream();
+  private final ServletOutputStream outputStream = new OutPutStream();
 
   @Override
   public String getCharacterEncoding() {
@@ -212,11 +212,11 @@ public class HttpServletResponseDouble implements HttpServletResponse {
   }
 
   class OutPutStream extends ServletOutputStream {
-    List<Integer> buffer = new ArrayList<>();
+    final List<Integer> buffer = new ArrayList<>();
 
     @Override
     public void write(int b) throws IOException {
-      buffer.add(new Integer(b));
+      buffer.add(Integer.valueOf(b));
     }
 
     public Iterator<Integer> getBuffer() {

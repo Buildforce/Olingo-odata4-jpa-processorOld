@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -179,7 +180,7 @@ public class TestJPAQueryNavigation extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('3')/Address/AdministrativeDivision/Parent/Parent");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test

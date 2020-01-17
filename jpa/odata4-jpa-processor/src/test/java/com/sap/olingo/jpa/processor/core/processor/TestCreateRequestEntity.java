@@ -66,38 +66,27 @@ public class TestCreateRequestEntity {
 
   }
 
-  private OData odata;
   private JPACUDRequestProcessor cut;
   private Entity oDataEntity;
-  private ServiceMetadata serviceMetadata;
-  private JPAODataCRUDContextAccess sessionContext;
-  private JPAODataRequestContextAccess requestContext;
-  private UriInfo uriInfo;
-  private UriResourceEntitySet uriEts;
-  private EntityManager em;
-  private EntityTransaction transaction;
-  private JPASerializer serializer;
   private EdmEntitySet ets;
-  private List<UriParameter> keyPredicates;
-  private JPAConversionHelper convHelper;
-  private List<UriResource> pathParts = new ArrayList<>();
+  private final List<UriResource> pathParts = new ArrayList<>();
   private Map<String, List<String>> headers;
 
   @BeforeEach
   public void setUp() throws Exception {
-    odata = OData.newInstance();
-    sessionContext = mock(JPAODataCRUDContextAccess.class);
-    requestContext = mock(JPAODataRequestContextAccess.class);
-    serviceMetadata = mock(ServiceMetadata.class);
-    uriInfo = mock(UriInfo.class);
-    keyPredicates = new ArrayList<>();
+    OData odata = OData.newInstance();
+    JPAODataCRUDContextAccess sessionContext = mock(JPAODataCRUDContextAccess.class);
+    JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);
+    ServiceMetadata serviceMetadata = mock(ServiceMetadata.class);
+    UriInfo uriInfo = mock(UriInfo.class);
+    List<UriParameter> keyPredicates = new ArrayList<>();
     ets = mock(EdmEntitySet.class);
-    serializer = mock(JPASerializer.class);
-    uriEts = mock(UriResourceEntitySet.class);
+    JPASerializer serializer = mock(JPASerializer.class);
+    UriResourceEntitySet uriEts = mock(UriResourceEntitySet.class);
     pathParts.add(uriEts);
-    convHelper = new JPAConversionHelper();// mock(JPAConversionHelper.class);
-    em = mock(EntityManager.class);
-    transaction = mock(EntityTransaction.class);
+    JPAConversionHelper convHelper = new JPAConversionHelper();// mock(JPAConversionHelper.class);
+    EntityManager em = mock(EntityManager.class);
+    EntityTransaction transaction = mock(EntityTransaction.class);
     headers = new HashMap<>(0);
 
     when(sessionContext.getEdmProvider()).thenReturn(jpaEdm);

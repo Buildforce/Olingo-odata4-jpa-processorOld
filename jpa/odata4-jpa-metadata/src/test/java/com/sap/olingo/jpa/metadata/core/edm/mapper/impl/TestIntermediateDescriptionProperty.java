@@ -107,7 +107,7 @@ public class TestIntermediateDescriptionProperty extends TestMappingRoot {
         "countryName");
     cut = new IntermediateDescriptionProperty(new JPADefaultEdmNameBuilder(PUNIT_NAME), jpaAttribute,
         helper.schema);
-    assertEquals(new Integer(100), cut.getEdmItem().getMaxLength());
+    assertEquals(Integer.valueOf(100), cut.getEdmItem().getMaxLength());
   }
 
   @Test

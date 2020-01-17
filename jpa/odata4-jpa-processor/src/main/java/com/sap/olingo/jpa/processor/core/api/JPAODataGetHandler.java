@@ -55,9 +55,8 @@ public class JPAODataGetHandler {
     super();
     this.namespace = pUnit;
     this.ds = ds;
-    this.emf = ds != null ? Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(pUnit, ds))
-        : Optional.empty();
-    this.jpaMetamodel = emf.isPresent() ? emf.get().getMetamodel() : null;
+    this.emf = ds == null ? Optional.empty() : Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(pUnit, ds));
+    this.jpaMetamodel = emf.map(EntityManagerFactory::getMetamodel).orElse(null);
     this.serviceContext = new JPAODataServiceContext(this);
     this.requestContext = new JPAODataRequestContextImpl();
     this.odata = OData.newInstance();

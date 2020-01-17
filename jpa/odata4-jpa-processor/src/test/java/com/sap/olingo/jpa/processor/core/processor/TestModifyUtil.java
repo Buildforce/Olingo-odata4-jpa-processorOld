@@ -16,7 +16,6 @@ import java.util.Map;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
@@ -131,8 +130,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetAttributesDeepOneLevelViaGetter() throws ODataJPAProcessException,
-          ODataJPAModelException {
+  public void testSetAttributesDeepOneLevelViaGetter() throws ODataJPAProcessException {
     Map<String, Object> embeddedAttributes = new HashMap<>();
     jpaAttributes.put("iD", "Willi");
     jpaAttributes.put("address", embeddedAttributes);
@@ -184,8 +182,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetAttributesDeepOneLevelViaSetter() throws ODataJPAProcessException,
-          ODataJPAModelException {
+  public void testSetAttributesDeepOneLevelViaSetter() throws ODataJPAProcessException {
     Map<String, Object> embeddedAttributes = new HashMap<>();
     jpaAttributes.put("iD", "Willi");
     jpaAttributes.put("communicationData", embeddedAttributes);
@@ -198,7 +195,7 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetAttributesDeepTwoLevel() throws ODataJPAProcessException, ODataJPAModelException {
+  public void testSetAttributesDeepTwoLevel() throws ODataJPAProcessException {
     Map<String, Object> embeddedAttributes = new HashMap<>();
     Map<String, Object> innerEmbeddedAttributes = new HashMap<>();
     jpaAttributes.put("iD", "Willi");
@@ -217,12 +214,7 @@ public class TestModifyUtil extends TestBase {
   public void testCreatePrimaryKeyOneStringKeyField() throws ODataJPAProcessException, ODataJPAModelException {
     final JPAEntityType et = createSingleKeyEntityType();
 
-    when(et.getKeyType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
-        return String.class;
-      }
-    });
+    when(et.getKeyType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
 
     jpaAttributes.put("iD", "Willi");
     String act = (String) cut.createPrimaryKey(et, jpaAttributes, org);
@@ -233,28 +225,18 @@ public class TestModifyUtil extends TestBase {
   public void testCreatePrimaryKeyOneIntegerKeyField() throws ODataJPAProcessException, ODataJPAModelException {
     final JPAEntityType et = createSingleKeyEntityType();
 
-    when(et.getKeyType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
-        return Integer.class;
-      }
-    });
+    when(et.getKeyType()).thenAnswer((Answer<Class<?>>) invocation -> Integer.class);
 
-    jpaAttributes.put("iD", new Integer(10));
+    jpaAttributes.put("iD", 10);
     Integer act = (Integer) cut.createPrimaryKey(et, jpaAttributes, org);
-    assertEquals(new Integer(10), act);
+    assertEquals(Integer.valueOf(10), act);
   }
 
   @Test
   public void testCreatePrimaryKeyOneBigIntegerKeyField() throws ODataJPAProcessException, ODataJPAModelException {
     final JPAEntityType et = createSingleKeyEntityType();
 
-    when(et.getKeyType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
-        return BigInteger.class;
-      }
-    });
+    when(et.getKeyType()).thenAnswer((Answer<Class<?>>) invocation -> BigInteger.class);
 
     jpaAttributes.put("iD", new BigInteger("10"));
     BigInteger act = (BigInteger) cut.createPrimaryKey(et, jpaAttributes, org);
@@ -262,15 +244,10 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testCreatePrimaryKeyMultipleField() throws ODataJPAProcessException, ODataJPAModelException {
+  public void testCreatePrimaryKeyMultipleField() throws ODataJPAProcessException {
     final JPAEntityType et = mock(JPAEntityType.class);
 
-    when(et.getKeyType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
-        return AdministrativeDivisionKey.class;
-      }
-    });
+    when(et.getKeyType()).thenAnswer((Answer<Class<?>>) invocation -> AdministrativeDivisionKey.class);
 
     jpaAttributes.put("codePublisher", "Test");
     jpaAttributes.put("codeID", "10");
@@ -325,29 +302,22 @@ public class TestModifyUtil extends TestBase {
   }
 
   @Test
-  public void testSetForeignKeyThrowsExceptionOnMissingGetter() throws ODataJPAModelException,
-      ODataJPAProcessorException {
+  public void testSetForeignKeyThrowsExceptionOnMissingGetter() throws ODataJPAModelException {
     final OrganizationWithoutGetter source = new OrganizationWithoutGetter("100");
     final BusinessPartnerRole target = new BusinessPartnerRole();
     target.setRoleCategory("A");
-    final JPAAssociationPath path = helper.getJPAAssociationPath("Organizations",
-        "Roles");
-    assertThrows(ODataJPAProcessorException.class, () -> {
-      cut.setForeignKey(source, target, path);
-    });
+    final JPAAssociationPath path = helper.getJPAAssociationPath("Organizations", "Roles");
+
+    assertThrows(ODataJPAProcessorException.class, () -> cut.setForeignKey(source, target, path));
   }
 
   @Test
-  public void testSetForeignKeyThrowsExceptionOnMissingSetter() throws ODataJPAModelException,
-      ODataJPAProcessorException {
+  public void testSetForeignKeyThrowsExceptionOnMissingSetter() throws ODataJPAModelException {
     final Organization source = new Organization("100");
     final BusinessPartnerRoleWithoutSetter target = new BusinessPartnerRoleWithoutSetter();
-    final JPAAssociationPath path = helper.getJPAAssociationPath("Organizations",
-        "Roles");
+    final JPAAssociationPath path = helper.getJPAAssociationPath("Organizations", "Roles");
 
-    assertThrows(ODataJPAProcessorException.class, () -> {
-      cut.setForeignKey(source, target, path);
-    });
+    assertThrows(ODataJPAProcessorException.class, () -> cut.setForeignKey(source, target, path));
   }
 
   private JPAEntityType createSingleKeyEntityType() throws ODataJPAModelException {

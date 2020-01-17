@@ -51,33 +51,26 @@ public class TestJPAFunctionJava {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
 
   private JPAFunctionRequestProcessor cut;
-  private OData odata;
-  private JPAODataCRUDContextAccess context;
-  private JPAODataRequestContextAccess requestContext;
-  private UriInfo uriInfo;
-  private List<UriResource> uriResources;
   private ODataRequest request;
   private ODataResponse response;
   private UriResourceFunction uriResource;
   private EdmFunction edmFunction;
-  private JPAOperationSerializer serializer;
-  private SerializerResult serializerResult;
 
   @BeforeEach
   public void setup() throws ODataException {
-    odata = mock(OData.class);
-    context = mock(JPAODataCRUDContextAccess.class);
-    requestContext = mock(JPAODataRequestContextAccess.class);
-    EntityManager em = mock(EntityManager.class);
-    uriInfo = mock(UriInfo.class);
-    serializer = mock(JPAOperationSerializer.class);
-    serializerResult = mock(SerializerResult.class);
+    OData odata = mock(OData.class);
+    JPAODataCRUDContextAccess context = mock(JPAODataCRUDContextAccess.class);
+    JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);
+   EntityManager em = mock(EntityManager.class);
+    UriInfo uriInfo = mock(UriInfo.class);
+    JPAOperationSerializer serializer = mock(JPAOperationSerializer.class);
+    SerializerResult serializerResult = mock(SerializerResult.class);
 
     DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     Map<String, Object> properties = new HashMap<>();
     properties.put("javax.persistence.nonJtaDataSource", ds);
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
-    uriResources = new ArrayList<>();
+        List<UriResource> uriResources = new ArrayList<>();
     when(uriInfo.getUriResourceParts()).thenReturn(uriResources);
     when(context.getEdmProvider()).thenReturn(new JPAEdmProvider(PUNIT_NAME, emf, null, new String[] {
         "com.sap.olingo.jpa.processor.core", "com.sap.olingo.jpa.processor.core.testmodel" }));

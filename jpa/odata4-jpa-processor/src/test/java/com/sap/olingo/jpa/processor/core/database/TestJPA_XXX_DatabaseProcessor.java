@@ -123,8 +123,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
   }
 
   @Test
-  public void testBoundFunctionWithOneParameterCount() throws ODataApplicationException,
-      ODataJPAModelException {
+  public void testBoundFunctionWithOneParameterCount() throws ODataApplicationException, ODataJPAModelException {
     createBoundFunctionWithOneParameter();
 
     final UriResourceCount uriResourceCount = mock(UriResourceCount.class);

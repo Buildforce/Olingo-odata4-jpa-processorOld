@@ -199,7 +199,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     IntermediateSimpleProperty property = new IntermediateSimpleProperty(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         jpaAttribute,
         helper.schema);
-    assertEquals(new Integer(1), property.getEdmItem().getMaxLength());
+    assertEquals(Integer.valueOf(1), property.getEdmItem().getMaxLength());
   }
 
   @Test
@@ -217,7 +217,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     IntermediateSimpleProperty property = new IntermediateSimpleProperty(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         jpaAttribute,
         helper.schema);
-    assertEquals(new Integer(16), property.getEdmItem().getPrecision());
+    assertEquals(Integer.valueOf(16), property.getEdmItem().getPrecision());
   }
 
   @Test
@@ -226,7 +226,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     IntermediateSimpleProperty property = new IntermediateSimpleProperty(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         jpaAttribute,
         helper.schema);
-    assertEquals(new Integer(5), property.getEdmItem().getScale());
+    assertEquals(Integer.valueOf(5), property.getEdmItem().getScale());
   }
 
   @Test
@@ -235,7 +235,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     IntermediateSimpleProperty property = new IntermediateSimpleProperty(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         jpaAttribute,
         helper.schema);
-    assertEquals(new Integer(3), property.getEdmItem().getPrecision());
+    assertEquals(Integer.valueOf(3), property.getEdmItem().getPrecision());
   }
 
   @Test

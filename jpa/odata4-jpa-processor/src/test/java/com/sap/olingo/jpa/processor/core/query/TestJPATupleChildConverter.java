@@ -35,7 +35,7 @@ public class TestJPATupleChildConverter extends TestBase {
   private List<Tuple> jpaQueryResult;
   private UriHelperDouble uriHelper;
   private Map<String, String> keyPredicates;
-  private HashMap<String, List<Tuple>> queryResult = new HashMap<>(1);
+  private final HashMap<String, List<Tuple>> queryResult = new HashMap<>(1);
 
   @BeforeEach
   public void setup() throws ODataException {
@@ -136,7 +136,7 @@ public class TestJPATupleChildConverter extends TestBase {
     HashMap<String, Object> result;
     result = new HashMap<>();
     result.put("ID", "1");
-    result.put("ETag", new Integer(2));
+    result.put("ETag", 2);
     jpaQueryResult.add(new TupleDouble(result));
 
     EntityCollection act = cut.getResult(new JPAExpandQueryResult(queryResult, null, helper.getJPAEntityType(

@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class HttpRequestHeaderDouble {
-  private HashMap<String, List<String>> headers;
+  private final HashMap<String, List<String>> headers;
 
   public HttpRequestHeaderDouble() {
     super();

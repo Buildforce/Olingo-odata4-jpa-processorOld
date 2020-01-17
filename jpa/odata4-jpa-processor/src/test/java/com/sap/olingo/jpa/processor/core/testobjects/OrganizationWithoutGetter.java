@@ -7,11 +7,8 @@ package com.sap.olingo.jpa.processor.core.testobjects;
  *
  */
 public class OrganizationWithoutGetter {
-  @SuppressWarnings("unused")
-  private String id;
 
-  public OrganizationWithoutGetter(String id) {
+    public OrganizationWithoutGetter(String id) {
     super();
-    this.id = id;
-  }
+    }
 }

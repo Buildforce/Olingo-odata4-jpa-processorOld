@@ -81,8 +81,8 @@ public class JPATupleCollectionConverter extends JPATupleResultConverter {
   }
 
   @SuppressWarnings("unchecked")
-  private <T extends Object, S extends Object> S convertPrimitiveCollectionAttribute(final Object value,
-      final JPAAttribute attribute) {
+  private <T, S> S convertPrimitiveCollectionAttribute(final Object value,
+                                                       final JPAAttribute attribute) {
 
     if (attribute.getConverter() != null) {
       final AttributeConverter<T, S> converter = attribute.getConverter();

@@ -27,15 +27,14 @@ import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 public class TestJPAPath extends TestMappingRoot {
   private JPAEntityType organization;
   private JPAEntityType bupaWithGroup;
-  private TestHelper helper;
 
   @BeforeEach
   public void setup() throws ODataJPAModelException {
-    helper = new TestHelper(emf.getMetamodel(), PUNIT_NAME);
-    organization = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper.getEntityType(
-        Organization.class), helper.schema);
-    bupaWithGroup = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper.getEntityType(
-        BusinessPartnerWithGroups.class), helper.schema);
+    TestHelper helper = new TestHelper(emf.getMetamodel(), PUNIT_NAME);
+    organization =
+    new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper.getEntityType(Organization.class), helper.schema);
+    bupaWithGroup =
+      new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper.getEntityType(BusinessPartnerWithGroups.class), helper.schema);
   }
 
   @Test

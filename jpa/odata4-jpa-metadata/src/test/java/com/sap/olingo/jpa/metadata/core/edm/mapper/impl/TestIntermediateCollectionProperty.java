@@ -29,7 +29,6 @@ import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
 
 public class TestIntermediateCollectionProperty extends TestMappingRoot {
-  private IntermediateCollectionProperty cut;
   private TestHelper helper;
   private JPAEdmMetadataPostProcessor processor;
 
@@ -78,8 +77,8 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
         return List.class;
       }
     });
-    cut = new IntermediateCollectionProperty(nameBuilder, jpaAttribute, helper.schema, helper.schema.getEntityType(
-        Organization.class));
+   IntermediateCollectionProperty cut =
+     new IntermediateCollectionProperty(nameBuilder, jpaAttribute, helper.schema, helper.schema.getEntityType(Organization.class));
     assertEquals("Edm.String", cut.getEdmItem().getType());
     assertEquals(String.class, cut.getType());
   }

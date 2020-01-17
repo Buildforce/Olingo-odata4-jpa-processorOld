@@ -47,15 +47,12 @@ final class EdmEntitySetResult implements EdmEntitySetInfo {
 
   @Override
   public EdmEntitySet getTargetEdmEntitySet() {
-    if (navigationPath == null || navigationPath.isEmpty())
-      return this.edmEntitySet;
-    else {
+    if (navigationPath != null && !navigationPath.isEmpty())
       for (EdmNavigationPropertyBinding navi : this.edmEntitySet.getNavigationPropertyBindings()) {
         if (navi.getPath().equals(navigationPath))
           return edmEntitySet.getEntityContainer().getEntitySet(navi.getTarget());
       }
-      return this.edmEntitySet;
-    }
+    return this.edmEntitySet;
   }
 
 }

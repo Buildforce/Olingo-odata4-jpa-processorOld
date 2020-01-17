@@ -88,7 +88,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
 
   @SuppressWarnings("unchecked")
   @Override
-  public <X, Y extends Object> AttributeConverter<X, Y> getConverter() {
+  public <X, Y> AttributeConverter<X, Y> getConverter() {
     return (AttributeConverter<X, Y>) valueConverter;
   }
 

@@ -142,9 +142,7 @@ public class TestSchemaReader {
   @Test
   public void TestThrowsExceptionOnEmptyXML() throws IOException, ODataJPAModelException {
 
-    assertThrows(IOException.class, () -> {
-      cut.getSchemas("annotations/empty.xml");
-    });
+    assertThrows(IOException.class, () -> cut.getSchemas("annotations/empty.xml"));
   }
 
   @Test

@@ -67,8 +67,8 @@ public abstract class JPAStructuredResultConverter {
   }
 
   @SuppressWarnings("unchecked")
-  protected <T extends Object, S extends Object> void convertProperties(final Object row,
-      final List<Property> properties, final JPAStructuredType jpaStructuredType) throws ODataJPAQueryException {
+  protected <T, S> void convertProperties(final Object row,
+                                          final List<Property> properties, final JPAStructuredType jpaStructuredType) throws ODataJPAQueryException {
 
     List<JPAAttribute> attributeList;
     final Map<String, Method> methodMap = getMethods(jpaStructuredType.getTypeClass());

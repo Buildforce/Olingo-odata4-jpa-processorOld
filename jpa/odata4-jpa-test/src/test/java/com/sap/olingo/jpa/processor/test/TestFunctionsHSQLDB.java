@@ -29,14 +29,13 @@ public class TestFunctionsHSQLDB {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
   private static final String ENTITY_MANAGER_DATA_SOURCE = "javax.persistence.nonJtaDataSource";
   private static EntityManagerFactory emf;
-  private static DataSource ds;
 
   @BeforeAll
   public static void setupClass() {
 
     Map<String, Object> properties = new HashMap<>();
 
-    ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
+    DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
 
     properties.put(ENTITY_MANAGER_DATA_SOURCE, ds);
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);

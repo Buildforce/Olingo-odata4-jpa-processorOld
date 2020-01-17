@@ -35,16 +35,10 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 public class TestJPAODataRequestProcessor {
 
   private static JPAODataRequestProcessor cut;
-  private static EntityManager em;
-  private static JPAODataClaimsProvider claims;
-  private static JPAODataCRUDContextAccess sessionContext;
   private static ODataRequest request;
   private static ODataResponse response;
   private static UriInfo uriInfo;
   private static OData odata;
-  private static ServiceMetadata serviceMetadata;
-  private static List<UriResource> resourceParts;
-  private static JPAODataRequestContextAccess requestContext;
 
   static Stream<Executable> modifyMediaTypeMethodsProvider() {
     return Stream.of(() -> {
@@ -85,16 +79,16 @@ public class TestJPAODataRequestProcessor {
 
   @BeforeAll
   public static void classSetup() {
-    em = mock(EntityManager.class);
-    claims = new JPAODataClaimsProvider();
-    sessionContext = mock(JPAODataCRUDContextAccess.class);
-    requestContext = mock(JPAODataRequestContextAccess.class);
+    EntityManager em = mock(EntityManager.class);
+    JPAODataClaimsProvider claims = new JPAODataClaimsProvider();
+    JPAODataCRUDContextAccess sessionContext = mock(JPAODataCRUDContextAccess.class);
+    JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);
     request = mock(ODataRequest.class);
     response = mock(ODataResponse.class);
     uriInfo = mock(UriInfo.class);
     odata = mock(OData.class);
-    serviceMetadata = mock(ServiceMetadata.class);
-    resourceParts = new ArrayList<>(0);
+    ServiceMetadata serviceMetadata = mock(ServiceMetadata.class);
+    List<UriResource> resourceParts = new ArrayList<>(0);
     UriResource resourcePart = mock(UriResource.class);
     resourceParts.add(resourcePart);
 

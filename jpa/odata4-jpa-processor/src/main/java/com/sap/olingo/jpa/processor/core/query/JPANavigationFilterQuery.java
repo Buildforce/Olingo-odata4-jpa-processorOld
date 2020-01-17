@@ -91,7 +91,7 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 
   @Override
   @SuppressWarnings("unchecked")
-  public <T extends Object> Subquery<T> getSubQueryExists(final Subquery<?> childQuery)
+  public <T> Subquery<T> getSubQueryExists(final Subquery<?> childQuery)
       throws ODataApplicationException {
     final Subquery<T> query = (Subquery<T>) this.subQuery;
 

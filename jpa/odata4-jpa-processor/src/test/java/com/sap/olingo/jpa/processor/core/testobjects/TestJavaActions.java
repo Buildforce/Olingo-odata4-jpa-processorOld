@@ -21,12 +21,9 @@ import com.sap.olingo.jpa.processor.core.testmodel.Person;
 public class TestJavaActions implements ODataAction {
 
   public static int constructorCalls = 0;
-  @SuppressWarnings("unused")
-  private final EntityManager em;
 
   public TestJavaActions(EntityManager em) {
     super();
-    this.em = em;
     assert em != null;
     constructorCalls++;
   }

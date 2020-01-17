@@ -27,9 +27,8 @@ public class TestJPAInstanceResultConverter extends TestBase {
   public static final int NO_ADMIN_INFO_FIELDS = 2;
   private JPAEntityResultConverter cut;
   private List<Object> jpaQueryResult;
-  private UriHelperDouble uriHelper;
 
-  @BeforeEach
+    @BeforeEach
   public void setup() throws ODataException {
     helper = new TestHelper(emf, PUNIT_NAME);
     jpaQueryResult = new ArrayList<>();
@@ -37,7 +36,7 @@ public class TestJPAInstanceResultConverter extends TestBase {
     keyStrings.put("BE21", "DivisionCode='BE21',CodeID='NUTS2',CodePublisher='Eurostat'");
     keyStrings.put("BE22", "DivisionCode='BE22',CodeID='NUTS2',CodePublisher='Eurostat'");
 
-    uriHelper = new UriHelperDouble();
+        UriHelperDouble uriHelper = new UriHelperDouble();
     uriHelper.setKeyPredicates(keyStrings, "DivisionCode");
     cut = new JPAEntityResultConverter(uriHelper, helper.sd,
         jpaQueryResult, new EdmEntityTypeDouble(nameBuilder, "AdministrativeDivision"));

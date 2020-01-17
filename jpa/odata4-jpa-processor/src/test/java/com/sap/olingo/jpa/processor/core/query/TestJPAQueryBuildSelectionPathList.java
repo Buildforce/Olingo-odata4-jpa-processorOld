@@ -42,21 +42,19 @@ import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
 public class TestJPAQueryBuildSelectionPathList extends TestBase {
 
   private JPAAbstractJoinQuery cut;
-  private JPAODataCRUDContextAccess sessionContext;
-  private UriInfo uriInfo;
-  private JPAODataRequestContextImpl requestContext;
+    private UriInfo uriInfo;
 
-  @BeforeEach
+    @BeforeEach
   public void setup() throws ODataException, JPAIllegalAccessException {
     buildUriInfo("BusinessPartners", "BusinessPartner");
 
     helper = new TestHelper(emf, PUNIT_NAME);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
     createHeaders();
-    sessionContext = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME, emf, null, TestBase.enumPackages),
-        ds,
-        null);
-    requestContext = new JPAODataRequestContextImpl();
+        JPAODataCRUDContextAccess sessionContext = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME, emf, null, TestBase.enumPackages),
+                ds,
+                null);
+        JPAODataRequestContextImpl requestContext = new JPAODataRequestContextImpl();
     requestContext.setEntityManager(emf.createEntityManager());
     requestContext.setUriInfo(uriInfo);
     cut = new JPAJoinQuery(null, sessionContext, headers, requestContext);

@@ -294,18 +294,14 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
           updateResult.getModifiedEntity().getClass().toString(), requestEntity.getEntityType().getTypeClass()
               .toString());
     }
-    if (!foreignTransaction)
-      ownTransaction.commit();
+    if (!foreignTransaction) ownTransaction.commit();
 
     if (updateResult.wasCreate()) {
-      createCreateResponse(request, response, responseFormat, requestEntity.getEntityType(), edmEntitySetInfo
-          .getEdmEntitySet(), updateResult.getModifiedEntity());
-      debugger.stopRuntimeMeasurement(handle);
-    } else {
+      createCreateResponse(request, response, responseFormat, requestEntity.getEntityType(),
+          edmEntitySetInfo.getEdmEntitySet(), updateResult.getModifiedEntity());
+    } else
       createUpdateResponse(request, response, responseFormat, requestEntity, edmEntitySetInfo, updateResult);
-      debugger.stopRuntimeMeasurement(handle);
-    }
-
+    debugger.stopRuntimeMeasurement(handle);
   }
 
   private HttpMethod determineHttpVerb(final ODataRequest request, List<UriResource> resourceParts) {
@@ -349,15 +345,21 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
   /**
    * Converts the deserialized request into the internal (JPA) format, which shall be provided to the hook method
-   * @param edmEntitySet
+   * @param et
    * @param odataEntity
+   * @param keys
    * @param headers
+   * @param jpaAssociationPath
    * @return
    * @throws ODataJPAProcessorException
    */
-  final JPARequestEntity createRequestEntity(final JPAEntityType et, final Entity odataEntity,
-      final Map<String, Object> keys, final Map<String, List<String>> headers,
-      final JPAAssociationPath jpaAssociationPath) throws ODataJPAProcessorException {
+  final JPARequestEntity createRequestEntity(
+    final JPAEntityType et,
+    final Entity odataEntity,
+    final Map<String, Object> keys,
+    final Map<String, List<String>> headers,
+    final JPAAssociationPath jpaAssociationPath
+  ) throws ODataJPAProcessorException {
 
     try {
       if (jpaAssociationPath == null) {
@@ -451,8 +453,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
           .getKeys(), requestEntity.getEntityType());
       final Optional<Object> beforeImage = Optional.ofNullable(em.find(requestEntity.getEntityType().getTypeClass(),
           key));
-      if (beforeImage.isPresent())
-        em.detach(beforeImage.get());
+      beforeImage.ifPresent(em::detach);
       return beforeImage;
     }
     return Optional.empty();

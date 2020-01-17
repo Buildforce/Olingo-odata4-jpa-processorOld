@@ -22,7 +22,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 class IntermediateEnumerationType extends IntermediateModelElement implements JPAEnumerationAttribute {
 
   private CsdlEnumType edmEnumType;
-  private Class<?> javaEnum;
+  private final Class<?> javaEnum;
   private EdmEnumeration annotation;
   private List<?> javaMembers;
 
@@ -64,8 +64,8 @@ class IntermediateEnumerationType extends IntermediateModelElement implements JP
 
     if (annotation.converter() != DummyConverter.class) {
       try {
-        final AttributeConverter<Enum<?>[], T> converter = (AttributeConverter<Enum<?>[], T>) annotation.converter()
-            .newInstance();
+        final AttributeConverter<Enum<?>[], T> converter =
+                (AttributeConverter<Enum<?>[], T>) (annotation.converter()).newInstance();
         return (E) (converter.convertToEntityAttribute(value)[0]);
       } catch (InstantiationException | IllegalAccessException e) {
         throw new ODataJPAModelException(e);
@@ -106,13 +106,12 @@ class IntermediateEnumerationType extends IntermediateModelElement implements JP
       return valueOf(values.get(0));
     else {
       try {
-        final AttributeConverter<Enum<?>[], T> converter = (AttributeConverter<Enum<?>[], T>) annotation.converter()
-            .newInstance();
+        final AttributeConverter<Enum<?>[], T> converter =
+                (AttributeConverter<Enum<?>[], T>) annotation.converter().newInstance();
         return converter.convertToDatabaseColumn((Enum<?>[]) convert(values));
       } catch (InstantiationException | IllegalAccessException e) {
         throw new ODataJPAModelException(e);
       }
-
     }
   }
 

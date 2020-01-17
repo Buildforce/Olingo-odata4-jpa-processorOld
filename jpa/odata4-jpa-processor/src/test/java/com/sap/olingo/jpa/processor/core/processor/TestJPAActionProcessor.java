@@ -36,6 +36,7 @@ import org.apache.olingo.commons.api.edm.provider.CsdlProperty;
 import org.apache.olingo.commons.api.edm.provider.CsdlReturnType;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
@@ -192,7 +193,7 @@ public class TestJPAActionProcessor {
     when(action.getReturnType()).thenReturn(null);
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @SuppressWarnings("unchecked")
@@ -259,11 +260,11 @@ public class TestJPAActionProcessor {
 
     Method m = setConstructorAndMethod("unboundVoidOneParameter", Short.class);
 
-    addParameter(m, new Short("10"), "A", 0);
+    addParameter(m, Short.valueOf((short) 10), "A", 0);
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
-    assertEquals(new Short((short) 10), TestJavaActionNoParameter.param1);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
+    assertEquals(Short.valueOf((short) 10), TestJavaActionNoParameter.param1);
   }
 
   @Test
@@ -278,7 +279,7 @@ public class TestJPAActionProcessor {
     addParameter(m, FileAccess.Create, "AccessRights", 0);
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     assertEquals(FileAccess.Create, TestJavaActionNoParameter.enumeration);
   }
 
@@ -289,12 +290,12 @@ public class TestJPAActionProcessor {
 
     Method m = setConstructorAndMethod("unboundVoidTwoParameter", Short.class, Integer.class);
 
-    addParameter(m, new Short("10"), "A", 0);
-    addParameter(m, new Integer("200000"), "B", 1);
+    addParameter(m, Short.valueOf((short) 10), "A", 0);
+    addParameter(m, Integer.valueOf(200000), "B", 1);
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
-    assertEquals(new Short((short) 10), TestJavaActionNoParameter.param1);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
+    assertEquals(Short.valueOf((short) 10), TestJavaActionNoParameter.param1);
   }
 
   @Test
@@ -308,7 +309,7 @@ public class TestJPAActionProcessor {
     addParameter(m, null, "A", 0);
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     assertNull(TestJavaActionNoParameter.param1);
   }
 
@@ -325,7 +326,7 @@ public class TestJPAActionProcessor {
     setBindingParameter(m);
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     assertNotNull(TestJavaActionNoParameter.bindingParam);
     assertEquals("LAU2", TestJavaActionNoParameter.bindingParam.getCodeID());
   }
@@ -351,7 +352,7 @@ public class TestJPAActionProcessor {
     when(jpaParam.getName()).thenReturn("B");
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     assertNotNull(TestJavaActionNoParameter.bindingParam);
     assertEquals("LAU2", TestJavaActionNoParameter.bindingParam.getCodeID());
     assertNull(TestJavaActionNoParameter.param1);
@@ -377,11 +378,11 @@ public class TestJPAActionProcessor {
     addParameter(m, 20, "B", 2);
 
     cut.performAction(request, response, requestFormat);
-    verify(response, times(1)).setStatusCode(204);
+    verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     assertNotNull(TestJavaActionNoParameter.bindingParam);
     assertEquals("LAU2", TestJavaActionNoParameter.bindingParam.getCodeID());
     assertNull(TestJavaActionNoParameter.param1);
-    assertEquals(new Integer(20), TestJavaActionNoParameter.param2);
+    assertEquals(Integer.valueOf(20), TestJavaActionNoParameter.param2);
   }
 
   private void setBindingParameter(Method m) throws ODataJPAModelException, EdmPrimitiveTypeException {

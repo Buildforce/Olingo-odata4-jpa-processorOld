@@ -51,20 +51,12 @@ public class TestJPAFunctionDB {
 
   private JPAODataDatabaseProcessor dbProcessor;
 
-  private OData odata;
-  private JPAODataCRUDContextAccess context;
-  private JPAODataRequestContextAccess requestContext;
   private ODataRequest request;
   private ODataResponse response;
   private JPAFunctionRequestProcessor cut;
   private EdmFunction edmFunction;
-  private UriInfo uriInfo;
   private List<UriResource> uriResources;
-  private UriResourceFunction uriResource;
-  private JPAServiceDocument sd;
   private JPADataBaseFunction function;
-  private JPAOperationSerializer serializer;
-  private SerializerResult serializerResult;
   private EntityManager em;
 
   @BeforeEach
@@ -74,15 +66,15 @@ public class TestJPAFunctionDB {
     em = mock(EntityManager.class);
     request = mock(ODataRequest.class);
     response = mock(ODataResponse.class);
-    uriInfo = mock(UriInfo.class);
-    odata = mock(OData.class);
-    serializer = mock(JPAOperationSerializer.class);
-    serializerResult = mock(SerializerResult.class);
-    context = mock(JPAODataCRUDContextAccess.class);
-    requestContext = mock(JPAODataRequestContextAccess.class);
+    UriInfo uriInfo = mock(UriInfo.class);
+    OData odata = mock(OData.class);
+    JPAOperationSerializer serializer = mock(JPAOperationSerializer.class);
+    SerializerResult serializerResult = mock(SerializerResult.class);
+    JPAODataCRUDContextAccess context = mock(JPAODataCRUDContextAccess.class);
+    JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);
     dbProcessor = mock(JPAODataDatabaseProcessor.class);
-    sd = mock(JPAServiceDocument.class);
-    uriResource = mock(UriResourceFunction.class);
+    JPAServiceDocument sd = mock(JPAServiceDocument.class);
+    UriResourceFunction uriResource = mock(UriResourceFunction.class);
     function = mock(JPADataBaseFunction.class);
     uriResources = new ArrayList<>();
     edmFunction = mock(EdmFunction.class);

@@ -39,7 +39,6 @@ import com.sap.olingo.jpa.processor.core.util.TestHelper;
 
 public class TestJPAExpandJoinQuery extends TestBase {
   private JPAExpandJoinQuery cut;
-  private EntityManager em;
   private JPAODataCRUDContextAccess sessionContext;
   private JPAODataRequestContextAccess requestContext;
   private TestHelper helper;
@@ -54,7 +53,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   public void setup() throws ODataException {
     createHeaders();
     helper = new TestHelper(emf, PUNIT_NAME);
-    em = emf.createEntityManager();
+    EntityManager em = emf.createEntityManager();
     sessionContext = mock(JPAODataCRUDContextAccess.class);
     requestContext = mock(JPAODataRequestContextAccess.class);
     orgPair = new JPAKeyPair(helper.getJPAEntityType("Organizations").getKey());

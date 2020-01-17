@@ -11,8 +11,7 @@ import org.apache.olingo.commons.api.edm.provider.CsdlAbstractEdmItem;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
 public interface JPAAttribute extends JPAElement {
-
-  <X, Y extends Object> AttributeConverter<X, Y> getConverter();
+  <X, Y> AttributeConverter<X, Y> getConverter();
 
   EdmPrimitiveTypeKind getEdmType() throws ODataJPAModelException;
 

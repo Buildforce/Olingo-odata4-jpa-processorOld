@@ -73,7 +73,7 @@ public class TestJPAArithmeticOperator {
   public void testGetLeftLiteralLiteral_Left() throws ODataApplicationException {
     JPALiteralOperator right = mock(JPALiteralOperator.class);
     JPALiteralOperator left = mock(JPALiteralOperator.class);
-    Integer leftValue = new Integer(5);
+    Integer leftValue = Integer.valueOf(5);
 
     final Expression<Number> result = mock(Expression.class);
 

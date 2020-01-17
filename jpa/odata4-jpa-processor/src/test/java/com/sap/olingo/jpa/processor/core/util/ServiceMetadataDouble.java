@@ -65,7 +65,7 @@ public class ServiceMetadataDouble implements ServiceMetadata {
   }
 
   class EdmDouble implements Edm {
-    private Map<FullQualifiedName, EdmEntityType> typeMap;
+    private final Map<FullQualifiedName, EdmEntityType> typeMap;
 
     public EdmDouble() {
       super();

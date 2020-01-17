@@ -35,22 +35,22 @@ class Schema {
   private String alias;
 
   @JacksonXmlProperty(localName = "EnumType")
-  private List<EnumType> enumerations = new ArrayList<>();
+  private final List<EnumType> enumerations = new ArrayList<>();
 
   @JacksonXmlProperty(localName = "TypeDefinition")
-  private List<TypeDefinition> typeDefinitions = new ArrayList<>();
+  private final List<TypeDefinition> typeDefinitions = new ArrayList<>();
 
   @JacksonXmlProperty(localName = "ComplexType")
-  private List<ComplexType> complexTypes = new ArrayList<>();
+  private final List<ComplexType> complexTypes = new ArrayList<>();
 
   @JacksonXmlProperty(localName = "Term")
-  private List<Term> terms = new ArrayList<>();
+  private final List<Term> terms = new ArrayList<>();
 
   @JacksonXmlProperty(localName = "Function")
-  private List<Function> functions = new ArrayList<>();
+  private final List<Function> functions = new ArrayList<>();
 
   @JacksonXmlProperty(localName = "Action")
-  private List<Action> actions = new ArrayList<>();
+  private final List<Action> actions = new ArrayList<>();
 
   CsdlSchema asCsdlSchema() {
     CsdlSchema csdlSchema = new CsdlSchema();

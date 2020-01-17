@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
   private static final String PATH_SEPARATOR = ".";
 
-  public static Locale DEFAULT_LOCALE = Locale.ENGLISH;
+  public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
   protected final String bundleName;
   protected final ResourceBundle bundle;
@@ -52,7 +52,7 @@ public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
     final StringBuilder builder = new StringBuilder();
     final Formatter f = new Formatter(builder, locale);
 
-    f.format(message, parameters);
+    f.format(message, (Object[]) parameters);
     f.close();
     return builder.toString();
   }

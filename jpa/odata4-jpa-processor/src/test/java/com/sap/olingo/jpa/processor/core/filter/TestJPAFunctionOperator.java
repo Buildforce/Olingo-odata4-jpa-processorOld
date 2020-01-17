@@ -26,26 +26,23 @@ import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
 public class TestJPAFunctionOperator {
   private CriteriaBuilder cb;
   private JPAFunctionOperator cut;
-  private UriResourceFunction uriFunction;
-  private JPAVisitor jpaVisitor;
   private JPADataBaseFunction jpaFunction;
   private JPAOperationResultParameter jpaResultParam;
-  private List<UriParameter> uriParams;
 
   @BeforeEach
   public void setUp() throws Exception {
 
     cb = mock(CriteriaBuilder.class);
-    jpaVisitor = mock(JPAVisitor.class);
+    JPAVisitor jpaVisitor = mock(JPAVisitor.class);
     when(jpaVisitor.getCriteriaBuilder()).thenReturn(cb);
-    uriFunction = mock(UriResourceFunction.class);
+    UriResourceFunction uriFunction = mock(UriResourceFunction.class);
     jpaFunction = mock(JPADataBaseFunction.class);
     jpaResultParam = mock(JPAOperationResultParameter.class);
     when(jpaFunction.getResultParameter()).thenReturn(jpaResultParam);
     List<UriResource> resources = new ArrayList<>();
     resources.add(uriFunction);
 
-    uriParams = new ArrayList<>();
+    List<UriParameter> uriParams = new ArrayList<>();
 
     cut = new JPAFunctionOperator(jpaVisitor, uriParams, jpaFunction);
   }
@@ -57,7 +54,7 @@ public class TestJPAFunctionOperator {
     final Expression<?>[] jpaParameter = new Expression<?>[0];
 
     when(jpaFunction.getDBName()).thenReturn("Test");
-    doReturn(new Integer(5).getClass()).when(jpaResultParam).getType();
+    doReturn(Integer.valueOf(5).getClass()).when(jpaResultParam).getType();
     when(cb.function(jpaFunction.getDBName(), jpaResultParam.getType(), jpaParameter)).thenReturn(mock(
         Expression.class));
     when(jpaFunction.getResultParameter()).thenReturn(jpaResultParam);

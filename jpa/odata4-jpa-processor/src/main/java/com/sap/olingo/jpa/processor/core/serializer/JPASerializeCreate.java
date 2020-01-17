@@ -77,7 +77,7 @@ final class JPASerializeCreate implements JPASerializer {
 
   private class ExpandOptionWrapper implements ExpandOption {
 
-    private List<ExpandItem> items = new ArrayList<>(1);
+    private final List<ExpandItem> items = new ArrayList<>(1);
 
     public ExpandOptionWrapper(ExpandItemWrapper expandItemWrapper) {
       items.add(expandItemWrapper);

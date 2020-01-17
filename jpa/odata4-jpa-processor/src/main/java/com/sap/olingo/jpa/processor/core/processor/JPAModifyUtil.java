@@ -71,7 +71,6 @@ public final class JPAModifyUtil {
    * @param instance
    * @return
    * @throws ODataJPAProcessorException
-   * @throws ODataJPAInvocationTargetException
    */
   public Object createPrimaryKey(final JPAEntityType et, final Object instance) throws ODataJPAProcessorException {
     try {

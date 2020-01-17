@@ -55,7 +55,6 @@ import com.sap.olingo.jpa.processor.core.util.TestQueryBase;
 public class TestJPAQueryWithProtection extends TestQueryBase {
   private JPAODataCRUDContextAccess contextSpy;
   private JPAServiceDocument sdSpy;
-  private EdmType odataType;
   private List<JPAAttribute> attributes;
   private Set<String> claimNames;
   private List<String> pathList;
@@ -480,8 +479,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     final JPAProtectionInfo protection = Mockito.mock(JPAProtectionInfo.class);
     protections.add(protection);
 
-    final String path = pathName;
-    pathList.add(path);
+    pathList.add(pathName);
     final JPAPath jpaPath = Mockito.mock(JPAPath.class);
     final JPAElement adminAttri = Mockito.mock(JPAElement.class);
     final JPAElement complexAttri = Mockito.mock(JPAElement.class);
@@ -493,7 +491,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     doReturn("by").when(simpleAttri).getInternalName();
     doReturn(String.class).when(simpleAttri).getType();
     doReturn(simpleAttri).when(jpaPath).getLeaf();
-    doReturn(jpaPath).when(etSpy).getPath(path);
+    doReturn(jpaPath).when(etSpy).getPath(pathName);
 
     doReturn(simpleAttri).when(protection).getAttribute();
     doReturn(jpaPath).when(protection).getPath();
@@ -537,7 +535,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
 
   private void prepareTest() throws ODataException, JPANoSelectionException {
     buildUriInfo("BusinessPartnerProtecteds", "BusinessPartnerProtected");
-    odataType = ((UriResourceEntitySet) uriInfo.getUriResourceParts().get(0)).getType();
+    EdmType odataType = ((UriResourceEntitySet) uriInfo.getUriResourceParts().get(0)).getType();
     attributes = new ArrayList<>();
     claimNames = new HashSet<>();
     pathList = new ArrayList<>();

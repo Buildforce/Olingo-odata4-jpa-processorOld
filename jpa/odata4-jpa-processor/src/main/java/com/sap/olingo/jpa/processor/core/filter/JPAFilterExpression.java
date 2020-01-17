@@ -9,8 +9,8 @@ import org.apache.olingo.server.api.uri.queryoption.expression.Literal;
 import org.apache.olingo.server.api.uri.queryoption.expression.Member;
 
 public final class JPAFilterExpression implements JPAVisitableExpression {
-  private Literal literal;
-  private BinaryOperatorKind operator;
+  private final Literal literal;
+  private final BinaryOperatorKind operator;
   private final Member member;
 
   public JPAFilterExpression(final Member member, final Literal literal, final BinaryOperatorKind operator) {

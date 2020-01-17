@@ -123,11 +123,15 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
       final ContentType responseFormat, final Annotatable result)
       throws ODataJPASerializerException, SerializerException {
 
-    if (result != null || result instanceof EntityCollection && !((EntityCollection) result).getEntities().isEmpty()) {
+    if (result != null) {
       final SerializerResult serializerResult = ((JPAOperationSerializer) serializer).serialize(result, returnType);
       createSuccessResponse(response, responseFormat, serializerResult);
-    } else
+    } else {
+/*      if (result instanceof EntityCollection) {
+        ((EntityCollection) result).getEntities();
+      }*/
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
+    }
   }
 
 }

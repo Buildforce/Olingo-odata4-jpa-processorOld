@@ -93,9 +93,9 @@ public abstract class TestJPAModifyProcessor {
   protected EdmEntitySetInfo etsInfo;
   protected List<UriParameter> keyPredicates;
   protected JPAConversionHelper convHelper;
-  protected List<UriResource> pathParts = new ArrayList<>();
+  protected final List<UriResource> pathParts = new ArrayList<>();
   protected SerializerResult serializerResult;
-  protected List<String> header = new ArrayList<>();
+  protected final List<String> header = new ArrayList<>();
   protected JPAServiceDebugger debugger;
   protected JPAODataTransactionFactory factory;
 

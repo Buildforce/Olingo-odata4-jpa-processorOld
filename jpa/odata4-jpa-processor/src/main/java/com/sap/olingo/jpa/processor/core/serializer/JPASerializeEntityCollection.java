@@ -24,7 +24,7 @@ final class JPASerializeEntityCollection implements JPASerializer, JPAOperationS
   private final UriInfo uriInfo;
   private final UriHelper uriHelper;
   private final ODataSerializer serializer;
-  private ContentType responseFormat;
+  private final ContentType responseFormat;
 
   JPASerializeEntityCollection(final ServiceMetadata serviceMetadata, final ODataSerializer serializer,
       final UriHelper uriHelper, final UriInfo uriInfo, final ContentType responseFormat) {

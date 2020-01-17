@@ -2,7 +2,6 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.annotation;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
@@ -10,21 +9,17 @@ import java.util.Map;
 
 import org.apache.olingo.commons.api.edm.provider.CsdlTerm;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class TermReader {
-  final private JacksonXmlModule module;
   final private XmlMapper xmlMapper;
 
   public TermReader() {
     super();
-    module = new JacksonXmlModule();
+    JacksonXmlModule module = new JacksonXmlModule();
     module.setDefaultUseWrapper(false);
     xmlMapper = new XmlMapper(module);
-
   }
 
   public Map<String, Map<String, CsdlTerm>> getTerms(String path) throws IOException {
@@ -84,4 +79,5 @@ public class TermReader {
     }
     return null;
   }
+
 }

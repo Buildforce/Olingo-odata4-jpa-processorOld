@@ -55,16 +55,12 @@ public class JPAConversionHelper {
 
   private final Map<Object, Map<String, Object>> getterBuffer;
 
-  public static Object convertParameter(final Parameter param, final JPAServiceDocument sd)
-      throws ODataJPAModelException {
-    switch (param.getValueType()) {
-      case ENUM:
-        final JPAEnumerationAttribute enumType = sd.getEnumType(param.getType());
-        return enumType.enumOf((Number) param.getValue());
-
-      default:
-        return param.getValue();
+  public static Object convertParameter(final Parameter param, final JPAServiceDocument sd) throws ODataJPAModelException {
+    if (param.getValueType() == ValueType.ENUM) {
+      final JPAEnumerationAttribute enumType = sd.getEnumType(param.getType());
+      return enumType.enumOf((Number) param.getValue());
     }
+    return param.getValue();
   }
 
   public JPAConversionHelper() {

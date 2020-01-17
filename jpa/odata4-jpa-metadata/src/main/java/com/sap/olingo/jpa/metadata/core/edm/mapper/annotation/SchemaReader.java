@@ -15,12 +15,11 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys;
 
 public class SchemaReader {
-  private final JacksonXmlModule module;
   private final XmlMapper xmlMapper;
 
   public SchemaReader() {
     super();
-    module = new JacksonXmlModule();
+    JacksonXmlModule module = new JacksonXmlModule();
     module.setDefaultUseWrapper(false);
     xmlMapper = new XmlMapper(module);
 

@@ -342,10 +342,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
 
   protected IntermediateStructuredType getBaseType() {
     final Class<?> baseType = jpaManagedType.getJavaType().getSuperclass();
-    if (baseType != null) {
-      final IntermediateStructuredType baseEntity = schema.getEntityType(baseType);
-      return baseEntity;
-    }
+    if (baseType != null) return schema.getEntityType(baseType);
     return null;
   }
 

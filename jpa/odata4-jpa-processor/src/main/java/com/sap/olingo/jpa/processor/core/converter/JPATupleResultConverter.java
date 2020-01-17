@@ -144,12 +144,11 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
   }
 
   protected final String determinePrefix(String alias) {
-    final String prefix = alias;
-    final int index = prefix.lastIndexOf(JPAPath.PATH_SEPARATOR);
+    final int index = alias.lastIndexOf(JPAPath.PATH_SEPARATOR);
     if (index < 0)
       return EMPTY_PREFIX;
     else
-      return prefix.substring(0, index);
+      return alias.substring(0, index);
   }
 
   String buildPath(final JPAAttribute attribute, final String prefix) {
@@ -177,9 +176,9 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
   }
 
   @SuppressWarnings("unchecked")
-  <T extends Object, S extends Object> void convertPrimitiveAttribute(final Object value,
-      final List<Property> properties, final JPAPath jpaPath, final JPAAttribute attribute,
-      @Nullable final Entity odataEntity) {
+  <T, S> void convertPrimitiveAttribute(final Object value,
+                                        final List<Property> properties, final JPAPath jpaPath, final JPAAttribute attribute,
+                                        @Nullable final Entity odataEntity) {
 
     Object odataValue;
     if (attribute != null && attribute.getConverter() != null) {

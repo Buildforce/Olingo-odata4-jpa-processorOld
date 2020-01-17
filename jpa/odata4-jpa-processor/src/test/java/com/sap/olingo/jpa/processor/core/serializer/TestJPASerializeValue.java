@@ -36,13 +36,12 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 
 public class TestJPASerializeValue {
   private JPASerializeValue cut;
-  private ServiceMetadata serviceMetadata;
   private FixedFormatSerializer serializer;
   private UriInfo uriInfo;
 
   @BeforeEach
   public void setup() {
-    serviceMetadata = mock(ServiceMetadata.class);
+    ServiceMetadata serviceMetadata = mock(ServiceMetadata.class);
     uriInfo = mock(UriInfo.class);
     serializer = mock(FixedFormatSerializer.class);
     cut = new JPASerializeValue(serviceMetadata, serializer, uriInfo);

@@ -23,7 +23,7 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 public final class JPASerializerFactory {
   private final ServiceMetadata serviceMetadata;
   private final OData odata;
-  private UriHelper uriHelper;
+  private final UriHelper uriHelper;
 
   public JPASerializerFactory(final OData odata, final ServiceMetadata serviceMetadata) {
     this.odata = odata;

@@ -63,7 +63,7 @@ abstract class JPAExistsOperation implements JPAOperator {
 
     StringBuilder associationName = null;
     UriResourcePartTyped navigation = null;
-    if (resourceParts != null && Util.hasNavigation(resourceParts)) {
+    if (Util.hasNavigation(resourceParts)) {
       for (int i = resourceParts.size() - 1; i >= 0; i--) {
         final UriResource resourcePart = resourceParts.get(i);
         if (resourcePart instanceof UriResourceNavigation) {

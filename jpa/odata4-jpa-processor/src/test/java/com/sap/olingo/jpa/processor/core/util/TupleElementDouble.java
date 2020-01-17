@@ -19,7 +19,7 @@ public class TupleElementDouble implements TupleElement<Object> {
   }
 
   @Override
-  public Class<? extends Object> getJavaType() {
+  public Class<?> getJavaType() {
     return value.getClass();
   }
 

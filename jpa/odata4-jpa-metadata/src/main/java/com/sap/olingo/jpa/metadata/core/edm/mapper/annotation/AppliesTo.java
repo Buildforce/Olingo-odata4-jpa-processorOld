@@ -98,7 +98,7 @@ public enum AppliesTo {
 
   private final String value;
 
-  private AppliesTo(String v) {
+  AppliesTo(String v) {
     value = v;
   }
 

@@ -173,8 +173,7 @@ public class IntegrationTestHelper {
     JsonNode node = mapper.readTree(getRawResult());
     if (!(node.get("value") instanceof ArrayNode))
       fail("Wrong result type; ArrayNode expected");
-    ArrayNode values = (ArrayNode) node.get("value");
-    return values;
+    return (ArrayNode) node.get("value");
   }
 
   public ObjectNode getValue() throws IOException {

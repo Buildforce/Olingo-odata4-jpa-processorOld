@@ -14,6 +14,7 @@ import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +57,7 @@ public class TestJPAFunctionSerializer {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "EntityType(A=0)",
         "com.sap.olingo.jpa.processor.core.testobjects");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test
@@ -92,7 +93,7 @@ public class TestJPAFunctionSerializer {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "PrimitiveValue(A=0)",
         "com.sap.olingo.jpa.processor.core.testobjects");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test
@@ -126,7 +127,7 @@ public class TestJPAFunctionSerializer {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "ComplexType(A=0)",
         "com.sap.olingo.jpa.processor.core.testobjects");
-    helper.assertStatus(204);
+    helper.assertStatus(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   @Test

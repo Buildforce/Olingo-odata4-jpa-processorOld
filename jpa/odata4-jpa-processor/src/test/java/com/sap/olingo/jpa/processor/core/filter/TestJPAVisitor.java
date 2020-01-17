@@ -29,17 +29,14 @@ import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
 public class TestJPAVisitor {
 
   private JPAFilterCompilerAccess compiler;
-  private JPAAbstractQuery query;
   private JPAExpressionVisitor cut;
-  private JPAODataDatabaseOperations extension;
-  private JPAOperationConverter converter;
 
   @BeforeEach
   public void setUp() {
-    extension = mock(JPAODataDatabaseOperations.class);
-    converter = new JPAOperationConverter(mock(CriteriaBuilder.class), extension);
+    JPAODataDatabaseOperations extension = mock(JPAODataDatabaseOperations.class);
+    JPAOperationConverter converter = new JPAOperationConverter(mock(CriteriaBuilder.class), extension);
     compiler = mock(JPAFilterCompilerAccess.class);
-    query = mock(JPAAbstractQuery.class);
+    JPAAbstractQuery query = mock(JPAAbstractQuery.class);
 
     when(compiler.getConverter()).thenReturn(converter);
     when(compiler.getParent()).thenReturn(query);

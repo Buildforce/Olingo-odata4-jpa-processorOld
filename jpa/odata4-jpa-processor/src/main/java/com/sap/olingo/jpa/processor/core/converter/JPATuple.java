@@ -10,8 +10,8 @@ import javax.persistence.TupleElement;
 
 public final class JPATuple implements Tuple {
 
-  private List<TupleElement<?>> elements = new ArrayList<>();
-  private Map<String, Object> values = new HashMap<>();
+  private final List<TupleElement<?>> elements = new ArrayList<>();
+  private final Map<String, Object> values = new HashMap<>();
 
   public void addElement(final String alias, Class<?> javaType, final Object value) {
     elements.add(new JPATupleElement<Object>(alias, javaType));

@@ -146,9 +146,7 @@ public class TestFunctions {
     CriteriaQuery<Tuple> count = cb.createTupleQuery();
     Root<?> adminDiv = count.from(AdministrativeDivision.class);
     count.multiselect(adminDiv);
-    count.where(cb.equal(
-        cb.function("IS_PRIME", boolean.class, cb.literal(5)),
-        new Boolean(true)));
+    count.where(cb.equal(cb.function("IS_PRIME", boolean.class, cb.literal(5)), Boolean.TRUE));
     // cb.literal
     TypedQuery<Tuple> tq = em.createQuery(count);
     List<Tuple> act = tq.getResultList();
