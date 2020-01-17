@@ -76,7 +76,7 @@ public class TestJPACUDRequestHelper {
   private List<String> headers;
 
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     request = mock(ODataRequest.class);
     headers = new ArrayList<>(1);
     uriResourceParts = new ArrayList<>();
@@ -84,7 +84,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertEmptyInputStream() throws UnsupportedEncodingException {
+  public void testConvertEmptyInputStream() {
 
     final EdmEntitySetInfo etsInfo = mock(EdmEntitySetInfo.class);
     final EdmEntitySet ets = mock(EdmEntitySet.class);
@@ -110,8 +110,8 @@ public class TestJPACUDRequestHelper {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testConvertInputStreamComplexCollectionProperty() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamComplexCollectionProperty() throws
+          ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     final EdmEntitySet edmEntitySet = mock(EdmEntitySet.class);
     final EdmEntityType edmEntityType = mock(EdmEntityType.class);
@@ -168,7 +168,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamEntitySet() throws UnsupportedEncodingException, ODataJPAProcessorException,
+  public void testConvertInputStreamEntitySet() throws ODataJPAProcessorException,
       EdmPrimitiveTypeException {
 
     prepareEntitySet();
@@ -180,8 +180,8 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamEntitySetWithAnnotationV400() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamEntitySetWithAnnotationV400() throws
+          ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     headers.add("4.00");
     prepareEntitySet();
@@ -196,8 +196,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamEntitySetWithAnnotationV401() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamEntitySetWithAnnotationV401() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     headers.add("4.01");
     prepareEntitySet();
@@ -212,8 +211,8 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamEntitySetThrowsExceptioOnAnnotationMismatch() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamEntitySetThrowsExceptioOnAnnotationMismatch() throws
+          EdmPrimitiveTypeException {
 
     prepareEntitySet();
     InputStream is = new ByteArrayInputStream(
@@ -227,9 +226,7 @@ public class TestJPACUDRequestHelper {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testConvertInputStreamPrimitiveColectionProperty() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
-
+  public void testConvertInputStreamPrimitiveColectionProperty() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
     final EdmEntitySet edmEntitySet = mock(EdmEntitySet.class);
     final EdmEntityType edmEntityType = mock(EdmEntityType.class);
     final EdmProperty edmPropertyName = mock(EdmProperty.class);
@@ -280,8 +277,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamPrimitiveSimpleProperty() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamPrimitiveSimpleProperty() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     final ODataRequest request = preparePrimitiveSimpleProperty();
     InputStream is = new ByteArrayInputStream("{\"value\" : \"Willi\"}".getBytes(StandardCharsets.UTF_8));
@@ -292,8 +288,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamWithAnnotationV400PrimitiveSimpleProperty() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamWithAnnotationV400PrimitiveSimpleProperty() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     final ODataRequest request = preparePrimitiveSimpleProperty();
     InputStream is = new ByteArrayInputStream(
@@ -305,8 +300,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamWithAnnotationV401PrimitiveSimpleProperty() throws UnsupportedEncodingException,
-      ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamWithAnnotationV401PrimitiveSimpleProperty() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
 
     final ODataRequest request = preparePrimitiveSimpleProperty();
     InputStream is = new ByteArrayInputStream(
@@ -505,7 +499,7 @@ public class TestJPACUDRequestHelper {
     when(attribute.getProperty()).thenReturn(edmProperty);
     when(attribute.getConverter()).thenAnswer(new Answer<AttributeConverter<?, ?>>() {
       @Override
-      public AttributeConverter<?, ?> answer(InvocationOnMock invocation) throws Throwable {
+      public AttributeConverter<?, ?> answer(InvocationOnMock invocation) {
         return new AccessRightsConverter();
       }
     });
@@ -784,14 +778,14 @@ public class TestJPACUDRequestHelper {
     when(edmType.getName()).thenReturn(propertyType.getFullQualifiedName().getName());
     when(edmType.getDefaultType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return defaultJavaType;
       }
     });
     when(edmType.valueOfString(value.toString(), true, 0, 0, 0, true, defaultJavaType)).thenAnswer(
         new Answer<Object>() {
           @Override
-          public Object answer(InvocationOnMock invocation) throws Throwable {
+          public Object answer(InvocationOnMock invocation) {
             return value;
           }
         });

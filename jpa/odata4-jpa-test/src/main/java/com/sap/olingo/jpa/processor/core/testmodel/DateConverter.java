@@ -7,7 +7,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 //This converter has to be mentioned at all columns it is applicable
-@Converter(autoApply = false)
+@Converter()
 public class DateConverter implements AttributeConverter<LocalDate, Date> {
 
   public Date convertToDatabaseColumn(LocalDate locDate) {

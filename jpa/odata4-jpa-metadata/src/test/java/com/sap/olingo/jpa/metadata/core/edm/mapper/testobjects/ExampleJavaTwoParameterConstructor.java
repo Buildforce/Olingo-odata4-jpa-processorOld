@@ -15,13 +15,13 @@ public class ExampleJavaTwoParameterConstructor implements ODataFunction, ODataA
     super();
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType)
+  @EdmFunction(returnType = @ReturnType)
   public Integer sum(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {
     return a + b;
   }
 
-  @EdmAction(name = "")
+  @EdmAction()
   public void mul(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {}
 }

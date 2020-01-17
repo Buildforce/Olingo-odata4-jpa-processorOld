@@ -47,14 +47,14 @@ final class JPAMapNavigationLinkResult extends JPACreateResult {
 
   @Override
   protected String determineLocale(final Map<String, Object> descGetterMap, final JPAPath localeAttribute,
-      final int index) throws ODataJPAProcessorException {
+      final int index) {
     // Not needed for JPAMapNavigationLinkResult
     return null;
   }
 
   @SuppressWarnings("unchecked")
   @Override
-  protected Map<String, Object> entryAsMap(final Object entry) throws ODataJPAProcessorException {
+  protected Map<String, Object> entryAsMap(final Object entry) {
     return (Map<String, Object>) entry;
   }
 }

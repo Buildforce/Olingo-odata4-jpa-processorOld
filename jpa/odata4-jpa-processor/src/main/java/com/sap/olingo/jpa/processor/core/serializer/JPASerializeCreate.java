@@ -46,8 +46,7 @@ final class JPASerializeCreate implements JPASerializer {
   }
 
   @Override
-  public SerializerResult serialize(ODataRequest request, EntityCollection result) throws SerializerException,
-      ODataJPASerializerException {
+  public SerializerResult serialize(ODataRequest request, EntityCollection result) throws SerializerException {
 
     final ExpandOption expandOption = new ExpandOptionWrapper(new ExpandItemWrapper());
 

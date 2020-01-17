@@ -27,7 +27,7 @@ public class TestJPAOperationConverter {
 
   @SuppressWarnings("unchecked")
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     cb = mock(CriteriaBuilder.class);
     extension = mock(JPAODataDatabaseOperations.class);
     cut = new JPAOperationConverter(cb, extension);
@@ -171,5 +171,3 @@ public class TestJPAOperationConverter {
     fail("Exception expected.");
   }
 }
-
-//case MOD:

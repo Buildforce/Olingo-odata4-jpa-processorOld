@@ -42,18 +42,18 @@ public class TestJPAFunctionSerializer {
   }
 
   @Test
-  public void testFunctionReturnsEntityType() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsEntityType() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "EntityType(A=1250)",
         "com.sap.olingo.jpa.processor.core.testobjects");
     helper.assertStatus(200);
     ObjectNode r = helper.getValue();
-    assertNotNull(r.get("Area").asInt());
+    r.get("Area").asInt();
     assertEquals(1250, r.get("Area").asInt());
   }
 
   @Test
-  public void testFunctionReturnsEntityTypeNull() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsEntityTypeNull() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "EntityType(A=0)",
         "com.sap.olingo.jpa.processor.core.testobjects");
@@ -61,7 +61,7 @@ public class TestJPAFunctionSerializer {
   }
 
   @Test
-  public void testFunctionReturnsEntityTypeCollection() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsEntityTypeCollection() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "ListOfEntityType(A=1250)",
         "com.sap.olingo.jpa.processor.core.testobjects");
@@ -69,15 +69,15 @@ public class TestJPAFunctionSerializer {
     ObjectNode r = helper.getValue();
     ArrayNode values = (ArrayNode) r.get("value");
     assertNotNull(values.get(0));
-    assertNotNull(values.get(0).get("Area").asInt());
+    values.get(0).get("Area").asInt();
     assertEquals(1250, values.get(0).get("Area").asInt());
     assertNotNull(values.get(1));
-    assertNotNull(values.get(1).get("Area").asInt());
+    values.get(1).get("Area").asInt();
     assertEquals(625, values.get(1).get("Area").asInt());
   }
 
   @Test
-  public void testFunctionReturnsPrimitiveType() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsPrimitiveType() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "PrimitiveValue(A=124)",
         "com.sap.olingo.jpa.processor.core.testobjects");
@@ -89,7 +89,7 @@ public class TestJPAFunctionSerializer {
   }
 
   @Test
-  public void testFunctionReturnsPrimitiveTypeNull() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsPrimitiveTypeNull() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "PrimitiveValue(A=0)",
         "com.sap.olingo.jpa.processor.core.testobjects");
@@ -97,7 +97,7 @@ public class TestJPAFunctionSerializer {
   }
 
   @Test
-  public void testFunctionReturnsPrimitiveTypeCollection() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsPrimitiveTypeCollection() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "ListOfPrimitiveValues(A=124)",
         "com.sap.olingo.jpa.processor.core.testobjects");
@@ -111,7 +111,7 @@ public class TestJPAFunctionSerializer {
   }
 
   @Test
-  public void testFunctionReturnsComplexType() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsComplexType() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "ComplexType(A=124)",
         "com.sap.olingo.jpa.processor.core.testobjects");
@@ -123,7 +123,7 @@ public class TestJPAFunctionSerializer {
   }
 
   @Test
-  public void testFunctionReturnsComplexTypeNull() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsComplexTypeNull() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "ComplexType(A=0)",
         "com.sap.olingo.jpa.processor.core.testobjects");
@@ -131,7 +131,7 @@ public class TestJPAFunctionSerializer {
   }
 
   @Test
-  public void testFunctionReturnsComplexTypeCollection() throws IOException, ODataException, SQLException {
+  public void testFunctionReturnsComplexTypeCollection() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "ListOfComplexType(A='Willi')",
         "com.sap.olingo.jpa.processor.core.testobjects");

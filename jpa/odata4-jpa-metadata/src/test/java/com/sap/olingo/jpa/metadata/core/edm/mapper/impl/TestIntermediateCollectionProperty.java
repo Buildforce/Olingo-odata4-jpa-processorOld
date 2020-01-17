@@ -54,26 +54,26 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
     when(type.getPersistenceType()).thenReturn(PersistenceType.BASIC);
     when(type.getJavaType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return String.class;
       }
     });
     when(jpaAttribute.getElementType()).thenReturn(type);
     when(jpaAttribute.getDeclaringType()).thenAnswer(new Answer<ManagedType<?>>() {
       @Override
-      public ManagedType<?> answer(InvocationOnMock invocation) throws Throwable {
+      public ManagedType<?> answer(InvocationOnMock invocation) {
         return managedType;
       }
     });
     when(managedType.getJavaType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return Person.class;
       }
     });
     when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return List.class;
       }
     });

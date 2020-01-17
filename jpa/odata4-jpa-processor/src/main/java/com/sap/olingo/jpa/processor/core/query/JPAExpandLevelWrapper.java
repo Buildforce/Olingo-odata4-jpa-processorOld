@@ -47,12 +47,7 @@ public final class JPAExpandLevelWrapper implements JPAExpandItem {
     this.option = option;
     this.item = option.getExpandItems().get(0);
     this.levelOptions = determineLevel(item);
-    try {
-      this.jpaEntityType = sd.getEntity(Util.determineTargetEntityType(getUriResourceParts()));
-    } catch (ODataJPAModelException e) {
-      throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_ENTITY_UNKNOWN,
-          HttpStatusCode.BAD_REQUEST, e, Util.determineTargetEntityType(getUriResourceParts()).getName());
-    }
+    this.jpaEntityType = sd.getEntity(Util.determineTargetEntityType(getUriResourceParts()));
   }
 
   public JPAExpandLevelWrapper(final ExpandOption option, final JPAEntityType jpaEntityType) {

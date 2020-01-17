@@ -231,7 +231,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   }
 
   @Test
-  public void checkSelectContainesVersionEvenSoIgnored() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectContainesVersionEvenSoIgnored() throws ODataApplicationException {
     final List<UriResource> resourcePath = buildUriInfo("BusinessPartnerProtecteds", "BusinessPartnerProtected");
     final UriResourcePrimitiveProperty byResource = mock(UriResourcePrimitiveProperty.class);
     final EdmProperty byProperty = mock(EdmProperty.class);

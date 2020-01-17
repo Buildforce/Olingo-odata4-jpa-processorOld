@@ -27,12 +27,12 @@ public class TestIntermediateReferences extends TestMappingRoot {
   private IntermediateReferences cut;
 
   @BeforeEach
-  public void setup() throws ODataJPAModelException {
+  public void setup() {
     cut = new IntermediateReferences();
   }
 
   @Test
-  public void checkAddOnlyURI() throws ODataJPAModelException, URISyntaxException {
+  public void checkAddOnlyURI() throws ODataJPAModelException {
     String uri = "http://docs.oasisopen.org/odata/odata/v4.0/os/vocabularies/Org.OData.Core.V1.xml";
     cut.addReference(uri);
     List<EdmxReference> act = cut.getEdmReferences();
@@ -41,7 +41,7 @@ public class TestIntermediateReferences extends TestMappingRoot {
   }
 
   @Test
-  public void checkAddURIandPath() throws ODataJPAModelException, URISyntaxException {
+  public void checkAddURIandPath() throws ODataJPAModelException {
     String uri = "http://docs.oasisopen.org/odata/odata/v4.0/os/vocabularies/Org.OData.Measures.V1.xml";
     cut.addReference(uri, "annotations/Org.OData.Measures.V1.xml");
     List<EdmxReference> act = cut.getEdmReferences();

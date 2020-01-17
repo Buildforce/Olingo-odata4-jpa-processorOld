@@ -30,7 +30,7 @@ public class TestJPAFunctionOperator {
   private JPAOperationResultParameter jpaResultParam;
 
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
 
     cb = mock(CriteriaBuilder.class);
     JPAVisitor jpaVisitor = mock(JPAVisitor.class);

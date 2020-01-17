@@ -38,7 +38,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
   }
 
   public HttpServletRequestDouble(final String uri, final StringBuffer body,
-      final Map<String, List<String>> headers) throws IOException {
+      final Map<String, List<String>> headers) {
 
     super();
     this.reqHeader = new HttpRequestHeaderDouble();
@@ -73,7 +73,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
   }
 
   @Override
-  public void setCharacterEncoding(final String env) throws UnsupportedEncodingException {
+  public void setCharacterEncoding(final String env) {
     fail();
 
   }
@@ -91,7 +91,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
   }
 
   @Override
-  public ServletInputStream getInputStream() throws IOException {
+  public ServletInputStream getInputStream() {
     return new ServletInputStreamDouble(input);
   }
 
@@ -141,7 +141,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
   }
 
   @Override
-  public BufferedReader getReader() throws IOException {
+  public BufferedReader getReader() {
     fail();
     return null;
   }

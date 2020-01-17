@@ -305,7 +305,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
     }
 
     @Override
-    public void validateChanges(final EntityManager em) throws ODataJPAProcessException {
+    public void validateChanges(final EntityManager em) {
       noValidateCalls++;
     }
   }

@@ -79,8 +79,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public CsdlEntityContainerInfo getEntityContainerInfo(final FullQualifiedName entityContainerName)
-      throws ODataException {
+  public CsdlEntityContainerInfo getEntityContainerInfo(final FullQualifiedName entityContainerName) {
     // This method is invoked when displaying the Service Document at e.g.
     // .../DemoService.svc
     if (entityContainerName == null
@@ -165,13 +164,12 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public CsdlAnnotations getAnnotationsGroup(final FullQualifiedName targetName, String qualifier)
-      throws ODataException {
+  public CsdlAnnotations getAnnotationsGroup(final FullQualifiedName targetName, String qualifier) {
     return null;
   }
 
   @Override
-  public CsdlTerm getTerm(final FullQualifiedName termName) throws ODataException {
+  public CsdlTerm getTerm(final FullQualifiedName termName) {
     return serviceDocument.getTerm(termName);
   }
 

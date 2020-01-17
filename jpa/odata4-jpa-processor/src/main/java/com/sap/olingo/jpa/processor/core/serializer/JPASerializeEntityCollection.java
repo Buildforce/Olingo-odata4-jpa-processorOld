@@ -64,7 +64,7 @@ final class JPASerializeEntityCollection implements JPASerializer, JPAOperationS
 
   @Override
   public SerializerResult serialize(final Annotatable annotatable, final EdmType entityType)
-      throws SerializerException, ODataJPASerializerException {
+      throws SerializerException {
 
     final EntityCollection result = (EntityCollection) annotatable;
     final String selectList = uriHelper.buildContextURLSelectList((EdmEntityType) entityType, uriInfo.getExpandOption(),

@@ -68,13 +68,13 @@ public class TestIntermediateModelElement {
     }
 
     @Override
-    protected void lazyBuildEdmItem() throws ODataJPAModelException {
+    protected void lazyBuildEdmItem() {
       // TODO Auto-generated method stub
 
     }
 
     @Override
-    CsdlAbstractEdmItem getEdmItem() throws ODataJPAModelException {
+    CsdlAbstractEdmItem getEdmItem() {
       return null;
     }
 

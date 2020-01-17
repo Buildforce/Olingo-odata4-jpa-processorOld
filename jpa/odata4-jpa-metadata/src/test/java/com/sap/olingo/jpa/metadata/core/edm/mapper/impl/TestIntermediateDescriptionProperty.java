@@ -162,7 +162,7 @@ public class TestIntermediateDescriptionProperty extends TestMappingRoot {
 
     when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<BusinessPartner>>() {
       @Override
-      public Class<BusinessPartner> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<BusinessPartner> answer(InvocationOnMock invocation) {
         return BusinessPartner.class;
       }
     });
@@ -252,7 +252,7 @@ public class TestIntermediateDescriptionProperty extends TestMappingRoot {
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) throws ODataJPAModelException {}
+    public void provideReferences(IntermediateReferenceList references) {}
   }
 
   private interface AnnotatedMember extends Member, AnnotatedElement {

@@ -52,7 +52,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkEntityTypeCanBeCreated() throws ODataJPAModelException {
+  public void checkEntityTypeCanBeCreated() {
 
     new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType("BusinessPartner"), schema);
   }
@@ -364,7 +364,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkIgnoreIfAsEntitySet() throws ODataJPAModelException {
+  public void checkIgnoreIfAsEntitySet() {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BestOrganization"), schema);
     assertTrue(et.ignore());
@@ -524,21 +524,21 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkEmbeddedIdKeyIsCompound() throws ODataJPAModelException {
+  public void checkEmbeddedIdKeyIsCompound() {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertTrue(et.hasCompoundKey());
   }
 
   @Test
-  public void checkMultipleKeyIsCompound() throws ODataJPAModelException {
+  public void checkMultipleKeyIsCompound() {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivision"), schema);
     assertTrue(et.hasCompoundKey());
   }
 
   @Test
-  public void checkIdIsNotCompound() throws ODataJPAModelException {
+  public void checkIdIsNotCompound() {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
     assertFalse(et.hasCompoundKey());
@@ -616,7 +616,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
     }
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) throws ODataJPAModelException {}
+    public void provideReferences(IntermediateReferenceList references) {}
   }
 
   private EntityType<?> getEntityType(String typeName) {

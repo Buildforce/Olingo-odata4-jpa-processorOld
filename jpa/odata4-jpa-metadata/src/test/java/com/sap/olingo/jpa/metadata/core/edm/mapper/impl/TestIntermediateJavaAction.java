@@ -306,14 +306,14 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExceptionOnPrivateConstructor() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnPrivateConstructor() {
     assertThrows(ODataJPAModelException.class, () -> {
       createAction(ExampleJavaPrivateConstructor.class, "mul");
     });
   }
 
   @Test
-  public void checkThrowsExceptionOnNoConstructorAsSpecified() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnNoConstructorAsSpecified() {
     assertThrows(ODataJPAModelException.class, () -> {
       createAction(ExampleJavaTwoParameterConstructor.class, "mul");
     });

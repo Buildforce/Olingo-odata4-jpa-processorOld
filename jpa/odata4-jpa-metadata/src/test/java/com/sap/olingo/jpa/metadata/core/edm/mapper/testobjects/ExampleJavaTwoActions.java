@@ -9,7 +9,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.Person;
 
 public class ExampleJavaTwoActions implements ODataAction {
 
-  @EdmAction(name = "Test", isBound = false)
+  @EdmAction(name = "Test")
   public void unbound(
       @EdmParameter(name = "Person") Person person,
       @EdmParameter(name = "A", precision = 34, scale = 10) BigDecimal a) {

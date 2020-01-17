@@ -125,7 +125,7 @@ class IntermediateServiceDocument implements JPAServiceDocument {
    * EdmType)
    */
   @Override
-  public JPAEntityType getEntity(final EdmType edmType) throws ODataJPAModelException {
+  public JPAEntityType getEntity(final EdmType edmType) {
     final IntermediateSchema schema = schemaListInternalKey.get(edmType.getNamespace());
     if (schema != null)
       return schema.getEntityType(edmType.getName());

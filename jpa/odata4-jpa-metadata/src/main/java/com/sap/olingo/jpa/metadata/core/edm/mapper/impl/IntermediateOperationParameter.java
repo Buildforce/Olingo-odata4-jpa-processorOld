@@ -58,10 +58,10 @@ class IntermediateOperationParameter extends IntermediateModelElement implements
   }
 
   @Override
-  protected void lazyBuildEdmItem() throws ODataJPAModelException {}
+  protected void lazyBuildEdmItem() {}
 
   @Override
-  CsdlAbstractEdmItem getEdmItem() throws ODataJPAModelException {
+  CsdlAbstractEdmItem getEdmItem() {
     return null;
   }
 

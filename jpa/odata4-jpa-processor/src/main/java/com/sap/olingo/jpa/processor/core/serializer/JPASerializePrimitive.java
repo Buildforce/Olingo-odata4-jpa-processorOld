@@ -57,7 +57,7 @@ final class JPASerializePrimitive extends JPASerializePrimitiveAbstract {
 
   @Override
   public SerializerResult serialize(final Annotatable result, final EdmType primitiveType)
-      throws SerializerException, ODataJPASerializerException {
+      throws SerializerException {
 
     final ContextURL contextUrl = ContextURL.with().build();
     final PrimitiveSerializerOptions options = PrimitiveSerializerOptions.with().contextURL(contextUrl).build();

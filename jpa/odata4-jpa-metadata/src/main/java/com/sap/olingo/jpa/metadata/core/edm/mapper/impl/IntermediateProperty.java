@@ -108,7 +108,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
   }
 
   @Override
-  public List<String> getProtectionPath(final String claimName) throws ODataJPAModelException {
+  public List<String> getProtectionPath(final String claimName) {
     if (externalProtectedPathNames.containsKey(claimName))
       return externalProtectedPathNames.get(claimName).getPath();
     return new ArrayList<>(0);

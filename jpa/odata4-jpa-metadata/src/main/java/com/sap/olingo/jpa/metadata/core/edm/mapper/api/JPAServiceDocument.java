@@ -29,9 +29,8 @@ public interface JPAServiceDocument extends CustomETagSupport {
 
    * @param edmType
    * @return
-   * @throws ODataJPAModelException
    */
-  JPAEntityType getEntity(final EdmType edmType) throws ODataJPAModelException;
+  JPAEntityType getEntity(final EdmType edmType);
 
   JPAEntityType getEntity(final FullQualifiedName typeName);
 

@@ -106,7 +106,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testJPAAttributes() throws ODataException, UnsupportedEncodingException {
+  public void testJPAAttributes() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -131,7 +131,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   @SuppressWarnings("unchecked")
   @Test
   public void testProvideSimplePrimitivePutAsPatch() throws
-          ODataException, UnsupportedEncodingException {
+          ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -169,7 +169,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   @SuppressWarnings("unchecked")
   @Test
   public void testProvidePrimitiveCollectionPutAsPatch() throws
-          ODataException, UnsupportedEncodingException {
+          ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
@@ -205,7 +205,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   @SuppressWarnings("unchecked")
   @Test
   public void testProvideComplexCollectionPutAsPatch() throws
-          ODataException, UnsupportedEncodingException {
+          ODataException {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
@@ -626,7 +626,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
     @Override
     public JPAUpdateResult updateEntity(final JPARequestEntity requestEntity, final EntityManager em,
-        final HttpMethod verb) throws ODataJPAProcessException {
+        final HttpMethod verb) {
       this.et = requestEntity.getEntityType();
       this.jpaAttributes = requestEntity.getData();
       // this.keys = requestEntity.getKeys();
@@ -640,7 +640,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     }
 
     @Override
-    public void validateChanges(final EntityManager em) throws ODataJPAProcessException {
+    public void validateChanges(final EntityManager em) {
       this.noValidateCalls++;
     }
   }

@@ -234,14 +234,14 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsExceptionOnPrivateConstructor() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnPrivateConstructor() {
     assertThrows(ODataJPAModelException.class, () -> {
       createFunction(ExampleJavaPrivateConstructor.class, "sum");
     });
   }
 
   @Test
-  public void checkThrowsExceptionOnNoConstructorAsSpecified() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnNoConstructorAsSpecified() {
     assertThrows(ODataJPAModelException.class, () -> {
       createFunction(ExampleJavaTwoParameterConstructor.class, "sum");
     });

@@ -168,8 +168,7 @@ public class TestJPAQueryFromClause extends TestBase {
   }
 
   @Test
-  public void checkThrowsIfEliminatedByGroups() throws JPAIllegalAccessException, ODataException,
-      JPANoSelectionException {
+  public void checkThrowsIfEliminatedByGroups() throws JPAIllegalAccessException, ODataException {
 
     final JPAODataRequestContextImpl requestContext = buildRequestContextToTestGroups();
 

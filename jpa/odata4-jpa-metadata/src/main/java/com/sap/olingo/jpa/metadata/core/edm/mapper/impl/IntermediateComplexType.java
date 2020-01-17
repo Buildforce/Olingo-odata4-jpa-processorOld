@@ -31,7 +31,7 @@ final class IntermediateComplexType extends IntermediateStructuredType {
   private CsdlComplexType edmComplexType;
 
   IntermediateComplexType(final JPAEdmNameBuilder nameBuilder, final EmbeddableType<?> jpaEmbeddable,
-      final IntermediateSchema schema) throws ODataJPAModelException {
+      final IntermediateSchema schema) {
 
     super(nameBuilder, jpaEmbeddable, schema);
     this.setExternalName(nameBuilder.buildComplexTypeName(jpaEmbeddable));

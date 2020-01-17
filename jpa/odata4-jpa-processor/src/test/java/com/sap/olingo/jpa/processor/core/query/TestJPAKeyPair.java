@@ -56,7 +56,7 @@ public class TestJPAKeyPair {
   }
 
   @Test
-  public void testCreatePairWithTwoValues() throws ODataJPAQueryException {
+  public void testCreatePairWithTwoValues() {
     cut.setValue(key1);
     cut.setValue(key2);
     assertEquals(10, cut.getMin().get(attribute1));
@@ -65,7 +65,7 @@ public class TestJPAKeyPair {
   }
 
   @Test
-  public void testCreatePairWithTwoValuesSecondLower() throws ODataJPAQueryException {
+  public void testCreatePairWithTwoValuesSecondLower() {
     cut.setValue(key2);
     cut.setValue(key1);
     assertEquals(10, cut.getMin().get(attribute1));
@@ -74,7 +74,7 @@ public class TestJPAKeyPair {
   }
 
   @Test
-  public void testCreatePairWithThirdValuesHigher() throws ODataJPAQueryException {
+  public void testCreatePairWithThirdValuesHigher() {
     key3.put(attribute1, Integer.valueOf(101));
     cut.setValue(key2);
     cut.setValue(key1);
@@ -84,7 +84,7 @@ public class TestJPAKeyPair {
   }
 
   @Test
-  public void testCreatePairWithThirdValuesLower() throws ODataJPAQueryException {
+  public void testCreatePairWithThirdValuesLower() {
     key3.put(attribute1, Integer.valueOf(9));
     cut.setValue(key2);
     cut.setValue(key1);
@@ -94,7 +94,7 @@ public class TestJPAKeyPair {
   }
 
   @Test
-  public void testCreatePairWithThirdValuesBetween() throws ODataJPAQueryException {
+  public void testCreatePairWithThirdValuesBetween() {
     key3.put(attribute1, Integer.valueOf(50));
     cut.setValue(key2);
     cut.setValue(key1);

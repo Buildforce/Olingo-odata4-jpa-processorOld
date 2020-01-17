@@ -24,8 +24,6 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
     @EdmFunction(
         name = "SiblingsBound",
         functionName = "\"OLINGO\".\"Siblings\"",
-        isBound = true,
-        hasFunctionImport = false,
         returnType = @EdmFunction.ReturnType(isCollection = true),
         parameter = {
             @EdmParameter(name = "CodePublisher", parameterName = "\"Publisher\"",
@@ -49,8 +47,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
         name = "PopulationDensity",
         functionName = "\"OLINGO\".\"PopulationDensity\"",
         isBound = false,
-        hasFunctionImport = false,
-        returnType = @EdmFunction.ReturnType(isCollection = false, type = Double.class),
+            returnType = @EdmFunction.ReturnType(type = Double.class),
         parameter = {
             @EdmParameter(name = "Area", parameterName = "UnitArea", type = Integer.class),
             @EdmParameter(name = "Population", parameterName = "Population", type = Long.class) }),
@@ -58,8 +55,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
         name = "ConvertToQkm",
         functionName = "\"OLINGO\".\"ConvertToQkm\"",
         isBound = false,
-        hasFunctionImport = false,
-        returnType = @EdmFunction.ReturnType(isCollection = false, type = Integer.class),
+            returnType = @EdmFunction.ReturnType(type = Integer.class),
         parameter = {
             @EdmParameter(name = "Area", parameterName = "UnitArea", type = Integer.class) }),
 })
@@ -89,10 +85,10 @@ public class AdministrativeDivision implements KeyAccess {
   private String alternativeCode;
   @Column(name = "\"Area\"") // , precision = 34, scale = 0)
   private Integer area = 0;
-  @Column(name = "\"Population\"", precision = 34, scale = 0)
+  @Column(name = "\"Population\"", precision = 34)
   private long population;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = true)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
   @JoinColumn(referencedColumnName = "\"CodePublisher\"", name = "\"CodePublisher\"", nullable = false,
       insertable = false, updatable = false)
   @JoinColumn(referencedColumnName = "\"CodeID\"", name = "\"ParentCodeID\"", nullable = false,
@@ -105,8 +101,7 @@ public class AdministrativeDivision implements KeyAccess {
   private List<AdministrativeDivision> children = new ArrayList<>();
 
   @OneToMany(fetch = FetchType.LAZY)
-  @JoinColumn(name = "\"CodePublisher\"", referencedColumnName = "\"CodePublisher\"", insertable = false,
-      updatable = false)
+  @JoinColumn(name = "\"CodePublisher\"", referencedColumnName = "\"CodePublisher\"", insertable = false, updatable = false)
   @JoinColumn(name = "\"CodeID\"", referencedColumnName = "\"CodeID\"", insertable = false, updatable = false)
   @JoinColumn(name = "\"DivisionCode\"", referencedColumnName = "\"DivisionCode\"", insertable = false,
       updatable = false)

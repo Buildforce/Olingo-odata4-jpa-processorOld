@@ -48,7 +48,7 @@ public class TestJPAFunction {
   }
 
   @Test
-  public void testFunctionGenerateQueryString() throws IOException, ODataException, SQLException {
+  public void testFunctionGenerateQueryString() throws IOException, ODataException {
     createFunction();
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds,
         "Siblings(DivisionCode='BE25',CodeID='NUTS2',CodePublisher='Eurostat')");
@@ -58,28 +58,24 @@ public class TestJPAFunction {
   private void createFunction() {
     final EntityManager em = emf.createEntityManager();
     final EntityTransaction t = em.getTransaction();
-    final StringBuilder createSiblingsString = new StringBuilder();
-    createSiblingsString.append(
-        "CREATE FUNCTION  \"OLINGO\".\"Siblings\" (\"Publisher\" VARCHAR(10), \"ID\" VARCHAR(10), \"Division\" VARCHAR(10)) ");
-    createSiblingsString.append(
-        "RETURNS TABLE(\"CodePublisher\" VARCHAR(10),\"CodeID\" VARCHAR(10),\"DivisionCode\" VARCHAR(10),");
-    createSiblingsString.append(
-        "\"CountryISOCode\" VARCHAR(4), \"ParentCodeID\" VARCHAR(10),\"ParentDivisionCode\" VARCHAR(10),");
-    createSiblingsString.append("\"AlternativeCode\" VARCHAR(10),\"Area\" int, \"Population\" BIGINT) ");
-    createSiblingsString.append("READS SQL DATA ");
-    createSiblingsString.append("RETURN TABLE( SELECT * FROM \"AdministrativeDivision\" as a  WHERE ");
-    createSiblingsString.append("EXISTS (SELECT \"CodePublisher\" ");
-    createSiblingsString.append("FROM \"OLINGO\".\"AdministrativeDivision\" as b ");
-    createSiblingsString.append("WHERE b.\"CodeID\" = \"ID\" ");
-    createSiblingsString.append("AND   b.\"DivisionCode\" = \"Division\" ");
-    createSiblingsString.append("AND   b.\"CodePublisher\" = a.\"CodePublisher\" ");
-    createSiblingsString.append("AND   b.\"ParentCodeID\" = a.\"ParentCodeID\" ");
-    createSiblingsString.append("AND   b.\"ParentDivisionCode\" = a.\"ParentDivisionCode\") ");
-    createSiblingsString.append("AND NOT( a.\"CodePublisher\" = \"Publisher\" ");
-    createSiblingsString.append("AND  a.\"CodeID\" = \"ID\" ");
-    createSiblingsString.append("AND  a.\"DivisionCode\" = \"Division\" )); ");
     t.begin();
-    Query qP = em.createNativeQuery(createSiblingsString.toString());
+    String createSiblingsString = "CREATE FUNCTION  \"OLINGO\".\"Siblings\" (\"Publisher\" VARCHAR(10), \"ID\" VARCHAR(10), \"Division\" VARCHAR(10)) " +
+            "RETURNS TABLE(\"CodePublisher\" VARCHAR(10),\"CodeID\" VARCHAR(10),\"DivisionCode\" VARCHAR(10)," +
+            "\"CountryISOCode\" VARCHAR(4), \"ParentCodeID\" VARCHAR(10),\"ParentDivisionCode\" VARCHAR(10)," +
+            "\"AlternativeCode\" VARCHAR(10),\"Area\" int, \"Population\" BIGINT) " +
+            "READS SQL DATA " +
+            "RETURN TABLE( SELECT * FROM \"AdministrativeDivision\" as a  WHERE " +
+            "EXISTS (SELECT \"CodePublisher\" " +
+            "FROM \"OLINGO\".\"AdministrativeDivision\" as b " +
+            "WHERE b.\"CodeID\" = \"ID\" " +
+            "AND   b.\"DivisionCode\" = \"Division\" " +
+            "AND   b.\"CodePublisher\" = a.\"CodePublisher\" " +
+            "AND   b.\"ParentCodeID\" = a.\"ParentCodeID\" " +
+            "AND   b.\"ParentDivisionCode\" = a.\"ParentDivisionCode\") " +
+            "AND NOT( a.\"CodePublisher\" = \"Publisher\" " +
+            "AND  a.\"CodeID\" = \"ID\" " +
+            "AND  a.\"DivisionCode\" = \"Division\" )); ";
+    Query qP = em.createNativeQuery(createSiblingsString);
     qP.executeUpdate();
     t.commit();
   }

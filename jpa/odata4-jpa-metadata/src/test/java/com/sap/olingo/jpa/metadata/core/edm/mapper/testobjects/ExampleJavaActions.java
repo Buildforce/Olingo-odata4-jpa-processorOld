@@ -21,7 +21,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.PostalAddressData;
 
 public class ExampleJavaActions implements ODataAction {
 
-  @EdmAction(name = "")
+  @EdmAction()
   public Integer unboundWithImport(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {
     return a + b;
@@ -34,24 +34,24 @@ public class ExampleJavaActions implements ODataAction {
     // Do nothing
   }
 
-  @EdmAction(name = "", returnType = @ReturnType(isNullable = false, precision = 20, scale = 5))
+  @EdmAction(returnType = @ReturnType(isNullable = false, precision = 20, scale = 5))
   public BigDecimal unboundReturnFacet(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {
     return new BigDecimal(a).add(new BigDecimal(b));
   }
 
-  @EdmAction(name = "", isBound = true, entitySetPath = "Person/Roles")
+  @EdmAction(isBound = true, entitySetPath = "Person/Roles")
   public BusinessPartnerRole boundWithEntitySetPath(
       @EdmParameter(name = "Person") Person person) {
     return null;
   }
 
-  @EdmAction(name = "")
+  @EdmAction()
   public ChangeInformation returnEmbeddable() {
     return new ChangeInformation();
   }
 
-  @EdmAction(name = "")
+  @EdmAction()
   public Person returnEntity() {
     return new Person();
   }
@@ -61,61 +61,59 @@ public class ExampleJavaActions implements ODataAction {
     return AbcClassification.B;
   }
 
-  @EdmAction(name = "", returnType = @ReturnType(type = String.class))
+  @EdmAction(returnType = @ReturnType(type = String.class))
   public List<String> returnCollection() {
     return new ArrayList<>();
   }
 
-  @EdmAction(name = "", returnType = @ReturnType(type = ChangeInformation.class))
+  @EdmAction(returnType = @ReturnType(type = ChangeInformation.class))
   public List<ChangeInformation> returnEmbeddableCollection() {
     return Arrays.asList(new ChangeInformation());
   }
 
-  @EdmAction(name = "")
+  @EdmAction()
   public List<String> returnCollectionWithoutReturnType() {
     return new ArrayList<>();
   }
 
-  @EdmAction(name = "",
-      returnType = @ReturnType(maxLength = 60,
-          srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")))
+  @EdmAction(
+          returnType = @ReturnType(maxLength = 60, srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")))
   public String calculateLocation(
-      @EdmParameter(name = "String", maxLength = 100,
-          srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")) String a) {
+      @EdmParameter(name = "String", maxLength = 100, srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")) String a) {
     return "";
   }
 
-  @EdmAction(name = "")
+  @EdmAction()
   public Integer errorNonPrimitiveParameter(
       @EdmParameter(name = "A") PostalAddressData a) {
     return 1;
   }
 
-  @EdmAction(name = "", isBound = true)
+  @EdmAction(isBound = true)
   public void boundWithOutBindingParameter(
       @EdmParameter(name = "A", precision = 34, scale = 10) BigDecimal a) {
     // Do nothing
   }
 
-  @EdmAction(name = "", isBound = true)
+  @EdmAction(isBound = true)
   public void boundWithOutParameter() {
     // Do nothing
   }
 
-  @EdmAction(name = "", isBound = true)
+  @EdmAction(isBound = true)
   public void boundBindingParameterSecondParameter(
       @EdmParameter(name = "A", precision = 34, scale = 10) BigDecimal a,
       @EdmParameter(name = "Person") Person person) {
     // Do nothing
   }
 
-  @EdmAction(name = "", isBound = false, entitySetPath = "Person/Address")
+  @EdmAction(entitySetPath = "Person/Address")
   public PostalAddressData errorUnboundWithEntitySetPath(
       @EdmParameter(name = "Person") Person person) {
     return null;
   }
 
-  @EdmAction(name = "", isBound = true, entitySetPath = "Person/Address")
+  @EdmAction(isBound = true, entitySetPath = "Person/Address")
   public Integer errorPrimitiveTypeWithEntitySetPath(
       @EdmParameter(name = "Person") Person person) {
     return null;

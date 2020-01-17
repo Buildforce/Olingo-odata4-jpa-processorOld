@@ -300,7 +300,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(secondParameter.getMaxLength()).thenReturn(10);
     when(secondParameter.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return String.class;
       }
     });
@@ -321,7 +321,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(secondParameter.getMaxLength()).thenReturn(10);
     when(secondParameter.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return String.class;
       }
     });
@@ -334,7 +334,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(jpaFunction.isBound()).thenReturn(Boolean.TRUE);
     when(returnParameter.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return BusinessPartner.class;
       }
     });
@@ -353,7 +353,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(firstParameter.getMaxLength()).thenReturn(10);
     when(firstParameter.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return String.class;
       }
     });
@@ -364,7 +364,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
   protected void createFunctionWithOneParameter() throws ODataJPAModelException {
     when(returnParameter.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return BusinessPartner.class;
       }
     });
@@ -382,7 +382,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(firstParameter.getMaxLength()).thenReturn(10);
     when(firstParameter.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return String.class;
       }
     });

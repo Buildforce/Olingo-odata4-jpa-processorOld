@@ -62,7 +62,7 @@ final class IntermediateFunctionFactory extends IntermediateOperationFactory {
 
   private void putFunction(final JPAEdmNameBuilder nameBuilder, final EntityType<?> jpaEntityType,
       final IntermediateSchema schema, final Map<String, IntermediateFunction> funcList,
-      final EdmFunction jpaStoredProcedure) throws ODataJPAModelException {
+      final EdmFunction jpaStoredProcedure) {
 
     final IntermediateFunction func = new IntermediateDataBaseFunction(nameBuilder, jpaStoredProcedure, jpaEntityType
         .getJavaType(), schema);

@@ -118,13 +118,13 @@ public class TestJPAODataRequestProcessor {
 
   @ParameterizedTest
   @MethodSource("throwsSerializerExceptionMethodsProvider")
-  public void checkCreateEntityPropagateSerializerException(final Executable m) throws SerializerException {
+  public void checkCreateEntityPropagateSerializerException(final Executable m) {
 
     assertThrows(ODataException.class, m);
   }
 
   @Test
-  public void checkUpdateEntityPropagateSerializerException() throws SerializerException {
+  public void checkUpdateEntityPropagateSerializerException() {
 
     assertThrows(ODataException.class, () -> {
       cut.updateEntity(request, response, uriInfo, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON);

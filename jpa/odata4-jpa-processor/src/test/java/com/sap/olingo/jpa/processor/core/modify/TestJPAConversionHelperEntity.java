@@ -16,7 +16,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 public class TestJPAConversionHelperEntity extends TestJPAConversionHelper {
 
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     cut = new JPAConversionHelper();
   }
 

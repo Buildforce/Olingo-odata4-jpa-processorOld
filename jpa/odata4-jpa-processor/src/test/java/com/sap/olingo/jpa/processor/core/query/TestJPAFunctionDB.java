@@ -104,7 +104,7 @@ public class TestJPAFunctionDB {
     when(resultParam.getTypeFQN()).thenReturn(new FullQualifiedName(PUNIT_NAME, "CheckRights"));
     when(resultParam.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return Boolean.class;
       }
     });
@@ -126,7 +126,7 @@ public class TestJPAFunctionDB {
     when(resultParam.getTypeFQN()).thenReturn(new FullQualifiedName(PUNIT_NAME, "CheckRights"));
     when(resultParam.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return Boolean.class;
       }
     });

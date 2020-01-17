@@ -116,7 +116,7 @@ public class TestIntermediateEnumerationType extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsErrorOnIsFlagTrueAndNegativeValue() throws ODataJPAModelException {
+  public void checkThrowsErrorOnIsFlagTrueAndNegativeValue() {
     cut = new IntermediateEnumerationType(new JPADefaultEdmNameBuilder(PUNIT_NAME), WrongMember.class);
     assertThrows(ODataJPAModelException.class, () -> {
       cut.getEdmItem();
@@ -124,7 +124,7 @@ public class TestIntermediateEnumerationType extends TestMappingRoot {
   }
 
   @Test
-  public void checkThrowsErrorOnNotSupportedUnderlyingType() throws ODataJPAModelException {
+  public void checkThrowsErrorOnNotSupportedUnderlyingType() {
     cut = new IntermediateEnumerationType(new JPADefaultEdmNameBuilder(PUNIT_NAME), WrongType.class);
     assertThrows(ODataJPAModelException.class, () -> {
       cut.getEdmItem();

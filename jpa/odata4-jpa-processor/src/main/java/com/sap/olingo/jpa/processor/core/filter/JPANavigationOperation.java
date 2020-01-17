@@ -176,7 +176,7 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
     }
 
     @Override
-    public <T> T accept(final ExpressionVisitor<T> visitor) throws ODataApplicationException {
+    public <T> T accept(final ExpressionVisitor<T> visitor) {
       return null;
     }
 

@@ -63,7 +63,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectExpandViaIgnoredProperties() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectExpandViaIgnoredProperties() throws ODataApplicationException {
     // Organizations('3')/Address?$expand=AdministrativeDivision
     fillJoinTable(root);
     final List<ExpandItem> expItems = new ArrayList<>();
@@ -88,7 +88,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectOnePropertyCreatedAt() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectOnePropertyCreatedAt() throws ODataApplicationException {
     List<Selection<?>> selectClause = cut.createSelectClause(joinTables, cut.buildSelectionPathList(
         new UriInfoDouble(new SelectOptionDouble("CreationDateTime"))), root, Collections.emptyList());
     assertEquals(3, selectClause.size());
@@ -98,7 +98,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectOnePropertyID() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectOnePropertyID() throws ODataApplicationException {
     List<Selection<?>> selectClause = cut.createSelectClause(joinTables, cut.buildSelectionPathList(
         new UriInfoDouble(new SelectOptionDouble("ID"))), root, Collections.emptyList());
     assertEquals(2, selectClause.size());
@@ -126,7 +126,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectPropertyTypeCreatedAt() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectPropertyTypeCreatedAt() throws ODataApplicationException {
     List<Selection<?>> selectClause = cut.createSelectClause(joinTables, cut.buildSelectionPathList(
         new UriInfoDouble(new SelectOptionDouble("Type,CreationDateTime"))), root, Collections.emptyList());
 

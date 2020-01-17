@@ -82,7 +82,7 @@ final class JPASerializeValue extends JPASerializePrimitiveAbstract {
 
   @Override
   public SerializerResult serialize(final Annotatable result, final EdmType entityType)
-      throws SerializerException, ODataJPASerializerException {
+      throws SerializerException {
 
     final PrimitiveValueSerializerOptions options = PrimitiveValueSerializerOptions.with().build();
     return new JPAValueSerializerResult(serializer.primitiveValue((EdmPrimitiveType) entityType, ((Property) result)

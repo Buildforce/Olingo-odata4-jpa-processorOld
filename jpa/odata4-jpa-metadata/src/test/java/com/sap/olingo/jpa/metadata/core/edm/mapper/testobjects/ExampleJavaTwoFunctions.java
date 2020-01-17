@@ -10,12 +10,12 @@ public class ExampleJavaTwoFunctions implements ODataFunction {
     super();
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType)
+  @EdmFunction(returnType = @ReturnType)
   public Integer multi(int a, int b) {
     return a * b;
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType)
+  @EdmFunction(returnType = @ReturnType)
   public Integer divide(int a, int b) {
     return a / b;
   }

@@ -57,7 +57,7 @@ public class JPAExpandSubQuery extends JPAAbstractJoinQuery {
   }
 
   @Override
-  public JPAConvertibleResult execute() throws ODataApplicationException {
+  public JPAConvertibleResult execute() {
     // TODO Auto-generated method stub
     return null;
   }

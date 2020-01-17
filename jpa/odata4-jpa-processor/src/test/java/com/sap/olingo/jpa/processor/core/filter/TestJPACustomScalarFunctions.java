@@ -35,7 +35,7 @@ public class TestJPACustomScalarFunctions {
   protected static DataSource ds;
 
   @BeforeAll
-  public static void setupClass() throws ODataJPAModelException {
+  public static void setupClass() {
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, ds);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
@@ -43,7 +43,7 @@ public class TestJPACustomScalarFunctions {
   }
 
   @AfterAll
-  public static void tearDownClass() throws ODataJPAModelException {
+  public static void tearDownClass() {
     DropDenfityFunction();
   }
 

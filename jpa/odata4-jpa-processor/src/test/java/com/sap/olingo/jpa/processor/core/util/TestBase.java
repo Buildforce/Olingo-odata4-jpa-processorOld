@@ -27,7 +27,7 @@ public class TestBase {
   protected static DataSource ds;
 
   @BeforeAll
-  public static void setupClass() throws ODataJPAModelException {
+  public static void setupClass() {
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, ds);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);

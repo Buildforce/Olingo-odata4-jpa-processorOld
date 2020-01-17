@@ -38,62 +38,62 @@ public class TestJPAPath extends TestMappingRoot {
   }
 
   @Test
-  public void checkOnePathElementAlias() throws ODataApplicationException, ODataJPAModelException {
+  public void checkOnePathElementAlias() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("Name1");
     assertEquals("Name1", cut.getAlias());
   }
 
   @Test
-  public void checkOnePathElementPathSize() throws ODataApplicationException, ODataJPAModelException {
+  public void checkOnePathElementPathSize() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("Name1");
     assertEquals(1, cut.getPath().size());
   }
 
   @Test
-  public void checkOnePathElementElement() throws ODataApplicationException, ODataJPAModelException {
+  public void checkOnePathElementElement() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("Name1");
     assertEquals("name1", cut.getPath().get(0).getInternalName());
   }
 
   @Test
-  public void checkOnePathElementFromSuperTypeAlias() throws ODataApplicationException, ODataJPAModelException {
+  public void checkOnePathElementFromSuperTypeAlias() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("Type");
     assertEquals("Type", cut.getAlias());
   }
 
   @Test
-  public void checkTwoPathElementAlias() throws ODataApplicationException, ODataJPAModelException {
+  public void checkTwoPathElementAlias() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("Address/Country");
     assertEquals("Address/Country", cut.getAlias());
   }
 
   @Test
-  public void checkTwoPathElementPathSize() throws ODataApplicationException, ODataJPAModelException {
+  public void checkTwoPathElementPathSize() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("Address/Country");
     assertEquals(2, cut.getPath().size());
   }
 
   @Test
-  public void checkTwoPathElementPathElements() throws ODataApplicationException, ODataJPAModelException {
+  public void checkTwoPathElementPathElements() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("Address/Country");
     assertEquals("address", cut.getPath().get(0).getInternalName());
     assertEquals("country", cut.getPath().get(1).getInternalName());
   }
 
   @Test
-  public void checkThreePathElementAlias() throws ODataApplicationException, ODataJPAModelException {
+  public void checkThreePathElementAlias() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("AdministrativeInformation/Created/By");
     assertEquals("AdministrativeInformation/Created/By", cut.getAlias());
   }
 
   @Test
-  public void checkThreePathElementPathSize() throws ODataApplicationException, ODataJPAModelException {
+  public void checkThreePathElementPathSize() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("AdministrativeInformation/Created/By");
     assertEquals(3, cut.getPath().size());
   }
 
   @Test
-  public void checkThreePathElementPathElements() throws ODataApplicationException, ODataJPAModelException {
+  public void checkThreePathElementPathElements() throws ODataJPAModelException {
     JPAPath cut = organization.getPath("AdministrativeInformation/Created/By");
     assertEquals("administrativeInformation", cut.getPath().get(0).getInternalName());
     assertEquals("created", cut.getPath().get(1).getInternalName());
@@ -208,14 +208,14 @@ public class TestJPAPath extends TestMappingRoot {
   }
 
   @Test
-  public void checkTwoNotEqualIfAliasNotEqual() throws ODataApplicationException, ODataJPAModelException {
+  public void checkTwoNotEqualIfAliasNotEqual() throws ODataJPAModelException {
     final JPAPath cut = organization.getPath("Address/Country");
     final JPAPath act = new JPAPathImpl("Address", cut.getDBFieldName(), cut.getPath());
     assertNotEquals(act, cut);
   }
 
   @Test
-  public void checkTwoNotEqualIfElementListNotEqual() throws ODataApplicationException, ODataJPAModelException {
+  public void checkTwoNotEqualIfElementListNotEqual() throws ODataJPAModelException {
     final JPAPath cut = organization.getPath("Address/Country");
     final List<JPAElement> pathList = new ArrayList<>(cut.getPath());
     pathList.remove(0);
@@ -224,7 +224,7 @@ public class TestJPAPath extends TestMappingRoot {
   }
 
   @Test
-  public void checkTwoEqualIfSame() throws ODataApplicationException, ODataJPAModelException {
+  public void checkTwoEqualIfSame() throws ODataJPAModelException {
     final JPAPath cut = organization.getPath("Address/Country");
     assertEquals(cut, cut);
   }

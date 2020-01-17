@@ -312,9 +312,8 @@ public class JPAConversionHelper {
     return jpaAttribute;
   }
 
-  private void collectKeyProperties(Map<String, Object> newPOJO, final List<JPAPath> keyPath,
-      final List<Property> properties)
-      throws ODataJPAProcessorException, ODataJPAModelException {
+  private void collectKeyProperties(Map<String, Object> newPOJO, final List<JPAPath> keyPath, final List<Property> properties)
+          throws ODataJPAModelException {
 
     if (keyPath.size() > 1) {
 

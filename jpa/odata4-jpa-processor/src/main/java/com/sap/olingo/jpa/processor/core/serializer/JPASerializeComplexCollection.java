@@ -30,14 +30,12 @@ public class JPASerializeComplexCollection implements JPAOperationSerializer {
   }
 
   @Override
-  public SerializerResult serialize(ODataRequest request, EntityCollection result) throws SerializerException,
-      ODataJPASerializerException {
+  public SerializerResult serialize(ODataRequest request, EntityCollection result) {
     return null;
   }
 
   @Override
-  public SerializerResult serialize(Annotatable result, EdmType complexType) throws SerializerException,
-      ODataJPASerializerException {
+  public SerializerResult serialize(Annotatable result, EdmType complexType) throws SerializerException {
 
     final ContextURL contextUrl = ContextURL.with().asCollection().build();
     final ComplexSerializerOptions options = ComplexSerializerOptions.with().contextURL(contextUrl).build();

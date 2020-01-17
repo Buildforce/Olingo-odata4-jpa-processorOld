@@ -23,33 +23,31 @@ public class UriHelperDouble implements UriHelper {
   private String idPropertyName;
 
   @Override
-  public String buildContextURLSelectList(EdmStructuredType type, ExpandOption expand, SelectOption select)
-      throws SerializerException {
+  public String buildContextURLSelectList(EdmStructuredType type, ExpandOption expand, SelectOption select) {
     fail();
     return null;
   }
 
   @Override
-  public String buildContextURLKeyPredicate(List<UriParameter> keys) throws SerializerException {
+  public String buildContextURLKeyPredicate(List<UriParameter> keys) {
     fail();
     return null;
   }
 
   @Override
-  public String buildCanonicalURL(EdmEntitySet edmEntitySet, Entity entity) throws SerializerException {
+  public String buildCanonicalURL(EdmEntitySet edmEntitySet, Entity entity) {
     fail();
     return null;
   }
 
   @Override
-  public String buildKeyPredicate(EdmEntityType edmEntityType, Entity entity) throws SerializerException {
+  public String buildKeyPredicate(EdmEntityType edmEntityType, Entity entity) {
 
     return keyPredicates.get(entity.getProperty(idPropertyName).getValue());
   }
 
   @Override
-  public UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot)
-      throws DeserializerException {
+  public UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot) {
     fail();
     return null;
   }

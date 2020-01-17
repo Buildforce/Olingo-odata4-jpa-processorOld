@@ -39,7 +39,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 
 public class TestJPAODataServiceContextBuilder {
   private static final String PUNIT_NAME = "com.sap.olingo.jpa";
-  private static final String[] enumPackages = { "com.sap.olingo.jpa.processor.core.testmodel" };
+  private static final String[] enumPackages = {"com.sap.olingo.jpa.processor.core.testmodel"};
 
   private JPAODataCRUDContextAccess cut;
   private static DataSource ds;
@@ -57,9 +57,9 @@ public class TestJPAODataServiceContextBuilder {
   @Test
   public void checkSetDatasourceAndPUnit() throws ODataException {
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .build();
 
     assertNotNull(cut.getEdmProvider());
   }
@@ -67,9 +67,9 @@ public class TestJPAODataServiceContextBuilder {
   @Test
   public void checkEmptyArrayOnNoPackagesProvided() throws ODataException {
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .build();
 
     assertNotNull(cut.getPackageName());
     assertEquals(0, cut.getPackageName().length);
@@ -78,10 +78,10 @@ public class TestJPAODataServiceContextBuilder {
   @Test
   public void checkArrayOnProvidedPackages() throws ODataException {
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setTypePackage("org.apache.olingo.jpa.bl", "com.sap.olingo.jpa.processor.core.testmodel")
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setTypePackage("org.apache.olingo.jpa.bl", "com.sap.olingo.jpa.processor.core.testmodel")
+            .build();
 
     assertNotNull(cut.getPackageName());
     assertEquals(2, cut.getPackageName().length);
@@ -91,10 +91,10 @@ public class TestJPAODataServiceContextBuilder {
   public void checkReturnsProvidedPagingProvider() throws ODataException {
     final JPAODataPagingProvider provider = new JPAExamplePagingProvider(Collections.emptyMap());
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setPagingProvider(provider)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setPagingProvider(provider)
+            .build();
 
     assertNotNull(cut.getPagingProvider());
     assertEquals(provider, cut.getPagingProvider());
@@ -104,9 +104,9 @@ public class TestJPAODataServiceContextBuilder {
   public void checkEmptyListOnNoReferencesProvided() throws ODataException {
 
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .build();
 
     assertNotNull(cut.getReferences());
     assertTrue(cut.getReferences().isEmpty());
@@ -118,10 +118,10 @@ public class TestJPAODataServiceContextBuilder {
     final List<EdmxReference> references = new ArrayList<>(1);
     references.add(new EdmxReference(new URI("http://exapmle.com/odata4/v1")));
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setReferences(references)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setReferences(references)
+            .build();
 
     assertEquals(1, cut.getReferences().size());
   }
@@ -131,10 +131,10 @@ public class TestJPAODataServiceContextBuilder {
 
     final JPAODataDatabaseOperations operations = new JPADefaultDatabaseProcessor();
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setOperationConverter(operations)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setOperationConverter(operations)
+            .build();
 
     assertNotNull(cut.getOperationConverter());
     assertEquals(operations, cut.getOperationConverter());
@@ -145,10 +145,10 @@ public class TestJPAODataServiceContextBuilder {
 
     final JPAODataDatabaseProcessor processor = new JPADefaultDatabaseProcessor();
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setDatabaseProcessor(processor)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setDatabaseProcessor(processor)
+            .build();
 
     assertNotNull(cut.getDatabaseProcessor());
     assertEquals(processor, cut.getDatabaseProcessor());
@@ -159,11 +159,11 @@ public class TestJPAODataServiceContextBuilder {
 
     final JPAEdmMetadataPostProcessor processor = new TestEdmPostProcessor();
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setTypePackage(enumPackages)
-        .setMetadataPostProcessor(processor)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setTypePackage(enumPackages)
+            .setMetadataPostProcessor(processor)
+            .build();
 
     assertNotNull(cut.getEdmProvider());
     assertNotNull(cut.getEdmProvider().getEntityType(new FullQualifiedName(PUNIT_NAME, "Test")));
@@ -173,34 +173,34 @@ public class TestJPAODataServiceContextBuilder {
   public void checkReturnsErrorProcessor() throws ODataException {
     final ErrorProcessor processor = new JPADefaultErrorProcessor();
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setErrorProcessor(processor)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setErrorProcessor(processor)
+            .build();
 
     assertNotNull(cut.getErrorProcessor());
     assertEquals(processor, cut.getErrorProcessor());
   }
 
   @Test
-  public void checkThrowsExceptionOnDBConnectionProblem() throws ODataException, SQLException {
+  public void checkThrowsExceptionOnDBConnectionProblem() throws SQLException {
     final DataSource dsSpy = spy(ds);
     when(dsSpy.getConnection()).thenThrow(SQLException.class);
     assertThrows(ODataException.class, () -> JPAODataServiceContext.with()
-        .setDataSource(dsSpy)
-        .setPUnit(PUNIT_NAME)
-        .build());
+            .setDataSource(dsSpy)
+            .setPUnit(PUNIT_NAME)
+            .build());
 
   }
 
   @Test
-  public void checkJPAEdmContainsDefaultNameBuilder() throws ODataException, SQLException {
+  public void checkJPAEdmContainsDefaultNameBuilder() throws ODataException {
 
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setTypePackage(enumPackages)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setTypePackage(enumPackages)
+            .build();
     final JPAEdmProvider act = cut.getEdmProvider();
     assertNotNull(act);
     assertNotNull(act.getEdmNameBuilder());
@@ -208,16 +208,16 @@ public class TestJPAODataServiceContextBuilder {
   }
 
   @Test
-  public void checkJPAEdmContainsCustomNameBuilder() throws ODataException, SQLException {
+  public void checkJPAEdmContainsCustomNameBuilder() throws ODataException {
 
     final JPAEdmNameBuilder nameBuilder = mock(JPAEdmNameBuilder.class);
     when(nameBuilder.getNamespace()).thenReturn("unit.test");
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setTypePackage(enumPackages)
-        .setEdmNameBuilder(nameBuilder)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setTypePackage(enumPackages)
+            .setEdmNameBuilder(nameBuilder)
+            .build();
     final JPAEdmProvider act = cut.getEdmProvider();
     assertNotNull(act);
     assertNotNull(act.getEdmNameBuilder());
@@ -229,10 +229,10 @@ public class TestJPAODataServiceContextBuilder {
     final String exp = "test/v1";
 
     cut = JPAODataServiceContext.with()
-        .setDataSource(ds)
-        .setPUnit(PUNIT_NAME)
-        .setRequestMappingPath(exp)
-        .build();
+            .setDataSource(ds)
+            .setPUnit(PUNIT_NAME)
+            .setRequestMappingPath(exp)
+            .build();
 
     assertEquals(exp, cut.getMappingPath());
   }
@@ -241,7 +241,7 @@ public class TestJPAODataServiceContextBuilder {
 
     @Override
     public void processNavigationProperty(final IntermediateNavigationPropertyAccess property,
-        final String jpaManagedTypeClassName) {
+                                          final String jpaManagedTypeClassName) {
       // Default shall do nothing
     }
 

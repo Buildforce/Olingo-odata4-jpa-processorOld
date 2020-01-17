@@ -393,19 +393,19 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     when(jpaAttribute.getPersistentAttributeType()).thenReturn(PersistentAttributeType.BASIC);
     when(jpaAttribute.getDeclaringType()).thenAnswer(new Answer<ManagedType<?>>() {
       @Override
-      public ManagedType<?> answer(InvocationOnMock invocation) throws Throwable {
+      public ManagedType<?> answer(InvocationOnMock invocation) {
         return jpaManagedType;
       }
     });
     when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return Timestamp.class;
       }
     });
     when(jpaManagedType.getJavaType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return DummyToBeIgnored.class;
       }
     });
@@ -605,7 +605,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
         String jpaManagedTypeClassName) {}
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) throws ODataJPAModelException {}
+    public void provideReferences(IntermediateReferenceList references) {}
 
     @Override
     public void processEntityType(IntermediateEntityTypeAccess entity) {}

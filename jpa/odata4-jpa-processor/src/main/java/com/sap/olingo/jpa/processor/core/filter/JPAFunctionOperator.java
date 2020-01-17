@@ -112,7 +112,7 @@ final class JPAFunctionOperator implements JPAOperator {
     private final String text;
 
     @Override
-    public <T> T accept(final ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+    public <T> T accept(final ExpressionVisitor<T> visitor) {
       return null;
     }
 

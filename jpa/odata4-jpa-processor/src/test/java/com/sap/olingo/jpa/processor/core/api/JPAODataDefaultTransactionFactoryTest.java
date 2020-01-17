@@ -73,7 +73,7 @@ public class JPAODataDefaultTransactionFactoryTest {
   }
 
   @Test
-  public void testIsActiveReturnFalseIfNoTransactionHasBeenCreated() throws ODataJPATransactionException {
+  public void testIsActiveReturnFalseIfNoTransactionHasBeenCreated() {
 
     cut = new JPAODataDefaultTransactionFactory(em);
     assertFalse(cut.hasActiveTransaction());
@@ -116,8 +116,7 @@ public class JPAODataDefaultTransactionFactoryTest {
   }
 
   @Test
-  public void testIsActiveReturnTrueNotCreatedButActiveTransactionThrowsException()
-      throws ODataJPATransactionException {
+  public void testIsActiveReturnTrueNotCreatedButActiveTransactionThrowsException() {
 
     when(transaction.isActive()).thenReturn(true);
     cut = new JPAODataDefaultTransactionFactory(em);

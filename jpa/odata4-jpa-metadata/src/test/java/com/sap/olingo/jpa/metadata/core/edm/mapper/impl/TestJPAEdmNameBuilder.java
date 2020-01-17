@@ -11,7 +11,7 @@ public class TestJPAEdmNameBuilder {
   private JPADefaultEdmNameBuilder cut;
 
   @BeforeEach
-  public void setup() throws ODataJPAModelException {
+  public void setup() {
 
   }
 

@@ -62,7 +62,7 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testThrowsExceptionOnEntityManagerIsNull() throws JPAIllegalAccessException {
+  public void testThrowsExceptionOnEntityManagerIsNull() {
     assertThrows(NullPointerException.class, () -> cut.setEntityManager(null));
   }
 
@@ -83,7 +83,7 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testReturnsSetJPASerializer() throws JPAIllegalAccessException {
+  public void testReturnsSetJPASerializer() {
     final JPASerializer exp = mock(JPASerializer.class);
     cut.setJPASerializer(exp);
     assertEquals(exp, cut.getSerializer());
@@ -98,7 +98,7 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testThrowsExceptionOnPageIsNull() throws JPAIllegalAccessException {
+  public void testThrowsExceptionOnPageIsNull() {
     assertThrows(NullPointerException.class, () -> cut.setJPAODataPage(null));
   }
 
@@ -111,12 +111,12 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testThrowsExceptionOnUriInfoIsNull() throws JPAIllegalAccessException {
+  public void testThrowsExceptionOnUriInfoIsNull() {
     assertThrows(NullPointerException.class, () -> cut.setUriInfo(null));
   }
 
   @Test
-  public void testThrowsExceptionOnSerializerIsNull() throws JPAIllegalAccessException {
+  public void testThrowsExceptionOnSerializerIsNull() {
     assertThrows(NullPointerException.class, () -> cut.setJPASerializer(null));
   }
 
@@ -168,14 +168,14 @@ public class TestJPAODataRequestContextImpl {
   }
 
   @Test
-  public void testReturnsDefaultTransactionFactory() throws JPAIllegalAccessException {
+  public void testReturnsDefaultTransactionFactory() {
     final EntityManager em = mock(EntityManager.class);
     cut.setEntityManager(em);
     assertTrue(cut.getTransactionFactory() instanceof JPAODataDefaultTransactionFactory);
   }
 
   @Test
-  public void testReturnsProvidedTransactionFactory() throws JPAIllegalAccessException {
+  public void testReturnsProvidedTransactionFactory() {
     final JPAODataTransactionFactory exp = mock(JPAODataTransactionFactory.class);
     cut.setTransactionFactory(exp);
     assertEquals(exp, cut.getTransactionFactory());

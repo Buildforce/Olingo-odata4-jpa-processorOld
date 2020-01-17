@@ -68,13 +68,13 @@ final class JPAEntityNavigationLinkResult extends JPACreateResult implements JPA
   }
 
   @Override
-  public void putChildren(Map<JPAAssociationPath, JPAExpandResult> childResults) throws ODataApplicationException {
+  public void putChildren(Map<JPAAssociationPath, JPAExpandResult> childResults) {
     // Not needed for JPAEntityNavigationLinkResult
   }
 
   @Override
   protected String determineLocale(final Map<String, Object> descGetterMap, final JPAPath localeAttribute,
-      final int index) throws ODataJPAProcessorException {
+      final int index) {
     // Not needed for JPAEntityNavigationLinkResult
     return null;
   }

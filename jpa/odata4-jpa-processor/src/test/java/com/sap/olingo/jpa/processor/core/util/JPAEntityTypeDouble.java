@@ -35,13 +35,13 @@ public class JPAEntityTypeDouble implements JPAEntityType {
   }
 
   @Override
-  public List<JPAAssociationPath> getAssociationPathList() throws ODataJPAModelException {
+  public List<JPAAssociationPath> getAssociationPathList() {
     fail();
     return null;
   }
 
   @Override
-  public JPAAttribute getAttribute(UriResourceProperty uriResourceItem) throws ODataJPAModelException {
+  public JPAAttribute getAttribute(UriResourceProperty uriResourceItem) {
     fail();
     return null;
   }
@@ -57,37 +57,37 @@ public class JPAEntityTypeDouble implements JPAEntityType {
   }
 
   @Override
-  public List<JPAPath> getCollectionAttributesPath() throws ODataJPAModelException {
+  public List<JPAPath> getCollectionAttributesPath() {
     fail();
     return null;
   }
 
   @Override
-  public JPAAssociationPath getDeclaredAssociation(JPAAssociationPath associationPath) throws ODataJPAModelException {
+  public JPAAssociationPath getDeclaredAssociation(JPAAssociationPath associationPath) {
     fail();
     return null;
   }
 
   @Override
-  public JPAAssociationPath getDeclaredAssociation(String externalName) throws ODataJPAModelException {
+  public JPAAssociationPath getDeclaredAssociation(String externalName) {
     fail();
     return null;
   }
 
   @Override
-  public List<JPAAssociationAttribute> getDeclaredAssociations() throws ODataJPAModelException {
+  public List<JPAAssociationAttribute> getDeclaredAssociations() {
     fail();
     return null;
   }
 
   @Override
-  public List<JPAAttribute> getDeclaredAttributes() throws ODataJPAModelException {
+  public List<JPAAttribute> getDeclaredAttributes() {
     fail();
     return null;
   }
 
   @Override
-  public List<JPACollectionAttribute> getDeclaredCollectionAttributes() throws ODataJPAModelException {
+  public List<JPACollectionAttribute> getDeclaredCollectionAttributes() {
     fail();
     return null;
   }
@@ -129,25 +129,25 @@ public class JPAEntityTypeDouble implements JPAEntityType {
   }
 
   @Override
-  public String getContentType() throws ODataJPAModelException {
+  public String getContentType() {
     fail();
     return null;
   }
 
   @Override
-  public JPAPath getContentTypeAttributePath() throws ODataJPAModelException {
+  public JPAPath getContentTypeAttributePath() {
     fail();
     return null;
   }
 
   @Override
-  public List<JPAAttribute> getKey() throws ODataJPAModelException {
+  public List<JPAAttribute> getKey() {
     fail();
     return null;
   }
 
   @Override
-  public List<JPAPath> getKeyPath() throws ODataJPAModelException {
+  public List<JPAPath> getKeyPath() {
     fail();
     return null;
   }
@@ -198,7 +198,7 @@ public class JPAEntityTypeDouble implements JPAEntityType {
   }
 
   @Override
-  public JPAPath getEtagPath() throws ODataJPAModelException {
+  public JPAPath getEtagPath() {
     fail();
     return null;
   }

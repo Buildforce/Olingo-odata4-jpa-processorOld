@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import com.sap.olingo.jpa.processor.core.testmodel.LocaleEnumeration;
 
 public class TestODataJPAModelException {
-  private static String BUNDLE_NAME = "test-i18n";
+  private static final String BUNDLE_NAME = "test-i18n";
 
   @Test
   public void checkTextInDefaultLocale() {

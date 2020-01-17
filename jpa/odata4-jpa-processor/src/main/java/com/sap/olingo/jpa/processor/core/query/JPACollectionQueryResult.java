@@ -145,8 +145,7 @@ public class JPACollectionQueryResult implements JPACollectionResult, JPAConvert
   }
 
   @Override
-  public void putChildren(final Map<JPAAssociationPath, JPAExpandResult> childResults)
-      throws ODataApplicationException {
+  public void putChildren(final Map<JPAAssociationPath, JPAExpandResult> childResults) {
     // Not needed yet. Collections with navigation properties not supported
   }
 }

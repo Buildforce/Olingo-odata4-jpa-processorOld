@@ -309,21 +309,21 @@ public class TestJPATypeConverter {
   }
 
   @Test
-  public void checkThrowsExceptionOnUnknownTypeWithAnnotation() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnUnknownTypeWithAnnotation() {
 
     assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildTimeAttribute(TemporalType.TIME)));
   }
 
   @Test
-  public void checkThrowsExceptionOnUnknownGeographyType() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnUnknownGeographyType() {
 
     assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildDimensionAttribute(Dimension.GEOGRAPHY)));
   }
 
   @Test
-  public void checkThrowsExceptionOnUnknownGeometryType() throws ODataJPAModelException {
+  public void checkThrowsExceptionOnUnknownGeometryType() {
 
     assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildDimensionAttribute(Dimension.GEOMETRY)));

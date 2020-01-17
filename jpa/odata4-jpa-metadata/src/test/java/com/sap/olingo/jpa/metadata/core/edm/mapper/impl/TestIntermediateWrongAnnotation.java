@@ -116,7 +116,7 @@ public class TestIntermediateWrongAnnotation {
   }
 
   @Test
-  public void checkErrorOnNavigationPropertyPartOfGroup() throws ODataJPAModelException {
+  public void checkErrorOnNavigationPropertyPartOfGroup() {
     final Attribute<?, ?> jpaAttribute = helper.getDeclaredAttribute(helper.getEntityType(
         NavigationPropertyPartOfGroup.class), "teams");
     final IntermediateStructuredType entityType = helper.schema.getEntityType(NavigationPropertyPartOfGroup.class);
@@ -130,7 +130,7 @@ public class TestIntermediateWrongAnnotation {
   }
 
   @Test
-  public void checkErrorOnMandatoryPropertyPartOfGroup() throws ODataJPAModelException {
+  public void checkErrorOnMandatoryPropertyPartOfGroup() {
     final Attribute<?, ?> jpaAttribute = helper.getDeclaredAttribute(helper.getEntityType(
         MandatoryPartOfGroup.class), "eTag");
 
@@ -142,7 +142,7 @@ public class TestIntermediateWrongAnnotation {
   }
 
   @Test
-  public void checkErrorOnKeyPropertyPartOfGroup() throws ODataJPAModelException {
+  public void checkErrorOnKeyPropertyPartOfGroup() {
     final Attribute<?, ?> jpaAttribute = helper.getDeclaredAttribute(helper.getEntityType(
         KeyPartOfGroup.class), "iD");
 
@@ -154,7 +154,7 @@ public class TestIntermediateWrongAnnotation {
   }
 
   @Test
-  public void checkErrorOnEmbeddedKeyPropertyPartOfGroup() throws ODataJPAModelException {
+  public void checkErrorOnEmbeddedKeyPropertyPartOfGroup() {
     final Attribute<?, ?> jpaAttribute = helper.getDeclaredAttribute(helper.getEntityType(
         EmbeddedKeyPartOfGroup.class), "key");
 

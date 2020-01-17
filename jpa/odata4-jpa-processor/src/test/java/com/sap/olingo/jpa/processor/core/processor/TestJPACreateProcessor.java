@@ -457,7 +457,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testResponseCreateChildSameTypeContent() throws ODataException, IOException {
+  public void testResponseCreateChildSameTypeContent() throws ODataException {
 
     when(ets.getName()).thenReturn("AdministrativeDivisions");
     final AdministrativeDivision div = new AdministrativeDivision(new AdministrativeDivisionKey("Eurostat", "NUTS1",
@@ -496,7 +496,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testResponseCreateChildDifferentTypeContent() throws ODataException, IOException {
+  public void testResponseCreateChildDifferentTypeContent() throws ODataException {
 
     final Organization org = new Organization("Test");
     final BusinessPartnerRole role = new BusinessPartnerRole();
@@ -630,8 +630,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     }
 
     @Override
-    public Object createEntity(final JPARequestEntity requestEntity, EntityManager em)
-        throws ODataJPAProcessException {
+    public Object createEntity(final JPARequestEntity requestEntity, EntityManager em) {
 
       this.et = requestEntity.getEntityType();
       this.jpaAttributes = requestEntity.getData();
@@ -645,7 +644,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     }
 
     @Override
-    public void validateChanges(final EntityManager em) throws ODataJPAProcessException {
+    public void validateChanges(final EntityManager em) {
       this.noValidateCalls++;
     }
 
@@ -659,8 +658,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     public JPARequestEntity requestEntity;
 
     @Override
-    public Object createEntity(final JPARequestEntity requestEntity, EntityManager em)
-        throws ODataJPAProcessException {
+    public Object createEntity(final JPARequestEntity requestEntity, EntityManager em) {
       Map<String, Object> result = new HashMap<>();
       result.put("iD", "35");
       this.et = requestEntity.getEntityType();

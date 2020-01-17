@@ -208,7 +208,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
   }
 
   @Test
-  public void checkUpdateEntityNotFound() throws ODataJPAProcessException, ODataJPAModelException {
+  public void checkUpdateEntityNotFound() throws ODataJPAModelException {
     final String id = "1";
     final Organization beforImage = new Organization(id);
     final JPAEntityType et = helper.getJPAEntityType("Organizations");

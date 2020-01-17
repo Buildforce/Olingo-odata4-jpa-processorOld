@@ -21,7 +21,7 @@ public class JPAComplexResultConverter extends JPAStructuredResultConverter {
   }
 
   @Override
-  public List<ComplexValue> getResult() throws ODataApplicationException, SerializerException, URISyntaxException {
+  public List<ComplexValue> getResult() throws ODataApplicationException {
     List<ComplexValue> result = new ArrayList<>();
 
     for (Object row : this.jpaQueryResult) {

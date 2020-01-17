@@ -48,8 +48,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
         name = "max",
         functionName = "MAX",
         isBound = false,
-        hasFunctionImport = false,
-        returnType = @EdmFunction.ReturnType(type = BigDecimal.class, isCollection = false),
+        returnType = @EdmFunction.ReturnType(type = BigDecimal.class),
         parameter = { @EdmParameter(name = "Path", parameterName = "path", type = String.class),
         }),
 

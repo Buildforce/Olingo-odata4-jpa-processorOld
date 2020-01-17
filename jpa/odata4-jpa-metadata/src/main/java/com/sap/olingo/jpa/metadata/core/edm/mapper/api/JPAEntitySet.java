@@ -4,7 +4,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 
 public interface JPAEntitySet extends JPAElement {
 
-  JPAEntityType getODataEntityType() throws ODataJPAModelException;
+  JPAEntityType getODataEntityType();
 
   JPAEntityType getEntityType();
 

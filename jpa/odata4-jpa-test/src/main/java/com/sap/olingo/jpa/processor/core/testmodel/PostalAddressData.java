@@ -15,11 +15,11 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Embeddable
 public class PostalAddressData {
-  @Column(name = "\"Address.StreetName\"", nullable = true)
+  @Column(name = "\"Address.StreetName\"")
   private String streetName;
-  @Column(name = "\"Address.StreetNumber\"", nullable = true)
+  @Column(name = "\"Address.StreetNumber\"")
   private String houseNumber;
-  @Column(name = "\"Address.PostOfficeBox\"", nullable = true)
+  @Column(name = "\"Address.PostOfficeBox\"")
   private String pOBox;
   @Column(name = "\"Address.PostalCode\"")
   private String postalCode;

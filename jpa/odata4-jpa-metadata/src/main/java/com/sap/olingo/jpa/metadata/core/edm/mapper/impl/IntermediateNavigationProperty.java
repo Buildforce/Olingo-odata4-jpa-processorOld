@@ -112,7 +112,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
   }
 
   @Override
-  public List<String> getProtectionPath(String claimName) throws ODataJPAModelException {
+  public List<String> getProtectionPath(String claimName) {
     return new ArrayList<>(0);
   }
 
@@ -234,7 +234,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
     return edmNaviProperty;
   }
 
-  PersistentAttributeType getJoinCardinality() throws ODataJPAModelException {
+  PersistentAttributeType getJoinCardinality() {
     return jpaAttribute.getPersistentAttributeType();
   }
 

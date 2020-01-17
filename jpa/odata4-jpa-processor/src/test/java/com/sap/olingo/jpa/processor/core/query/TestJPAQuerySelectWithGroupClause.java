@@ -23,7 +23,7 @@ import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
 public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
 
   @Test
-  public void checkSelectAllWithoutGroupReturnsNotAssigned() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectAllWithoutGroupReturnsNotAssigned() throws ODataApplicationException {
     fillJoinTable(root);
 
     final List<Selection<?>> selectClause = cut.createSelectClause(joinTables, cut.buildSelectionPathList(
@@ -36,7 +36,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectAllWithOneGroupReturnsAlsoThose() throws ODataException, JPAIllegalAccessException {
+  public void checkSelectAllWithOneGroupReturnsAlsoThose() throws ODataException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();
@@ -51,7 +51,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectAllWithTwoGroupReturnsAlsoThose() throws ODataException, JPAIllegalAccessException {
+  public void checkSelectAllWithTwoGroupReturnsAlsoThose() throws ODataException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();
@@ -67,7 +67,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectTwoWithOneGroupReturnsAll() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectTwoWithOneGroupReturnsAll() throws ODataApplicationException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();
@@ -84,7 +84,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectTwoWithOneGroupReturnsOnlyID() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectTwoWithOneGroupReturnsOnlyID() throws ODataApplicationException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();
@@ -100,7 +100,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectTwoWithoutGroupReturnsOnlyID() throws ODataApplicationException, ODataJPAModelException {
+  public void checkSelectTwoWithoutGroupReturnsOnlyID() throws ODataApplicationException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final JPAODataGroupsProvider groups = new JPAODataGroupsProvider();

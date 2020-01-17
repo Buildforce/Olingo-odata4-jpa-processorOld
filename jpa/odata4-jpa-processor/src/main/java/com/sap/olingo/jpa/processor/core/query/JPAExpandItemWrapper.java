@@ -36,12 +36,7 @@ public class JPAExpandItemWrapper implements JPAExpandItem {
   public JPAExpandItemWrapper(final JPAServiceDocument sd, final ExpandItem item) throws ODataApplicationException {
     super();
     this.item = item;
-    try {
-      this.jpaEntityType = sd.getEntity(Util.determineTargetEntityType(getUriResourceParts()));
-    } catch (ODataJPAModelException e) {
-      throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_ENTITY_UNKNOWN,
-          HttpStatusCode.BAD_REQUEST, e, Util.determineTargetEntityType(getUriResourceParts()).getName());
-    }
+    this.jpaEntityType = sd.getEntity(Util.determineTargetEntityType(getUriResourceParts()));
   }
 
   public JPAExpandItemWrapper(final ExpandItem item, final JPAEntityType jpaEntityType) {

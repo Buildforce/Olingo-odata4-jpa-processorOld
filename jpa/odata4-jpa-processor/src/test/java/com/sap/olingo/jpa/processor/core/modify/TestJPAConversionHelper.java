@@ -56,8 +56,7 @@ public abstract class TestJPAConversionHelper {
   public abstract void testConvertSimpleKeyToLocation() throws ODataJPAProcessorException, SerializerException,
       ODataJPAModelException;
 
-  protected void prepareConvertCompoundKeyToLocation() throws ODataJPAModelException,
-      SerializerException, ODataJPAProcessorException {
+  protected void prepareConvertCompoundKeyToLocation() throws ODataJPAModelException {
 
     final List<JPAPath> keyPath = new ArrayList<>();
 
@@ -147,7 +146,7 @@ public abstract class TestJPAConversionHelper {
     }
 
     @Override
-    public String buildCanonicalURL(EdmEntitySet edmEntitySet, Entity entity) throws SerializerException {
+    public String buildCanonicalURL(EdmEntitySet edmEntitySet, Entity entity) {
       if (mode.equals(EMBEDDED_ID)) {
         assertEquals(4, entity.getProperties().size());
         int found = 0;
@@ -181,27 +180,25 @@ public abstract class TestJPAConversionHelper {
     }
 
     @Override
-    public String buildContextURLKeyPredicate(List<UriParameter> keys) throws SerializerException {
+    public String buildContextURLKeyPredicate(List<UriParameter> keys) {
       fail();
       return null;
     }
 
     @Override
-    public String buildContextURLSelectList(EdmStructuredType type, ExpandOption expand, SelectOption select)
-        throws SerializerException {
+    public String buildContextURLSelectList(EdmStructuredType type, ExpandOption expand, SelectOption select) {
       fail();
       return null;
     }
 
     @Override
-    public String buildKeyPredicate(EdmEntityType edmEntityType, Entity entity) throws SerializerException {
+    public String buildKeyPredicate(EdmEntityType edmEntityType, Entity entity) {
       fail();
       return null;
     }
 
     @Override
-    public UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot)
-        throws DeserializerException {
+    public UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot) {
       fail();
       return null;
     }

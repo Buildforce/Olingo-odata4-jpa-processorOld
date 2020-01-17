@@ -32,12 +32,12 @@ public class HttpServletResponseDouble implements HttpServletResponse {
   }
 
   @Override
-  public ServletOutputStream getOutputStream() throws IOException {
+  public ServletOutputStream getOutputStream() {
     return this.outputStream;
   }
 
   @Override
-  public PrintWriter getWriter() throws IOException {
+  public PrintWriter getWriter() {
     fail();
     return null;
   }
@@ -72,7 +72,7 @@ public class HttpServletResponseDouble implements HttpServletResponse {
   }
 
   @Override
-  public void flushBuffer() throws IOException {
+  public void flushBuffer() {
     fail();
 
   }
@@ -144,19 +144,19 @@ public class HttpServletResponseDouble implements HttpServletResponse {
   }
 
   @Override
-  public void sendError(int sc, String msg) throws IOException {
+  public void sendError(int sc, String msg) {
     fail();
 
   }
 
   @Override
-  public void sendError(int sc) throws IOException {
+  public void sendError(int sc) {
     fail();
 
   }
 
   @Override
-  public void sendRedirect(String location) throws IOException {
+  public void sendRedirect(String location) {
     fail();
 
   }
@@ -215,7 +215,7 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     final List<Integer> buffer = new ArrayList<>();
 
     @Override
-    public void write(int b) throws IOException {
+    public void write(int b) {
       buffer.add(Integer.valueOf(b));
     }
 
@@ -238,7 +238,7 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     }
 
     @Override
-    public int read() throws IOException {
+    public int read() {
       if (bufferExcess.hasNext())
         return bufferExcess.next().intValue();
       return -1;

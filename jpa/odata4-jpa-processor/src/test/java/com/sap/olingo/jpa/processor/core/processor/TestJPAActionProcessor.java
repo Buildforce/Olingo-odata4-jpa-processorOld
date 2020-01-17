@@ -150,8 +150,8 @@ public class TestJPAActionProcessor {
   }
 
   @Test
-  public void testCallsConstructorWithoutParameter() throws InstantiationException,
-      IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException,
+  public void testCallsConstructorWithoutParameter() throws
+          IllegalArgumentException, NoSuchMethodException,
       SecurityException, ODataApplicationException {
     TestJavaActionNoParameter.resetCalls();
 
@@ -164,8 +164,8 @@ public class TestJPAActionProcessor {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testCallsConstructorWithParameter() throws InstantiationException,
-      IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException,
+  public void testCallsConstructorWithParameter() throws
+          IllegalArgumentException, NoSuchMethodException,
       SecurityException, ODataApplicationException {
     TestJavaActions.constructorCalls = 0;
 
@@ -243,7 +243,7 @@ public class TestJPAActionProcessor {
     when(sd.getComplexType(any())).thenReturn(st);
     when(st.getTypeClass()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return CommunicationData.class;
       }
     });
@@ -389,7 +389,7 @@ public class TestJPAActionProcessor {
     final JPAParameter bindingParam = addParameter(m, null, "Root", 0);
     when(bindingParam.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return AdministrativeDivision.class;
       }
     });
@@ -412,7 +412,7 @@ public class TestJPAActionProcessor {
     when(code.getInternalName()).thenReturn("codeID");
     when(code.getType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return String.class;
       }
     });
@@ -423,7 +423,7 @@ public class TestJPAActionProcessor {
     when(edmString.valueOfString("LAU2", false, 0, 0, 0, true, code.getType())).thenAnswer(
         new Answer<String>() {
           @Override
-          public String answer(InvocationOnMock invocation) throws Throwable {
+          public String answer(InvocationOnMock invocation) {
             return "LAU2";
           }
         });

@@ -116,7 +116,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
   }
 
   @Override
-  public JPAStructuredType getTargetEntity() throws ODataJPAModelException {
+  public JPAStructuredType getTargetEntity() {
     return joinTable.getEntityType();
   }
 
@@ -182,7 +182,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
   }
 
   @Override
-  void determineStreamInfo() throws ODataJPAModelException {
+  void determineStreamInfo() {
     // Stream properties not supported
   }
 
@@ -200,7 +200,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
   }
 
   @Override
-  String getDefaultValue() throws ODataJPAModelException {
+  String getDefaultValue() {
     // No defaults for collection properties
     return null;
   }

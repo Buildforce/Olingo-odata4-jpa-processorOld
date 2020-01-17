@@ -58,13 +58,13 @@ public class TestIntermediateContainer extends TestMappingRoot {
   }
 
   @Test
-  public void checkContainerCanBeCreated() throws ODataJPAModelException {
+  public void checkContainerCanBeCreated() {
 
     new IntermediateEntityContainer(new JPADefaultEdmNameBuilder(PUNIT_NAME), schemas);
   }
 
   @Test
-  public void checkGetName() throws ODataJPAModelException {
+  public void checkGetName() {
 
     IntermediateEntityContainer container = new IntermediateEntityContainer(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         schemas);
@@ -297,7 +297,7 @@ public class TestIntermediateContainer extends TestMappingRoot {
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) throws ODataJPAModelException {}
+    public void provideReferences(IntermediateReferenceList references) {}
 
     @Override
     public void processEntityContainer(IntermediateEntityContainerAccess container) {

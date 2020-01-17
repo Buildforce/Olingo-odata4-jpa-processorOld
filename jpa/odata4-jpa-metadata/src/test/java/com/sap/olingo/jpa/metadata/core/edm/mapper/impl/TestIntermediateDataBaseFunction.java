@@ -39,7 +39,7 @@ public class TestIntermediateDataBaseFunction extends TestMappingRoot {
   }
 
   @Test
-  public void checkByEntityAnnotationCreate() throws ODataJPAModelException {
+  public void checkByEntityAnnotationCreate() {
     new IntermediateDataBaseFunction(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper.getStoredProcedure(helper.getEntityType(
         BusinessPartner.class), "CountRoles"), BusinessPartner.class, helper.schema);
   }
@@ -53,7 +53,7 @@ public class TestIntermediateDataBaseFunction extends TestMappingRoot {
   }
 
   @Test
-  public void checkByEntityAnnotationGetFunctionName() throws ODataJPAModelException {
+  public void checkByEntityAnnotationGetFunctionName() {
     IntermediateFunction func = new IntermediateDataBaseFunction(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper
         .getStoredProcedure(
             helper.getEntityType(BusinessPartner.class), "CountRoles"), BusinessPartner.class, helper.schema);
@@ -213,7 +213,7 @@ public class TestIntermediateDataBaseFunction extends TestMappingRoot {
     when(retType.type()).thenAnswer(new Answer<Class<?>>() {
 
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return ChangeInformation.class;
       }
     });
@@ -225,7 +225,7 @@ public class TestIntermediateDataBaseFunction extends TestMappingRoot {
   }
 
   @Test
-  public void checkReturnTypeUnknown() throws ODataJPAModelException {
+  public void checkReturnTypeUnknown() {
     EdmFunction func = mock(EdmFunction.class);
     EdmFunction.ReturnType retType = mock(EdmFunction.ReturnType.class);
     // EdmFunctionParameter[] params = new EdmFunctionParameter[0];
@@ -233,7 +233,7 @@ public class TestIntermediateDataBaseFunction extends TestMappingRoot {
     when(func.parameter()).thenReturn(new EdmParameter[0]);
     when(retType.type()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return DateConverter.class;
       }
     });

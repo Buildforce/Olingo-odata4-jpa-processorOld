@@ -35,7 +35,7 @@ public abstract class JPAMapBaseResult extends JPACreateResult {
   @Override
   @SuppressWarnings("unchecked")
   protected String determineLocale(final Map<String, Object> descGetterMap, final JPAPath localeAttribute,
-      final int index) throws ODataJPAProcessorException {
+      final int index) {
 
     final Object value = descGetterMap.get(localeAttribute.getPath().get(index).getInternalName());
     if (localeAttribute.getPath().size() == index + 1 || value == null) {
@@ -47,7 +47,7 @@ public abstract class JPAMapBaseResult extends JPACreateResult {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected Map<String, Object> entryAsMap(final Object entry) throws ODataJPAProcessorException {
+  protected Map<String, Object> entryAsMap(final Object entry) {
     return (Map<String, Object>) entry;
   }
 }

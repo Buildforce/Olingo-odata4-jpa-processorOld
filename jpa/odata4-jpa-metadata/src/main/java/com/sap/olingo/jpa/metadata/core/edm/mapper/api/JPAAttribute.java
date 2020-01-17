@@ -28,9 +28,8 @@ public interface JPAAttribute extends JPAElement {
   /**
    * Provides a List of path to the protected attributed
    * @return
-   * @throws ODataJPAModelException
    */
-  List<String> getProtectionPath(String claimName) throws ODataJPAModelException;
+  List<String> getProtectionPath(String claimName);
 
   Class<?> getType();
 

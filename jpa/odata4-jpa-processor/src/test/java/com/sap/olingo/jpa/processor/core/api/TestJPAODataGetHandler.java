@@ -46,7 +46,7 @@ public class TestJPAODataGetHandler extends TestBase {
 
   @Test
   public void testCanCreateInstanceWithPunit() throws ODataException {
-    assertNotNull(new JPAODataGetHandler(PUNIT_NAME));
+      new JPAODataGetHandler(PUNIT_NAME);
   }
 
   @Test
@@ -62,7 +62,7 @@ public class TestJPAODataGetHandler extends TestBase {
   @Test
   public void testCanCreateInstanceWithPunitAndDs() throws ODataException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
-    assertNotNull(new JPAODataGetHandler(PUNIT_NAME, ds));
+      new JPAODataGetHandler(PUNIT_NAME, ds);
   }
 
   @Test

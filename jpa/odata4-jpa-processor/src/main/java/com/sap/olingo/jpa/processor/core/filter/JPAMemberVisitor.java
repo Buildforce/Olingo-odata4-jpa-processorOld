@@ -36,44 +36,38 @@ final class JPAMemberVisitor implements ExpressionVisitor<JPAPath> {
   }
 
   @Override
-  public JPAPath visitBinaryOperator(final BinaryOperatorKind operator, final JPAPath left, final JPAPath right)
-      throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitBinaryOperator(final BinaryOperatorKind operator, final JPAPath left, final JPAPath right) {
     return null;
   }
 
   @Override
-  public JPAPath visitBinaryOperator(BinaryOperatorKind operator, JPAPath left, List<JPAPath> right)
-      throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitBinaryOperator(BinaryOperatorKind operator, JPAPath left, List<JPAPath> right) {
     return null;
   }
 
   @Override
-  public JPAPath visitUnaryOperator(final UnaryOperatorKind operator, final JPAPath operand)
-      throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitUnaryOperator(final UnaryOperatorKind operator, final JPAPath operand) {
     return null;
   }
 
   @Override
-  public JPAPath visitMethodCall(final MethodKind methodCall, final List<JPAPath> parameters)
-      throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitMethodCall(final MethodKind methodCall, final List<JPAPath> parameters) {
     return null;
   }
 
   @Override
   public JPAPath visitLambdaExpression(final String lambdaFunction, final String lambdaVariable,
-      final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression)
-      throws ExpressionVisitException,
-      ODataApplicationException {
+      final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression) {
     return null;
   }
 
   @Override
-  public JPAPath visitLiteral(final Literal literal) throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitLiteral(final Literal literal) {
     return null;
   }
 
   @Override
-  public JPAPath visitMember(final Member member) throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitMember(final Member member) throws ODataApplicationException {
     final UriResourceKind uriResourceKind = member.getResourcePath().getUriResourceParts().get(0).getKind();
 
     if (uriResourceKind == UriResourceKind.primitiveProperty || uriResourceKind == UriResourceKind.complexProperty) {
@@ -95,24 +89,22 @@ final class JPAMemberVisitor implements ExpressionVisitor<JPAPath> {
   }
 
   @Override
-  public JPAPath visitAlias(final String aliasName) throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitAlias(final String aliasName) {
     return null;
   }
 
   @Override
-  public JPAPath visitTypeLiteral(final EdmType type) throws ExpressionVisitException, ODataApplicationException {
+  public JPAPath visitTypeLiteral(final EdmType type) {
     return null;
   }
 
   @Override
-  public JPAPath visitLambdaReference(final String variableName) throws ExpressionVisitException,
-      ODataApplicationException {
+  public JPAPath visitLambdaReference(final String variableName) {
     return null;
   }
 
   @Override
-  public JPAPath visitEnum(final EdmEnumType type, final List<String> enumValues) throws ExpressionVisitException,
-      ODataApplicationException {
+  public JPAPath visitEnum(final EdmEnumType type, final List<String> enumValues) {
     return null;
   }
 

@@ -31,7 +31,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
         functionName = "CHECK_RIGHTS",
         hasFunctionImport = true,
         isBound = false,
-        returnType = @EdmFunction.ReturnType(type = Boolean.class, isCollection = false),
+        returnType = @EdmFunction.ReturnType(type = Boolean.class),
         parameter = {
             @EdmParameter(name = "R", parameterName = "Right", type = AccessRights.class),
             @EdmParameter(name = "U", parameterName = "UserRights", type = Integer.class) }),
@@ -41,7 +41,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
         functionName = "RETURN_RIGHTS",
         hasFunctionImport = true,
         isBound = false,
-        returnType = @EdmFunction.ReturnType(type = AccessRights.class, isCollection = false),
+        returnType = @EdmFunction.ReturnType(type = AccessRights.class),
         parameter = {
             @EdmParameter(name = "U", parameterName = "UserRights", type = Integer.class) })
 })
@@ -64,7 +64,7 @@ public class Person extends BusinessPartner {// #NOSONAR use equal method from B
   private AccessRights[] accessRights;
 
   @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-  @JoinColumn(name = "\"ID\"", referencedColumnName = "\"ID\"", insertable = false, updatable = false, nullable = true)
+  @JoinColumn(name = "\"ID\"", referencedColumnName = "\"ID\"", insertable = false, updatable = false)
   private PersonImage image;
 
   @EdmAnnotation(term = "Core.Description", qualifier = "Address",

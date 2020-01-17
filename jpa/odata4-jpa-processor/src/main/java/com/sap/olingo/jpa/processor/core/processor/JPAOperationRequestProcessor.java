@@ -73,16 +73,11 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
   }
 
   private List<ComplexValue> createComplexCollection(final EdmComplexType returnType, final Object result)
-      throws ODataApplicationException {
+      throws ODataApplicationException/*, SerializerException, URISyntaxException*/ {
 
     final List<Object> jpaQueryResult = new ArrayList<>();
     jpaQueryResult.addAll((Collection<?>) result);
-    try {
-      return new JPAComplexResultConverter(sd, jpaQueryResult, returnType).getResult();
-    } catch (SerializerException | URISyntaxException e) {
-      throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_RESULT_CONV_ERROR,
-          HttpStatusCode.INTERNAL_SERVER_ERROR, e);
-    }
+    return new JPAComplexResultConverter(sd, jpaQueryResult, returnType).getResult();
   }
 
   private ComplexValue createComplexValue(final EdmComplexType returnType, final Object result)
@@ -90,13 +85,8 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
 
     final List<Object> jpaQueryResult = new ArrayList<>();
     jpaQueryResult.add(result);
-    try {
-      final List<ComplexValue> valueList = new JPAComplexResultConverter(sd, jpaQueryResult, returnType).getResult();
-      return valueList.get(0);
-    } catch (SerializerException | URISyntaxException e) {
-      throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_RESULT_CONV_ERROR,
-          HttpStatusCode.INTERNAL_SERVER_ERROR, e);
-    }
+    final List<ComplexValue> valueList = new JPAComplexResultConverter(sd, jpaQueryResult, returnType).getResult();
+    return valueList.get(0);
   }
 
   @SuppressWarnings({ "rawtypes", "unchecked" })

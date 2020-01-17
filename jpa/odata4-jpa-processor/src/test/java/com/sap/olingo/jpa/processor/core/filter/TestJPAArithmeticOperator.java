@@ -28,7 +28,7 @@ public class TestJPAArithmeticOperator {
 
   @SuppressWarnings("unchecked")
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     converter = mock(JPAOperationConverter.class);
     cb = mock(CriteriaBuilder.class);
     expression = mock(Path.class);
@@ -42,7 +42,7 @@ public class TestJPAArithmeticOperator {
     when(right.get()).thenReturn(5);
     when(left.get()).thenAnswer(new Answer<Path<Integer>>() {
       @Override
-      public Path<Integer> answer(InvocationOnMock invocation) throws Throwable {
+      public Path<Integer> answer(InvocationOnMock invocation) {
         return expression;
       }
     });
@@ -59,7 +59,7 @@ public class TestJPAArithmeticOperator {
     when(left.get()).thenReturn(5);
     when(right.get()).thenAnswer(new Answer<Path<Integer>>() {
       @Override
-      public Path<Integer> answer(InvocationOnMock invocation) throws Throwable {
+      public Path<Integer> answer(InvocationOnMock invocation) {
         return expression;
       }
     });
@@ -82,7 +82,7 @@ public class TestJPAArithmeticOperator {
 
     when(cb.literal(leftValue)).thenAnswer(new Answer<Expression<Number>>() {
       @Override
-      public Expression<Number> answer(InvocationOnMock invocation) throws Throwable {
+      public Expression<Number> answer(InvocationOnMock invocation) {
         invocation.getArguments();
         return result;
       }
@@ -103,13 +103,13 @@ public class TestJPAArithmeticOperator {
 
     when(right.get()).thenAnswer(new Answer<Path<Integer>>() {
       @Override
-      public Path<Integer> answer(InvocationOnMock invocation) throws Throwable {
+      public Path<Integer> answer(InvocationOnMock invocation) {
         return expressionRight;
       }
     });
     when(left.get()).thenAnswer(new Answer<Path<Integer>>() {
       @Override
-      public Path<Integer> answer(InvocationOnMock invocation) throws Throwable {
+      public Path<Integer> answer(InvocationOnMock invocation) {
         return expression;
       }
     });
@@ -176,7 +176,7 @@ public class TestJPAArithmeticOperator {
   }
 
   @Test
-  public void testGetBooleanMemberGetRightAsNumber_Exception() throws ODataApplicationException {
+  public void testGetBooleanMemberGetRightAsNumber_Exception() {
     JPAMemberOperator right = mock(JPAMemberOperator.class);
     JPABooleanOperatorImp left = mock(JPABooleanOperatorImp.class);
 
@@ -190,7 +190,7 @@ public class TestJPAArithmeticOperator {
   }
 
   @Test
-  public void testGetMemberBooleanGetRightAsNumber_Exception() throws ODataApplicationException {
+  public void testGetMemberBooleanGetRightAsNumber_Exception() {
     JPAMemberOperator left = mock(JPAMemberOperator.class);
     JPABooleanOperatorImp right = mock(JPABooleanOperatorImp.class);
 

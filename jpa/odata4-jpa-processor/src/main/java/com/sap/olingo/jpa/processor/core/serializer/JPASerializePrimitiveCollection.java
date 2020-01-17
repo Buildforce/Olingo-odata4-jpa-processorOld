@@ -30,8 +30,7 @@ final class JPASerializePrimitiveCollection implements JPAOperationSerializer {
   }
 
   @Override
-  public SerializerResult serialize(Annotatable result, EdmType primitiveType) throws SerializerException,
-      ODataJPASerializerException {
+  public SerializerResult serialize(Annotatable result, EdmType primitiveType) throws SerializerException {
     final ContextURL contextUrl = ContextURL.with().asCollection().build();
     final PrimitiveSerializerOptions options = PrimitiveSerializerOptions.with().contextURL(contextUrl).build();
 
@@ -40,8 +39,7 @@ final class JPASerializePrimitiveCollection implements JPAOperationSerializer {
   }
 
   @Override
-  public SerializerResult serialize(ODataRequest request, EntityCollection result) throws SerializerException,
-      ODataJPASerializerException {
+  public SerializerResult serialize(ODataRequest request, EntityCollection result) {
     return null;
   }
 

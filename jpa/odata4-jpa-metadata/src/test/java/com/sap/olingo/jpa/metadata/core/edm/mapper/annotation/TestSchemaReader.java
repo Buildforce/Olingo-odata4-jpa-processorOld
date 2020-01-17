@@ -49,7 +49,7 @@ public class TestSchemaReader {
   }
 
   @Test
-  public void testReadXMLWithNullURI() throws ODataJPAModelException, IOException {
+  public void testReadXMLWithNullURI() throws IOException {
     final URI nullURI = null;
     assertNull(cut.getSchemas(nullURI));
   }
@@ -133,14 +133,14 @@ public class TestSchemaReader {
   }
 
   @Test
-  public void TestThrowsExceptionOnUnknownPath() throws IOException, ODataJPAModelException {
+  public void TestThrowsExceptionOnUnknownPath() {
     assertThrows(ODataJPAModelException.class, () -> {
       cut.getSchemas("annotations/Org.OData.Core.V2.xml");
     });
   }
 
   @Test
-  public void TestThrowsExceptionOnEmptyXML() throws IOException, ODataJPAModelException {
+  public void TestThrowsExceptionOnEmptyXML() {
 
     assertThrows(IOException.class, () -> cut.getSchemas("annotations/empty.xml"));
   }

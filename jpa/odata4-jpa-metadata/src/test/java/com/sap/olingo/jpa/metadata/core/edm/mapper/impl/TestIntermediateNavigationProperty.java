@@ -519,19 +519,19 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     when(jpaAttribute.isCollection()).thenReturn(false);
     when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return BusinessPartner.class;
       }
     });
     when(jpaAttribute.getDeclaringType()).thenAnswer(new Answer<ManagedType<?>>() {
       @Override
-      public ManagedType<?> answer(InvocationOnMock invocation) throws Throwable {
+      public ManagedType<?> answer(InvocationOnMock invocation) {
         return mgrType;
       }
     });
     when(mgrType.getJavaType()).thenAnswer(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return BusinessPartner.class;
       }
     });
@@ -561,7 +561,7 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) throws ODataJPAModelException {}
+    public void provideReferences(IntermediateReferenceList references) {}
   }
 
   private class PostProcessorOneDelete extends JPAEdmMetadataPostProcessor {
@@ -584,6 +584,6 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) throws ODataJPAModelException {}
+    public void provideReferences(IntermediateReferenceList references) {}
   }
 }

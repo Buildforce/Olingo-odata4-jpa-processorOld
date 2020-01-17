@@ -22,13 +22,13 @@ import com.sap.olingo.jpa.processor.core.testmodel.PostalAddressData;
 
 public class ExampleJavaFunctions implements ODataFunction {
 
-  @EdmFunction(name = "Add", isBound = true, hasFunctionImport = false, returnType = @ReturnType)
+  @EdmFunction(name = "Add", returnType = @ReturnType)
   public Integer sum(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {
     return a + b;
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType,
+  @EdmFunction(returnType = @ReturnType,
       parameter = {
           @EdmParameter(name = "Dmmy", parameterName = "A",
               type = String.class, maxLength = 10) })
@@ -37,65 +37,65 @@ public class ExampleJavaFunctions implements ODataFunction {
     return a / b;
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType(type = Double.class))
+  @EdmFunction(returnType = @ReturnType(type = Double.class))
   public Integer errorReturnType(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {
     return a + b;
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType(isNullable = false, precision = 9, scale = 3))
+  @EdmFunction(returnType = @ReturnType(isNullable = false, precision = 9, scale = 3))
   public Timestamp now() {
     return Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType(maxLength = 60, srid = @EdmGeospatial(
+  @EdmFunction(returnType = @ReturnType(maxLength = 60, srid = @EdmGeospatial(
       dimension = Dimension.GEOGRAPHY, srid = "4326")))
   public String determineLocation() {
     return "";
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType(type = String.class))
+  @EdmFunction(returnType = @ReturnType(type = String.class))
   public List<String> returnCollection() {
     return new ArrayList<>();
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType())
+  @EdmFunction(returnType = @ReturnType())
   public List<String> returnCollectionWithoutReturnType() {
     return new ArrayList<>();
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType())
+  @EdmFunction(returnType = @ReturnType())
   public ChangeInformation returnEmbeddable() {
     return new ChangeInformation();
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType(type = ChangeInformation.class))
+  @EdmFunction(returnType = @ReturnType(type = ChangeInformation.class))
   public List<ChangeInformation> returnEmbeddableCollection() {
     return Arrays.asList(new ChangeInformation());
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType())
+  @EdmFunction(returnType = @ReturnType())
   public Person returnEntity() {
     return new Person();
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType())
+  @EdmFunction(returnType = @ReturnType())
   public ExampleJavaOneFunction wrongReturnType() {
     return new ExampleJavaOneFunction();
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType())
+  @EdmFunction(returnType = @ReturnType())
   public Integer errorNonPrimitiveParameter(
       @EdmParameter(name = "A") PostalAddressData a) {
     return 1;
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType())
+  @EdmFunction(returnType = @ReturnType())
   public AbcClassification returnEnumerationType(@EdmParameter(name = "Rights") AccessRights rights) {
     return AbcClassification.A;
   }
 
-  @EdmFunction(name = "", returnType = @ReturnType(type = AbcClassification.class))
+  @EdmFunction(returnType = @ReturnType(type = AbcClassification.class))
   public List<AbcClassification> returnEnumerationCollection() {
     return new ArrayList<>();
   }

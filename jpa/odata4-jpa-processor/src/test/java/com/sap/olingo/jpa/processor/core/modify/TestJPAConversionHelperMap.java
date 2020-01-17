@@ -18,7 +18,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 
 public class TestJPAConversionHelperMap extends TestJPAConversionHelper {
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     cut = new JPAConversionHelper();
   }
 
@@ -69,7 +69,7 @@ public class TestJPAConversionHelperMap extends TestJPAConversionHelper {
     prepareConvertSimpleKeyToLocation();
     when(et.getTypeClass()).then(new Answer<Class<?>>() {
       @Override
-      public Class<?> answer(InvocationOnMock invocation) throws Throwable {
+      public Class<?> answer(InvocationOnMock invocation) {
         return Organization.class;
       }
     });

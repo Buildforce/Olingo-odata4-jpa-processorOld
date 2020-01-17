@@ -87,7 +87,7 @@ public final class JPAODataRequestProcessor
   @Override
   public void createMediaEntity(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType requestFormat, final ContentType responseFormat)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
 
     throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_CREATE,
         HttpStatusCode.NOT_IMPLEMENTED);
@@ -151,7 +151,7 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void deletePrimitiveValue(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
     // .../Organizations('4')/Address/Country/$value
     throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_DELETE_VALUE,
         HttpStatusCode.NOT_IMPLEMENTED);
@@ -160,7 +160,7 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void deleteMediaEntity(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
     // Set NULL: ../$value
     // https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752305
     // 11.4.8.2 Deleting Stream Values:
@@ -305,7 +305,7 @@ public final class JPAODataRequestProcessor
   @Override
   public void updateComplex(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType requestFormat, final ContentType responseFormat)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
     // ../Organizations('5')/Address
     // Not supported yet, as PATCH and PUT are allowed here
     throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_UPDATE_VALUE,
@@ -346,7 +346,7 @@ public final class JPAODataRequestProcessor
   @Override
   public void updatePrimitiveValue(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType requestFormat, final ContentType responseFormat)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
     // ../Organizations('5')/Address/StreetName/$value
     throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_UPDATE_VALUE,
         HttpStatusCode.NOT_IMPLEMENTED);
@@ -355,7 +355,7 @@ public final class JPAODataRequestProcessor
   @Override
   public void updateMediaEntity(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType requestFormat, final ContentType responseFormat)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
 
     throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_UPDATE,
         HttpStatusCode.NOT_IMPLEMENTED);
