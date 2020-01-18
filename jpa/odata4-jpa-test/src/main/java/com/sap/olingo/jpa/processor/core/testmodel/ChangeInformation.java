@@ -41,7 +41,7 @@ public class ChangeInformation {
   }
 
   public void setBy(final String by) {
-    Objects.nonNull(by);
+    //Objects.nonNull(by);
     this.by = by;
   }
 

@@ -239,13 +239,11 @@ public final class JPAModifyUtil {
       embedded = createInstance(parameters[0]);
       meth.invoke(instance, embedded);
     }
-    if (embedded != null) {
-      if (this.st == null)
-        this.st = st;
-      setAttributesDeep((Map<String, Object>) value, embedded, attribute.getStructuredType());
-      if (this.st.equals(st)) {
-        this.st = null;
-      }
+    if (this.st == null)
+      this.st = st;
+    setAttributesDeep((Map<String, Object>) value, embedded, attribute.getStructuredType());
+    if (this.st.equals(st)) {
+      this.st = null;
     }
   }
 
@@ -265,18 +263,16 @@ public final class JPAModifyUtil {
       }
       meth.invoke(instance, embedded);
     }
-    if (embedded != null) {
-      if (this.st == null)
-        this.st = st;
-      embedded.clear();
-      for (final Map<String, Object> collectionElement : (Collection<Map<String, Object>>) value) {
-        final Object line = createInstance(attribute.getStructuredType().getTypeClass());
-        setAttributesDeep(collectionElement, line, attribute.getStructuredType());
-        embedded.add(line);
-      }
-      if (this.st.equals(st)) {
-        this.st = null;
-      }
+    if (this.st == null)
+      this.st = st;
+    embedded.clear();
+    for (final Map<String, Object> collectionElement : (Collection<Map<String, Object>>) value) {
+      final Object line = createInstance(attribute.getStructuredType().getTypeClass());
+      setAttributesDeep(collectionElement, line, attribute.getStructuredType());
+      embedded.add(line);
+    }
+    if (this.st.equals(st)) {
+      this.st = null;
     }
   }
 

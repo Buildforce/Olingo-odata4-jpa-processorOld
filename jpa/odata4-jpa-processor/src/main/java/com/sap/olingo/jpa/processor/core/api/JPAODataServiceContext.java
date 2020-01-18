@@ -118,7 +118,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
   public JPAEdmProvider getEdmProvider(@Nonnull final EntityManager em) throws ODataException {
     if (jpaEdm == null) {
-      Objects.nonNull(em);
+      // Objects.nonNull(em);
       jpaEdm = new JPAEdmProvider(this.namespace, em.getMetamodel(), postProcessor, packageName);
     }
     return jpaEdm;

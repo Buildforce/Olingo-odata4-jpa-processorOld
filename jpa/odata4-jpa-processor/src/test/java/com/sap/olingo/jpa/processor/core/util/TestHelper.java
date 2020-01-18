@@ -63,7 +63,7 @@ public class TestHelper {
   }
 
   public EdmFunction getStoredProcedure(EntityType<?> jpaEntityType, String string) {
-    if (jpaEntityType.getJavaType() instanceof AnnotatedElement) {
+    if (jpaEntityType.getJavaType() != null) {
       EdmFunctions jpaStoredProcedureList = ((AnnotatedElement) jpaEntityType.getJavaType())
           .getAnnotation(EdmFunctions.class);
       if (jpaStoredProcedureList != null) {

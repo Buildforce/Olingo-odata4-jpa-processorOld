@@ -98,10 +98,14 @@ class IntermediateSimpleProperty extends IntermediateProperty {
   @Override
   void determineStreamInfo() throws ODataJPAModelException {
     streamInfo = ((AnnotatedElement) jpaAttribute.getJavaMember()).getAnnotation(EdmMediaStream.class);
-    if (streamInfo != null && (streamInfo.contentType() == null || streamInfo.contentType().isEmpty())
-        && (streamInfo.contentTypeAttribute() == null || streamInfo.contentTypeAttribute().isEmpty()))
-      throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.ANNOTATION_STREAM_INCOMPLETE,
-          internalName);
+    if (streamInfo != null) {
+      streamInfo.contentType();
+      if (streamInfo.contentType().isEmpty()) {
+        streamInfo.contentTypeAttribute();
+        if (streamInfo.contentTypeAttribute().isEmpty()) throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.ANNOTATION_STREAM_INCOMPLETE,
+                internalName);
+      }
+    }
   }
 
   @Override

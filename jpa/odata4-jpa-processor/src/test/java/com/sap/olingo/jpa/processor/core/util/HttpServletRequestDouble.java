@@ -28,7 +28,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
   private String debugFormat;
   private final Map<String, Object> attributes;
 
-  public HttpServletRequestDouble(final String uri) throws IOException {
+  public HttpServletRequestDouble(final String uri) {
     this(uri, null);
   }
 

@@ -38,7 +38,7 @@ public class TestIntermediateActionFactory extends TestMappingRoot {
   @Test
   public void checkReturnEmptyMapIfReflectionsNull() throws ODataJPAModelException {
     Reflections r = null;
-    assertNotNull(cut.create(new JPADefaultEdmNameBuilder(PUNIT_NAME), r, helper.schema));
+    assertNotNull(cut.create(new JPADefaultEdmNameBuilder(PUNIT_NAME), null, helper.schema));
   }
 
   @Test

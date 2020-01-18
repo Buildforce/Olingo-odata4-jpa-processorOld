@@ -3,10 +3,7 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys.COMPLEX_PROPERTY_WRONG_PROTECTION_PATH;
 
 import java.lang.reflect.AnnotatedElement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import javax.persistence.AssociationOverride;
@@ -550,9 +547,10 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
         if (targetClass.equals(sourceType.getTypeClass())) {
           final OneToMany cardinalityOtM = ((AnnotatedElement) jpaAttribute.getJavaMember()).getAnnotation(
               OneToMany.class);
-          if (cardinalityOtM != null && cardinalityOtM.mappedBy() != null
-              && cardinalityOtM.mappedBy().equals(sourceRelationshipName))
-            return jpaAttribute;
+          if (cardinalityOtM != null) {
+            cardinalityOtM.mappedBy();
+            if (cardinalityOtM.mappedBy().equals(sourceRelationshipName)) return jpaAttribute;
+          }
         }
       }
     }
@@ -678,7 +676,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
             }
           } else {
             for (final String claimName : attribute.getProtectionClaimNames()) {
-              protectedAttributes.add(new ProtectionInfo(this.getPath(attribute.getExternalName(), false), claimName,
+              protectedAttributes.add(new ProtectionInfo(Objects.requireNonNull(this.getPath(attribute.getExternalName(), false)), claimName,
                   attribute));
             }
           }

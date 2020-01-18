@@ -179,7 +179,7 @@ public abstract class JPAAbstractQuery {
       if (i == 0) {
         join = root.join(pathList.get(i).getInternalName(), jt);
         join.alias(alias);
-      } else if (i < pathList.size()) {
+      } else {
         join = join.join(pathList.get(i).getInternalName(), jt);
         join.alias(pathList.get(i).getExternalName());
       }

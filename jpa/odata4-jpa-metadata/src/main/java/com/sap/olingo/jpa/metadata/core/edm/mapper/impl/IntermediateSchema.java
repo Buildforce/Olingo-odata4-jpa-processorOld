@@ -217,8 +217,7 @@ final class IntermediateSchema extends IntermediateModelElement {
 
   private Map<String, IntermediateJavaAction> buildActionList() throws ODataJPAModelException {
     final IntermediateActionFactory factory = new IntermediateActionFactory();
-    final HashMap<String, IntermediateJavaAction> actionList = new HashMap<>(factory.create(nameBuilder, reflections, this));
-    return actionList;
+    return new HashMap<>(factory.create(nameBuilder, reflections, this));
   }
 
   private Map<String, IntermediateComplexType> buildComplexTypeList() {

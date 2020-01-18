@@ -38,7 +38,7 @@ public class TestIntermediateFunctionFactory extends TestMappingRoot {
   @Test
   public void checkReturnEmptyMapIfReflectionsNull() throws ODataJPAModelException {
     Reflections r = null;
-    assertNotNull(cut.create(new JPADefaultEdmNameBuilder(PUNIT_NAME), r, helper.schema));
+    assertNotNull(cut.create((com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder) new JPADefaultEdmNameBuilder(PUNIT_NAME), (Reflections) null, helper.schema));
   }
 
   @Test

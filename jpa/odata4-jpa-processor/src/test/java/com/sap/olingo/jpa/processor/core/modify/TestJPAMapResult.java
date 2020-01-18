@@ -224,7 +224,7 @@ public class TestJPAMapResult extends TestJPACreateResult {
 
     nested1.put("inner", inner1);
     nested2.put("inner", inner2);
-    nested1.put("number", 100L);
+    //nested1.put("number", 100L);
     nested1.put("number", 200L);
 
     inner1.put("figure1", 1L);

@@ -301,7 +301,8 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
 
       final List<IntermediateJoinColumn> result = new ArrayList<>();
       for (JoinColumn column : jpaJoinTable.joinColumns()) {
-        if (column.referencedColumnName() == null || column.referencedColumnName().isEmpty())
+        column.referencedColumnName();
+        if (column.referencedColumnName().isEmpty())
           if (jpaJoinTable.joinColumns().length > 1)
             throw new ODataJPAModelException(NOT_SUPPORTED_NO_IMPLICIT_COLUMNS, getInternalName());
           else if (!(contextType instanceof IntermediateEntityType))

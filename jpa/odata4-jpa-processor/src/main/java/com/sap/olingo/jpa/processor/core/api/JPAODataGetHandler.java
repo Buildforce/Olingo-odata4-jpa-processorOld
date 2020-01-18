@@ -143,7 +143,6 @@ public class JPAODataGetHandler {
       throws ODataException {
 
     final JPAEdmProvider jpaEdm = serviceContext.getEdmProvider() == null
-        && serviceContext instanceof JPAODataServiceContext
             ? serviceContext.getEdmProvider(requestContext.getEntityManager())
             : serviceContext.getEdmProvider();
 

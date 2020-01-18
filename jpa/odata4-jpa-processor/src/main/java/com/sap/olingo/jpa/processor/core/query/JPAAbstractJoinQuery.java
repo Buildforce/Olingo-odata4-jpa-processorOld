@@ -743,10 +743,8 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
   /**
    * Completes NavigationInfo and add Joins for navigation parts e.g. from <code>../Organizations('3')/Roles</code>
    * @param joinTables
-   * @throws ODataJPAQueryException
    */
-  private void createFromClauseNavigationJoins(final HashMap<String, From<?, ?>> joinTables)
-      throws ODataJPAQueryException {
+  private void createFromClauseNavigationJoins(final HashMap<String, From<?, ?>> joinTables) {
 
     for (int i = 0; i < this.navigationInfo.size() - 1; i++) {
       final JPANavigationPropertyInfo naviInfo = this.navigationInfo.get(i);
@@ -794,10 +792,8 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
    * <code>../Organizations('3')/Roles</code>
    * @param query
    * @param joinTables
-   * @throws ODataJPAQueryException
    */
-  private void createFromClauseRoot(final CriteriaQuery<?> query, final HashMap<String, From<?, ?>> joinTables)
-      throws ODataJPAQueryException {
+  private void createFromClauseRoot(final CriteriaQuery<?> query, final HashMap<String, From<?, ?>> joinTables) {
     final JPAEntityType sourceEt = this.navigationInfo.get(0).getEntityType();
     this.root = query.from(sourceEt.getTypeClass());
     joinTables.put(sourceEt.getExternalFQN().getFullQualifiedNameAsString(), root);

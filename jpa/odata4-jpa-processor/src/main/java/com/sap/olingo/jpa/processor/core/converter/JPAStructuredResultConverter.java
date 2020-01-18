@@ -57,8 +57,7 @@ public abstract class JPAStructuredResultConverter {
 
       final Method[] allMethods = clazz.getMethods();
       for (final Method m : allMethods) {
-        if (m.getReturnType().getName() != "void"
-            && Modifier.isPublic(m.getModifiers()))
+        if (!m.getReturnType().getName().equals( "void") && Modifier.isPublic(m.getModifiers()))
           methods.put(m.getName(), m);
       }
       METHOD_BUFFER.put(clazz.getName(), methods);

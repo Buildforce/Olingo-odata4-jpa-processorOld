@@ -47,12 +47,12 @@ public class IntegrationTestHelper {
   }
 
   public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath,
-      final Map<String, List<String>> headers) throws IOException, ODataException {
+      final Map<String, List<String>> headers) throws ODataException {
     this(localEmf, null, urlPath, null, null, null, headers, null, null);
   }
 
   public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath,
-      final JPAODataGroupProvider groups) throws IOException, ODataException {
+      final JPAODataGroupProvider groups) throws ODataException {
     this(localEmf, null, urlPath, null, null, null, null, null, groups);
   }
 
@@ -82,18 +82,18 @@ public class IntegrationTestHelper {
   }
 
   public IntegrationTestHelper(EntityManagerFactory localEmf, final String urlPath, JPAODataClaimsProvider claims)
-      throws IOException, ODataException {
+      throws ODataException {
     this(localEmf, null, urlPath, null, null, null, null, claims, null);
   }
 
   public IntegrationTestHelper(EntityManagerFactory localEmf, final String urlPath,
-      final JPAODataPagingProvider provider, JPAODataClaimsProvider claims) throws IOException, ODataException {
+      final JPAODataPagingProvider provider, JPAODataClaimsProvider claims) throws ODataException {
     this(localEmf, null, urlPath, null, null, provider, null, claims, null);
   }
 
   public IntegrationTestHelper(final EntityManagerFactory emf, final String urlPath,
-      final JPAODataPagingProvider provider, final Map<String, List<String>> headers) throws IOException,
-      ODataException {
+      final JPAODataPagingProvider provider, final Map<String, List<String>> headers) throws
+          ODataException {
     this(emf, null, urlPath, null, null, provider, headers, null, null);
   }
 
@@ -102,7 +102,7 @@ public class IntegrationTestHelper {
                                String urlPath,
                                StringBuffer requestBody,
                                String functionPackage,
-                               JPAODataPagingProvider provider) throws IOException, ODataException {
+                               JPAODataPagingProvider provider) throws ODataException {
     this(localEmf, ds, urlPath, requestBody, functionPackage, provider, null, null, null);
   }
 

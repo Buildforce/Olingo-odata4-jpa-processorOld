@@ -98,22 +98,19 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     try {
       if (SelectOptionUtil.selectAll(select))
         // If the collection is part of a navigation take all the attributes
-        expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? this.association.getAlias() : pathPrefix
-            + JPAPath.PATH_SEPARATOR + this.association.getAlias(), true);
+        expandPath(jpaEntity, jpaPathList, this.association.getAlias(), true);
       else {
         for (SelectItem sItem : select.getSelectItems()) {
           final JPAPath selectItemPath = selectItemAsPath(pathPrefix, sItem);
           if (pathContainsCollection(selectItemPath)) {
             if (selectItemPath.getLeaf().isComplex()) {
               final JPAAttribute attribute = selectItemPath.getLeaf();
-              expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? attribute.getExternalName() : pathPrefix
-                  + JPAPath.PATH_SEPARATOR + attribute.getExternalName(), true);
+              expandPath(jpaEntity, jpaPathList, attribute.getExternalName(), true);
             } else {
               jpaPathList.add(selectItemPath);
             }
           } else if (selectItemPath.getLeaf().isComplex()) {
-            expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? this.association.getAlias() : pathPrefix
-                + JPAPath.PATH_SEPARATOR + this.association.getAlias(), true);
+            expandPath(jpaEntity, jpaPathList, this.association.getAlias(), true);
           }
         }
       }
