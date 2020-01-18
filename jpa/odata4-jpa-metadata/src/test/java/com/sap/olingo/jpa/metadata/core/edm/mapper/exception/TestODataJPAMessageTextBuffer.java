@@ -84,7 +84,7 @@ public class TestODataJPAMessageTextBuffer {
     // First set to German
     checkSetLocaleGerman();
     // Then reset default
-    Enumeration<Locale> locales = new LocaleEnumeration(new ArrayList<Locale>());
+    Enumeration<Locale> locales = new LocaleEnumeration(new ArrayList<>());
     cut = new ODataJPAMessageTextBuffer(BUNDLE_NAME, locales);
     String act = cut.getText(this, "FIRST_MESSAGE");
     assertEquals("An English message", act);

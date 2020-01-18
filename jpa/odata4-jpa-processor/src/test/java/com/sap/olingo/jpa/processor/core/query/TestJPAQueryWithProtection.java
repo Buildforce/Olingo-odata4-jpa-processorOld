@@ -554,6 +554,6 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
       fail();
     }
     cut = new JPAJoinQuery(null, contextSpy, headers, requestContext);
-    cut.createFromClause(new ArrayList<JPAAssociationPath>(1), new ArrayList<JPAPath>(), cut.cq, null);
+    cut.createFromClause(new ArrayList<>(1), new ArrayList<>(), cut.cq, null);
   }
 }

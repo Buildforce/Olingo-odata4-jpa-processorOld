@@ -212,7 +212,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
       throws ODataJPAQueryException {
     try {
       Long count = child.getCount(buildConcatenatedKey(parentRow, association.getLeftColumnsList()));
-      return count != null ? Integer.valueOf(count.intValue()) : null;
+      return count != null ? count.intValue() : null;
     } catch (ODataJPAModelException e) {
       throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_RESULT_CONV_ERROR,
           HttpStatusCode.INTERNAL_SERVER_ERROR, e);

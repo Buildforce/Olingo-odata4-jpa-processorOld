@@ -38,7 +38,7 @@ public class TestJPAODataGetHandler extends TestBase {
   private static final String PUNIT_NAME = "com.sap.olingo.jpa";
 
   @BeforeEach
-  public void setup() throws IOException {
+  public void setup() {
     request = new HttpServletRequestDouble("http://localhost:8080/Test/Olingo.svc/Organizations", new StringBuffer(),
         headers);
     response = new HttpServletResponseDouble();

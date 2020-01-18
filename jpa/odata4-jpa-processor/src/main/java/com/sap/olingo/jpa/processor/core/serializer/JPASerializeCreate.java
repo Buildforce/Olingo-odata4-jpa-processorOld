@@ -73,7 +73,7 @@ final class JPASerializeCreate implements JPASerializer {
     return null;
   }
 
-  private class ExpandOptionWrapper implements ExpandOption {
+  private static class ExpandOptionWrapper implements ExpandOption {
 
     private final List<ExpandItem> items = new ArrayList<>(1);
 

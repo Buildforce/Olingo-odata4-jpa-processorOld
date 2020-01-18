@@ -17,12 +17,7 @@ import static org.mockito.Mockito.when;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import javax.persistence.EntityManager;
 
@@ -243,7 +238,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     final Map<String, List<String>> headers = new HashMap<>();
 
     when(request.getAllHeaders()).thenReturn(headers);
-    headers.put("If-Match", Arrays.asList("2"));
+    headers.put("If-Match", Collections.singletonList("2"));
 
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
@@ -582,7 +577,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = prepareLinkRequest(new RequestHandleSpy(result));
 
-    resultEntity.setChildren(new ArrayList<>(Arrays.asList(childEntity)));
+    resultEntity.setChildren(new ArrayList<>(Collections.singletonList(childEntity)));
 
     processor.updateEntity(request, response, ContentType.JSON, ContentType.JSON);
     assertNotNull(response);

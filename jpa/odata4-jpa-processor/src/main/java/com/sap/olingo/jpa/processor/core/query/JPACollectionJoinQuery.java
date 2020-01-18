@@ -72,7 +72,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
         final Set<JPAPath> requestedSelection = new HashSet<>();
         buildSelectionAddNavigationAndSelect(uriResource, requestedSelection, uriResource.getSelectOption());
         debugger.stopRuntimeMeasurement(handle);
-        return new JPACollectionQueryResult(result, new HashMap<String, Long>(1), jpaEntity, this.association,
+        return new JPACollectionQueryResult(result, new HashMap<>(1), jpaEntity, this.association,
             requestedSelection);
       } catch (ODataJPAModelException e) {
         throw new ODataApplicationException(e.getLocalizedMessage(), HttpStatusCode.INTERNAL_SERVER_ERROR
@@ -268,7 +268,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     final int handle = debugger.startRuntimeMeasurement(this, "createTupleQuery");
 
     final Collection<JPAPath> selectionPath = buildSelectionPathList(this.uriResource);
-    final Map<String, From<?, ?>> joinTables = createFromClause(new ArrayList<JPAAssociationPath>(1), selectionPath,
+    final Map<String, From<?, ?>> joinTables = createFromClause(new ArrayList<>(1), selectionPath,
         cq, lastInfo);
     // TODO handle Join Column is ignored
     cq.multiselect(createSelectClause(joinTables, selectionPath, target, groups));

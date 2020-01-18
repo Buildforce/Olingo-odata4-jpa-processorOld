@@ -216,13 +216,12 @@ final class IntermediateSchema extends IntermediateModelElement {
   }
 
   private Map<String, IntermediateJavaAction> buildActionList() throws ODataJPAModelException {
-    final HashMap<String, IntermediateJavaAction> actionList = new HashMap<>();
     final IntermediateActionFactory factory = new IntermediateActionFactory();
-    actionList.putAll(factory.create(nameBuilder, reflections, this));
+    final HashMap<String, IntermediateJavaAction> actionList = new HashMap<>(factory.create(nameBuilder, reflections, this));
     return actionList;
   }
 
-  private Map<String, IntermediateComplexType> buildComplexTypeList() throws ODataJPAModelException {
+  private Map<String, IntermediateComplexType> buildComplexTypeList() {
     final HashMap<String, IntermediateComplexType> ctList = new HashMap<>();
 
     for (final EmbeddableType<?> embeddable : this.jpaMetamodel.getEmbeddables()) {

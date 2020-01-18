@@ -167,7 +167,7 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
     return i == size - 1 ? from : parent.getRoot();
   }
 
-  private class SubMember implements Member {
+  private static class SubMember implements Member {
     private final JPAMemberOperator parentMember;
 
     public SubMember(final JPAMemberOperator parentMember) {

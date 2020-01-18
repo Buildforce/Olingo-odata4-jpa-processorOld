@@ -65,11 +65,11 @@ public class TermReader {
   private Map<String, Map<String, CsdlTerm>> convertEDMX(Edmx edmx) {
     if (edmx != null && edmx.getDataService() != null) {
       Schema[] schemas = edmx.getDataService().getSchemas();
-      Map<String, Map<String, CsdlTerm>> edmSchemas = new HashMap<String, Map<String, CsdlTerm>>(schemas.length);
+      Map<String, Map<String, CsdlTerm>> edmSchemas = new HashMap<>(schemas.length);
 
       for (Schema schema : schemas) {
         String namespace = schema.getNamespace();
-        Map<String, CsdlTerm> terms = new HashMap<String, CsdlTerm>();
+        Map<String, CsdlTerm> terms = new HashMap<>();
         for (CsdlTerm t : schema.getTerms()) {
           terms.put(t.getName(), t);
         }

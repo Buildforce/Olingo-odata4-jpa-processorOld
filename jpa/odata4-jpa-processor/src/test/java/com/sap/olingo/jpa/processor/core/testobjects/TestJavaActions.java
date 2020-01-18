@@ -3,6 +3,7 @@ package com.sap.olingo.jpa.processor.core.testobjects;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -75,7 +76,7 @@ public class TestJavaActions implements ODataAction {
 
   @EdmAction(returnType = @ReturnType(type = ChangeInformation.class))
   public List<ChangeInformation> returnEmbeddableCollection() {
-    return Arrays.asList(new ChangeInformation());
+    return Collections.singletonList(new ChangeInformation());
   }
 
   @EdmAction(returnType = @ReturnType(maxLength = 60,

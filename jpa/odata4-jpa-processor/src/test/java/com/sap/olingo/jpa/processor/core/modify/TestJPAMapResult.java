@@ -4,12 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -109,7 +104,7 @@ public class TestJPAMapResult extends TestJPACreateResult {
     ((Map<String, Object>) jpaEntity).put("iD", "Willi");
     ((Map<String, Object>) jpaEntity).put("eTag", Long.valueOf("7"));
     ((Map<String, Object>) jpaEntity).put("codePublisher", "Eurostat");
-    ((Map<String, Object>) jpaEntity).put("locationName", Arrays.asList(description));
+    ((Map<String, Object>) jpaEntity).put("locationName", Collections.singletonList(description));
     cut = new JPAMapResult(et, (Map<String, Object>) jpaEntity, headers, converter);
   }
 

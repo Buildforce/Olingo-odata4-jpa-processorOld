@@ -63,7 +63,7 @@ public class TestFunctionsHSQLDB {
     count.where(cb.and(cb.greaterThan(
         //
         cb.function("PopulationDensity", Integer.class, adminDiv.get("area"), adminDiv.get("population")),
-        Integer.valueOf(60))), cb.equal(adminDiv.get("countryCode"), cb.literal("BEL")));
+            60)), cb.equal(adminDiv.get("countryCode"), cb.literal("BEL")));
     // cb.literal
     TypedQuery<Tuple> tq = em.createQuery(count);
     List<Tuple> act = tq.getResultList();
@@ -76,17 +76,15 @@ public class TestFunctionsHSQLDB {
 
     // StringBuffer dropString = new StringBuffer("DROP FUNCTION PopulationDensity");
 
-    StringBuffer sqlString = new StringBuffer();
-
-    sqlString.append("CREATE FUNCTION  PopulationDensity (area INT, population BIGINT ) ");
-    sqlString.append("RETURNS INT ");
-    sqlString.append("IF area <= 0 THEN RETURN 0;");
-    sqlString.append("ELSE RETURN population / area; ");
-    sqlString.append("END IF");
-
     t.begin();
     // Query d = em.createNativeQuery(dropString.toString());
-    Query q = em.createNativeQuery(sqlString.toString());
+
+    String sqlString = "CREATE FUNCTION  PopulationDensity (area INT, population BIGINT ) " +
+            "RETURNS INT " +
+            "IF area <= 0 THEN RETURN 0;" +
+            "ELSE RETURN population / area; " +
+            "END IF";
+    Query q = em.createNativeQuery(sqlString);
     // d.executeUpdate();
     q.executeUpdate();
     t.commit();

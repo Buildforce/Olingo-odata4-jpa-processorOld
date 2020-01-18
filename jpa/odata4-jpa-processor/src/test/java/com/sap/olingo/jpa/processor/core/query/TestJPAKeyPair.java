@@ -38,8 +38,8 @@ public class TestJPAKeyPair {
     keyDef = new ArrayList<>(3);
     keyDef.add(attribute1);
     cut = new JPAKeyPair(keyDef);
-    key1.put(attribute1, Integer.valueOf(10));
-    key2.put(attribute1, Integer.valueOf(100));
+    key1.put(attribute1, 10);
+    key2.put(attribute1, 100);
   }
 
   @Test
@@ -74,7 +74,7 @@ public class TestJPAKeyPair {
 
   @Test
   public void testCreatePairWithThirdValuesHigher() {
-    key3.put(attribute1, Integer.valueOf(101));
+    key3.put(attribute1, 101);
     cut.setValue(key2);
     cut.setValue(key1);
     cut.setValue(key3);
@@ -84,7 +84,7 @@ public class TestJPAKeyPair {
 
   @Test
   public void testCreatePairWithThirdValuesLower() {
-    key3.put(attribute1, Integer.valueOf(9));
+    key3.put(attribute1, 9);
     cut.setValue(key2);
     cut.setValue(key1);
     cut.setValue(key3);
@@ -94,7 +94,7 @@ public class TestJPAKeyPair {
 
   @Test
   public void testCreatePairWithThirdValuesBetween() {
-    key3.put(attribute1, Integer.valueOf(50));
+    key3.put(attribute1, 50);
     cut.setValue(key2);
     cut.setValue(key1);
     cut.setValue(key3);

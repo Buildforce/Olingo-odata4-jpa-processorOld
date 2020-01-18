@@ -321,7 +321,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
     try {
       final JPAEntityType et = sessionContext.getEdmProvider().getServiceDocument().getEntity(edmEntitySet.getName());
-      return createRequestEntity(et, odataEntity, new HashMap<String, Object>(0), headers, null);
+      return createRequestEntity(et, odataEntity, new HashMap<>(0), headers, null);
     } catch (ODataException e) {
       throw new ODataJPAProcessorException(e, HttpStatusCode.BAD_REQUEST);
     }
@@ -543,8 +543,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     final Map<JPAAssociationPath, List<JPARequestEntity>> relatedEntities = new HashMap<>(1);
     final List<JPARequestEntity> inlineEntities = new ArrayList<>();
 
-    inlineEntities.add(createRequestEntity((JPAEntityType) path.getTargetType(), odataEntity,
-        new HashMap<String, Object>(0), headers, null));
+    inlineEntities.add(createRequestEntity((JPAEntityType) path.getTargetType(), odataEntity, new HashMap<>(0), headers, null));
 
     relatedEntities.put(path, inlineEntities);
 
@@ -583,12 +582,12 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     final List<JPARequestEntity> inlineEntities = new ArrayList<>();
     if (path.getLeaf().isCollection()) {
       for (Entity e : navigationLink.getInlineEntitySet().getEntities()) {
-        inlineEntities.add(createRequestEntity(st, e, new HashMap<String, Object>(0), headers, null));
+        inlineEntities.add(createRequestEntity(st, e, new HashMap<>(0), headers, null));
       }
       relatedEntities.put(path, inlineEntities);
     } else {
       inlineEntities.add(createRequestEntity(st, navigationLink.getInlineEntity(),
-          new HashMap<String, Object>(0), headers, null));
+              new HashMap<>(0), headers, null));
       relatedEntities.put(path, inlineEntities);
     }
   }

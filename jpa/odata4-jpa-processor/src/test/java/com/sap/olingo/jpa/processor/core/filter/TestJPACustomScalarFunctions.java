@@ -114,7 +114,7 @@ public class TestJPACustomScalarFunctions {
     EntityManager em = emf.createEntityManager();
     EntityTransaction t = em.getTransaction();
 
-    StringBuffer sqlString = new StringBuffer();
+    StringBuilder sqlString = new StringBuilder();
 
     sqlString.append(
         "CREATE FUNCTION  \"OLINGO\".\"PopulationDensity\" (UnitArea  INT, Population BIGINT ) ");
@@ -139,7 +139,7 @@ public class TestJPACustomScalarFunctions {
     EntityManager em = emf.createEntityManager();
     EntityTransaction t = em.getTransaction();
 
-    StringBuffer sqlString = new StringBuffer();
+    StringBuilder sqlString = new StringBuilder();
 
     sqlString.append("DROP FUNCTION  \"OLINGO\".\"PopulationDensity\"");
 

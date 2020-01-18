@@ -253,7 +253,7 @@ public class TestJPAActionProcessor {
 
     Method m = setConstructorAndMethod("unboundVoidOneParameter", Short.class);
 
-    addParameter(m, Short.valueOf((short) 10), "A", 0);
+    addParameter(m, (short) 10, "A", 0);
 
     cut.performAction(request, response, requestFormat);
     verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
@@ -283,8 +283,8 @@ public class TestJPAActionProcessor {
 
     Method m = setConstructorAndMethod("unboundVoidTwoParameter", Short.class, Integer.class);
 
-    addParameter(m, Short.valueOf((short) 10), "A", 0);
-    addParameter(m, Integer.valueOf(200000), "B", 1);
+    addParameter(m, (short) 10, "A", 0);
+    addParameter(m, 200000, "B", 1);
 
     cut.performAction(request, response, requestFormat);
     verify(response, times(1)).setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());

@@ -4,11 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.metamodel.EntityType;
 
@@ -40,7 +36,7 @@ public class TestIntermediateEntitySet extends TestMappingRoot {
   public void setup() throws ODataJPAModelException {
     IntermediateModelElement.setPostProcessor(new DefaultEdmPostProcessor());
     final Reflections r = mock(Reflections.class);
-    when(r.getTypesAnnotatedWith(EdmEnumeration.class)).thenReturn(new HashSet<>(Arrays.asList(AbcClassification.class)));
+    when(r.getTypesAnnotatedWith(EdmEnumeration.class)).thenReturn(new HashSet<>(Collections.singletonList(AbcClassification.class)));
 
     etList = emf.getMetamodel().getEntities();
     namebuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);

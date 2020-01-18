@@ -82,7 +82,7 @@ public final class JPANavigationPropertyInfo {
     this.associationPath = associationPath;
   }
 
-  JPAEntityType getEntityType() throws ODataJPAModelException {
+  JPAEntityType getEntityType() {
     if (et != null)
       return et;
     return sd.getEntity(getUriResource().getType());

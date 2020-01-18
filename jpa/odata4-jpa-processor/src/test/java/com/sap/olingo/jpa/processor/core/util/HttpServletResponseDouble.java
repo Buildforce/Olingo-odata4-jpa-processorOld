@@ -215,7 +215,7 @@ public class HttpServletResponseDouble implements HttpServletResponse {
 
     @Override
     public void write(int b) {
-      buffer.add(Integer.valueOf(b));
+      buffer.add(b);
     }
 
     public Iterator<Integer> getBuffer() {
@@ -228,7 +228,7 @@ public class HttpServletResponseDouble implements HttpServletResponse {
   }
 
   //
-  class ResultStream extends InputStream {
+  static class ResultStream extends InputStream {
     private final Iterator<Integer> bufferExcess;
 
     public ResultStream(OutPutStream buffer) {
@@ -238,8 +238,7 @@ public class HttpServletResponseDouble implements HttpServletResponse {
 
     @Override
     public int read() {
-      if (bufferExcess.hasNext())
-        return bufferExcess.next().intValue();
+      if (bufferExcess.hasNext()) return bufferExcess.next();
       return -1;
     }
 

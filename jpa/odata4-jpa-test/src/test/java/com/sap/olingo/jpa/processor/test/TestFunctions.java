@@ -157,9 +157,9 @@ public class TestFunctions {
   private void CreateUDFDerby() {
     EntityTransaction t = em.getTransaction();
 
-    StringBuffer dropString = new StringBuffer("DROP FUNCTION IS_PRIME");
+    StringBuilder dropString = new StringBuilder("DROP FUNCTION IS_PRIME");
 
-    StringBuffer sqlString = new StringBuffer();
+    StringBuilder sqlString = new StringBuilder();
 
     sqlString.append("CREATE FUNCTION IS_PRIME(number Integer) RETURNS Integer ");
     sqlString.append("PARAMETER STYLE JAVA NO SQL LANGUAGE JAVA ");

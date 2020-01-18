@@ -1,6 +1,7 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.annotation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.olingo.commons.api.edm.geo.SRID;
@@ -17,9 +18,7 @@ class Term extends CsdlTerm {
     List<String> result = new ArrayList<>();
     if (appliesTo != null) {
       String[] list = appliesTo.split(" ");
-      for (String apply : list) {
-        result.add(apply);
-      }
+      Collections.addAll(result, list);
     }
     super.setAppliesTo(result);
   }

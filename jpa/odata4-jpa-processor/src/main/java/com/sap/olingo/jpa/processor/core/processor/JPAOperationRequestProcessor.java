@@ -48,8 +48,7 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
     switch (returnType.getKind()) {
       case PRIMITIVE:
         if (jpaOperation.getResultParameter().isCollection()) {
-          final List<Object> response = new ArrayList<>();
-          response.addAll((Collection<?>) result);
+            final List<Object> response = new ArrayList<>((Collection<?>) result);
           return new Property(null, RESULT, ValueType.COLLECTION_PRIMITIVE, response);
         } else if (result == null) {
           return null;
@@ -75,8 +74,7 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
   private List<ComplexValue> createComplexCollection(final EdmComplexType returnType, final Object result)
       throws ODataApplicationException/*, SerializerException, URISyntaxException*/ {
 
-    final List<Object> jpaQueryResult = new ArrayList<>();
-    jpaQueryResult.addAll((Collection<?>) result);
+      final List<Object> jpaQueryResult = new ArrayList<>((Collection<?>) result);
     return new JPAComplexResultConverter(sd, jpaQueryResult, returnType).getResult();
   }
 
@@ -103,7 +101,7 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
       resultList.add(result);
     try {
       return new JPAEntityResultConverter(createUriHelper, sd, resultList, returnType).getResult();
-    } catch (SerializerException | ODataJPAModelException | URISyntaxException e) {
+    } catch (SerializerException | URISyntaxException e) {
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_RESULT_CONV_ERROR,
           HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }

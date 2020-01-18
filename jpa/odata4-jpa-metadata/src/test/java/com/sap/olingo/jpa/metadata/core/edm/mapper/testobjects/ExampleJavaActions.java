@@ -3,6 +3,7 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
@@ -68,7 +69,7 @@ public class ExampleJavaActions implements ODataAction {
 
   @EdmAction(returnType = @ReturnType(type = ChangeInformation.class))
   public List<ChangeInformation> returnEmbeddableCollection() {
-    return Arrays.asList(new ChangeInformation());
+    return Collections.singletonList(new ChangeInformation());
   }
 
   @EdmAction()

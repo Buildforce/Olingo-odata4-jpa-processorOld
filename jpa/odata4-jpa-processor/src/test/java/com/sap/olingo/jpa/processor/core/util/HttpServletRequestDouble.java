@@ -32,12 +32,15 @@ public class HttpServletRequestDouble implements HttpServletRequest {
     this(uri, null);
   }
 
-  public HttpServletRequestDouble(final String uri, final StringBuffer body) throws IOException {
+  public HttpServletRequestDouble(final String uri, final StringBuffer body) {
     this(uri, body, null);
   }
 
-  public HttpServletRequestDouble(final String uri, final StringBuffer body,
-      final Map<String, List<String>> headers) {
+  public HttpServletRequestDouble(
+          final String uri,
+          final StringBuffer body,
+          final Map<String,
+          List<String>> headers) {
 
     super();
     this.reqHeader = new HttpRequestHeaderDouble();

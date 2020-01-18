@@ -20,7 +20,7 @@ public class JPAEntityResultConverter extends JPAStructuredResultConverter {
   private final UriHelper odataUriHelper;
 
   public JPAEntityResultConverter(final UriHelper uriHelper, final JPAServiceDocument sd, final List<?> jpaQueryResult,
-      final EdmEntityType returnType) throws ODataJPAModelException {
+      final EdmEntityType returnType) {
     super(jpaQueryResult, sd.getEntity(returnType));
     this.edmEntityType = returnType;
     this.odataUriHelper = uriHelper;

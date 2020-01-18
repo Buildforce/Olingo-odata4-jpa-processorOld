@@ -16,13 +16,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -126,7 +121,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     final Map<String, List<String>> headers = new HashMap<>();
 
     when(request.getAllHeaders()).thenReturn(headers);
-    headers.put("If-Match", Arrays.asList("2"));
+    headers.put("If-Match", Collections.singletonList("2"));
 
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);

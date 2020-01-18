@@ -48,7 +48,7 @@ public class TestJPAExpandQueryCreateResult extends TestBase {
     requestContext.setUriInfo(new UriInfoDouble(new ExpandItemDouble(targetEntity).getResourcePath()));
 
     cut = new JPAExpandJoinQuery(null, context, helper.getJPAAssociationPath("Organizations", "Roles"),
-        helper.sd.getEntity(targetEntity), new HashMap<String, List<String>>(), requestContext);
+        helper.sd.getEntity(targetEntity), new HashMap<>(), requestContext);
   }
 
   @Test
@@ -235,7 +235,7 @@ public class TestJPAExpandQueryCreateResult extends TestBase {
 
     EdmEntityType targetEntity = new EdmEntityTypeDouble(nameBuilder, "Person");
     cut = new JPAExpandJoinQuery(null, context, helper.getJPAAssociationPath("Organizations", "SupportEngineers"),
-        helper.sd.getEntity(targetEntity), new HashMap<String, List<String>>(), requestContext);
+        helper.sd.getEntity(targetEntity), new HashMap<>(), requestContext);
 
     List<Tuple> result = new ArrayList<>();
     HashMap<String, Object> oneResult = new HashMap<>();

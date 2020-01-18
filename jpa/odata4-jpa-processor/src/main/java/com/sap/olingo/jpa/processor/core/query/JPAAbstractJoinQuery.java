@@ -277,15 +277,11 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     // Given key: Organizations('1')/Roles(...)
     for (JPANavigationPropertyInfo naviInfo : info) {
       if (naviInfo.getKeyPredicates() != null) {
-        try {
-          final JPAEntityType et = naviInfo.getEntityType();
+        final JPAEntityType et = naviInfo.getEntityType();
 
-          final From<?, ?> f = naviInfo.getFromClause();
-          final List<UriParameter> keyPredicates = naviInfo.getKeyPredicates();
-          whereCondition = createWhereByKey(f, whereCondition, keyPredicates, et);
-        } catch (ODataJPAModelException e) {
-          throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
-        }
+        final From<?, ?> f = naviInfo.getFromClause();
+        final List<UriParameter> keyPredicates = naviInfo.getKeyPredicates();
+        whereCondition = createWhereByKey(f, whereCondition, keyPredicates, et);
       }
     }
     return whereCondition;
@@ -298,7 +294,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
    * >OData Version 4.0 Part 1 - 11.2.5.2 System Query Option $orderby</a> <p>
    *
 
-   * @throws ODataJPAModelException
+   *
    *
 
    */
@@ -365,10 +361,10 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
         debugger.stopRuntimeMeasurement(handle);
         throw new ODataJPAQueryException(e, HttpStatusCode.BAD_REQUEST);
       }
-    } else {
+    }
       // Ensure results get ordered by primary key. By this it is ensured that the results will match the sub-select
       // results for $expand with $skip and $top
-    }
+
     debugger.stopRuntimeMeasurement(handle);
     return orders;
   }
@@ -378,13 +374,9 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
 
     javax.persistence.criteria.Expression<Boolean> restriction = null;
     for (final JPANavigationPropertyInfo navi : navigationInfo) { // for all participating entity types/tables
-      try {
-        final JPAEntityType et = navi.getEntityType();
-        final From<?, ?> from = navi.getFromClause();
-        restriction = addWhereClause(restriction, createProtectionWhereForEntityType(claimsProvider, et, from));
-      } catch (ODataJPAModelException e) {
-        throw new ODataJPAQueryException(QUERY_RESULT_ENTITY_TYPE_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR);
-      }
+      final JPAEntityType et = navi.getEntityType();
+      final From<?, ?> from = navi.getFromClause();
+      restriction = addWhereClause(restriction, createProtectionWhereForEntityType(claimsProvider, et, from));
     }
     return restriction;
   }
@@ -769,16 +761,11 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
         target = (From<?, ?>) target.as(sd.getEntity(castType.getFullQualifiedName()).getTypeClass());
       naviInfo.setFromClause(target);
       if (naviInfo.getUriInfo() != null && naviInfo.getUriInfo().getFilterOption() != null) {
-        try {
-          final JPAOperationConverter converter = new JPAOperationConverter(cb, context.getOperationConverter());
-          final JPAODataRequestContextAccess subContext = new JPAODataRequestContextImpl(naviInfo.getUriInfo(),
-              requestContext);
-          naviInfo.setFilterCompiler(new JPAFilterCrossCompiler(odata, sd, naviInfo.getEntityType(), converter, this,
-              naviInfo.getFromClause(), null, subContext));
-        } catch (ODataJPAModelException e) {
-          throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_FILTER_ERROR,
-              HttpStatusCode.BAD_REQUEST, e);
-        }
+        final JPAOperationConverter converter = new JPAOperationConverter(cb, context.getOperationConverter());
+        final JPAODataRequestContextAccess subContext = new JPAODataRequestContextImpl(naviInfo.getUriInfo(),
+            requestContext);
+        naviInfo.setFilterCompiler(new JPAFilterCrossCompiler(odata, sd, naviInfo.getEntityType(), converter, this,
+            naviInfo.getFromClause(), null, subContext));
       }
       target = createJoinFromPath(naviInfo.getAssociationPath().getAlias(), naviInfo.getAssociationPath().getPath(),
           target, JoinType.INNER);
@@ -812,13 +799,9 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
    */
   private void createFromClauseRoot(final CriteriaQuery<?> query, final HashMap<String, From<?, ?>> joinTables)
       throws ODataJPAQueryException {
-    try {
-      final JPAEntityType sourceEt = this.navigationInfo.get(0).getEntityType();
-      this.root = query.from(sourceEt.getTypeClass());
-      joinTables.put(sourceEt.getExternalFQN().getFullQualifiedNameAsString(), root);
-    } catch (ODataJPAModelException e) {
-      throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
-    }
+    final JPAEntityType sourceEt = this.navigationInfo.get(0).getEntityType();
+    this.root = query.from(sourceEt.getTypeClass());
+    joinTables.put(sourceEt.getExternalFQN().getFullQualifiedNameAsString(), root);
   }
 
   private Set<JPAPath> determineAllDescriptionPath(List<JPAPath> descriptionFields, JPAFilterCompiler filter)

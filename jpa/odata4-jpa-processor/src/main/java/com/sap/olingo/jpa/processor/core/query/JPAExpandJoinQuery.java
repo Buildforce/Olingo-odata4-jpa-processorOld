@@ -340,7 +340,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
     final int handle = debugger.startRuntimeMeasurement(this, "createTupleQuery");
 
     final Set<JPAPath> selectionPath = buildSelectionPathList(this.uriResource);
-    final Map<String, From<?, ?>> joinTables = createFromClause(new ArrayList<JPAAssociationPath>(1),
+    final Map<String, From<?, ?>> joinTables = createFromClause(new ArrayList<>(1),
         selectionPath, cq, lastInfo);
 
     // TODO handle Join Column is ignored

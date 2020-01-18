@@ -93,7 +93,7 @@ public class TestJPAQueryFromClause extends TestBase {
     final List<JPAAssociationPath> orderBy = new ArrayList<>();
     final JPAAssociationPath exp = buildRoleAssociationPath(orderBy);
 
-    Map<String, From<?, ?>> act = cut.createFromClause(orderBy, new ArrayList<JPAPath>(), cut.cq, null);
+    Map<String, From<?, ?>> act = cut.createFromClause(orderBy, new ArrayList<>(), cut.cq, null);
     assertNotNull(act.get(exp.getAlias()));
   }
 

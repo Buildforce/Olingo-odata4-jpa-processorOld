@@ -40,7 +40,7 @@ public class TestIntermediateComplexType extends TestMappingRoot {
   }
 
   @Test
-  public void checkComplexTypeCanBeCreated() throws ODataJPAModelException {
+  public void checkComplexTypeCanBeCreated() {
 
     new IntermediateComplexType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEmbeddableType("CommunicationData"), schema);
   }
@@ -200,14 +200,14 @@ public class TestIntermediateComplexType extends TestMappingRoot {
   }
 
   @Test
-  public void checkGetPropertyIgnoreTrue() throws ODataJPAModelException {
+  public void checkGetPropertyIgnoreTrue() {
     IntermediateComplexType ct = new IntermediateComplexType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEmbeddableType(
         "DummyEmbeddedToIgnore"), schema);
     assertTrue(ct.ignore());
   }
 
   @Test
-  public void checkGetPropertyIgnoreFalse() throws ODataJPAModelException {
+  public void checkGetPropertyIgnoreFalse() {
     IntermediateComplexType ct = new IntermediateComplexType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEmbeddableType(
         "ChangeInformation"), schema);
     assertFalse(ct.ignore());

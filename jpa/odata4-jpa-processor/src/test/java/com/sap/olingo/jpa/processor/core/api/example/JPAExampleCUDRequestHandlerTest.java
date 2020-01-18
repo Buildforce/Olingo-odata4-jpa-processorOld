@@ -13,11 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.persistence.EntityManager;
 
@@ -188,7 +184,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     keys.put("codeID", "NUTS1");
     keys.put("codePublisher", "Eurostat");
     doReturn(deepEntities).when(requestEntity).getRelatedEntities();
-    deepEntities.put(path, Arrays.asList(deepEntity));
+    deepEntities.put(path, Collections.singletonList(deepEntity));
 
     doReturn(et).when(deepEntity).getEntityType();
     doReturn(deepData).when(deepEntity).getData();
@@ -504,7 +500,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     keys.put("codePublisher", "Eurostat");
     doReturn(relationLinks).when(requestEntity).getRelationLinks();
 
-    relationLinks.put(path, Arrays.asList(link));
+    relationLinks.put(path, Collections.singletonList(link));
     doReturn(et).when(link).getEntityType();
     doReturn(childKeys).when(link).getRelatedKeys();
     childKeys.put("divisionCode", "DE51");

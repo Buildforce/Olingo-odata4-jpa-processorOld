@@ -23,10 +23,9 @@ final class IntermediateFunctionFactory extends IntermediateOperationFactory {
    * @param jpaEntityType
    * @param schema
    * @return
-   * @throws ODataJPAModelException
    */
   Map<? extends String, ? extends IntermediateFunction> create(final JPAEdmNameBuilder nameBuilder,
-      final EntityType<?> jpaEntityType, final IntermediateSchema schema) throws ODataJPAModelException {
+      final EntityType<?> jpaEntityType, final IntermediateSchema schema) {
 
     final Map<String, IntermediateFunction> funcList = new HashMap<>();
 

@@ -37,8 +37,7 @@ public final class JPAExpandLevelWrapper implements JPAExpandItem {
   private final JPAEntityType jpaEntityType;
   private final LevelsExpandOption levelOptions;
 
-  public JPAExpandLevelWrapper(final JPAServiceDocument sd, final ExpandOption option)
-      throws ODataApplicationException {
+  public JPAExpandLevelWrapper(final JPAServiceDocument sd, final ExpandOption option) {
 
     super();
     this.option = option;

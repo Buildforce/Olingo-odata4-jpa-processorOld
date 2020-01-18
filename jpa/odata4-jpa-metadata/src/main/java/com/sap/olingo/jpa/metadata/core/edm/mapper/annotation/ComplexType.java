@@ -5,6 +5,8 @@ import org.apache.olingo.commons.api.edm.provider.CsdlComplexType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+import java.util.Arrays;
+
 /**
  * Complex Type for vocabulary definitions<br>
  * Not supported: <code>NavigationProperty</code>, no use case known
@@ -41,8 +43,6 @@ class ComplexType extends CsdlComplexType {
 
   @JacksonXmlProperty(localName = "Property")
   public void setProperties(Property[] properties) {
-    for (final Property p : properties) {
-      this.properties.add(p);
-    }
+    this.properties.addAll(Arrays.asList(properties));
   }
 }

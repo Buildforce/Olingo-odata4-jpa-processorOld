@@ -1,10 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testobjects;
 
-import java.util.Date;
+import java.util.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
@@ -26,7 +23,7 @@ public class TestFunctionReturnType implements ODataFunction {
   public Integer primitiveValue(@EdmParameter(name = "A") short a) {
     if (a == 0)
       return null;
-    return Integer.valueOf(a);
+    return (int) a;
   }
 
   @EdmFunction(name = "ListOfPrimitiveValues", returnType = @ReturnType(type = Integer.class))
@@ -86,7 +83,7 @@ public class TestFunctionReturnType implements ODataFunction {
     person.setID("1");
     person.addInhouseAddress(new InhouseAddress("DEV", "7"));
     person.addInhouseAddress(new InhouseAddress("ADMIN", "2"));
-    return Arrays.asList(person);
+    return Collections.singletonList(person);
   }
 
   @EdmFunction(name = "EntityTypeWithDeepCollection", returnType = @ReturnType(type = CollectionDeep.class))

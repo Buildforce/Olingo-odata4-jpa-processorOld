@@ -404,9 +404,9 @@ public class JPAConversionHelper {
   }
 
   private <T> Object findEnumConstantsByOrdinal(T[] enumConstants, Object value) {
-    for (int i = 0; i < enumConstants.length; i++) {
-      if (((Enum<?>) enumConstants[i]).ordinal() == (Integer) value)
-        return enumConstants[i];
+    for (T enumConstant : enumConstants) {
+      if (((Enum<?>) enumConstant).ordinal() == (Integer) value)
+        return enumConstant;
     }
     return null;
   }

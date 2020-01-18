@@ -69,7 +69,7 @@ public class TestJPAVisitor {
     when(uriFunction.getFunction()).thenReturn(edmFunction);
     when(compiler.getSd()).thenReturn(sd);
     when(sd.getFunction(edmFunction)).thenReturn(jpaFunction);
-    when(uriFunction.getParameters()).thenReturn(new ArrayList<UriParameter>());
+    when(uriFunction.getParameters()).thenReturn(new ArrayList<>());
 
     if (!(cut.visitMember(member) instanceof JPAFunctionOperator)) {
       fail();

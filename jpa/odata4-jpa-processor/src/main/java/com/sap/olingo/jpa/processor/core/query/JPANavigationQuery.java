@@ -51,7 +51,7 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
 
   public JPANavigationQuery(final OData odata, final JPAServiceDocument sd, final EdmEntityType edmEntityType,
       final EntityManager em, final JPAAbstractQuery parent, From<?, ?> from, final JPAAssociationPath association,
-      final Optional<JPAODataClaimProvider> claimsProvider) throws ODataApplicationException {
+      final Optional<JPAODataClaimProvider> claimsProvider) {
 
     super(odata, sd, edmEntityType, em, claimsProvider);
     this.parentQuery = parent;

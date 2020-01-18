@@ -315,8 +315,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
   private List<IntermediateJoinColumn> buildJoinColumnsMapped(final String mappedBy) throws ODataJPAModelException {
 
     int implicitColumns = 0;
-    final List<IntermediateJoinColumn> result = new ArrayList<>();
-    result.addAll(targetType.getJoinColumns(mappedBy));
+      final List<IntermediateJoinColumn> result = new ArrayList<>(targetType.getJoinColumns(mappedBy));
     for (final IntermediateJoinColumn intermediateColumn : result) {
       final String refColumnName = intermediateColumn.getReferencedColumnName();
       if (refColumnName == null || refColumnName.isEmpty()) {

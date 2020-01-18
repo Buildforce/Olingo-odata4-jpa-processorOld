@@ -30,7 +30,7 @@ public class JPAExpandItemWrapper implements JPAExpandItem {
   private final ExpandItem item;
   private final JPAEntityType jpaEntityType;
 
-  public JPAExpandItemWrapper(final JPAServiceDocument sd, final ExpandItem item) throws ODataApplicationException {
+  public JPAExpandItemWrapper(final JPAServiceDocument sd, final ExpandItem item) {
     super();
     this.item = item;
     this.jpaEntityType = sd.getEntity(Util.determineTargetEntityType(getUriResourceParts()));

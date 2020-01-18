@@ -22,7 +22,7 @@ final class JPAPathImpl implements JPAPath {
   JPAPathImpl(final String alias, final String dbFieldName, final IntermediateProperty element)
       throws ODataJPAModelException {
 
-    this(alias, dbFieldName, Arrays.asList(element));
+    this(alias, dbFieldName, Collections.singletonList(element));
   }
 
   JPAPathImpl(final String alias, final String dbFieldName, final List<JPAElement> attribute)

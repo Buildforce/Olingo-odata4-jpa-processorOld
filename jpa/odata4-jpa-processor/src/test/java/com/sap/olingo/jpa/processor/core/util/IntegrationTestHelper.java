@@ -98,15 +98,25 @@ public class IntegrationTestHelper {
     this(emf, null, urlPath, null, null, provider, headers, null, null);
   }
 
-  public IntegrationTestHelper(EntityManagerFactory localEmf, DataSource ds, String urlPath, StringBuffer requestBody,
-      String functionPackage, JPAODataPagingProvider provider) throws IOException, ODataException {
+  public IntegrationTestHelper(EntityManagerFactory localEmf,
+                               DataSource ds,
+                               String urlPath,
+                               StringBuffer requestBody,
+                               String functionPackage,
+                               JPAODataPagingProvider provider) throws IOException, ODataException {
     this(localEmf, ds, urlPath, requestBody, functionPackage, provider, null, null, null);
   }
 
-  public IntegrationTestHelper(final EntityManagerFactory localEmf, final DataSource ds, final String urlPath,
-      final StringBuffer requestBody, final String functionPackage, final JPAODataPagingProvider provider,
-      final Map<String, List<String>> headers, final JPAODataClaimsProvider claims, final JPAODataGroupProvider groups)
-      throws IOException, ODataException {
+  public IntegrationTestHelper(final EntityManagerFactory localEmf,
+                               final DataSource ds,
+                               final String urlPath,
+                               final StringBuffer requestBody,
+                               final String functionPackage,
+                               final JPAODataPagingProvider provider,
+                               final Map<String, List<String>> headers,
+                               final JPAODataClaimsProvider claims,
+                               final JPAODataGroupProvider groups)
+      throws ODataException {
 
     super();
     final EntityManager em = localEmf.createEntityManager();
@@ -122,7 +132,7 @@ public class IntegrationTestHelper {
         localEmf, null, packages), ds, provider, functionPackage);
 
     final ODataHttpHandler handler = odata.createHandler(odata.createServiceMetadata(sessionContext.getEdmProvider(),
-        new ArrayList<EdmxReference>()));
+            new ArrayList<>()));
     requestContext.setClaimsProvider(claims);
     requestContext.setGroupsProvider(groups);
     requestContext.setEntityManager(em);

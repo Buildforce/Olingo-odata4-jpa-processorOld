@@ -101,16 +101,15 @@ public class JPAMemberOperator implements JPAOperator {
       final JPAElement jpaPathElement) {
 
     final Set<?> allJoins = root.getJoins();
-    final Iterator<?> iterator = allJoins.iterator();
-    while (iterator.hasNext()) {
-      Join<?, ?> join = (Join<?, ?>) iterator.next();
+    for (Object allJoin : allJoins) {
+      Join<?, ?> join = (Join<?, ?>) allJoin;
       if (join.getAlias() != null && join.getAlias().equals(selectItemPath.getAlias())) {
         final Set<?> subJoins = join.getJoins();
         for (final Object sub : subJoins) {
           // e.g. "Organizations?$filter=Address/RegionName eq 'Kalifornien'
           // see createFromClause in JPAExecutableQuery
           if (((Join<?, ?>) sub).getAlias() != null &&
-              ((Join<?, ?>) sub).getAlias().equals(jpaPathElement.getExternalName())) {
+                  ((Join<?, ?>) sub).getAlias().equals(jpaPathElement.getExternalName())) {
             join = (Join<?, ?>) sub;
           }
         }

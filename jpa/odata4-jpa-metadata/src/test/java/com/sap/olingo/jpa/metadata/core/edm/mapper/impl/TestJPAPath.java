@@ -11,6 +11,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -103,36 +104,36 @@ public class TestJPAPath extends TestMappingRoot {
   public void checkIsPartOfGroupReturnsTrueOnNotAnnotated() throws ODataJPAModelException {
 
     final JPAPath act = bupaWithGroup.getPath("Type");
-    assertTrue(act.isPartOfGroups(Arrays.asList("Test")));
+    assertTrue(act.isPartOfGroups(Collections.singletonList("Test")));
   }
 
   @Test
   public void checkIsPartOfGroupReturnsTrueOnAnnotatedBelogsToIt() throws ODataJPAModelException {
 
     final JPAPath act = bupaWithGroup.getPath("Country");
-    assertTrue(act.isPartOfGroups(Arrays.asList("Person")));
+    assertTrue(act.isPartOfGroups(Collections.singletonList("Person")));
   }
 
   @Test
   public void checkIsPartOfGroupCheckTwice() throws ODataJPAModelException {
 
     final JPAPath act = bupaWithGroup.getPath("Country");
-    assertTrue(act.isPartOfGroups(Arrays.asList("Person")));
-    assertTrue(act.isPartOfGroups(Arrays.asList("Person")));
+    assertTrue(act.isPartOfGroups(Collections.singletonList("Person")));
+    assertTrue(act.isPartOfGroups(Collections.singletonList("Person")));
   }
 
   @Test
   public void checkIsPartOfGroupReturnsFalseOnAnnotatedDoesNotBelogsToIt() throws ODataJPAModelException {
 
     final JPAPath act = bupaWithGroup.getPath("Country");
-    assertFalse(act.isPartOfGroups(Arrays.asList("Test")));
+    assertFalse(act.isPartOfGroups(Collections.singletonList("Test")));
   }
 
   @Test
   public void checkIsPartOfGroupReturnsFalseOnAnnotatedComplex() throws ODataJPAModelException {
 
     final JPAPath act = bupaWithGroup.getPath("CommunicationData/Email");
-    assertFalse(act.isPartOfGroups(Arrays.asList("Test")));
+    assertFalse(act.isPartOfGroups(Collections.singletonList("Test")));
 
   }
 
@@ -140,7 +141,7 @@ public class TestJPAPath extends TestMappingRoot {
   public void checkIsPartOfGroupReturnsTrueOnNotAnnotatedComplex() throws ODataJPAModelException {
 
     final JPAPath act = organization.getPath("CommunicationData/Email");
-    assertTrue(act.isPartOfGroups(Arrays.asList("Test")));
+    assertTrue(act.isPartOfGroups(Collections.singletonList("Test")));
   }
 
   @Test
@@ -154,7 +155,7 @@ public class TestJPAPath extends TestMappingRoot {
 
     final IntermediateProperty primitive = mock(IntermediateProperty.class);
     when(primitive.isPartOfGroup()).thenReturn(true);
-    when(primitive.getGroups()).thenReturn(Arrays.asList("Dummy"));
+    when(primitive.getGroups()).thenReturn(Collections.singletonList("Dummy"));
     attributes.add(primitive);
 
     final ODataJPAModelException act = assertThrows(ODataJPAModelException.class,
