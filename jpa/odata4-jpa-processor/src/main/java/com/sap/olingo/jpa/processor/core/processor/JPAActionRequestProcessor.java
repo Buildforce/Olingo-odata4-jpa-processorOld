@@ -86,7 +86,7 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     } catch (InvocationTargetException | ODataException e) {
       final Throwable cause = e.getCause();
-      if (cause != null && cause instanceof ODataApplicationException) {
+      if (cause instanceof ODataApplicationException) {
         throw (ODataApplicationException) cause;
       } else {
         throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
@@ -94,8 +94,7 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
     }
   }
 
-  private Object createBindingParameter(UriResourceEntitySet entitySet, JPAParameter parameter)
-      throws ODataJPAModelException, ODataApplicationException {
+  private Object createBindingParameter(UriResourceEntitySet entitySet, JPAParameter parameter) throws ODataApplicationException {
     try {
 
       final JPAConversionHelper helper = new JPAConversionHelper();
@@ -113,7 +112,7 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     } catch (InvocationTargetException e) {
       Throwable cause = e.getCause();
-      if (cause != null && cause instanceof ODataApplicationException) {
+      if (cause instanceof ODataApplicationException) {
         throw (ODataApplicationException) cause;
       } else {
         throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);

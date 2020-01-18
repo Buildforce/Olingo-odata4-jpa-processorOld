@@ -11,7 +11,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,7 +68,6 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
 import com.sap.olingo.jpa.processor.core.serializer.JPAOperationSerializer;
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
 import com.sap.olingo.jpa.processor.core.testmodel.CommunicationData;
@@ -241,12 +239,7 @@ public class TestJPAActionProcessor {
 
     JPAStructuredType st = mock(JPAStructuredType.class);
     when(sd.getComplexType(any())).thenReturn(st);
-    when(st.getTypeClass()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return CommunicationData.class;
-      }
-    });
+    when(st.getTypeClass()).thenAnswer((Answer<Class<?>>) invocation -> CommunicationData.class);
 
     cut.performAction(request, response, requestFormat);
     verify(response, times(1)).setStatusCode(200);
@@ -387,12 +380,7 @@ public class TestJPAActionProcessor {
 
   private void setBindingParameter(Method m) throws ODataJPAModelException, EdmPrimitiveTypeException {
     final JPAParameter bindingParam = addParameter(m, null, "Root", 0);
-    when(bindingParam.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return AdministrativeDivision.class;
-      }
-    });
+    when(bindingParam.getType()).thenAnswer((Answer<Class<?>>) invocation -> AdministrativeDivision.class);
     final List<UriParameter> keys = new ArrayList<>();
     final UriParameter key1 = mock(UriParameter.class);
     when(bindingEntity.getKeyPredicates()).thenReturn(keys);
@@ -410,23 +398,13 @@ public class TestJPAActionProcessor {
     when(et.getAttribute("codeID")).thenReturn(code);
     when(codePath.getLeaf()).thenReturn(code);
     when(code.getInternalName()).thenReturn("codeID");
-    when(code.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    when(code.getType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
 
     when(code.getProperty()).thenReturn(edmProperty);
     when(odata.createPrimitiveTypeInstance(EdmPrimitiveTypeKind.String)).thenReturn(edmString);
     when(edmString.fromUriLiteral("LAU2")).thenReturn("LAU2");
     when(edmString.valueOfString("LAU2", false, 0, 0, 0, true, code.getType())).thenAnswer(
-        new Answer<String>() {
-          @Override
-          public String answer(InvocationOnMock invocation) {
-            return "LAU2";
-          }
-        });
+            (Answer<String>) invocation -> "LAU2");
   }
 
   private JPAParameter addParameter(final Method m, final Object value, final String name, int index)

@@ -38,7 +38,7 @@ public class TestJPAAbstractCUDRequestHandler {
     assertEquals(HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), act.getStatusCode());
   }
 
-  private class ExampleJPAAbstractCUDRequestHandler extends JPAAbstractCUDRequestHandler {
+  private static class ExampleJPAAbstractCUDRequestHandler extends JPAAbstractCUDRequestHandler {
 
   }
 }

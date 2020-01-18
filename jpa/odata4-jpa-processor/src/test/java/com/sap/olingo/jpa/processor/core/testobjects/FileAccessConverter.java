@@ -1,7 +1,6 @@
 package com.sap.olingo.jpa.processor.core.testobjects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.AttributeConverter;

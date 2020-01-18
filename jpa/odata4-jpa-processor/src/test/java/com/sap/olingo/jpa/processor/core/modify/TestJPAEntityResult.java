@@ -1,9 +1,6 @@
 package com.sap.olingo.jpa.processor.core.modify;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -85,9 +82,9 @@ public class TestJPAEntityResult extends TestJPACreateResult {
     final AdministrativeDivisionDescription description = new AdministrativeDivisionDescription();
     description.setKey(new AdministrativeDivisionDescriptionKey("ISO", "3166", "DEU", "en"));
     description.setName("MyDivision");
-    ((BusinessPartner) jpaEntity).setLocationName(Arrays.asList(description));
+    ((BusinessPartner) jpaEntity).setLocationName(Collections.singletonList(description));
     ((BusinessPartner) jpaEntity).setID("Willi");
-    ((BusinessPartner) jpaEntity).setETag(7l);
+    ((BusinessPartner) jpaEntity).setETag(7L);
     cut = new JPAEntityResult(et, jpaEntity, headers, converter);
   }
 

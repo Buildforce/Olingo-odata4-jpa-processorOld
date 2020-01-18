@@ -94,7 +94,6 @@ final class IntermediateEntityContainer extends IntermediateModelElement impleme
    * Entity Sets are described in <a href=
    * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406398024"
    * >OData Version 4.0 Part 3 - 13.2 Element edm:EntitySet</a>
-   * @param Entity Type
    * @return Entity Set
    */
   @SuppressWarnings("unchecked")
@@ -116,7 +115,7 @@ final class IntermediateEntityContainer extends IntermediateModelElement impleme
    * Details are described in : <a href=
    * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406398042"
    * >OData Version 4.0 Part 3 - 13.6 Element edm:FunctionImport</a>
-   * @param CsdlFunction edmFu
+   * @param edmFu
    */
   private CsdlFunctionImport buildFunctionImport(final CsdlFunction edmFu) {
     final CsdlFunctionImport edmFuImport = new CsdlFunctionImport();
@@ -167,7 +166,7 @@ final class IntermediateEntityContainer extends IntermediateModelElement impleme
    * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-
    * complete.html#_Toc406398038">13.5 Element edm:ActionImport</a>
    * @param edmAc
-   * @return
+   * @return CsdlActionImport
    */
   private CsdlActionImport buildActionImport(CsdlAction edmAc) {
     final CsdlActionImport edmAcImport = new CsdlActionImport();

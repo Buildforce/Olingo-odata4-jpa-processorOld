@@ -210,13 +210,7 @@ public class TestIntermediateDataBaseFunction extends TestMappingRoot {
     // EdmFunctionParameter[] params = new EdmFunctionParameter[0];
     when(func.returnType()).thenReturn(retType);
     when(func.parameter()).thenReturn(new EdmParameter[0]);
-    when(retType.type()).thenAnswer(new Answer<Class<?>>() {
-
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return ChangeInformation.class;
-      }
-    });
+    when(retType.type()).thenAnswer((Answer<Class<?>>) invocation -> ChangeInformation.class);
 
     IntermediateFunction act = new IntermediateDataBaseFunction(new JPADefaultEdmNameBuilder(PUNIT_NAME), func,
         BusinessPartner.class, helper.schema);
@@ -231,12 +225,7 @@ public class TestIntermediateDataBaseFunction extends TestMappingRoot {
     // EdmFunctionParameter[] params = new EdmFunctionParameter[0];
     when(func.returnType()).thenReturn(retType);
     when(func.parameter()).thenReturn(new EdmParameter[0]);
-    when(retType.type()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return DateConverter.class;
-      }
-    });
+    when(retType.type()).thenAnswer((Answer<Class<?>>) invocation -> DateConverter.class);
     IntermediateFunction act;
     try {
       act = new IntermediateDataBaseFunction(new JPADefaultEdmNameBuilder(PUNIT_NAME), func, BusinessPartner.class,

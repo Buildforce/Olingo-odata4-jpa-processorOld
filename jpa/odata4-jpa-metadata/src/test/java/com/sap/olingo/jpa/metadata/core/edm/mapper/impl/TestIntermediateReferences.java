@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.net.URISyntaxException;
 import java.util.List;
 
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
@@ -128,7 +127,7 @@ public class TestIntermediateReferences extends TestMappingRoot {
     assertNull(cut.getTerm(fqn));
   }
 
-  class PostProcessor extends JPAEdmMetadataPostProcessor {
+  static class PostProcessor extends JPAEdmMetadataPostProcessor {
     @Override
     public void processNavigationProperty(final IntermediateNavigationPropertyAccess property,
         final String jpaManagedTypeClassName) {

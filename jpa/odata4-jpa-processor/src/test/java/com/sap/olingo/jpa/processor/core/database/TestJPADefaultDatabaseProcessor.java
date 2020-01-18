@@ -71,12 +71,7 @@ public class TestJPADefaultDatabaseProcessor extends TestJPA_XXX_DatabaseProcess
   public void testNotSupportedConvertComparisonOperatorOthersThenHAS() {
     @SuppressWarnings("unchecked")
     final JPAComparisonOperator<String> operator = mock(JPAComparisonOperator.class);
-    when(operator.getOperator()).then(new Answer<BinaryOperatorKind>() {
-      @Override
-      public BinaryOperatorKind answer(InvocationOnMock invocation) {
-        return BinaryOperatorKind.SUB;
-      }
-    });
+    when(operator.getOperator()).then((Answer<BinaryOperatorKind>) invocation -> BinaryOperatorKind.SUB);
     assertThrows(ODataJPAFilterException.class, () -> ((JPAODataDatabaseOperations) cut).convert(operator));
   }
 
@@ -90,22 +85,12 @@ public class TestJPADefaultDatabaseProcessor extends TestJPA_XXX_DatabaseProcess
     final Expression<Long> left = mock(Expression.class);
     final JPAEnumerationBasedOperator right = mock(JPAEnumerationBasedOperator.class);
 
-    when(operator.getOperator()).then(new Answer<BinaryOperatorKind>() {
-      @Override
-      public BinaryOperatorKind answer(InvocationOnMock invocation) {
-        return BinaryOperatorKind.HAS;
-      }
-    });
+    when(operator.getOperator()).then((Answer<BinaryOperatorKind>) invocation -> BinaryOperatorKind.HAS);
     when(operator.getRight()).thenReturn(right);
     when(right.getValue()).thenReturn(5L);
     when(operator.getLeft()).thenReturn(left);
 
-    when(cb.quot(left, 5L)).thenAnswer(new Answer<Expression<Integer>>() {
-      @Override
-      public Expression<Integer> answer(InvocationOnMock invocation) {
-        return cbResult;
-      }
-    });
+    when(cb.quot(left, 5L)).thenAnswer((Answer<Expression<Integer>>) invocation -> cbResult);
     when(cb.mod(cbResult, 2)).thenReturn(cbResult);
     when(cb.equal(cbResult, 1)).thenReturn(cbPredicate);
     ((JPAODataDatabaseOperations) cut).setCriterialBuilder(cb);
@@ -115,8 +100,6 @@ public class TestJPADefaultDatabaseProcessor extends TestJPA_XXX_DatabaseProcess
 
   @Test
   public void testNotSupportedSearch() {
-    assertThrows(ODataJPADBAdaptorException.class, () -> {
-      cut.createSearchWhereClause(null, null, null, null, null);
-    });
+    assertThrows(ODataJPADBAdaptorException.class, () -> cut.createSearchWhereClause(null, null, null, null, null));
   }
 }

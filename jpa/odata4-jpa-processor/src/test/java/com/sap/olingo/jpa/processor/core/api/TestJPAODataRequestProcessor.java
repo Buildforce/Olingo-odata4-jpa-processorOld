@@ -41,40 +41,22 @@ public class TestJPAODataRequestProcessor {
   private static OData odata;
 
   static Stream<Executable> modifyMediaTypeMethodsProvider() {
-    return Stream.of(() -> {
-      cut.createMediaEntity(null, null, null, null, null);
-    }, () -> {
-      cut.updateMediaEntity(null, null, null, null, null);
-    }, () -> {
-      cut.deleteMediaEntity(null, null, null);
-    });
+    return Stream.of(() -> cut.createMediaEntity(null, null, null, null, null), () -> cut.updateMediaEntity(null, null, null, null, null), () -> cut.deleteMediaEntity(null, null, null));
   }
 
   static Stream<Executable> updatePrimitiveValueMethodsProvider() {
-    return Stream.of(() -> {
-      cut.updatePrimitiveValue(null, null, null, null, null);
-    });
+    return Stream.of(() -> cut.updatePrimitiveValue(null, null, null, null, null));
   }
 
   static Stream<Executable> modifyComplexValueMethodsProvider() {
-    return Stream.of(() -> {
-      cut.updateComplex(null, null, null, null, null);
-    }, () -> {
-      cut.deleteComplex(null, null, null);
-    });
+    return Stream.of(() -> cut.updateComplex(null, null, null, null, null), () -> cut.deleteComplex(null, null, null));
   }
 
   static Stream<Executable> throwsSerializerExceptionMethodsProvider() throws SerializerException {
     // when(odata.createSerializer(ContentType.APPLICATION_JSON)).thenThrow(SerializerException.class);
     when(odata.createSerializer(ContentType.APPLICATION_JSON, Collections.emptyList()))
         .thenThrow(SerializerException.class);
-    return Stream.of(() -> {
-      cut.createEntity(request, response, uriInfo, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON);
-    }, () -> {
-      cut.updateEntity(request, response, uriInfo, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON);
-    }, () -> {
-      cut.readEntity(request, response, uriInfo, ContentType.APPLICATION_JSON);
-    });
+    return Stream.of(() -> cut.createEntity(request, response, uriInfo, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON), () -> cut.updateEntity(request, response, uriInfo, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON), () -> cut.readEntity(request, response, uriInfo, ContentType.APPLICATION_JSON));
   }
 
   @BeforeAll
@@ -126,8 +108,6 @@ public class TestJPAODataRequestProcessor {
   @Test
   public void checkUpdateEntityPropagateSerializerException() {
 
-    assertThrows(ODataException.class, () -> {
-      cut.updateEntity(request, response, uriInfo, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON);
-    });
+    assertThrows(ODataException.class, () -> cut.updateEntity(request, response, uriInfo, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON));
   }
 }

@@ -199,11 +199,11 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
     this.transactionFactory = new JPAODataDefaultTransactionFactory(em);
   }
 
-  private class JPADefaultCUDRequestHandler extends JPAAbstractCUDRequestHandler {
+  private static class JPADefaultCUDRequestHandler extends JPAAbstractCUDRequestHandler {
 
   }
 
-  private class JPADebugSupportWrapper implements DebugSupport {
+  private static class JPADebugSupportWrapper implements DebugSupport {
 
     private final DebugSupport debugSupport;
     private JPAServiceDebugger debugger;

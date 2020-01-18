@@ -47,7 +47,7 @@ public class JPAODataDefaultTransactionFactory implements JPAODataTransactionFac
     }
   }
 
-  private class JPAODataEntityTransaction implements JPAODataTransaction {
+  private static class JPAODataEntityTransaction implements JPAODataTransaction {
 
     private final EntityTransaction et;
 

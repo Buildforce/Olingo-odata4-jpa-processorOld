@@ -3,6 +3,7 @@ package com.sap.olingo.jpa.processor.core.query;
 import java.util.stream.Collectors;
 
 import org.apache.olingo.commons.api.http.HttpStatusCode;
+import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.queryoption.SelectItem;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 
@@ -31,8 +32,7 @@ class SelectOptionUtil {
       final SelectItem sItem) throws ODataJPAQueryException {
 
     try {
-      final String pathItem = sItem.getResourcePath().getUriResourceParts().stream().map(path -> (path
-          .getSegmentValue())).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
+      final String pathItem = sItem.getResourcePath().getUriResourceParts().stream().map(UriResource::getSegmentValue).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
       JPAPath selectItemPath;
 
       selectItemPath = jpaEntity.getPath(pathPrefix.isEmpty() ? pathItem : pathPrefix

@@ -59,13 +59,10 @@ public final class JPADefaultEdmNameBuilder implements JPAEdmNameBuilder {
    */
   @Override
   public final String buildEntitySetName(final String entityTypeName) {
-    if (entityTypeName.charAt(entityTypeName.length() - 1) == 'y'
-        && entityTypeName.charAt(entityTypeName.length() - 2) != 'a'
-        && entityTypeName.charAt(entityTypeName.length() - 2) != 'e'
-        && entityTypeName.charAt(entityTypeName.length() - 2) != 'i'
-        && entityTypeName.charAt(entityTypeName.length() - 2) != 'o'
-        && entityTypeName.charAt(entityTypeName.length() - 2) != 'u') {
-      return entityTypeName.substring(0, entityTypeName.length() - 1) + "ie" + ENTITY_SET_SUFFIX;
+    int length = entityTypeName.length();
+
+    if (entityTypeName.charAt(length - 1) == 'y' && "aeiou".indexOf(entityTypeName.charAt(length - 2)) < 0) {
+      return entityTypeName.substring(0, length - 1) + "ie" + ENTITY_SET_SUFFIX;
     }
     return entityTypeName + ENTITY_SET_SUFFIX;
   }

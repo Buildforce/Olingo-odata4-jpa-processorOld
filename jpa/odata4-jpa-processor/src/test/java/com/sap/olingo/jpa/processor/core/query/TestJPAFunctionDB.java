@@ -102,12 +102,7 @@ public class TestJPAFunctionDB {
     JPAOperationResultParameter resultParam = mock(JPAOperationResultParameter.class);
     when(function.getResultParameter()).thenReturn(resultParam);
     when(resultParam.getTypeFQN()).thenReturn(new FullQualifiedName(PUNIT_NAME, "CheckRights"));
-    when(resultParam.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return Boolean.class;
-      }
-    });
+    when(resultParam.getType()).thenAnswer((Answer<Class<?>>) invocation -> Boolean.class);
 
     when(edmFunction.getReturnType()).thenReturn(edmReturnType);
     when(edmReturnType.getType()).thenReturn(new EdmBoolean());
@@ -124,12 +119,7 @@ public class TestJPAFunctionDB {
     JPAOperationResultParameter resultParam = mock(JPAOperationResultParameter.class);
     when(function.getResultParameter()).thenReturn(resultParam);
     when(resultParam.getTypeFQN()).thenReturn(new FullQualifiedName(PUNIT_NAME, "CheckRights"));
-    when(resultParam.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return Boolean.class;
-      }
-    });
+    when(resultParam.getType()).thenAnswer((Answer<Class<?>>) invocation -> Boolean.class);
 
     when(edmFunction.getReturnType()).thenReturn(edmReturnType);
     when(edmReturnType.getType()).thenReturn(new EdmBoolean());

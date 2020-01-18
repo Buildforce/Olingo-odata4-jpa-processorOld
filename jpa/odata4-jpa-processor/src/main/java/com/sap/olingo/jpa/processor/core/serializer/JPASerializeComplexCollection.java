@@ -14,8 +14,6 @@ import org.apache.olingo.server.api.serializer.ODataSerializer;
 import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
-
 public class JPASerializeComplexCollection implements JPAOperationSerializer {
   private final ServiceMetadata serviceMetadata;
   private final ODataSerializer serializer;

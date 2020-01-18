@@ -63,7 +63,7 @@ public class HttpRequestHeaderDouble {
 
   }
 
-  class HeaderEnumerator implements Enumeration<String> {
+  static class HeaderEnumerator implements Enumeration<String> {
 
     private final Iterator<String> keys;
 
@@ -82,7 +82,7 @@ public class HttpRequestHeaderDouble {
     }
   }
 
-  class headerItem implements Enumeration<String> {
+  static class headerItem implements Enumeration<String> {
     private final Iterator<String> keys;
 
     public headerItem(List<String> header) {

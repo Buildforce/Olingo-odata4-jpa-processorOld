@@ -32,7 +32,7 @@ final class JPALambdaAllOperation extends JPALambdaOperation {
     return "ALL";
   }
 
-  private class NotExpression implements Unary {
+  private static class NotExpression implements Unary {
     private final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression;
 
     public NotExpression(final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression) {

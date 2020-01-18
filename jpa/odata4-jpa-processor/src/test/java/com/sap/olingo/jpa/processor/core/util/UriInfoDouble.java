@@ -217,7 +217,7 @@ public class UriInfoDouble implements UriInfo {
     return null;
   }
 
-  class primitiveDouble implements UriResourcePrimitiveProperty {
+  static class primitiveDouble implements UriResourcePrimitiveProperty {
 
     @Override
     public EdmProperty getProperty() {
@@ -263,7 +263,7 @@ public class UriInfoDouble implements UriInfo {
 
   }
 
-  class complexDouble implements UriResourceComplexProperty {
+  static class complexDouble implements UriResourceComplexProperty {
 
     @Override
     public EdmProperty getProperty() {
@@ -320,7 +320,7 @@ public class UriInfoDouble implements UriInfo {
     }
   }
 
-  class propertyDouble implements UriResourceProperty {
+  static class propertyDouble implements UriResourceProperty {
 
     @Override
     public EdmType getType() {

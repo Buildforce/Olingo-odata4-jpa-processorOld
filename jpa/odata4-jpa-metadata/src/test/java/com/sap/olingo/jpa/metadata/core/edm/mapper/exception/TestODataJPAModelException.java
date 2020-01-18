@@ -130,7 +130,7 @@ public class TestODataJPAModelException {
     throw new TestException("");
   }
 
-  private class TestException extends ODataJPAException {
+  private static class TestException extends ODataJPAException {
 
     private static final long serialVersionUID = 1L;
 

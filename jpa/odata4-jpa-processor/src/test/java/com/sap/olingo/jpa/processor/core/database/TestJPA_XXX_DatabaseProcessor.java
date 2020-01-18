@@ -298,12 +298,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(edmEntityType.getProperty(eq("B"))).thenReturn(edmSecondElement);
     when(edmSecondElement.getType()).thenReturn(EdmString.getInstance());
     when(secondParameter.getMaxLength()).thenReturn(10);
-    when(secondParameter.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    when(secondParameter.getType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
   }
 
   protected void addSecondParameter() {
@@ -319,12 +314,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(edmFunction.getParameter(eq("B"))).thenReturn(edmSecondElement);
     when(edmSecondElement.getType()).thenReturn(EdmString.getInstance());
     when(secondParameter.getMaxLength()).thenReturn(10);
-    when(secondParameter.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    when(secondParameter.getType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
   }
 
   protected void createBoundFunctionWithOneParameter() throws ODataJPAModelException {
@@ -332,12 +322,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     uriResourceParts.add(0, uriEntitySet);
     when(uriFunction.getParameters()).thenReturn(new ArrayList<>());
     when(jpaFunction.isBound()).thenReturn(Boolean.TRUE);
-    when(returnParameter.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return BusinessPartner.class;
-      }
-    });
+    when(returnParameter.getType()).thenAnswer((Answer<Class<?>>) invocation -> BusinessPartner.class);
 
     when(jpaFunction.getDBName()).thenReturn("Example");
     when(jpaFunction.getParameter()).thenReturn(parameterList);
@@ -351,23 +336,13 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(firstUriParameter.getText()).thenReturn("5");
     when(edmElement.getType()).thenReturn(EdmString.getInstance());
     when(firstParameter.getMaxLength()).thenReturn(10);
-    when(firstParameter.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    when(firstParameter.getType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
 
     when(functionQuery.getResultList()).thenReturn(Arrays.asList(new Organization(), new Organization()));
   }
 
   protected void createFunctionWithOneParameter() throws ODataJPAModelException {
-    when(returnParameter.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return BusinessPartner.class;
-      }
-    });
+    when(returnParameter.getType()).thenAnswer((Answer<Class<?>>) invocation -> BusinessPartner.class);
     when(jpaFunction.getDBName()).thenReturn("Example");
     when(jpaFunction.getParameter()).thenReturn(parameterList);
 
@@ -380,12 +355,7 @@ public abstract class TestJPA_XXX_DatabaseProcessor {
     when(firstUriParameter.getText()).thenReturn("5");
     when(edmElement.getType()).thenReturn(EdmString.getInstance());
     when(firstParameter.getMaxLength()).thenReturn(10);
-    when(firstParameter.getType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    when(firstParameter.getType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
 
     when(functionQuery.getResultList()).thenReturn(Arrays.asList(new Organization(), new Organization()));
   }

@@ -97,7 +97,7 @@ public class TestIntermediateEntitySet extends TestMappingRoot {
     assertEquals("BusinessPartnerList", set.getExternalName(), "Wrong name");
   }
 
-  private class PostProcessor extends JPAEdmMetadataPostProcessor {
+  private static class PostProcessor extends JPAEdmMetadataPostProcessor {
 
     @Override
     public void processProperty(final IntermediatePropertyAccess property, String jpaManagedTypeClassName) {

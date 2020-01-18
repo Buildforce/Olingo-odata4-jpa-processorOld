@@ -30,7 +30,6 @@ import org.apache.olingo.server.api.uri.queryoption.SkipOption;
 import org.apache.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 import org.apache.olingo.server.api.uri.queryoption.TopOption;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import com.sap.olingo.jpa.processor.core.query.Util;
 
 final class JPASerializeCreate implements JPASerializer {
@@ -104,7 +103,7 @@ final class JPASerializeCreate implements JPASerializer {
 
   }
 
-  private class ExpandItemWrapper implements ExpandItem {
+  private static class ExpandItemWrapper implements ExpandItem {
 
     @Override
     public LevelsExpandOption getLevelsOption() {

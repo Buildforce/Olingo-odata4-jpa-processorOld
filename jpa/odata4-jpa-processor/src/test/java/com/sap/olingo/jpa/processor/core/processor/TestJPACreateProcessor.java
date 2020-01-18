@@ -46,7 +46,6 @@ import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResourceKind;
 import org.apache.olingo.server.api.uri.UriResourceNavigation;
@@ -56,14 +55,12 @@ import org.mockito.ArgumentMatchers;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAAbstractCUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPACUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimsProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
@@ -608,7 +605,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     when(type.toUriLiteral(ArgumentMatchers.anyString())).thenReturn(value);
   }
 
-  class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
+  static class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
     public int noValidateCalls;
     public JPAEntityType et;
     public Map<String, Object> jpaAttributes;
@@ -650,7 +647,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
   }
 
-  class RequestHandleMapResultSpy extends JPAAbstractCUDRequestHandler {
+  static class RequestHandleMapResultSpy extends JPAAbstractCUDRequestHandler {
     public JPAEntityType et;
     public Map<String, Object> jpaAttributes;
     public EntityManager em;

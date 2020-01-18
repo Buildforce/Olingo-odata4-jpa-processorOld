@@ -334,7 +334,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
     fail(alias + " not found");
   }
 
-  private class UriResourceValueDouble implements UriResourceValue {
+  private static class UriResourceValueDouble implements UriResourceValue {
 
     @Override
     public UriResourceKind getKind() {
@@ -347,7 +347,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
     }
   }
 
-  private class UriResourceComplexPropertyDouble implements UriResourceComplexProperty {
+  private static class UriResourceComplexPropertyDouble implements UriResourceComplexProperty {
     private final EdmProperty property;
 
     public UriResourceComplexPropertyDouble(EdmProperty property) {
@@ -410,7 +410,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
 
   }
 
-  private class UriResourceEntitySetDouble implements UriResourceEntitySet {
+  private static class UriResourceEntitySetDouble implements UriResourceEntitySet {
 
     @Override
     public EdmType getType() {

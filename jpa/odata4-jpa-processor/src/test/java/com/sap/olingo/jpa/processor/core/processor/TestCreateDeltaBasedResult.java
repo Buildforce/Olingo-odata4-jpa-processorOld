@@ -57,9 +57,7 @@ public class TestCreateDeltaBasedResult extends TestJPAModifyProcessor {
   @Test
   public void testThrowsExceptionIfBeforeIfManaged() {
     when(em.contains(beforeImagePerson)).thenReturn(Boolean.TRUE);
-    assertThrows(ODataJPAProcessorException.class, () -> {
-      cut.getLinkedInstanceBasedResultByDelta(currentImagePerson, path, Optional.ofNullable(beforeImagePerson));
-    });
+    assertThrows(ODataJPAProcessorException.class, () -> cut.getLinkedInstanceBasedResultByDelta(currentImagePerson, path, Optional.ofNullable(beforeImagePerson)));
   }
 
   @Test

@@ -86,7 +86,7 @@ public class TestFunctions {
 //          reserved for future use
 //          reserved for future use
       String remarks = metaR.getString(7);
-      Short procedureTYpe = metaR.getShort(8);
+      short procedureTYpe = metaR.getShort(8);
 //      String specificName = metaR.getString(9);
 
       System.out.println("procedureCatalog=" + procedureCatalog);

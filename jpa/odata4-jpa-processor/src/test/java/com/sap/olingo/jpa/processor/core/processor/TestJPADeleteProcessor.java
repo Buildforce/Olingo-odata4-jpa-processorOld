@@ -26,7 +26,6 @@ import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.junit.jupiter.api.Test;
 
@@ -286,7 +285,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
     verify(factory, times(1)).createTransaction();
   }
 
-  class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
+  static class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
     public int noValidateCalls;
     public Map<String, Object> keyPredicates;
     public JPAEntityType et;

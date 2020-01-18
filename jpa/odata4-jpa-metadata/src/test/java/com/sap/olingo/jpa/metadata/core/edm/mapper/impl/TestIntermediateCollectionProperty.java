@@ -52,31 +52,11 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
     @SuppressWarnings("rawtypes")
     javax.persistence.metamodel.Type type = mock(javax.persistence.metamodel.Type.class);
     when(type.getPersistenceType()).thenReturn(PersistenceType.BASIC);
-    when(type.getJavaType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    when(type.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
     when(jpaAttribute.getElementType()).thenReturn(type);
-    when(jpaAttribute.getDeclaringType()).thenAnswer(new Answer<ManagedType<?>>() {
-      @Override
-      public ManagedType<?> answer(InvocationOnMock invocation) {
-        return managedType;
-      }
-    });
-    when(managedType.getJavaType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return Person.class;
-      }
-    });
-    when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return List.class;
-      }
-    });
+    when(jpaAttribute.getDeclaringType()).thenAnswer((Answer<ManagedType<?>>) invocation -> managedType);
+    when(managedType.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> Person.class);
+    when(jpaAttribute.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> List.class);
    IntermediateCollectionProperty cut =
      new IntermediateCollectionProperty(nameBuilder, jpaAttribute, helper.schema, helper.schema.getEntityType(Organization.class));
     assertEquals("Edm.String", cut.getEdmItem().getType());

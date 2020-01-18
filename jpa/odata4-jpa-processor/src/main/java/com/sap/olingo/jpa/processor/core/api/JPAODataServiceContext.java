@@ -435,7 +435,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
   }
 
-  class JPADebugSupportWrapper implements DebugSupport {
+  static class JPADebugSupportWrapper implements DebugSupport {
 
     private final DebugSupport debugSupport;
     private JPAServiceDebugger debugger;

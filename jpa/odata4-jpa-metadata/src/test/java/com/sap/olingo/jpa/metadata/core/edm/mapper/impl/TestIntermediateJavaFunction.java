@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 import org.junit.jupiter.api.BeforeEach;
@@ -71,9 +70,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   public void checkThrowsExceptionForNonPrimitiveParameter() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "errorNonPrimitiveParameter");
 
-    assertThrows(ODataJPAModelException.class, () -> {
-      act.getEdmItem();
-    });
+    assertThrows(ODataJPAModelException.class, act::getEdmItem);
   }
 
   @Test
@@ -139,9 +136,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   @Test
   public void checkThrowsExceptionIfAnnotatedReturnTypeNEDeclaredType() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "errorReturnType");
-    assertThrows(ODataJPAModelException.class, () -> {
-      act.getEdmItem();
-    });
+    assertThrows(ODataJPAModelException.class, act::getEdmItem);
   }
 
   @Test
@@ -172,9 +167,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   public void checkThrowsExceptionIfCollectionAndReturnTypeEmpty() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class,
         "returnCollectionWithoutReturnType");
-    assertThrows(ODataJPAModelException.class, () -> {
-      act.getEdmItem();
-    });
+    assertThrows(ODataJPAModelException.class, act::getEdmItem);
   }
 
   @Test
@@ -216,9 +209,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
   @Test
   public void checkThrowsExceptionOnNotSupportedReturnType() throws ODataJPAModelException {
     final IntermediateJavaFunction act = createFunction(ExampleJavaFunctions.class, "wrongReturnType");
-    assertThrows(ODataJPAModelException.class, () -> {
-      act.getEdmItem();
-    });
+    assertThrows(ODataJPAModelException.class, act::getEdmItem);
   }
 
   @Test
@@ -235,16 +226,12 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
 
   @Test
   public void checkThrowsExceptionOnPrivateConstructor() {
-    assertThrows(ODataJPAModelException.class, () -> {
-      createFunction(ExampleJavaPrivateConstructor.class, "sum");
-    });
+    assertThrows(ODataJPAModelException.class, () -> createFunction(ExampleJavaPrivateConstructor.class, "sum"));
   }
 
   @Test
   public void checkThrowsExceptionOnNoConstructorAsSpecified() {
-    assertThrows(ODataJPAModelException.class, () -> {
-      createFunction(ExampleJavaTwoParameterConstructor.class, "sum");
-    });
+    assertThrows(ODataJPAModelException.class, () -> createFunction(ExampleJavaTwoParameterConstructor.class, "sum"));
   }
 
   private IntermediateJavaFunction createFunction(Class<? extends ODataFunction> clazz, String method)

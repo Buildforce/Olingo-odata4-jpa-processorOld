@@ -29,7 +29,6 @@ import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResourceComplexProperty;
 import org.apache.olingo.server.api.uri.UriResourcePrimitiveProperty;
@@ -523,7 +522,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
     return spy;
   }
 
-  class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
+  static class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
     public int noValidateCalls;
     public Map<String, Object> keyPredicates;
     public Map<String, Object> jpaAttributes;

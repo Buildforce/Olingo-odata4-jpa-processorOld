@@ -12,7 +12,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -436,12 +435,7 @@ public class TestJPACUDRequestHelper {
     when(pathID.getLeaf()).thenReturn(attribute);
     when(attribute.getInternalName()).thenReturn("iD");
 
-    Answer<?> a = (new Answer<Object>() {
-      @Override
-      public Object answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    Answer<?> a = ((Answer<Object>) invocation -> String.class);
     when(attribute.getType()).thenAnswer(a);
     when(attribute.getProperty()).thenReturn(edmProperty);
     when(edmProperty.getMaxLength()).thenReturn(100);
@@ -489,20 +483,10 @@ public class TestJPACUDRequestHelper {
     when(path.getLeaf()).thenReturn(attribute);
     when(attribute.getInternalName()).thenReturn("accessRights");
 
-    Answer<?> a = (new Answer<Object>() {
-      @Override
-      public Object answer(InvocationOnMock invocation) {
-        return AccessRights.class;
-      }
-    });
+    Answer<?> a = ((Answer<Object>) invocation -> AccessRights.class);
     when(attribute.getType()).thenAnswer(a);
     when(attribute.getProperty()).thenReturn(edmProperty);
-    when(attribute.getConverter()).thenAnswer(new Answer<AttributeConverter<?, ?>>() {
-      @Override
-      public AttributeConverter<?, ?> answer(InvocationOnMock invocation) {
-        return new AccessRightsConverter();
-      }
-    });
+    when(attribute.getConverter()).thenAnswer((Answer<AttributeConverter<?, ?>>) invocation -> new AccessRightsConverter());
     when(edmProperty.getMaxLength()).thenReturn(100);
     when(propertyID.getValueType()).thenReturn(ValueType.ENUM);
     when(propertyID.getName()).thenReturn("AccessRights");
@@ -532,12 +516,7 @@ public class TestJPACUDRequestHelper {
     when(path.getLeaf()).thenReturn(attribute);
     when(attribute.getInternalName()).thenReturn("aBCClass");
 
-    Answer<?> a = (new Answer<Object>() {
-      @Override
-      public Object answer(InvocationOnMock invocation) {
-        return AbcClassification.class;
-      }
-    });
+    Answer<?> a = ((Answer<Object>) invocation -> AbcClassification.class);
     when(attribute.getType()).thenAnswer(a);
     when(attribute.getProperty()).thenReturn(edmProperty);
     when(attribute.isEnum()).thenReturn(true);
@@ -566,12 +545,7 @@ public class TestJPACUDRequestHelper {
     when(path.getLeaf()).thenReturn(attribute);
     when(attribute.getInternalName()).thenReturn("iD");
 
-    Answer<?> a = (new Answer<Object>() {
-      @Override
-      public Object answer(InvocationOnMock invocation) {
-        return String.class;
-      }
-    });
+    Answer<?> a = ((Answer<Object>) invocation -> String.class);
     when(attribute.getType()).thenAnswer(a);
     when(attribute.getProperty()).thenReturn(edmProperty);
     when(edmProperty.getMaxLength()).thenReturn(100);
@@ -776,19 +750,9 @@ public class TestJPACUDRequestHelper {
     when(edmType.getFullQualifiedName()).thenReturn(propertyType.getFullQualifiedName());
     when(edmType.getKind()).thenReturn(EdmTypeKind.PRIMITIVE);
     when(edmType.getName()).thenReturn(propertyType.getFullQualifiedName().getName());
-    when(edmType.getDefaultType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return defaultJavaType;
-      }
-    });
+    when(edmType.getDefaultType()).thenAnswer((Answer<Class<?>>) invocation -> defaultJavaType);
     when(edmType.valueOfString(value.toString(), true, 0, 0, 0, true, defaultJavaType)).thenAnswer(
-        new Answer<Object>() {
-          @Override
-          public Object answer(InvocationOnMock invocation) {
-            return value;
-          }
-        });
+            (Answer<Object>) invocation -> value);
     when(edmProperty.getName()).thenReturn(propertyName);
     when(edmProperty.getType()).thenReturn(edmType);
     when(edmProperty.isUnicode()).thenReturn(true);

@@ -2,7 +2,6 @@ package com.sap.olingo.jpa.processor.core.util;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -211,7 +210,7 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     return setStatus;
   }
 
-  class OutPutStream extends ServletOutputStream {
+  static class OutPutStream extends ServletOutputStream {
     final List<Integer> buffer = new ArrayList<>();
 
     @Override

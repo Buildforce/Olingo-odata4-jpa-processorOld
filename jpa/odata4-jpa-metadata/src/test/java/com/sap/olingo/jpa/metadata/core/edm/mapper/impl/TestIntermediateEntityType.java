@@ -582,7 +582,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
     fail("Inherited not found");
   }
 
-  private class PostProcessorSetIgnore extends JPAEdmMetadataPostProcessor {
+  private static class PostProcessorSetIgnore extends JPAEdmMetadataPostProcessor {
 
     @Override
     public void processProperty(IntermediatePropertyAccess property, String jpaManagedTypeClassName) {

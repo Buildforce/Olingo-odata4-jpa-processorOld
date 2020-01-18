@@ -16,7 +16,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,14 +36,12 @@ import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAAbstractCUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPACUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
@@ -365,7 +362,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(false,
-        new Organization())));
+            new Organization())));
 
     processor.updateEntity(request, response, ContentType.JSON, ContentType.JSON);
 
@@ -378,7 +375,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(true,
-        new Organization())));
+            new Organization())));
 
     processor.updateEntity(request, response, ContentType.JSON, ContentType.JSON);
 
@@ -421,7 +418,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy(new JPAUpdateResult(false,
-        new Organization())));
+            new Organization())));
 
     final Map<String, Object> keys = new HashMap<>();
     keys.put("iD", "35");
@@ -604,7 +601,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     verify(transaction, times(1)).commit();
   }
 
-  class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
+  static class RequestHandleSpy extends JPAAbstractCUDRequestHandler {
     public int noValidateCalls;
     public JPAEntityType et;
     public Map<String, Object> jpaAttributes;

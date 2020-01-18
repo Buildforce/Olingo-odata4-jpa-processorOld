@@ -391,24 +391,9 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     final ManagedType<?> jpaManagedType = mock(ManagedType.class);
     when(jpaAttribute.getName()).thenReturn("start");
     when(jpaAttribute.getPersistentAttributeType()).thenReturn(PersistentAttributeType.BASIC);
-    when(jpaAttribute.getDeclaringType()).thenAnswer(new Answer<ManagedType<?>>() {
-      @Override
-      public ManagedType<?> answer(InvocationOnMock invocation) {
-        return jpaManagedType;
-      }
-    });
-    when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return Timestamp.class;
-      }
-    });
-    when(jpaManagedType.getJavaType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return DummyToBeIgnored.class;
-      }
-    });
+    when(jpaAttribute.getDeclaringType()).thenAnswer((Answer<ManagedType<?>>) invocation -> jpaManagedType);
+    when(jpaAttribute.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> Timestamp.class);
+    when(jpaManagedType.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> DummyToBeIgnored.class);
 
     Column column = mock(Column.class);
     AnnotatedElement annotations = mock(AnnotatedElement.class, withSettings().extraInterfaces(Member.class));
@@ -420,9 +405,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
         jpaAttribute,
         helper.schema);
 
-    assertThrows(ODataJPAModelException.class, () -> {
-      property.getEdmItem();
-    });
+    assertThrows(ODataJPAModelException.class, property::getEdmItem);
   }
 
   @Test
@@ -588,7 +571,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     // Test for spatial data missing
   }
 
-  private class PostProcessorSetName extends JPAEdmMetadataPostProcessor {
+  private static class PostProcessorSetName extends JPAEdmMetadataPostProcessor {
 
     @Override
     public void processProperty(IntermediatePropertyAccess property, String jpaManagedTypeClassName) {

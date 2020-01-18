@@ -41,7 +41,7 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
     final CacheEntry previousPage = pageCache.get(skiptoken.replaceAll("'", ""));
     if (previousPage != null) {
       // Calculate next page
-      final Integer skip = previousPage.getPage().getSkip() + previousPage.getPage().getTop();
+      final int skip = previousPage.getPage().getSkip() + previousPage.getPage().getTop();
       // Create a new skiptoken if next page is not the last one
       String nextToken = null;
       if (skip + previousPage.getPage().getTop() < previousPage.getMaxTop())
@@ -69,7 +69,7 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
       final Integer maxSize = maxPageSizes.get(((UriResourceEntitySet) root).getEntitySet().getName());
       if (maxSize != null) {
         // Read $top and $skip
-        final Integer skipValue = uriInfo.getSkipOption() != null ? uriInfo.getSkipOption().getValue() : 0;
+        final int skipValue = uriInfo.getSkipOption() != null ? uriInfo.getSkipOption().getValue() : 0;
         final Integer topValue = uriInfo.getTopOption() != null ? uriInfo.getTopOption().getValue() : null;
         // Determine end of list
         final Long count = topValue != null ? (topValue + skipValue) : countQuery.countResults();
@@ -99,7 +99,7 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
     index.add((String) page.getSkiptoken());
   }
 
-  private class CacheEntry {
+  private static class CacheEntry {
     private final Long maxTop;
     private final JPAODataPage page;
 

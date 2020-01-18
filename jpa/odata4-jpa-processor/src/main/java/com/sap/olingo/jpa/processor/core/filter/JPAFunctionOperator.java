@@ -71,7 +71,7 @@ final class JPAFunctionOperator implements JPAOperator {
 
       if (p != null && p.getText() != null) {
         final JPALiteralOperator operator = new JPALiteralOperator(visitor.getOdata(), new ParameterLiteral(p
-            .getText()));
+                .getText()));
         jpaParameter[i] = cb.literal(operator.get(parameters.get(i)));
       } else {
         try {
@@ -102,7 +102,7 @@ final class JPAFunctionOperator implements JPAOperator {
     return jpaFunction.getDBName();
   }
 
-  private class ParameterLiteral implements Literal {
+  private static class ParameterLiteral implements Literal {
 
     public ParameterLiteral(final String text) {
       super();

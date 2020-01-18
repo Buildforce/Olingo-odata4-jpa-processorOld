@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.olingo.commons.api.edm.EdmType;
-import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriResource;
@@ -29,8 +28,6 @@ import org.apache.olingo.server.api.uri.queryoption.TopOption;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 
 // TODO In case of second level $expand expandItem.getResourcePath() returns an empty UriInfoResource => Bug or
 // Feature?
@@ -187,7 +184,7 @@ public final class JPAExpandLevelWrapper implements JPAExpandItem {
     private ExpandItemWrapper(ExpandItem parentItem) {
       this.parentItem = parentItem;
       this.levelOption = new LevelsExpandOptionWrapper(parentItem.getLevelsOption().isMax(),
-          parentItem.getLevelsOption().getValue());
+              parentItem.getLevelsOption().getValue());
     }
 
     @Override
@@ -268,7 +265,7 @@ public final class JPAExpandLevelWrapper implements JPAExpandItem {
     }
   }
 
-  private class LevelsExpandOptionWrapper implements LevelsExpandOption {
+  private static class LevelsExpandOptionWrapper implements LevelsExpandOption {
     private final boolean isMax;
     private final int level;
 

@@ -677,8 +677,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
       final boolean targetIsCollection, final String pathPrefix) throws ODataJPAModelException, ODataJPAQueryException {
 
     for (SelectItem sItem : select.getSelectItems()) {
-      String pathItem = sItem.getResourcePath().getUriResourceParts().stream().map(path -> (path
-          .getSegmentValue())).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
+      String pathItem = sItem.getResourcePath().getUriResourceParts().stream().map(UriResource::getSegmentValue).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
       expandPath(jpaEntity, jpaPathList, pathPrefix.isEmpty() ? pathItem : pathPrefix + "/" + pathItem,
           targetIsCollection);
     }

@@ -40,12 +40,7 @@ public class TestJPAArithmeticOperator {
     JPALiteralOperator right = mock(JPALiteralOperator.class);
 
     when(right.get()).thenReturn(5);
-    when(left.get()).thenAnswer(new Answer<Path<Integer>>() {
-      @Override
-      public Path<Integer> answer(InvocationOnMock invocation) {
-        return expression;
-      }
-    });
+    when(left.get()).thenAnswer((Answer<Path<Integer>>) invocation -> expression);
 
     JPAArithmeticOperator cut = new JPAArithmeticOperatorImp(converter, BinaryOperatorKind.ADD, left, right);
     assertEquals(expression, cut.getLeft(cb));
@@ -57,12 +52,7 @@ public class TestJPAArithmeticOperator {
     JPALiteralOperator left = mock(JPALiteralOperator.class);
 
     when(left.get()).thenReturn(5);
-    when(right.get()).thenAnswer(new Answer<Path<Integer>>() {
-      @Override
-      public Path<Integer> answer(InvocationOnMock invocation) {
-        return expression;
-      }
-    });
+    when(right.get()).thenAnswer((Answer<Path<Integer>>) invocation -> expression);
 
     JPAArithmeticOperator cut = new JPAArithmeticOperatorImp(converter, BinaryOperatorKind.ADD, left, right);
     assertEquals(expression, cut.getLeft(cb));
@@ -80,12 +70,9 @@ public class TestJPAArithmeticOperator {
     when(left.get()).thenReturn(leftValue);
     when(right.get()).thenReturn(10);
 
-    when(cb.literal(leftValue)).thenAnswer(new Answer<Expression<Number>>() {
-      @Override
-      public Expression<Number> answer(InvocationOnMock invocation) {
-        invocation.getArguments();
-        return result;
-      }
+    when(cb.literal(leftValue)).thenAnswer((Answer<Expression<Number>>) invocation -> {
+      invocation.getArguments();
+      return result;
     });
 
     JPAArithmeticOperator cut = new JPAArithmeticOperatorImp(converter, BinaryOperatorKind.ADD, left, right);
@@ -101,18 +88,8 @@ public class TestJPAArithmeticOperator {
 
     final Path<Integer> expressionRight = mock(Path.class);
 
-    when(right.get()).thenAnswer(new Answer<Path<Integer>>() {
-      @Override
-      public Path<Integer> answer(InvocationOnMock invocation) {
-        return expressionRight;
-      }
-    });
-    when(left.get()).thenAnswer(new Answer<Path<Integer>>() {
-      @Override
-      public Path<Integer> answer(InvocationOnMock invocation) {
-        return expression;
-      }
-    });
+    when(right.get()).thenAnswer((Answer<Path<Integer>>) invocation -> expressionRight);
+    when(left.get()).thenAnswer((Answer<Path<Integer>>) invocation -> expression);
 
     JPAArithmeticOperator cut = new JPAArithmeticOperatorImp(converter, BinaryOperatorKind.ADD, left, right);
     assertEquals(expression, cut.getLeft(cb));

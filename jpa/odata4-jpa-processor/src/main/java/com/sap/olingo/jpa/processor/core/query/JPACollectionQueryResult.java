@@ -126,7 +126,7 @@ public class JPACollectionQueryResult implements JPACollectionResult, JPAConvert
 
   @Override
   public List<Object> getPropertyCollection(final String key) {
-    return collectionResult.containsKey(key) ? collectionResult.get(key) : Collections.emptyList();
+    return collectionResult.getOrDefault(key, Collections.emptyList());
   }
 
   @Override

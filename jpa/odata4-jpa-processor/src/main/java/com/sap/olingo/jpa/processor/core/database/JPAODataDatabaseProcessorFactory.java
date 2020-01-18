@@ -17,14 +17,16 @@ public class JPAODataDatabaseProcessorFactory {
     if (ds != null) {
       try (Connection connection = ds.getConnection()) {
         final DatabaseMetaData dbMetadata = connection.getMetaData();
-        if (dbMetadata.getDatabaseProductName().equals(PRODUCT_NAME_SAP_HANA))
-          return new JPA_HANA_DatabaseProcessor();
-        else if (dbMetadata.getDatabaseProductName().equals(PRODUCT_NAME_HSQLDB))
-          return new JPA_HSQLDB_DatabaseProcessor();
-        else if (dbMetadata.getDatabaseProductName().equals(PRODUCT_NAME_H2))
-          return new JPA_HSQLDB_DatabaseProcessor();
-        else
-          return new JPADefaultDatabaseProcessor();
+        switch (dbMetadata.getDatabaseProductName()) {
+          case PRODUCT_NAME_SAP_HANA:
+            return new JPA_HANA_DatabaseProcessor();
+          case PRODUCT_NAME_HSQLDB:
+            return new JPA_HSQLDB_DatabaseProcessor();
+          case PRODUCT_NAME_H2:
+            return new JPA_HSQLDB_DatabaseProcessor();
+          default:
+            return new JPADefaultDatabaseProcessor();
+        }
       }
     } else {
       return new JPADefaultDatabaseProcessor();

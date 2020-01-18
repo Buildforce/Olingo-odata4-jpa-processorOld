@@ -160,12 +160,7 @@ public class TestIntermediateDescriptionProperty extends TestMappingRoot {
     ManagedType jpaManagedType = mock(ManagedType.class);
     EdmDescriptionAssociation association = mock(EdmDescriptionAssociation.class);
 
-    when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<BusinessPartner>>() {
-      @Override
-      public Class<BusinessPartner> answer(InvocationOnMock invocation) {
-        return BusinessPartner.class;
-      }
-    });
+    when(jpaAttribute.getJavaType()).thenAnswer((Answer<Class<BusinessPartner>>) invocation -> BusinessPartner.class);
     when(jpaAttribute.getJavaMember()).thenReturn(jpaField);
     when(jpaAttribute.getName()).thenReturn("dummy");
     when(jpaAttribute.getDeclaringType()).thenReturn(jpaManagedType);
@@ -233,7 +228,7 @@ public class TestIntermediateDescriptionProperty extends TestMappingRoot {
     assertEquals("CountryDescription", property.getExternalName(), "Wrong name");
   }
 
-  private class PostProcessorSetName extends JPAEdmMetadataPostProcessor {
+  private static class PostProcessorSetName extends JPAEdmMetadataPostProcessor {
 
     @Override
     public void processProperty(IntermediatePropertyAccess property, String jpaManagedTypeClassName) {

@@ -138,7 +138,7 @@ public class JPAODataDefaultTransactionFactoryTest {
     doThrow(RuntimeException.class).when(transaction).commit();
     cut = new JPAODataDefaultTransactionFactory(em);
     final JPAODataTransaction act = cut.createTransaction();
-    assertThrows(ODataJPATransactionException.class, () -> act.commit());
+    assertThrows(ODataJPATransactionException.class, act::commit);
   }
 
   @Test
@@ -156,7 +156,7 @@ public class JPAODataDefaultTransactionFactoryTest {
     doThrow(RuntimeException.class).when(transaction).rollback();
     cut = new JPAODataDefaultTransactionFactory(em);
     final JPAODataTransaction act = cut.createTransaction();
-    assertThrows(ODataJPATransactionException.class, () -> act.rollback());
+    assertThrows(ODataJPATransactionException.class, act::rollback);
   }
 
   @Test
@@ -174,6 +174,6 @@ public class JPAODataDefaultTransactionFactoryTest {
     when(transaction.getRollbackOnly()).thenThrow(RuntimeException.class);
     cut = new JPAODataDefaultTransactionFactory(em);
     final JPAODataTransaction act = cut.createTransaction();
-    assertThrows(ODataJPATransactionException.class, () -> act.rollbackOnly());
+    assertThrows(ODataJPATransactionException.class, act::rollbackOnly);
   }
 }

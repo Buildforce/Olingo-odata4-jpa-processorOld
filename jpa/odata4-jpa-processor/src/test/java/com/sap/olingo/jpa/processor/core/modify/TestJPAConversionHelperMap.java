@@ -67,12 +67,7 @@ public class TestJPAConversionHelperMap extends TestJPAConversionHelper {
     newPOJO.put("iD", "35");
 
     prepareConvertSimpleKeyToLocation();
-    when(et.getTypeClass()).then(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return Organization.class;
-      }
-    });
+    when(et.getTypeClass()).then((Answer<Class<?>>) invocation -> Organization.class);
 
     String act = cut.convertKeyToLocal(odata, request, edmEntitySet, et, newPOJO);
     assertEquals("localhost.test/Organisation('35')", act);

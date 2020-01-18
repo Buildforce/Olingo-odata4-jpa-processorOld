@@ -13,7 +13,6 @@ import static org.mockito.Mockito.withSettings;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Member;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -517,30 +516,15 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     final Member member = mock(Member.class, withSettings().extraInterfaces(AnnotatedElement.class));
     when(jpaAttribute.getName()).thenReturn("willi");
     when(jpaAttribute.isCollection()).thenReturn(false);
-    when(jpaAttribute.getJavaType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return BusinessPartner.class;
-      }
-    });
-    when(jpaAttribute.getDeclaringType()).thenAnswer(new Answer<ManagedType<?>>() {
-      @Override
-      public ManagedType<?> answer(InvocationOnMock invocation) {
-        return mgrType;
-      }
-    });
-    when(mgrType.getJavaType()).thenAnswer(new Answer<Class<?>>() {
-      @Override
-      public Class<?> answer(InvocationOnMock invocation) {
-        return BusinessPartner.class;
-      }
-    });
+    when(jpaAttribute.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> BusinessPartner.class);
+    when(jpaAttribute.getDeclaringType()).thenAnswer((Answer<ManagedType<?>>) invocation -> mgrType);
+    when(mgrType.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> BusinessPartner.class);
     when(jpaAttribute.getJavaMember()).thenReturn(member);
     when(((AnnotatedElement) member).getAnnotation(EdmProtectedBy.class)).thenReturn(null);
     return jpaAttribute;
   }
 
-  private class PostProcessorSetName extends JPAEdmMetadataPostProcessor {
+  private static class PostProcessorSetName extends JPAEdmMetadataPostProcessor {
     @Override
     public void processNavigationProperty(IntermediateNavigationPropertyAccess property,
         String jpaManagedTypeClassName) {
@@ -564,7 +548,7 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     public void provideReferences(IntermediateReferenceList references) {}
   }
 
-  private class PostProcessorOneDelete extends JPAEdmMetadataPostProcessor {
+  private static class PostProcessorOneDelete extends JPAEdmMetadataPostProcessor {
     @Override
     public void processNavigationProperty(IntermediateNavigationPropertyAccess property,
         String jpaManagedTypeClassName) {

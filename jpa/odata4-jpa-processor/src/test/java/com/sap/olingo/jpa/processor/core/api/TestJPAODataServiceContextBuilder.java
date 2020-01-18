@@ -237,7 +237,7 @@ public class TestJPAODataServiceContextBuilder {
     assertEquals(exp, cut.getMappingPath());
   }
 
-  private class TestEdmPostProcessor extends JPAEdmMetadataPostProcessor {
+  private static class TestEdmPostProcessor extends JPAEdmMetadataPostProcessor {
 
     @Override
     public void processNavigationProperty(final IntermediateNavigationPropertyAccess property,

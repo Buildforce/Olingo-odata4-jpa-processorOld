@@ -134,9 +134,7 @@ public class TestSchemaReader {
 
   @Test
   public void TestThrowsExceptionOnUnknownPath() {
-    assertThrows(ODataJPAModelException.class, () -> {
-      cut.getSchemas("annotations/Org.OData.Core.V2.xml");
-    });
+    assertThrows(ODataJPAModelException.class, () -> cut.getSchemas("annotations/Org.OData.Core.V2.xml"));
   }
 
   @Test

@@ -15,7 +15,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 
 @SuppressWarnings("rawtypes")
 public class TestJPAKeyPair {

@@ -27,6 +27,7 @@ import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfoResource;
+import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.queryoption.SelectItem;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
@@ -126,8 +127,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
   private JPAPath selectItemAsPath(final String pathPrefix, SelectItem sItem) throws ODataJPAModelException,
       ODataJPAQueryException {
 
-    String pathItem = sItem.getResourcePath().getUriResourceParts().stream().map(path -> (path
-        .getSegmentValue())).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
+    String pathItem = sItem.getResourcePath().getUriResourceParts().stream().map(UriResource::getSegmentValue).collect(Collectors.joining(JPAPath.PATH_SEPARATOR));
     pathItem = pathPrefix == null || pathPrefix.isEmpty() ? pathItem : pathPrefix + JPAPath.PATH_SEPARATOR
         + pathItem;
     final JPAPath selectItemPath = jpaEntity.getPath(pathItem);

@@ -100,11 +100,11 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
 
     for (final Entry<String, ? extends IntermediateModelElement> bufferItem : mappingBuffer.entrySet()) {
 
-      if (!((IntermediateModelElement) bufferItem.getValue()).toBeIgnored) { // NOSONAR
-        final IntermediateModelElement element = bufferItem.getValue();
+      final IntermediateModelElement element = bufferItem.getValue();
+      if (!element.toBeIgnored) {
         final CsdlAbstractEdmItem edmItem = element.getEdmItem();
-        if (!element.ignore())
-          extractionTarget.add((T) edmItem);
+
+        if (!element.ignore()) extractionTarget.add((T) edmItem);
       }
     }
     return extractionTarget;
@@ -116,9 +116,7 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
     for (final Entry<String, ?> bufferItem : buffer.entrySet()) {
       final IntermediateModelElement modelElement = (IntermediateModelElement) bufferItem.getValue();
 
-      if (edmEntityItemName.equals(modelElement.getExternalName())) {
-        return modelElement;
-      }
+      if (edmEntityItemName.equals(modelElement.getExternalName())) return modelElement;
     }
     return null;
   }
@@ -168,7 +166,8 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
           && !(jpaAnnotation.dynamicExpression().path().isEmpty())) {
         throw new ODataJPAModelException(
             ODataJPAModelException.MessageKeys.ODATA_ANNOTATION_TWO_EXPRESSIONS, internalName);
-      } else if (jpaAnnotation.constantExpression() != null) {
+      } else {
+        jpaAnnotation.constantExpression();
         edmAnnotation.setExpression(new CsdlConstantExpression(jpaAnnotation.constantExpression().type(),
             jpaAnnotation.constantExpression().value()));
       }
@@ -185,22 +184,14 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
    */
   protected Class<?> boxPrimitive(Class<?> javaType) {// NOSONAR
 
-    if (javaType == int.class || javaType == Integer.class)
-      return Integer.class;
-    else if (javaType == long.class || javaType == Long.class)
-      return Long.class;
-    else if (javaType == boolean.class || javaType == Boolean.class)
-      return Boolean.class;
-    else if (javaType == byte.class || javaType == Byte.class)
-      return Byte.class;
-    else if (javaType == char.class || javaType == Character.class)
-      return Character.class;
-    else if (javaType == float.class || javaType == Float.class)
-      return Float.class;
-    else if (javaType == short.class || javaType == Short.class)
-      return Short.class;
-    else if (javaType == double.class || javaType == Double.class)
-      return Double.class;
+    if (javaType == int.class || javaType == Integer.class) return Integer.class;
+    else if (javaType == long.class || javaType == Long.class) return Long.class;
+    else if (javaType == boolean.class || javaType == Boolean.class) return Boolean.class;
+    else if (javaType == byte.class || javaType == Byte.class) return Byte.class;
+    else if (javaType == char.class || javaType == Character.class) return Character.class;
+    else if (javaType == float.class || javaType == Float.class) return Float.class;
+    else if (javaType == short.class || javaType == Short.class) return Short.class;
+    else if (javaType == double.class || javaType == Double.class) return Double.class;
 
     return null;
   }

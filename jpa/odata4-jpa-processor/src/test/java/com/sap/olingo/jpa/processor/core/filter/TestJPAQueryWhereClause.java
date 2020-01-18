@@ -871,8 +871,7 @@ public class TestJPAQueryWhereClause extends TestBase {
 
   @Disabled // EclipsLinkProblem see https://bugs.eclipse.org/bugs/show_bug.cgi?id=529565
   @Test
-  public void testFilterNavigationPropertyViaJoinTableCountSubType() throws IOException, // NOSONAR
-      ODataException {
+  public void testFilterNavigationPropertyViaJoinTableCountSubType() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Persons?$select=ID&$filter=SupportedOrganizations/$count gt 1");

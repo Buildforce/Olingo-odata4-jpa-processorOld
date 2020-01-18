@@ -202,7 +202,7 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
 
   }
 
-  private class SubResource implements UriInfoResource {
+  private static class SubResource implements UriInfoResource {
     private final JPAMemberOperator parentMember;
 
     public SubResource(final JPAMemberOperator member) {

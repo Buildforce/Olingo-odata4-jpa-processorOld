@@ -263,7 +263,7 @@ public class TestIntermediateComplexType extends TestMappingRoot {
     assertFalse(act.get(0).supportsWildcards());
   }
 
-  private class PostProcessorSetIgnore extends JPAEdmMetadataPostProcessor {
+  private static class PostProcessorSetIgnore extends JPAEdmMetadataPostProcessor {
 
     @Override
     public void processProperty(IntermediatePropertyAccess property, String jpaManagedTypeClassName) {

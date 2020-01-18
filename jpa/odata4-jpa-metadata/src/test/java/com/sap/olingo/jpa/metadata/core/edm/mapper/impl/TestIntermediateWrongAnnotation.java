@@ -108,7 +108,7 @@ public class TestIntermediateWrongAnnotation {
     et.getEdmItem();
 
     final ODataJPAModelException act = assertThrows(ODataJPAModelException.class,
-        () -> et.getProtections());
+            et::getProtections);
 
     assertEquals(COMPLEX_PROPERTY_WRONG_PROTECTION_PATH.name(), act.getId());
     assertFalse(act.getMessage().isEmpty());
