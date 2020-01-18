@@ -21,7 +21,6 @@ public class JPAODataDatabaseProcessorFactory {
           case PRODUCT_NAME_SAP_HANA:
             return new JPA_HANA_DatabaseProcessor();
           case PRODUCT_NAME_HSQLDB:
-            return new JPA_HSQLDB_DatabaseProcessor();
           case PRODUCT_NAME_H2:
             return new JPA_HSQLDB_DatabaseProcessor();
           default:

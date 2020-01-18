@@ -34,7 +34,7 @@ public class DataSourceHelper {
   }
 
   public static DataSource createDataSource(int database) {
-    DriverDataSource ds = null;
+    DriverDataSource ds;
     switch (database) {
       case DB_H2:
         ds = new DriverDataSource(H2_DRIVER_CLASS_NAME, H2_URL, null, null);

@@ -270,7 +270,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
   }
 
   FullQualifiedName getSimpleType() throws ODataJPAModelException {
-    Class<?> javaType = null;
+    Class<?> javaType;
     if (valueConverter != null) {
       javaType = dbType;
     } else {

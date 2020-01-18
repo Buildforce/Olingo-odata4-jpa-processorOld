@@ -149,7 +149,7 @@ final class IntermediateEntityType extends IntermediateStructuredType implements
   @Override
   public Class<?> getKeyType() {
     if (jpaManagedType instanceof IdentifiableType<?>) {
-      Class<?> idClass = null;
+      Class<?> idClass;
       final Type<?> idType = ((IdentifiableType<?>) jpaManagedType).getIdType();
 
       if (idType == null)

@@ -225,11 +225,10 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
       // No host-name and port as part of ID; only relative path
       // http://docs.oasis-open.org/odata/odata-atom-format/v4.0/cs02/odata-atom-format-v4.0-cs02.html#_Toc372792702
 
-      final StringBuilder uriString = new StringBuilder(setName);
-      uriString.append("(");
-      uriString.append(uriHelper.buildKeyPredicate(edmType, entity));
-      uriString.append(")");
-      return new URI(uriString.toString());
+      String uriString = setName + "(" +
+              uriHelper.buildKeyPredicate(edmType, entity) +
+              ")";
+      return new URI(uriString);
     } catch (URISyntaxException e) {
       throw new ODataRuntimeException("Unable to create id for entity: " + edmType.getName(), e);
     } catch (IllegalArgumentException e) {

@@ -157,17 +157,12 @@ public class TestFunctions {
   private void CreateUDFDerby() {
     EntityTransaction t = em.getTransaction();
 
-    StringBuilder dropString = new StringBuilder("DROP FUNCTION IS_PRIME");
-
-    StringBuilder sqlString = new StringBuilder();
-
-    sqlString.append("CREATE FUNCTION IS_PRIME(number Integer) RETURNS Integer ");
-    sqlString.append("PARAMETER STYLE JAVA NO SQL LANGUAGE JAVA ");
-    sqlString.append("EXTERNAL NAME 'com.sap.olingo.jpa.processor.core.test_udf.isPrime'");
-
     t.begin();
-    Query d = em.createNativeQuery(dropString.toString());
-    Query q = em.createNativeQuery(sqlString.toString());
+    Query d = em.createNativeQuery("DROP FUNCTION IS_PRIME");
+    String sqlString = "CREATE FUNCTION IS_PRIME(number Integer) RETURNS Integer " +
+            "PARAMETER STYLE JAVA NO SQL LANGUAGE JAVA " +
+            "EXTERNAL NAME 'com.sap.olingo.jpa.processor.core.test_udf.isPrime'";
+    Query q = em.createNativeQuery(sqlString);
     d.executeUpdate();
     q.executeUpdate();
     t.commit();

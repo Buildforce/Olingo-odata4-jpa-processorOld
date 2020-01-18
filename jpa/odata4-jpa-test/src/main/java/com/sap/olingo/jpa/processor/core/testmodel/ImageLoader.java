@@ -128,7 +128,7 @@ public class ImageLoader {
   private byte[] loadImage(final String imageName) throws IOException {
 
     final String path = PATH + imageName;
-    byte[] image = null;
+    byte[] image;
     final URL u = this.getClass().getClassLoader().getResource(path);
     try (final InputStream i = u.openStream()) {
       image = new byte[i.available()];

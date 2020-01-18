@@ -42,7 +42,7 @@ public class TestFunctionReturnType implements ODataFunction {
 
   @EdmFunction(name = "ListOfComplexType", returnType = @ReturnType(type = AdministrativeInformation.class))
   public List<AdministrativeInformation> listOfComplexType(@EdmParameter(name = "A") String user) {
-    long milliPerDay = (long) (24 * 60 * 60 * 1000);
+    long milliPerDay = 24 * 60 * 60 * 1000;
     AdministrativeInformation admin1 = new AdministrativeInformation();
     admin1.setCreated(new ChangeInformation(user, new Date(LocalDate.now().toEpochDay() * milliPerDay)));
     AdministrativeInformation admin2 = new AdministrativeInformation();

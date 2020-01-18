@@ -21,7 +21,7 @@ public class CustomJPANameBuilder implements JPAEdmNameBuilder {
 
   @Override
   public String buildComplexTypeName(EmbeddableType<?> jpaEmbeddedType) {
-    return new StringBuilder("T_").append(jpaEmbeddedType.getJavaType().getSimpleName()).toString();
+    return "T_" + jpaEmbeddedType.getJavaType().getSimpleName();
   }
 
   @Override
@@ -45,7 +45,7 @@ public class CustomJPANameBuilder implements JPAEdmNameBuilder {
 
   @Override
   public String buildEnumerationTypeName(Class<? extends Enum<?>> javaEnum) {
-    return new StringBuilder("E_").append(javaEnum.getSimpleName()).toString();
+    return "E_" + javaEnum.getSimpleName();
   }
 
   @Override
@@ -55,7 +55,7 @@ public class CustomJPANameBuilder implements JPAEdmNameBuilder {
 
   @Override
   public String buildOperationName(String internalOperationName) {
-    return new StringBuilder("O_").append(internalOperationName).toString();
+    return "O_" + internalOperationName;
   }
 
   @Override

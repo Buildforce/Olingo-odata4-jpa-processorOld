@@ -332,7 +332,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
 
   private void buildNaviProperty() throws ODataJPAModelException {
     this.setExternalName(nameBuilder.buildNaviPropertyName(jpaAttribute));
-    Class<?> targetClass = null;
+    Class<?> targetClass;
     if (jpaAttribute.isCollection()) {
       targetClass = ((PluralAttribute<?, ?, ?>) jpaAttribute).getElementType().getJavaType();
     } else {
@@ -387,7 +387,7 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
 
       final CsdlReferentialConstraint constraint = new CsdlReferentialConstraint();
       constraints.add(constraint);
-      IntermediateModelElement p = null;
+      IntermediateModelElement p;
       p = sourceType.getPropertyByDBField(intermediateColumn.getName());
       if (p != null) {
         constraint.setProperty(p.getExternalName());

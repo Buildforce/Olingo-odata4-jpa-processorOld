@@ -91,7 +91,7 @@ public final class ExpressionUtil {
       final EdmPrimitiveTypeKind edmTypeKind = JPATypeConverter.convertToEdmSimpleType(attribute);
 
       // TODO literal does not convert decimals without scale properly
-      String targetValue = null;
+      String targetValue;
       final EdmPrimitiveType edmType = odata.createPrimitiveTypeInstance(edmTypeKind);
       if (isUri) {
         targetValue = edmType.fromUriLiteral(value);

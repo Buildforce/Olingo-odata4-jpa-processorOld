@@ -12,7 +12,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import org.apache.olingo.commons.api.edm.EdmFunction;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfoResource;
-import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceFunction;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;

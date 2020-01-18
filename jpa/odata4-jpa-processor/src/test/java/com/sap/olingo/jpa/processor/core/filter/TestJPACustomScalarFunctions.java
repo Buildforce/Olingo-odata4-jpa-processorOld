@@ -114,23 +114,19 @@ public class TestJPACustomScalarFunctions {
     EntityManager em = emf.createEntityManager();
     EntityTransaction t = em.getTransaction();
 
-    StringBuilder sqlString = new StringBuilder();
-
-    sqlString.append(
-        "CREATE FUNCTION  \"OLINGO\".\"PopulationDensity\" (UnitArea  INT, Population BIGINT ) ");
-    sqlString.append("RETURNS DOUBLE ");
-    sqlString.append("BEGIN ATOMIC  "); //
-    sqlString.append("  DECLARE aDouble DOUBLE; "); //
-    sqlString.append("  DECLARE pDouble DOUBLE; ");
-    sqlString.append("  SET aDouble = UnitArea; ");
-    sqlString.append("  SET pDouble = Population; ");
-    sqlString.append("  IF UnitArea <= 0 THEN RETURN 0; ");
-    sqlString.append("  ELSE RETURN pDouble  / aDouble; "); // * 1000000
-    sqlString.append("  END IF;  "); //
-    sqlString.append("END");
-
     t.begin();
-    Query q = em.createNativeQuery(sqlString.toString());
+    String sqlString = "CREATE FUNCTION  \"OLINGO\".\"PopulationDensity\" (UnitArea  INT, Population BIGINT ) " +
+            "RETURNS DOUBLE " +
+            "BEGIN ATOMIC  " + //
+            "  DECLARE aDouble DOUBLE; " + //
+            "  DECLARE pDouble DOUBLE; " +
+            "  SET aDouble = UnitArea; " +
+            "  SET pDouble = Population; " +
+            "  IF UnitArea <= 0 THEN RETURN 0; " +
+            "  ELSE RETURN pDouble  / aDouble; " + // * 1000000
+            "  END IF;  " + //
+            "END";
+    Query q = em.createNativeQuery(sqlString);
     q.executeUpdate();
     t.commit();
   }
@@ -139,12 +135,8 @@ public class TestJPACustomScalarFunctions {
     EntityManager em = emf.createEntityManager();
     EntityTransaction t = em.getTransaction();
 
-    StringBuilder sqlString = new StringBuilder();
-
-    sqlString.append("DROP FUNCTION  \"OLINGO\".\"PopulationDensity\"");
-
     t.begin();
-    Query q = em.createNativeQuery(sqlString.toString());
+    Query q = em.createNativeQuery("DROP FUNCTION  \"OLINGO\".\"PopulationDensity\"");
     q.executeUpdate();
     t.commit();
   }

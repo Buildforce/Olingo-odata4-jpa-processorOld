@@ -2,7 +2,6 @@ package com.sap.olingo.jpa.processor.core.filter;
 
 import static com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException.MessageKeys.NOT_ALLOWED_MEMBER;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 

@@ -106,7 +106,6 @@ public final class JPARequestLinkImpl implements JPARequestLink {
             .getLeftPath()));
         values.put(item.getRightPath().getLeaf().getInternalName(), convertKeyValue(odata, keyElements[0], item
             .getRightPath()));
-        return;
       }
     }
   }

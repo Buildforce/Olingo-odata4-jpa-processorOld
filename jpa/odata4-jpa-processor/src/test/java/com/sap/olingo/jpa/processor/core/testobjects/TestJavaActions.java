@@ -2,7 +2,6 @@ package com.sap.olingo.jpa.processor.core.testobjects;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
