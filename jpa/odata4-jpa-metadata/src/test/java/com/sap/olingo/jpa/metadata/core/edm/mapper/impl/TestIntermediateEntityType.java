@@ -159,15 +159,15 @@ public class TestIntermediateEntityType extends TestMappingRoot {
         "BusinessPartner"), schema);
     for (JPAOnConditionItem item : et.getAssociationPath("Address/AdministrativeDivision").getJoinColumnsList()) {
       if (item.getLeftPath().getAlias().equals("Address/Region")) {
-        assertTrue(item.getRightPath().getAlias().equals("DivisionCode"));
+          assertEquals("DivisionCode", item.getRightPath().getAlias());
         actCount++;
       }
       if (item.getLeftPath().getAlias().equals("Address/RegionCodeID")) {
-        assertTrue(item.getRightPath().getAlias().equals("CodeID"));
+          assertEquals("CodeID", item.getRightPath().getAlias());
         actCount++;
       }
       if (item.getLeftPath().getAlias().equals("Address/RegionCodePublisher")) {
-        assertTrue(item.getRightPath().getAlias().equals("CodePublisher"));
+          assertEquals("CodePublisher", item.getRightPath().getAlias());
         actCount++;
       }
     }

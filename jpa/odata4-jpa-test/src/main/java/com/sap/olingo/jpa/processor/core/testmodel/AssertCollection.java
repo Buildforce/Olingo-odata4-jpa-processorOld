@@ -15,10 +15,8 @@ public class AssertCollection {
     for (final T expItem : exp) {
       for (T actItem : act) {
         found = EqualsBuilder.reflectionEquals(expItem, actItem, true, reflection);
-        if (found) {
-          break;
-        }
-        assertFalse(found, "Cloud not find" + expItem.toString());
+        if (found) break;
+        else assertFalse(false, "Cloud not find" + expItem.toString());
       }
     }
   }

@@ -1,19 +1,17 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.persistence.criteria.From;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
+import com.sap.olingo.jpa.processor.core.filter.JPAFilterCompiler;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResourcePartTyped;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
-import com.sap.olingo.jpa.processor.core.filter.JPAFilterCompiler;
+import javax.persistence.criteria.From;
+import java.util.Collections;
+import java.util.List;
 
 public final class JPANavigationPropertyInfo {
   private final JPAServiceDocument sd;
@@ -22,7 +20,7 @@ public final class JPANavigationPropertyInfo {
   private final List<UriParameter> keyPredicates;
   private From<?, ?> fromClause = null;
   private final UriInfoResource uriInfo;
-  private JPAEntityType et = null;
+  private JPAEntityType entityType = null;
   private JPAFilterCompiler filterCompiler = null;
 
   /**
@@ -39,18 +37,18 @@ public final class JPANavigationPropertyInfo {
     this.keyPredicates = original.getKeyPredicates();
     this.uriInfo = original.getUriInfo();
     this.sd = original.getServiceDocument();
-    this.et = this.uriInfo instanceof JPAExpandItem ? ((JPAExpandItem) uriInfo).getEntityType() : null;
+    this.entityType = this.uriInfo instanceof JPAExpandItem ? ((JPAExpandItem) uriInfo).getEntityType() : null;
   }
 
   public JPANavigationPropertyInfo(final JPAServiceDocument sd, final JPAAssociationPath associationPath,
-      final UriInfoResource uriInfo, final JPAEntityType et) {
+      final UriInfoResource uriInfo, final JPAEntityType entityType) {
     super();
     this.navigationTarget = null;
     this.associationPath = associationPath;
     this.keyPredicates = Collections.emptyList();
     this.uriInfo = uriInfo;
     this.sd = sd;
-    this.et = et;
+    this.entityType = entityType;
   }
 
   public JPANavigationPropertyInfo(final JPAServiceDocument sd, final UriResourcePartTyped uriResource,
@@ -58,19 +56,15 @@ public final class JPANavigationPropertyInfo {
 
     this.navigationTarget = uriResource;
     this.associationPath = associationPath;
-    this.keyPredicates = uriResource.isCollection() ? Collections.emptyList() : Util.determineKeyPredicates(
-        uriResource);
+    this.keyPredicates =
+            uriResource.isCollection() ? Collections.emptyList() : Util.determineKeyPredicates(uriResource);
     this.uriInfo = uriInfo;
     this.sd = sd;
   }
 
-  public JPAAssociationPath getAssociationPath() {
-    return associationPath;
-  }
+  public JPAAssociationPath getAssociationPath() { return associationPath; }
 
-  public UriResourcePartTyped getUriResource() {
-    return navigationTarget;
-  }
+  public UriResourcePartTyped getUriResource() { return navigationTarget; }
 
   /**
    * Set the association path to a other entity.
@@ -82,9 +76,7 @@ public final class JPANavigationPropertyInfo {
   }
 
   JPAEntityType getEntityType() {
-    if (et != null)
-      return et;
-    return sd.getEntity(getUriResource().getType());
+    return (entityType == null) ? sd.getEntity(getUriResource().getType()) : entityType;
   }
 
   JPAFilterCompiler getFilterCompiler() {

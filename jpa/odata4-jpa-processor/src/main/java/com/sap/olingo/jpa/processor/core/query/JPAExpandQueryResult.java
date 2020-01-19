@@ -230,7 +230,7 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertib
         return false;
     }
 
-    @SuppressWarnings("rawtypes")
+    // @SuppressWarnings("rawtypes")
     private Map<JPAAttribute, Comparable> createKey(final Tuple tuple) throws ODataJPAModelException {
         final Map<JPAAttribute, Comparable> keyMap = new HashMap<>(jpaEntityType.getKey().size());
         for (final JPAAttribute key : jpaEntityType.getKey()) {

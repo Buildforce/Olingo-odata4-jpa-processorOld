@@ -123,9 +123,11 @@ public class JPAEntityTypeDouble implements JPAEntityType {
     return base.getExternalName();
   }
 
-  @Override
+  // @Override
   public String getInternalName() {
-    return getInternalName();
+    fail();
+    return null;
+    // return getInternalName();
   }
 
   @Override

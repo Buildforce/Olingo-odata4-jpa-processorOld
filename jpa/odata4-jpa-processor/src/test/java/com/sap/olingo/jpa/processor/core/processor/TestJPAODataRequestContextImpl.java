@@ -1,9 +1,6 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 import javax.persistence.EntityManager;
@@ -163,7 +160,7 @@ public class TestJPAODataRequestContextImpl {
     JPAODataRequestContextImpl act = new JPAODataRequestContextImpl(uriInfo, null, cut);
 
     assertEquals(uriInfo, act.getUriInfo());
-    assertEquals(null, act.getSerializer());
+      assertNull(act.getSerializer());
     assertCopied(act);
   }
 

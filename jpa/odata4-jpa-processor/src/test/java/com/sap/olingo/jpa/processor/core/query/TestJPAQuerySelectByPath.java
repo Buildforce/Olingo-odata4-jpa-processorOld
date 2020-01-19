@@ -1,11 +1,5 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.IOException;
 
 import org.apache.olingo.commons.api.ex.ODataException;
@@ -19,6 +13,8 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.testmodel.ImageLoader;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJPAQuerySelectByPath extends TestBase {
 
@@ -285,7 +281,7 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertTrue(act.has(property));
     final JsonNode target = act.get(property);
     if (target instanceof ArrayNode)
-      assertFalse(target.size() == 0);
+        assertNotEquals(0, target.size());
     else
       assertFalse(act.get(property).isNull());
   }

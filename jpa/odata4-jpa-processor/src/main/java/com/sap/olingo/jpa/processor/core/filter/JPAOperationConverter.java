@@ -121,7 +121,7 @@ public class JPAOperationConverter {
         }
       case ENDSWITH:
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
-          String ends = '%' + (String) jpaFunction.getParameter(1).get();
+          String ends = "%" + jpaFunction.getParameter(1).get();
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), ends);
         } else {
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()),
@@ -129,7 +129,7 @@ public class JPAOperationConverter {
         }
       case STARTSWITH:
         if (jpaFunction.getParameter(1) instanceof JPALiteralOperator) {
-          String starts = (String) jpaFunction.getParameter(1).get() + '%';
+          String starts = jpaFunction.getParameter(1).get() + "%";
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()), starts);
         } else {
           return cb.like((Expression<String>) (jpaFunction.getParameter(0).get()),

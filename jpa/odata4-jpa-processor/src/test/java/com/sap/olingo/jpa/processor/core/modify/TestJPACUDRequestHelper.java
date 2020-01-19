@@ -2,7 +2,8 @@ package com.sap.olingo.jpa.processor.core.modify;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -222,7 +223,7 @@ public class TestJPACUDRequestHelper {
         ContentType.APPLICATION_JSON, uriResourceParts));
   }
 
-  @SuppressWarnings("unchecked")
+  // @SuppressWarnings("unchecked")
   @Test
   public void testConvertInputStreamPrimitiveColectionProperty() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
     final EdmEntitySet edmEntitySet = mock(EdmEntitySet.class);
@@ -682,7 +683,7 @@ public class TestJPACUDRequestHelper {
     Map<String, Object> exp = cut.buildGetterMap(new BusinessPartnerRole("100", "A"));
     Map<String, Object> act = cut.buildGetterMap(new BusinessPartnerRole("100", "A"));
 
-    assertFalse(exp == act);
+    assertNotSame(exp, act);
   }
 
   @Test
@@ -724,7 +725,7 @@ public class TestJPACUDRequestHelper {
     Map<String, Object> exp = cut.buildGetterMap(role);
     Map<String, Object> act = cut.buildGetterMap(role);
 
-    assertTrue(exp == act);
+    assertSame(exp, act);
   }
 
   private JPAStructuredType createMetadataForSimpleProperty(final String externalName, final String internalName)

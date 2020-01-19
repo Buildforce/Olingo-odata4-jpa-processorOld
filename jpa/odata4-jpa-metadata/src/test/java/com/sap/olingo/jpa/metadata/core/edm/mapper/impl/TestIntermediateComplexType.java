@@ -234,7 +234,7 @@ public class TestIntermediateComplexType extends TestMappingRoot {
     assertEquals("Building", act.get(0).getAttribute().getExternalName());
     assertEquals("BuildingNumber", act.get(0).getClaimName());
     assertEquals(2, act.get(0).getPath().getPath().size());
-    assertEquals(true, act.get(0).supportsWildcards());
+      assertTrue(act.get(0).supportsWildcards());
   }
 
   @ParameterizedTest

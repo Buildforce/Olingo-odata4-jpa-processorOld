@@ -78,7 +78,7 @@ public class TestIntermediateJavaFunction extends TestMappingRoot {
     final IntermediateJavaFunction act = createFunction(ExampleJavaOneFunction.class, "sum");
 
     assertNotNull(act.getEdmItem());
-    assertEquals(false, act.getEdmItem().isBound());
+    assertFalse(act.getEdmItem().isBound());
   }
 
   @Test
