@@ -69,6 +69,7 @@ public class TestJPACUDRequestHelper {
   private static final String COMMENT_INT_PROPERTY_NAME = "comment";
   private static final String COMMENT_EXT_PROPERTY_NAME = "Comment";
   private static final String INHOUSE_EXT_PROPERTY_NAME = "InhouseAddress";
+  private final String nameSpace = "testns";
   private JPAConversionHelper cut;
   private List<UriResource> uriResourceParts;
   private ODataRequest request;
@@ -118,8 +119,8 @@ public class TestJPACUDRequestHelper {
     final EdmComplexType edmTypeInhouse = mock(EdmComplexType.class);
     final UriResourceEntitySet uriEs = mock(UriResourceEntitySet.class);
     final UriResourceComplexProperty uriProperty = mock(UriResourceComplexProperty.class);
-    FullQualifiedName fqn = new FullQualifiedName("test", "Person");
-    FullQualifiedName fqnString = new FullQualifiedName("test", "Person");
+    FullQualifiedName fqn = new FullQualifiedName(nameSpace, "Person");
+    FullQualifiedName fqnString = new FullQualifiedName(nameSpace, "Person");
 
     List<String> propertyNames = new ArrayList<>();
     propertyNames.add(INHOUSE_EXT_PROPERTY_NAME);
@@ -185,8 +186,8 @@ public class TestJPACUDRequestHelper {
     headers.add("4.00");
     prepareEntitySet();
     InputStream is = new ByteArrayInputStream(
-        "{\"@odata.context\": \"$metadata#test.Organisation\", \"@odata.type\": \"#test.Organisation\", \"ID\" : \"35\"}"
-            .getBytes(StandardCharsets.UTF_8));
+            ("{ \"@odata.context\": \"$metadata#" + nameSpace + ".Organisation\", \"@odata.type\": \"#" + nameSpace + ".Organisation\", \"ID\" : \"35\"}")
+                    .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     when(request.getHeaders(HttpHeader.ODATA_VERSION)).thenReturn(headers);
 
@@ -200,7 +201,7 @@ public class TestJPACUDRequestHelper {
     headers.add("4.01");
     prepareEntitySet();
     InputStream is = new ByteArrayInputStream(
-        "{\"@context\": \"$metadata#test.Organisation\", \"@type\": \"#test.Organisation\", \"ID\" : \"35\"}"
+        ("{\"@context\": \"$metadata#" + nameSpace +".Organisation\", \"@type\": \"#" + nameSpace + ".Organisation\", \"ID\" : \"35\"}")
             .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
     when(request.getHeaders(HttpHeader.ODATA_VERSION)).thenReturn(headers);
@@ -232,8 +233,8 @@ public class TestJPACUDRequestHelper {
     final EdmPrimitiveType edmTypeName = mock(EdmPrimitiveType.class);
     final UriResourceEntitySet uriEs = mock(UriResourceEntitySet.class);
     final UriResourceProperty uriProperty = mock(UriResourceProperty.class);
-    FullQualifiedName fqn = new FullQualifiedName("test", "Organisation");
-    FullQualifiedName fqnString = new FullQualifiedName("test", "Organisation");
+    FullQualifiedName fqn = new FullQualifiedName(nameSpace, "Organisation");
+    FullQualifiedName fqnString = new FullQualifiedName(nameSpace, "Organisation");
 
     List<String> propertyNames = new ArrayList<>();
     propertyNames.add(COMMENT_EXT_PROPERTY_NAME);
@@ -269,6 +270,7 @@ public class TestJPACUDRequestHelper {
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
     assertEquals(ValueType.COLLECTION_PRIMITIVE, act.getProperty(COMMENT_EXT_PROPERTY_NAME).getValueType());
+    @SuppressWarnings("unchecked")
     final List<String> actValue = (List<String>) act.getProperty(COMMENT_EXT_PROPERTY_NAME).getValue();
     assertEquals(2, actValue.size());
     assertEquals("YAC", actValue.get(0));
@@ -770,8 +772,8 @@ public class TestJPACUDRequestHelper {
     final EdmPrimitiveType edmTypeId = mock(EdmPrimitiveType.class);
     final UriResourceEntitySet uriEs = mock(UriResourceEntitySet.class);
 
-    FullQualifiedName fqn = new FullQualifiedName("test", "Organisation");
-    FullQualifiedName fqnString = new FullQualifiedName("test", "Organisation");
+    FullQualifiedName fqn = new FullQualifiedName(nameSpace, "Organisation");
+    FullQualifiedName fqnString = new FullQualifiedName(nameSpace, "Organisation");
 
     List<String> propertyNames = new ArrayList<>();
     propertyNames.add("ID");
@@ -805,8 +807,8 @@ public class TestJPACUDRequestHelper {
     final EdmPrimitiveType edmTypeName = mock(EdmPrimitiveType.class);
     final UriResourceEntitySet uriEs = mock(UriResourceEntitySet.class);
     final UriResourceProperty uriProperty = mock(UriResourceProperty.class);
-    FullQualifiedName fqn = new FullQualifiedName("test", "Organisation");
-    FullQualifiedName fqnString = new FullQualifiedName("test", "Organisation");
+    FullQualifiedName fqn = new FullQualifiedName(nameSpace, "Organisation");
+    FullQualifiedName fqnString = new FullQualifiedName(nameSpace, "Organisation");
 
     List<String> propertyNames = new ArrayList<>();
     propertyNames.add("Name2");

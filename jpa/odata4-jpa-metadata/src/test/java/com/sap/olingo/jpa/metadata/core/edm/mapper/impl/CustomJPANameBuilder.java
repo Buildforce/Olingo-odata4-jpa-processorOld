@@ -64,8 +64,7 @@ public class CustomJPANameBuilder implements JPAEdmNameBuilder {
   }
 
   @Override
-  public String getNamespace() {
-    return "test";
+  public String getNamespace() { return "test";
   }
 
   private void appendChar(final StringBuilder builder, int i) {
