@@ -103,7 +103,9 @@ public class TestJPAExpandJoinQuery extends TestBase {
     setSimpleKey(3);
     cut = new JPAExpandJoinQuery(OData.newInstance(), sessionContext, item, headers, requestContext, orgBoundary);
     final JPAExpandQueryResult act = cut.execute();
-    assertTrue(cut.getSQLString().contains(".\"ID\" = ?"));
+    String query = cut.getSQLString();
+
+    assertTrue(query.contains("(t1.\"ID\" = '3')" /*".\"ID\" = ?"*/));
     assertEquals(1, act.getNoResults());
     assertEquals(3, act.getNoResultsDeep());
   }
@@ -116,7 +118,8 @@ public class TestJPAExpandJoinQuery extends TestBase {
     cut = new JPAExpandJoinQuery(OData.newInstance(), sessionContext, item, headers, requestContext, adminBoundary);
     final JPAExpandQueryResult act = cut.execute();
     assertTrue(cut.getSQLString().contains(
-        "(((t1.\"DivisionCode\" = ?) AND (t1.\"CodeID\" = ?)) AND (t1.\"CodePublisher\" = ?)) "));
+            "(((t1.\"DivisionCode\" = 'BE2') AND (t1.\"CodeID\" = 'NUTS1')) AND (t1.\"CodePublisher\" = 'Eurostat')) AND ((t0.\"ParentDivisionCode\" = t1.\"DivisionCode\") AND ((t0.\"CodePublisher\" = t1.\"CodePublisher\")"));
+        //"(((t1.\"DivisionCode\" = ?) AND (t1.\"CodeID\" = ?)) AND (t1.\"CodePublisher\" = ?)) "));
     assertEquals(1, act.getNoResults());
     assertEquals(5, act.getNoResultsDeep());
   }
@@ -129,8 +132,13 @@ public class TestJPAExpandJoinQuery extends TestBase {
     setSimpleKey(1);
     cut = new JPAExpandJoinQuery(OData.newInstance(), sessionContext, item, headers, requestContext, orgBoundary);
     final JPAExpandQueryResult act = cut.execute();
-    assertTrue(cut.getSQLString().contains(".\"ID\" >= ?"));
-    assertTrue(cut.getSQLString().contains(".\"ID\" <= ?"));
+    String query = cut.getSQLString();
+
+    assertTrue(cut.getSQLString().contains(
+            "((t1.\"ID\" >= '1') AND (t1.\"ID\" <= '2'))"
+
+            /*".\"ID\" >= ?"*/));
+//    assertTrue(cut.getSQLString().contains(".\"ID\" <= ?"));
     assertEquals(2, act.getNoResults());
     assertEquals(3, act.getNoResultsDeep());
   }
@@ -143,14 +151,19 @@ public class TestJPAExpandJoinQuery extends TestBase {
     setComplexKey("Eurostat", "NUTS2", "BE25");
     cut = new JPAExpandJoinQuery(OData.newInstance(), sessionContext, item, headers, requestContext, adminBoundary);
     final JPAExpandQueryResult act = cut.execute();
-    assertTrue(cut.getSQLString().contains(
-        "(((t1.\"DivisionCode\" >= ?) AND (t1.\"CodeID\" = ?)) AND (t1.\"CodePublisher\" = ?))"));
-    assertTrue(cut.getSQLString().contains(
+    String query =cut.getSQLString();
+
+    assertTrue(query.contains(
+    "(((t1.\"DivisionCode\" >= 'BE1') AND (t1.\"CodeID\" = 'NUTS1')) AND (t1.\"CodePublisher\" = 'Eurostat')) OR (t1.\"CodeID\" > 'NUTS1')) AND (t1.\"CodePublisher\" = 'Eurostat')) OR (t1.\"CodePublisher\" > 'Eurostat')) AND ((((((t1.\"DivisionCode\" <= 'BE25') AND (t1.\"CodeID\" = 'NUTS2')) AND (t1.\"CodePublisher\" = 'Eurostat')) OR (t1.\"CodeID\" < 'NUTS2')) AND (t1.\"CodePublisher\" = 'Eurostat')) OR (t1.\"CodePublisher\" < 'Eurostat'))) AND ((t0.\"ParentDivisionCode\" = t1.\"DivisionCode\") AND ((t0.\"CodePublisher\" = t1.\"CodePublisher\""));
+      /*  "(((t1.\"DivisionCode\" >= ?) AND (t1.\"CodeID\" = ?)) AND (t1.\"CodePublisher\" = ?))"));*/
+/*
+    assertTrue(query.contains(
         "(((t1.\"DivisionCode\" <= ?) AND (t1.\"CodeID\" = ?)) AND (t1.\"CodePublisher\" = ?))"));
-    assertTrue(cut.getSQLString().contains(
+    assertTrue(query.contains(
         "(t1.\"CodeID\" > ?)) AND (t1.\"CodePublisher\" = ?))"));
-    assertTrue(cut.getSQLString().contains(
+    assertTrue(query.contains(
         "(t1.\"CodeID\" < ?)) AND (t1.\"CodePublisher\" = ?))"));
+*/
     assertEquals(9, act.getNoResults());
     assertEquals(34, act.getNoResultsDeep());
   }

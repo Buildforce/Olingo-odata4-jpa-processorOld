@@ -39,12 +39,6 @@ public class JPAODataContextAccessDouble implements JPAODataCRUDContextAccess {
   }
 
   @Override
-  public DebugSupport getDebugSupport() {
-    fail();
-    return null;
-  }
-
-  @Override
   public JPAODataDatabaseOperations getOperationConverter() {
     return context;
   }

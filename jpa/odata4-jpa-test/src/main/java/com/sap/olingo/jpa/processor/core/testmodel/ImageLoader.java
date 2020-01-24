@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.FileOutputStream;
@@ -22,7 +23,6 @@ public class ImageLoader {
   private static final String SELECT_ORGANIZATION_IMAGE =
       "SELECT * FROM \"OLINGO\".\"OrganizationImage\" WHERE ID = '$&1'";
   private static final String PATH = "images/";
-  private static final String ENTITY_MANAGER_DATA_SOURCE = "javax.persistence.nonJtaDataSource";
   private static final String PUNIT_NAME = "com.sap.olingo.jpa";
 
   public static void main(String[] args) throws IOException {
@@ -96,7 +96,7 @@ public class ImageLoader {
 
   private static EntityManager createEntityManager() {
     final Map<String, Object> properties = new HashMap<>();
-    properties.put(ENTITY_MANAGER_DATA_SOURCE, DataSourceHelper.createDataSource(DataSourceHelper.DB_H2));
+    properties.put(NON_JTA_DATASOURCE, DataSourceHelper.createDataSource(DataSourceHelper.DB_H2));
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
     return emf.createEntityManager();
   }

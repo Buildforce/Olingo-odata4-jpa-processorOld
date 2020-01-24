@@ -230,12 +230,10 @@ public class TestIntermediateContainer extends TestMappingRoot {
         schemas);
 
     List<CsdlFunctionImport> funcImports = container.getEdmItem().getFunctionImports();
-    for (CsdlFunctionImport funcImport : funcImports) {
-      if ("Sum".equals(funcImport.getName()))
-        return;
-      System.out.println(funcImport.getName());
-    }
-    fail("Import not found");
+    StringBuilder funcNames = new StringBuilder();
+    for (CsdlFunctionImport funcImport : funcImports) funcNames.append( " " +funcImport.getName());
+    if (funcNames.length() == 0 )  fail("Import not found");
+    System.out.println("Java based functions:" + funcNames);
   }
 
   @Test

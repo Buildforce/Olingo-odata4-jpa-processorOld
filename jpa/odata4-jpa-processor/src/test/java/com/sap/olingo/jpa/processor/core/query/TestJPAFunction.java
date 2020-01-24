@@ -21,6 +21,8 @@ import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
 
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
+
 public class TestJPAFunction {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
   protected static EntityManagerFactory emf;
@@ -33,7 +35,7 @@ public class TestJPAFunction {
   public void setup() {
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     Map<String, Object> properties = new HashMap<>();
-    properties.put("javax.persistence.nonJtaDataSource", ds);
+    properties.put(NON_JTA_DATASOURCE, ds);
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
     emf.getProperties();
   }

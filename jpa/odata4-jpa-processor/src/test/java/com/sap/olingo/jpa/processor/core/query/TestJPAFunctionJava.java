@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.query;
 
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -68,7 +69,7 @@ public class TestJPAFunctionJava {
 
     DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     Map<String, Object> properties = new HashMap<>();
-    properties.put("javax.persistence.nonJtaDataSource", ds);
+    properties.put(NON_JTA_DATASOURCE, ds);
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
         List<UriResource> uriResources = new ArrayList<>();
     when(uriInfo.getUriResourceParts()).thenReturn(uriResources);

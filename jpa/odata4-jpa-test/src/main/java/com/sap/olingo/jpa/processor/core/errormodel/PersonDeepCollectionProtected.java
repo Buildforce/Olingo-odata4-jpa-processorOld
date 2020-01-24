@@ -25,7 +25,7 @@ public class PersonDeepCollectionProtected {// #NOSONAR use equal method from
   protected long eTag; // BusinessPartner
 
   @Column(name = "\"Type\"", length = 1, insertable = false, updatable = false, nullable = false)
-  protected String type;
+  protected final String type;
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(schema = "\"OLINGO\"", name = "\"InhouseAddress\"",

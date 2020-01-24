@@ -6,9 +6,9 @@ import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 
 public class JPAEntityManagerFactory {
-  private static final String ENTITY_MANAGER_DATA_SOURCE = "javax.persistence.nonJtaDataSource";
   private static Map<String, Map<Integer, EntityManagerFactory>> emfMap;
 
   private JPAEntityManagerFactory() {
@@ -44,7 +44,7 @@ public class JPAEntityManagerFactory {
 
   public static EntityManagerFactory getEntityManagerFactory(final String pUnit, final DataSource ds) {
     final Map<String, Object> properties = new HashMap<>();
-    properties.put(ENTITY_MANAGER_DATA_SOURCE, ds);
+    properties.put(NON_JTA_DATASOURCE, ds);
     return getEntityManagerFactory(pUnit, properties);
   }
 }

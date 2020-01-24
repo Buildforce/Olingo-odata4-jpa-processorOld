@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.query;
 
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -35,7 +36,7 @@ public class TestJPAFunctionSerializer {
   public void setup() {
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     Map<String, Object> properties = new HashMap<>();
-    properties.put("javax.persistence.nonJtaDataSource", ds);
+    properties.put(NON_JTA_DATASOURCE, ds);
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
     emf.getProperties();
   }

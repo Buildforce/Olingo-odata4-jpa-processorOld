@@ -27,8 +27,8 @@ public interface JPAODataCRUDContextAccess {
    * @deprecated (will be removed with 1.0.0; use request context)
    * @return
    */
-  @Deprecated
-  DebugSupport getDebugSupport();
+  // @Deprecated
+  // DebugSupport getDebugSupport();
 
   JPAEdmProvider getEdmProvider() throws ODataException;
 

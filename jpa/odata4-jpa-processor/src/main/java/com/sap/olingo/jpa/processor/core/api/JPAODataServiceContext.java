@@ -104,11 +104,6 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   }
 
   @Override
-  public DebugSupport getDebugSupport() {
-    return debugSupport;
-  }
-
-  @Override
   public JPAEdmProvider getEdmProvider() throws ODataException {
     if (jpaEdm == null && jpaODataGetHandler != null && jpaODataGetHandler.jpaMetamodel != null)
       jpaEdm = new JPAEdmProvider(namespace, jpaODataGetHandler.jpaMetamodel, postProcessor, packageName);
@@ -117,7 +112,6 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
   public JPAEdmProvider getEdmProvider(@Nonnull final EntityManager em) throws ODataException {
     if (jpaEdm == null) {
-      // Objects.nonNull(em);
       jpaEdm = new JPAEdmProvider(this.namespace, em.getMetamodel(), postProcessor, packageName);
     }
     return jpaEdm;

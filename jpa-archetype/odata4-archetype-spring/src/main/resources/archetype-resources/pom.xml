@@ -16,7 +16,6 @@
 	</parent>
 
 	<properties>
-		<jpa-processor>0.3.8</jpa-processor>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -58,23 +57,23 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
-			<version>2.1.1</version>
+			<version>${eclicse.javax.prstnc.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
-			<version>2.7.1</version>
+			<version>${eclipselink.prstnc.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata4-jpa-processor</artifactId>
-			<version>${jpa-processor}</version>
+			<version>${jpa.processor.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata4-jpa-spring-support</artifactId>
-			<version>${jpa-processor}</version>
+			<version>${jpa.processor.version}</version>
 		</dependency>
 
 		<dependency>
@@ -104,13 +103,13 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.4.2</version>
+			<version>5.5.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-launcher</artifactId>
-			<version>1.4.2</version><!--$NO-MVN-MAN-VER$-->
+			<version>1.5.2</version><!--$NO-MVN-MAN-VER$-->
 			<scope>test</scope>
 		</dependency>
 

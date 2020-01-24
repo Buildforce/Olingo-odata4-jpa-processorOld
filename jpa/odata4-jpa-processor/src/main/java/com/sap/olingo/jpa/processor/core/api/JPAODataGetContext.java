@@ -51,14 +51,14 @@ public interface JPAODataGetContext {
   /**
    *
 
-   * @param postProcessor
+   * @param jpaOperationConverter
    * @throws ODataException
    */
   void setOperationConverter(final JPAODataDatabaseOperations jpaOperationConverter);
 
   /**
    * Registers the debug support handler.
-   * @param debugSupport
+   * @param references
    */
   void setReferences(final List<EdmxReference> references);
 

@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.test;
 
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -41,7 +42,6 @@ import com.sap.olingo.jpa.processor.core.testmodel.Person;
 
 public class TestCriteriaBuilder {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
-  private static final String ENTITY_MANAGER_DATA_SOURCE = "javax.persistence.nonJtaDataSource";
   private static EntityManagerFactory emf;
   private EntityManager em;
   private CriteriaBuilder cb;
@@ -49,7 +49,7 @@ public class TestCriteriaBuilder {
   @BeforeAll
   public static void setupClass() {
     Map<String, Object> properties = new HashMap<>();
-    properties.put(ENTITY_MANAGER_DATA_SOURCE, DataSourceHelper.createDataSource(
+    properties.put(NON_JTA_DATASOURCE, DataSourceHelper.createDataSource(
         DataSourceHelper.DB_HSQLDB));
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
   }
@@ -275,7 +275,7 @@ public class TestCriteriaBuilder {
     cq.where(in);
     // Execute query
     TypedQuery<Tuple> tq = em.createQuery(cq);
-    DatabaseQuery dq = ((EJBQueryImpl<Tuple>) tq).getDatabaseQuery();
+    // DatabaseQuery dq = ((EJBQueryImpl<Tuple>) tq).getDatabaseQuery();
     final List<Tuple> act = tq.getResultList();
     // Ensure EclipseLink problem still exists: ("WHERE ((NULL, NULL, NULL, NULL) IN "));
     Assertions.assertEquals(0, act.size());

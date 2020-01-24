@@ -12,10 +12,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.source>1.8</project.build.source>
-		<odata.jpa.version>0.3.8</odata.jpa.version>
+		<!--<odata.jpa.version>0.3.8</odata.jpa.version>-->
 	</properties>
 
 	<modules>
-		<module>odata4-jpa-archetype-spring</module>
+		<module>odata4-archetype-spring</module>
 	</modules>
 </project>

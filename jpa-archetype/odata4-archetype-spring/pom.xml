@@ -7,7 +7,7 @@
 		<artifactId>odata4-jpa-archetype</artifactId>
 		<version>0.3.8</version>
 	</parent>
-	<artifactId>odata4-jpa-archetype-spring</artifactId>
+	<artifactId>odata4-archetype-spring</artifactId>
 	<name>Archetype - odata4-jpa-archetype-spring</name>
 
 	<url>https://github.com/SAP/olingo-jpa-processor-v4</url>

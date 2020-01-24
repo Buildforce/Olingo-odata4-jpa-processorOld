@@ -64,3 +64,8 @@ buildNumber.properties
 hs_err_pid*
 
 *.iml
+
+# Derby (JavaDB)
+/.idea/
+testdb
+*.log

@@ -138,7 +138,6 @@ public class JPAODataGetHandler {
     process(request, response);
   }
 
-  @SuppressWarnings("unchecked")
   private void processInternal(final HttpServletRequest request, final HttpServletResponse response)
       throws ODataException {
 
