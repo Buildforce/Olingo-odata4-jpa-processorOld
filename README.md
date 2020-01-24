@@ -16,7 +16,7 @@ At the current state the JPA Processor provide support for:
 More details can be found in the [Tutorials](/jpa-tutorial/Tutorials/Introduction/Introduction.md).
 
 # Requirements
-The JPA Processor requires, others than Olingo, minimum Java version  [1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). The current version comes with Olingo 4.7.0. If you want to be updated about Olingo changes subscribe to Olingos [user mailing list](user-subscribe@olingo.apache.org).
+The JPA Processor requires, others than Olingo, minimum Java version  [1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). The current version comes with Olingo 4.7.1. If you want to be updated about Olingo changes subscribe to Olingos [user mailing list](user-subscribe@olingo.apache.org).
 
 Even so no JPA implementation is preferred, as long as it supports [JSR-338 Java Persistence 2.1](https://jcp.org/en/jsr/detail?id=317), it has to be stated that all test have been performed with [Eclipselink 2.7.1](http://www.eclipse.org/eclipselink/). If you have any problem e.g. with [Hibernate](http://hibernate.org) create an [issue](https://github.com/SAP/olingo-jpa-processor-v4/issues), but there is no guaranty that it can be solved, as Hibernate implements some JPA interfaces "differently" than EclipseLink.
 

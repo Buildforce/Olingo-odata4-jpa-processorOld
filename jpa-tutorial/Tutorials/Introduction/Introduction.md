@@ -13,7 +13,7 @@ In order to perform the tutorial you need:
 * A Java JDK 1.8 or higher
 * A Eclipse IDE for Java EE, or another one that provides the same functionality
 * An installed servlet container e.g. Apache Tomcat
-* Access to the pre build odata-jpa-processor package.
+* Access to the pre-build odata-jpa-processor package.
 
 ## Create Project
 First step is to create a project. To do so we want to create a new Maven project, by open the Maven Project wizard via File -> New -> Other -> Maven -> Maven Project. Select archetype **webapp**:

@@ -50,7 +50,6 @@ buildNumber.properties
 # --- Maven stuff END
 
 # --- Java stuff START
-*.class
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
