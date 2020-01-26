@@ -16,7 +16,7 @@ At the current state the JPA Processor provide support for:
 More details can be found in the [Tutorials](/jpa-tutorial/Tutorials/Introduction/Introduction.md).
 
 # Requirements
-The JPA Processor requires, others than Olingo, minimum Java version  [1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). The current version comes with Olingo 4.7.1. If you want to be updated about Olingo changes subscribe to Olingos [user mailing list](user-subscribe@olingo.apache.org).
+The JPA Processor requires, others than Olingo, minimum Java version [1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). The current version comes with Olingo 4.7.1. If you want to be updated about Olingo changes subscribe to Olingos [user mailing list](mailto:user-subscribe@olingo.apache.org).
 
 Even so no JPA implementation is preferred, as long as it supports [JSR-338 Java Persistence 2.1](https://jcp.org/en/jsr/detail?id=317), it has to be stated that all test have been performed with [Eclipselink 2.7.1](http://www.eclipse.org/eclipselink/). If you have any problem e.g. with [Hibernate](http://hibernate.org) create an [issue](https://github.com/SAP/olingo-jpa-processor-v4/issues), but there is no guaranty that it can be solved, as Hibernate implements some JPA interfaces "differently" than EclipseLink.
 
@@ -83,3 +83,4 @@ This file is licensed under the Apache Software License, v.2 except as noted oth
 |0.3.5|- Extension of session context, so an entity manager factory can be provided. This will allow creating Spring based services without `persistence.xml` file <br> - Solution for issue [#85](https://github.com/SAP/olingo-jpa-processor-v4/issues/85)<br> - Usage of Olingo JSON deserializer for CUD requests<br> - Extension of session context, so an non Edm Name Builder can be provided| Yes
 |0.3.6|- Enable more flexible transaction handling<br> - Part solution for issue [#83](https://github.com/SAP/olingo-jpa-processor-v4/issues/83)<br> - Increase support of Spring by performing request mapping in case a mapping path is provided via the service context
 |0.3.7| - Update Olingo dependency to 4.7.0
+|0.3.8| - Big review and maintenance overhaul.

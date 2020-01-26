@@ -64,7 +64,7 @@ public class TestCriteriaBuilder {
 
   @SuppressWarnings("unchecked")
   @Test
-  public void testSubstringWithExperession() {
+  public void testSubstringWithExpression() {
     CriteriaQuery<Tuple> adminQ = cb.createTupleQuery();
     Root<AdministrativeDivisionDescription> adminRoot1 = adminQ.from(AdministrativeDivisionDescription.class);
 //    (Expression<T>) cb.sum(jpaOperator.getLeft(), jpaOperator.getRightAsNumber());

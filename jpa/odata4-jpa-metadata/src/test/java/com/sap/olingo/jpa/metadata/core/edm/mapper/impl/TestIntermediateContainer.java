@@ -231,7 +231,7 @@ public class TestIntermediateContainer extends TestMappingRoot {
 
     List<CsdlFunctionImport> funcImports = container.getEdmItem().getFunctionImports();
     StringBuilder funcNames = new StringBuilder();
-    for (CsdlFunctionImport funcImport : funcImports) funcNames.append( " " +funcImport.getName());
+    for (CsdlFunctionImport funcImport : funcImports) funcNames.append(" ").append(funcImport.getName());
     if (funcNames.length() == 0 )  fail("Import not found");
     System.out.println("Java based functions:" + funcNames);
   }

@@ -108,7 +108,7 @@ public class TestJPAPath extends TestMappingRoot {
   }
 
   @Test
-  public void checkIsPartOfGroupReturnsTrueOnAnnotatedBelogsToIt() throws ODataJPAModelException {
+  public void checkIsPartOfGroupReturnsTrueOnAnnotatedBelongsToIt() throws ODataJPAModelException {
 
     final JPAPath act = bupaWithGroup.getPath("Country");
     assertTrue(act.isPartOfGroups(Collections.singletonList("Person")));

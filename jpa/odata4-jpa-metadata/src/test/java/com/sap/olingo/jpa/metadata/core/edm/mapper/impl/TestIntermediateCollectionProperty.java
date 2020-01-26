@@ -128,9 +128,9 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
       }
     }
 
-    final IntermediateStructuredType stst = new IntermediateComplexType(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper
+    final IntermediateStructuredType structuredType = new IntermediateComplexType(new JPADefaultEdmNameBuilder(PUNIT_NAME), helper
         .getComplexType("CollectionFirstLevelComplex"), helper.schema);
-    for (final JPAPath collection : stst.getCollectionAttributesPath()) {
+    for (final JPAPath collection : structuredType.getCollectionAttributesPath()) {
       if (collection.getLeaf().getInternalName().equals("comment")) {
         assertEquals("SecondLevel/Comment", collection.getAlias());
       }

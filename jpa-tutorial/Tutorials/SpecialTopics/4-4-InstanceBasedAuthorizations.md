@@ -14,7 +14,7 @@ First we need to create a table to store the user. Beside User Name and Password
 ```SQL
 CREATE TABLE "User" (
 
-	"UserName"  VARCHAR(60) NOT NULL ,
+	"UserName" VARCHAR(60) NOT NULL,
 	"Password" VARCHAR(60),
 	"Group" VARCHAR(5),
 	"Enabled" BOOLEAN,
@@ -32,9 +32,9 @@ Countries a company is located in and so a user is allowed to access them.
 ```SQL
 CREATE TABLE "CountryRestriction" (
 
-	"UserName"  VARCHAR(60) NOT NULL ,
+	"UserName"  VARCHAR(60) NOT NULL,
 	"SequenceNumber" INTEGER NOT NULL,
-	"From"  VARCHAR(4) NOT NULL ,
+	"From"  VARCHAR(4) NOT NULL,
 	"To"  VARCHAR(4),
 	PRIMARY KEY ("UserName","SequenceNumber"));
 
@@ -164,9 +164,9 @@ We start with the creation of a table that carries the restrictions. The table h
 ```SQL
 CREATE TABLE "RoleRestriction" (
 
-	"UserName"  VARCHAR(60) NOT NULL ,
+	"UserName"  VARCHAR(60) NOT NULL,
 	"SequenceNumber" INTEGER NOT NULL,
-	"From"  VARCHAR(4) NOT NULL ,
+	"From"  VARCHAR(4) NOT NULL,
 	"To"  VARCHAR(4),
 	PRIMARY KEY ("UserName","SequenceNumber"));
 
@@ -269,9 +269,9 @@ Lets assume that not all user shall see all the Roles of a Company, so we create
 ```SQL
 CREATE TABLE "RoleRestriction" (
 
-	"UserName"  VARCHAR(60) NOT NULL ,
+	"UserName"  VARCHAR(60) NOT NULL,
 	"SequenceNumber" INTEGER NOT NULL,
-	"From"  VARCHAR(10) NOT NULL ,
+	"From"  VARCHAR(10) NOT NULL,
 	"To"  VARCHAR(10),
 	PRIMARY KEY ("UserName","SequenceNumber"));
 

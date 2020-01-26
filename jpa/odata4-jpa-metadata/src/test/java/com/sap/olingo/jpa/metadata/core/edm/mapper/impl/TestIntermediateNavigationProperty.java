@@ -447,7 +447,7 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
   }
 
   @Test
-  public void checkIsAssocationReturnsTrue() throws ODataJPAModelException {
+  public void checkIsAssociationReturnsTrue() throws ODataJPAModelException {
     final IntermediateNavigationProperty property = new IntermediateNavigationProperty(new JPADefaultEdmNameBuilder(
         PUNIT_NAME), schema.getEntityType(JoinSource.class), createDummyAttribute(), schema);
     assertTrue(property.isAssociation());

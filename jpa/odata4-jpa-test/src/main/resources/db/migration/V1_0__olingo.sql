@@ -2,7 +2,7 @@ SET schema "OLINGO";
 
 --------BUSINESS PARTNER---------------------------------------------------------------------------------------------------------
 CREATE TABLE "BusinessPartner" (
-	"ID" VARCHAR(32) NOT NULL ,
+	"ID" VARCHAR(32) NOT NULL,
 	"ETag" BIGINT,
 	"Type" VARCHAR(2),
 	"CustomString1" VARCHAR(250),
@@ -25,9 +25,9 @@ CREATE TABLE "BusinessPartner" (
     "Telecom.Mobile" VARCHAR(100),
     "Telecom.Fax" VARCHAR(100),
     "Telecom.Email" VARCHAR(100),
-	"CreatedBy" VARCHAR(32) NOT NULL ,
+	"CreatedBy" VARCHAR(32) NOT NULL,
 	"CreatedAt" TIMESTAMP,
-	"UpdatedBy" VARCHAR(32) NOT NULL ,
+	"UpdatedBy" VARCHAR(32) NOT NULL,
 	"UpdatedAt" TIMESTAMP,
     "Country" VARCHAR(4),
     "ABCClass" int,
@@ -49,23 +49,23 @@ insert into "BusinessPartner" values ('98', 0, '1', '','',null,null,'John','Doe'
 insert into "BusinessPartner" values ('97', 0, '1', '','',null,null,'Urs','Müller',null,'Test Straße', '23','', 'Test Dorf','4123','ISO', '3166-2','CH-BL', 'CHE', null,null,null,null, '99','2016-07-20 09:21:23', '', null, 'CHE', null, 9);
 
 CREATE TABLE "PersonImage" (
-	"ID" VARCHAR(32) NOT NULL ,
+	"ID" VARCHAR(32) NOT NULL,
 	"Image" BLOB,
-	"CreatedBy" VARCHAR(32) NOT NULL ,
+	"CreatedBy" VARCHAR(32) NOT NULL,
 	"CreatedAt" TIMESTAMP,
-	"UpdatedBy" VARCHAR(32) NOT NULL ,
+	"UpdatedBy" VARCHAR(32) NOT NULL,
 	"UpdatedAt" TIMESTAMP,
 	 PRIMARY KEY ("ID"));
 
 insert into "PersonImage" values ('99',null,'99','2016-01-20 09:21:23', '', null);
 
 CREATE TABLE "OrganizationImage" (
-	"ID" VARCHAR(32) NOT NULL ,
+	"ID" VARCHAR(32) NOT NULL,
 	"Image" BLOB,
 	"MimeType"  VARCHAR(100),
-	"CreatedBy" VARCHAR(32) NOT NULL ,
+	"CreatedBy" VARCHAR(32) NOT NULL,
 	"CreatedAt" TIMESTAMP,
-	"UpdatedBy" VARCHAR(32) NOT NULL ,
+	"UpdatedBy" VARCHAR(32) NOT NULL,
 	"UpdatedAt" TIMESTAMP,
 	 PRIMARY KEY ("ID"));
 
@@ -73,7 +73,7 @@ insert into "OrganizationImage" values ('9',null,'image/svg+xml','99','2016-01-2
 
 --------BUSINESS PARTNER ROLE----------------------------------------------------------------------------------------------------
 CREATE TABLE "BusinessPartnerRole" (
-	"BusinessPartnerID" VARCHAR(32) NOT NULL ,
+	"BusinessPartnerID" VARCHAR(32) NOT NULL,
 	"BusinessPartnerRole" VARCHAR(10) NOT NULL,
 	"Details"  VARCHAR(256),
      PRIMARY KEY ("BusinessPartnerID","BusinessPartnerRole"));
@@ -91,8 +91,8 @@ insert into "BusinessPartnerRole" values ('99',  'Z', null);
 insert into "BusinessPartnerRole" values ('97',  'Y', null);
 
 CREATE TABLE "CountryDescription" (
-	"ISOCode" VARCHAR(4) NOT NULL ,
-	"LanguageISO" VARCHAR(4) NOT NULL ,
+	"ISOCode" VARCHAR(4) NOT NULL,
+	"LanguageISO" VARCHAR(4) NOT NULL,
 	"Name" VARCHAR(100) NOT NULL,
      PRIMARY KEY ("ISOCode","LanguageISO"));
 
@@ -109,7 +109,7 @@ CREATE TABLE "AdministrativeDivisionDescription"(
 	"CodePublisher" VARCHAR(10) NOT NULL,
 	"CodeID" VARCHAR(10) NOT NULL,
 	"DivisionCode" VARCHAR(10) NOT NULL,
-	"LanguageISO" VARCHAR(4) NOT NULL ,
+	"LanguageISO" VARCHAR(4) NOT NULL,
 	"Name" VARCHAR(100) NOT NULL,
      PRIMARY KEY ("CodePublisher", "CodeID", "DivisionCode","LanguageISO"));
 
@@ -403,7 +403,7 @@ CREATE TABLE "AdministrativeDivision"(
 	"CodePublisher" VARCHAR(10) NOT NULL,
 	"CodeID" VARCHAR(10) NOT NULL,
 	"DivisionCode" VARCHAR(10) NOT NULL,
-	"CountryISOCode" VARCHAR(4) NOT NULL ,
+	"CountryISOCode" VARCHAR(4) NOT NULL,
 	"ParentCodeID" VARCHAR(10),
 	"ParentDivisionCode" VARCHAR(10),
 	"AlternativeCode" VARCHAR(10),
@@ -664,7 +664,7 @@ insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38025','BEL','
 --------------------------------------------
 
 CREATE TABLE "Comment" (
-	"BusinessPartnerID" VARCHAR(32) NOT NULL ,
+	"BusinessPartnerID" VARCHAR(32) NOT NULL,
 	"Order" INTEGER NOT NULL,
 	"Text" VARCHAR(280),
 	 PRIMARY KEY ("BusinessPartnerID", "Order"));
@@ -676,22 +676,22 @@ insert into "Comment" values( '502', 3, 'This is another test');
 insert into "Comment" values( '502', 4, 'This is also test');
 
 CREATE TABLE "InhouseAddress" (
-	"ID" VARCHAR(32) NOT NULL ,
-	"Task" VARCHAR(32) NOT NULL ,
+	"ID" VARCHAR(32) NOT NULL,
+	"Task" VARCHAR(32) NOT NULL,
 	"Building" VARCHAR(10),
 	"Floor"  SMALLINT,
     "RoomNumber" INTEGER,
    PRIMARY KEY ("ID", "Task"));
 
 insert into "InhouseAddress" values( '97', 'DEV',  '2', 1, 32 );
-insert into "InhouseAddress" values( '99', 'DEV',  '1',-1 ,245 );
-insert into "InhouseAddress" values( '99', 'MAIN', '7', 2 ,32 );
-insert into "InhouseAddress" values( '501', 'MAIN', '7', 2 ,32 );
-insert into "InhouseAddress" values( '502', 'DEV',  '1',-1 ,245 );
-insert into "InhouseAddress" values( '502', 'MAIN',  '7',6 ,12 );
+insert into "InhouseAddress" values( '99', 'DEV',  '1',-1,245 );
+insert into "InhouseAddress" values( '99', 'MAIN', '7', 2,32 );
+insert into "InhouseAddress" values( '501', 'MAIN', '7', 2,32 );
+insert into "InhouseAddress" values( '502', 'DEV',  '1',-1,245 );
+insert into "InhouseAddress" values( '502', 'MAIN',  '7',6,12 );
 
 CREATE TABLE "Collections" (
-	"ID" VARCHAR(32) NOT NULL ,
+	"ID" VARCHAR(32) NOT NULL,
 	"Number" INTEGER,
    PRIMARY KEY ("ID"));
 insert into "Collections" values( '501',-1 );
@@ -713,7 +713,7 @@ insert into "NestedComplex" values('503',1, 4, 5, 6);
 insert into "NestedComplex" values('504',1, 1, 3, 6);
 
 CREATE TABLE "CollectionsDeep" (
-	"ID" VARCHAR(32) NOT NULL ,
+	"ID" VARCHAR(32) NOT NULL,
 	"LevelID" INTEGER,
 	"Number" INTEGER,
    PRIMARY KEY ("ID"));
@@ -724,9 +724,9 @@ insert into "CollectionsDeep" values( '502',1, 3 );
 --------------------------------------------
 
 CREATE TABLE "SupportRelationship" (
-	"ID" INTEGER NOT NULL ,
-	"OrganizationID" VARCHAR(32) NOT NULL ,
-    "PersonID" VARCHAR(32) NOT NULL ,
+	"ID" INTEGER NOT NULL,
+	"OrganizationID" VARCHAR(32) NOT NULL,
+    "PersonID" VARCHAR(32) NOT NULL,
 	PRIMARY KEY ("ID"));
 
 insert into "SupportRelationship" values (1,'1','97');
@@ -734,19 +734,19 @@ insert into "SupportRelationship" values (2,'1','98');
 insert into "SupportRelationship" values (3,'2','97');
 
 CREATE TABLE "Team" (
-	"TeamKey" VARCHAR(32) NOT NULL ,
+	"TeamKey" VARCHAR(32) NOT NULL,
 	"Name" VARCHAR(100),
 	 PRIMARY KEY ("TeamKey"));
 
 insert into "Team" values ('A', 'Team Java');
 insert into "Team" values ('B', 'Team Scala');
-insert into "Team" values ('C', 'Team Phyton');
+insert into "Team" values ('C', 'Team Python');
 insert into "Team" values ('D', 'Team Go');
 
 CREATE TABLE "Membership" (
-	"ID" INTEGER NOT NULL ,
-	"PersonID" VARCHAR(32) NOT NULL ,
-    "TeamID" VARCHAR(32) NOT NULL ,
+	"ID" INTEGER NOT NULL,
+	"PersonID" VARCHAR(32) NOT NULL,
+    "TeamID" VARCHAR(32) NOT NULL,
 	PRIMARY KEY ("ID"));
 
 insert into "Membership" values (1,'97','A');
@@ -757,18 +757,18 @@ insert into "Membership" values (4,'99','B');
 
 --Just for Join Table test
 CREATE TABLE "JoinSource" (
-	"SourceKey" INTEGER NOT NULL ,
+	"SourceKey" INTEGER NOT NULL,
 	"Number" INTEGER,
 	PRIMARY KEY ("SourceKey"));
 
 CREATE TABLE "JoinTarget" (
-	"TargetKey" INTEGER NOT NULL ,
+	"TargetKey" INTEGER NOT NULL,
 	PRIMARY KEY ("TargetKey"));
 
 CREATE TABLE "JoinRelation" (
 
-	"SourceID" INTEGER NOT NULL ,
-	"TargetID" INTEGER NOT NULL ,
+	"SourceID" INTEGER NOT NULL,
+	"TargetID" INTEGER NOT NULL,
 	PRIMARY KEY ("SourceID", "TargetID"));
 
 insert into "JoinSource" values (1,-1);
@@ -781,8 +781,8 @@ insert into "JoinRelation" values (1, 21);
 
 CREATE TABLE "JoinHiddenRelation" (
 
-	"SourceID" INTEGER NOT NULL ,
-	"TargetID" INTEGER NOT NULL ,
+	"SourceID" INTEGER NOT NULL,
+	"TargetID" INTEGER NOT NULL,
 	PRIMARY KEY ("SourceID", "TargetID"));
 
 insert into "JoinHiddenRelation" values (2, 20);
@@ -792,7 +792,7 @@ insert into "JoinHiddenRelation" values (2, 21);
 
 --top-secret;  --logo
 CREATE TABLE "User" (
-"UserName"  VARCHAR(60) NOT NULL ,
+"UserName"  VARCHAR(60) NOT NULL,
 	"Password" VARCHAR(60),
 	"Enabled" BOOLEAN,
 	PRIMARY KEY ("UserName"));
@@ -801,9 +801,9 @@ insert into "User" values ('Willi', '$2a$10$ekL4q.jeDmuc2AhZF/ARUe2KTMczEBHZlML.
 insert into "User" values ('Marvin', '$2a$10$dPD0o8lEbOy0vYtpWkE78.vVBKWElJjiezkFo1nr6hG3EBRx4Gpl.', true);
 
 CREATE TABLE "CountryRestriction" (
-	"UserName"  VARCHAR(60) NOT NULL ,
+	"UserName"  VARCHAR(60) NOT NULL,
 	"SequenceNumber" INTEGER NOT NULL,
-	"From"  VARCHAR(4) NOT NULL ,
+	"From"  VARCHAR(4) NOT NULL,
 	"To"  VARCHAR(4),
 	PRIMARY KEY ("UserName","SequenceNumber"));
 
@@ -811,9 +811,9 @@ insert into "CountryRestriction" values ('Willi', 1, 'DEU', 'DEU');
 insert into "CountryRestriction" values ('Marvin', 1, 'CHE', 'ZAF');
 
 CREATE TABLE "RoleRestriction" (
-	"UserName"  VARCHAR(60) NOT NULL ,
+	"UserName"  VARCHAR(60) NOT NULL,
 	"SequenceNumber" INTEGER NOT NULL,
-	"From"  VARCHAR(10) NOT NULL ,
+	"From"  VARCHAR(10) NOT NULL,
 	"To"  VARCHAR(10),
 	PRIMARY KEY ("UserName","SequenceNumber"));
 insert into "RoleRestriction" values ('Marvin', 1, 'A', 'B');
@@ -882,8 +882,8 @@ CREATE VIEW "RoleProtected" AS
 
 --------------------------------------------
 CREATE TABLE "DummyToBeIgnored" (
-	"ID" VARCHAR(32) NOT NULL ,
-	--"uuid" VARCHAR(32) FOR BIT DATA ,
+	"ID" VARCHAR(32) NOT NULL,
+	--"uuid" VARCHAR(32) FOR BIT DATA,
 	 PRIMARY KEY ("ID"));
 
 --UDF called SQL Language Routines at HSQLDB

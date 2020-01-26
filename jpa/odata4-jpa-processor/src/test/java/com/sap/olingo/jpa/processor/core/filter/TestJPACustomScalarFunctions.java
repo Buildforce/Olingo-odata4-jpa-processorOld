@@ -38,7 +38,7 @@ public class TestJPACustomScalarFunctions {
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, ds);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
-    CreateDenfityFunction();
+    CreateDenfinedFunction();
   }
 
   @AfterAll
@@ -110,7 +110,7 @@ public class TestJPACustomScalarFunctions {
     assertEquals(7, orgs.size());
   }
 
-  private static void CreateDenfityFunction() {
+  private static void CreateDenfinedFunction() {
     EntityManager em = emf.createEntityManager();
     EntityTransaction t = em.getTransaction();
 

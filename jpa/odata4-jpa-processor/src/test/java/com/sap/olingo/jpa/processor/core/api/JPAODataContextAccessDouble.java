@@ -8,7 +8,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.apache.olingo.commons.api.edmx.EdmxReference;
-import org.apache.olingo.server.api.debug.DebugSupport;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.processor.core.database.JPADefaultDatabaseProcessor;

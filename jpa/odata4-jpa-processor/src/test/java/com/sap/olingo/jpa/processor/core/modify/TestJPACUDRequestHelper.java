@@ -211,7 +211,7 @@ public class TestJPACUDRequestHelper {
   }
 
   @Test
-  public void testConvertInputStreamEntitySetThrowsExceptioOnAnnotationMismatch() throws
+  public void testConvertInputStreamEntitySetThrowsExceptionOnAnnotationMismatch() throws
           EdmPrimitiveTypeException {
 
     prepareEntitySet();
@@ -226,7 +226,7 @@ public class TestJPACUDRequestHelper {
 
   // @SuppressWarnings("unchecked")
   @Test
-  public void testConvertInputStreamPrimitiveColectionProperty() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
+  public void testConvertInputStreamPrimitiveCollectionProperty() throws ODataJPAProcessorException, EdmPrimitiveTypeException {
     final EdmEntitySet edmEntitySet = mock(EdmEntitySet.class);
     final EdmEntityType edmEntityType = mock(EdmEntityType.class);
     final EdmProperty edmPropertyName = mock(EdmProperty.class);

@@ -210,7 +210,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   public void checkGetKeyProperties() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartnerRole"), schema);
-    assertEquals(2, et.getEdmItem().getKey().size(), "Wrong number of key propeties");
+    assertEquals(2, et.getEdmItem().getKey().size(), "Wrong number of key properties");
   }
 
   @Test
@@ -268,28 +268,28 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkEmbeddedIdResovedProperties() throws ODataJPAModelException {
+  public void checkEmbeddedIdResoledProperties() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertEquals(5, et.getEdmItem().getProperties().size());
   }
 
   @Test
-  public void checkEmbeddedIdResovedKey() throws ODataJPAModelException {
+  public void checkEmbeddedIdResolvedKey() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertEquals(4, et.getEdmItem().getKey().size());
   }
 
   @Test
-  public void checkEmbeddedIdResovedKeyInternal() throws ODataJPAModelException {
+  public void checkEmbeddedIdResolvedKeyInternal() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertEquals(4, et.getKey().size());
   }
 
   @Test
-  public void checkEmbeddedIdResovedKeyCorrectOrder() throws ODataJPAModelException {
+  public void checkEmbeddedIdResoledKeyCorrectOrder() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertEquals("Language", et.getKey().get(0).getExternalName());
@@ -299,7 +299,7 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkCompoundResovedKeyCorrectOrder() throws ODataJPAModelException {
+  public void checkCompoundResolvedKeyCorrectOrder() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivision"), schema);
     assertEquals("DivisionCode", et.getKey().get(0).getExternalName());
@@ -308,14 +308,14 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   }
 
   @Test
-  public void checkEmbeddedIdResovedPath() throws ODataJPAModelException {
+  public void checkEmbeddedIdResolvedPath() throws ODataJPAModelException {
     JPAStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertEquals(5, et.getPathList().size());
   }
 
   @Test
-  public void checkEmbeddedIdResovedPathCodeId() throws ODataJPAModelException {
+  public void checkEmbeddedIdResolvedPathCodeId() throws ODataJPAModelException {
     JPAStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "AdministrativeDivisionDescription"), schema);
     assertEquals(2, et.getPath("CodeID").getPath().size());

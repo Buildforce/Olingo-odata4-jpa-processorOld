@@ -241,4 +241,4 @@ private Object findEntity(final JPARequestEntity requestEntity, EntityManager em
 
 Please note that error handling has been skipped and that the interface of method `processRelatedEntities` has refactored.
 
-After we have executed the batch POST request, we can check if everything went well with the following GET request:  `.../Tutorial/Tutorial.svc/AdministrativeDivisions?$filter=contains(DivisionCode, 'DEF')&$expand=Parent`
+After we have executed the batch POST request, we can check if everything went well with the following GET request: `.../Tutorial/Tutorial.svc/AdministrativeDivisions?$filter=contains(DivisionCode, 'DEF')&$expand=Parent`

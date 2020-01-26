@@ -83,7 +83,7 @@ public class AdministrativeDivision implements KeyAccess {
   private String parentDivisionCode;
   @Column(name = "\"AlternativeCode\"", length = 10)
   private String alternativeCode;
-  @Column(name = "\"Area\"") // , precision = 34, scale = 0)
+  @Column(name = "\"Area\"") //, precision = 34, scale = 0)
   private Integer area = 0;
   @Column(name = "\"Population\"", precision = 34)
   private long population;

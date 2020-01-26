@@ -30,7 +30,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.AbcClassification;
 public class TestIntermediateEntitySet extends TestMappingRoot {
   private IntermediateSchema schema;
   private Set<EntityType<?>> etList;
-  private JPADefaultEdmNameBuilder namebuilder;
+  private JPADefaultEdmNameBuilder nameBuilder;
 
   @BeforeEach
   public void setup() throws ODataJPAModelException {
@@ -39,16 +39,16 @@ public class TestIntermediateEntitySet extends TestMappingRoot {
     when(r.getTypesAnnotatedWith(EdmEnumeration.class)).thenReturn(new HashSet<>(Collections.singletonList(AbcClassification.class)));
 
     etList = emf.getMetamodel().getEntities();
-    namebuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
-    schema = new IntermediateSchema(namebuilder, emf.getMetamodel(), r);
+    nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
+    schema = new IntermediateSchema(nameBuilder, emf.getMetamodel(), r);
   }
 
   @Test
   public void checkAnnotationSet() throws ODataJPAModelException {
     IntermediateModelElement.setPostProcessor(new PostProcessor());
-    IntermediateEntityType et = new IntermediateEntityType(namebuilder, getEntityType(
+    IntermediateEntityType et = new IntermediateEntityType(nameBuilder, getEntityType(
         "AdministrativeDivisionDescription"), schema);
-    IntermediateEntitySet set = new IntermediateEntitySet(namebuilder, et);
+    IntermediateEntitySet set = new IntermediateEntitySet(nameBuilder, et);
     List<CsdlAnnotation> act = set.getEdmItem().getAnnotations();
     assertEquals(1, act.size());
     assertEquals("Capabilities.TopSupported", act.get(0).getTerm());
@@ -58,7 +58,7 @@ public class TestIntermediateEntitySet extends TestMappingRoot {
   public void checkODataEntityTypeDiffers() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BestOrganization"), schema);
-    IntermediateEntitySet set = new IntermediateEntitySet(namebuilder, et);
+    IntermediateEntitySet set = new IntermediateEntitySet(nameBuilder, et);
 
     JPAEntityType odataEt = set.getODataEntityType();
     assertEquals("BusinessPartner", odataEt.getExternalName());
@@ -68,7 +68,7 @@ public class TestIntermediateEntitySet extends TestMappingRoot {
   public void checkODataEntityTypeSame() throws ODataJPAModelException {
     IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "Organization"), schema);
-    IntermediateEntitySet set = new IntermediateEntitySet(namebuilder, et);
+    IntermediateEntitySet set = new IntermediateEntitySet(nameBuilder, et);
 
     JPAEntityType odataEt = set.getODataEntityType();
     assertEquals("Organization", odataEt.getExternalName());
@@ -78,7 +78,7 @@ public class TestIntermediateEntitySet extends TestMappingRoot {
   public void checkEdmItemContainsODataEntityType() throws ODataJPAModelException {
     final IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         getEntityType("BestOrganization"), schema);
-    final IntermediateEntitySet set = new IntermediateEntitySet(namebuilder, et);
+    final IntermediateEntitySet set = new IntermediateEntitySet(nameBuilder, et);
     final CsdlEntitySet act = set.getEdmItem();
     assertEquals(et.buildFQN("BusinessPartner").getFullQualifiedNameAsString(), act.getType());
   }
@@ -86,8 +86,8 @@ public class TestIntermediateEntitySet extends TestMappingRoot {
   @Test
   public void checkPostProcessorExternalNameChanged() throws ODataJPAModelException {
     IntermediateModelElement.setPostProcessor(new PostProcessor());
-    IntermediateEntityType et = new IntermediateEntityType(namebuilder, getEntityType("BusinessPartner"), schema);
-    IntermediateEntitySet set = new IntermediateEntitySet(namebuilder, et);
+    IntermediateEntityType et = new IntermediateEntityType(nameBuilder, getEntityType("BusinessPartner"), schema);
+    IntermediateEntitySet set = new IntermediateEntitySet(nameBuilder, et);
     set.getEdmItem(); // Trigger build of EdmEntitySet
 
     assertEquals("BusinessPartnerList", set.getExternalName(), "Wrong name");

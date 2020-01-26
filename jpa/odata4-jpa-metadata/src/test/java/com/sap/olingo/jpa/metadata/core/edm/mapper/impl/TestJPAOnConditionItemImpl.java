@@ -22,7 +22,7 @@ public class TestJPAOnConditionItemImpl {
   }
 
   @Test
-  public void checkThowsExceptionOnMissingRight() {
+  public void checkThrowsExceptionOnMissingRight() {
     final JPAPath leftAttribute = mock(JPAPath.class);
 
     final ODataJPAModelException act = assertThrows(ODataJPAModelException.class,

@@ -162,7 +162,7 @@ public class TestJPAArithmeticOperator {
     } catch (ODataApplicationException e) {
       return;
     }
-    fail("Exception expecetd");
+    fail("Exception expected");
   }
 
   @Test
@@ -176,6 +176,6 @@ public class TestJPAArithmeticOperator {
     } catch (ODataApplicationException e) {
       return;
     }
-    fail("Exception expecetd");
+    fail("Exception expected");
   }
 }

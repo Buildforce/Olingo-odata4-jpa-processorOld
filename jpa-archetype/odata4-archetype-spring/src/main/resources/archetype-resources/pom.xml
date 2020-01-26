@@ -68,12 +68,12 @@
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata4-jpa-processor</artifactId>
-			<version>${jpa.processor.version}</version>
+			<version>${jpa-processor.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata4-jpa-spring-support</artifactId>
-			<version>${jpa.processor.version}</version>
+			<version>${jpa-processor.version}</version>
 		</dependency>
 
 		<dependency>
@@ -95,11 +95,11 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-<!--		<dependency>
+		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>spring-mock-mvc</artifactId>
 			<scope>test</scope>
-		</dependency>-->
+		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -112,7 +112,6 @@
 			<version>1.6.0</version><!--$NO-MVN-MAN-VER$-->
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>

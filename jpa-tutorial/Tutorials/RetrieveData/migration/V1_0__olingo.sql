@@ -2,7 +2,7 @@ SET schema "OLINGO";
 
 --------BUSINESS PARTNER---------------------------------------------------------------------------------------------------------
 CREATE TABLE "BusinessPartner" (
-	"ID" VARCHAR(32) NOT NULL ,
+	"ID" VARCHAR(32) NOT NULL,
 	"ETag" BIGINT,
 	"Type" VARCHAR(2),
 	"CustomString1" VARCHAR(250),
@@ -25,9 +25,9 @@ CREATE TABLE "BusinessPartner" (
     "Telecom.Mobile" VARCHAR(100),
     "Telecom.Fax" VARCHAR(100),
     "Telecom.Email" VARCHAR(100),
-	"CreatedBy" VARCHAR(32) NOT NULL ,
+	"CreatedBy" VARCHAR(32) NOT NULL,
 	"CreatedAt" TIMESTAMP,
-	"UpdatedBy" VARCHAR(32) NOT NULL ,
+	"UpdatedBy" VARCHAR(32) NOT NULL,
 	"UpdatedAt" TIMESTAMP,
     "Country" VARCHAR(4),
     "ABCClass" VARCHAR(1),
@@ -50,7 +50,7 @@ insert into "BusinessPartner" values ('97', 0, '1', '','',null,null,'Urs','Müll
 
 --------BUSINESS PARTNER ROLE----------------------------------------------------------------------------------------------------
 CREATE TABLE "BusinessPartnerRole" (
-	"BusinessPartnerID" NVARCHAR(32) NOT NULL ,
+	"BusinessPartnerID" NVARCHAR(32) NOT NULL,
 	"BusinessPartnerRole" NVARCHAR(10) NOT NULL,
      PRIMARY KEY ("BusinessPartnerID","BusinessPartnerRole"));
 
@@ -67,7 +67,7 @@ CREATE TABLE "AdministrativeDivisionDescription"(
 	"CodePublisher" NVARCHAR(10) NOT NULL,
 	"CodeID" NVARCHAR(10) NOT NULL,
 	"DivisionCode" NVARCHAR(10) NOT NULL,
-	"LanguageISO" NVARCHAR(4) NOT NULL ,
+	"LanguageISO" NVARCHAR(4) NOT NULL,
 	"Name" NVARCHAR(100) NOT NULL,
 
      PRIMARY KEY ("CodePublisher", "CodeID", "DivisionCode","LanguageISO"));
@@ -363,7 +363,7 @@ CREATE TABLE "AdministrativeDivision"(
 	"CodePublisher" NVARCHAR(10) NOT NULL,
 	"CodeID" NVARCHAR(10) NOT NULL,
 	"DivisionCode" NVARCHAR(10) NOT NULL,
-	"CountryISOCode" NVARCHAR(4) NOT NULL ,
+	"CountryISOCode" NVARCHAR(4) NOT NULL,
 	"ParentCodeID" NVARCHAR(10),
 	"ParentDivisionCode" NVARCHAR(10),
 	"AlternativeCode" NVARCHAR(10),
@@ -580,7 +580,7 @@ insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38016','BEL','
 insert into "AdministrativeDivision" values( 'Eurostat', 'LAU2', '38025','BEL','NUTS3','BE258',null,96339703,11509);
 
 CREATE TABLE "Comment" (
-	"BusinessPartnerID" VARCHAR(32) NOT NULL ,
+	"BusinessPartnerID" VARCHAR(32) NOT NULL,
 	"Order" INTEGER NOT NULL,
 	"Text" VARCHAR(280),
 	 PRIMARY KEY ("BusinessPartnerID", "Order"));
@@ -590,11 +590,11 @@ insert into "Comment" values( '1', 3, 'This is another test');
 
 --------DUMMY FOR TESTING--------------------------------------------------------------------------------------------------------
 CREATE TABLE "DummyToBeIgnored" (
-	"ID" NVARCHAR(32) NOT NULL ,
+	"ID" NVARCHAR(32) NOT NULL,
 	 PRIMARY KEY ("ID"));
 
 --------User defined scalar functions--------------------------------------------------------------------------------------------
-CREATE FUNCTION  OLINGO."PopulationDensity" ("Area" BIGINT, "Population" BIGINT )
+CREATE FUNCTION OLINGO."PopulationDensity" ("Area" BIGINT, "Population" BIGINT )
 	RETURNS DOUBLE
 BEGIN ATOMIC
 	IF "Area" <= 0 THEN RETURN 0;
@@ -602,7 +602,7 @@ BEGIN ATOMIC
 	END IF;
 END;
 
-CREATE FUNCTION  OLINGO."ConvertToQkm" ("Area" BIGINT )
+CREATE FUNCTION OLINGO."ConvertToQkm" ("Area" BIGINT )
 	RETURNS BIGINT
 BEGIN ATOMIC
     IF "Area" <= 0 THEN RETURN 0;
@@ -610,7 +610,7 @@ BEGIN ATOMIC
     END IF;
 END;
 
-CREATE FUNCTION  "Siblings" ("Publisher" VARCHAR(10), "ID" VARCHAR(10), "Division" VARCHAR(10))
+CREATE FUNCTION "Siblings" ("Publisher" VARCHAR(10), "ID" VARCHAR(10), "Division" VARCHAR(10))
 	RETURNS TABLE(
 		"CodePublisher" VARCHAR(10),
 		"CodeID" VARCHAR(10),
@@ -620,7 +620,7 @@ CREATE FUNCTION  "Siblings" ("Publisher" VARCHAR(10), "ID" VARCHAR(10), "Divisio
 		"ParentDivisionCode" VARCHAR(10),
 		"AlternativeCode" VARCHAR(10),
 		"Area" int,
-"Population" BIGINT)
+		"Population" BIGINT)
 	READS SQL DATA
 	RETURN TABLE( SELECT *
 FROM "AdministrativeDivision" as a
@@ -628,11 +628,11 @@ WHERE
 					EXISTS (SELECT "CodePublisher"
 							FROM "AdministrativeDivision" as b
 WHERE b."CodeID" = "ID"
-							AND   b."DivisionCode" = "Division"
-AND   b."CodePublisher" = a."CodePublisher"
-							AND   b."ParentCodeID" = a."ParentCodeID"
-							AND   b."ParentDivisionCode" = a."ParentDivisionCode")
+							AND b."DivisionCode" = "Division"
+							AND b."CodePublisher" = a."CodePublisher"
+							AND b."ParentCodeID" = a."ParentCodeID"
+							AND b."ParentDivisionCode" = a."ParentDivisionCode")
 AND NOT( a."CodePublisher" = "Publisher"
-					AND  a."CodeID" = "ID"
-					AND  a."DivisionCode" = "Division" )
+					AND a."CodeID" = "ID"
+					AND a."DivisionCode" = "Division" )
 				);

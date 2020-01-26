@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 
 import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.commons.api.ex.ODataException;
-import org.apache.olingo.server.api.debug.DebugSupport;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;

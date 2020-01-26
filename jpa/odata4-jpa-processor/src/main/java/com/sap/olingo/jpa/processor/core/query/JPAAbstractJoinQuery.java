@@ -305,7 +305,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     // .../Organizations?$orderby=Roles/$count desc,Address/Country asc -->two items
     //
     // SQL example to order by number of entities of the
-    // SELECT t0."BusinessPartnerID" ,COUNT(t1."BusinessPartnerID")
+    // SELECT t0."BusinessPartnerID",COUNT(t1."BusinessPartnerID")
     // FROM {oj "OLINGO"."org.apache.olingo.jpa::BusinessPartner" t0
     // LEFT OUTER JOIN "OLINGO"."org.apache.olingo.jpa::BusinessPartnerRole" t1
     // ON (t1."BusinessPartnerID" = t0."BusinessPartnerID")} //NOSONAR

@@ -131,7 +131,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     final UriResourceProperty uriProperty = mock(UriResourceProperty.class);
     pathParts.add(uriProperty);
     when(uriProperty.getProperty()).thenReturn(odataProperty);
-    when(odataProperty.getName()).thenReturn("StreenName");
+    when(odataProperty.getName()).thenReturn("StreetName");
 
     when(request.getMethod()).thenReturn(HttpMethod.PUT);
 
@@ -585,7 +585,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testOwnTransactionCommited() throws ODataException {
+  public void testOwnTransactionCommitted() throws ODataException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 

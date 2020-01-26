@@ -235,7 +235,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectTextJoinCompextType() throws ODataException {
+  public void checkSelectTextJoinComplexType() throws ODataException {
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
     joinTables.put(jpaEntityType.getInternalName(), root);
