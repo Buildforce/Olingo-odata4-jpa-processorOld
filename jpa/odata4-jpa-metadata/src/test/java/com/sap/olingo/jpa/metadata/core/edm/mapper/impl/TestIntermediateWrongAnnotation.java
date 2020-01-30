@@ -39,8 +39,8 @@ public class TestIntermediateWrongAnnotation {
 
   @BeforeEach
   public void setup() throws ODataJPAModelException {
-    emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, DataSourceHelper.createDataSource(
-        DataSourceHelper.DB_HSQLDB));
+    emf = JPAEntityManagerFactory
+            .getEntityManagerFactory(PUNIT_NAME, DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB));
     helper = new TestHelper(emf.getMetamodel(), PUNIT_NAME);
   }
 

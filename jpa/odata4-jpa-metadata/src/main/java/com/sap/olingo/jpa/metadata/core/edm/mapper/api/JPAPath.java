@@ -18,7 +18,7 @@ public interface JPAPath extends Comparable<JPAPath> {
   String getAlias();
 
   /**
-   * @return the name of the data base table/view column of the leaf of a path
+   * @return the name of the database table/view column of the leaf of a path
    */
   String getDBFieldName();
 

@@ -19,21 +19,16 @@ public class BusinessPartnerRoleKey implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-	    if (this == obj)
-		    return true;
-	    if (obj == null)
-		    return false;
-	    if (getClass() != obj.getClass())
-		    return false;
+	    if (this == obj) return true;
+	    if (obj == null) return false;
+	    if (getClass() != obj.getClass()) return false;
 	    BusinessPartnerRoleKey other = (BusinessPartnerRoleKey) obj;
 	    if (businessPartnerID == null) {
-		    if (other.businessPartnerID != null)
-			    return false;
+		    if (other.businessPartnerID != null) return false;
 	    } else if (!businessPartnerID.equals(other.businessPartnerID))
 		    return false;
-	    if (roleCategory == null) {
-		    return other.roleCategory == null;
-	    } else return roleCategory.equals(other.roleCategory);
+	    if (roleCategory == null) return other.roleCategory == null;
+	    return roleCategory.equals(other.roleCategory);
 	    }
 
     @Override
@@ -46,49 +41,72 @@ public class BusinessPartnerRoleKey implements Serializable {
     }
 }
 ```
-Now we can create class BusinessPartnerRole, which has not more than the key values:
+Now we can create class BusinessPartnerRoleEntity, which has not more than the key values:
 ```Java
 package tutorial.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import org.eclipse.persistence.annotations.ReadOnly;
 
-@IdClass(BusinessPartnerRoleKey.class)
-@ReadOnly
-@Entity(name = "BusinessPartnerRole")
-@Table(schema = "\"OLINGO\"", name = "\"BusinessPartnerRole\"")
-public class BusinessPartnerRole {
-  @Id
-  @Column(name = "\"BusinessPartnerID\"")
-  private String businessPartnerID;
+import javax.persistence.*;
+import java.util.Objects;
 
-  @Id
-  @Column(name = "\"BusinessPartnerRole\"")
-  private String roleCategory;
+@Entity
+// @ReadOnly
+@Table(name = "BusinessPartnerRole", schema = "OLINGO")
+@IdClass(BusinessPartnerRoleEntityPK.class)
+public class BusinessPartnerRoleEntity {
+    private String businessPartnerId;
+    private String businessPartnerRole;
+    private BusinessPartnerEntity businessPartnerByBusinessPartnerId;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
-  @JoinColumn(name = "\"BusinessPartnerID\"", insertable = false, updatable = false)
-  private BusinessPartner businessPartner;
+    @Id
+    @Column(name = "BusinessPartnerID", nullable = false, length = 32)
+    public String getBusinessPartnerId() {
+        return businessPartnerId;
+    }
 
-  public String getBusinessPartnerID() {
-    return businessPartnerID;
-  }
+    public void setBusinessPartnerId(String businessPartnerId) {
+        this.businessPartnerId = businessPartnerId;
+    }
 
-  public String getRoleCategory() {
-        return roleCategory;
-  }
+    @Id
+    @Column(name = "BusinessPartnerRole", nullable = false, length = 10)
+    public String getBusinessPartnerRole() {
+        return businessPartnerRole;
+    }
 
-  public BusinessPartner getBusinessPartner() {
-     return businessPartner;
-  }
+    public void setBusinessPartnerRole(String businessPartnerRole) {
+        this.businessPartnerRole = businessPartnerRole;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BusinessPartnerRoleEntity that = (BusinessPartnerRoleEntity) o;
+
+        if (!Objects.equals(businessPartnerId, that.businessPartnerId))
+            return false;
+        return Objects.equals(businessPartnerRole, that.businessPartnerRole);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = businessPartnerId != null ? businessPartnerId.hashCode() : 0;
+        result = 31 * result + (businessPartnerRole != null ? businessPartnerRole.hashCode() : 0);
+        return result;
+    }
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "BusinessPartnerID", referencedColumnName = "ID", insertable = false, updatable = false)
+    public BusinessPartnerEntity getBusinessPartnerByBusinessPartnerId() {
+        return businessPartnerByBusinessPartnerId;
+    }
+
+    public void setBusinessPartnerByBusinessPartnerId(BusinessPartnerEntity businessPartnerByBusinessPartnerId) {
+        this.businessPartnerByBusinessPartnerId = businessPartnerByBusinessPartnerId;
+    }
 }
 ```
 The only thing in addition is a JPA Association _private BusinessPartner businessPartner_, which enables us to navigate from a Role to the corresponding Business Partner.
@@ -97,7 +115,7 @@ To be able to do the same in the other direction, so navigate from a Business Pa
 
 (note that we linked both using _mappedBy_):
 ```Java
-public class BusinessPartner implements Serializable {
+/*public class BusinessPartner implements Serializable {
 	...
 	@Column(name = "\"CustomNum2\"", precision = 30, scale = 5)
 	private BigDecimal customNum2;
@@ -108,19 +126,22 @@ public class BusinessPartner implements Serializable {
 	public BusinessPartner() {
 		super();
 	}
-    ...
+    ...*/
 ```
 Last but not least we have to declare the new entity within the persistence.xml:
 
 ```XML
-	<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 	...
-	\<persistence-unit name="Tutorial"\>
-		\<class\>tutorial.model.BusinessPartner\</class\>
-		\<class\>tutorial.model.BusinessPartnerRole\</class\>
-		\<properties\>
+
+    <persistence-unit name="TutorialPU">
+        <class>tutorial.model.BusinessPartnerEntity</class>
+        <class>tutorial.model.BusinessPartnerRoleEntity</class>
+
+        <properties>
 	...
+</persistence>
 ```
 
 If we call _http://localhost:8080/Tutorial/Tutorial.svc/$metadata_ we can see that the metadata document now shows the second entity as well as the introduced navigation. The following picture should give an overview of the metadata mapping:

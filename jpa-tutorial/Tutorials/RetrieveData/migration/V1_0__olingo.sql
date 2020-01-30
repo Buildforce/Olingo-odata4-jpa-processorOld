@@ -50,8 +50,8 @@ insert into "BusinessPartner" values ('97', 0, '1', '','',null,null,'Urs','Müll
 
 --------BUSINESS PARTNER ROLE----------------------------------------------------------------------------------------------------
 CREATE TABLE "BusinessPartnerRole" (
-	"BusinessPartnerID" NVARCHAR(32) NOT NULL,
-	"BusinessPartnerRole" NVARCHAR(10) NOT NULL,
+	"BusinessPartnerID" VARCHAR(32) NOT NULL,
+	"BusinessPartnerRole" VARCHAR(10) NOT NULL,
      PRIMARY KEY ("BusinessPartnerID","BusinessPartnerRole"));
 
 insert into "BusinessPartnerRole" values ('1',  'A');
@@ -64,11 +64,11 @@ insert into "BusinessPartnerRole" values ('7',  'C');
 
 --------ADMINISTRATIVE DIVISION DESCRIPTION--------------------------------------------------------------------------------------
 CREATE TABLE "AdministrativeDivisionDescription"(
-	"CodePublisher" NVARCHAR(10) NOT NULL,
-	"CodeID" NVARCHAR(10) NOT NULL,
-	"DivisionCode" NVARCHAR(10) NOT NULL,
-	"LanguageISO" NVARCHAR(4) NOT NULL,
-	"Name" NVARCHAR(100) NOT NULL,
+	"CodePublisher" VARCHAR(10) NOT NULL,
+	"CodeID" VARCHAR(10) NOT NULL,
+	"DivisionCode" VARCHAR(10) NOT NULL,
+	"LanguageISO" VARCHAR(4) NOT NULL,
+	"Name" VARCHAR(100) NOT NULL,
 
      PRIMARY KEY ("CodePublisher", "CodeID", "DivisionCode","LanguageISO"));
 
@@ -360,13 +360,13 @@ insert into "AdministrativeDivisionDescription" values( 'Eurostat','NUTS3','BE35
 
 --------ADMINISTRATIVE DIVISION--------------------------------------------------------------------------------------------------
 CREATE TABLE "AdministrativeDivision"(
-	"CodePublisher" NVARCHAR(10) NOT NULL,
-	"CodeID" NVARCHAR(10) NOT NULL,
-	"DivisionCode" NVARCHAR(10) NOT NULL,
-	"CountryISOCode" NVARCHAR(4) NOT NULL,
-	"ParentCodeID" NVARCHAR(10),
-	"ParentDivisionCode" NVARCHAR(10),
-	"AlternativeCode" NVARCHAR(10),
+	"CodePublisher" VARCHAR(10) NOT NULL,
+	"CodeID" VARCHAR(10) NOT NULL,
+	"DivisionCode" VARCHAR(10) NOT NULL,
+	"CountryISOCode" VARCHAR(4) NOT NULL,
+	"ParentCodeID" VARCHAR(10),
+	"ParentDivisionCode" VARCHAR(10),
+	"AlternativeCode" VARCHAR(10),
 	"Area" INTEGER, --DECIMAL(34,0),
 	"Population" BIGINT,
 	PRIMARY KEY ("CodePublisher", "CodeID", "DivisionCode"));
@@ -590,7 +590,7 @@ insert into "Comment" values( '1', 3, 'This is another test');
 
 --------DUMMY FOR TESTING--------------------------------------------------------------------------------------------------------
 CREATE TABLE "DummyToBeIgnored" (
-	"ID" NVARCHAR(32) NOT NULL,
+	"ID" VARCHAR(32) NOT NULL,
 	 PRIMARY KEY ("ID"));
 
 --------User defined scalar functions--------------------------------------------------------------------------------------------
@@ -627,12 +627,12 @@ FROM "AdministrativeDivision" as a
 WHERE
 					EXISTS (SELECT "CodePublisher"
 							FROM "AdministrativeDivision" as b
-WHERE b."CodeID" = "ID"
+							WHERE b."CodeID" = "ID"
 							AND b."DivisionCode" = "Division"
 							AND b."CodePublisher" = a."CodePublisher"
 							AND b."ParentCodeID" = a."ParentCodeID"
 							AND b."ParentDivisionCode" = a."ParentDivisionCode")
-AND NOT( a."CodePublisher" = "Publisher"
-					AND a."CodeID" = "ID"
-					AND a."DivisionCode" = "Division" )
+							AND NOT( a."CodePublisher" = "Publisher"
+					             AND a."CodeID" = "ID"
+					             AND a."DivisionCode" = "Division" )
 				);

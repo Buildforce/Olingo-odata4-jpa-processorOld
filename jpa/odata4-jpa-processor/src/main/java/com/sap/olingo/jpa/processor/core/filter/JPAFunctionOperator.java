@@ -22,7 +22,7 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 
 /**
- * Handle OData Functions that are implemented e.g. as user defined data base functions. This will be mapped
+ * Handle OData Functions that are implemented e.g. as user defined database functions. This will be mapped
  * to JPA criteria builder function().
  *
 
