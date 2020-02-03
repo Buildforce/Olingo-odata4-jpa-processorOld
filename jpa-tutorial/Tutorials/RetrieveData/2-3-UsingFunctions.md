@@ -11,10 +11,10 @@ We have created two functions that we want to use for filtering. We can employ t
 
 ## Function Imports and Bound Functions
 
-Making queries on functions is more difficult. The reason for this is that JPA, at least till version 2.1, does not supported this and that different databases have a different syntax for those queries. Two pattern have been found so far:
+Making queries on functions is more difficult. The reason for this is that JPA, at least till version 2.1, does not support this and that different databases have a different syntax for those queries. Two pattern have been found so far:
 
-* `SELECT * FROM TABLE (<FUNCTIONNAME>(<PARAMETER LIST>))`: E.g. HSQLDB, Derby
-* `SELECT * FROM <FUNCTIONNAME>(<PARAMETER LIST>)`: E.g. SAP HANA,  PostgreSQL
+* `SELECT * FROM TABLE (<FUNCTIONNAME>(<PARAMETER LIST>))`: E.g. HSQLDB, Derby.
+* `SELECT * FROM <FUNCTIONNAME>(<PARAMETER LIST>)`: E.g. SAP HANA, PostgreSQL.
 
 This requires a database specific implementation. The JPA Processor provides the interface
 

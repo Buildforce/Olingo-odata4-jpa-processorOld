@@ -1,43 +1,53 @@
 # 1.2: Use Navigation Properties
-We want to be able to distinguish between different types of Business Partner e.g. a Customer or Supplier or want to know if a Business Partner is both. To do so we introduce a new entity the Business Partner Role. As mentioned it is required that we can assign multiple Roles to a Business Partner, which can be distinguished by the Category. To do so we created a key out of multiple attributes. JPA requires here an Id class:
+We want to be able to distinguish between different types of Business Partner e.g. a Customer or Supplier or want to know if a Business Partner is both. To do so, we introduce a new entity the Business Partner Role. As mentioned it is required that we can assign multiple Roles to a Business Partner, which can be distinguished by the Category. To do so, we created a key out of multiple attributes, JPA requires here an Id class:
 ```Java
 package tutorial.model;
 
-import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class BusinessPartnerRoleKey implements Serializable {
+public class BusinessPartnerRoleEntityPK implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    @Column(name = "\"BusinessPartnerID\"", nullable = false, length = 32)
     @Id
-    @Column(name = "\"BusinessPartnerID\"")
-    private String businessPartnerID;
+    private String businessPartnerId;
+    public String getBusinessPartnerId() {
+        return businessPartnerId;
+    }
+
+    public void setBusinessPartnerId(String businessPartnerId) {
+        this.businessPartnerId = businessPartnerId;
+    }
+
+    @Column(name = "\"BusinessPartnerRole\"", nullable = false, length = 10)
     @Id
-    @Column(name = "\"BusinessPartnerRole\"")
-    private String roleCategory;
+    private String businessPartnerRole;
+    public String getBusinessPartnerRole() {
+        return businessPartnerRole;
+    }
+
+    public void setBusinessPartnerRole(String businessPartnerRole) {
+        this.businessPartnerRole = businessPartnerRole;
+    }
 
     @Override
-    public boolean equals(Object obj) {
-	    if (this == obj) return true;
-	    if (obj == null) return false;
-	    if (getClass() != obj.getClass()) return false;
-	    BusinessPartnerRoleKey other = (BusinessPartnerRoleKey) obj;
-	    if (businessPartnerID == null) {
-		    if (other.businessPartnerID != null) return false;
-	    } else if (!businessPartnerID.equals(other.businessPartnerID))
-		    return false;
-	    if (roleCategory == null) return other.roleCategory == null;
-	    return roleCategory.equals(other.roleCategory);
-	    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BusinessPartnerRoleEntityPK that = (BusinessPartnerRoleEntityPK) o;
+
+        if (!Objects.equals(businessPartnerId, that.businessPartnerId)) return false;
+        return Objects.equals(businessPartnerRole, that.businessPartnerRole);
+    }
 
     @Override
     public int hashCode() {
-	    final int prime = 31;
-	    int result = 1;
-	    result = prime * result + ((businessPartnerID == null) ? 0 : businessPartnerID.hashCode());
-	    result = prime * result + ((roleCategory == null) ? 0 : roleCategory.hashCode());
-	    return result;
+        int result = businessPartnerId != null ? businessPartnerId.hashCode() : 0;
+        result = 31 * result + (businessPartnerRole != null ? businessPartnerRole.hashCode() : 0);
+        return result;
     }
 }
 ```
@@ -52,15 +62,12 @@ import java.util.Objects;
 
 @Entity
 // @ReadOnly
-@Table(name = "BusinessPartnerRole", schema = "OLINGO")
+@Table(name = "\"BusinessPartnerRole\"", schema = "OLINGO")
 @IdClass(BusinessPartnerRoleEntityPK.class)
 public class BusinessPartnerRoleEntity {
-    private String businessPartnerId;
-    private String businessPartnerRole;
-    private BusinessPartnerEntity businessPartnerByBusinessPartnerId;
-
     @Id
-    @Column(name = "BusinessPartnerID", nullable = false, length = 32)
+    @Column(name = "\"BusinessPartnerID\"", nullable = false, length = 32)
+    private String businessPartnerId;
     public String getBusinessPartnerId() {
         return businessPartnerId;
     }
@@ -70,7 +77,8 @@ public class BusinessPartnerRoleEntity {
     }
 
     @Id
-    @Column(name = "BusinessPartnerRole", nullable = false, length = 10)
+    @Column(name = "\"BusinessPartnerRole\"", nullable = false, length = 10)
+    private String businessPartnerRole;
     public String getBusinessPartnerRole() {
         return businessPartnerRole;
     }
@@ -86,8 +94,7 @@ public class BusinessPartnerRoleEntity {
 
         BusinessPartnerRoleEntity that = (BusinessPartnerRoleEntity) o;
 
-        if (!Objects.equals(businessPartnerId, that.businessPartnerId))
-            return false;
+        if (!Objects.equals(businessPartnerId, that.businessPartnerId)) return false;
         return Objects.equals(businessPartnerRole, that.businessPartnerRole);
     }
 
@@ -99,7 +106,9 @@ public class BusinessPartnerRoleEntity {
     }
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "BusinessPartnerID", referencedColumnName = "ID", insertable = false, updatable = false)
+    @JoinColumn(name = "\"BusinessPartnerID\"", referencedColumnName = "ID", insertable = false, updatable = false)
+    private BusinessPartnerEntity businessPartnerByBusinessPartnerId;
+
     public BusinessPartnerEntity getBusinessPartnerByBusinessPartnerId() {
         return businessPartnerByBusinessPartnerId;
     }
@@ -115,18 +124,14 @@ To be able to do the same in the other direction, so navigate from a Business Pa
 
 (note that we linked both using _mappedBy_):
 ```Java
-/*public class BusinessPartner implements Serializable {
+public class BusinessPartnerEntity implements Serializable {
 	...
-	@Column(name = "\"CustomNum2\"", precision = 30, scale = 5)
-	private BigDecimal customNum2;
+    public void setCustomNum2(Long customNum2) { this.customNum2 = customNum2; }
 
-	@OneToMany(mappedBy = "businessPartner", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private Collection<BusinessPartnerRole> roles;
+    @OneToMany(mappedBy = "businessPartnerByBusinessPartnerId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Collection<BusinessPartnerRoleEntity> roles;
 
-	public BusinessPartner() {
-		super();
-	}
-    ...*/
+    ...
 ```
 Last but not least we have to declare the new entity within the persistence.xml:
 

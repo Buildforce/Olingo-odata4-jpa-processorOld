@@ -2,7 +2,7 @@
 
 Since version 3 OData allows the specification of enumeration types. Together with Java enumerations it allows on the one hand to provide a client more details about the allowed values of a property and on the other hand to increase type safety in the code.
 
-OData distinguish between two kinds of enumerations, the once members represent flags and the once the members are not flags. We want have a look at both and see how Java enumerations are used to create OData enumerations.
+OData distinguishes between two kinds of enumerations, the once members represent flags, and the once the members are not flags. We want have a look at both and see how Java enumerations are used to create OData enumerations.
 
 ## Simple Enumerations
 
@@ -18,7 +18,7 @@ public enum AbcClassification {
   A, B, C
 }
 ```
-This enumeration is tagged with a `@EdmEnumeration` so it will be converted into an OData Enumeration, if it is found. As described in [Tutorial 1.8 Functions](1-8-Functions.md) it is necessary to provide the package name to look for the enumerations. Therefore it is required to change our Servlet as follows:
+This enumeration is tagged with a `@EdmEnumeration` so it will be converted into an OData Enumeration, if it is found. As described in [Tutorial 1.8 Functions](1-8-Functions.md) it is necessary to provide the package name to look for the enumerations. Therefore, it is required to change our Servlet as follows:
 ```Java
 ...
 handler.getJPAODataContext().setTypePackage("tutorial.operations", "tutorial.model");
@@ -30,7 +30,7 @@ With that we can already have a look at the metadata document, http://localhost:
 
 As you can see all not given values are filled with default value, which are _false_ for _isFlags_, and _Edm.Int32_, so _Integer_, as _UnderlingType_. The numbering of the members determined via the _ordinal()_ method of the enumeration.
 
-Next we want to extend the company class with a property for the _ABC Class_. So we need to add a corresponding attribute to Company. Even so OData handles enumeration always as numeric values, the _ABC Class_ shall be stored as a String, which is signaled via JPA annotation` @Enumerated(value = EnumType.STRING)`. Please note that in case the property is used in an _orderby_ clause a client expect an order of a number, but would get a order of strings:
+Next we want to extend the company class with a property for the _ABC Class_. So we need to add a corresponding attribute to Company. Even so OData handles enumeration always as numeric values, the _ABC Class_ shall be stored as a String, which is signaled via JPA annotation` @Enumerated(value = EnumType.STRING)`. Please note that in case the property is used in an _orderby_ clause a client expect an order of a number, but would get an order of strings:
 
 ```Java
 package tutorial.model;
@@ -56,7 +56,7 @@ If we have a look at the metadata again, we will find the following:
 ![Mapping of AbcClassification](Metadata/MappingSimpleEnumCompany.png)
 ## Flag Based Enumeration
 
-Here we take over the example given in [Schema Definition Language Documentation](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752565). Our use-case is that we want to be able to get insights into the access rights of a Person. The rights should be  _Read_, _Write_, _Create_ or _Delete_. A person may have multiple right at the same time that's why we need members, which are flags. The flags shall be encoded as short values:
+Here we take over the example given in [Schema Definition Language Documentation](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752565). Our use-case is that we want to be able to get insights into the access rights of a Person. The rights should be _Read_, _Write_, _Create_ or _Delete_. A person may have multiple rights, at the same time that's why we need members, which are flags. The flags shall be encoded as short values:
 
 ```Java
 package tutorial.model;

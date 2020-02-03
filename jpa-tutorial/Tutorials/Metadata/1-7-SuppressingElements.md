@@ -24,6 +24,6 @@ public abstract class BusinessPartner {
   ...
 }
 ```
-As already indicated `@EdmIgnore` can also be used at tables or embeddables. Be aware that there are no special consistency checks in place that prevents you from using an ignored embeddable in an not ignored table.
+As already indicated `@EdmIgnore` can also be used at tables or embeddables. Be aware there are no special consistency checks in place that prevents you from using an ignored embeddable in a not ignored table.
 
 Next step: [Tutorial 1.8 Functions](1-8-Functions.md)

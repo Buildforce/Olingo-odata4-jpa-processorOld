@@ -1,6 +1,6 @@
 # 2.1: Retrieving Data
 As mentioned in the preparation, we have to replace our current service implementation by a new one.
-Up to now we used `JPAEdmProvider`, which creates the service document as well as the metadata document. Now we will use `JPAODataGetHandler`. A handler instance has two contexts objects, on the one hand the service context, which contains information that does not or only changes rarely during lifetime of the service and is shared between all requests, and a request context, which has request specific information.  Please note that an instance of `JPAEdmProvider` is of the service context and gets created automatically.
+Up to now we used `JPAEdmProvider`, which creates the service document as well as the metadata document. Now we will use `JPAODataGetHandler`. A handler instance has two contexts objects, on the one hand the service context, which contains information that does not or only changes rarely during the lifetime of the service and is shared between all requests, and a request context, which has request specific information.  Please note that an instance of `JPAEdmProvider` is of the service context and gets created automatically.
 
 In the tutorial the service context will not change. So it will be put it into the _servlet context_, therefore we created a _listener_ in package _tutorial.service_:
 ```Java
@@ -49,7 +49,7 @@ To trigger the call of the listener it has to be added to the `web.xml`:
   </listener>
 </web-app>
 ```
-Now we have all the peaces to build a service that responses to GET requests
+Now we have all the peaces to build a service responding to GET requests.
 ```Java
 package tutorial.service;
 
@@ -88,7 +88,7 @@ Starting the service we are able to play around with our OData service. We could
 * Retrieve all the Companies: _http://localhost:8080/Tutorial/Tutorial.svc/Companies_
 * Or we want to find out which user had created Company('1'): _http://localhost:8080/Tutorial/Tutorial.svc/Companies('1')/AdministrativeInformation/Created/User_
 * Or we want to get all companies with role _A_: _http://localhost:8080/Tutorial/Tutorial.svc/Companies?$filter=Roles/any(d:d/RoleCategory eq 'A')_
-* Or we want to know which Administrative Division has an Area greater then 40000000: _http://localhost:8080/Tutorial/Tutorial.svc/AdministrativeDivisions?$filter=Area gt 4000000&$count=true_
+* Or we want to know which Administrative Division has an Area greater than 40000000: _http://localhost:8080/Tutorial/Tutorial.svc/AdministrativeDivisions?$filter=Area gt 4000000&$count=true_
 * Or we look for the parents and children of a certain Administrative Division: _http://localhost:8080/Tutorial/Tutorial.svc/AdministrativeDivisions(DivisionCode='BE254',CodeID='NUTS3',CodePublisher='Eurostat')?$expand=Parent($expand=Parent),Children&$format=json_
 * Or we look for ...
 

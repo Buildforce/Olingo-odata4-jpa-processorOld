@@ -1,5 +1,5 @@
 # 4.4 Instance Based Authorizations
-To protect services usually two level of authorizations are used. First level describes if a user is allowed to access a certain entity type or entity set using a certain http verb, also known as scopes. The second level describes, in case a user is allowed to access an entity type, which instances he/she may get or modify, so called instance restrictions. Whereas the first one has to be done outside the JPA Processor e.g. using Spring Security,  we want see how the second one can be implemented e.g. to push down the instance restrictions for GET request down to the database.
+To protect services usually two level of authorizations are used. First level describes if a user is allowed to access a certain entity type or entity set using a certain http verb, also known as scopes. The second level describes, in casea user is allowed to access an entity type, which instances he/she may get or modify, so called instance restrictions. Whereas the first one has to be done outside the JPA Processor e.g. using Spring Security, we want see how the second one can be implemented e.g. to push down the instance restrictions for GET request down to the database.
 
 ## User management in the same service
 The instance restrictions grant access to a set of entities. This is done by providing so called [JPAClaimsPair](../../../jpa/odata-jpa-processor/src/main/java/com/sap/olingo/jpa/processor/core/api/JPAClaimsPair.java). One pair contains of a range providing the upper and lower limit of an attribute that is used to grant access to an entity. These pairs are collected by an instance of [JPAODataClaimsProvider](com/sap/olingo/jpa/processor/core/api/JPAODataClaimsProvider.java).
@@ -9,7 +9,7 @@ For this part, we want to assume that the service we implement also contains the
 ### Examples 1: Restrict access to company by country
 We want to grant access to Companies based on their location or in other words user are responsible for Companies from one or multiple countries and should only access those.
 
-First we need to create a table to store the user. Beside User Name and Password (not important for the tutorial) we want to be able to assign a user to a User Group and to enable/disable user. The following SQL snippet, which need to be added to the [migration document](../RetrieveData/migration/V1_0__olingo.sql), shows the creation of the User table and the creation of three user:
+First we need to create a table to store the user. Beside User Name and Password (not important for the tutorial) we want to be able to assigna user to a User Group and to enable/disable user. The following SQL snippet, which need to be added to the [migration document](../RetrieveData/migration/V1_0__olingo.sql), shows the creation of the User table and the creation of three user:
 
 ```SQL
 CREATE TABLE "User" (
@@ -149,7 +149,7 @@ No we can run some queries. As we need to set the Authentication header, we need
 
 ![JPA - OData Mapping](Images/ExampleByCountry.JPG)
 
-Feel free to use another user or to play around with the database entries. You can also have a look what happens with
+Feel free to use another user or to play around with the database entries. You can also have a look what happens with:
 
 `.../CompanyProtectedByCountries?$expand=Roles` or `.../Roles`. You will notice that `.../Roles` is not protected. In cases like this a user can see ids of Companies the user is not allowed to see. Depending on the use case this may be a problem. Various solutions exists for this. Here some of them:
 1. Create a unique Id for Roles and hide the company id.
@@ -264,8 +264,8 @@ public class CompanyProtectedByRole {
 ```
 
 ## Important note
-The mentioned mechanism creating a join allows a quick and easy introduction of instance restrictions, but comes with a draw back. The join introduces a new field/property without (business) relevance. This can lead at `$filter` requests to unwanted results. Lets have a look at a small example:<br>
-Lets assume that not all user shall see all the Roles of a Company, so we create a join for roles as well:
+The mentioned mechanism creating a join allows a quick and easy introduction of instance restrictions, but comes with a draw back. The join introduces a new field/property without (business) relevance. This can lead at `$filter` requests to unwanted results. Let us have a look at a small example:<br>
+Let assume that not all user shall see all the Roles of a Company, so we create a join for roles as well:
 ```SQL
 CREATE TABLE "RoleRestriction" (
 
@@ -315,7 +315,7 @@ SELECT DISTINCT t0."ID"
 ```
 no way of creating this using JPQL is known. Two options to prevent this are known:
 1. In case User Name (or User Id) for joining, do not support wild cards
-1. Spend an additional database round trip and read the claims before calling the jpa processor and feed the claims provider with the read values.
+1. Spend an additional database round trip and read the claims before calling the jpa processor and feed the claims' provider with the read values.
 
 ## Additional Remarks
 If user and authorities are not handled by the service itself, but e.g. via a JWT, all relevant properties have to be forwarded via `JPAODataClaimsProvider`.

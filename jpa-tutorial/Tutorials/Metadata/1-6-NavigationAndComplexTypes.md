@@ -1,206 +1,282 @@
 # 1.6: Navigation Properties And Complex Types
 You may have noticed, that the address has a region. We want to give the opportunity to get more details about the region.
 So we need to create navigation property to an entity that has this details. The entity, AdministrativeDivision, can contain e.g. the population and the area or a link to a super-ordinate
-region and is the last one we create. AdministrativeDivision, as  AdministrativeDivisionDescription, has a key build out of three attributes, so as usual we need a separate class for the key:
+region and is the last one we create. AdministrativeDivision, as AdministrativeDivisionDescription, has a key build out of three attributes, so as usual we need a separate class for the key:
 ```Java
 package tutorial.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Objects;
 
-@Embeddable
-public class AdministrativeDivisionKey implements Serializable {
+public class AdministrativeDivisionEntityPK implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    @Column(name = "\"CodePublisher\"", length = 10)
+    @Id
+    private String codePublisher;
 
-	@Column(name = "\"CodePublisher\"", length = 10)
-	private String codePublisher;
+    public String getCodePublisher() { return codePublisher; }
 
-	@Column(name = "\"CodeID\"", length = 10)
-	private String codeID;
+    public void setCodePublisher(String codePublisher) { this.codePublisher = codePublisher; }
 
-	@Column(name = "\"DivisionCode\"", length = 10)
-	private String divisionCode;
+    @Column(name = "\"CodeID\"", length = 10)
+    @Id
+    private String codeId;
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codeID == null) ? 0 : codeID.hashCode());
-		result = prime * result + ((codePublisher == null) ? 0 : codePublisher.hashCode());
-		result = prime * result + ((divisionCode == null) ? 0 : divisionCode.hashCode());
-		return result;
-	}
+    public String getCodeId() { return codeId; }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AdministrativeDivisionKey other = (AdministrativeDivisionKey) obj;
-		if (codeID == null) {
-			if (other.codeID != null)
-				return false;
-		} else if (!codeID.equals(other.codeID))
-			return false;
-		if (codePublisher == null) {
-			if (other.codePublisher != null)
-				return false;
-		} else if (!codePublisher.equals(other.codePublisher))
-			return false;
-		if (divisionCode == null) {
-			return other.divisionCode == null;
-		} else return divisionCode.equals(other.divisionCode);
-		}
+    public void setCodeId(String codeId) { this.codeId = codeId; }
+
+    @Column(name = "\"DivisionCode\"", length = 10)
+    @Id
+    private String divisionCode;
+
+    public String getDivisionCode() { return divisionCode; }
+
+    public void setDivisionCode(String divisionCode) {
+        this.divisionCode = divisionCode; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AdministrativeDivisionEntityPK that = (AdministrativeDivisionEntityPK) o;
+
+        if (!Objects.equals(codePublisher, that.codePublisher)) return false;
+        if (!Objects.equals(codeId, that.codeId)) return false;
+        return Objects.equals(divisionCode, that.divisionCode);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = codePublisher != null ? codePublisher.hashCode() : 0;
+        result = 31 * result + (codeId != null ? codeId.hashCode() : 0);
+        result = 31 * result + (divisionCode != null ? divisionCode.hashCode() : 0);
+        return result;
+    }
+
 }
 ```
 With that we can create AdministrativeDivision:
 ```Java
 package tutorial.model;
 
+import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@IdClass(AdministrativeDivisionKey.class)
 @Entity(name = "AdministrativeDivision")
-@Table(schema = "\"OLINGO\"", name = "\"AdministrativeDivision\"")
-public class AdministrativeDivision {
+@Table(name = "\"AdministrativeDivision\"", schema = "OLINGO")
+@IdClass(AdministrativeDivisionEntityPK.class)
+public class AdministrativeDivisionEntity {
+    @Id
+    @Column(name = "\"CodePublisher\"", length = 10)
+    private String codePublisher;
 
-  @Id
-  @Column(name = "\"CodePublisher\"", length = 10)
-  private String codePublisher;
-  @Id
-  @Column(name = "\"CodeID\"", length = 10)
-  private String codeID;
-  @Id
-  @Column(name = "\"DivisionCode\"", length = 10)
-  private String divisionCode;
+    public String getCodePublisher() { return codePublisher; }
 
-  @Column(name = "\"CountryISOCode\"", length = 4)
-  private String countryCode;
-  @Column(name = "\"ParentCodeID\"", length = 10, insertable = false, updatable = false)
-  private String parentCodeID;
-  @Column(name = "\"ParentDivisionCode\"", length = 10, insertable = false, updatable = false)
-  private String parentDivisionCode;
-  @Column(name = "\"AlternativeCode\"", length = 10)
-  private String alternativeCode;
-  @Column(name = "\"Area\"")
-  private Integer area;
-  @Column(name = "\"Population\"")
-  private Long population;
+    public void setCodePublisher(String codePublisher) { this.codePublisher = codePublisher; }
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = true)
-  @JoinColumns({
-      @JoinColumn(referencedColumnName = "\"CodePublisher\"", name = "\"CodePublisher\"", nullable = false,
-          insertable = false, updatable = false),
-      @JoinColumn(referencedColumnName = "\"CodeID\"", name = "\"ParentCodeID\"", nullable = false, insertable = true,
-          updatable = true),
-      @JoinColumn(referencedColumnName = "\"DivisionCode\"", name = "\"ParentDivisionCode\"", nullable = false,
-          insertable = true, updatable = true) })
-  private AdministrativeDivision parent;
+    @Id
+    @Column(name = "\"CodeID\"", length = 10)
+    private String codeId;
 
-  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-  private List<AdministrativeDivision> children;
+    public String getCodeId() { return codeId; }
+
+    public void setCodeId(String codeId) { this.codeId = codeId; }
+
+    @Id
+    @Column(name = "\"DivisionCode\"", length = 10)
+    private String divisionCode;
+
+    public String getDivisionCode() { return divisionCode; }
+
+    public void setDivisionCode(String divisionCode) { this.divisionCode = divisionCode; }
+
+    @Basic
+    @Column(name = "\"CountryISOCode\"", length = 4)
+    private String countryIsoCode;
+
+    public String getCountryIsoCode() { return countryIsoCode; }
+
+    public void setCountryIsoCode(String countryIsoCode) { this.countryIsoCode = countryIsoCode; }
+
+    @Basic
+    @Column(name = "\"ParentCodeID\"", length = 10, insertable = false, updatable = false)
+    private String parentCodeId;
+
+    public String getParentCodeId() { return parentCodeId; }
+
+    public void setParentCodeId(String parentCodeId) { this.parentCodeId = parentCodeId; }
+
+    @Basic
+    @Column(name = "\"ParentDivisionCode\"", length = 10, insertable = false, updatable = false)
+    private String parentDivisionCode;
+
+    public String getParentDivisionCode() { return parentDivisionCode; }
+
+    public void setParentDivisionCode(String parentDivisionCode) { this.parentDivisionCode = parentDivisionCode; }
+
+    @Basic
+    @Column(name = "\"AlternativeCode\"", length = 10)
+    private String alternativeCode;
+
+    public String getAlternativeCode() { return alternativeCode; }
+
+    public void setAlternativeCode(String alternativeCode) { this.alternativeCode = alternativeCode; }
+
+    @Basic
+    @Column(name = "\"Area\"")
+    private Integer area;
+
+    public Integer getArea() { return area; }
+
+    public void setArea(Integer area) { this.area = area; }
+
+    @Basic
+    @Column(name = "\"Population\"")
+    private Long population;
+
+    public Long getPopulation() { return population; }
+
+    public void setPopulation(Long population) { this.population = population; }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(referencedColumnName = "\"CodePublisher\"", name = "\"CodePublisher\"", nullable = false, insertable = false, updatable = false),
+            @JoinColumn(referencedColumnName = "\"CodeID\"", name = "\"ParentCodeID\"", nullable = false),
+            @JoinColumn(referencedColumnName = "\"DivisionCode\"", name = "\"ParentDivisionCode\"", nullable = false)
+    })
+    private AdministrativeDivisionEntity parent;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+    private List<AdministrativeDivisionEntity> children;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AdministrativeDivisionEntity that = (AdministrativeDivisionEntity) o;
+
+        if (!Objects.equals(codePublisher, that.codePublisher)) return false;
+        if (!Objects.equals(codeId, that.codeId)) return false;
+        if (!Objects.equals(divisionCode, that.divisionCode)) return false;
+        if (!Objects.equals(countryIsoCode, that.countryIsoCode)) return false;
+        if (!Objects.equals(parentCodeId, that.parentCodeId)) return false;
+        if (!Objects.equals(parentDivisionCode, that.parentDivisionCode)) return false;
+        if (!Objects.equals(alternativeCode, that.alternativeCode)) return false;
+        if (!Objects.equals(area, that.area)) return false;
+        return Objects.equals(population, that.population);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = codePublisher != null ? codePublisher.hashCode() : 0;
+        result = 31 * result + (codeId != null ? codeId.hashCode() : 0);
+        result = 31 * result + (divisionCode != null ? divisionCode.hashCode() : 0);
+        result = 31 * result + (countryIsoCode != null ? countryIsoCode.hashCode() : 0);
+        result = 31 * result + (parentCodeId != null ? parentCodeId.hashCode() : 0);
+        result = 31 * result + (parentDivisionCode != null ? parentDivisionCode.hashCode() : 0);
+        result = 31 * result + (alternativeCode != null ? alternativeCode.hashCode() : 0);
+        result = 31 * result + (area != null ? area.hashCode() : 0);
+        result = 31 * result + (population != null ? population.hashCode() : 0);
+        return result;
+    }
+
+}
 ```
 Please note, that with the current design it is not possible to create a link between regions of different code publisher.
-Having done that, we can create a association from the address to a administrative division:
+Having done that, we can create an association from the address to an administrative division:
 ```Java
 @Embeddable
-public class PostalAddressData {
+public class PostalDataEntity {
 	...
-	@Column(name = "\"Address.Region\"")
-	private String region;
+    @Basic
+    @Column(name ="ADDRESS_REGION", length = 100)
+    private String region;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "\"Address.RegionCodePublisher\"", referencedColumnName = "\"CodePublisher\"", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "\"Address.RegionCodeID\"", referencedColumnName = "\"CodeID\"", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "\"Address.Region\"", referencedColumnName = "\"DivisionCode\"", nullable = false, insertable = false, updatable = false) })
-	private AdministrativeDivision administrativeDivision;
+    public String getRegion() { return region; }
+
+    public void setRegion(String addressRegion) { this.region = addressRegion; }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(name = "ADDRESS_REGIONCODEPUBLISHER", referencedColumnName = "\"CodePublisher\"", nullable = false, insertable = false, updatable = false),
+            @JoinColumn(name = "ADDRESS_REGIONCODEID", referencedColumnName = "\"CodeID\"", nullable = false, insertable = false, updatable = false),
+            @JoinColumn(name = "ADDRESS_REGION", referencedColumnName = "\"DivisionCode\"", nullable = false, insertable = false, updatable = false) })
+    private AdministrativeDivisionEntity administrativeDivision;
 ```
 If we would now have a look at the metadata, we will notice the navigation property at the complex type PostalAddressData.
 ```XML
-<ComplexType Name="PostalAddressData">
-	<Property Name="POBox" Type="Edm.String" MaxLength="255"/>
-	<Property Name="Country" Type="Edm.String" MaxLength="255"/>
-	<Property Name="StreetName" Type="Edm.String" MaxLength="255"/>
-	<Property Name="CityName" Type="Edm.String" MaxLength="255"/>
-	<Property Name="PostalCode" Type="Edm.String" MaxLength="255"/>
-	<Property Name="HouseNumber" Type="Edm.String" MaxLength="255"/>
-	<Property Name="RegionCodePublisher" Type="Edm.String" DefaultValue="ISO" MaxLength="10"/>
-	<Property Name="Region" Type="Edm.String" MaxLength="255"/>
-	<Property Name="RegionCodeID" Type="Edm.String" DefaultValue="3166-2" MaxLength="10"/>
-	<NavigationProperty Name="AdministrativeDivision" Type="Tutorial.AdministrativeDivision">
-		<ReferentialConstraint Property="RegionCodePublisher" ReferencedProperty="CodePublisher"/>
-		<ReferentialConstraint Property="RegionCodeID" ReferencedProperty="CodeID"/>
-		<ReferentialConstraint Property="Region" ReferencedProperty="DivisionCode"/>
-	</NavigationProperty>
+<ComplexType Name="PostalDataEntity">
+  <Property Name="Country" Type="Edm.String" MaxLength="100"/>
+  <Property Name="StreetName" Type="Edm.String" MaxLength="200"/>
+  <Property Name="POBox" Type="Edm.String" MaxLength="60"/>
+  <Property Name="CityName" Type="Edm.String" MaxLength="100"/>
+  <Property Name="PostalCode" Type="Edm.String" MaxLength="60"/>
+  <Property Name="HouseNumber" Type="Edm.String" MaxLength="60"/>
+  <Property Name="RegionCodePublisher" Type="Edm.String" Nullable="false" DefaultValue="ISO" MaxLength="10"/>
+  <Property Name="Region" Type="Edm.String" MaxLength="100"/>
+  <Property Name="RegionDescriptions" Type="Edm.String" MaxLength="100"/>
+  <Property Name="RegionCodeId" Type="Edm.String" Nullable="false" DefaultValue="3166-2" MaxLength="10"/>
+  <NavigationProperty Name="AdministrativeDivision" Type="TutorialPU.AdministrativeDivision">
+    <ReferentialConstraint Property="RegionCodePublisher" ReferencedProperty="CodePublisher"/>
+    <ReferentialConstraint Property="RegionCodeId" ReferencedProperty="CodeId"/>
+    <ReferentialConstraint Property="Region" ReferencedProperty="DivisionCode"/>
+  </NavigationProperty>
 </ComplexType>
 ```
 In case we have nested embedded types like we have with ChangeInformation we have the same problem we had with the attribute names and have to solve in the same way.
 To show that we want to assume that the user is a Person:
 ```Java
-import java.sql.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 @Embeddable
-public class ChangeInformation {
+public class ChangeInformationEntity {
+    @Basic
+    @Column(nullable = false, length = 32)
+    private String by;
 
-	@Column
-	private String by;
-	@Column
-	private Timestamp at;
+    public String getBy() { return by; }
 
-	@ManyToOne
-	@JoinColumn(name = "\"by\"", referencedColumnName = "\"ID\"", insertable = false, updatable = false)
-	Person user;
+    public void setBy(String by) { this.by = by; }
+
+    @ManyToOne
+    @JoinColumn(name = "\"by\"", referencedColumnName = "ID", insertable = false, updatable = false)
+    PersonEntity user;
+
+	...
 }
 ```
 Next we have to rename it, so that AdministrativeInformation looks as follows:
 ```Java
 package tutorial.model;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Embeddable
-public class AdministrativeInformation {
+public class AdministrativeInformationEntity {
 
-	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "by", column = @Column(name = "\"CreatedBy\"")),
-			@AttributeOverride(name = "at", column = @Column(name = "\"CreatedAt\"")) })
-	@AssociationOverride(name = "user", joinColumns = @JoinColumn(referencedColumnName = "\"ID\"", name = "\"CreatedBy\"", insertable = false, updatable = false))
-	private ChangeInformation created;
-	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "by", column = @Column(name = "\"UpdatedBy\"")),
-			@AttributeOverride(name = "at", column = @Column(name = "\"UpdatedAt\"")) })
-	@AssociationOverride(name = "user", joinColumns = @JoinColumn(referencedColumnName = "\"ID\"", name = "\"UpdatedBy\"", insertable = false, updatable = false))
-	private ChangeInformation updated;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "by", column = @Column(name = "\"CreatedBy\"")),
+            @AttributeOverride(name = "at", column = @Column(name = "\"CreatedAt\""))})
+    @AssociationOverride(name = "user", joinColumns = @JoinColumn(referencedColumnName = "ID", name = "\"CreatedBy\"", insertable = false, updatable = false))
+    private ChangeInformationEntity created;
+
+	...
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "by", column = @Column(name = "\"UpdatedBy\"")),
+            @AttributeOverride(name = "at", column = @Column(name = "\"UpdatedAt\""))})
+    @AssociationOverride(name = "user", joinColumns = @JoinColumn(referencedColumnName = "\"ID\"", name = "\"UpdatedBy\"", insertable = false, updatable = false))
+    private ChangeInformationEntity updated;
+
+	...
+
 }
 ```
 As it is not so easy to find that the navigation properties are really defined at the Person and the Company we should have a look at the mapping picture:

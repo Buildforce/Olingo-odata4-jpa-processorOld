@@ -11,12 +11,12 @@ In order to follow this tutorial, you should have
 ## Preparation
 In order to perform the tutorial you need:
 * A Java JDK 1.8 or higher
-* A Eclipse IDE for Java EE, or another one that provides the same functionality
-* An installed servlet container e.g. Apache Tomcat
+* An IDE for Java<sup>TM</sup> EE, e.g. IntelliJ IDEA Ultimate, or Eclipse IDE for Enterprise Java, or another IDE providing the functionality for Jakarta EE, formerly Java<sup>TM</sup> EE.
+* An installed servlet container e.g. Apache Tomcat, installed as server runtime in the IDE.
 * Access to the pre-build odata-jpa-processor package.
 
 ## Create Project
-First step is to create a project. To do so we want to create a new Maven project, by open the Maven Project wizard via File -> New -> Other -> Maven -> Maven Project. Select archetype **webapp**:
+First step is to create a project. To do so, we want to create a new Maven project, by open the Maven Project wizard via File -> New -> Other -> Maven -> Maven Project. Select archetype **webapp**:
 
 ![Maven Project Archetype](CreateProject/MavenProjectArchetype.png)
 
@@ -32,7 +32,7 @@ _Right click on the new project --> Configure --> Convert to JPA Project ..._
 
 Now the project facets maintenance screen pops up. make sure that:
 * Dynamic Web Module has at least version 2.5
-* Java version is 1.8 or higher
+* Java version is to be 1.8 or higher
 * JPA as version 2.2
 
 ![Convert to JPA](CreateProject/ConvertJPAProject.png)
@@ -116,9 +116,9 @@ You can delete the index.jsp if it creates an error, we will not use it. Next st
     </properties>
 </project>
 ```
-Before we start we should have a look at the data model we want to create step-by-step throughout the tutorial. The data model describes, as mentioned, a simple business partner. The business partner has a name (fields NameLine1 and NameLine2), an address, information about who and when a business partner was created or changed and some fields that a user of the model can give his/her own semantic (CustomString1,CustomString2,CustomNum1,CustomNum2). A business partner can have multiple BusinessPartnerRoles. In addition there is some information about the region the business partner is located at. This information is stored in table AdministrativeDivision. Last, but not least there are textual description for the regions and countries.
+Before we start we should have a look at the data model we want to create step-by-step throughout the tutorial. The data model describes, as mentioned, a simple business partner. The business partner has a name (fields NameLine1 and NameLine2), an address, information about who and when a business partner was created or changed, and some fields thata user of the model can give his/her own semantic (CustomString1,CustomString2,CustomNum1,CustomNum2). A business partner can have multiple BusinessPartnerRoles. In addition, there is some information about the region the business partner is located at. This information is stored in table AdministrativeDivision. Last, but not least there are textual description for the regions and countries.
 
 ![Database Tables ](Model/DBTable.png)
 
 Now we can start with the first series of tutorial about [using Metadata generation](../Metadata/1-0-Overview.md). Later you can learn in a second series of tutorial [how to retrieve data](../RetrieveData/2-0-Overview.md). Last, but not least, we will see how to [manipulate data](../ChangeData/3-0-Overview.md).
-In addition there are documents handling some [special topics](../SpecialTopics/4-0-Overview.md).
+In addition, there are documents handling some [special topics](../SpecialTopics/4-0-Overview.md).

@@ -5,4 +5,4 @@ If you can’t see the Papyrus model try the following:
 	2.	Double Click on the model file
 	3.	Go to "Model Explorer" view
 	4.	Double click on the last element
-Now you should be able to see the model
+Now you should be able to see the model.

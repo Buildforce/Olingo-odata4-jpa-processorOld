@@ -11,7 +11,7 @@ First let's assume that we want to be able to use the population density as filt
 The Function shall fulfill the following specification:
 * It shall take the Area and the Population as input
 * It shall return a Double that represents the population density (scalar function)
-* It shall not be called directly, so if shall not have an Function Import
+* It shall not be called directly, so if shall not have a Function Import
 * Last but not least it shall not be bound to an instance
 
 The corresponding annotation locks as follows:
@@ -80,7 +80,7 @@ IsComposable and function overload are not supported.
 Details about how to apply functions can be found her: [Using Functions](../RetrieveData/2-3-UsingFunctions.md)
 
 ## Using Java Classes
-If some more complicated calculations or mapping shall be performed it may be appropriate to implement a method of a JAVA class as _function_. To make a class respectively one of its method accessible via an OData request it has to be marked with the tag interface `ODataFunction`. When the metadata are created the JPA Process searches for classes implementing this interface. To reduce the search space in addition a list of top level packages need to be given via:
+If some more complicated calculations or mapping shall be performed it may be appropriate to implement a method of a JAVA class as _function_. To make a class respectively one of its method accessible via an OData request it has to be marked with the tag interface `ODataFunction`. When the metadata are created the JPA Process searches for classes implementing this interface. To reduce the search space in addition a list of top-level packages need to be given via:
 
 ```JAVA
 handler.getJPAODataContext().setTypePackage("tutorial.operations");

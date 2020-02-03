@@ -1,5 +1,5 @@
 # 4.5 Field Groups
-It may occur that it is required that different user groups shall be able to access different subsets of properties of an entity types. Usually providing two entity types for the same database table/view can fulfill that requirement. In case of multiple user groups and a large set of attributes it is more handy to have just one entity type and mark those attributes that shall be accessible for members of an user groups. To do so the annotation `@EdmVisibleFor` can be used. The annotation takes a set of _group names_. With that the value of that attribute will only be returned in case at least one of the _group names_ is provided for a request. Otherwise null or an empty collection is returned. In case an attribute is not annotated, it will be provided every time the corresponding property is requested.
+It may occur that it is required that different user groups shall be able to access different subsets of properties of an entity types. Usually providing two entity types for the same database table/view can fulfill that requirement. In case of multiple user groups and a large set of attributes it is more handy to have just one entity type and mark those attributes that shall be accessible for members ofa user groups. To do so the annotation `@EdmVisibleFor` can be used. The annotation takes a set of _group names_. With that the value of that attribute will only be returned in case at least one of the _group names_ is provided for a request. Otherwise null or an empty collection is returned. In case an attribute is not annotated, it will be provided every time the corresponding property is requested.
 
 As an example we want to create a variant of the business partner:
 ```Java
@@ -93,7 +93,7 @@ As the group assignment may change for each request, the groups have to be provi
       handler.getJPAODataRequestContext().setGroupsProvider(createGroups(req));
       handler.process(req, resp);
 ```
-Now we are done with the Java  code and can start the service. Lets have a look the different results we get for:
+Now we are done with the Java code and can start the service. Let us have a look the different results we get for:
 
 _http://localhost:8080/Tutorial/Tutorial.svc/BusinessPartnerWithGroups('1')_.
 
@@ -123,7 +123,7 @@ First without providing a user via Basic Authentication:
 ```
 You can see that all properties that are assigned to a group are `null`.
 
-In case we send _Marvin_  as user within the Basic Authentication header also the properties of group _Person_ are provided:
+In case we send _Marvin_ as user within the Basic Authentication header also the properties of group _Person_ are provided:
 ```Json
 {
   "@odata.context": "$metadata#Tutorial.BusinessPartnerWithGroup",

@@ -43,7 +43,7 @@ private Object createOneEntity(final JPARequestEntity requestEntity, final Entit
 }
 ```
 
-Having done that we need to process the related entities, so NUTS2 and NUTS3 level in our example. These are provided via `requestEntity.getRelatedEntities()` grouped by the association: `Map<JPAAssociationPath, List<JPARequestEntity>>`. We had defined, at least for AdministrativeDivision, that the relation is created via the associations and not via the properties, see [Navigation Properties And Complex Types](1-6-NavigationAndComplexTypes.md). This allows us to use method `linkEntities` of `JPAModifyUtil` to create it. As we do not want to think to much about which association we have to deal with, we set the relation on both sides. Last but not least we shall not forget that we have to process the levels recursively.
+Having done that we need to process the related entities, so NUTS2 and NUTS3 level in our example. These are provided via `requestEntity.getRelatedEntities()` grouped by the association: `Map<JPAAssociationPath, List<JPARequestEntity>>`. We had defined, at least for AdministrativeDivision, that the relation is created via the associations and not via the properties, see [Navigation Properties And Complex Types](1-6-NavigationAndComplexTypes.md). This allows us to use method `linkEntities` of `JPAModifyUtil` to create it. As we do not want to think too much about which association we have to deal with, we set the relation on both sides. Last but not least we shall not forget that we have to process the levels recursively.
 ```Java
 private void processRelatedEntities(final Map<JPAAssociationPath, List<JPARequestEntity>> relatedEntities, final Object parentInstance, final JPAModifyUtil util, final EntityManager em)
 		throws ODataJPAProcessException {
@@ -108,7 +108,7 @@ private void processBindingLinks(final Map<JPAAssociationPath, List<JPARequestLi
 	}
 }
 ```
-Please note that here the processing of the partner association was skipped, but it should not be to hard to add that.
+Please note that here the processing of the partner association was skipped, but it should not be too hard to add that.
 As a last step we need to call `processBindingLinks`:
 
 ```Java

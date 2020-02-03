@@ -1,11 +1,11 @@
 # 3.2 Creating Entities
-As the first modifying request we want to have a closer look at creating entities. In general OData describes three way to do this: As a single entity, which is discussed here, together with related entities, the so called [Deep Insert](3-5-DeepInsert.md) and via [Batch Requests](3-6-BatchRequests.md).
+As the first modifying request we want to have a closer look at creating entities. In general OData describes three ways to do this: As a single entity, which is discussed here, together with related entities, the so called [Deep Insert](3-5-DeepInsert.md) and via [Batch Requests](3-6-BatchRequests.md).
 
-The `JPAODataCRUDHandler` was designed to take over repetitive work like preparing changes or creating a response depending on the request header. The business logic itself has to be implemented in a class that extends `JPAAbstractCUDRequestHandler`, we want to call it `CUDRequestHandler`, locate it in our new package _tutorial.modify_.
+The `JPAODataCRUDHandler` was designed to take over repetitive work like preparing changes or creating a response depending on the request header. The business logic itself has to be implemented in a class which extends `JPAAbstractCUDRequestHandler`, we want to call it `CUDRequestHandler`, locate it in our new package _tutorial.modify_.
 
 The processing of any modification is split into two methods. First a method to perform the change (including consistency checks) and second in a method (`validateChange`) that allows to validate the changes in the context with other modification, which is mainly required with [Batch Requests](3-6-BatchRequests.md).
 
-Here we concentrate on performing changes and override `createEntity`. The method has two parameter.
+Here we concentrate on performing changes and override `createEntity`. The method has two parameters.
 1. _requestEntity_ is a container that provides access to data and information about a request. Form interest in this tutorial are:
 	1. `getEntityType` provides an instance of _JPAEntityType_, which provides a bunch of information about the entity to be created. This starts with internal name of the JPA POJO and external name (name of OData entity) and ends with a list of attributes and keys.
 	2. `getData` provides a map of attributes that are provided by the request. Keys of the map are the attribute names of the POJO. In case of complex/embedded attributes map is deep meaning the attribute is a map with the same structure.
@@ -14,7 +14,7 @@ Here we concentrate on performing changes and override `createEntity`. The metho
 
 `createEntity` shall either returns an instance of the newly created POJO or a map like the one provided by `getData` including calculated fields.
 
-Lets start creating a new AdministrativeDivision. As a first step we generate setter and getter methods. This can be done in Eclipse after opening `AdministrativeDivision.java` by choosing _Alt+Shift+S_ and then _Generate Getters and Setters..._ select all others then _children_ and _parent_. Please note that all attributes should be typed with wrapper classes instead of primitive types. Associations with cardinality _ToMany_ shall always return an collection, so we change the getter for Children as follows:
+Let us start creating a new AdministrativeDivision. As a first step we generate the setter and getter methods. This can be done in Eclipse after opening `AdministrativeDivision.java` by choosing _Alt+Shift+S_ and then _Generate Getters and Setters..._ select all others then _children_ and _parent_. Please note that all attributes should be typed with wrapper classes instead of primitive types. Associations with cardinality _ToMany_ shall always return a collection, so we change the getter for Children as follows:
 
 ```Java
 public List<AdministrativeDivision> getChildren() {
@@ -84,7 +84,7 @@ So we have to add ` handler.getJPAODataRequestContext().setCUDRequestHandler(new
 	...
 ```
 
-Now we are ready to check our implementation with our Rest client (e.g Postman). If we would use e.g. the following JSON
+Now we are ready to check our implementation with our Rest client (e.g Postman). If we would use e.g. the following JSON:
 
     {
         "CodePublisher": "Eurostat",
@@ -93,7 +93,7 @@ Now we are ready to check our implementation with our Rest client (e.g Postman).
         "CountryCode": "DEU"
     }
 
-and send a POST, we should get the following response:
+and sending a POST, we should get the following response:
 
 ![Result POST AdministrativeDivision](Images/CreateAdminDiv.png)
 
@@ -109,7 +109,7 @@ We can retrieve the newly created entity via `.../Tutorial/Tutorial.svc/Administ
 
 If we want to play around with other entities we could go ahead the same approach as a above, so manually create an instance of the POJO and fill it step by step, which would get boring. We want to do some more generic stuff.
 
-__Please note__ that we have used a simplified model for this tutorial where we map a database table field one to one to a property in our API. This is __not__ recommended, as this could make a table change a API change.
+__Please note__ that we have used a simplified model for this tutorial where we map a database table field one-to-one to a property in our API. This is __not__ recommended, as this could make a table change an API change.
 
 Instead of writing code for each entity type, we want to create an instance base on the information of the entity type. The first step is to get the Constructors:
 
@@ -153,7 +153,7 @@ Using `JPAModifyUtil` we can replace the old implementation of `createEntity` wi
 	return instance;
 	...
 ```
-Now lets generate the setter for Person and create a new one:
+Now let us generate the setter for Person and create a new one:
 
     {
         "ID" : "A34",

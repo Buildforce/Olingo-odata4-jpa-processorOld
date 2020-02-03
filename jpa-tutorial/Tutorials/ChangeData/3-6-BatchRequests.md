@@ -70,7 +70,7 @@ Content-Type: application/json
 --xyz--
 --abc--
 ```
-By purpose the order of the AdministrativeDivisions is from bottom to top, so the links point to entities that do not exist when a AdministrativeDivision is created. As a consequence we would get an error if we now execute the request. A response may look like this:
+By purpose the order of the AdministrativeDivisions is from bottom to top, so the links point to entities that do not exist when an AdministrativeDivision is created. As a consequence we would get an error if we now execute the request. A response may look like this:
 
 ```
 --batch_7b9f8232-e51d-46b3-8b3d-74d06b02477b
@@ -86,7 +86,7 @@ Content-Length: 158
 --batch_7b9f8232-e51d-46b3-8b3d-74d06b02477b--
 ```
 
-The processing of the request aborts, as the link can not be created. To solve the problem we need to implement, as mentioned, `validateChanges` and create the links there. To be able to do so, we have to buffer the entities to process. The buffer shall be called `entityBuffer` and will be created within the constructor:
+The processing of the request aborts, as the link cannot be created. To solve the problem we need to implement, as mentioned, `validateChanges` and create the links there. To be able to do so, we have to buffer the entities to process. The buffer shall be called `entityBuffer` and will be created within the constructor:
 ```Java
 private final Map<Object, JPARequestEntity> entityBuffer;
 
@@ -145,7 +145,7 @@ Content-Length: 240
 ...
 ```
 
-Beside the linkage of entities the purpose of `validateChanges` is to give the opportunity to check the state of an entity in the context of other changed entities. E.g. you want to ensure that the certain value does not exceeds a limit or range given by another entity, but your should be able to change both with the same request.
+Beside the linkage of entities the purpose of `validateChanges` is to give the opportunity to check the state of an entity in the context of other changed entities. E.g. you want to ensure that the certain value does not exceed a limit or range given by another entity, but your should be able to change both with the same request.
 
 Since OData version 3 an insert request has to contain a Content-Id. Up to now we had not utilized it. The following example should give a hint how to use it:
 
@@ -206,7 +206,7 @@ Content-Type: application/json
 --xyz--
 --abc--
 ```
-In this example we start with top down, so the first entity that is created is the parent of the next. The later on is created via a link. Nevertheless the POST is executed on `AdministrativeDivisions(DivisionCode='DEF',CodeID='NUTS1',CodePublisher='Eurostat')`, but it does not contain any properties of it. As a consequence when method `createEntity` is called `requestEntity.jpaAttributes` is empty, whereas `requestEntity.jpaKeys` is filled. To be able to handle such requests we have to touch `createEntity` again. In case the key of an entity is provided we won't create it, but read it from the database or from the buffer:
+In this example we start with top down, so the first entity that is created is the parent of the next. The later on is created via a link. Nevertheless, the POST is executed on `AdministrativeDivisions(DivisionCode='DEF',CodeID='NUTS1',CodePublisher='Eurostat')`, but it does not contain any properties of it. As a consequence when method `createEntity` is called `requestEntity.jpaAttributes` is empty, whereas `requestEntity.jpaKeys` is filled. To be able to handle such requests we have to touch `createEntity` again. In case the key of an entity is provided we won't create it, but read it from the database or from the buffer:
 
 ```Java
 @Override
