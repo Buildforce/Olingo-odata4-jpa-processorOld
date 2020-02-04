@@ -14,8 +14,8 @@ package tutorial.model;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration()
-public enum AbcClassification {
-  A, B, C
+public enum ABCClassification {
+    A, B, C
 }
 ```
 This enumeration is tagged with a `@EdmEnumeration` so it will be converted into an OData Enumeration, if it is found. As described in [Tutorial 1.8 Functions](1-8-Functions.md) it is necessary to provide the package name to look for the enumerations. Therefore, it is required to change our Servlet as follows:
@@ -35,28 +35,28 @@ Next we want to extend the company class with a property for the _ABC Class_. So
 ```Java
 package tutorial.model;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.Objects;
 
 @Entity(name = "Company")
 @DiscriminatorValue(value = "2")
-public class Company extends BusinessPartner {
-
+public class CompanyEntity extends BusinessPartnerEntity {
 ...
-
 @Enumerated(value = EnumType.STRING)
-@Column(name = "\"ABCClass\"")
-private AbcClassification abcClass;
+@Column(name = "\"AbcClass\"")
+private ABCClassification abcClass;
 ```
 If we have a look at the metadata again, we will find the following:
 
 ![Mapping of AbcClassification](Metadata/MappingSimpleEnumCompany.png)
 ## Flag Based Enumeration
 
-Here we take over the example given in [Schema Definition Language Documentation](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752565). Our use-case is that we want to be able to get insights into the access rights of a Person. The rights should be _Read_, _Write_, _Create_ or _Delete_. A person may have multiple rights, at the same time that's why we need members, which are flags. The flags shall be encoded as short values:
+Here we take over the example given in [Schema Definition Language Documentation](http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752565). Our use-case is that we want to be able to get insights into the access rights of a Person. The rights should be _Read_, _Write_, _Create_ or _Delete_. A person may have multiple rights, combined, that's why we need members, which are flags. The flags shall be encoded as short values:
 
 ```Java
 package tutorial.model;
@@ -86,45 +86,43 @@ The EdmEnumeration annotation has been enriched, so the JPA processor knows that
 ```Java
 package tutorial.model;
 
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-@Converter(autoApply = false)
+@Converter(/*autoApply = false*/)
 public class AccessRightsConverter implements AttributeConverter<AccessRights[], Short> {
 
-  @Override
-  public Short convertToDatabaseColumn(AccessRights[] attributes) {
-    if (attributes == null)
-      return null;
-    short value = 0;
-    for (AccessRights attribute : attributes)
-      if (attribute != null)
-        value += attribute.getValue();
-    return value;
-  }
+    @Override
+    public Short convertToDatabaseColumn(AccessRights[] attributes) {
+        if (attributes == null)
+            return null;
+        short value = 0;
+        for (AccessRights attribute : attributes)
+            if (attribute != null)
+                value += attribute.getValue();
+        return value;
+    }
 
-  @Override
-  public AccessRights[] convertToEntityAttribute(Short dbData) {
-    if (dbData == null)
-      return null;
-    List<AccessRights> members = new ArrayList<AccessRights>(4);
-    if ((dbData & AccessRights.Read.getValue()) > 0)
-      members.add(AccessRights.Read);
-    if ((dbData & AccessRights.Create.getValue()) > 0)
-      members.add(AccessRights.Create);
-    if ((dbData & AccessRights.Write.getValue()) > 0)
-      members.add(AccessRights.Write);
-    if ((dbData & AccessRights.Delete.getValue()) > 0)
-      members.add(AccessRights.Delete);
-    return members.toArray(new AccessRights[] {});
-  }
+    @Override
+    public AccessRights[] convertToEntityAttribute(Short dbData) {
+        if (dbData == null)
+            return null;
+        final List<AccessRights> accesses = new ArrayList<>();
+        for (AccessRights e : AccessRights.values()) {
+            if ((e.getValue() & dbData) != 0)
+                accesses.add(e);
+        }
+        return accesses.toArray(new AccessRights[] {});
+    }
 
 }
 ```
-Again we can have a look at the metadata document and find the following mapping:
+After registering this class in _persistence.xml_ file, we can have a look at the metadata document and find the following mapping:
 
 ![Mapping of AccessRights](Metadata/MappingFlagsEnum.png)
 
@@ -133,20 +131,21 @@ Now, as the last step, let's create the access rights column:
 ```Java
 package tutorial.model;
 
-import java.sql.Date;
-
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.sql.Date;
+import java.util.Objects;
 
 @Entity(name = "Person")
 @DiscriminatorValue(value = "1")
-public class Person extends BusinessPartner {
+public class PersonEntity extends BusinessPartnerEntity {
 ...
-@Convert(converter = AccessRightsConverter.class)
-@Column(name = "\"AccessRights\"")
-private AccessRights[] accessRights;
+    @Convert(converter = AccessRightsConverter.class)
+    @Column(name = "\"AccessRights\"")
+    private AccessRights[] accessRights;
 ...
 ```
 Next step: [Tutorial 1.13: Collection Properties](1-13-CollectionProperties.md)

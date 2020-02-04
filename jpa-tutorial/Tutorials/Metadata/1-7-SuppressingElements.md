@@ -4,7 +4,7 @@ There are a number of use case not to put all the database artifacts that are re
 
 ```
 ...
-public abstract class BusinessPartner {
+public abstract class BusinessPartnerEntity {
   ...
   @EdmIgnore
   @Column(name = "\"CustomString1\"", length = 250)
@@ -15,14 +15,14 @@ public abstract class BusinessPartner {
   private String customString2;
 
   @EdmIgnore
-  @Column(name = "\"CustomNum1\"", precision = 30, scale = 5)
+  @Column(name = "\"CustomNum1\"", precision = 10, scale = 5)
   private BigDecimal customNum1;
 
   @EdmIgnore
-  @Column(name = "\"CustomNum2\"", precision = 30, scale = 5)
-  private BigDecimal customNum2;
+  @Column(name = "\"CustomNum2\"", scale = 5)
+  private Long customNum2;
+
   ...
-}
 ```
 As already indicated `@EdmIgnore` can also be used at tables or embeddables. Be aware there are no special consistency checks in place that prevents you from using an ignored embeddable in a not ignored table.
 
