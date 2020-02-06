@@ -139,7 +139,16 @@ public abstract class BusinessPartnerEntity {
     private Collection<BusinessPartnerRoleEntity> roles;
 
     @Embedded
-    private final PostalDataEntity address = new PostalDataEntity();
+    private PostalDataEntity address = new PostalDataEntity();
+
+    public PostalDataEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(PostalDataEntity address) {
+        this.address = address;
+    }
+
     ...
 ```
 ~~After adding tutorial.model.PostalAddressData to the persistence.xml~~ we can have already a look at the first step: _http://localhost:8080/Tutorial/Tutorial.svc/$metadata_.

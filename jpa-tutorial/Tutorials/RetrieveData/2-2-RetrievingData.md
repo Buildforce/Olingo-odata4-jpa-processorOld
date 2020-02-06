@@ -6,42 +6,44 @@ In the tutorial the service context will not change. So it will be put it into t
 ```Java
 package tutorial.service;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.sql.DataSource;
-
-import org.apache.olingo.commons.api.ex.ODataException;
-
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
+import org.apache.olingo.commons.api.ex.ODataException;
 
-public class Listener implements ServletContextListener {
-  private static final String PUNIT_NAME = "Tutorial";
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+import javax.sql.DataSource;
 
-  // Create Service Context
-  @Override
-  public void contextInitialized(ServletContextEvent sce) {
-    final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
-    try {
-      final JPAODataCRUDContextAccess serviceContext = JPAODataServiceContext.with()
-          .setPUnit(PUNIT_NAME)
-          .setDataSource(ds)
-          .setTypePackage("tutorial.operations", "tutorial.model")
-          .build();
-      sce.getServletContext().setAttribute("ServiceContext", serviceContext);
-    } catch (ODataException e) {
-      // Log error
+@WebListener
+public class OdataListener implements ServletContextListener {
+
+    // Create Service Context
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
+        try {
+            final JPAODataCRUDContextAccess serviceContext = JPAODataServiceContext.with()
+                    .setPUnit(OdataServlet.PUNIT_NAME)
+                    .setDataSource(ds)
+                    .setTypePackage("tutorial.operations", "tutorial.model")
+                    .build();
+            sce.getServletContext().setAttribute("ServiceContext", serviceContext);
+        } catch (ODataException e) {
+            // Log error
+        }
     }
-  }
 
-  @Override
-  public void contextDestroyed(ServletContextEvent sce) {
-    sce.getServletContext().setAttribute("ServiceContext", null);
-  }
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        sce.getServletContext().setAttribute("ServiceContext", null);
+    }
+
 }
 ```
-To trigger the call of the listener it has to be added to the `web.xml`:
+The use of _web.xml_ is not anymore needed because of the _@WebListener_ annotation to trigger the call of the listener.
 
+~~
 ```XML
   ...
   <listener>
@@ -49,47 +51,45 @@ To trigger the call of the listener it has to be added to the `web.xml`:
   </listener>
 </web-app>
 ```
+~~
 Now we have all the peaces to build a service responding to GET requests.
 ```Java
 package tutorial.service;
 
-import java.io.IOException;
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
+import org.apache.olingo.commons.api.ex.ODataException;
+import tutorial.modify.CUDRequestHandler;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.olingo.commons.api.ex.ODataException;
+@WebServlet(urlPatterns="/DemoService.svc/*")
+public class OdataServlet extends HttpServlet {
+	protected static final String PUNIT_NAME = "TutorialPU";
 
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
+	@Override
+	protected void service(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException {
+		final JPAODataCRUDContextAccess serviceContext =
+				(JPAODataCRUDContextAccess) getServletContext().getAttribute("ServiceContext");
+		final JPAODataCRUDHandler handler = new JPAODataCRUDHandler(serviceContext);
 
-public class Servlet extends HttpServlet {
+		handler.getJPAODataRequestContext().setCUDRequestHandler(new CUDRequestHandler());
+		try { handler.process(req, resp); }
+		catch (RuntimeException | ODataException e) { throw new ServletException(e); }
+	}
 
-  private static final long serialVersionUID = 1L;
-
-  @Override
-  protected void service(final HttpServletRequest req, final HttpServletResponse resp)
-      throws ServletException, IOException {
-
-    try {
-      final JPAODataCRUDContextAccess serviceContext =
-          (JPAODataCRUDContextAccess) getServletContext().getAttribute("ServiceContext");
-
-      new JPAODataCRUDHandler(serviceContext).process(req, resp);
-    } catch (RuntimeException | ODataException e) {
-      throw new ServletException(e);
-    }
-  }
 }
 ```
 Starting the service we are able to play around with our OData service. We could e.g.:
-* Retrieve all the Companies: _http://localhost:8080/Tutorial/Tutorial.svc/Companies_
-* Or we want to find out which user had created Company('1'): _http://localhost:8080/Tutorial/Tutorial.svc/Companies('1')/AdministrativeInformation/Created/User_
-* Or we want to get all companies with role _A_: _http://localhost:8080/Tutorial/Tutorial.svc/Companies?$filter=Roles/any(d:d/RoleCategory eq 'A')_
-* Or we want to know which Administrative Division has an Area greater than 40000000: _http://localhost:8080/Tutorial/Tutorial.svc/AdministrativeDivisions?$filter=Area gt 4000000&$count=true_
-* Or we look for the parents and children of a certain Administrative Division: _http://localhost:8080/Tutorial/Tutorial.svc/AdministrativeDivisions(DivisionCode='BE254',CodeID='NUTS3',CodePublisher='Eurostat')?$expand=Parent($expand=Parent),Children&$format=json_
+* Retrieve all the Companies: [http://localhost:8080/DemoOdata/DemoService.svc/Companies](http://localhost:8080/DemoOdata/DemoService.svc/Companies)
+* Or we want to find out which user had created Company('1'): [http://localhost:8080/DemoOdata/DemoService.svc/Companies('1')/AdministrativeInformation/Created/User](http://localhost:8080/DemoOdata/DemoService.svc/Companies('1')/AdministrativeInformation/Created/User)
+* Or we want to get all companies with role _A_: [http://localhost:8080/DemoOdata/DemoService.svc/Companies?$filter=Roles/any(d:d/BusinessPartnerRole eq 'A')](http://localhost:8080/DemoOdata/DemoService.svc/Companies?$filter=Roles/any(d:d/BusinessPartnerRole%20eq%20%27A%27))
+* Or we want to know which Administrative Division has an Area greater than 40000000: [http://localhost:8080/DemoOdata/DemoService.svc/AdministrativeDivisions?$filter=Area gt 4000000&$count=true](http://localhost:8080/DemoOdata/DemoService.svc/AdministrativeDivisions?$filter=Area%20gt%204000000&$count=true)
+* Or we look for the parents and children of a certain Administrative Division: [http://localhost:8080/DemoOdata/DemoService.svc/AdministrativeDivisions(DivisionCode='BE254',CodeId='NUTS3',CodePublisher='Eurostat')?$expand=Parent($expand=Parent),Children&$format=json](http://localhost:8080/DemoOdata/DemoService.svc/AdministrativeDivisions(DivisionCode='BE254',CodeId='NUTS3',CodePublisher='Eurostat')?$expand=Parent($expand=Parent),Children&$format=json)
 * Or we look for ...
 
 Next we will see how we can use functions: [Tutorial 2.3 Using Functions](2-3-UsingFunctions.md)

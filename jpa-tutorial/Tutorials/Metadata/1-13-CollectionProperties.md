@@ -33,7 +33,7 @@ The resulting metadata will look as follows:
 	</EntityType>
 ```
 
-If we want to be able to filter on the collection attribute (e.g. with `http://localhost:8080/Tutorial/Tutorial.svc/Companies?$filter=Comment/$count%20gt%200`), for technical reasons, we also need a POJO. In order not be part of the API, we annotate it with `@EdmIgnore` and register the class in the _persistence.xml_ file:
+If we want to be able to filter on the collection attribute (e.g. with `http://localhost:8080/DemoOdata/DemoService.svc/Companies?$filter=Comment/$count%20gt%200`), for technical reasons, we also need a POJO. In order not be part of the API, we annotate it with `@EdmIgnore` and register the class in the _persistence.xml_ file:
 ```Java
 package tutorial.model;
 

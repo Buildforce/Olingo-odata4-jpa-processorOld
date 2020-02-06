@@ -8,57 +8,32 @@ When we make changes, we need also some logic, therefore we want to create a new
 ```Java
 package tutorial.service;
 
-import java.io.IOException;
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
+import org.apache.olingo.commons.api.ex.ODataException;
+import tutorial.modify.CUDRequestHandler;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
-import org.apache.olingo.commons.api.ex.ODataException;
+@WebServlet(urlPatterns="/DemoService.svc/*")
+public class OdataServlet extends HttpServlet {
+	protected static final String PUNIT_NAME = "TutorialPU";
 
-import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
+	@Override
+	protected void service(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException {
+		final JPAODataCRUDContextAccess serviceContext =
+				(JPAODataCRUDContextAccess) getServletContext().getAttribute("ServiceContext");
+		final JPAODataCRUDHandler handler = new JPAODataCRUDHandler(serviceContext);
 
-import tutorial.modify.CUDRequestHandler;
+		handler.getJPAODataRequestContext().setCUDRequestHandler(new CUDRequestHandler());
+		try { handler.process(req, resp); }
+		catch (RuntimeException | ODataException e) { throw new ServletException(e); }
+	}
 
-public class Servlet extends HttpServlet {
-
-  private static final long serialVersionUID = 1L;
-  private static final String PUNIT_NAME = "Tutorial";
-  private final EntityManagerFactory emf;
-
-  public Servlet() {
-    super();
-    final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
-    emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, ds);
-  }
-
-  @Override
-  protected void service(final HttpServletRequest req, final HttpServletResponse resp)
-      throws ServletException, IOException {
-
-    EntityManager em = null;
-    try {
-      final JPAODataCRUDContextAccess serviceContext =
-          (JPAODataCRUDContextAccess) getServletContext().getAttribute("ServiceContext");
-      em = emf.createEntityManager();
-
-      final JPAODataCRUDHandler handler = new JPAODataCRUDHandler(serviceContext);
-      handler.getJPAODataRequestContext().setEntityManager(em);
-      handler.process(req, resp);
-    } catch (RuntimeException | ODataException e) {
-      throw new ServletException(e);
-    } finally {
-      if (em != null)
-        em.close();
-
-    }
-  }
 }
 ```
 

@@ -18,7 +18,6 @@ import java.util.Objects;
 
 @Entity(name = "Person")
 @DiscriminatorValue(value = "1")
-@Table(schema = "OLINGO", name = "\"BusinessPartner\"")
 public class PersonEntity extends BusinessPartnerEntity {
 
     @Basic
@@ -90,7 +89,6 @@ import java.util.Objects;
 
 @Entity(name = "Company")
 @DiscriminatorValue(value = "2")
-@Table(schema = "OLINGO", name = "\"BusinessPartner\"")
 public class CompanyEntity extends BusinessPartnerEntity {
 
     @Basic
