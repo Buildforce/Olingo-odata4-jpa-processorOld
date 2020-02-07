@@ -383,6 +383,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     assertEquals(Integer.class, property.getType());
   }
 
+  @Disabled("Not applicable according to OData spec 6.2.3 Attribute Precision.")
   @Test
   public void checkThrowsAnExceptionTimestampWithoutPrecision() throws ODataJPAModelException {
     // If Precision missing EdmDateTimeOffset.internalValueToString throws an exception => pre-check

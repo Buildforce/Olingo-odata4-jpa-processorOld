@@ -23,18 +23,16 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 /**
  * A Property is described on the one hand by its Name and Type and on the other
  * hand by its Property Facets. The type is a qualified name of either a
- * primitive type, a complex type or a enumeration type. Primitive types are
- * mapped by {@link JPATypeConverter}.
+ * primitive type, a complex type or an enumeration type.
+ * Primitive types mapped by {@link JPATypeConverter}.
  *
 
  * <p>
  * For details about Property metadata see: <a href=
- * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406397954"
+ * "http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752528"
  * >OData Version 4.0 Part 3 - 6 Structural Property </a>
  *
-
  *
-
  * @author Oliver Grande
  *
  */
@@ -110,24 +108,16 @@ class IntermediateSimpleProperty extends IntermediateProperty {
 
   @Override
   void determineStructuredType() {
-    if (jpaAttribute.getPersistentAttributeType() == PersistentAttributeType.EMBEDDED)
-      type = schema.getStructuredType(jpaAttribute);
-    else
-      type = null;
+    type =
+     jpaAttribute.getPersistentAttributeType() == PersistentAttributeType.EMBEDDED ? schema.getStructuredType(jpaAttribute) : null;
   }
 
   @Override
-  FullQualifiedName determineType() throws ODataJPAModelException {
-    return determineTypeByPersistenceType(jpaAttribute.getPersistentAttributeType());
-  }
+  FullQualifiedName determineType() throws ODataJPAModelException { return determineTypeByPersistenceType(jpaAttribute.getPersistentAttributeType()); }
 
-  String getContentType() {
-    return streamInfo.contentType();
-  }
+  String getContentType() { return streamInfo.contentType(); }
 
-  String getContentTypeProperty() {
-    return streamInfo.contentTypeAttribute();
-  }
+  String getContentTypeProperty() { return streamInfo.contentTypeAttribute(); }
 
   @Override
   String getDefaultValue() throws ODataJPAModelException {
@@ -137,9 +127,9 @@ class IntermediateSimpleProperty extends IntermediateProperty {
       // It is not possible to get the default value directly from the
       // Field, only from an instance field.get(Object obj).toString(); //NOSONAR
       try {
-        // Problem: In case of compound key, which is not referenced via @EmbeddedId Hibernate returns a field of the
-        // key class, whereas Eclipselink returns a field of the entity class; which can be checked via
-        // field.getDeclaringClass()
+        // Problem: In case of compound key, which is not referenced via @EmbeddedId Hibernate returns
+        // a field of the key class, whereas Eclipselink returns a field of the entity class; which can
+        // be checked via field.getDeclaringClass().
         final Field field = (Field) jpaAttribute.getJavaMember();
         Constructor<?> constructor;
         if (!field.getDeclaringClass().equals(jpaAttribute.getDeclaringType().getJavaType()))
@@ -157,15 +147,12 @@ class IntermediateSimpleProperty extends IntermediateProperty {
             jpaAttribute.getName());
       } catch (InstantiationException e) {
         // Class could not be instantiated e.g. abstract class like
-        // Business Partner=> default could not be determined
-        // and will be ignored
+        // Business Partner=> default could not be determined and will be ignored
       }
     }
     return valueString;
   }
 
   @Override
-  boolean isStream() {
-    return streamInfo != null && streamInfo.stream();
-  }
+  boolean isStream() { return streamInfo != null && streamInfo.stream(); }
 }
