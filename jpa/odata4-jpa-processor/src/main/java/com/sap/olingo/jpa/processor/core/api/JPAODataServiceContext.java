@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.Nonnull;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
@@ -38,20 +37,21 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
    */
   @Deprecated
-  private final JPAODataGetHandler jpaODataGetHandler;
-  private List<EdmxReference> references = new ArrayList<>(); //
-  private JPADebugSupportWrapper debugSupport; //
-  private JPAODataDatabaseOperations operationConverter; //
-  private JPAEdmProvider jpaEdm;
-  private JPAODataDatabaseProcessor databaseProcessor; //
-  private JPAEdmMetadataPostProcessor postProcessor; //
-  private JPACUDRequestHandler jpaCUDRequestHandler; //
-  private String[] packageName; //
-  private ErrorProcessor errorProcessor; //
-  private JPAODataPagingProvider pagingProvider;
+  private final       JPAODataGetHandler jpaODataGetHandler;
+  // format: OFF
+  private      JPAODataDatabaseProcessor databaseProcessor;
   private Optional<EntityManagerFactory> emf;
-  private final String namespace;
-  private String mappingPath;
+  private                 ErrorProcessor errorProcessor;
+  private           JPACUDRequestHandler jpaCUDRequestHandler;
+  private                 JPAEdmProvider jpaEdm;
+  private                         String mappingPath;
+  private final                   String namespace;
+  private     JPAODataDatabaseOperations operationConverter;
+  private                       String[] packageName;
+  private         JPAODataPagingProvider pagingProvider;
+  private    JPAEdmMetadataPostProcessor postProcessor;
+  private            List<EdmxReference> references = new ArrayList<>();
+  // format: ON
 
   public static Builder with() {
     return new Builder();
@@ -65,8 +65,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   JPAODataServiceContext(JPAODataGetHandler jpaODataGetHandler) throws ODataException {
     super();
     this.jpaODataGetHandler = jpaODataGetHandler;
-    this.namespace = jpaODataGetHandler.namespace;
-    this.debugSupport = new JPADebugSupportWrapper(new DefaultDebugSupport());
+    namespace = jpaODataGetHandler.namespace;
     operationConverter = new JPADefaultDatabaseProcessor();
     try {
       databaseProcessor = new JPAODataDatabaseProcessorFactory().create(this.jpaODataGetHandler.ds);
@@ -77,20 +76,21 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   }
 
   private JPAODataServiceContext(final Builder builder) {
-
     this.jpaODataGetHandler = null;
-    operationConverter = builder.operationConverter;
     databaseProcessor = builder.databaseProcessor;
-    references = builder.references;
-    postProcessor = builder.postProcessor;
-    jpaCUDRequestHandler = null;
-    packageName = builder.packageName;
+    emf = builder.builderEmf;
     errorProcessor = builder.errorProcessor;
-    pagingProvider = builder.pagingProvider;
-    jpaEdm = builder.jpaEdm;
-    emf = builder.emf;
-    namespace = builder.namespace;
+    jpaCUDRequestHandler = null;
+
+    jpaEdm = builder.builderJpaEdm;
     mappingPath = builder.mappingPath;
+    namespace = builder.namespace;
+    operationConverter = builder.operationConverter;
+    packageName = builder.packageName;
+
+    pagingProvider = builder.pagingProvider;
+    postProcessor = builder.postProcessor;
+    references = builder.references;
   }
 
   @Override
@@ -110,7 +110,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     return jpaEdm;
   }
 
-  public JPAEdmProvider getEdmProvider(@Nonnull final EntityManager em) throws ODataException {
+  public JPAEdmProvider getEdmProvider(final EntityManager em) throws ODataException {
     if (jpaEdm == null) {
       jpaEdm = new JPAEdmProvider(this.namespace, em.getMetamodel(), postProcessor, packageName);
     }
@@ -188,7 +188,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   @Deprecated
   @Override
   public void setDebugSupport(final DebugSupport jpaDebugSupport) {
-    this.debugSupport = new JPADebugSupportWrapper(jpaDebugSupport);
+    // this.debugSupport = new JPADebugSupportWrapper(jpaDebugSupport);
   }
 
   /**
@@ -256,34 +256,35 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   }
 
   public static class Builder {
+    // format: OFF
+    private      JPAODataDatabaseProcessor databaseProcessor;
+    private                     DataSource builderDs;
+    private Optional<EntityManagerFactory> builderEmf = Optional.empty();
+    private                 ErrorProcessor errorProcessor;
+    private                 JPAEdmProvider builderJpaEdm;
 
-    private String namespace;
-    private List<EdmxReference> references = new ArrayList<>();
-    private JPAODataDatabaseOperations operationConverter = new JPADefaultDatabaseProcessor();
-    private JPAODataDatabaseProcessor databaseProcessor;
-    private JPAEdmMetadataPostProcessor postProcessor;
-    private String[] packageName;
-    private ErrorProcessor errorProcessor;
-    private JPAODataPagingProvider pagingProvider;
-    private Optional<EntityManagerFactory> emf = Optional.empty();
-    private DataSource ds;
-    private JPAEdmProvider jpaEdm;
-    private JPAEdmNameBuilder nameBuilder;
-    private String mappingPath;
+    private                         String mappingPath;
+    private              JPAEdmNameBuilder nameBuilder;
+    private                         String namespace;
+    private     JPAODataDatabaseOperations operationConverter = new JPADefaultDatabaseProcessor();
+    private                       String[] packageName;
+
+    private         JPAODataPagingProvider pagingProvider;
+    private    JPAEdmMetadataPostProcessor postProcessor;
+    private            List<EdmxReference> references = new ArrayList<>();
+    // format: ON
 
     public JPAODataCRUDContextAccess build() throws ODataException {
       try {
-        if (nameBuilder == null)
-          nameBuilder = new JPADefaultEdmNameBuilder(namespace);
-        if (packageName == null)
-          packageName = new String[0];
-        if (!emf.isPresent() && ds != null && namespace != null)
-          emf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace, ds));
-        if (emf.isPresent())
-          jpaEdm = new JPAEdmProvider(emf.get().getMetamodel(), postProcessor, packageName, nameBuilder);
-        if (databaseProcessor == null) {
-          databaseProcessor = new JPAODataDatabaseProcessorFactory().create(ds);
-        }
+        if (nameBuilder == null) nameBuilder = new JPADefaultEdmNameBuilder(namespace);
+        if (packageName == null) packageName = new String[0];
+        if (!builderEmf.isPresent() && builderDs != null && namespace != null)
+          builderEmf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace, builderDs));
+        if (builderEmf.isPresent())
+          builderJpaEdm = new JPAEdmProvider(builderEmf.get().getMetamodel(), postProcessor, packageName, nameBuilder);
+        if (databaseProcessor == null)
+          databaseProcessor = new JPAODataDatabaseProcessorFactory().create(builderDs);
+
       } catch (SQLException | PersistenceException e) {
         throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
       }
@@ -312,7 +313,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
      * @return
      */
     public Builder setDataSource(final DataSource ds) {
-      this.ds = ds;
+      this.builderDs = ds;
       return this;
     }
 
@@ -411,7 +412,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
      * @return
      */
     public Builder setEntityManagerFactory(final EntityManagerFactory emf) {
-      this.emf = Optional.of(emf);
+      this.builderEmf = Optional.of(emf);
       return this;
     }
 
@@ -428,7 +429,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
   }
 
-  static class JPADebugSupportWrapper implements DebugSupport {
+/*  static class JPADebugSupportWrapper implements DebugSupport {
 
     private final DebugSupport debugSupport;
     private JPAServiceDebugger debugger;
@@ -438,36 +439,36 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
       this.debugSupport = debugSupport;
     }
 
-    /*
+    *//*
      * (non-Javadoc)
      *
 
      * @see org.apache.olingo.server.api.debug.DebugSupport#createDebugResponse(java.lang.String,
      * org.apache.olingo.server.api.debug.DebugInformation)
-     */
+     *//*
     @Override
     public ODataResponse createDebugResponse(final String debugFormat, final DebugInformation debugInfo) {
       joinRuntimeInfo(debugInfo);
       return debugSupport.createDebugResponse(debugFormat, debugInfo);
     }
 
-    /*
+    *//*
      * (non-Javadoc)
      *
 
      * @see org.apache.olingo.server.api.debug.DebugSupport#init(org.apache.olingo.server.api.OData)
-     */
+     *//*
     @Override
     public void init(final OData odata) {
       debugSupport.init(odata);
     }
 
-    /*
+    *//*
      * (non-Javadoc)
      *
 
      * @see org.apache.olingo.server.api.debug.DebugSupport#isUserAuthorized()
-     */
+     *//*
     @Override
     public boolean isUserAuthorized() {
       return debugSupport.isUserAuthorized();
@@ -493,5 +494,5 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
         startIndex += 1;
       }
     }
-  }
+  }*/
 }

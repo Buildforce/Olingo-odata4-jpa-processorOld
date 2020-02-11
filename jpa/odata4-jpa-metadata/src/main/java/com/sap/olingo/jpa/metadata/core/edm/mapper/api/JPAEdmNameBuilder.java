@@ -4,7 +4,6 @@
  */
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
-import javax.annotation.Nonnull;
 import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.EmbeddableType;
 import javax.persistence.metamodel.EntityType;
@@ -26,7 +25,6 @@ public interface JPAEdmNameBuilder {
    * @param jpaEmbeddedType
    * @return
    */
-  @Nonnull
   String buildComplexTypeName(final EmbeddableType<?> jpaEmbeddedType);
 
   /**
@@ -36,8 +34,7 @@ public interface JPAEdmNameBuilder {
    * so can contain only letters, digits and underscores.
    * @return non empty unique name of an Entity Set
    */
-  @Nonnull
-  String buildContainerName();
+String buildContainerName();
 
   default String buildEntitySetName(final CsdlEntityType entityType) {
     return buildEntitySetName(entityType.getName());
@@ -50,8 +47,7 @@ public interface JPAEdmNameBuilder {
    * @param entityTypeName
    * @return non empty unique name of an Entity Set
    */
-  @Nonnull
-  String buildEntitySetName(final String entityTypeName);
+String buildEntitySetName(final String entityTypeName);
 
   /**
    * Creates the name of an <a
@@ -60,8 +56,7 @@ public interface JPAEdmNameBuilder {
    * @param jpaEntityType
    * @return non empty unique name of an Entity Type
    */
-  @Nonnull
-  String buildEntityTypeName(final EntityType<?> jpaEntityType);
+String buildEntityTypeName(final EntityType<?> jpaEntityType);
 
   /**
    * Converts the internal java class name of an enumeration into the external entity data model <a
@@ -70,36 +65,31 @@ public interface JPAEdmNameBuilder {
    * @param javaEnum
    * @return non empty unique name of an Enumeration
    */
-  @Nonnull
-  String buildEnumerationTypeName(final Class<? extends Enum<?>> javaEnum);
+String buildEnumerationTypeName(final Class<? extends Enum<?>> javaEnum);
 
   /**
    * Converts the name of an JPA association attribute into the name of an EDM navigation property
    * @param jpaAttribute
    * @return non empty unique name of a Navigation Property
    */
-  @Nonnull
-  String buildNaviPropertyName(final Attribute<?, ?> jpaAttribute);
+String buildNaviPropertyName(final Attribute<?, ?> jpaAttribute);
 
   /**
    * Convert the internal name of a java based operation into the external entity data model name.
    * @param internalOperationName
    * @return non empty unique name of an Operation (Function or Action)
    */
-  @Nonnull
-  String buildOperationName(final String internalOperationName);
+String buildOperationName(final String internalOperationName);
 
   /**
    * Converts the name of an JPA attribute into the name of an EDM property
    * @param jpaAttributeName
    * @return non empty unique name of a property
    */
-  @Nonnull
-  String buildPropertyName(final String jpaAttributeName);
+String buildPropertyName(final String jpaAttributeName);
 
   /**
    * @return name space to a schema
    */
-  @Nonnull
-  String getNamespace();
+String getNamespace();
 }

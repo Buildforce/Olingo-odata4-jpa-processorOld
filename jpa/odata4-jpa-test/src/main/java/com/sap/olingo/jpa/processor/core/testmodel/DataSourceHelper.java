@@ -1,12 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import javax.sql.DataSource;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.internal.jdbc.DriverDataSource;
 
@@ -44,7 +39,7 @@ public class DataSourceHelper {
       case DB_DERBY:
         ds = new DriverDataSource(classLoader, DERBY_DRIVER_CLASS_NAME, DERBY_URL, null, null);
         break;
-      case DB_REMOTE:
+/*      case DB_REMOTE:
         String env = System.getenv().get("REMOTE_DB_LOGON");
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode connectionInfo;
@@ -61,7 +56,7 @@ public class DataSourceHelper {
 
         ds = new DriverDataSource(classLoader, driver, url, connectionInfo.get("username").asText(),
                 connectionInfo.get("password").asText(), new Properties());
-        break;
+        break;*/
       default:
         return null;
     }

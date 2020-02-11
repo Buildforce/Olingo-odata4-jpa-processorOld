@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.annotation.Nonnull;
 import javax.persistence.Tuple;
 import javax.persistence.TupleElement;
 
@@ -254,7 +253,7 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
     odataEntity.setId(createId(odataEntity));
   }
 
-  private void createEtag(@Nonnull JPAEntityType rowEntity, Tuple row, Entity odataEntity)
+  private void createEtag(JPAEntityType rowEntity, Tuple row, Entity odataEntity)
       throws ODataJPAQueryException {
 
     try {

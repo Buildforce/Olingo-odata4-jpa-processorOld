@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.persistence.metamodel.Attribute.PersistentAttributeType;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationAttribute;
@@ -265,8 +264,7 @@ final class JPAAssociationPathImpl implements JPAAssociationPath {
    * @return non empty unique name of a Navigation Property Binding
    */
   // TODO respect subtype name
-  @Nonnull
-  private String buildNaviPropertyBindingName(final JPAAssociationPath associationPath, final JPAAttribute parent) {
+private String buildNaviPropertyBindingName(final JPAAssociationPath associationPath, final JPAAttribute parent) {
     final StringBuilder name = new StringBuilder();
 
     name.append(parent.getExternalName());

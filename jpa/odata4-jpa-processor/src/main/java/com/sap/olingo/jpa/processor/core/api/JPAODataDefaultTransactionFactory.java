@@ -4,7 +4,6 @@ import static com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionExc
 
 import java.util.Objects;
 
-import javax.annotation.Nonnull;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.RollbackException;
@@ -16,7 +15,7 @@ public class JPAODataDefaultTransactionFactory implements JPAODataTransactionFac
   private final EntityManager em;
   private JPAODataTransaction currentTransaction;
 
-  public JPAODataDefaultTransactionFactory(@Nonnull final EntityManager em) {
+  public JPAODataDefaultTransactionFactory(final EntityManager em) {
     super();
     this.em = Objects.requireNonNull(em);
   }

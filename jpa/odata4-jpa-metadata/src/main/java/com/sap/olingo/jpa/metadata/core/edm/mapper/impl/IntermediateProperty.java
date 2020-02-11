@@ -363,7 +363,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
                 if (!JPATypeConverter.isSupportedByOlingo(entityType))
                     valueConverter = (AttributeConverter<?, ?>) jpaConverter.converter().getDeclaredConstructor().newInstance();
             } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_MAPPER_COULD_NOT_INSTANTIATE, e);
+                throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_MAPPER_COULD_NOT_INSTANTIATED, e);
             }
         }
     }

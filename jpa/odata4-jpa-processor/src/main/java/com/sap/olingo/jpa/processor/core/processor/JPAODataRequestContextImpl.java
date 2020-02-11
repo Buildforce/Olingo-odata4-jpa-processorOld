@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.persistence.EntityManager;
 
 import org.apache.olingo.server.api.OData;
@@ -31,18 +29,19 @@ import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
 
 public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestContext, JPAODataRequestContextAccess,
     JPARequestContext {
-
+  // format: OFF
   private Optional<JPAODataClaimProvider> claims = Optional.empty();
   private Optional<JPAODataGroupProvider> groups = Optional.empty();
-  private EntityManager em;
-  private UriInfoResource uriInfo;
-  private JPASerializer serializer;
-  private JPAODataPage page;
-  private JPACUDRequestHandler jpaCUDRequestHandler;
-  private JPAServiceDebugger debugger;
-  private JPADebugSupportWrapper debugSupport;
-  private String debugFormat;
-  private JPAODataTransactionFactory transactionFactory;
+  private                          String debugFormat;
+  private              JPAServiceDebugger debugger;
+  private          JPADebugSupportWrapper debugSupport;
+  private                   EntityManager em;
+  private            JPACUDRequestHandler jpaCUDRequestHandler;
+  private                    JPAODataPage page;
+  private                   JPASerializer serializer;
+  private      JPAODataTransactionFactory transactionFactory;
+  private                 UriInfoResource uriInfo;
+  // format: ON
 
   public JPAODataRequestContextImpl() {
     // Provide all data via setter
@@ -60,7 +59,7 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
     setJPAODataPage(page);
   }
 
-  JPAODataRequestContextImpl(final UriInfoResource uriInfo, @Nullable final JPASerializer serializer,
+  JPAODataRequestContextImpl(final UriInfoResource uriInfo, final JPASerializer serializer,
       final JPAODataRequestContextAccess context) {
     copyContextValues(context);
     this.serializer = serializer;
@@ -115,12 +114,12 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   @Override
-  public void setCUDRequestHandler(@Nonnull final JPACUDRequestHandler jpaCUDRequestHandler) {
+  public void setCUDRequestHandler(final JPACUDRequestHandler jpaCUDRequestHandler) {
     this.jpaCUDRequestHandler = Objects.requireNonNull(jpaCUDRequestHandler);
   }
 
   @Override
-  public void setEntityManager(@Nonnull final EntityManager em) {
+  public void setEntityManager(final EntityManager em) {
     this.em = Objects.requireNonNull(em);
   }
 
@@ -130,7 +129,7 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   @Override
-  public void setJPAODataPage(@Nonnull final JPAODataPage page) throws JPAIllegalAccessException {
+  public void setJPAODataPage(final JPAODataPage page) throws JPAIllegalAccessException {
     if (this.uriInfo != null)
       throw new JPAIllegalAccessException();
     this.setUriInfo(page.getUriInfo());
@@ -144,17 +143,17 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   @Override
-  public void setJPASerializer(@Nonnull final JPASerializer serializer) {
+  public void setJPASerializer(final JPASerializer serializer) {
     this.serializer = Objects.requireNonNull(serializer);
   }
 
   @Override
-  public void setTransactionFactory(@Nullable final JPAODataTransactionFactory transactionFactory) {
+  public void setTransactionFactory(final JPAODataTransactionFactory transactionFactory) {
     this.transactionFactory = transactionFactory;
   }
 
   @Override
-  public void setUriInfo(@Nonnull final UriInfo uriInfo) throws JPAIllegalAccessException {
+  public void setUriInfo(final UriInfo uriInfo) throws JPAIllegalAccessException {
     if (this.page != null)
       throw new JPAIllegalAccessException();
     this.uriInfo = Objects.requireNonNull(uriInfo);

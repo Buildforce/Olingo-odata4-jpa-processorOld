@@ -16,7 +16,6 @@ import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.queryoption.SelectItem;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 
-import javax.annotation.Nonnull;
 import javax.persistence.Tuple;
 import java.util.*;
 import java.util.Map.Entry;
@@ -60,7 +59,7 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertib
     }
 
     public JPAExpandQueryResult(final Map<String, List<Tuple>> result, final Map<String, Long> counts,
-                                @Nonnull final JPAEntityType jpaEntityType, final Collection<JPAPath> selectionPath) {
+                                final JPAEntityType jpaEntityType, final Collection<JPAPath> selectionPath) {
 
         Objects.requireNonNull(jpaEntityType);
         childrenResult = new HashMap<>();

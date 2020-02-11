@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nullable;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Tuple;
 
@@ -75,7 +74,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
 
   protected void convertAttribute(final Object value, final JPAPath jpaPath,
       final Map<String, ComplexValue> complexValueBuffer, final List<Property> properties, final Tuple parentRow,
-      final String prefix, @Nullable final Entity odataEntity) throws ODataJPAModelException,
+      final String prefix, final Entity odataEntity) throws ODataJPAModelException,
       ODataApplicationException {
 
     if (jpaPath != null) {
@@ -178,7 +177,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
   @SuppressWarnings("unchecked")
   <T, S> void convertPrimitiveAttribute(final Object value,
                                         final List<Property> properties, final JPAPath jpaPath, final JPAAttribute attribute,
-                                        @Nullable final Entity odataEntity) {
+                                        final Entity odataEntity) {
 
     Object odataValue;
     if (attribute != null && attribute.getConverter() != null) {
