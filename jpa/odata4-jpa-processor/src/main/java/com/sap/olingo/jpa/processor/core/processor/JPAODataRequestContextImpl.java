@@ -1,19 +1,5 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
-import javax.persistence.EntityManager;
-
-import org.apache.olingo.server.api.OData;
-import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.debug.DebugInformation;
-import org.apache.olingo.server.api.debug.DebugSupport;
-import org.apache.olingo.server.api.debug.RuntimeMeasurement;
-import org.apache.olingo.server.api.uri.UriInfo;
-import org.apache.olingo.server.api.uri.UriInfoResource;
-
 import com.sap.olingo.jpa.processor.core.api.JPAAbstractCUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPACUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDRequestContext;
@@ -26,6 +12,18 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataTransactionFactory;
 import com.sap.olingo.jpa.processor.core.api.JPAServiceDebugger;
 import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
+import org.apache.olingo.server.api.OData;
+import org.apache.olingo.server.api.ODataResponse;
+import org.apache.olingo.server.api.debug.DebugInformation;
+import org.apache.olingo.server.api.debug.DebugSupport;
+import org.apache.olingo.server.api.debug.RuntimeMeasurement;
+import org.apache.olingo.server.api.uri.UriInfo;
+import org.apache.olingo.server.api.uri.UriInfoResource;
+
+import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestContext, JPAODataRequestContextAccess,
     JPARequestContext {

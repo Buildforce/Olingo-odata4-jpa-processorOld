@@ -1,12 +1,11 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.annotation;
 
-import java.util.Arrays;
-import java.util.Objects;
-
-import org.apache.olingo.commons.api.edm.provider.CsdlAction;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import org.apache.olingo.commons.api.edm.provider.CsdlAction;
+
+import java.util.Arrays;
+import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Action extends CsdlAction {

@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
+import com.sap.olingo.jpa.processor.core.query.Util;
 import org.apache.olingo.commons.api.data.Annotatable;
 import org.apache.olingo.commons.api.data.ContextURL;
 import org.apache.olingo.commons.api.data.EntityCollection;
@@ -15,8 +16,6 @@ import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
 import org.apache.olingo.server.api.uri.UriHelper;
 import org.apache.olingo.server.api.uri.UriInfo;
-
-import com.sap.olingo.jpa.processor.core.query.Util;
 
 final class JPASerializeEntityCollection implements JPASerializer, JPAOperationSerializer {
   private final ServiceMetadata serviceMetadata;

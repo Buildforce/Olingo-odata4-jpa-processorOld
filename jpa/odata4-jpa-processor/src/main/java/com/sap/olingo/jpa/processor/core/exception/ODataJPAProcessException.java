@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.processor.core.exception;
 
-import java.util.Enumeration;
-import java.util.Locale;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageBufferRead;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageTextBuffer;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageBufferRead;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageTextBuffer;
+import java.util.Enumeration;
+import java.util.Locale;
 
 public abstract class ODataJPAProcessException extends ODataApplicationException {
 

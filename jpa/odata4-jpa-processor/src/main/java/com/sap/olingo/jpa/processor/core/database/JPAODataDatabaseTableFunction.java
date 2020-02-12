@@ -1,13 +1,11 @@
 package com.sap.olingo.jpa.processor.core.database;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPADataBaseFunction;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriResource;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPADataBaseFunction;
+import javax.persistence.EntityManager;
+import java.util.List;
 
 public interface JPAODataDatabaseTableFunction {
 

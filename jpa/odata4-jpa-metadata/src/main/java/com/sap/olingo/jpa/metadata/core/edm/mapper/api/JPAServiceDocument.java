@@ -1,7 +1,6 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
-import java.util.List;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.EdmAction;
 import org.apache.olingo.commons.api.edm.EdmComplexType;
 import org.apache.olingo.commons.api.edm.EdmEnumType;
@@ -14,7 +13,7 @@ import org.apache.olingo.commons.api.edm.provider.CsdlTerm;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.server.api.etag.CustomETagSupport;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import java.util.List;
 
 public interface JPAServiceDocument extends CustomETagSupport {
 

@@ -1,7 +1,6 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.sql.Blob;
-import java.sql.Clob;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -9,7 +8,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+import java.sql.Blob;
+import java.sql.Clob;
 
 @EdmIgnore
 @Embeddable

@@ -1,17 +1,16 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import org.apache.olingo.commons.api.data.EntityCollection;
-import org.apache.olingo.server.api.ODataApplicationException;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.converter.JPAExpandResult;
 import com.sap.olingo.jpa.processor.core.converter.JPATupleChildConverter;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
+import org.apache.olingo.commons.api.data.EntityCollection;
+import org.apache.olingo.server.api.ODataApplicationException;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public interface JPAConvertibleResult {
   /**

@@ -1,9 +1,12 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
+import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
+import com.sap.olingo.jpa.processor.core.util.TestHelper;
+import org.apache.olingo.commons.api.ex.ODataException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,15 +14,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.sql.DataSource;
-
-import org.apache.olingo.commons.api.ex.ODataException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
-import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
-import com.sap.olingo.jpa.processor.core.util.TestHelper;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 

@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import javax.sql.DataSource;
-
 import org.apache.olingo.commons.api.ex.ODataException;
+
+import javax.sql.DataSource;
 
 public final class JPAODataCRUDHandler extends JPAODataGetHandler {
   /*

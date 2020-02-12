@@ -1,13 +1,9 @@
 package com.sap.olingo.jpa.processor.test;
 
-import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.sap.olingo.jpa.processor.core.testmodel.*;
+import org.eclipse.persistence.internal.jpa.EJBQueryImpl;
+import org.eclipse.persistence.queries.DatabaseQuery;
+import org.junit.jupiter.api.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,22 +19,14 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
 
-import org.eclipse.persistence.internal.jpa.EJBQueryImpl;
-import org.eclipse.persistence.queries.DatabaseQuery;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
-import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescription;
-import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescriptionKey;
-import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartner;
-import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
-import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
-import com.sap.olingo.jpa.processor.core.testmodel.Organization;
-import com.sap.olingo.jpa.processor.core.testmodel.Person;
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestCriteriaBuilder {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";

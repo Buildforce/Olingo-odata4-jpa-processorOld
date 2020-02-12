@@ -1,11 +1,11 @@
 package com.sap.olingo.jpa.processor.core.testobjects;
 
-import java.math.BigDecimal;
-
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
+
+import java.math.BigDecimal;
 
 public class TestJavaActionNoParameter {
   public static int constructorCalls = 0;

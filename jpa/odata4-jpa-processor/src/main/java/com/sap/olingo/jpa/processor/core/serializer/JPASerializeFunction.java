@@ -1,8 +1,6 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import org.apache.olingo.commons.api.data.Annotatable;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.edm.EdmType;
@@ -11,13 +9,10 @@ import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
-import org.apache.olingo.server.api.uri.UriInfo;
-import org.apache.olingo.server.api.uri.UriResource;
-import org.apache.olingo.server.api.uri.UriResourceAction;
-import org.apache.olingo.server.api.uri.UriResourceFunction;
-import org.apache.olingo.server.api.uri.UriResourcePartTyped;
+import org.apache.olingo.server.api.uri.*;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
+import java.util.List;
+import java.util.Optional;
 
 final class JPASerializeFunction implements JPAOperationSerializer {
   private final JPAOperationSerializer serializer;

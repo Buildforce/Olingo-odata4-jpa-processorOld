@@ -33,7 +33,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
             final Map<String, List<String>> headers) {
 
         super();
-        this.reqHeader = new HttpRequestHeaderDouble();
+        reqHeader = new HttpRequestHeaderDouble();
         String[] uriParts = uri.split("\\?");
         this.url = new StringBuffer(uriParts[0]);
         queryString = (uriParts.length == 2) ? uriParts[1] : null;
@@ -41,8 +41,8 @@ public class HttpServletRequestDouble implements HttpServletRequest {
         if (uri.contains("$batch")) {
             reqHeader.setBatchRequest();
         }
-        this.reqHeader.setHeaders(headers);
-        this.attributes = new HashMap<>();
+        reqHeader.setHeaders(headers);
+        attributes = new HashMap<>();
     }
 
     public Collection<Part> getParts() {

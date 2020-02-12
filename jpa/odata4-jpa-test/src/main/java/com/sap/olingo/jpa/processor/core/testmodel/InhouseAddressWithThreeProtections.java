@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 
 @Embeddable
 public class InhouseAddressWithThreeProtections {

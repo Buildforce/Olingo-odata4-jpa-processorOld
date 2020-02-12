@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.query;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
+
 import java.util.List;
 import java.util.Map;
-
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 
 /**
  * A pair of comparable entity keys<br>

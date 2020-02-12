@@ -1,21 +1,20 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.DayOfWeek;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.FileAccess;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.WrongMember;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects.WrongType;
+import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestIntermediateEnumerationType extends TestMappingRoot {
 

@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import javax.persistence.RollbackException;
-
 import com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException;
+
+import javax.persistence.RollbackException;
 
 /**
  * A wrapper to abstract from various transaction APIs provided by JAVA or e.g. Spring like

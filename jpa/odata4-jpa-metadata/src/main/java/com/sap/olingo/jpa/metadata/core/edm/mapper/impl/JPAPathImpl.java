@@ -1,14 +1,14 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys.NOT_SUPPORTED_MIXED_PART_OF_GROUP;
-
-import java.util.Collections;
-import java.util.List;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+
+import java.util.Collections;
+import java.util.List;
+
+import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys.NOT_SUPPORTED_MIXED_PART_OF_GROUP;
 
 final class JPAPathImpl implements JPAPath {
   private static final List<String> EMPTY_FILED_GROUPS = Collections.emptyList();

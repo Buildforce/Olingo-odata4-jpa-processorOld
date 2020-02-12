@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import javax.persistence.metamodel.Attribute;
-
-import org.apache.olingo.commons.api.edm.FullQualifiedName;
-
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
+import org.apache.olingo.commons.api.edm.FullQualifiedName;
+
+import javax.persistence.metamodel.Attribute;
 
 /**
  * Build the internal name for Intermediate Model Elements

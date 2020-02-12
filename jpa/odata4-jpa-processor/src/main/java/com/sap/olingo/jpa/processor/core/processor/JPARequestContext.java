@@ -1,10 +1,9 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
-import org.apache.olingo.server.api.uri.UriInfo;
-
 import com.sap.olingo.jpa.processor.core.api.JPAODataPage;
 import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
+import org.apache.olingo.server.api.uri.UriInfo;
 
 interface JPARequestContext {
 

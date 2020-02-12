@@ -4,13 +4,12 @@
  */
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import java.util.stream.IntStream;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 
 import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.EmbeddableType;
 import javax.persistence.metamodel.EntityType;
-
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
+import java.util.stream.IntStream;
 
 /**
  * @author Oliver Grande

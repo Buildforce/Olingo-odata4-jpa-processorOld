@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.exception;
 
+import org.apache.olingo.commons.api.ex.ODataException;
+
 import java.util.Enumeration;
 import java.util.Locale;
-
-import org.apache.olingo.commons.api.ex.ODataException;
 
 public abstract class ODataJPAException extends ODataException {
 

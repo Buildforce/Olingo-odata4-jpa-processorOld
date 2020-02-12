@@ -1,9 +1,8 @@
 package com.sap.olingo.jpa.processor.core.api.example;
 
-import org.apache.olingo.commons.api.http.HttpStatusCode;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageKey;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 
 public class JPAExampleModifyException extends ODataJPAProcessException { // NOSONAR
 

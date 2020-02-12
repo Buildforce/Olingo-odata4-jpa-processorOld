@@ -1,14 +1,13 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import static com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException.MessageKeys.CANNOT_CREATE_NEW_TRANSACTION;
-
-import java.util.Objects;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.RollbackException;
+import java.util.Objects;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException;
+import static com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException.MessageKeys.CANNOT_CREATE_NEW_TRANSACTION;
 
 public class JPAODataDefaultTransactionFactory implements JPAODataTransactionFactory {
 

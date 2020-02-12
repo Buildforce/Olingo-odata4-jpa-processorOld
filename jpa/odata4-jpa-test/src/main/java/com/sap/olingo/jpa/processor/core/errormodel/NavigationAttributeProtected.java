@@ -1,6 +1,6 @@
 package com.sap.olingo.jpa.processor.core.errormodel;
 
-import java.util.List;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -10,8 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Version;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+import java.util.List;
 
 @Entity(name = "NavigationAttributeProtected")
 @DiscriminatorValue(value = "1")

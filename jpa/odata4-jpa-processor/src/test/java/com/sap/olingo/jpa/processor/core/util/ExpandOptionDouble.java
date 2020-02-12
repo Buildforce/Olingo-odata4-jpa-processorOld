@@ -1,12 +1,12 @@
 package com.sap.olingo.jpa.processor.core.util;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.List;
-
 import org.apache.olingo.server.api.uri.queryoption.ExpandItem;
 import org.apache.olingo.server.api.uri.queryoption.ExpandOption;
 import org.apache.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ExpandOptionDouble implements ExpandOption {
   private final String text;

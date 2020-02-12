@@ -1,11 +1,11 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmSearchable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmSearchable;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"AdministrativeDivisionDescription\"")

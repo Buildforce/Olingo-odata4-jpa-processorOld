@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
+import javax.persistence.AttributeConverter;
+import javax.persistence.Enumerated;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Enumerated;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Annotation to tag Java enumerations that shall be provided via an OData service. For details about OData Enumerations

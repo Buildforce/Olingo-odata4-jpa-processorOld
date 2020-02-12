@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.processor.core.filter;
 
-import java.util.List;
-
-import org.apache.olingo.commons.api.http.HttpStatusCode;
-import org.apache.olingo.server.api.ODataApplicationException;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEnumerationAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
+import org.apache.olingo.server.api.ODataApplicationException;
+
+import java.util.List;
 
 public final class JPAEnumerationOperator implements JPAEnumerationBasedOperator {
 

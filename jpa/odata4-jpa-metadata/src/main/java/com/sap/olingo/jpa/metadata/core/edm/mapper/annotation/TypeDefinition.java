@@ -1,12 +1,11 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.annotation;
 
-import java.util.Objects;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import org.apache.olingo.commons.api.edm.geo.SRID;
 import org.apache.olingo.commons.api.edm.provider.CsdlTypeDefinition;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class TypeDefinition extends CsdlTypeDefinition {

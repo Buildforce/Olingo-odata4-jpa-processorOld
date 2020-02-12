@@ -1,15 +1,17 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.persistence.criteria.Selection;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
+import com.sap.olingo.jpa.processor.core.testmodel.TestDataConstants;
+import com.sap.olingo.jpa.processor.core.util.EdmEntityTypeDouble;
+import com.sap.olingo.jpa.processor.core.util.EdmPropertyDouble;
+import com.sap.olingo.jpa.processor.core.util.ExpandItemDouble;
+import com.sap.olingo.jpa.processor.core.util.ExpandOptionDouble;
+import com.sap.olingo.jpa.processor.core.util.SelectOptionDouble;
+import com.sap.olingo.jpa.processor.core.util.TestQueryBase;
+import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
+import com.sap.olingo.jpa.processor.core.util.UriResourceNavigationDouble;
+import com.sap.olingo.jpa.processor.core.util.UriResourcePropertyDouble;
 import org.apache.olingo.commons.api.edm.EdmComplexType;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
@@ -28,18 +30,12 @@ import org.apache.olingo.server.api.uri.queryoption.ExpandOption;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 import org.junit.jupiter.api.Test;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
-import com.sap.olingo.jpa.processor.core.testmodel.TestDataConstants;
-import com.sap.olingo.jpa.processor.core.util.EdmEntityTypeDouble;
-import com.sap.olingo.jpa.processor.core.util.EdmPropertyDouble;
-import com.sap.olingo.jpa.processor.core.util.ExpandItemDouble;
-import com.sap.olingo.jpa.processor.core.util.ExpandOptionDouble;
-import com.sap.olingo.jpa.processor.core.util.SelectOptionDouble;
-import com.sap.olingo.jpa.processor.core.util.TestQueryBase;
-import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
-import com.sap.olingo.jpa.processor.core.util.UriResourceNavigationDouble;
-import com.sap.olingo.jpa.processor.core.util.UriResourcePropertyDouble;
+import javax.persistence.criteria.Selection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJPAQuerySelectClause extends TestQueryBase {
 

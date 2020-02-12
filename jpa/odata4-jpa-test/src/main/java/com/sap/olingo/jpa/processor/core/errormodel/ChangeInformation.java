@@ -1,11 +1,10 @@
 package com.sap.olingo.jpa.processor.core.errormodel;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Embeddable
 public class ChangeInformation {

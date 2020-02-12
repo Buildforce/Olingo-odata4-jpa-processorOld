@@ -1,12 +1,11 @@
 package com.sap.olingo.jpa.processor.core.errormodel;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity(name = "ErrorTeam")
 @Table(schema = "\"OLINGO\"", name = "\"Team\"")

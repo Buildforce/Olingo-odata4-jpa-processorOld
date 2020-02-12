@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.filter;
 
-import javax.persistence.criteria.From;
-
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
+
+import javax.persistence.criteria.From;
 
 public interface JPAExpressionVisitor extends ExpressionVisitor<JPAOperator> {
 

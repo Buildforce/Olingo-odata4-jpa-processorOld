@@ -1,18 +1,16 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.sql.DataSource;
-
-import org.apache.olingo.commons.api.edmx.EdmxReference;
-
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.processor.core.database.JPADefaultDatabaseProcessor;
 import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseProcessorFactory;
+import org.apache.olingo.commons.api.edmx.EdmxReference;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class JPAODataContextAccessDouble implements JPAODataCRUDContextAccess {
   private final JPAEdmProvider edmProvider;

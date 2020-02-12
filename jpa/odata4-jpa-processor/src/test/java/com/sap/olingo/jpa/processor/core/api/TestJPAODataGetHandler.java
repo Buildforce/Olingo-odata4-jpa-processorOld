@@ -1,5 +1,21 @@
 package com.sap.olingo.jpa.processor.core.api;
 
+import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
+import com.sap.olingo.jpa.processor.core.util.HttpServletRequestDouble;
+import com.sap.olingo.jpa.processor.core.util.HttpServletResponseDouble;
+import com.sap.olingo.jpa.processor.core.util.TestBase;
+import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.server.api.OData;
+import org.apache.olingo.server.api.ODataHttpHandler;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatcher;
+
+import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.sql.DataSource;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -11,23 +27,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.sql.DataSource;
-
-import org.apache.olingo.commons.api.ex.ODataException;
-import org.apache.olingo.server.api.OData;
-import org.apache.olingo.server.api.ODataHttpHandler;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatcher;
-
-import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
-import com.sap.olingo.jpa.processor.core.util.HttpServletRequestDouble;
-import com.sap.olingo.jpa.processor.core.util.HttpServletResponseDouble;
-import com.sap.olingo.jpa.processor.core.util.TestBase;
 
 public class TestJPAODataGetHandler extends TestBase {
   private JPAODataGetHandler cut;

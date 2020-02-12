@@ -1,6 +1,6 @@
 package com.sap.olingo.jpa.processor.core.errormodel;
 
-import java.util.List;
+import com.sap.olingo.jpa.processor.core.testmodel.AddressDeepProtected;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -10,8 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Version;
-
-import com.sap.olingo.jpa.processor.core.testmodel.AddressDeepProtected;
+import java.util.List;
 
 @Entity(name = "PersonDeepCollectionProtected")
 

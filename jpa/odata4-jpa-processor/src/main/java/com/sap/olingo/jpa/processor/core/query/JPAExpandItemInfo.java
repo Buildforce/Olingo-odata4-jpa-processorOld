@@ -1,11 +1,10 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import java.util.List;
-
-import org.apache.olingo.server.api.ODataApplicationException;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
+import org.apache.olingo.server.api.ODataApplicationException;
+
+import java.util.List;
 
 public final class JPAExpandItemInfo extends JPAInlineItemInfo {
 

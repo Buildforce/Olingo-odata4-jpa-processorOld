@@ -1,11 +1,10 @@
 package com.sap.olingo.jpa.processor.core.util;
 
+import javax.persistence.Tuple;
+import javax.persistence.TupleElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
 
 public class TupleDouble implements Tuple {
   public final Map<String, Object> elementMap;

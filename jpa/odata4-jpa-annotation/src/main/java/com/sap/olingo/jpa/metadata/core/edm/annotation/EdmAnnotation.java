@@ -1,11 +1,11 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
+import org.apache.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import org.apache.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
 
 /**
  * Can be used to annotate attributes. The annotations are converted into OData annotations.

@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.processor.core.query;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import org.apache.olingo.server.api.uri.UriInfoResource;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.apache.olingo.server.api.uri.UriInfoResource;
-
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 
 public abstract class JPAInlineItemInfo {
 

@@ -1,6 +1,10 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * Marks an association to an entity that contains a language/locale dependent description of a coded value. E.g the

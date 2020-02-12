@@ -1,9 +1,8 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.annotation;
 
-import org.apache.olingo.commons.api.edm.provider.CsdlEnumMember;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import org.apache.olingo.commons.api.edm.provider.CsdlEnumMember;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Member extends CsdlEnumMember {

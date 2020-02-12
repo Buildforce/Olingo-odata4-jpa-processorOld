@@ -1,11 +1,10 @@
 package com.sap.olingo.jpa.processor.core.filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.Subquery;
+import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
+import com.sap.olingo.jpa.processor.core.query.JPACollectionFilterQuery;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationFilterQuery;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationPropertyInfo;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationQuery;
 
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -13,31 +12,14 @@ import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceKind;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
-import org.apache.olingo.server.api.uri.queryoption.ApplyOption;
-import org.apache.olingo.server.api.uri.queryoption.CountOption;
-import org.apache.olingo.server.api.uri.queryoption.CustomQueryOption;
-import org.apache.olingo.server.api.uri.queryoption.DeltaTokenOption;
-import org.apache.olingo.server.api.uri.queryoption.ExpandOption;
-import org.apache.olingo.server.api.uri.queryoption.FilterOption;
-import org.apache.olingo.server.api.uri.queryoption.FormatOption;
-import org.apache.olingo.server.api.uri.queryoption.IdOption;
-import org.apache.olingo.server.api.uri.queryoption.OrderByOption;
-import org.apache.olingo.server.api.uri.queryoption.SearchOption;
-import org.apache.olingo.server.api.uri.queryoption.SelectOption;
-import org.apache.olingo.server.api.uri.queryoption.SkipOption;
-import org.apache.olingo.server.api.uri.queryoption.SkipTokenOption;
-import org.apache.olingo.server.api.uri.queryoption.TopOption;
-import org.apache.olingo.server.api.uri.queryoption.expression.BinaryOperatorKind;
-import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
-import org.apache.olingo.server.api.uri.queryoption.expression.Member;
-import org.apache.olingo.server.api.uri.queryoption.expression.MethodKind;
-import org.apache.olingo.server.api.uri.queryoption.expression.VisitableExpression;
+import org.apache.olingo.server.api.uri.queryoption.*;
+import org.apache.olingo.server.api.uri.queryoption.expression.*;
 
-import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
-import com.sap.olingo.jpa.processor.core.query.JPACollectionFilterQuery;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationFilterQuery;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationPropertyInfo;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.From;
+import javax.persistence.criteria.Subquery;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * In case the query result shall be filtered on an attribute of navigation target a sub-select will be generated.<p>

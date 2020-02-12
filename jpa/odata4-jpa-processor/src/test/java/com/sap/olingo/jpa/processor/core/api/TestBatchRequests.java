@@ -1,17 +1,16 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
+import com.sap.olingo.jpa.processor.core.util.TestBase;
+import org.apache.olingo.commons.api.ex.ODataException;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.olingo.commons.api.ex.ODataException;
-import org.junit.jupiter.api.Test;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
-import com.sap.olingo.jpa.processor.core.util.TestBase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestBatchRequests extends TestBase {
 

@@ -1,15 +1,14 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.exception;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import com.sap.olingo.jpa.processor.core.testmodel.LocaleEnumeration;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Locale;
 
-import org.junit.jupiter.api.Test;
-
-import com.sap.olingo.jpa.processor.core.testmodel.LocaleEnumeration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestODataJPAModelException {
   private static final String BUNDLE_NAME = "test-i18n";

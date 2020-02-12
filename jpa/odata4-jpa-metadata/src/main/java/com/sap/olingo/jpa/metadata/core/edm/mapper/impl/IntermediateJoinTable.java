@@ -1,15 +1,14 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAJoinTable;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOnConditionItem;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import java.util.ArrayList;
+import java.util.List;
 
 class IntermediateJoinTable implements JPAJoinTable {
   private final IntermediateNavigationProperty intermediateProperty;

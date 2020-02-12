@@ -1,10 +1,10 @@
 package com.sap.olingo.jpa.processor.core.filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.criteria.Subquery;
-
+import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
+import com.sap.olingo.jpa.processor.core.query.JPACollectionFilterQuery;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationFilterQuery;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationPropertyInfo;
+import com.sap.olingo.jpa.processor.core.query.JPANavigationQuery;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriResource;
@@ -15,11 +15,9 @@ import org.apache.olingo.server.api.uri.UriResourceProperty;
 import org.apache.olingo.server.api.uri.queryoption.expression.Expression;
 import org.apache.olingo.server.api.uri.queryoption.expression.Member;
 
-import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
-import com.sap.olingo.jpa.processor.core.query.JPACollectionFilterQuery;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationFilterQuery;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationPropertyInfo;
-import com.sap.olingo.jpa.processor.core.query.JPANavigationQuery;
+import javax.persistence.criteria.Subquery;
+import java.util.ArrayList;
+import java.util.List;
 
 abstract class JPALambdaOperation extends JPAExistsOperation {
 

@@ -1,16 +1,14 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.EntityManagerFactory;
-
+import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
+import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 
-import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
-import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
+import javax.persistence.EntityManagerFactory;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *

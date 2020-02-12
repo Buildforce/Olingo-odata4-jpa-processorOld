@@ -1,14 +1,14 @@
 package com.sap.olingo.jpa.processor.core.util;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.List;
-
 import org.apache.olingo.commons.api.edm.EdmAnnotation;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmNavigationProperty;
 import org.apache.olingo.commons.api.edm.EdmReferentialConstraint;
 import org.apache.olingo.commons.api.edm.EdmTerm;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class EdmNavigationPropertyDouble implements EdmNavigationProperty {
   private final String name;

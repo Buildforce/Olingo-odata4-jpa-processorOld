@@ -1,10 +1,10 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * The annotation can be used to assign attributes or properties to field or visibility groups. On case such a group is

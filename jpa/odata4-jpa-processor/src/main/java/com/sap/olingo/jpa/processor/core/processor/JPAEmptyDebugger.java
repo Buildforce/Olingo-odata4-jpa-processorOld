@@ -1,11 +1,10 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
+import com.sap.olingo.jpa.processor.core.api.JPAServiceDebugger;
 import org.apache.olingo.server.api.debug.RuntimeMeasurement;
 
-import com.sap.olingo.jpa.processor.core.api.JPAServiceDebugger;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public final class JPAEmptyDebugger implements JPAServiceDebugger {
 

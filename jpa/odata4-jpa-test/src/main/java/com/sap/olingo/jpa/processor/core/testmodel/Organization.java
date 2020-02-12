@@ -1,7 +1,8 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -13,10 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
+import java.util.ArrayList;
+import java.util.List;
 
 @EdmFunction(
     name = "AllCustomersByABC",

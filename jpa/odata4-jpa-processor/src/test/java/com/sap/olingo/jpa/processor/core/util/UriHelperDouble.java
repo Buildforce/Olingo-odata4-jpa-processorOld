@@ -1,10 +1,5 @@
 package com.sap.olingo.jpa.processor.core.util;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.List;
-import java.util.Map;
-
 import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.edm.Edm;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
@@ -15,6 +10,11 @@ import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 import org.apache.olingo.server.api.uri.queryoption.ExpandOption;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
+
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class UriHelperDouble implements UriHelper {
   private Map<String, String> keyPredicates;

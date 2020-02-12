@@ -1,9 +1,6 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
+import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import org.apache.olingo.commons.api.edm.constants.EdmTypeKind;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
@@ -18,7 +15,9 @@ import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceKind;
 import org.apache.olingo.server.api.uri.UriResourcePartTyped;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public final class JPASerializerFactory {
   private final ServiceMetadata serviceMetadata;

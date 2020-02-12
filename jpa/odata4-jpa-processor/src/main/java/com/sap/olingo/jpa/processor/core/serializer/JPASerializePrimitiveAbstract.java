@@ -1,7 +1,5 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
-import java.util.List;
-
 import org.apache.olingo.commons.api.data.ComplexValue;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.data.Property;
@@ -9,6 +7,8 @@ import org.apache.olingo.server.api.ServiceMetadata;
 import org.apache.olingo.server.api.uri.UriInfo;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
+
+import java.util.List;
 
 public abstract class JPASerializePrimitiveAbstract implements JPASerializer, JPAOperationSerializer {
   protected static final char PATH_SEPARATOR = '/';

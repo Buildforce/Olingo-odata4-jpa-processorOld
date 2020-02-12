@@ -1,5 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmVisibleFor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,8 +10,6 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmVisibleFor;
 
 @IdClass(BusinessPartnerRoleKey.class)
 //@ReadOnly

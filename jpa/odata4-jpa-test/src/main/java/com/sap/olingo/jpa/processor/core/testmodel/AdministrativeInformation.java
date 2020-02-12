@@ -1,8 +1,5 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 import javax.persistence.AssociationOverride;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -11,6 +8,9 @@ import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Embeddable
 public class AdministrativeInformation {

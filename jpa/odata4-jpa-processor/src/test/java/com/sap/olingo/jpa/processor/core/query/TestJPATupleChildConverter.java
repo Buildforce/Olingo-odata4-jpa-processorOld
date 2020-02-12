@@ -1,17 +1,12 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import static com.sap.olingo.jpa.processor.core.converter.JPAExpandResult.ROOT_RESULT_KEY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.persistence.Tuple;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import com.sap.olingo.jpa.processor.core.converter.JPATupleChildConverter;
+import com.sap.olingo.jpa.processor.core.util.ServiceMetadataDouble;
+import com.sap.olingo.jpa.processor.core.util.TestBase;
+import com.sap.olingo.jpa.processor.core.util.TestHelper;
+import com.sap.olingo.jpa.processor.core.util.TupleDouble;
+import com.sap.olingo.jpa.processor.core.util.UriHelperDouble;
 import org.apache.olingo.commons.api.data.ComplexValue;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.data.ValueType;
@@ -20,13 +15,16 @@ import org.apache.olingo.server.api.ODataApplicationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.processor.core.converter.JPATupleChildConverter;
-import com.sap.olingo.jpa.processor.core.util.ServiceMetadataDouble;
-import com.sap.olingo.jpa.processor.core.util.TestBase;
-import com.sap.olingo.jpa.processor.core.util.TestHelper;
-import com.sap.olingo.jpa.processor.core.util.TupleDouble;
-import com.sap.olingo.jpa.processor.core.util.UriHelperDouble;
+import javax.persistence.Tuple;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.sap.olingo.jpa.processor.core.converter.JPAExpandResult.ROOT_RESULT_KEY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestJPATupleChildConverter extends TestBase {
   public static final int NO_POSTAL_ADDRESS_FIELDS = 8;

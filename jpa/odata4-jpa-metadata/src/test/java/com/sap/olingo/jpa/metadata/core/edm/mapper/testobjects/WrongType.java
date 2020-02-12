@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects;
 
-import java.math.BigDecimal;
-
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
+
+import java.math.BigDecimal;
 
 @EdmEnumeration(converter = WrongTypeConverter.class)
 public enum WrongType {

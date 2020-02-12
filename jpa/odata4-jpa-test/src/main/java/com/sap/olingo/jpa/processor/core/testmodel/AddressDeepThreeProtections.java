@@ -1,10 +1,10 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 //Only for Unit Tests
 @EdmIgnore

@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.testaction;
 
-import java.math.BigDecimal;
-
-import javax.persistence.EntityManager;
-
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataAction;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
+
+import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 
 public class Actions implements ODataAction {
   public Actions(final EntityManager em) {

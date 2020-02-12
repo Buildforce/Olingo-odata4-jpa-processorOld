@@ -1,17 +1,5 @@
 package com.sap.olingo.jpa.processor.core.util;
 
-import java.lang.reflect.AnnotatedElement;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.metamodel.Attribute;
-import javax.persistence.metamodel.EmbeddableType;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.ManagedType;
-import javax.persistence.metamodel.Metamodel;
-import javax.persistence.metamodel.SingularAttribute;
-
-import org.apache.olingo.commons.api.ex.ODataException;
-
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunctions;
@@ -20,6 +8,11 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import org.apache.olingo.commons.api.ex.ODataException;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.metamodel.*;
+import java.lang.reflect.AnnotatedElement;
 
 public class TestHelper {
   final private Metamodel jpaMetamodel;

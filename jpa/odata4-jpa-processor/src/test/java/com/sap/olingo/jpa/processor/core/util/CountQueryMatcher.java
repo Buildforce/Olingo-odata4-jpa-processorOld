@@ -1,9 +1,8 @@
 package com.sap.olingo.jpa.processor.core.util;
 
+import com.sap.olingo.jpa.processor.core.query.JPACountQuery;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.mockito.ArgumentMatcher;
-
-import com.sap.olingo.jpa.processor.core.query.JPACountQuery;
 
 public class CountQueryMatcher implements ArgumentMatcher<JPACountQuery> {
 

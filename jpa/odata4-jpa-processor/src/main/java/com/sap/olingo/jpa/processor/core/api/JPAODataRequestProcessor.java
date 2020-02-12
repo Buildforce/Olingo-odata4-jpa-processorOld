@@ -1,8 +1,10 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import javax.persistence.OptimisticLockException;
-import javax.persistence.RollbackException;
-
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
+import com.sap.olingo.jpa.processor.core.processor.JPAActionRequestProcessor;
+import com.sap.olingo.jpa.processor.core.processor.JPACUDRequestProcessor;
+import com.sap.olingo.jpa.processor.core.processor.JPAProcessorFactory;
+import com.sap.olingo.jpa.processor.core.processor.JPARequestProcessor;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
@@ -23,11 +25,8 @@ import org.apache.olingo.server.api.processor.PrimitiveCollectionProcessor;
 import org.apache.olingo.server.api.processor.PrimitiveValueProcessor;
 import org.apache.olingo.server.api.uri.UriInfo;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
-import com.sap.olingo.jpa.processor.core.processor.JPAActionRequestProcessor;
-import com.sap.olingo.jpa.processor.core.processor.JPACUDRequestProcessor;
-import com.sap.olingo.jpa.processor.core.processor.JPAProcessorFactory;
-import com.sap.olingo.jpa.processor.core.processor.JPARequestProcessor;
+import javax.persistence.OptimisticLockException;
+import javax.persistence.RollbackException;
 
 public final class JPAODataRequestProcessor
     implements PrimitiveValueProcessor, PrimitiveCollectionProcessor, ComplexProcessor, ComplexCollectionProcessor,

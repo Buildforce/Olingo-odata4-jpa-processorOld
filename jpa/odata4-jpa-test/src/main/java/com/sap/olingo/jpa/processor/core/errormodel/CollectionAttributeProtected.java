@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.processor.core.errormodel;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+import com.sap.olingo.jpa.processor.core.testmodel.InhouseAddress;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -13,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Version;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
-import com.sap.olingo.jpa.processor.core.testmodel.InhouseAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "CollectionAttributeProtected")
 @DiscriminatorValue(value = "1")

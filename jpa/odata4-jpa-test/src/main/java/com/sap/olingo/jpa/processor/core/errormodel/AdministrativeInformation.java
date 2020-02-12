@@ -1,14 +1,14 @@
 package com.sap.olingo.jpa.processor.core.errormodel;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Embeddable
 public class AdministrativeInformation {

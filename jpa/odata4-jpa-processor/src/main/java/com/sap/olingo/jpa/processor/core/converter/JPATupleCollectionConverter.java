@@ -1,22 +1,5 @@
 package com.sap.olingo.jpa.processor.core.converter;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.persistence.AttributeConverter;
-import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
-
-import org.apache.olingo.commons.api.data.ComplexValue;
-import org.apache.olingo.commons.api.http.HttpStatusCode;
-import org.apache.olingo.server.api.ODataApplicationException;
-import org.apache.olingo.server.api.ServiceMetadata;
-import org.apache.olingo.server.api.uri.UriHelper;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
@@ -24,6 +7,17 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
+import org.apache.olingo.commons.api.data.ComplexValue;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
+import org.apache.olingo.server.api.ODataApplicationException;
+import org.apache.olingo.server.api.ServiceMetadata;
+import org.apache.olingo.server.api.uri.UriHelper;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Tuple;
+import javax.persistence.TupleElement;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class JPATupleCollectionConverter extends JPATupleResultConverter {
 

@@ -1,15 +1,16 @@
-package ${package}.config;
+package $
 
-import javax.persistence.EntityManagerFactory;
-
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
+import javax.persistence.EntityManagerFactory;
+
+{package}.config;
 
 @Configuration
 public class ProcessorConfiguration {

@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.processor.core.converter;
 
-import java.util.Collection;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
+
+import java.util.Collection;
 
 public interface JPACollectionResult extends JPAExpandResult {
 

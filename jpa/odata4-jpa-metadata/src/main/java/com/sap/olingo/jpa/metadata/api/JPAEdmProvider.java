@@ -1,12 +1,10 @@
 package com.sap.olingo.jpa.metadata.api;
 
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Locale;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.metamodel.Metamodel;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocumentFactory;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
 import org.apache.olingo.commons.api.edm.provider.CsdlAbstractEdmProvider;
 import org.apache.olingo.commons.api.edm.provider.CsdlAction;
@@ -26,11 +24,11 @@ import org.apache.olingo.commons.api.edm.provider.CsdlTypeDefinition;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.commons.api.ex.ODataException;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPAServiceDocumentFactory;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.metamodel.Metamodel;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Locale;
 
 public class JPAEdmProvider extends CsdlAbstractEdmProvider {
 

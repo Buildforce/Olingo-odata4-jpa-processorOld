@@ -1,16 +1,15 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.annotation;
 
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.apache.olingo.commons.api.edm.provider.CsdlTerm;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.olingo.commons.api.edm.provider.CsdlTerm;
-
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class TermReader {
   final private XmlMapper xmlMapper;

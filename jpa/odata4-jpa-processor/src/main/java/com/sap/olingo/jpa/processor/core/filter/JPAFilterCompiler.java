@@ -1,13 +1,11 @@
 package com.sap.olingo.jpa.processor.core.filter;
 
-import java.util.List;
-
-import javax.persistence.criteria.Expression;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import javax.persistence.criteria.Expression;
+import java.util.List;
 
 public interface JPAFilterCompiler {
 

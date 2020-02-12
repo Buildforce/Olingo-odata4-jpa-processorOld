@@ -1,7 +1,5 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
-import java.util.List;
-
 import org.apache.olingo.commons.api.data.Annotatable;
 import org.apache.olingo.commons.api.data.ComplexValue;
 import org.apache.olingo.commons.api.data.ContextURL;
@@ -24,8 +22,9 @@ import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 import org.apache.olingo.server.api.uri.UriResourceKind;
 import org.apache.olingo.server.api.uri.UriResourceNavigation;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
-
 import com.sap.olingo.jpa.processor.core.query.Util;
+
+import java.util.List;
 
 final class JPASerializeComplex implements JPAOperationSerializer {
   private final ServiceMetadata serviceMetadata;

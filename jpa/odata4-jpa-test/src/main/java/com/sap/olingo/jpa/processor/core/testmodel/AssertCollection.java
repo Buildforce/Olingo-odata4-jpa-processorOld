@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.util.List;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.extension;
 
-import java.util.List;
-
 import org.apache.olingo.commons.api.edm.provider.CsdlAnnotation;
 import org.apache.olingo.commons.api.edm.provider.CsdlOnDelete;
+
+import java.util.List;
 
 public interface IntermediateNavigationPropertyAccess extends IntermediateModelItemAccess {
   void setOnDelete(CsdlOnDelete onDelete);

@@ -1,29 +1,5 @@
 package com.sap.olingo.jpa.processor.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.sql.Clob;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.stream.Stream;
-
-import org.hsqldb.jdbc.JDBCClob;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescription;
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescriptionKey;
@@ -63,6 +39,31 @@ import com.sap.olingo.jpa.processor.core.testmodel.PersonImage;
 import com.sap.olingo.jpa.processor.core.testmodel.PostalAddressData;
 import com.sap.olingo.jpa.processor.core.testmodel.PostalAddressDataWithGroup;
 import com.sap.olingo.jpa.processor.core.testmodel.User;
+
+import org.hsqldb.jdbc.JDBCClob;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.sql.Clob;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.stream.Stream;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * The following set of test methods checks a number of standard methods of model pojos.
@@ -185,8 +186,7 @@ public class TestStandardMethodsOfTestModel {
     final Object instance = constructor.newInstance();
 
     for (final Method hashcode : methods) {
-      if ("hashCode".equals(hashcode.getName())
-          && hashcode.getParameterCount() == 0) {
+      if ("hashCode".equals(hashcode.getName()) && hashcode.getParameterCount() == 0) {
         assertNotEquals(0, hashcode.invoke(instance));
       }
     }
@@ -198,40 +198,23 @@ public class TestStandardMethodsOfTestModel {
     int expInt = 10;
     Integer expInteger = 20;
     String expString = "TestString";
-    if (paramType == String.class)
-      return expString;
-    else if (paramType == Integer.class)
-      return expInteger;
-    else if (paramType == int.class)
-      return expInt;
-    else if (paramType == Boolean.class)
-      return expBoolean;
-    else if (paramType == BigInteger.class)
-      return expBigInt;
-    else if (paramType == BigDecimal.class)
-      return expDecimal;
-    else if (paramType == LocalDate.class)
-      return expLocalDate;
-    else if (paramType == Long.class)
-      return expLong;
-    else if (paramType == long.class)
-      return expLong;
-    else if (paramType == Clob.class)
-      return expClob;
-    else if (paramType == expByteArray.getClass())
-      return expByteArray;
-    else if (paramType == Date.class)
-      return expDate;
-    else if (paramType == expUtilDate.getClass())
-      return expUtilDate;
-    else if (paramType == Timestamp.class)
-      return expTimestamp;
-    else if (paramType == Short.class)
-      return expShort;
-    else if (paramType == short.class)
-      return expShort;
-    else
-      return null;
+    if (paramType == String.class) return expString;
+    else if (paramType == Integer.class) return expInteger;
+    else if (paramType == int.class) return expInt;
+    else if (paramType == Boolean.class) return expBoolean;
+    else if (paramType == BigInteger.class) return expBigInt;
+    else if (paramType == BigDecimal.class) return expDecimal;
+    else if (paramType == LocalDate.class) return expLocalDate;
+    else if (paramType == Long.class) return expLong;
+    else if (paramType == long.class) return expLong;
+    else if (paramType == Clob.class) return expClob;
+    else if (paramType == expByteArray.getClass()) return expByteArray;
+    else if (paramType == Date.class) return expDate;
+    else if (paramType == expUtilDate.getClass()) return expUtilDate;
+    else if (paramType == Timestamp.class) return expTimestamp;
+    else if (paramType == Short.class) return expShort;
+    else if (paramType == short.class) return expShort;
+    else return null;
   }
 
 }

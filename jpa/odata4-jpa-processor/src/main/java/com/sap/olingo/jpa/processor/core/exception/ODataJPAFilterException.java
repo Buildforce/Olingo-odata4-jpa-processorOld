@@ -1,8 +1,7 @@
 package com.sap.olingo.jpa.processor.core.exception;
 
-import org.apache.olingo.commons.api.http.HttpStatusCode;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMessageKey;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 
 public class ODataJPAFilterException extends ODataJPAProcessException {
   /**

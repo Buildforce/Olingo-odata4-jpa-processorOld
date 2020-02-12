@@ -1,22 +1,20 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.persistence.criteria.Selection;
-
-import org.apache.olingo.commons.api.ex.ODataException;
-import org.apache.olingo.server.api.ODataApplicationException;
-import org.junit.jupiter.api.Test;
-
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerWithGroups;
 import com.sap.olingo.jpa.processor.core.util.SelectOptionDouble;
 import com.sap.olingo.jpa.processor.core.util.TestGroupBase;
 import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
+import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.server.api.ODataApplicationException;
+import org.junit.jupiter.api.Test;
+
+import javax.persistence.criteria.Selection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
 

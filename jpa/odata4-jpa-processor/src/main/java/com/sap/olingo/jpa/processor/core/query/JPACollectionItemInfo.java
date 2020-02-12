@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import java.util.List;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
+
+import java.util.List;
 
 public final class JPACollectionItemInfo extends JPAInlineItemInfo {
 

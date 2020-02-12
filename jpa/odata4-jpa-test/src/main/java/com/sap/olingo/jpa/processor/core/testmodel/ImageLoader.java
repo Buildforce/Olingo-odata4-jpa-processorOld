@@ -1,8 +1,9 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
-import static org.junit.jupiter.api.Assertions.fail;
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,10 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ImageLoader {
   private static final String SELECT_PERSON_IMAGE =

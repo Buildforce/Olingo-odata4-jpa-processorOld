@@ -1,10 +1,9 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
-import java.util.List;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import java.util.List;
 
 /**
  * External view on an Intermediate Structured Type.

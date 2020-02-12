@@ -1,15 +1,13 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import java.util.List;
-
-import javax.persistence.metamodel.EmbeddableType;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.provider.CsdlComplexType;
 import org.apache.olingo.commons.api.edm.provider.CsdlNavigationProperty;
 import org.apache.olingo.commons.api.edm.provider.CsdlProperty;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import javax.persistence.metamodel.EmbeddableType;
+import java.util.List;
 
 /**
  * Complex Types are used to structure Entity Types by grouping properties that belong together. Complex Types can

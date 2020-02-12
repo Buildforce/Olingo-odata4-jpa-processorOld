@@ -1,15 +1,15 @@
 package com.sap.olingo.jpa.processor.core.util;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.List;
-
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmNavigationProperty;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResourceKind;
 import org.apache.olingo.server.api.uri.UriResourceNavigation;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class UriResourceNavigationDouble implements UriResourceNavigation {
   private final EdmType type;

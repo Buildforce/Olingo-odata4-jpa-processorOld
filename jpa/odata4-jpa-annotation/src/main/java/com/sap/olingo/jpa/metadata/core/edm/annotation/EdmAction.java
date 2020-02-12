@@ -1,11 +1,11 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 
 /**
  * Metadata of an action, see <a href =

@@ -1,6 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.util.Collection;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,9 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+import java.util.Collection;
 
 @Inheritance
 @DiscriminatorColumn(name = "\"Type\"")

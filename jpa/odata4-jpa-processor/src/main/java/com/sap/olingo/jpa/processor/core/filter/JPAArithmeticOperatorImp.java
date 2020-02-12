@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.processor.core.filter;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Expression;
-
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.queryoption.expression.BinaryOperatorKind;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Expression;
 
 class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   private final JPAOperationConverter converter;

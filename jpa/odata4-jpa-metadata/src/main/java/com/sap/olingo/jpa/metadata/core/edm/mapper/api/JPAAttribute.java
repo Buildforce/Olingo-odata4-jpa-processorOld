@@ -1,14 +1,12 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.AttributeConverter;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import org.apache.olingo.commons.api.edm.provider.CsdlAbstractEdmItem;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import javax.persistence.AttributeConverter;
+import java.util.List;
+import java.util.Set;
 
 public interface JPAAttribute extends JPAElement {
   <X, Y> AttributeConverter<X, Y> getConverter();

@@ -1,8 +1,7 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects;
 
-import java.math.BigDecimal;
-
 import javax.persistence.AttributeConverter;
+import java.math.BigDecimal;
 
 public class WrongTypeConverter implements AttributeConverter<WrongType[], BigDecimal> {
 

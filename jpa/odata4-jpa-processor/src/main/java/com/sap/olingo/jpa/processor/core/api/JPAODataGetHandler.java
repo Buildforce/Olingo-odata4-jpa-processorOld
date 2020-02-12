@@ -1,6 +1,12 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import java.util.Optional;
+import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
+import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
+import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
+import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.server.api.OData;
+import org.apache.olingo.server.api.ODataHttpHandler;
+import org.apache.olingo.server.api.debug.DebugSupport;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,15 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import org.apache.olingo.commons.api.ex.ODataException;
-import org.apache.olingo.server.api.OData;
-import org.apache.olingo.server.api.ODataHttpHandler;
-import org.apache.olingo.server.api.debug.DebugSupport;
-
-import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
-import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
-import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
+import java.util.Optional;
 
 public class JPAODataGetHandler {
   private static final String REQUEST_MAPPING_ATTRIBUTE = "requestMapping";

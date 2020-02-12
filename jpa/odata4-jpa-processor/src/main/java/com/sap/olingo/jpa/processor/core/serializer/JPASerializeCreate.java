@@ -1,8 +1,6 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.sap.olingo.jpa.processor.core.query.Util;
 import org.apache.olingo.commons.api.data.ContextURL;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
@@ -30,7 +28,8 @@ import org.apache.olingo.server.api.uri.queryoption.SkipOption;
 import org.apache.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 import org.apache.olingo.server.api.uri.queryoption.TopOption;
 
-import com.sap.olingo.jpa.processor.core.query.Util;
+import java.util.ArrayList;
+import java.util.List;
 
 final class JPASerializeCreate implements JPASerializer {
   private final ServiceMetadata serviceMetadata;

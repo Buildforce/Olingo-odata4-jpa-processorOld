@@ -1,11 +1,11 @@
 package com.sap.olingo.jpa.metadata.api;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 
 public class JPAEntityManagerFactory {

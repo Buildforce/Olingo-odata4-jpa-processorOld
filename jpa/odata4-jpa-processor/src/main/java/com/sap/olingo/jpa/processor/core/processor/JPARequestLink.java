@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
-import java.util.Map;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
+
+import java.util.Map;
 
 public interface JPARequestLink {
   /**

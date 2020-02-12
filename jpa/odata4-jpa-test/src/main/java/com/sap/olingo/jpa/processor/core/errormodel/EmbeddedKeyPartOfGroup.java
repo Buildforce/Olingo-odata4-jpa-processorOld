@@ -4,13 +4,13 @@
  */
 package com.sap.olingo.jpa.processor.core.errormodel;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmVisibleFor;
+import com.sap.olingo.jpa.processor.core.testmodel.CountryKey;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Version;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmVisibleFor;
-import com.sap.olingo.jpa.processor.core.testmodel.CountryKey;
 
 /**
  * @author Oliver Grande

@@ -1,6 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.sql.Timestamp;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -8,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
+import java.sql.Timestamp;
 
 @Entity(name = "PersonProtected")
 @Table(schema = "\"OLINGO\"", name = "PersonProtected")

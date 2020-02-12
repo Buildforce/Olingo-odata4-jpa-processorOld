@@ -1,8 +1,6 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.queryoption.ApplyOption;
@@ -20,7 +18,8 @@ import org.apache.olingo.server.api.uri.queryoption.SkipOption;
 import org.apache.olingo.server.api.uri.queryoption.SkipTokenOption;
 import org.apache.olingo.server.api.uri.queryoption.TopOption;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JPACollectionExpandWrapper implements JPAExpandItem {
   private final JPAEntityType jpaEntityType;

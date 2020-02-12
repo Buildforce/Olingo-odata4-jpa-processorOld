@@ -1,16 +1,15 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.IOException;
-
-import org.apache.olingo.commons.api.ex.ODataException;
-import org.junit.jupiter.api.Test;
-
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
+import org.apache.olingo.commons.api.ex.ODataException;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestJPAQueryOrderByClause extends TestBase {
 

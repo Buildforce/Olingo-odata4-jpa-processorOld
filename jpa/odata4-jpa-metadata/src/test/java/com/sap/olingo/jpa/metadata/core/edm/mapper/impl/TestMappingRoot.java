@@ -1,11 +1,10 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import javax.persistence.EntityManagerFactory;
-
-import org.junit.jupiter.api.BeforeAll;
-
 import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
+import org.junit.jupiter.api.BeforeAll;
+
+import javax.persistence.EntityManagerFactory;
 
 public class TestMappingRoot {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";

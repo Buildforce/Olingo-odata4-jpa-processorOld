@@ -1,10 +1,9 @@
 package com.sap.olingo.jpa.processor.core.converter;
 
-import java.util.Collection;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import org.apache.olingo.server.api.ODataApplicationException;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import java.util.Collection;
 
 public interface JPAResultConverter {
 

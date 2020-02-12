@@ -1,10 +1,11 @@
 package com.sap.olingo.jpa.processor.core.database;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPADataBaseFunction;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import com.sap.olingo.jpa.processor.core.api.JPAODataDatabaseProcessor;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPADBAdaptorException;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import org.apache.olingo.commons.api.edm.EdmElement;
 import org.apache.olingo.commons.api.edm.EdmFunction;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveType;
@@ -17,12 +18,9 @@ import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 import org.apache.olingo.server.api.uri.UriResourceFunction;
 import org.apache.olingo.server.api.uri.UriResourceKind;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPADataBaseFunction;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.processor.core.api.JPAODataDatabaseProcessor;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPADBAdaptorException;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
 public abstract class JPAAbstractDatabaseProcessor implements JPAODataDatabaseProcessor {
   static final String FUNC_NAME_PLACEHOLDER = "$FUNCTIONNAME$";

@@ -1,10 +1,10 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
-import static java.lang.annotation.ElementType.FIELD;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.FIELD;
 
 /**
  * Allows to combine either multiple claims for a simple attribute, which will be combined with AND,

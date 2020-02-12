@@ -1,13 +1,11 @@
 package com.sap.olingo.jpa.processor.core.query;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
+import com.sap.olingo.jpa.processor.core.converter.JPAEntityResultConverter;
+import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
+import com.sap.olingo.jpa.processor.core.util.EdmEntityTypeDouble;
+import com.sap.olingo.jpa.processor.core.util.TestBase;
+import com.sap.olingo.jpa.processor.core.util.TestHelper;
+import com.sap.olingo.jpa.processor.core.util.UriHelperDouble;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -15,12 +13,13 @@ import org.apache.olingo.server.api.serializer.SerializerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.sap.olingo.jpa.processor.core.converter.JPAEntityResultConverter;
-import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
-import com.sap.olingo.jpa.processor.core.util.EdmEntityTypeDouble;
-import com.sap.olingo.jpa.processor.core.util.TestBase;
-import com.sap.olingo.jpa.processor.core.util.TestHelper;
-import com.sap.olingo.jpa.processor.core.util.UriHelperDouble;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestJPAInstanceResultConverter extends TestBase {
   public static final int NO_POSTAL_ADDRESS_FIELDS = 8;

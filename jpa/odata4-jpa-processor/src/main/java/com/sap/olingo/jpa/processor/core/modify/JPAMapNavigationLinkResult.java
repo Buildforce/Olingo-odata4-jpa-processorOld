@@ -1,19 +1,17 @@
 package com.sap.olingo.jpa.processor.core.modify;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.persistence.Tuple;
-
-import org.apache.olingo.server.api.ODataApplicationException;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.converter.JPATupleChildConverter;
 import com.sap.olingo.jpa.processor.core.processor.JPARequestEntity;
+import org.apache.olingo.server.api.ODataApplicationException;
+
+import javax.persistence.Tuple;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 final class JPAMapNavigationLinkResult extends JPACreateResult {
   private final List<Tuple> result;

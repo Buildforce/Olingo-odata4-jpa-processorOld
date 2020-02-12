@@ -1,16 +1,15 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.time.LocalDate;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
+import java.time.LocalDate;
 
 @EdmIgnore // Only
 @Entity(name = "PersonDeepProtected")

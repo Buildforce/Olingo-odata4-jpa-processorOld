@@ -1,14 +1,13 @@
 package com.sap.olingo.jpa.processor.core.database;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import org.apache.olingo.server.api.ODataApplicationException;
+import org.apache.olingo.server.api.uri.queryoption.SearchOption;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.From;
-
-import org.apache.olingo.server.api.ODataApplicationException;
-import org.apache.olingo.server.api.uri.queryoption.SearchOption;
-
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 
 public interface JPAODataDatabaseSearch {
   /**

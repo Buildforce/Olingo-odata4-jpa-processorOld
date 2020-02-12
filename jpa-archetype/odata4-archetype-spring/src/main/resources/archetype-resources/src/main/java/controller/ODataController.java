@@ -1,17 +1,18 @@
-package ${package}.controller;
+package $
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
+import com.sap.olingo.jpa.processor.core.api.example.JPAExampleCUDRequestHandler;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
-import com.sap.olingo.jpa.processor.core.api.example.JPAExampleCUDRequestHandler;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+{package}.controller;
 
 @RestController
 @RequestMapping("${punit}/v1/**")

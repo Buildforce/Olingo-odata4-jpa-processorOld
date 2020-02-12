@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.sql.DataSource;
-
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.internal.jdbc.DriverDataSource;
+
+import javax.sql.DataSource;
 
 public class DataSourceHelper {
   private static final String DB_SCHEMA = "OLINGO";

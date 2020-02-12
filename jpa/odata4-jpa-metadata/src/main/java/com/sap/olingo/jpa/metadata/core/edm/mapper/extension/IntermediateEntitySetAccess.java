@@ -1,10 +1,9 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.extension;
 
-import java.util.List;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
 import org.apache.olingo.commons.api.edm.provider.CsdlAnnotation;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
+import java.util.List;
 
 public interface IntermediateEntitySetAccess extends JPAElement {
   /**

@@ -4,11 +4,11 @@
  */
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
+import org.apache.olingo.commons.api.edm.provider.CsdlEntityType;
+
 import javax.persistence.metamodel.Attribute;
 import javax.persistence.metamodel.EmbeddableType;
 import javax.persistence.metamodel.EntityType;
-
-import org.apache.olingo.commons.api.edm.provider.CsdlEntityType;
 
 /**
  * A name builder creates, based on information from the JPA entity model names, the names of the corresponding element

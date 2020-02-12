@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
-import java.util.List;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+
+import java.util.List;
 
 public interface JPAAssociationPath {
 

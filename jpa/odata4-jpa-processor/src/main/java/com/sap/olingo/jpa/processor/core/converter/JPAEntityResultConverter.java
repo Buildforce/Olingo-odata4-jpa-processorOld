@@ -1,9 +1,6 @@
 package com.sap.olingo.jpa.processor.core.converter;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.data.Property;
@@ -12,7 +9,9 @@ import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriHelper;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 
 public class JPAEntityResultConverter extends JPAStructuredResultConverter {
   private final EdmEntityType edmEntityType;

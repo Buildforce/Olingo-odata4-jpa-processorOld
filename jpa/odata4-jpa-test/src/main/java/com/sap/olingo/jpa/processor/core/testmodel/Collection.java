@@ -1,7 +1,5 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.util.List;
-
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -11,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"Collections\"")

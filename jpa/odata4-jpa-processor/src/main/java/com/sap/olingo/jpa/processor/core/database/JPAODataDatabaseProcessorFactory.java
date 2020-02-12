@@ -1,12 +1,11 @@
 package com.sap.olingo.jpa.processor.core.database;
 
+import com.sap.olingo.jpa.processor.core.api.JPAODataDatabaseProcessor;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
-import com.sap.olingo.jpa.processor.core.api.JPAODataDatabaseProcessor;
 
 public class JPAODataDatabaseProcessorFactory {
   private static final String PRODUCT_NAME_H2 = "H2";

@@ -1,12 +1,10 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import java.util.Optional;
-
-import javax.persistence.EntityManager;
-
+import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 
-import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
+import javax.persistence.EntityManager;
+import java.util.Optional;
 
 public interface JPAODataRequestContextAccess {
 

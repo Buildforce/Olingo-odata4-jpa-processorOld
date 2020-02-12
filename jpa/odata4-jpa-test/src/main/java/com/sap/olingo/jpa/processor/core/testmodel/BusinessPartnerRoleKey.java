@@ -1,8 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.io.Serializable;
-
 import javax.persistence.Id;
+import java.io.Serializable;
 
 public class BusinessPartnerRoleKey implements Serializable {
 

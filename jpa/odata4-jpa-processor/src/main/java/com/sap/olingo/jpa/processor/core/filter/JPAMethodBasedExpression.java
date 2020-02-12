@@ -1,11 +1,10 @@
 package com.sap.olingo.jpa.processor.core.filter;
 
-import java.util.List;
-
-import javax.persistence.criteria.Expression;
-
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.queryoption.expression.MethodKind;
+
+import javax.persistence.criteria.Expression;
+import java.util.List;
 
 final class JPAMethodBasedExpression extends JPAMethodCallImp implements JPAExpression {
 

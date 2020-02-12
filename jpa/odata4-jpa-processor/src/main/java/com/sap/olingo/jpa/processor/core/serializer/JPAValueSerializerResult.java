@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
-import java.io.InputStream;
-
 import org.apache.olingo.server.api.serializer.SerializerResult;
+
+import java.io.InputStream;
 
 final class JPAValueSerializerResult implements SerializerResult {
   /**

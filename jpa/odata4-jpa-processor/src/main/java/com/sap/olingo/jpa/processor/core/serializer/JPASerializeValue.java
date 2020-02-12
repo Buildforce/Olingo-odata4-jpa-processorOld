@@ -1,8 +1,6 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
-import java.io.InputStream;
-import java.util.List;
-
+import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import org.apache.olingo.commons.api.data.Annotatable;
 import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.data.EntityCollection;
@@ -26,7 +24,8 @@ import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 import org.apache.olingo.server.api.uri.UriResourceNavigation;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
 
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
+import java.io.InputStream;
+import java.util.List;
 
 final class JPASerializeValue extends JPASerializePrimitiveAbstract {
   private final FixedFormatSerializer serializer;

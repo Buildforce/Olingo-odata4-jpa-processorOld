@@ -1,12 +1,12 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Representing an entity that should be created, updated or deleted by a POST, PUT, PATCH or DELETE request

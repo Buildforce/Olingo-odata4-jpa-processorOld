@@ -1,10 +1,9 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import java.sql.Date;
+import java.time.LocalDate;
 
 //This converter has to be mentioned at all columns it is applicable
 @Converter()
