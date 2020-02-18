@@ -277,12 +277,12 @@ public class JPAConversionHelper {
    * @throws ODataJPAProcessorException
    */
   public Map<String, Object> determineGetter(final Object instance) throws ODataJPAProcessorException {
-    Map<String, Object> getterMap;
-    getterMap = new HashMap<>();
+    Map<String, Object> getterMap = new HashMap<>();
     Method[] methods = instance.getClass().getMethods();
+
     for (Method meth : methods) {
       String methodName = meth.getName();
-      if (methodName.substring(0, 3).equals("get") && methodName.length() > 3) {
+      if (methodName.startsWith("get") && methodName.length() > 3) {
         String attributeName = methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
         try {
           Object value = meth.invoke(instance);

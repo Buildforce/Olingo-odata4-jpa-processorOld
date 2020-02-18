@@ -268,16 +268,15 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     // format: ON
 
     public JPAODataCRUDContextAccess build() throws ODataException {
-      try {
-        if (nameBuilder == null) nameBuilder = new JPADefaultEdmNameBuilder(namespace);
         if (packageName == null) packageName = new String[0];
-        if (!builderEmf.isPresent() && builderDs != null && namespace != null)
+        if (nameBuilder == null) nameBuilder = new JPADefaultEdmNameBuilder(namespace);
+        if (!(builderEmf.isPresent() || builderDs == null || namespace == null))
           builderEmf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace, builderDs));
         if (builderEmf.isPresent())
           builderJpaEdm = new JPAEdmProvider(builderEmf.get().getMetamodel(), postProcessor, packageName, nameBuilder);
+      try {
         if (databaseProcessor == null)
           databaseProcessor = new JPAODataDatabaseProcessorFactory().create(builderDs);
-
       } catch (SQLException | PersistenceException e) {
         throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
       }

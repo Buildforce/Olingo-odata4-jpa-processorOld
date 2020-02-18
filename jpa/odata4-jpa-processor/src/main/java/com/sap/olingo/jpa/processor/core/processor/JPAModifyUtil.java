@@ -152,7 +152,7 @@ public final class JPAModifyUtil {
       throws ODataJPAProcessorException, ODataJPAInvocationTargetException {
     Method[] methods = instance.getClass().getMethods();
     for (Method meth : methods) {
-      if (meth.getName().substring(0, 3).equals("set")) {
+      if (meth.getName().startsWith("set")) {
         String attributeName = meth.getName().substring(3, 4).toLowerCase() + meth.getName().substring(4);
         if (jpaAttributes.containsKey(attributeName)) {
           Object value = jpaAttributes.get(attributeName);
@@ -198,7 +198,7 @@ public final class JPAModifyUtil {
 
     final Method[] methods = instance.getClass().getMethods();
     for (final Method meth : methods) {
-      if (meth.getName().substring(0, 3).equals("set")) {
+      if (meth.getName().startsWith("set")) {
         final String attributeName = meth.getName().substring(3, 4).toLowerCase() + meth.getName().substring(4);
         if (jpaAttributes.containsKey(attributeName)) {
           final Object value = jpaAttributes.get(attributeName);
