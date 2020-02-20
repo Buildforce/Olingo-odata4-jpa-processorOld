@@ -51,13 +51,13 @@ public class JPAODataGetHandler {
   @Deprecated
   public JPAODataGetHandler(final String pUnit, final DataSource ds) throws ODataException {
     super();
-    this.namespace = pUnit;
+    namespace = pUnit;
     this.ds = ds;
-    this.emf = ds == null ? Optional.empty() : Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(pUnit, ds));
-    this.jpaMetamodel = emf.map(EntityManagerFactory::getMetamodel).orElse(null);
-    this.serviceContext = new JPAODataServiceContext(this);
-    this.requestContext = new JPAODataRequestContextImpl();
-    this.odata = OData.newInstance();
+    emf = ds == null ? Optional.empty() : Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(pUnit, ds));
+    jpaMetamodel = emf.map(EntityManagerFactory::getMetamodel).orElse(null);
+    serviceContext = new JPAODataServiceContext(this);
+    requestContext = new JPAODataRequestContextImpl();
+    odata = OData.newInstance();
   }
 
   public JPAODataGetHandler(final JPAODataCRUDContextAccess serviceContext) {
@@ -70,12 +70,12 @@ public class JPAODataGetHandler {
    * @param odata
    */
   JPAODataGetHandler(final JPAODataCRUDContextAccess serviceContext, final OData odata) {
-    this.namespace = null;
-    this.ds = null;
-    this.emf = serviceContext.getEntityManagerFactory();
-    this.jpaMetamodel = null;
+    namespace = null;
+    ds = null;
+    emf = serviceContext.getEntityManagerFactory();
+    jpaMetamodel = null;
     this.serviceContext = (JPAODataServiceContext) serviceContext;
-    this.requestContext = new JPAODataRequestContextImpl();
+    requestContext = new JPAODataRequestContextImpl();
     this.odata = odata;
   }
 
@@ -88,10 +88,10 @@ public class JPAODataGetHandler {
   }
 
   public void process(final HttpServletRequest request, final HttpServletResponse response) throws ODataException {
-    if (emf.isPresent() && this.requestContext.getEntityManager() == null) {
+    if (emf.isPresent() && requestContext.getEntityManager() == null) {
       final EntityManager em = emf.get().createEntityManager();
       try {
-        this.requestContext.setEntityManager(em);
+        requestContext.setEntityManager(em);
         processInternal(request, response);
       } finally {
         em.close();
@@ -112,8 +112,7 @@ public class JPAODataGetHandler {
   @Deprecated
   public void process(final HttpServletRequest request, final HttpServletResponse response, final EntityManager em)
       throws ODataException {
-
-    this.requestContext.setEntityManager(em);
+    requestContext.setEntityManager(em);
     process(request, response);
   }
 
@@ -129,10 +128,8 @@ public class JPAODataGetHandler {
   @Deprecated
   public void process(final HttpServletRequest request, final HttpServletResponse response,
       final JPAODataClaimProvider claims, final EntityManager em) throws ODataException {
-
-    this.requestContext.setClaimsProvider(claims);
-    this.requestContext.setEntityManager(em);
-
+    requestContext.setClaimsProvider(claims);
+    requestContext.setEntityManager(em);
     process(request, response);
   }
 

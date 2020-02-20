@@ -65,51 +65,34 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   @Override
-  public Optional<JPAODataClaimProvider> getClaimsProvider() {
-    return claims;
-  }
+  public Optional<JPAODataClaimProvider> getClaimsProvider() { return claims; }
 
   @Override
-  public JPACUDRequestHandler getCUDRequestHandler() {
-    return jpaCUDRequestHandler;
-  }
+  public JPACUDRequestHandler getCUDRequestHandler() { return jpaCUDRequestHandler; }
 
   @Override
-  public EntityManager getEntityManager() {
-    return this.em;
-  }
+  public EntityManager getEntityManager() { return em; }
 
   @Override
-  public Optional<JPAODataGroupProvider> getGroupsProvider() {
-    return groups;
-  }
+  public Optional<JPAODataGroupProvider> getGroupsProvider() { return groups; }
 
   @Override
-  public JPAODataPage getPage() {
-    return page;
-  }
+  public JPAODataPage getPage() { return page; }
 
   @Override
-  public JPASerializer getSerializer() {
-    return serializer;
-  }
+  public JPASerializer getSerializer() { return serializer; }
 
   @Override
   public JPAODataTransactionFactory getTransactionFactory() {
-    if (transactionFactory == null)
-      createDefaultTransactionFactory();
+    if (transactionFactory == null) createDefaultTransactionFactory();
     return this.transactionFactory;
   }
 
   @Override
-  public UriInfoResource getUriInfo() {
-    return this.uriInfo;
-  }
+  public UriInfoResource getUriInfo() { return this.uriInfo; }
 
   @Override
-  public void setClaimsProvider(final JPAODataClaimProvider provider) {
-    claims = Optional.ofNullable(provider);
-  }
+  public void setClaimsProvider(final JPAODataClaimProvider provider) { claims = Optional.ofNullable(provider); }
 
   @Override
   public void setCUDRequestHandler(final JPACUDRequestHandler jpaCUDRequestHandler) {
@@ -122,14 +105,11 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   }
 
   @Override
-  public void setGroupsProvider(final JPAODataGroupProvider provider) {
-    groups = Optional.ofNullable(provider);
-  }
+  public void setGroupsProvider(final JPAODataGroupProvider provider) { groups = Optional.ofNullable(provider); }
 
   @Override
   public void setJPAODataPage(final JPAODataPage page) throws JPAIllegalAccessException {
-    if (this.uriInfo != null)
-      throw new JPAIllegalAccessException();
+    if (this.uriInfo != null) throw new JPAIllegalAccessException();
     this.setUriInfo(page.getUriInfo());
     this.page = Objects.requireNonNull(page);
   }
@@ -137,7 +117,6 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   @Override
   public void setDebugSupport(final DebugSupport debugSupport) {
     this.debugSupport = new JPADebugSupportWrapper(debugSupport);
-
   }
 
   @Override
@@ -152,21 +131,17 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
 
   @Override
   public void setUriInfo(final UriInfo uriInfo) throws JPAIllegalAccessException {
-    if (this.page != null)
-      throw new JPAIllegalAccessException();
+    if (this.page != null) throw new JPAIllegalAccessException();
     this.uriInfo = Objects.requireNonNull(uriInfo);
   }
 
   @Override
   public JPAServiceDebugger getDebugger() {
-    if (debugger == null)
-      initDebugger();
+    if (debugger == null) initDebugger();
     return debugger;
   }
 
-  public void setDebugFormat(String debugFormat) {
-    this.debugFormat = debugFormat;
-  }
+  public void setDebugFormat(String debugFormat) { this.debugFormat = debugFormat; }
 
   private void initDebugger() {
     // see org.apache.olingo.server.core.debug.ServerCoreDebugger
@@ -230,9 +205,7 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
      * @see org.apache.olingo.server.api.debug.DebugSupport#init(org.apache.olingo.server.api.OData)
      */
     @Override
-    public void init(final OData odata) {
-      debugSupport.init(odata);
-    }
+    public void init(final OData odata) { debugSupport.init(odata); }
 
     /*
      * (non-Javadoc)
@@ -241,13 +214,9 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
      * @see org.apache.olingo.server.api.debug.DebugSupport#isUserAuthorized()
      */
     @Override
-    public boolean isUserAuthorized() {
-      return debugSupport.isUserAuthorized();
-    }
+    public boolean isUserAuthorized() { return debugSupport.isUserAuthorized(); }
 
-    void setDebugger(final JPAServiceDebugger debugger) {
-      this.debugger = debugger;
-    }
+    void setDebugger(final JPAServiceDebugger debugger) { this.debugger = debugger; }
 
     private void joinRuntimeInfo(final DebugInformation debugInfo) {
       // Olingo create a tree for runtime measurement in DebugTabRuntime.add(final RuntimeMeasurement
