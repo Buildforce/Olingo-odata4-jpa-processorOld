@@ -21,7 +21,7 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
-			<version>${eclicse.javax.prstnc.version}</version>
+			<version>${eclipse.javax.prstnc.version}</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -13,7 +13,7 @@
 
     <properties>
         <coveralls.version>4.3.0</coveralls.version>
-        <eclicse.javax.prstnc.version>2.2.1</eclicse.javax.prstnc.version>
+        <eclipse.javax.prstnc.version>2.2.1</eclipse.javax.prstnc.version>
         <eclipselink.prstnc.version>2.7.6</eclipselink.prstnc.version>
         <jackson.version>2.10.2</jackson.version>
         <jpa-processor.version>0.3.8</jpa-processor.version>
