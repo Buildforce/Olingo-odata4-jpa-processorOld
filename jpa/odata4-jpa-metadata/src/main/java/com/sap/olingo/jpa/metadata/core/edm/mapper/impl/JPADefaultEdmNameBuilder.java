@@ -22,7 +22,6 @@ public final class JPADefaultEdmNameBuilder implements JPAEdmNameBuilder {
   private final String namespace;
 
   public JPADefaultEdmNameBuilder(final String namespace) {
-    super();
     this.namespace = namespace;
   }
 

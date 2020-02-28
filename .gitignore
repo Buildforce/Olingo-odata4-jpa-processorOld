@@ -35,6 +35,7 @@ local.properties
 # --- EclipseIDE stuff END
 
 # --- Maven stuff START
+mvn-repo/
 target/
 **/target/
 /target/
