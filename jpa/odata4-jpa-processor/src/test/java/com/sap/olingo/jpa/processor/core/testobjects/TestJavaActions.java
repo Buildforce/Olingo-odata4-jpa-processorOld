@@ -21,7 +21,6 @@ public class TestJavaActions implements ODataAction {
   public static int constructorCalls = 0;
 
   public TestJavaActions(EntityManager em) {
-    super();
     assert em != null;
     constructorCalls++;
   }

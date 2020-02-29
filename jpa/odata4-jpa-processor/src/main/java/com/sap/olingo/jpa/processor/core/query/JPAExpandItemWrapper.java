@@ -29,13 +29,11 @@ public class JPAExpandItemWrapper implements JPAExpandItem {
   private final JPAEntityType jpaEntityType;
 
   public JPAExpandItemWrapper(final JPAServiceDocument sd, final ExpandItem item) {
-    super();
     this.item = item;
     this.jpaEntityType = sd.getEntity(Util.determineTargetEntityType(getUriResourceParts()));
   }
 
   public JPAExpandItemWrapper(final ExpandItem item, final JPAEntityType jpaEntityType) {
-    super();
     this.item = item;
     this.jpaEntityType = jpaEntityType;
   }

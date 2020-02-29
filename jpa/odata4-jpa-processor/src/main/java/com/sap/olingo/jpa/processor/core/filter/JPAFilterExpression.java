@@ -10,7 +10,6 @@ public final class JPAFilterExpression implements JPAVisitableExpression {
   private final Member member;
 
   public JPAFilterExpression(final Member member, final Literal literal, final BinaryOperatorKind operator) {
-    super();
     this.literal = literal;
     this.operator = operator;
     this.member = member;

@@ -125,7 +125,6 @@ public abstract class BusinessPartner implements KeyAccess {
   private Collection<BusinessPartnerRole> roles;
 
   public BusinessPartner() {
-    super();
   }
 
   @Override

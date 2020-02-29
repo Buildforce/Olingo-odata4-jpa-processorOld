@@ -13,10 +13,6 @@ import java.util.Set;
 
 public abstract class IntermediateOperationFactory {
 
-  public IntermediateOperationFactory() {
-    super();
-  }
-
   abstract IntermediateOperation createOperation(final JPAEdmNameBuilder nameBuilder, final IntermediateSchema schema,
       final Method m, final Object functionDescription) throws ODataJPAModelException;
 

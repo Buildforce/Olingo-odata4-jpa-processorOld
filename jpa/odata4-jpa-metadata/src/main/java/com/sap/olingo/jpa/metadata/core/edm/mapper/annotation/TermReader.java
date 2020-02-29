@@ -15,7 +15,6 @@ public class TermReader {
   final private XmlMapper xmlMapper;
 
   public TermReader() {
-    super();
     JacksonXmlModule module = new JacksonXmlModule();
     module.setDefaultUseWrapper(false);
     xmlMapper = new XmlMapper(module);

@@ -26,20 +26,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class ServiceMetadataDouble implements ServiceMetadata {
   private final Edm edm;
-
-  public ServiceMetadataDouble() {
-    super();
-    edm = new EdmDouble();
-  }
+  private final JPAEdmNameBuilder nameBuilder;
 
   public ServiceMetadataDouble(JPAEdmNameBuilder nameBuilder, String typeName) {
-    super();
     this.nameBuilder = nameBuilder;
     this.edm = new EdmDouble(typeName);
   }
-
-  private JPAEdmNameBuilder nameBuilder;
-
+  
   @Override
   public Edm getEdm() {
     return edm;
@@ -67,12 +60,10 @@ public class ServiceMetadataDouble implements ServiceMetadata {
     private final Map<FullQualifiedName, EdmEntityType> typeMap;
 
     public EdmDouble() {
-      super();
       typeMap = new HashMap<>();
     }
 
     public EdmDouble(String name) {
-      super();
       typeMap = new HashMap<>();
       EdmEntityType edmType = new EdmEntityTypeDouble(nameBuilder, name);
       typeMap.put(edmType.getFullQualifiedName(), edmType);

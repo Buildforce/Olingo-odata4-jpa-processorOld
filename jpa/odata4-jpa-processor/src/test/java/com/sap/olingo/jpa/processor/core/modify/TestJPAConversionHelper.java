@@ -38,10 +38,6 @@ public abstract class TestJPAConversionHelper {
   protected OData odata;
   protected JPAEntityType et;
 
-  public TestJPAConversionHelper() {
-    super();
-  }
-
   @Test
   public abstract void testConvertCompoundKeyToLocation() throws ODataJPAProcessorException, SerializerException,
       ODataJPAModelException;

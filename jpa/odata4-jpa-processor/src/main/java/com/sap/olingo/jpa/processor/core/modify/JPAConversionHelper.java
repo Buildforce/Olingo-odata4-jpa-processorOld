@@ -51,7 +51,7 @@ import java.util.Map;
 
 public class JPAConversionHelper {
 
-  private final Map<Object, Map<String, Object>> getterBuffer;
+  private final Map<Object, Map<String, Object>> getterBuffer = new HashMap<>();
 
   public static Object convertParameter(final Parameter param, final JPAServiceDocument sd) throws ODataJPAModelException {
     if (param.getValueType() == ValueType.ENUM) {
@@ -59,11 +59,6 @@ public class JPAConversionHelper {
       return enumType.enumOf((Number) param.getValue());
     }
     return param.getValue();
-  }
-
-  public JPAConversionHelper() {
-    super();
-    this.getterBuffer = new HashMap<>();
   }
 
   /**

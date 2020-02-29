@@ -15,7 +15,6 @@ public class JPAODataDefaultTransactionFactory implements JPAODataTransactionFac
   private JPAODataTransaction currentTransaction;
 
   public JPAODataDefaultTransactionFactory(final EntityManager em) {
-    super();
     this.em = Objects.requireNonNull(em);
   }
 
@@ -50,7 +49,6 @@ public class JPAODataDefaultTransactionFactory implements JPAODataTransactionFac
     private final EntityTransaction et;
 
     public JPAODataEntityTransaction(final EntityTransaction et) {
-      super();
       this.et = et;
       this.et.begin();
     }

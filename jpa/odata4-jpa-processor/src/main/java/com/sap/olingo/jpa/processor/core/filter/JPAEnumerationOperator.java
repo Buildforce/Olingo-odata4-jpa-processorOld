@@ -14,7 +14,6 @@ public final class JPAEnumerationOperator implements JPAEnumerationBasedOperator
   private final List<String> value;
 
   JPAEnumerationOperator(JPAEnumerationAttribute jpaEnumerationAttribute, List<String> enumValues) {
-    super();
     this.jpaAttribute = jpaEnumerationAttribute;
     this.value = enumValues;
   }

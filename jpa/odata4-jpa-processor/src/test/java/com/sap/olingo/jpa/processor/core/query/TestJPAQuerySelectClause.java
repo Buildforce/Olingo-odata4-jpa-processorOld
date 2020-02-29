@@ -347,7 +347,6 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
     private final EdmProperty property;
 
     public UriResourceComplexPropertyDouble(EdmProperty property) {
-      super();
       this.property = property;
     }
 

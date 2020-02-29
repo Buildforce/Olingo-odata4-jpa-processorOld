@@ -24,7 +24,6 @@ public abstract class JPAAbstractFilter implements JPAFilterCompiler, JPAFilterC
 
   public JPAAbstractFilter(final JPAEntityType jpaEntityType, final UriInfoResource uriResource,
       final JPAAssociationPath association) {
-    super();
     this.jpaEntityType = jpaEntityType;
     if (uriResource != null && uriResource.getFilterOption() != null) {
       this.expression = uriResource.getFilterOption().getExpression();
@@ -36,7 +35,6 @@ public abstract class JPAAbstractFilter implements JPAFilterCompiler, JPAFilterC
 
   public JPAAbstractFilter(final JPAEntityType jpaEntityType, final VisitableExpression expression,
       final JPAAssociationPath association) {
-    super();
     this.jpaEntityType = jpaEntityType;
     this.expression = expression;
     this.association = association;

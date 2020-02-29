@@ -16,7 +16,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
 
   public JPAArithmeticOperatorImp(final JPAOperationConverter converter, final BinaryOperatorKind operator,
       final JPAOperator left, final JPAOperator right) {
-    super();
     this.converter = converter;
     this.operator = operator;
     this.left = left;

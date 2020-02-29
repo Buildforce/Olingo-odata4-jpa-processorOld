@@ -13,7 +13,6 @@ public class MemberDouble implements Member, AnnotatedElement {
   private final Map<Class<?>, Annotation> annotations;
 
   public MemberDouble(Member member) {
-    super();
     this.member = member;
     this.annotatedElement = (AnnotatedElement) member;
     this.annotations = new HashMap<>();

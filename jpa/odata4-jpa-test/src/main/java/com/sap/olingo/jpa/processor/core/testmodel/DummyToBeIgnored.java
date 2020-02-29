@@ -45,10 +45,6 @@ public class DummyToBeIgnored implements Serializable {
   @JoinColumn(name = "\"ID\"", insertable = false, updatable = false)
   private BusinessPartner businessPartner;
 
-  public DummyToBeIgnored() {
-    super();
-  }
-
   public String getID() {
     return this.ID;
   }

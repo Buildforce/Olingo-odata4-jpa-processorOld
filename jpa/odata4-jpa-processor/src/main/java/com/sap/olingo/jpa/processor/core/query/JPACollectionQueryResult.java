@@ -56,7 +56,6 @@ public class JPACollectionQueryResult implements JPACollectionResult, JPAConvert
   public JPACollectionQueryResult(final Map<String, List<Tuple>> result, final Map<String, Long> counts,
       final JPAEntityType jpaEntityType, final JPAAssociationPath association,
       final Collection<JPAPath> selectionPath) {
-    super();
     this.childrenResult = new HashMap<>(1);
     this.jpaResult = result;
     this.counts = counts;

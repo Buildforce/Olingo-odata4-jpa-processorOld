@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Oliver Grande
  * Created: 13.10.2019
  * @since 0.3.6
- * @param <T>
+ * @param
  */
 @SuppressWarnings("rawtypes")
 public class JPAKeyPair {
@@ -24,7 +24,6 @@ public class JPAKeyPair {
   private final List<JPAAttribute> keyDefinition;
 
   public JPAKeyPair(final List<JPAAttribute> keyDef) {
-    super();
     this.keyDefinition = keyDef;
   }
 

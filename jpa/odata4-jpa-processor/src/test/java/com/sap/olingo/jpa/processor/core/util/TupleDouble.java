@@ -10,7 +10,6 @@ public class TupleDouble implements Tuple {
   public final Map<String, Object> elementMap;
 
   public TupleDouble(final Map<String, Object> elementList) {
-    super();
     this.elementMap = elementList;
   }
 

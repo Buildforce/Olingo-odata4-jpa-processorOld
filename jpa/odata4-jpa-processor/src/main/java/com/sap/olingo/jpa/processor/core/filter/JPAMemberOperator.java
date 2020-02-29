@@ -25,8 +25,6 @@ public class JPAMemberOperator implements JPAOperator {
   JPAMemberOperator(final JPAEntityType jpaEntityType, final From<?, ?> parent,
       final Member member, final JPAAssociationPath association, final List<String> list)
       throws ODataApplicationException {
-
-    super();
     this.member = member;
     this.jpaEntityType = jpaEntityType;
     this.root = parent;

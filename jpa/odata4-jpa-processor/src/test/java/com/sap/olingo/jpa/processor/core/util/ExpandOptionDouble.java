@@ -13,7 +13,6 @@ public class ExpandOptionDouble implements ExpandOption {
   private final List<ExpandItem> items;
 
   public ExpandOptionDouble(final String text, final List<ExpandItem> items) {
-    super();
     this.text = text;
     this.items = items;
   }

@@ -17,7 +17,6 @@ public class SchemaReader {
   private final XmlMapper xmlMapper;
 
   public SchemaReader() {
-    super();
     JacksonXmlModule module = new JacksonXmlModule();
     module.setDefaultUseWrapper(false);
     xmlMapper = new XmlMapper(module);

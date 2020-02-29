@@ -33,17 +33,14 @@ public class BusinessPartnerRoleWithGroup {
   private BusinessPartnerWithGroups businessPartner;
 
   public BusinessPartnerRoleWithGroup() {
-    super();
   }
 
   public BusinessPartnerRoleWithGroup(final String businessPartnerID, final String roleCategory) {
-    super();
     this.setBusinessPartnerID(businessPartnerID);
     this.setRoleCategory(roleCategory);
   }
 
   public BusinessPartnerRoleWithGroup(final BusinessPartnerWithGroups businessPartner, final String roleCategory) {
-    super();
     this.setBusinessPartner(businessPartner);
     this.setRoleCategory(roleCategory);
   }

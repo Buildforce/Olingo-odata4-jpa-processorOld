@@ -21,7 +21,6 @@ public class JPAODataContextAccessDouble implements JPAODataCRUDContextAccess {
 
   public JPAODataContextAccessDouble(final JPAEdmProvider edmProvider, final DataSource ds,
       final JPAODataPagingProvider provider, final String... packages) {
-    super();
     this.edmProvider = edmProvider;
     this.ds = ds;
     this.context = new JPADefaultDatabaseProcessor();

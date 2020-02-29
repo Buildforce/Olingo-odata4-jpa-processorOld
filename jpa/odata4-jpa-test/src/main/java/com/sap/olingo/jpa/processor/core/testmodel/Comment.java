@@ -31,7 +31,6 @@ public class Comment implements Serializable {
   private Clob text;
 
   public Comment() {
-    super();
   }
 
   public String getBusinessPartnerID() {

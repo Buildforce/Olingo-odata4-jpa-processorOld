@@ -20,7 +20,6 @@ final class JPAMemberVisitor implements ExpressionVisitor<JPAPath> {
   private final JPAEntityType jpaEntityType;
 
   public JPAMemberVisitor(final JPAEntityType jpaEntityType) {
-    super();
     this.jpaEntityType = jpaEntityType;
   }
 

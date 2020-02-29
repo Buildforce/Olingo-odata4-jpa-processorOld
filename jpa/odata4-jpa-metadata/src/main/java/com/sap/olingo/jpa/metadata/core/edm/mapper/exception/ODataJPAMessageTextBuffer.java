@@ -15,14 +15,12 @@ public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
   protected final Locale locale;
 
   public ODataJPAMessageTextBuffer(final String bundleName) {
-    super();
     this.bundleName = bundleName;
     this.locale = DEFAULT_LOCALE;
     this.bundle = getResourceBundle(locale);
   }
 
   public ODataJPAMessageTextBuffer(final String bundleName, final Enumeration<Locale> locales) {
-    super();
     this.bundleName = bundleName;
     this.locale = setLocales(locales);
     this.bundle = getResourceBundle(locale);

@@ -32,17 +32,14 @@ public class BusinessPartnerRole {
   private Organization organization;
 
   public BusinessPartnerRole() {
-    super();
   }
 
   public BusinessPartnerRole(final String businessPartnerID, final String roleCategory) {
-    super();
     this.setBusinessPartnerID(businessPartnerID);
     this.setRoleCategory(roleCategory);
   }
 
   public <T extends BusinessPartner> BusinessPartnerRole(final T businessPartner, final String roleCategory) {
-    super();
     this.setBusinessPartner(businessPartner);
     this.setRoleCategory(roleCategory);
   }

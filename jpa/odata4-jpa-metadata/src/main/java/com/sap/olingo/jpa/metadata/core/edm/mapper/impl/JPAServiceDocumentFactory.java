@@ -15,7 +15,6 @@ public final class JPAServiceDocumentFactory {
 
   public JPAServiceDocumentFactory(final String namespace, final Metamodel jpaMetamodel,
       final JPAEdmMetadataPostProcessor postProcessor, final String[] packageName) {
-    super();
     this.namespace = namespace;
     this.jpaMetamodel = jpaMetamodel;
     this.postProcessor = postProcessor;

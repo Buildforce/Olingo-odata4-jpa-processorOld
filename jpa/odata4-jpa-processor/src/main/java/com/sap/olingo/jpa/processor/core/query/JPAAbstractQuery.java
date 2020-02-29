@@ -62,8 +62,6 @@ public abstract class JPAAbstractQuery {
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
       final EntityManager em, final Optional<JPAODataClaimProvider> claimsProvider) {
-
-    super();
     this.em = em;
     this.cb = em.getCriteriaBuilder();
     this.sd = sd;
@@ -76,8 +74,6 @@ public abstract class JPAAbstractQuery {
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
       final EntityManager em, final JPAServiceDebugger debugger, final Optional<JPAODataClaimProvider> claimsProvider) {
-
-    super();
     this.em = em;
     this.cb = em.getCriteriaBuilder();
     this.sd = sd;
@@ -90,7 +86,6 @@ public abstract class JPAAbstractQuery {
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final EdmEntityType edmEntityType,
       final EntityManager em, final Optional<JPAODataClaimProvider> claimsProvider) {
-    super();
     this.em = em;
     this.cb = em.getCriteriaBuilder();
     this.sd = sd;
@@ -103,7 +98,6 @@ public abstract class JPAAbstractQuery {
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
       final JPAODataRequestContextAccess requestContext) {
-    super();
     final Optional<JPAODataGroupProvider> groupsProvider = requestContext.getGroupsProvider();
     this.em = requestContext.getEntityManager();
     this.cb = em.getCriteriaBuilder();

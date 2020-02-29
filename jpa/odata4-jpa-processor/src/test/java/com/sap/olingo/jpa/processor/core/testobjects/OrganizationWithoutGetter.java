@@ -9,6 +9,5 @@ package com.sap.olingo.jpa.processor.core.testobjects;
 public class OrganizationWithoutGetter {
 
     public OrganizationWithoutGetter(String id) {
-    super();
     }
 }

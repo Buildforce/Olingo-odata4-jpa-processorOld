@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 
 public class Actions implements ODataAction {
   public Actions(final EntityManager em) {
-    super();
   }
 
   @EdmAction(name = "BoundNoImport", isBound = true)

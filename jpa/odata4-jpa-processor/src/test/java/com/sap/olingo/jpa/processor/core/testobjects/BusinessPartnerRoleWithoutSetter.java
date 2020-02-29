@@ -7,7 +7,4 @@ public class BusinessPartnerRoleWithoutSetter {
   @SuppressWarnings("unused")
   private String roleCategory;
 
-  public BusinessPartnerRoleWithoutSetter() {
-    super();
-  }
 }

@@ -22,7 +22,6 @@ public class SelectOptionDouble implements SelectOption {
   private final List<SelectItem> selItems;
 
   public SelectOptionDouble(String text) {
-    super();
     this.text = text;
     this.selItems = new ArrayList<>();
     parseText();

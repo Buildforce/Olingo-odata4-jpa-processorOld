@@ -31,11 +31,9 @@ public class BusinessPartnerRoleProtected {
   private BusinessPartnerProtected bupaPartnerProtected;
 
   public BusinessPartnerRoleProtected() {
-    super();
   }
 
   public BusinessPartnerRoleProtected(final String businessPartnerID, final String roleCategory) {
-    super();
     this.setBusinessPartnerID(businessPartnerID);
     this.setRoleCategory(roleCategory);
   }

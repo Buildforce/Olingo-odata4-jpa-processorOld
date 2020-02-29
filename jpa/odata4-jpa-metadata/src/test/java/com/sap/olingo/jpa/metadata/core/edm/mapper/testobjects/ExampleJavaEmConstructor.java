@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 public class ExampleJavaEmConstructor implements ODataFunction, ODataAction {
 
   public ExampleJavaEmConstructor(EntityManager em) {
-    super();
   }
 
   @EdmFunction(returnType = @ReturnType)

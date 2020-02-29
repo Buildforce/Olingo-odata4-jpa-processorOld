@@ -9,9 +9,7 @@ final class JPAOnConditionItemImpl implements JPAOnConditionItem {
   private final JPAPath jpaLeftAttribute;
   private final JPAPath jpaRightAttribute;
 
-  JPAOnConditionItemImpl(final JPAPath jpaLeftAttribute, final JPAPath jpaRightAttribute)
-      throws ODataJPAModelException {
-    super();
+  JPAOnConditionItemImpl(final JPAPath jpaLeftAttribute, final JPAPath jpaRightAttribute) throws ODataJPAModelException {
     if (jpaLeftAttribute == null) {
       throw new ODataJPAModelException(MessageKeys.ON_LEFT_ATTRIBUTE_NULL);
     }

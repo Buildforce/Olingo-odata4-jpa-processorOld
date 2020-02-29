@@ -15,7 +15,6 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   public JPAComparisonOperatorImp(final JPAOperationConverter converter, final BinaryOperatorKind operator,
       final JPAOperator left,
       final JPAOperator right) {
-    super();
     this.converter = converter;
     this.operator = operator;
     this.left = left;

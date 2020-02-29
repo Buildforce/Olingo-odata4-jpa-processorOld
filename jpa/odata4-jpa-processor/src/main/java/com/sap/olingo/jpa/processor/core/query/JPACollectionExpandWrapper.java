@@ -26,7 +26,6 @@ public class JPACollectionExpandWrapper implements JPAExpandItem {
   private final UriInfoResource uriInfo;
 
   JPACollectionExpandWrapper(final JPAEntityType jpaEntityType, final UriInfoResource uriInfo) {
-    super();
     this.jpaEntityType = jpaEntityType;
     this.uriInfo = uriInfo;
   }

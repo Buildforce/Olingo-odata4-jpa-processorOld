@@ -30,10 +30,6 @@ public abstract class TestJPACreateResult extends TestBase {
   protected Object jpaEntity;
   protected JPATupleChildConverter converter;
 
-  public TestJPACreateResult() {
-    super();
-  }
-
   @Test
   public void testGetChildrenProvidesEmptyMap() throws ODataJPAModelException, ODataApplicationException {
     converter = new JPATupleChildConverter(helper.sd, OData.newInstance()

@@ -153,7 +153,6 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
     private final JPAMemberOperator parentMember;
 
     public SubMember(final JPAMemberOperator parentMember) {
-      super();
       this.parentMember = parentMember;
     }
 
@@ -188,7 +187,6 @@ final class JPANavigationOperation extends JPAExistsOperation implements JPAExpr
     private final JPAMemberOperator parentMember;
 
     public SubResource(final JPAMemberOperator member) {
-      super();
       this.parentMember = member;
     }
 

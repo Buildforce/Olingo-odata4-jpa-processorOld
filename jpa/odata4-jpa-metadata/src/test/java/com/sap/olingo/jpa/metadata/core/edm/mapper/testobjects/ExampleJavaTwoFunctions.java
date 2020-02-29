@@ -6,10 +6,6 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 
 public class ExampleJavaTwoFunctions implements ODataFunction {
 
-  public ExampleJavaTwoFunctions() {
-    super();
-  }
-
   @EdmFunction(returnType = @ReturnType)
   public Integer multi(int a, int b) {
     return a * b;

@@ -13,15 +13,12 @@ public final class JPADefaultErrorProcessor implements ErrorProcessor {
   private final ErrorProcessor defaultProcessor;
 
   JPADefaultErrorProcessor() {
-    super();
     defaultProcessor = new DefaultProcessor();
-
   }
 
   @Override
   public void init(OData odata, ServiceMetadata serviceMetadata) {
     defaultProcessor.init(odata, serviceMetadata);
-
   }
 
   @Override

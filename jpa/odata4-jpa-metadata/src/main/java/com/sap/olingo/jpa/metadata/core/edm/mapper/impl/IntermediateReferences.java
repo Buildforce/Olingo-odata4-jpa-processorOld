@@ -105,7 +105,6 @@ final class IntermediateReferences implements IntermediateReferenceList {
     private final List<IntermediateReferenceInclude> includes = new ArrayList<>();
 
     public IntermediateReference(final URI uri, final String path) {
-      super();
       this.uri = uri;
       this.path = path;
       edmxReference = new EdmxReference(uri);

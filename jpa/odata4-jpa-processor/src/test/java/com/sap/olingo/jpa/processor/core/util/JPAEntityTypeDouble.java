@@ -19,7 +19,6 @@ public class JPAEntityTypeDouble implements JPAEntityType {
   private final JPAEntityType base;
 
   public JPAEntityTypeDouble(JPAEntityType base) {
-    super();
     this.base = base;
   }
 

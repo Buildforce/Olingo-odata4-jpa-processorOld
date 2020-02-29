@@ -20,7 +20,6 @@ class IntermediateJoinTable implements JPAJoinTable {
 
   IntermediateJoinTable(final IntermediateNavigationProperty intermediateProperty, final JoinTable jpaJoinTable,
       final IntermediateSchema schema) {
-    super();
     this.intermediateProperty = intermediateProperty;
     this.jpaJoinTable = jpaJoinTable;
     this.sourceType = intermediateProperty.getSourceType();

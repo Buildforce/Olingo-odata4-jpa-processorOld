@@ -18,7 +18,6 @@ public class InstanceRestrictionKey implements Serializable {
   }
 
   public InstanceRestrictionKey(String username, Integer sequenceNumber) {
-    super();
     this.username = username;
     this.sequenceNumber = sequenceNumber;
   }

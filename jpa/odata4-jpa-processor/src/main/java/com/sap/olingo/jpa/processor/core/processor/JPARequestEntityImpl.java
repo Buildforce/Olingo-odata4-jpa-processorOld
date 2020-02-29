@@ -27,8 +27,6 @@ final class JPARequestEntityImpl implements JPARequestEntity {
       final Map<JPAAssociationPath, List<JPARequestEntity>> jpaDeepEntities,
       final Map<JPAAssociationPath, List<JPARequestLink>> jpaLinks, final Map<String, Object> keys,
       final Map<String, List<String>> headers, final JPAODataRequestContextAccess requestContext) {
-
-    super();
     this.et = et;
     this.jpaAttributes = jpaAttributes;
     this.jpaDeepEntities = jpaDeepEntities;

@@ -17,7 +17,6 @@ public final class JPAMethodExpression implements JPAVisitableExpression {
   private final Literal literal;
 
   public JPAMethodExpression(final Member member, final JPALiteralOperator operand, final MethodKind methodCall) {
-    super();
     this.methodCall = methodCall;
     this.member = member;
     this.literal = operand != null ? operand.getLiteral() : null;

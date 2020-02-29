@@ -12,7 +12,6 @@ public class JPAClaimsPair<T> {
   public final boolean hasUpperBoundary;
 
   public JPAClaimsPair(final T min) {
-    super();
     this.min = min;
     this.max = null;
     this.hasUpperBoundary = false;
@@ -20,7 +19,6 @@ public class JPAClaimsPair<T> {
   }
 
   public JPAClaimsPair(final T min, final T max) {
-    super();
     this.min = min;
     this.max = max;
     this.hasUpperBoundary = true;

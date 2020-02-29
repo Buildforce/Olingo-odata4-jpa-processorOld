@@ -19,7 +19,6 @@ final class EdmEntitySetResult implements EdmEntitySetInfo {
 
   EdmEntitySetResult(final EdmEntitySet edmEntitySet, final List<UriParameter> keyPredicates,
       final String navigationPath) {
-    super();
     this.edmEntitySet = edmEntitySet;
     this.keyPredicates = keyPredicates;
     this.navigationPath = navigationPath;

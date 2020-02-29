@@ -36,7 +36,6 @@ final class JPALambdaAllOperation extends JPALambdaOperation {
     private final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression;
 
     public NotExpression(final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression) {
-      super();
       this.expression = expression;
     }
 

@@ -35,7 +35,6 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
   }
 
   public IntermediateModelElement(final JPAEdmNameBuilder nameBuilder, final String internalName) {
-    super();
     this.nameBuilder = nameBuilder;
     this.internalName = internalName;
     this.edmAnnotations = new ArrayList<>();

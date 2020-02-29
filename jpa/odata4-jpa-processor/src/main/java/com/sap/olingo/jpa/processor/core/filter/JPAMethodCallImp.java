@@ -15,7 +15,6 @@ class JPAMethodCallImp implements JPAMethodCall {
 
   public JPAMethodCallImp(final JPAOperationConverter converter, final MethodKind methodCall,
       final List<JPAOperator> parameters) {
-    super();
     this.methodCall = methodCall;
     this.parameters = parameters;
     this.converter = converter;

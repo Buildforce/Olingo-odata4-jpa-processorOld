@@ -16,7 +16,6 @@ public abstract class JPASerializePrimitiveAbstract implements JPASerializer, JP
   protected final UriInfo uriInfo;
 
   public JPASerializePrimitiveAbstract(final ServiceMetadata serviceMetadata, final UriInfo uriInfo) {
-    super();
     this.serviceMetadata = serviceMetadata;
     this.uriInfo = uriInfo;
   }

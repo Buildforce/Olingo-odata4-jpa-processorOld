@@ -11,7 +11,6 @@ public class UriResourcePropertyDouble implements UriResourceProperty {
   private final EdmProperty property;
 
   public UriResourcePropertyDouble(EdmProperty property) {
-    super();
     this.property = property;
   }
 

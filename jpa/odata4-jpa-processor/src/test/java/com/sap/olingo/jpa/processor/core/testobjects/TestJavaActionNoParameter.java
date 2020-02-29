@@ -15,7 +15,6 @@ public class TestJavaActionNoParameter {
   public static AdministrativeDivision bindingParam = null;
 
   public TestJavaActionNoParameter() {
-    super();
     constructorCalls++;
   }
 

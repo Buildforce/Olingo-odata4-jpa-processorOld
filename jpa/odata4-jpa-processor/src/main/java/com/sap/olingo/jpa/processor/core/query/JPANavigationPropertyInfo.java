@@ -42,7 +42,6 @@ public final class JPANavigationPropertyInfo {
 
   public JPANavigationPropertyInfo(final JPAServiceDocument sd, final JPAAssociationPath associationPath,
       final UriInfoResource uriInfo, final JPAEntityType entityType) {
-    super();
     this.navigationTarget = null;
     this.associationPath = associationPath;
     this.keyPredicates = Collections.emptyList();

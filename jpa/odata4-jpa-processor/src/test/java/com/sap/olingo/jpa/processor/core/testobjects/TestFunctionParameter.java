@@ -14,7 +14,6 @@ public class TestFunctionParameter implements ODataFunction {
   public static int param2;
 
   public TestFunctionParameter(EntityManager em) {
-    super();
     TestFunctionParameter.em = em;
   }
 

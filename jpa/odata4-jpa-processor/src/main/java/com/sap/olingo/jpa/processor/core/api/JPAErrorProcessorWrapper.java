@@ -14,7 +14,6 @@ public class JPAErrorProcessorWrapper implements ErrorProcessor {
   private final JPAErrorProcessor errorProcessor;
 
   public JPAErrorProcessorWrapper(final JPAErrorProcessor errorProcessor) {
-    super();
     this.defaultProcessor = new DefaultProcessor();
     this.errorProcessor = errorProcessor;
 

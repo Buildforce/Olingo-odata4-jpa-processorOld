@@ -7,7 +7,6 @@ class JPAPrimitivePropertyInfo {
   private final Property property;
 
   public JPAPrimitivePropertyInfo(final String path, final Property property) {
-    super();
     this.path = path;
     this.property = property;
   }

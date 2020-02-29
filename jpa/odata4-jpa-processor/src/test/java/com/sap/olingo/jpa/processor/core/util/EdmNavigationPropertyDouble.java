@@ -14,7 +14,6 @@ public class EdmNavigationPropertyDouble implements EdmNavigationProperty {
   private final String name;
 
   public EdmNavigationPropertyDouble(final String name) {
-    super();
     this.name = name;
   }
 

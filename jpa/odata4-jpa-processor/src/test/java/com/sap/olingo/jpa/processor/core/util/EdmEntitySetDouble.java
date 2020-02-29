@@ -20,7 +20,6 @@ public class EdmEntitySetDouble implements EdmEntitySet {
   // private final JPAEdmNameBuilder nameBuilder;
 
   public EdmEntitySetDouble(final JPAEdmNameBuilder nameBuilder, final String name) {
-    super();
     this.name = name;
     this.type = new EdmEntityTypeDouble(nameBuilder, name.substring(0, name.length() - 1));
     // this.nameBuilder = nameBuilder;

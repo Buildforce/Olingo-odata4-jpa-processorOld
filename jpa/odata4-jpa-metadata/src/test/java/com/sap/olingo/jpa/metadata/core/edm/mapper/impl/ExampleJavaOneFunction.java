@@ -7,10 +7,6 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 
 public class ExampleJavaOneFunction implements ODataFunction {
 
-  public ExampleJavaOneFunction() {
-    super();
-  }
-
   @EdmFunction(returnType = @ReturnType)
   public Integer sum(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {

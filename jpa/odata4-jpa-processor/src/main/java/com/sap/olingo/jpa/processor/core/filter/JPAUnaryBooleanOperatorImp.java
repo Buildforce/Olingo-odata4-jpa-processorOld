@@ -13,7 +13,6 @@ final class JPAUnaryBooleanOperatorImp implements JPAUnaryBooleanOperator {
 
   public JPAUnaryBooleanOperatorImp(final JPAOperationConverter converter, final UnaryOperatorKind operator,
       final JPAExpressionOperator left) {
-    super();
     this.converter = converter;
     this.operator = operator;
     this.left = left;

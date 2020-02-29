@@ -31,8 +31,6 @@ public class HttpServletRequestDouble implements HttpServletRequest {
             final String uri,
             final StringBuffer body,
             final Map<String, List<String>> headers) {
-
-        super();
         reqHeader = new HttpRequestHeaderDouble();
         String[] uriParts = uri.split("\\?");
         this.url = new StringBuffer(uriParts[0]);

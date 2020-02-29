@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 public class ExampleJavaTwoParameterConstructor implements ODataFunction, ODataAction {
 
   public ExampleJavaTwoParameterConstructor(EntityManager em, Integer a) {
-    super();
   }
 
   @EdmFunction(returnType = @ReturnType)

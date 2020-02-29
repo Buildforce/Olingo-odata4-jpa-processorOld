@@ -50,7 +50,6 @@ public class JPAODataGetHandler {
    */
   @Deprecated
   public JPAODataGetHandler(final String pUnit, final DataSource ds) throws ODataException {
-    super();
     namespace = pUnit;
     this.ds = ds;
     emf = ds == null ? Optional.empty() : Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(pUnit, ds));

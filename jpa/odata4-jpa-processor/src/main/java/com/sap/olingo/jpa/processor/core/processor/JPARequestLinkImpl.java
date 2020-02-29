@@ -24,7 +24,6 @@ public final class JPARequestLinkImpl implements JPARequestLink {
   private final JPAConversionHelper helper;
 
   JPARequestLinkImpl(final JPAAssociationPath path, final String bindingLink, final JPAConversionHelper helper) {
-    super();
     this.path = path;
     this.bindingLink = bindingLink;
     this.helper = helper;

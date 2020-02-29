@@ -34,8 +34,6 @@ final class JPAFunctionOperator implements JPAOperator {
 
   public JPAFunctionOperator(final JPAVisitor jpaVisitor, final List<UriParameter> uriParams,
       final JPADataBaseFunction jpaFunction) {
-
-    super();
     this.uriParams = uriParams;
     this.visitor = jpaVisitor;
     this.jpaFunction = jpaFunction;
@@ -103,7 +101,6 @@ final class JPAFunctionOperator implements JPAOperator {
   private static class ParameterLiteral implements Literal {
 
     public ParameterLiteral(final String text) {
-      super();
       this.text = text;
     }
 

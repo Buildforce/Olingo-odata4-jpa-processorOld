@@ -40,8 +40,6 @@ public abstract class JPAStructuredResultConverter {
   protected final JPAStructuredType jpaTopLevelType;
 
   public JPAStructuredResultConverter(final List<?> jpaQueryResult, final JPAStructuredType jpaStructuredType) {
-
-    super();
     this.jpaQueryResult = jpaQueryResult;
     this.jpaTopLevelType = jpaStructuredType;
   }

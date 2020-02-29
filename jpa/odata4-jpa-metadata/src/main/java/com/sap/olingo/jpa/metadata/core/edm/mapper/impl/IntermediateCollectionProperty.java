@@ -225,7 +225,6 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
 
     public IntermediateCollectionTable(final CollectionTable jpaJoinTable, final IntermediateSchema schema)
         throws ODataJPAModelException {
-      super();
       this.jpaJoinTable = jpaJoinTable;
       this.jpaEntityType = schema.getEntityType(jpaJoinTable.catalog(), jpaJoinTable.schema(), jpaJoinTable.name());
       this.joinColumns = buildJoinColumns(sourceType);

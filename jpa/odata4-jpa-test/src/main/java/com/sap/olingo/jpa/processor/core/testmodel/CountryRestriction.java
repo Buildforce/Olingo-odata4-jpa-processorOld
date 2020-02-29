@@ -23,7 +23,6 @@ public class CountryRestriction {
   }
 
   public CountryRestriction(InstanceRestrictionKey id) {
-    super();
     this.id = id;
   }
 

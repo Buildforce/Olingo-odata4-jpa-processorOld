@@ -39,7 +39,6 @@ public final class JPAProcessorFactory {
 
   public JPAProcessorFactory(final OData odata, final ServiceMetadata serviceMetadata,
       final JPAODataCRUDContextAccess context) {
-    super();
     this.sessionContext = context;
     this.serializerFactory = new JPASerializerFactory(odata, serviceMetadata);
     this.odata = odata;

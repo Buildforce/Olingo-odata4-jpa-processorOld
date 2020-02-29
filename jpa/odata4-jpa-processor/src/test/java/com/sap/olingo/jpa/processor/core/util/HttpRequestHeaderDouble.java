@@ -13,7 +13,6 @@ public class HttpRequestHeaderDouble {
   private final HashMap<String, List<String>> headers;
 
   public HttpRequestHeaderDouble() {
-    super();
     headers = new HashMap<>();
     List<String> headerValue;
     headerValue = new ArrayList<>();

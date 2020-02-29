@@ -100,8 +100,6 @@ public class IntegrationTestHelper {
                                final Map<String, List<String>> headers,
                                final JPAODataClaimsProvider claims,
                                final JPAODataGroupProvider groups) throws ODataException {
-
-    super();
     final EntityManager em = localEmf.createEntityManager();
     final OData odata = OData.newInstance();
     String[] packages = TestBase.enumPackages;

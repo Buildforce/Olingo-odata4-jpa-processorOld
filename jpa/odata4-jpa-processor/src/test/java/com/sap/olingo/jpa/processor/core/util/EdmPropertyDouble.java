@@ -15,7 +15,6 @@ public class EdmPropertyDouble implements EdmProperty {
   private final String name;
 
   public EdmPropertyDouble(final String name) {
-    super();
     this.name = name;
   }
 

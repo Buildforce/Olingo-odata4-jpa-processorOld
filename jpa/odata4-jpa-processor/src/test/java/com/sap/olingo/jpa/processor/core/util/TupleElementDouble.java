@@ -8,7 +8,6 @@ public class TupleElementDouble implements TupleElement<Object> {
   private final Object value;
 
   public TupleElementDouble(String alias, Object value) {
-    super();
     this.alias = alias;
     this.value = value;
   }

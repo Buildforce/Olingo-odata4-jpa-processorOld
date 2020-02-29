@@ -5,7 +5,6 @@ public final class JPAUpdateResult {
   private final Object modifiedEntity;
 
   public JPAUpdateResult(boolean wasCreate, Object modifiedEntity) {
-    super();
     this.wasCreate = wasCreate;
     this.modifiedEntity = modifiedEntity;
   }

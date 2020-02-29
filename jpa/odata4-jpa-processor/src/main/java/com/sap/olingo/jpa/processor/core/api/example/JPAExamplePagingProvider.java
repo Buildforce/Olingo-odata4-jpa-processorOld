@@ -93,8 +93,8 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
     if (pageCache.size() == cacheSize)
       pageCache.remove(index.poll());
 
-    pageCache.put((String) page.getSkiptoken(), new CacheEntry(count, page));
-    index.add((String) page.getSkiptoken());
+    pageCache.put((String) page.getSkipToken(), new CacheEntry(count, page));
+    index.add((String) page.getSkipToken());
   }
 
   private static class CacheEntry {
@@ -102,7 +102,6 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
     private final JPAODataPage page;
 
     CacheEntry(Long count, JPAODataPage page) {
-      super();
       this.maxTop = count;
       this.page = page;
     }

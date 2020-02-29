@@ -30,7 +30,6 @@ public class AdministrativeDivisionDescriptionKey implements Serializable {
 
   public AdministrativeDivisionDescriptionKey(final String codePublisher, final String codeID,
       final String divisionCode, final String language) {
-    super();
     this.codePublisher = codePublisher;
     this.codeID = codeID;
     this.divisionCode = divisionCode;

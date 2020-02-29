@@ -7,13 +7,11 @@ final class IntermediateJoinColumn {
   private String referencedColumnName;
 
   public IntermediateJoinColumn(final JoinColumn jpaJoinColumn) {
-    super();
     this.name = jpaJoinColumn.name();
     this.referencedColumnName = jpaJoinColumn.referencedColumnName();
   }
 
   public IntermediateJoinColumn(final String name, final String referencedColumnName) {
-    super();
     this.name = name;
     this.referencedColumnName = referencedColumnName;
   }

@@ -14,7 +14,6 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
 
   public JPABooleanOperatorImp(final JPAOperationConverter converter, final BinaryOperatorKind operator,
       final JPAExpression left, final JPAExpression right) {
-    super();
     this.converter = converter;
     this.operator = operator;
     this.left = left;

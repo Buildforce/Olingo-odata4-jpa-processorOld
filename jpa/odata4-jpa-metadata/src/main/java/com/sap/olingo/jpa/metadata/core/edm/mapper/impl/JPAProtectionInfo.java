@@ -7,7 +7,6 @@ final class JPAProtectionInfo {
   private final boolean wildcards;
 
   JPAProtectionInfo(List<String> path, boolean wildcards) {
-    super();
     this.path = path;
     this.wildcards = wildcards;
   }

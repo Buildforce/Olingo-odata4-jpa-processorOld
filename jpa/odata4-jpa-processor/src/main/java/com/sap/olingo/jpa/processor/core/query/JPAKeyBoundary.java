@@ -17,7 +17,6 @@ public class JPAKeyBoundary {
   private final JPAKeyPair keyBoundary;
 
   JPAKeyBoundary(int noHops, JPAKeyPair keyBoundary) {
-    super();
     this.noHops = noHops;
     this.keyBoundary = Objects.requireNonNull(keyBoundary);
   }

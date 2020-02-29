@@ -39,7 +39,6 @@ public final class JPAODataRequestProcessor
 
   public JPAODataRequestProcessor(final JPAODataCRUDContextAccess sessionContext,
       final JPAODataRequestContextAccess requestContext) {
-    super();
     this.sessionContext = sessionContext;
     this.requestContext = requestContext;
   }

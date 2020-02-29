@@ -20,7 +20,6 @@ public class UriResourceNavigationDouble implements UriResourceNavigation {
   }
 
   public UriResourceNavigationDouble(EdmType type, EdmNavigationProperty property) {
-    super();
     this.type = type;
     this.property = property;
   }

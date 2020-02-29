@@ -36,8 +36,6 @@ public final class JPAExpandLevelWrapper implements JPAExpandItem {
   private final LevelsExpandOption levelOptions;
 
   public JPAExpandLevelWrapper(final JPAServiceDocument sd, final ExpandOption option) {
-
-    super();
     this.option = option;
     this.item = option.getExpandItems().get(0);
     this.levelOptions = determineLevel(item);
@@ -45,8 +43,6 @@ public final class JPAExpandLevelWrapper implements JPAExpandItem {
   }
 
   public JPAExpandLevelWrapper(final ExpandOption option, final JPAEntityType jpaEntityType) {
-
-    super();
     this.option = option;
     this.item = option.getExpandItems().get(0);
     this.levelOptions = determineLevel(item);
@@ -267,7 +263,6 @@ public final class JPAExpandLevelWrapper implements JPAExpandItem {
     private final int level;
 
     private LevelsExpandOptionWrapper(boolean isMax, int parentLevel) {
-      super();
       this.isMax = isMax;
       if (parentLevel != 0)
         this.level = parentLevel - 1;
