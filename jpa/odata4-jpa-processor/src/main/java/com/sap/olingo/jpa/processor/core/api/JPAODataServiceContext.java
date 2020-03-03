@@ -30,48 +30,26 @@ import java.util.Optional;
 public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODataCRUDContextAccess {
   //@formatter:off
   @Deprecated
-  private             JPAODataGetHandler jpaODataGetHandler;
+  private final       JPAODataGetHandler jpaODataGetHandler;
+  private           JPACUDRequestHandler jpaCUDRequestHandler;
+
+  private                 ErrorProcessor errorProcessor;
+  private    JPAEdmMetadataPostProcessor postProcessor;
+  private         JPAODataPagingProvider pagingProvider;
 
   private      JPAODataDatabaseProcessor databaseProcessor;
   private Optional<EntityManagerFactory> emf;
-  private                 ErrorProcessor errorProcessor;
-  private           JPACUDRequestHandler jpaCUDRequestHandler;
   private                 JPAEdmProvider jpaEdm;
   private                         String mappingPath;
-  private                           String namespace;
+  private final                   String namespace;
   private     JPAODataDatabaseOperations operationConverter;
   private                       String[] packageName;
-  private         JPAODataPagingProvider pagingProvider;
-  private    JPAEdmMetadataPostProcessor postProcessor;
   private            List<EdmxReference> references = new ArrayList<>();
   //@formatter:on
 
   public static Builder with() {
     return new Builder();
   }
-
-  public JPAODataServiceContext(DataSource ds, String pU, String model) throws ODataException {
-    Optional<EntityManagerFactory> emf;
-
-    this.namespace = pU;
-    JPADefaultEdmNameBuilder nameBuilder = new JPADefaultEdmNameBuilder(pU);
-    this.packageName = new String[]{model};
-
-    emf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace, ds));
-   if (emf.isPresent())
-     jpaEdm = new JPAEdmProvider(emf.get().getMetamodel(), postProcessor, packageName, nameBuilder);
-
-     try {
-      if (databaseProcessor == null)
-        databaseProcessor = new JPAODataDatabaseProcessorFactory().create(ds);
-    } catch (SQLException | PersistenceException e) {
-      throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
-    }
-
-  }
-
-
-
 
     /**
      * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
@@ -89,22 +67,40 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
   }
 
-  private JPAODataServiceContext(final Builder builder) {
-    this.jpaODataGetHandler = null;
-    databaseProcessor = builder.databaseProcessor;
-    emf = builder.builderEmf;
-    errorProcessor = builder.errorProcessor;
+  private JPAODataServiceContext(final Builder builder) throws ODataException {
+    JPAEdmNameBuilder nameBuilder = builder.nameBuilder == null
+            ? new JPADefaultEdmNameBuilder(builder.namespace)
+            : builder.nameBuilder;
+
+    jpaODataGetHandler = null;
     jpaCUDRequestHandler = null;
 
-    jpaEdm = builder.builderJpaEdm;
-    mappingPath = builder.mappingPath;
-    namespace = builder.namespace;
-    operationConverter = builder.operationConverter;
-    packageName = builder.packageName;
-
+    errorProcessor = builder.errorProcessor;
     pagingProvider = builder.pagingProvider;
     postProcessor = builder.postProcessor;
+    mappingPath = builder.mappingPath;
+    packageName = builder.packageName;
+
+    operationConverter = builder.operationConverter;
     references = builder.references;
+    namespace = builder.namespace;
+
+    try {
+      databaseProcessor = (builder.databaseProcessor == null)
+              ? new JPAODataDatabaseProcessorFactory().create(builder.builderDs)
+              : builder.databaseProcessor;
+    } catch (SQLException | PersistenceException e) {
+      throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
+    }
+
+    Optional<EntityManagerFactory> conditionalEmf = (!(builder.builderEmf.isPresent() || builder.builderDs == null || namespace == null))
+            ? Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace, builder.builderDs))
+            : builder.builderEmf;
+    emf = conditionalEmf;
+
+    jpaEdm = (conditionalEmf.isPresent()) ?
+            new JPAEdmProvider(nameBuilder.getNamespace(), conditionalEmf.get().getMetamodel(), postProcessor, packageName)
+            : jpaEdm;
   }
 
   @Override
@@ -272,13 +268,12 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     private                     DataSource builderDs;
     private Optional<EntityManagerFactory> builderEmf = Optional.empty();
     private                 ErrorProcessor errorProcessor;
-    private                 JPAEdmProvider builderJpaEdm;
 
     private                         String mappingPath;
     private              JPAEdmNameBuilder nameBuilder;
     private                         String namespace;
     private     JPAODataDatabaseOperations operationConverter = new JPADefaultDatabaseProcessor();
-    private                       String[] packageName;
+    private                       String[] packageName = new String[0];
 
     private         JPAODataPagingProvider pagingProvider;
     private    JPAEdmMetadataPostProcessor postProcessor;
@@ -286,18 +281,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     // format: ON
 
     public JPAODataCRUDContextAccess build() throws ODataException {
-        if (packageName == null) packageName = new String[0];
-        if (nameBuilder == null) nameBuilder = new JPADefaultEdmNameBuilder(namespace);
-        if (!(builderEmf.isPresent() || builderDs == null || namespace == null))
-          builderEmf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace, builderDs));
-        if (builderEmf.isPresent())
-          builderJpaEdm = new JPAEdmProvider(builderEmf.get().getMetamodel(), postProcessor, packageName, nameBuilder);
-      try {
-        if (databaseProcessor == null)
-          databaseProcessor = new JPAODataDatabaseProcessorFactory().create(builderDs);
-      } catch (SQLException | PersistenceException e) {
-        throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
-      }
+
       return new JPAODataServiceContext(this);
     }
 

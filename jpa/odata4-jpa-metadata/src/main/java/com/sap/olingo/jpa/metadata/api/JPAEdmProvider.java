@@ -36,28 +36,36 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   private final JPAServiceDocument serviceDocument;
 
   // http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406397930
-  public JPAEdmProvider(final String namespace, final EntityManagerFactory emf,
-      final JPAEdmMetadataPostProcessor postProcessor, final String[] packageName) throws ODataException {
+  public JPAEdmProvider(final String namespace,
+                        final EntityManagerFactory emf,
+                        final JPAEdmMetadataPostProcessor postProcessor,
+                        final String[] packageName) throws ODataException {
     this(namespace, emf.getMetamodel(), postProcessor, packageName);
   }
 
-  public JPAEdmProvider(final String namespace, final Metamodel jpaMetamodel,
-      final JPAEdmMetadataPostProcessor postProcessor, final String[] packageName) throws ODataException {
-    this(jpaMetamodel, postProcessor, packageName, new JPADefaultEdmNameBuilder(namespace));
+  public JPAEdmProvider(final String namespace,
+                        final Metamodel jpaMetamodel,
+                        final JPAEdmMetadataPostProcessor postProcessor,
+                        final String[] packageName) throws ODataException {
+    nameBuilder = new JPADefaultEdmNameBuilder(namespace);
+    // this(jpaMetamodel, postProcessor, packageName, new JPADefaultEdmNameBuilder(namespace));
+    this.serviceDocument =
+            new JPAServiceDocumentFactory(nameBuilder.getNamespace(), jpaMetamodel, postProcessor, packageName).getServiceDocument();
   }
 
-  public JPAEdmProvider(final EntityManagerFactory emf,
+/*  public JPAEdmProvider(final EntityManagerFactory emf,
       final JPAEdmMetadataPostProcessor postProcessor, final String[] packageName, final JPAEdmNameBuilder nameBuilder)
       throws ODataException {
     this(emf.getMetamodel(), postProcessor, packageName, nameBuilder);
   }
-
-  public JPAEdmProvider(final Metamodel jpaMetamodel, final JPAEdmMetadataPostProcessor postProcessor,
-      final String[] packageName, final JPAEdmNameBuilder nameBuilder) throws ODataException {
+  public JPAEdmProvider(final Metamodel jpaMetamodel,
+                        final JPAEdmMetadataPostProcessor postProcessor,
+                        final String[] packageName,
+                        final JPAEdmNameBuilder nameBuilder) throws ODataException {
     this.nameBuilder = nameBuilder;
-    this.serviceDocument = new JPAServiceDocumentFactory(nameBuilder.getNamespace(), jpaMetamodel, postProcessor,
-        packageName).getServiceDocument();
-  }
+    this.serviceDocument =
+            new JPAServiceDocumentFactory(nameBuilder.getNamespace(), jpaMetamodel, postProcessor, packageName).getServiceDocument();
+  }*/
 
   @Override
   public CsdlComplexType getComplexType(final FullQualifiedName complexTypeName) throws ODataException {

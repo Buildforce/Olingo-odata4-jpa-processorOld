@@ -210,8 +210,8 @@ public class TestJPAODataServiceContextBuilder {
   @Test
   public void checkJPAEdmContainsCustomNameBuilder() throws ODataException {
 
-    final JPAEdmNameBuilder nameBuilder = mock(JPAEdmNameBuilder.class);
-    when(nameBuilder.getNamespace()).thenReturn("unit.test");
+    final JPAEdmNameBuilder nameBuilder = new JPADefaultEdmNameBuilder("Bƒ");
+    // when(nameBuilder.getNamespace()).thenReturn("unit.test");
     cut = JPAODataServiceContext.with()
             .setDataSource(ds)
             .setPUnit(PUNIT_NAME)
@@ -221,7 +221,7 @@ public class TestJPAODataServiceContextBuilder {
     final JPAEdmProvider act = cut.getEdmProvider();
     assertNotNull(act);
     assertNotNull(act.getEdmNameBuilder());
-    assertEquals(nameBuilder, act.getEdmNameBuilder());
+    assertEquals(nameBuilder.getNamespace(), act.getEdmNameBuilder().getNamespace());
   }
 
   @Test

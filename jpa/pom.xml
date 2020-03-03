@@ -5,7 +5,7 @@
 
     <groupId>com.sap.olingo</groupId>
     <artifactId>odata4-jpa</artifactId>
-    <version>0.3.8-M0</version>
+    <version>0.3.8.0</version>
     <packaging>pom</packaging>
 
     <name>odata4-jpa</name>
@@ -16,7 +16,7 @@
         <eclipse.javax.prstnc.version>2.2.1</eclipse.javax.prstnc.version>
         <eclipselink.prstnc.version>2.7.6</eclipselink.prstnc.version>
         <jackson.version>2.10.2</jackson.version>
-        <jpa-processor.version>0.3.8-M0</jpa-processor.version>
+        <jpa-processor.version>0.3.8.0</jpa-processor.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <odata.version>4.7.1</odata.version>
         <project.build.source>1.8</project.build.source>

@@ -11,9 +11,11 @@ public final class JPADefaultEdmNameBuilder implements JPAEdmNameBuilder {
   private static final String ENTITY_CONTAINER_SUFFIX = "Container";
   private static final String ENTITY_SET_SUFFIX = "s";
 
+/*
   public static String firstToLower(final String substring) {
     return Character.toLowerCase(substring.charAt(0)) + substring.substring(1);
   }
+*/
 
   public static String firstToUpper(final String jpaAttributeName) {
     return Character.toUpperCase(jpaAttributeName.charAt(0)) + jpaAttributeName.substring(1);

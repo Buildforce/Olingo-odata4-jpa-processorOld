@@ -5,13 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sap.olingo</groupId>
 	<artifactId>odata4-jpa-archetype</artifactId>
-	<version>0.3.8-M0</version>
+	<version>0.3.8.0</version>
 	<packaging>pom</packaging>
 	<url>https://github.com/SAP/olingo-jpa-processor-v4</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.source>1.8</project.build.source>
+		<project.build.source>11</project.build.source>
 	</properties>
 
 	<modules>
