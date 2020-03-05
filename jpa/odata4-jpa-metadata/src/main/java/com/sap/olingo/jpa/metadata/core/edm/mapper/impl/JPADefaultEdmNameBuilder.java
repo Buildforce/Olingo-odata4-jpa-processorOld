@@ -17,7 +17,7 @@ public final class JPADefaultEdmNameBuilder implements JPAEdmNameBuilder {
   }
 */
 
-  public static String firstToUpper(final String jpaAttributeName) {
+  public static String capitalize(final String jpaAttributeName) {
     return Character.toUpperCase(jpaAttributeName.charAt(0)) + jpaAttributeName.substring(1);
   }
 
@@ -47,7 +47,7 @@ public final class JPADefaultEdmNameBuilder implements JPAEdmNameBuilder {
     final StringBuilder containerName = new StringBuilder();
     final String[] elements = namespace.split("\\.");
     for (final String element : elements) {
-      containerName.append(firstToUpper(element));
+      containerName.append(capitalize(element));
     }
     containerName.append(ENTITY_CONTAINER_SUFFIX);
     return containerName.toString();
@@ -105,7 +105,7 @@ public final class JPADefaultEdmNameBuilder implements JPAEdmNameBuilder {
    */
   @Override
   public final String buildPropertyName(final String jpaAttributeName) {
-    return firstToUpper(jpaAttributeName);
+    return capitalize(jpaAttributeName);
   }
 
   /**
@@ -115,7 +115,7 @@ public final class JPADefaultEdmNameBuilder implements JPAEdmNameBuilder {
    */
   @Override
   public final String buildOperationName(final String internalOperationName) {
-    return firstToUpper(internalOperationName);
+    return capitalize(internalOperationName);
   }
 
   /**

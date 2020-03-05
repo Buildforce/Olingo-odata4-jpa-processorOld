@@ -134,7 +134,7 @@ public abstract class JPAStructuredResultConverter {
 
   private Method getGetter(final String attributeName, final Map<String, Method> methodMap)
       throws ODataJPAQueryException {
-    final String getterName = ACCESS_MODIFIER_GET + JPADefaultEdmNameBuilder.firstToUpper(attributeName);
+    final String getterName = ACCESS_MODIFIER_GET + JPADefaultEdmNameBuilder.capitalize(attributeName);
 
     if (methodMap.get(getterName) == null)
       throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_RESULT_ACCESS_NOT_FOUND,

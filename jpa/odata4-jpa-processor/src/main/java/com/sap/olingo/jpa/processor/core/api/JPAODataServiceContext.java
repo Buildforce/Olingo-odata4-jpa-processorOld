@@ -41,7 +41,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   private Optional<EntityManagerFactory> emf;
   private                 JPAEdmProvider jpaEdm;
   private                         String mappingPath;
-  private final                   String namespace;
+  private final                   String namespace_pUnit;
   private     JPAODataDatabaseOperations operationConverter;
   private                       String[] packageName;
   private            List<EdmxReference> references = new ArrayList<>();
@@ -58,7 +58,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   @Deprecated
   JPAODataServiceContext(JPAODataGetHandler jpaODataGetHandler) throws ODataException {
     this.jpaODataGetHandler = jpaODataGetHandler;
-    namespace = jpaODataGetHandler.namespace;
+    namespace_pUnit = jpaODataGetHandler.namespace;
     operationConverter = new JPADefaultDatabaseProcessor();
     try {
       databaseProcessor = new JPAODataDatabaseProcessorFactory().create(this.jpaODataGetHandler.ds);
@@ -68,9 +68,6 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   }
 
   private JPAODataServiceContext(final Builder builder) throws ODataException {
-    JPAEdmNameBuilder nameBuilder = builder.nameBuilder == null
-            ? new JPADefaultEdmNameBuilder(builder.namespace)
-            : builder.nameBuilder;
 
     jpaODataGetHandler = null;
     jpaCUDRequestHandler = null;
@@ -83,7 +80,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
 
     operationConverter = builder.operationConverter;
     references = builder.references;
-    namespace = builder.namespace;
+    namespace_pUnit = builder.namespace_pUnit;
 
     try {
       databaseProcessor = (builder.databaseProcessor == null)
@@ -93,13 +90,13 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
       throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
 
-    Optional<EntityManagerFactory> conditionalEmf = (!(builder.builderEmf.isPresent() || builder.builderDs == null || namespace == null))
-            ? Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace, builder.builderDs))
+    Optional<EntityManagerFactory> conditionalEmf = (!(builder.builderEmf.isPresent() || builder.builderDs == null || namespace_pUnit == null))
+            ? Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace_pUnit, builder.builderDs))
             : builder.builderEmf;
     emf = conditionalEmf;
 
     jpaEdm = (conditionalEmf.isPresent()) ?
-            new JPAEdmProvider(nameBuilder.getNamespace(), conditionalEmf.get().getMetamodel(), postProcessor, packageName)
+            new JPAEdmProvider(namespace_pUnit, conditionalEmf.get().getMetamodel(), postProcessor, packageName)
             : jpaEdm;
   }
 
@@ -116,12 +113,12 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   @Override
   public JPAEdmProvider getEdmProvider() throws ODataException {
     if (jpaEdm == null && jpaODataGetHandler != null && jpaODataGetHandler.jpaMetamodel != null)
-      jpaEdm = new JPAEdmProvider(namespace, jpaODataGetHandler.jpaMetamodel, postProcessor, packageName);
+      jpaEdm = new JPAEdmProvider(namespace_pUnit, jpaODataGetHandler.jpaMetamodel, postProcessor, packageName);
     return jpaEdm;
   }
 
   public JPAEdmProvider getEdmProvider(final EntityManager em) throws ODataException {
-    if (jpaEdm == null) jpaEdm = new JPAEdmProvider(namespace, em.getMetamodel(), postProcessor, packageName);
+    if (jpaEdm == null) jpaEdm = new JPAEdmProvider(namespace_pUnit, em.getMetamodel(), postProcessor, packageName);
     return jpaEdm;
   }
 
@@ -270,8 +267,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     private                 ErrorProcessor errorProcessor;
 
     private                         String mappingPath;
-    private              JPAEdmNameBuilder nameBuilder;
-    private                         String namespace;
+    private                         String namespace_pUnit;
     private     JPAODataDatabaseOperations operationConverter = new JPADefaultDatabaseProcessor();
     private                       String[] packageName = new String[0];
 
@@ -364,7 +360,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
      * @return
      */
     public Builder setPUnit(final String pUnit) {
-      namespace = pUnit;
+      namespace_pUnit = pUnit;
       return this;
     }
 
@@ -414,10 +410,10 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
      * @param nameBuilder
      * @return
      */
-    public Builder setEdmNameBuilder(final JPAEdmNameBuilder nameBuilder) {
+    /*public Builder setEdmNameBuilder(final JPAEdmNameBuilder nameBuilder) {
       this.nameBuilder = nameBuilder;
       return this;
-    }
+    }*/
   }
 
 /*  static class JPADebugSupportWrapper implements DebugSupport {
