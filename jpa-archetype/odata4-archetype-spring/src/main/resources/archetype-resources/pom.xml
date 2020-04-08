@@ -60,11 +60,11 @@
 			<version>${eclipse.javax.prstnc.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>${eclipselink.prstnc.version}</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
 			<artifactId>odata4-jpa-processor</artifactId>

@@ -20,19 +20,20 @@ CREATE TABLE "OLINGO"."BusinessPartner"(
                                            "Address.PostalCode"          VARCHAR(60),
                                            "ADDRESS_REGIONCODEPUBLISHER" VARCHAR(10) NOT NULL,
                                            "ADDRESS_REGIONCODEID"        VARCHAR(10) NOT NULL,
-                                           "ADDRESS_REGION"              VARCHAR(100),
+                                           "ADDRESS_REGION"              VARCHAR(10) NOT NULL,
                                            "Address.Country"             VARCHAR(100),
                                            "Telecom.Phone"               VARCHAR(100),
                                            "Telecom.Mobile"              VARCHAR(100),
                                            "Telecom.Fax"                 VARCHAR(100),
                                            "Telecom.Email"               VARCHAR(100),
-                                           "CreatedBy"                   VARCHAR(32) NOT NULL,
-                                           "CreatedAt"                   TIMESTAMP,
-                                           "UpdatedBy"                   VARCHAR(32) NOT NULL,
+                                           "CreatedBy"                   VARCHAR(32) NOT NULL CONSTRAINT bpa_bpa00_fk REFERENCES "OLINGO"."BusinessPartner",
+                                           "CreatedAt"                   TIMESTAMP /*WITH TIME ZONE*/ DEFAULT CURRENT_TIMESTAMP,
+                                           "UpdatedBy"                   VARCHAR(32) CONSTRAINT bpa_bpa01_fk REFERENCES "OLINGO"."BusinessPartner",
                                            "UpdatedAt"                   TIMESTAMP,
                                            "Country"                     VARCHAR(4),
                                            "AbcClass"                    VARCHAR(1),
-                                           "AccessRights"                INTEGER);
+                                           "AccessRights"                INTEGER,
+                                           CHECK ("UpdatedAt" >= "CreatedAt"));
 
 INSERT INTO "OLINGO"."BusinessPartner" VALUES ( '1', 0, '2', '', '', 6000.5, null, 'First Org.', '',    null, 'Test Road', '23',   '', 'Test City', '94321', 'ISO', '3166-2', 'US-CA', 'USA', '', '', '', '', '99', '2016-01-20 09:21:23', '', null, 'USA', 'A', null);
 INSERT INTO "OLINGO"."BusinessPartner" VALUES ('10', 0, '2', '', '',   null, null, 'Tenth Org.', '',    null, 'Test Road', '12',   '', 'Test City', '03921', 'ISO', '3166-2', 'US-ME', 'USA', '', '', '', '', '99', '2016-01-20 09:21:23', '', null, 'DEU', null, null);
@@ -51,8 +52,7 @@ INSERT INTO "OLINGO"."BusinessPartner" VALUES ('99', 0, '1', '', '',   null, nul
 --------BUSINESS PARTNER ROLE----------------------------------------------------------------------------------------------------
 CREATE TABLE "OLINGO"."BusinessPartnerRole"
 (
-    "BusinessPartnerID" VARCHAR(32) NOT NULL
-        CONSTRAINT fk_bpr_bpa REFERENCES "OLINGO"."BusinessPartner",
+    "BusinessPartnerID" VARCHAR(32) NOT NULL CONSTRAINT fk_bpr_bpa REFERENCES "OLINGO"."BusinessPartner",
     "BusinessPartnerRole" VARCHAR(10) NOT NULL,
     PRIMARY KEY ("BusinessPartnerID", "BusinessPartnerRole")
 );
@@ -584,6 +584,13 @@ INSERT INTO "OLINGO"."AdministrativeDivision" VALUES ('ISO', '3166-2', 'US-WA', 
 INSERT INTO "OLINGO"."AdministrativeDivision" VALUES ('ISO', '3166-2', 'US-WI', 'USA', '3166-1', 'USA', null, 0, 0);
 INSERT INTO "OLINGO"."AdministrativeDivision" VALUES ('ISO', '3166-2', 'US-WV', 'USA', '3166-1', 'USA', null, 0, 0);
 INSERT INTO "OLINGO"."AdministrativeDivision" VALUES ('ISO', '3166-2', 'US-WY', 'USA', '3166-1', 'USA', null, 0, 0);
+INSERT INTO "OLINGO"."AdministrativeDivision" VALUES ('ISO', '3166-1', 'CHE', 'CHE', null, null, null, 0, 0);
+INSERT INTO "OLINGO"."AdministrativeDivision" VALUES ('ISO', '3166-2', 'CH-BL', 'CHE', '3166-1', 'CHE', null, 0, 0);
+
+ALTER TABLE "OLINGO"."BusinessPartner"
+    ADD CONSTRAINT bpa_adv_fk
+        FOREIGN KEY ("ADDRESS_REGIONCODEPUBLISHER", "ADDRESS_REGIONCODEID", "ADDRESS_REGION")
+            REFERENCES "OLINGO"."AdministrativeDivision" ("CodePublisher", "CodeID", "DivisionCode");
 
 CREATE TABLE "OLINGO"."Comment" (
     "BusinessPartnerID" VARCHAR(32) NOT NULL,
@@ -618,7 +625,8 @@ BEGIN ATOMIC
     END IF;
 END;
 
-CREATE FUNCTION "Siblings" ("Publisher" VARCHAR(10), "ID" VARCHAR(10), "Division" VARCHAR(10))
+// User Defined Function as created by query.TestJPAFunction.createFunction
+/*CREATE FUNCTION "Siblings" ("Publisher" VARCHAR(10), "ID" VARCHAR(10), "Division" VARCHAR(10))
 	RETURNS TABLE(
 		"CodePublisher" VARCHAR(10),
 		"CodeID" VARCHAR(10),
@@ -642,4 +650,4 @@ WHERE EXISTS (SELECT "CodePublisher"
 				AND NOT( a."CodePublisher" = "Publisher"
 					    AND a."CodeID" = "ID"
 					    AND a."DivisionCode" = "Division" )
-				);
+				);*/

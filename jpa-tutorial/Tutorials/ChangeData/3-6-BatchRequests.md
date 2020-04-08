@@ -2,7 +2,7 @@
 
 In the last tutorial we want to have a look at batch request and want to learn more about method `validateChanges`, which we have neglected up to now.
 
-Again a set of additional AdministrativeDivisions shall be created, but instead of using a [Deep Insert](3-5-DeepInsert.md), as in the last tutorial, we want to us the following batch request:
+Again a set of additional AdministrativeDivisions shall be created, but instead of using a [Deep Insert](3-5-DeepInsert.md), as in the last tutorial, we want to use the following batch request:
 
 URL: `.../Tutorial/Tutorial.svc/$batch`
 Header:

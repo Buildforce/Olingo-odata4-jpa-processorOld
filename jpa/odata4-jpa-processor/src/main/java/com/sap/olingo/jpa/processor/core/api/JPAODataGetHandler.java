@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.util.Optional;
 
+// import org.apache.olingo.server.core.ODataHttpHandlerImpl.REQUESTMAPPING
+
 public class JPAODataGetHandler {
-  private static final String REQUEST_MAPPING_ATTRIBUTE = "requestMapping";
+  public static final String REQUESTMAPPING = "requestMapping";
   public final Optional<EntityManagerFactory> emf;
   private final JPAODataServiceContext serviceContext;
   private final JPAODataRequestContextImpl requestContext;
@@ -160,7 +162,7 @@ public class JPAODataGetHandler {
   private HttpServletRequest prepareRequestMapping(final HttpServletRequest req, final String requestPath) {
     if (requestPath != null && !requestPath.isEmpty()) {
       HttpServletRequestWrapper request = new HttpServletRequestWrapper(req);
-      request.setAttribute(REQUEST_MAPPING_ATTRIBUTE, requestPath);
+      request.setAttribute(REQUESTMAPPING, requestPath);
       return request;
     } else {
       return req;

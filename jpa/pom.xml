@@ -105,17 +105,13 @@
         </plugins>
     </build>
     <repositories>
-        <repository>
-            <id>io.cloudrepo</id>
-            <url>https://odata4-professor.mycloudrepo.io/repositories/odata4-jpa</url>
-            <releases/>
-        </repository>
+        <!--<repository></repository>-->
     </repositories>
     <distributionManagement>
         <repository>
-            <id>io.cloudrepo</id> <!-- Must Match the Unique Identifier in settings.xml -->
-            <name>OData4-jpa</name>
-            <url>https://odata4-professor.mycloudrepo.io/repositories/odata4-jpa</url>
+            <id>bintray-workforce-odata4-jpa</id>
+            <name>workforce-odata4-jpa</name>
+            <url>https://api.bintray.com/maven/workforce/greentrak/odata4-jpa/;publish=1</url>
         </repository>
     </distributionManagement>
 </project>

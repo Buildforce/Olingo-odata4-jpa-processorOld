@@ -36,11 +36,13 @@
             <artifactId>javax.persistence</artifactId>
             <version>${eclipse.javax.prstnc.version}</version>
         </dependency>
+<!--
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>${eclipselink.prstnc.version}</version>
         </dependency>
+-->
         <dependency>
             <groupId>org.apache.olingo</groupId>
             <artifactId>odata-server-core</artifactId>

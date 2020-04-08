@@ -7,7 +7,6 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.exception;
 public class ODataJPAModelException extends ODataJPAException {
   /**
    *
-
    */
   private static final long serialVersionUID = -7188499882306858747L;
 
@@ -106,4 +105,5 @@ public class ODataJPAModelException extends ODataJPAException {
   public String getId() {
     return id;
   }
+
 }

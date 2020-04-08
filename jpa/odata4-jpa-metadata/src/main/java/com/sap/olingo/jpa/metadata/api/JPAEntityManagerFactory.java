@@ -6,9 +6,11 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 
+//import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 public class JPAEntityManagerFactory {
+  public static final String NON_JTA_DATASOURCE = "javax.persistence.nonJtaDataSource";
+
   private static Map<String, Map<Integer, EntityManagerFactory>> emfMap;
 
   private JPAEntityManagerFactory() {

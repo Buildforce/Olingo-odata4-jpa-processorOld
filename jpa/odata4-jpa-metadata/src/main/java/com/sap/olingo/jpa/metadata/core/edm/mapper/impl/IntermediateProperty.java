@@ -55,6 +55,7 @@ import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAMode
  * So properties maybe e.g. a complex collection property or a simple primitive property
  *
  * @author Oliver Grande
+ * @contributor FvdB
  */
 abstract class IntermediateProperty extends IntermediateModelElement implements IntermediatePropertyAccess, JPAAttribute {
     private AttributeConverter<?, ?> valueConverter;
