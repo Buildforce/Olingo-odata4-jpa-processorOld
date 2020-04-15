@@ -61,7 +61,7 @@ public class Person extends BusinessPartner {// #NOSONAR use equal method from B
   @Column(name = "\"AccessRights\"")
   private AccessRights[] accessRights;
 
-  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
   @JoinColumn(name = "\"ID\"", referencedColumnName = "\"ID\"", insertable = false, updatable = false)
   private PersonImage image;
 

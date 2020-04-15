@@ -26,7 +26,7 @@ public class BusinessPartnerRoleProtected {
   @Column(name = "\"BusinessPartnerRole\"")
   private String roleCategory;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "\"BusinessPartnerID\"", insertable = false, updatable = false)
   private BusinessPartnerProtected bupaPartnerProtected;
 

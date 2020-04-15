@@ -23,11 +23,11 @@ public class BusinessPartnerRole {
   @Column(name = "\"BusinessPartnerRole\"")
   private String roleCategory;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "\"BusinessPartnerID\"", insertable = false, updatable = false)
   private BusinessPartner businessPartner;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
   @JoinColumn(name = "\"BusinessPartnerID\"", insertable = false, updatable = false)
   private Organization organization;
 

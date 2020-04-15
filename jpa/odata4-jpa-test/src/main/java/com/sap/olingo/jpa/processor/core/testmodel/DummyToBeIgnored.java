@@ -41,7 +41,7 @@ public class DummyToBeIgnored implements Serializable {
   private byte uuid;
 
   @EdmIgnore
-  @OneToOne(optional = false, fetch = FetchType.LAZY)
+  @OneToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "\"ID\"", insertable = false, updatable = false)
   private BusinessPartner businessPartner;
 

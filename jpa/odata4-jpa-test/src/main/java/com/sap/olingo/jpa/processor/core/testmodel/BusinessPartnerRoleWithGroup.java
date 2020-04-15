@@ -28,7 +28,7 @@ public class BusinessPartnerRoleWithGroup {
   @Column(name = "\"Details\"", length = 256)
   private String details;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "\"BusinessPartnerID\"", insertable = false, updatable = false)
   private BusinessPartnerWithGroups businessPartner;
 
