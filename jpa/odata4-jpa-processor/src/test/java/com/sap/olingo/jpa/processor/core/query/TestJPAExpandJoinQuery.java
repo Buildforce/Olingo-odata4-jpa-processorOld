@@ -2,6 +2,7 @@ package com.sap.olingo.jpa.processor.core.query;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
@@ -11,7 +12,6 @@ import com.sap.olingo.jpa.processor.core.util.TestBase;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmNavigationProperty;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriParameter;
@@ -48,7 +48,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   private Map<JPAAttribute, Comparable> simpleKey;
 
   @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException {
     createHeaders();
     helper = new TestHelper(emf, PUNIT_NAME);
     EntityManager em = emf.createEntityManager();
@@ -68,7 +68,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   }
 
   @Test
-  public void testSelectAllWithAllExpand() throws ODataException {
+  public void testSelectAllWithAllExpand() throws ODataJPAException, ODataApplicationException {
     // .../Organizations?$expand=Roles&$format=json
     JPAInlineItemInfo item = createOrgExpandRoles(null, null);
     cut = new JPAExpandJoinQuery(OData.newInstance(), sessionContext, item, headers, requestContext, Optional.empty());
@@ -78,7 +78,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   }
 
   @Test
-  public void testSelectOrgByIdWithAllExpand() throws ODataException {
+  public void testSelectOrgByIdWithAllExpand() throws ODataJPAException, ODataApplicationException {
 
     // .../Organizations('2')?$expand=Roles&$format=json
     UriParameter key = mock(UriParameter.class);
@@ -95,7 +95,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   }
 
   @Test
-  public void testSelectWithMinBoundary() throws ODataException {
+  public void testSelectWithMinBoundary() throws ODataJPAException, ODataApplicationException {
     // .../Organizations?$expand=Roles&$skip=2&$format=json
     JPAInlineItemInfo item = createOrgExpandRoles(null, null);
     setSimpleKey(3);
@@ -109,7 +109,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   }
 
   @Test
-  public void testSelectWithMinBoundaryEmbedded() throws ODataException {
+  public void testSelectWithMinBoundaryEmbedded() throws ODataJPAException, ODataApplicationException {
     // .../Organizations?$expand=Roles&$skip=2&$format=json
     JPAInlineItemInfo item = createAdminDivExpandChildren(null, null);
     setComplexKey("Eurostat", "NUTS1", "BE2");
@@ -123,7 +123,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   }
 
   @Test
-  public void testSelectWithMinMaxBoundary() throws ODataException {
+  public void testSelectWithMinMaxBoundary() throws ODataJPAException, ODataApplicationException {
     // .../Organizations?$expand=Roles&$top=3&$format=json
     final JPAInlineItemInfo item = createOrgExpandRoles(null, null);
     setSimpleKey(2);
@@ -142,7 +142,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   }
 
   @Test
-  public void testSelectWithMinMaxBoundaryEmbeddedOnlyLastDiffers() throws ODataException {
+  public void testSelectWithMinMaxBoundaryEmbeddedOnlyLastDiffers() throws ODataJPAException, ODataApplicationException {
 
     JPAInlineItemInfo item = createAdminDivExpandChildren(null, null);
     setComplexKey("Eurostat", "NUTS1", "BE1");
@@ -167,7 +167,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
   }
 
   @Test
-  public void testSQLStringNotEmptyAfterExecute() throws ODataException {
+  public void testSQLStringNotEmptyAfterExecute() throws ODataJPAException, ODataApplicationException {
     // .../Organizations?$expand=Roles&$format=json
     JPAInlineItemInfo item = createOrgExpandRoles(null, null);
     cut = new JPAExpandJoinQuery(OData.newInstance(), sessionContext, item, headers, requestContext, Optional.empty());

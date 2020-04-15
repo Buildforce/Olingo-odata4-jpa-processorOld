@@ -18,9 +18,9 @@ package com.sap.olingo.jpa.processor.core.query;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.OData;
 
 import java.util.Collections;
@@ -36,7 +36,7 @@ public class JPAExpandSubQuery extends JPAAbstractJoinQuery {
   public JPAExpandSubQuery(final OData odata, final JPAODataCRUDContextAccess sessionContext,
       final JPAInlineItemInfo item, final Map<String, List<String>> requestHeaders,
       final JPAODataRequestContextAccess requestContext, final SortedSet<? extends Comparable<?>> rootKeys)
-      throws ODataException {
+      throws ODataJPAException {
 
     super(odata, sessionContext, item.getEntityType(), item.getUriInfo(), requestContext, requestHeaders,
         item.getHops());
@@ -48,7 +48,7 @@ public class JPAExpandSubQuery extends JPAAbstractJoinQuery {
       final JPAAssociationPath association, final JPAEntityType entityType,
       final Map<String, List<String>> requestHeaders, final JPAODataRequestContextAccess requestContext,
       final SortedSet<K> rootKeys)
-      throws ODataException {
+      throws ODataJPAException {
 
     super(odata, context, entityType, requestContext, requestHeaders, Collections.emptyList());
     this.association = association;

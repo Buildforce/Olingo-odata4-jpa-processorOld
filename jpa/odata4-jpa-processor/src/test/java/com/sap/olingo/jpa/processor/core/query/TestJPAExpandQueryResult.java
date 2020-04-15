@@ -1,13 +1,13 @@
 package com.sap.olingo.jpa.processor.core.query;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
 import com.sap.olingo.jpa.processor.core.util.TupleDouble;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
@@ -42,7 +42,7 @@ public class TestJPAExpandQueryResult extends TestBase {
   private List<JPANavigationPropertyInfo> hops;
 
   @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException, ODataApplicationException {
     helper = new TestHelper(emf, PUNIT_NAME);
     final UriResourceEntitySet uriEts = mock(UriResourceEntitySet.class);
     final JPANavigationPropertyInfo hop0 = new JPANavigationPropertyInfo(helper.sd, uriEts, null, null);

@@ -3,12 +3,12 @@ package com.sap.olingo.jpa.processor.core.processor;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
 import com.sap.olingo.jpa.processor.core.testmodel.CommunicationData;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ public class TestCreateDeltaBasedResult extends TestJPAModifyProcessor {
   private JPAAssociationPath path;
 
   @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException {
     cut = new JPACUDRequestProcessor(odata, serviceMetadata, sessionContext, requestContext, new JPAConversionHelper());
     pathElements = new ArrayList<>(3);
     path = mock(JPAAssociationPath.class);

@@ -2,6 +2,7 @@ package com.sap.olingo.jpa.processor.core.processor;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
@@ -30,7 +31,7 @@ import java.util.Map;
 public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
 
   public JPAActionRequestProcessor(final OData odata, final JPAODataCRUDContextAccess sessionContext,
-      final JPAODataRequestContextAccess requestContext) throws ODataException {
+      final JPAODataRequestContextAccess requestContext) throws ODataJPAException {
     super(odata, sessionContext, requestContext);
   }
 

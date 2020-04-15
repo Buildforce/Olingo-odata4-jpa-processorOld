@@ -1,6 +1,7 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAAbstractCUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPACUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
@@ -14,12 +15,12 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException;
 import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
 import com.sap.olingo.jpa.processor.core.modify.JPAUpdateResult;
 import org.apache.olingo.commons.api.edm.EdmProperty;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpMethod;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
+import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResourceComplexProperty;
 import org.apache.olingo.server.api.uri.UriResourcePrimitiveProperty;
@@ -47,7 +48,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   private ODataRequest request;
 
   @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException {
     request = mock(ODataRequest.class);
     processor = new JPACUDRequestProcessor(odata, serviceMetadata, sessionContext, requestContext,
         new JPAConversionHelper());
@@ -74,7 +75,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testHeadersProvided() throws ODataException {
+  public void testHeadersProvided() throws ODataJPAProcessException {
     final Map<String, List<String>> headers = new HashMap<>();
 
     when(request.getAllHeaders()).thenReturn(headers);
@@ -92,7 +93,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testClaimsProvided() throws ODataException {
+  public void testClaimsProvided() throws ODataJPAException, SerializerException, ODataJPAProcessException {
 
     final ODataRequest request = prepareSimpleRequest();
 
@@ -110,7 +111,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testGroupsProvided() throws ODataException {
+  public void testGroupsProvided() throws ODataJPAException, SerializerException, ODataJPAProcessException {
 
     final ODataRequest request = prepareSimpleRequest();
 
@@ -359,7 +360,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testCallsValidateChangesOnSuccessfulProcessing() throws ODataException {
+  public void testCallsValidateChangesOnSuccessfulProcessing() throws ODataJPAException, SerializerException, ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -371,7 +372,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesNotCallsValidateChangesOnForeignTransaction() throws ODataException {
+  public void testDoesNotCallsValidateChangesOnForeignTransaction() throws ODataJPAException, SerializerException, ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 
@@ -384,7 +385,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesNotCallsValidateChangesOnError() throws ODataException {
+  public void testDoesNotCallsValidateChangesOnError() throws ODataJPAException, SerializerException, ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
     when(request.getMethod()).thenReturn(HttpMethod.POST);
@@ -402,7 +403,7 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesRollbackIfValidateRaisesError() throws ODataException {
+  public void testDoesRollbackIfValidateRaisesError() throws ODataJPAException, SerializerException, ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareSimpleRequest();
 

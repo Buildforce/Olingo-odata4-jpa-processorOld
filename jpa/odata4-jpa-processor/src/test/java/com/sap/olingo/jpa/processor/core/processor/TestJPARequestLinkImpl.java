@@ -6,10 +6,11 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOnConditionItem;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ public class TestJPARequestLinkImpl {
 
   @Disabled
   @Test
-  public void testCreateMultipleStringKeysChildren() throws ODataException {
+  public void testCreateMultipleStringKeysChildren() throws ODataJPAException, ODataJPAProcessorException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -56,7 +57,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateMultipleStringKeysParent() throws ODataException {
+  public void testCreateMultipleStringKeysParent() throws ODataJPAException, ODataJPAProcessorException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -72,7 +73,7 @@ public class TestJPARequestLinkImpl {
 
   @Disabled
   @Test
-  public void testCreateMultipleStringValuesChildren() throws ODataException {
+  public void testCreateMultipleStringValuesChildren() throws ODataJPAException, ODataJPAProcessorException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -88,7 +89,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateMultipleStringValuesParent() throws ODataException {
+  public void testCreateMultipleStringValuesParent() throws ODataJPAException, ODataJPAProcessorException {
     String link = "AdministrativeDivisions(DivisionCode='DE100',CodeID='NUTS3',CodePublisher='Eurostat')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -104,7 +105,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateSingleStringKey() throws ODataException {
+  public void testCreateSingleStringKey() throws ODataJPAException, ODataJPAProcessorException {
     String link = "BusinessPartners('123456')";
     cut = new JPARequestLinkImpl(path, link, helper);
 
@@ -116,7 +117,7 @@ public class TestJPARequestLinkImpl {
   }
 
   @Test
-  public void testCreateSingleStringValue() throws ODataException {
+  public void testCreateSingleStringValue() throws ODataJPAException, ODataJPAProcessorException {
     String link = "BusinessPartners('123456')";
     cut = new JPARequestLinkImpl(path, link, helper);
     completeJPAPath();

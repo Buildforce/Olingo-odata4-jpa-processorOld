@@ -2,6 +2,7 @@ package com.sap.olingo.jpa.processor.core.api.example;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
 import com.sap.olingo.jpa.processor.core.modify.JPAUpdateResult;
@@ -11,7 +12,6 @@ import com.sap.olingo.jpa.processor.core.processor.JPARequestLink;
 import com.sap.olingo.jpa.processor.core.testmodel.*;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpMethod;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
   private Map<String, Object> keys;
 
   @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException {
     helper = new TestHelper(emf, PUNIT_NAME);
     em = mock(EntityManager.class);
     requestEntity = mock(JPARequestEntity.class);

@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.query;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.JPAIllegalAccessException;
 import com.sap.olingo.jpa.processor.core.testmodel.TestDataConstants;
@@ -17,7 +18,6 @@ import org.apache.olingo.commons.api.edm.EdmEntitySet;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmProperty;
 import org.apache.olingo.commons.api.edm.EdmType;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResource;
@@ -103,7 +103,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectOnePropertyPartKey() throws ODataException, JPAIllegalAccessException {
+  public void checkSelectOnePropertyPartKey() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("AdministrativeDivisionDescriptions");
     buildRequestContext("AdministrativeDivisionDescriptions", "AdministrativeDivisionDescription");
 
@@ -134,7 +134,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectSupertypePropertyTypeName2() throws ODataException, JPAIllegalAccessException {
+  public void checkSelectSupertypePropertyTypeName2() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
     joinTables.put(jpaEntityType.getInternalName(), root);
@@ -151,7 +151,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectCompleteComplexType() throws ODataException {
+  public void checkSelectCompleteComplexType() throws ODataJPAException, ODataApplicationException {
     // Organizations$select=Address
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
@@ -166,7 +166,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectCompleteNestedComplexTypeLowLevel() throws ODataException {
+  public void checkSelectCompleteNestedComplexTypeLowLevel() throws ODataJPAException, ODataApplicationException {
     // Organizations$select=Address
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
@@ -182,7 +182,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectCompleteNestedComplexTypeHighLevel() throws ODataException {
+  public void checkSelectCompleteNestedComplexTypeHighLevel() throws ODataJPAException, ODataApplicationException {
     // Organizations$select=Address
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
@@ -200,7 +200,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectElementOfComplexType() throws ODataException {
+  public void checkSelectElementOfComplexType() throws ODataJPAException, ODataApplicationException {
     // Organizations$select=Address/Country
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
@@ -216,7 +216,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectTextJoinSingleAttribute() throws ODataException {
+  public void checkSelectTextJoinSingleAttribute() throws ODataJPAException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
     joinTables.put(jpaEntityType.getInternalName(), root);
@@ -231,7 +231,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectTextJoinComplexType() throws ODataException {
+  public void checkSelectTextJoinComplexType() throws ODataJPAException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("Organizations");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
     joinTables.put(jpaEntityType.getInternalName(), root);
@@ -246,7 +246,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectStreamValueStatic() throws ODataException, JPAIllegalAccessException {
+  public void checkSelectStreamValueStatic() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("PersonImages");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
     buildRequestContext("PersonImages", "PersonImage");
@@ -267,7 +267,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectStreamValueDynamic() throws ODataException, JPAIllegalAccessException {
+  public void checkSelectStreamValueDynamic() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("OrganizationImages");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
     buildRequestContext("OrganizationImages", "OrganizationImage");
@@ -289,7 +289,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
   }
 
   @Test
-  public void checkSelectPropertyValue() throws ODataException, JPAIllegalAccessException {
+  public void checkSelectPropertyValue() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("PersonImages");
     root = emf.getCriteriaBuilder().createTupleQuery().from(jpaEntityType.getTypeClass());
     buildRequestContext("PersonImages", "PersonImage");

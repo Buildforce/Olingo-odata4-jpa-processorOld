@@ -4,13 +4,13 @@ import com.sap.olingo.jpa.metadata.api.JPAEdmMetadataPostProcessor;
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder;
 import com.sap.olingo.jpa.processor.core.database.JPADefaultDatabaseProcessor;
 import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseProcessorFactory;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.debug.DebugSupport;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
@@ -56,7 +56,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
      * instead
      */
   @Deprecated
-  JPAODataServiceContext(JPAODataGetHandler jpaODataGetHandler) throws ODataException {
+  JPAODataServiceContext(JPAODataGetHandler jpaODataGetHandler) throws ODataJPAFilterException {
     this.jpaODataGetHandler = jpaODataGetHandler;
     namespace_pUnit = jpaODataGetHandler.namespace;
     operationConverter = new JPADefaultDatabaseProcessor();
@@ -67,7 +67,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
   }
 
-  private JPAODataServiceContext(final Builder builder) throws ODataException {
+  private JPAODataServiceContext(final Builder builder) throws ODataJPAException, ODataJPAFilterException {
 
     jpaODataGetHandler = null;
     jpaCUDRequestHandler = null;
@@ -111,13 +111,13 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   }
 
   @Override
-  public JPAEdmProvider getEdmProvider() throws ODataException {
+  public JPAEdmProvider getEdmProvider() throws ODataJPAException {
     if (jpaEdm == null && jpaODataGetHandler != null && jpaODataGetHandler.jpaMetamodel != null)
       jpaEdm = new JPAEdmProvider(namespace_pUnit, jpaODataGetHandler.jpaMetamodel, postProcessor, packageName);
     return jpaEdm;
   }
 
-  public JPAEdmProvider getEdmProvider(final EntityManager em) throws ODataException {
+  public JPAEdmProvider getEdmProvider(final EntityManager em) throws ODataJPAException {
     if (jpaEdm == null) jpaEdm = new JPAEdmProvider(namespace_pUnit, em.getMetamodel(), postProcessor, packageName);
     return jpaEdm;
   }
@@ -212,7 +212,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
    */
   @Deprecated
   @Override
-  public void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataException {
+  public void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataJPAException {
     if (jpaODataGetHandler.jpaMetamodel != null)
       jpaEdm = new JPAEdmProvider(jpaODataGetHandler.namespace, jpaODataGetHandler.jpaMetamodel, postProcessor, packageName);
     else
@@ -276,7 +276,7 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     private            List<EdmxReference> references = new ArrayList<>();
     // format: ON
 
-    public JPAODataCRUDContextAccess build() throws ODataException {
+    public JPAODataCRUDContextAccess build() throws ODataJPAException, ODataJPAFilterException {
 
       return new JPAODataServiceContext(this);
     }

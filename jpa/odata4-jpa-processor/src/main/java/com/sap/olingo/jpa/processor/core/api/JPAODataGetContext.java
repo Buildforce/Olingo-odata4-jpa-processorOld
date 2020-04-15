@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.api;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmMetadataPostProcessor;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.debug.DebugSupport;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 
@@ -18,7 +18,7 @@ public interface JPAODataGetContext {
    *
 
    * @param databaseProcessor
-   * @throws ODataException
+   * @throws ODataJPAException
    */
   void setDatabaseProcessor(final JPAODataDatabaseProcessor databaseProcessor);
 
@@ -43,15 +43,15 @@ public interface JPAODataGetContext {
    *
 
    * @param postProcessor
-   * @throws ODataException
+   * @throws ODataJPAException
    */
-  void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataException;
+  void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataJPAException;
 
   /**
    *
 
    * @param jpaOperationConverter
-   * @throws ODataException
+   * @throws ODataJPAException
    */
   void setOperationConverter(final JPAODataDatabaseOperations jpaOperationConverter);
 

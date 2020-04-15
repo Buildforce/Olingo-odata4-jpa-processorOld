@@ -93,13 +93,13 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void deleteComplex(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
     // Set NULL: .../Organizations('4')/Address
 
     try {
       final JPACUDRequestProcessor p = factory.createCUDRequestProcessor(uriInfo, requestContext);
       p.clearFields(request, response);
-    } catch (ODataApplicationException | ODataLibraryException e) {
+    } catch (ODataApplicationException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_DELETE,
@@ -109,12 +109,12 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void deleteEntity(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
 
     try {
       final JPACUDRequestProcessor p = this.factory.createCUDRequestProcessor(uriInfo, requestContext);
       p.deleteEntity(request, response);
-    } catch (ODataApplicationException | ODataLibraryException e) {
+    } catch (ODataApplicationException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataApplicationException(e.getLocalizedMessage(),
@@ -124,7 +124,7 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void deletePrimitive(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
     // Set NULL: .../Organizations('4')/Address/Country
     // https://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Toc453752306
     // 11.4.9.2 Set a Value to Null:
@@ -139,7 +139,7 @@ public final class JPAODataRequestProcessor
     try {
       final JPACUDRequestProcessor p = factory.createCUDRequestProcessor(uriInfo, requestContext);
       p.clearFields(request, response);
-    } catch (ODataApplicationException | ODataLibraryException e) {
+    } catch (ODataApplicationException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_DELETE,
@@ -369,13 +369,13 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void deletePrimitiveCollection(final ODataRequest request, final ODataResponse response,
-      final UriInfo uriInfo) throws ODataApplicationException, ODataLibraryException {
+      final UriInfo uriInfo) throws ODataApplicationException {
     // Set NULL: .../Organizations('4')/Comment
     // See deletePrimitive
     try {
       final JPACUDRequestProcessor p = factory.createCUDRequestProcessor(uriInfo, requestContext);
       p.clearFields(request, response);
-    } catch (ODataApplicationException | ODataLibraryException e) {
+    } catch (ODataApplicationException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_DELETE,
@@ -393,13 +393,13 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void deleteComplexCollection(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
     // Set NULL: .../Persons('4')/InhouseAddress
     // See deletePrimitive
     try {
       final JPACUDRequestProcessor p = factory.createCUDRequestProcessor(uriInfo, requestContext);
       p.clearFields(request, response);
-    } catch (ODataApplicationException | ODataLibraryException e) {
+    } catch (ODataApplicationException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_DELETE,
@@ -410,13 +410,13 @@ public final class JPAODataRequestProcessor
   @Override
   public void processActionPrimitive(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType requestFormat, final ContentType responseFormat)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataApplicationException {
 
     try {
       final JPAActionRequestProcessor p = this.factory.createActionProcessor(uriInfo, responseFormat, request
           .getAllHeaders(), requestContext);
       p.performAction(request, response, requestFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
+    } catch (ODataApplicationException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataApplicationException(e.getLocalizedMessage(),
@@ -426,12 +426,12 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void processActionVoid(ODataRequest request, ODataResponse response, UriInfo uriInfo,
-      ContentType requestFormat) throws ODataApplicationException, ODataLibraryException {
+      ContentType requestFormat) throws ODataApplicationException {
     try {
       final JPAActionRequestProcessor p = this.factory.createActionProcessor(uriInfo, null, request.getAllHeaders(),
           requestContext);
       p.performAction(request, response, requestFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
+    } catch (ODataApplicationException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataApplicationException(e.getLocalizedMessage(),

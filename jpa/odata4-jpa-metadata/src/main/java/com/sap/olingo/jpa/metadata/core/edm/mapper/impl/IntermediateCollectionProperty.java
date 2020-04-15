@@ -1,8 +1,17 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.*;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationAttribute;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPACollectionAttribute;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAJoinTable;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOnConditionItem;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
 
 import javax.persistence.CollectionTable;
@@ -17,6 +26,7 @@ import java.util.List;
 import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys.NOT_SUPPORTED_NO_IMPLICIT_COLUMNS;
 import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys.NOT_SUPPORTED_NO_IMPLICIT_COLUMNS_COMPLEX;
 import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys.NOT_SUPPORTED_PROTECTED_COLLECTION;
+import static com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys.INVALID_COLLECTION_TYPE;
 import static javax.persistence.metamodel.Type.PersistenceType.EMBEDDABLE;
 
 /**
@@ -30,7 +40,7 @@ import static javax.persistence.metamodel.Type.PersistenceType.EMBEDDABLE;
  */
 
 class IntermediateCollectionProperty extends IntermediateProperty implements JPACollectionAttribute,
-    JPAAssociationAttribute {
+        JPAAssociationAttribute {
   private final IntermediateStructuredType sourceType;
   private JPAJoinTable joinTable; // lazy build
   private JPAAssociationPathImpl associationPath; // lazy build
@@ -144,7 +154,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
     if (isComplex()
         && schema.getComplexType(this.edmProperty.getTypeAsFQNObject().getName()) == null)
       // Base type of collection '%1$s' of structured type '%2$s' not found
-      throw new ODataJPAModelException(MessageKeys.INVALID_COLLECTION_TYPE, getInternalName(), sourceType
+      throw new ODataJPAModelException(INVALID_COLLECTION_TYPE, getInternalName(), sourceType
           .getInternalName());
     edmProperty.setCollection(true);
   }

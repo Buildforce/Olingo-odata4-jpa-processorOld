@@ -2,6 +2,7 @@ package com.sap.olingo.jpa.processor.core.processor;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunctionType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.*;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataDatabaseProcessor;
@@ -10,7 +11,6 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPADBAdaptorException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import org.apache.olingo.commons.api.data.Annotatable;
 import org.apache.olingo.commons.api.edm.*;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.*;
@@ -36,7 +36,7 @@ public final class JPAFunctionRequestProcessor extends JPAOperationRequestProces
   private final JPAODataDatabaseProcessor dbProcessor;
 
   public JPAFunctionRequestProcessor(final OData odata, final JPAODataCRUDContextAccess context,
-      final JPAODataRequestContextAccess requestContext) throws ODataException {
+      final JPAODataRequestContextAccess requestContext) throws ODataJPAException {
     super(odata, context, requestContext);
     this.dbProcessor = context.getDatabaseProcessor();
   }

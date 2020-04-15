@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.*;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAClaimsPair;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
@@ -16,6 +17,7 @@ import com.sap.olingo.jpa.processor.core.util.JPAEntityTypeDouble;
 import com.sap.olingo.jpa.processor.core.util.TestQueryBase;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 import org.eclipse.persistence.internal.jpa.querydef.CompoundExpressionImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,7 +54,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
 
   @Override
   @BeforeEach
-  public void setup() throws ODataException, JPAIllegalAccessException {
+  public void setup() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     super.setup();
     contextSpy = Mockito.spy(context);
     JPAEdmProvider providerSpy = Mockito.spy(context.getEdmProvider());
@@ -247,7 +249,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictComplexOnePropertyOneValue() throws ODataException, JPANoSelectionException {
+  public void testRestrictComplexOnePropertyOneValue() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     prepareTest();
     prepareComplexAttributeCreateUser("UserId");
 
@@ -267,8 +269,8 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
 
   @ParameterizedTest
   @ValueSource(strings = { "Mar*", "Mar%", "Mar+", "Mar_" })
-  public void testRestrictComplexOnePropertyOneValueWildcardTrue(final String minValue) throws ODataException,
-      JPANoSelectionException {
+  public void testRestrictComplexOnePropertyOneValueWildcardTrue(final String minValue) throws ODataJPAException,
+          JPANoSelectionException, ODataApplicationException {
     prepareTest();
     prepareComplexAttributeUser("UserId", "AdministrativeInformation/Created/By", "created", true);
 
@@ -287,7 +289,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictComplexOnePropertyUpperLowerValues() throws ODataException, JPANoSelectionException {
+  public void testRestrictComplexOnePropertyUpperLowerValues() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     final String claimName = "UserId";
     prepareTest();
     prepareComplexAttributeCreateUser(claimName);
@@ -307,8 +309,8 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictComplexOnePropertyUpperLowerValuesWildcardTrue() throws ODataException,
-      JPANoSelectionException {
+  public void testRestrictComplexOnePropertyUpperLowerValuesWildcardTrue() throws ODataJPAException,
+          JPANoSelectionException, ODataApplicationException {
     final String claimName = "UserId";
     prepareTest();
     prepareComplexAttributeUser(claimName, "AdministrativeInformation/Created/By", "created", true);
@@ -329,7 +331,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictComplexOnePropertyTwoValues() throws ODataException, JPANoSelectionException {
+  public void testRestrictComplexOnePropertyTwoValues() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     final String claimName = "UserId";
     prepareTest();
     prepareComplexAttributeCreateUser(claimName);
@@ -352,7 +354,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictComplexOnePropertyOneValuesDate() throws ODataException, JPANoSelectionException {
+  public void testRestrictComplexOnePropertyOneValuesDate() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     final String claimName = "CreationDate";
     prepareTest();
     prepareComplexAttributeDate(claimName);
@@ -372,7 +374,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictComplexOnePropertyUpperLowerValuesDate() throws ODataException, JPANoSelectionException {
+  public void testRestrictComplexOnePropertyUpperLowerValuesDate() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     final String claimName = "CreationDate";
     prepareTest();
     prepareComplexAttributeDate(claimName);
@@ -392,7 +394,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictComplexTwoPropertyOneValuesOperatorAND() throws ODataException, JPANoSelectionException {
+  public void testRestrictComplexTwoPropertyOneValuesOperatorAND() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     final String claimName = "UserId";
     prepareTest();
     prepareComplexAttributeCreateUser(claimName);
@@ -415,7 +417,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
   }
 
   @Test
-  public void testRestrictTwoPropertiesOneValuesOperatorAND() throws ODataException, JPANoSelectionException {
+  public void testRestrictTwoPropertiesOneValuesOperatorAND() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     final String claimName = "UserId";
     prepareTest();
     prepareComplexAttributeCreateUser(claimName);
@@ -522,7 +524,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
 
   }
 
-  private void prepareTest() throws ODataException, JPANoSelectionException {
+  private void prepareTest() throws ODataJPAException, JPANoSelectionException, ODataApplicationException {
     buildUriInfo("BusinessPartnerProtecteds", "BusinessPartnerProtected");
     EdmType odataType = ((UriResourceEntitySet) uriInfo.getUriResourceParts().get(0)).getType();
     attributes = new ArrayList<>();

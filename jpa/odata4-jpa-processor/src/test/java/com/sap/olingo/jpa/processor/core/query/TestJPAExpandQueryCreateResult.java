@@ -2,6 +2,7 @@ package com.sap.olingo.jpa.processor.core.query;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataContextAccessDouble;
@@ -14,7 +15,6 @@ import com.sap.olingo.jpa.processor.core.util.TestHelper;
 import com.sap.olingo.jpa.processor.core.util.TupleDouble;
 import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class TestJPAExpandQueryCreateResult extends TestBase {
   private JPAODataRequestContextImpl requestContext;
 
   @BeforeEach
-  public void setup() throws ODataException, JPAIllegalAccessException {
+  public void setup() throws ODataJPAException, JPAIllegalAccessException {
     helper = new TestHelper(emf, PUNIT_NAME);
     createHeaders();
     EdmEntityType targetEntity = new EdmEntityTypeDouble(nameBuilder, "BusinessPartnerRole");
@@ -228,7 +228,7 @@ public class TestJPAExpandQueryCreateResult extends TestBase {
   }
 
   @Test
-  public void checkConvertOneResultJoinTable() throws ODataException {
+  public void checkConvertOneResultJoinTable() throws ODataJPAException, ODataApplicationException {
     JPAAssociationPath exp = helper.getJPAAssociationPath("Organizations", "SupportEngineers");
 
     EdmEntityType targetEntity = new EdmEntityTypeDouble(nameBuilder, "Person");

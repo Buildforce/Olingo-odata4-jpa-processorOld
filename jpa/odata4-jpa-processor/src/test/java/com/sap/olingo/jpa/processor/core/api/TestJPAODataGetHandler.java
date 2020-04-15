@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.api;
 
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import com.sap.olingo.jpa.processor.core.util.HttpServletRequestDouble;
 import com.sap.olingo.jpa.processor.core.util.HttpServletResponseDouble;
@@ -42,12 +43,12 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testCanCreateInstanceWithPunit() throws ODataException {
+  public void testCanCreateInstanceWithPunit() throws ODataJPAFilterException {
       new JPAODataGetHandler(PUNIT_NAME);
   }
 
   @Test
-  public void testPropertiesInstanceWithPunit() throws ODataException {
+  public void testPropertiesInstanceWithPunit() throws ODataJPAFilterException {
     cut = new JPAODataGetHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataContext());
     assertNull(cut.ds);
@@ -57,13 +58,13 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testCanCreateInstanceWithPunitAndDs() throws ODataException {
+  public void testCanCreateInstanceWithPunitAndDs() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
       new JPAODataGetHandler(PUNIT_NAME, ds);
   }
 
   @Test
-  public void testPropertiesInstanceWithPunitAndDs() throws ODataException {
+  public void testPropertiesInstanceWithPunitAndDs() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);
     assertNotNull(cut.getJPAODataContext());
@@ -75,7 +76,7 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testProcessWithoutEntityManager() throws ODataException {
+  public void testProcessWithoutEntityManager() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);
     cut.getJPAODataContext().setTypePackage(enumPackages);
@@ -85,7 +86,7 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testProcessWithEntityManager() throws ODataException {
+  public void testProcessWithEntityManager() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     final EntityManager em = emf.createEntityManager();
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);
@@ -98,7 +99,7 @@ public class TestJPAODataGetHandler extends TestBase {
 
   @Test
   @SuppressWarnings("deprecation")
-  public void testProcessWithClaims() throws ODataException {
+  public void testProcessWithClaims() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     final EntityManager em = emf.createEntityManager();
     final JPAODataClaimProvider claims = new JPAODataClaimsProvider();
@@ -111,13 +112,13 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testGetSessionContext() throws ODataException {
+  public void testGetSessionContext() throws ODataJPAFilterException {
     cut = new JPAODataGetHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataContext());
   }
 
   @Test
-  public void testGetRequestContext() throws ODataException {
+  public void testGetRequestContext() throws  ODataJPAFilterException {
     cut = new JPAODataGetHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataRequestContext());
   }
@@ -191,7 +192,7 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testProcessWithEm() throws ODataException {
+  public void testProcessWithEm() throws ODataJPAFilterException {
     cut = new JPAODataGetHandler(PUNIT_NAME);
     cut.getJPAODataContext().setTypePackage(enumPackages);
     cut.process(request, response, emf.createEntityManager());

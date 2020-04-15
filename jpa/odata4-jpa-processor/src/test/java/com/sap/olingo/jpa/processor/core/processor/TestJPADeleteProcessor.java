@@ -1,6 +1,7 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAAbstractCUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPACUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
@@ -10,7 +11,6 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
@@ -97,7 +97,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testHeadersProvided() throws ODataException {
+  public void testHeadersProvided() throws ODataJPAProcessException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = mock(ODataRequest.class);
     final Map<String, List<String>> headers = new HashMap<>();
@@ -117,7 +117,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testClaimsProvided() throws ODataException {
+  public void testClaimsProvided() throws ODataJPAProcessException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = mock(ODataRequest.class);
 
@@ -135,7 +135,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testGroupsProvided() throws ODataException {
+  public void testGroupsProvided() throws ODataJPAProcessException {
     final ODataResponse response = new ODataResponse();
     final ODataRequest request = mock(ODataRequest.class);
 
@@ -202,7 +202,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testCallsValidateChangesOnSuccessfulProcessing() throws ODataException {
+  public void testCallsValidateChangesOnSuccessfulProcessing() throws ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = mock(ODataRequest.class);
 
@@ -214,7 +214,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesNotCallsValidateChangesOnForeignTransaction() throws ODataException {
+  public void testDoesNotCallsValidateChangesOnForeignTransaction() throws ODataJPAException, ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = mock(ODataRequest.class);
 
@@ -231,7 +231,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesNotCallsValidateChangesOnError() throws ODataException {
+  public void testDoesNotCallsValidateChangesOnError() throws ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = mock(ODataRequest.class);
 
@@ -246,7 +246,7 @@ public class TestJPADeleteProcessor extends TestJPAModifyProcessor {
   }
 
   @Test
-  public void testDoesRollbackIfValidateRaisesError() throws ODataException {
+  public void testDoesRollbackIfValidateRaisesError() throws ODataJPAException, ODataJPAProcessException {
     ODataResponse response = new ODataResponse();
     ODataRequest request = mock(ODataRequest.class);
 

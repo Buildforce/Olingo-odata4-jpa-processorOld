@@ -9,6 +9,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimProvider;
@@ -22,7 +23,6 @@ import com.sap.olingo.jpa.processor.core.filter.JPAFilterCrossCompiler;
 import com.sap.olingo.jpa.processor.core.filter.JPAOperationConverter;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import org.apache.olingo.commons.api.edm.EdmType;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -79,7 +79,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
   public JPAAbstractJoinQuery(final OData odata, final JPAODataCRUDContextAccess sessionContext,
       final JPAEntityType jpaEntityType, final JPAODataRequestContextAccess requestContext,
       final Map<String, List<String>> requestHeaders, final List<JPANavigationPropertyInfo> navigationInfo)
-      throws ODataException {
+      throws ODataJPAException {
 
     this(odata, sessionContext, jpaEntityType, requestContext.getUriInfo(), requestContext, requestHeaders,
         navigationInfo);
@@ -88,7 +88,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
   protected JPAAbstractJoinQuery(final OData odata, final JPAODataCRUDContextAccess sessionContext,
       final JPAEntityType jpaEntityType, final UriInfoResource uriInfo,
       final JPAODataRequestContextAccess requestContext, final Map<String, List<String>> requestHeaders,
-      final List<JPANavigationPropertyInfo> navigationInfo) throws ODataException {
+      final List<JPANavigationPropertyInfo> navigationInfo) throws ODataJPAException {
 
     super(odata, sessionContext.getEdmProvider().getServiceDocument(), jpaEntityType, requestContext);
     this.requestContext = requestContext;

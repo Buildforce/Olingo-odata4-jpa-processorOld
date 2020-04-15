@@ -5,6 +5,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataContextAccessDouble;
@@ -50,7 +51,7 @@ public class TestJPAQueryFromClause extends TestBase {
   private JPAODataCRUDContextAccess sessionContext;
 
   @BeforeEach
-  public void setup() throws ODataException, JPAIllegalAccessException {
+  public void setup() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     final UriInfo uriInfo = Mockito.mock(UriInfo.class);
     final EdmEntitySet odataEs = Mockito.mock(EdmEntitySet.class);
     final EdmType odataType = Mockito.mock(EdmEntityType.class);

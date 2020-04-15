@@ -18,10 +18,17 @@
 			<artifactId>odata-commons-api</artifactId>
 			<version>${odata.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
-			<version>${eclipse.javax.prstnc.version}</version>
+			<artifactId>jakarta.persistence</artifactId>
+			<version>${jakarta.persistence.version}</version>
 		</dependency>
+
+		<!--<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa</artifactId>
+			<version>${eclipselink.prstnc.version}</version>
+		</dependency>-->
 	</dependencies>
 </project>

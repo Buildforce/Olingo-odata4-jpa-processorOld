@@ -3,6 +3,7 @@ package com.sap.olingo.jpa.processor.core.processor;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAInvocationTargetException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
@@ -12,7 +13,6 @@ import com.sap.olingo.jpa.processor.core.testobjects.BusinessPartnerRoleWithoutS
 import com.sap.olingo.jpa.processor.core.testobjects.OrganizationWithoutGetter;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
@@ -37,7 +37,7 @@ public class TestModifyUtil extends TestBase {
   private JPAEntityType org;
 
   @BeforeEach
-  public void setUp() throws ODataException {
+  public void setUp() throws ODataJPAException {
     cut = new JPAModifyUtil();
     jpaAttributes = new HashMap<>();
     partner = new Organization();

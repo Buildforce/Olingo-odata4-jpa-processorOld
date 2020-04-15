@@ -1,8 +1,10 @@
 package com.sap.olingo.jpa.processor.core.query;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import com.sap.olingo.jpa.processor.core.processor.JPAFunctionRequestProcessor;
 import com.sap.olingo.jpa.processor.core.serializer.JPAOperationSerializer;
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
@@ -13,10 +15,10 @@ import org.apache.olingo.commons.api.edm.EdmParameter;
 import org.apache.olingo.commons.api.edm.EdmReturnType;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.edm.constants.EdmTypeKind;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.core.edm.primitivetype.EdmInt32;
 import org.apache.olingo.server.api.*;
+import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
 import org.apache.olingo.server.api.uri.UriInfo;
 import org.apache.olingo.server.api.uri.UriParameter;
@@ -48,7 +50,7 @@ public class TestJPAFunctionJava {
   private EdmFunction edmFunction;
 
   @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException, SerializerException, ODataJPASerializerException {
     OData odata = mock(OData.class);
     JPAODataCRUDContextAccess context = mock(JPAODataCRUDContextAccess.class);
     JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);

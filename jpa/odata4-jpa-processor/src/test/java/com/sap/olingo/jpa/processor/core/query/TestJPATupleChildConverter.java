@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.query;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.converter.JPATupleChildConverter;
 import com.sap.olingo.jpa.processor.core.util.ServiceMetadataDouble;
@@ -10,7 +11,6 @@ import com.sap.olingo.jpa.processor.core.util.UriHelperDouble;
 import org.apache.olingo.commons.api.data.ComplexValue;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.data.ValueType;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class TestJPATupleChildConverter extends TestBase {
   private final HashMap<String, List<Tuple>> queryResult = new HashMap<>(1);
 
   @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException {
     helper = new TestHelper(emf, PUNIT_NAME);
     jpaQueryResult = new ArrayList<>();
 

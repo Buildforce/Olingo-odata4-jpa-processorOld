@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.api;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +27,7 @@ public interface JPAODataCRUDContextAccess {
   // @Deprecated
   // DebugSupport getDebugSupport();
 
-  JPAEdmProvider getEdmProvider() throws ODataException;
+  JPAEdmProvider getEdmProvider() throws ODataJPAException;
 
   JPAODataDatabaseOperations getOperationConverter();
 

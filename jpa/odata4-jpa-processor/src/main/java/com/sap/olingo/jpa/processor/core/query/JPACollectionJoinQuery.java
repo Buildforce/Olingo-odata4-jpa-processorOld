@@ -5,12 +5,12 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException.MessageKeys;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -47,7 +47,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
 
   public JPACollectionJoinQuery(final OData odata, final JPAODataCRUDContextAccess context, final EntityManager em,
       final JPACollectionItemInfo item, final Map<String, List<String>> requestHeaders,
-      JPAODataRequestContextAccess requestContext, final Optional<JPAKeyBoundary> keyBoundary) throws ODataException {
+      JPAODataRequestContextAccess requestContext, final Optional<JPAKeyBoundary> keyBoundary) throws ODataJPAException {
 
     super(odata, context, item.getEntityType(), requestContext,
         requestHeaders, new ArrayList<>(item.getHops().subList(0, item.getHops().size() - 1)));

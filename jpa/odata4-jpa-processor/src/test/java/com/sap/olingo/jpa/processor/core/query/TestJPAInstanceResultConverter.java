@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.query;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.converter.JPAEntityResultConverter;
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
 import com.sap.olingo.jpa.processor.core.util.EdmEntityTypeDouble;
@@ -7,7 +8,6 @@ import com.sap.olingo.jpa.processor.core.util.TestBase;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
 import com.sap.olingo.jpa.processor.core.util.UriHelperDouble;
 import org.apache.olingo.commons.api.data.EntityCollection;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.serializer.SerializerException;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +28,7 @@ public class TestJPAInstanceResultConverter extends TestBase {
   private List<Object> jpaQueryResult;
 
     @BeforeEach
-  public void setup() throws ODataException {
+  public void setup() throws ODataJPAException {
     helper = new TestHelper(emf, PUNIT_NAME);
     jpaQueryResult = new ArrayList<>();
     HashMap<String, String> keyStrings = new HashMap<>();

@@ -6,8 +6,6 @@ import java.util.Enumeration;
 import java.util.Locale;
 
 public abstract class ODataJPAException extends ODataException {
-
-  private static final long serialVersionUID = 1148357369597923853L;
   private static final String UNKNOWN_MESSAGE = "No message text found";
   private static Enumeration<Locale> locales;
 
@@ -19,43 +17,38 @@ public abstract class ODataJPAException extends ODataException {
     ODataJPAException.locales = locales;
   }
 
-  protected final String id;
-  protected final ODataJPAMessageTextBuffer messageBuffer;
-  protected final String[] parameter;
+  protected String id;
+  protected ODataJPAMessageTextBuffer messageBuffer;
+  protected String[] parameter;
 
   public ODataJPAException(final String id) {
     super("");
     this.id = id;
-    this.messageBuffer = new ODataJPAMessageTextBuffer(getBundleName(), locales);
-    this.parameter = null;
+    messageBuffer = new ODataJPAMessageTextBuffer(getBundleName(), locales);
   }
 
   public ODataJPAException(final String id, final String... params) {
     super("");
     this.id = id;
-    this.messageBuffer = new ODataJPAMessageTextBuffer(getBundleName(), locales);
     this.parameter = params;
+    messageBuffer = new ODataJPAMessageTextBuffer(getBundleName(), locales);
   }
 
   public ODataJPAException(final String id, final Throwable cause, final String... params) {
     super("", cause);
     this.id = id;
-    this.messageBuffer = new ODataJPAMessageTextBuffer(getBundleName(), locales);
     this.parameter = params;
+    messageBuffer = new ODataJPAMessageTextBuffer(getBundleName(), locales);
   }
 
   public ODataJPAException(final String id, final Throwable cause) {
     super("", cause);
     this.id = id;
     this.messageBuffer = new ODataJPAMessageTextBuffer(getBundleName(), locales);
-    this.parameter = null;
   }
 
   public ODataJPAException(final Throwable cause) {
     super(cause);
-    id = null;
-    messageBuffer = null;
-    this.parameter = null;
   }
 
   @Override
@@ -65,12 +58,9 @@ public abstract class ODataJPAException extends ODataException {
 
   @Override
   public String getMessage() {
-    if (id != null && !id.isEmpty() && messageBuffer != null) {
-      return messageBuffer.getText(this, id, parameter);
-    } else if (getCause() != null) {
-      return getCause().getLocalizedMessage();
-    } else
-      return UNKNOWN_MESSAGE;
+    return (id == null || id.isEmpty() || messageBuffer == null) ?
+            getCause() == null ? UNKNOWN_MESSAGE : getCause().getLocalizedMessage()
+            : messageBuffer.getText(this, id, parameter);
   }
 
   protected abstract String getBundleName();

@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataPage;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
@@ -9,13 +10,13 @@ import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
 import com.sap.olingo.jpa.processor.core.query.JPACountQuery;
 import com.sap.olingo.jpa.processor.core.query.JPAJoinQuery;
 import com.sap.olingo.jpa.processor.core.serializer.JPASerializerFactory;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpHeader;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ServiceMetadata;
+import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriInfo;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceKind;
@@ -46,7 +47,7 @@ public final class JPAProcessorFactory {
   }
 
   public JPACUDRequestProcessor createCUDRequestProcessor(final UriInfo uriInfo, final ContentType responseFormat,
-      final JPAODataRequestContextAccess context, final Map<String, List<String>> header) throws ODataException {
+      final JPAODataRequestContextAccess context, final Map<String, List<String>> header) throws ODataJPAException, SerializerException {
 
     final JPAODataRequestContextAccess requestContext = new JPAODataRequestContextImpl(uriInfo, serializerFactory
         .createCUDSerializer(responseFormat, uriInfo, Optional.ofNullable(header.get(HttpHeader.ODATA_MAX_VERSION))),
@@ -57,7 +58,7 @@ public final class JPAProcessorFactory {
   }
 
   public JPACUDRequestProcessor createCUDRequestProcessor(final UriInfo uriInfo,
-      final JPAODataRequestContextAccess context) throws ODataException {
+      final JPAODataRequestContextAccess context) throws ODataJPAException {
 
     final JPAODataRequestContextAccess requestContext = new JPAODataRequestContextImpl(uriInfo, context);
 
@@ -66,7 +67,7 @@ public final class JPAProcessorFactory {
   }
 
   public JPAActionRequestProcessor createActionProcessor(final UriInfo uriInfo, final ContentType responseFormat,
-      final Map<String, List<String>> header, final JPAODataRequestContextAccess context) throws ODataException {
+      final Map<String, List<String>> header, final JPAODataRequestContextAccess context) throws ODataJPAException, ODataApplicationException, SerializerException {
 
     final JPAODataRequestContextAccess requestContext = new JPAODataRequestContextImpl(uriInfo,
         responseFormat != null ? serializerFactory.createSerializer(responseFormat, uriInfo, Optional.ofNullable(header
@@ -77,7 +78,7 @@ public final class JPAProcessorFactory {
   }
 
   public JPARequestProcessor createProcessor(final UriInfo uriInfo, final ContentType responseFormat,
-      final Map<String, List<String>> header, final JPAODataRequestContextAccess context) throws ODataException {
+      final Map<String, List<String>> header, final JPAODataRequestContextAccess context) throws ODataJPAException, ODataApplicationException {
 
     final List<UriResource> resourceParts = uriInfo.getUriResourceParts();
     final UriResource lastItem = resourceParts.get(resourceParts.size() - 1);
@@ -87,7 +88,7 @@ public final class JPAProcessorFactory {
       requestContext = new JPAODataRequestContextImpl(page, serializerFactory
           .createSerializer(responseFormat, page.getUriInfo(), Optional.ofNullable(header.get(
               HttpHeader.ODATA_MAX_VERSION))), context);
-    } catch (JPAIllegalAccessException e) {
+    } catch (SerializerException | JPAIllegalAccessException | ODataApplicationException e) {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
 
@@ -129,7 +130,7 @@ public final class JPAProcessorFactory {
   }
 
   private JPAODataPage getPage(final Map<String, List<String>> headers, final UriInfo uriInfo,
-      final JPAODataRequestContextAccess requestContext) throws ODataException {
+      final JPAODataRequestContextAccess requestContext) throws ODataJPAException, ODataApplicationException {
 
     JPAODataPage page = new JPAODataPage(uriInfo, 0, Integer.MAX_VALUE, null);
     // Server-Driven-Paging

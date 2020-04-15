@@ -5,11 +5,11 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOnConditionItem;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -57,7 +57,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
   public JPAExpandJoinQuery(final OData odata, final JPAODataCRUDContextAccess sessionContext,
       final JPAInlineItemInfo item, final Map<String, List<String>> requestHeaders,
       final JPAODataRequestContextAccess requestContext, final Optional<JPAKeyBoundary> keyBoundary)
-      throws ODataException {
+      throws ODataJPAException {
 
     super(odata, sessionContext, item.getEntityType(), item.getUriInfo(), requestContext, requestHeaders,
         item.getHops());
@@ -68,7 +68,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
   public JPAExpandJoinQuery(final OData odata, final JPAODataCRUDContextAccess context,
       final JPAAssociationPath association, final JPAEntityType entityType,
       final Map<String, List<String>> requestHeaders, final JPAODataRequestContextAccess requestContext)
-      throws ODataException {
+      throws ODataJPAException {
 
     super(odata, context, entityType, requestContext, requestHeaders, Collections.emptyList());
     this.association = association;

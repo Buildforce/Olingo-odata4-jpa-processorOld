@@ -6,6 +6,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAElement;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPACUDRequestHandler;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
@@ -69,7 +70,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
   public JPACUDRequestProcessor(final OData odata, final ServiceMetadata serviceMetadata,
       final JPAODataCRUDContextAccess sessionContext, final JPAODataRequestContextAccess requestContext,
-      JPAConversionHelper cudHelper) throws ODataException {
+      JPAConversionHelper cudHelper) throws ODataJPAException {
 
     super(odata, sessionContext, requestContext);
     this.serviceMetadata = serviceMetadata;

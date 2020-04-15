@@ -8,8 +8,6 @@ public class ODataJPAModelException extends ODataJPAException {
   /**
    *
    */
-  private static final long serialVersionUID = -7188499882306858747L;
-
   public enum MessageKeys implements ODataJPAMessageKey {
 
     INVALID_DESCRIPTION_PROPERTY,

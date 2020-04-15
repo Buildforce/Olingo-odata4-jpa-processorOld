@@ -2,6 +2,7 @@ package com.sap.olingo.jpa.processor.core.util;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataContextAccessDouble;
@@ -12,7 +13,7 @@ import com.sap.olingo.jpa.processor.core.query.JPAJoinQuery;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmType;
-import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfo;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
@@ -43,7 +44,7 @@ public class TestGroupBase extends TestBase {
   }
 
   @BeforeEach
-  public void setup() throws ODataException, JPAIllegalAccessException {
+  public void setup() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     uriInfo = buildUriInfo("BusinessPartnerWithGroupss", "BusinessPartnerWithGroups");
 
     helper = new TestHelper(emf, PUNIT_NAME);

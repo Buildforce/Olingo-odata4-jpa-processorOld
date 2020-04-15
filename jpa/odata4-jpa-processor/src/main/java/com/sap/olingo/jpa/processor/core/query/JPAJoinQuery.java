@@ -4,12 +4,12 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPACollectionAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 import org.apache.olingo.commons.api.edm.EdmNavigationProperty;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -34,14 +34,14 @@ import static com.sap.olingo.jpa.processor.core.converter.JPAExpandResult.ROOT_R
 public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery {
 
   private static List<JPANavigationPropertyInfo> determineNavigationInfo(
-      final JPAODataCRUDContextAccess sessionContext, final UriInfoResource uriResource) throws ODataException {
+      final JPAODataCRUDContextAccess sessionContext, final UriInfoResource uriResource) throws ODataJPAException, ODataApplicationException {
 
     return Util.determineNavigationPath(sessionContext.getEdmProvider().getServiceDocument(), uriResource
         .getUriResourceParts(), uriResource);
   }
 
   private static JPAEntityType determineTargetEntityType(final JPAODataCRUDContextAccess sessionContext,
-      final JPAODataRequestContextAccess requestContext) throws ODataException {
+      final JPAODataRequestContextAccess requestContext) throws ODataJPAException {
 
     return sessionContext.getEdmProvider().getServiceDocument().getEntity(Util.determineTargetEntitySet(requestContext
         .getUriInfo().getUriResourceParts()).getName());
@@ -49,7 +49,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
 
   public JPAJoinQuery(final OData odata, final JPAODataCRUDContextAccess sessionContext,
       final Map<String, List<String>> requestHeaders, final JPAODataRequestContextAccess requestContext)
-      throws ODataException {
+          throws ODataJPAException, ODataApplicationException {
 
     super(odata, sessionContext, determineTargetEntityType(sessionContext, requestContext),
         requestContext, requestHeaders, determineNavigationInfo(sessionContext, requestContext.getUriInfo()));

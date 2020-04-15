@@ -46,11 +46,11 @@
 			<artifactId>odata-server-api</artifactId>
 			<version>${odata.version}</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
 			<version>${eclipse.javax.prstnc.version}</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>

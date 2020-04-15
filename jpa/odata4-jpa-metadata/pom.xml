@@ -31,11 +31,11 @@
             <artifactId>odata4-jpa-annotation</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
             <version>${eclipse.javax.prstnc.version}</version>
-        </dependency>
+        </dependency>-->
 <!--
         <dependency>
             <groupId>org.eclipse.persistence</groupId>

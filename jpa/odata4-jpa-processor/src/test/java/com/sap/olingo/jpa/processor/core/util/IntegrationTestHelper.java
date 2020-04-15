@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.*;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import org.apache.commons.lang3.ArrayUtils;
@@ -33,17 +34,17 @@ public class IntegrationTestHelper {
   private static final String uriPrefix = "http://localhost:8080/Test/Olingo.svc/";
   private static final String PUNIT_NAME = "com.sap.olingo.jpa";
 
-  public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath) throws ODataException {
+  public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath) throws ODataJPAException {
     this(localEmf, null, urlPath, null, null, null);
   }
 
   public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath,
-      final Map<String, List<String>> headers) throws ODataException {
+      final Map<String, List<String>> headers) throws ODataJPAException {
     this(localEmf, null, urlPath, null, null, null, headers, null, null);
   }
 
   public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath,
-      final JPAODataGroupProvider groups) throws ODataException {
+      final JPAODataGroupProvider groups) throws ODataJPAException {
     this(localEmf, null, urlPath, null, null, null, null, null, groups);
   }
 
@@ -52,33 +53,33 @@ public class IntegrationTestHelper {
     this(localEmf, ds, urlPath, null, null, null);
   }
 
-  public IntegrationTestHelper(EntityManagerFactory localEmf, String urlPath, StringBuffer requestBody) throws ODataException {
+  public IntegrationTestHelper(EntityManagerFactory localEmf, String urlPath, StringBuffer requestBody) throws ODataJPAException {
     this(localEmf, null, urlPath, requestBody, null, null);
   }
 
-  public IntegrationTestHelper(EntityManagerFactory localEmf, DataSource ds, String urlPath, String functionPackage) throws ODataException {
+  public IntegrationTestHelper(EntityManagerFactory localEmf, DataSource ds, String urlPath, String functionPackage) throws ODataJPAException {
     this(localEmf, ds, urlPath, null, functionPackage, null);
   }
 
-  public IntegrationTestHelper(EntityManagerFactory localEmf, DataSource ds, String urlPath, StringBuffer requestBody) throws ODataException {
+  public IntegrationTestHelper(EntityManagerFactory localEmf, DataSource ds, String urlPath, StringBuffer requestBody) throws ODataJPAException {
     this(localEmf, ds, urlPath, requestBody, null, null);
   }
 
-  public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath, final JPAODataPagingProvider provider) throws ODataException {
+  public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath, final JPAODataPagingProvider provider) throws ODataJPAException {
     this(localEmf, null, urlPath, null, null, provider);
   }
 
-  public IntegrationTestHelper(EntityManagerFactory localEmf, final String urlPath, JPAODataClaimsProvider claims) throws ODataException {
+  public IntegrationTestHelper(EntityManagerFactory localEmf, final String urlPath, JPAODataClaimsProvider claims) throws ODataJPAException {
     this(localEmf, null, urlPath, null, null, null, null, claims, null);
   }
 
   public IntegrationTestHelper(EntityManagerFactory localEmf, final String urlPath,
-      final JPAODataPagingProvider provider, JPAODataClaimsProvider claims) throws ODataException {
+      final JPAODataPagingProvider provider, JPAODataClaimsProvider claims) throws ODataJPAException {
     this(localEmf, null, urlPath, null, null, provider, null, claims, null);
   }
 
   public IntegrationTestHelper(final EntityManagerFactory emf, final String urlPath,
-      final JPAODataPagingProvider provider, final Map<String, List<String>> headers) throws ODataException {
+      final JPAODataPagingProvider provider, final Map<String, List<String>> headers) throws ODataJPAException {
     this(emf, null, urlPath, null, null, provider, headers, null, null);
   }
 
@@ -87,7 +88,7 @@ public class IntegrationTestHelper {
                                String urlPath,
                                StringBuffer requestBody,
                                String functionPackage,
-                               JPAODataPagingProvider provider) throws ODataException {
+                               JPAODataPagingProvider provider) throws ODataJPAException {
     this(localEmf, ds, urlPath, requestBody, functionPackage, provider, null, null, null);
   }
 
@@ -99,7 +100,7 @@ public class IntegrationTestHelper {
                                final JPAODataPagingProvider provider,
                                final Map<String, List<String>> headers,
                                final JPAODataClaimsProvider claims,
-                               final JPAODataGroupProvider groups) throws ODataException {
+                               final JPAODataGroupProvider groups) throws ODataJPAException {
     final EntityManager em = localEmf.createEntityManager();
     final OData odata = OData.newInstance();
     String[] packages = TestBase.enumPackages;

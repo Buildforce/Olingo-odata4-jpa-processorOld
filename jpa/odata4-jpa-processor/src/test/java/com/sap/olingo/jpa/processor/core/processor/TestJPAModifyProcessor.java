@@ -4,8 +4,11 @@ import com.sap.olingo.jpa.metadata.api.JPAEdmMetadataPostProcessor;
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.*;
 import com.sap.olingo.jpa.processor.core.api.JPAODataTransactionFactory.JPAODataTransaction;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import com.sap.olingo.jpa.processor.core.modify.JPAConversionHelper;
 import com.sap.olingo.jpa.processor.core.query.EdmEntitySetInfo;
 import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
@@ -23,13 +26,13 @@ import org.apache.olingo.commons.api.edm.EdmKeyPropertyRef;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveType;
 import org.apache.olingo.commons.api.edm.EdmProperty;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpHeader;
 import org.apache.olingo.commons.core.edm.primitivetype.EdmString;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ServiceMetadata;
+import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
 import org.apache.olingo.server.api.uri.UriInfo;
 import org.apache.olingo.server.api.uri.UriParameter;
@@ -62,7 +65,7 @@ public abstract class TestJPAModifyProcessor {
   protected static DataSource ds;
 
   @BeforeAll
-  public static void setupClass() throws ODataException {
+  public static void setupClass() throws ODataJPAException {
     JPAEdmMetadataPostProcessor pP = mock(JPAEdmMetadataPostProcessor.class);
 
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
@@ -128,7 +131,7 @@ public abstract class TestJPAModifyProcessor {
 
   }
 
-  protected ODataRequest prepareRepresentationRequest(JPAAbstractCUDRequestHandler spy) throws ODataException {
+  protected ODataRequest prepareRepresentationRequest(JPAAbstractCUDRequestHandler spy) throws ODataJPAException, SerializerException, ODataJPASerializerException, ODataJPAProcessorException {
 
     final ODataRequest request = prepareSimpleRequest("return=representation");
 
@@ -162,7 +165,7 @@ public abstract class TestJPAModifyProcessor {
   }
 
   protected ODataRequest prepareLinkRequest(JPAAbstractCUDRequestHandler spy)
-      throws ODataException {
+          throws ODataJPAException, SerializerException, ODataJPASerializerException, ODataJPAProcessorException {
 
     // .../AdministrativeDivisions(DivisionCode='DE60',CodeID='NUTS2',CodePublisher='Eurostat')
     final ODataRequest request = prepareSimpleRequest("return=representation");
@@ -220,13 +223,13 @@ public abstract class TestJPAModifyProcessor {
 
   }
 
-  protected ODataRequest prepareSimpleRequest() throws ODataException {
+  protected ODataRequest prepareSimpleRequest() throws ODataJPAException, SerializerException, ODataJPAProcessorException {
 
     return prepareSimpleRequest("return=minimal");
   }
 
   @SuppressWarnings("unchecked")
-  protected ODataRequest prepareSimpleRequest(String content) throws ODataException {
+  protected ODataRequest prepareSimpleRequest(String content) throws ODataJPAException, ODataJPAProcessorException, SerializerException {
 
     final EntityTransaction transaction = mock(EntityTransaction.class);
     when(em.getTransaction()).thenReturn(transaction);

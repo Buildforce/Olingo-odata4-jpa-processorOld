@@ -1,11 +1,11 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAServiceDebugger;
 import com.sap.olingo.jpa.processor.core.serializer.JPASerializer;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpHeader;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
@@ -31,7 +31,7 @@ abstract class JPAAbstractRequestProcessor {
   protected final JPAODataRequestContextAccess requestContext;
 
   public JPAAbstractRequestProcessor(final OData odata, final JPAODataCRUDContextAccess context,
-      final JPAODataRequestContextAccess requestContext) throws ODataException {
+      final JPAODataRequestContextAccess requestContext) throws ODataJPAException {
 
     this.em = requestContext.getEntityManager();
     this.cb = em.getCriteriaBuilder();

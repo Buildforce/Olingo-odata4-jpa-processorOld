@@ -17,7 +17,11 @@ import org.apache.olingo.commons.api.http.HttpStatusCode;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * This class provides some primitive util methods to support modifying

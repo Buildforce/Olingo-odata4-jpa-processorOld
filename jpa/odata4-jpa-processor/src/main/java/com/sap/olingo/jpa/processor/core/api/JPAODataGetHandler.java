@@ -2,6 +2,8 @@ package com.sap.olingo.jpa.processor.core.api;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.OData;
@@ -36,10 +38,10 @@ public class JPAODataGetHandler {
    * @deprecated (Will be removed with 1.0.0, use service context builder, <code>JPAODataServiceContext.with()</code>
    * instead
    * @param pUnit
-   * @throws ODataException
+   * @throws ODataJPAException
    */
   @Deprecated
-  public JPAODataGetHandler(final String pUnit) throws ODataException {// NOSONAR
+  public JPAODataGetHandler(final String pUnit) throws ODataJPAFilterException {// NOSONAR
     this(pUnit, null);
   }
 
@@ -48,10 +50,10 @@ public class JPAODataGetHandler {
    * instead
    * @param pUnit
    * @param ds
-   * @throws ODataException
+   * @throws ODataJPAFilterException
    */
   @Deprecated
-  public JPAODataGetHandler(final String pUnit, final DataSource ds) throws ODataException {
+  public JPAODataGetHandler(final String pUnit, final DataSource ds) throws ODataJPAFilterException {
     namespace = pUnit;
     this.ds = ds;
     emf = ds == null ? Optional.empty() : Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(pUnit, ds));
@@ -88,17 +90,21 @@ public class JPAODataGetHandler {
     return requestContext;
   }
 
-  public void process(final HttpServletRequest request, final HttpServletResponse response) throws ODataException {
-    if (emf.isPresent() && requestContext.getEntityManager() == null) {
-      final EntityManager em = emf.get().createEntityManager();
-      try {
-        requestContext.setEntityManager(em);
+  public void process(final HttpServletRequest request, final HttpServletResponse response) {
+    try {
+      if (emf.isPresent() && requestContext.getEntityManager() == null) {
+        final EntityManager em = emf.get().createEntityManager();
+        try {
+          requestContext.setEntityManager(em);
+          processInternal(request, response);
+        } finally {
+          em.close();
+        }
+      } else {
         processInternal(request, response);
-      } finally {
-        em.close();
       }
-    } else {
-      processInternal(request, response);
+    } catch (RuntimeException | ODataException e ) {
+      throw new RuntimeException( "ProcessInternal failed", e);
     }
   }
 
@@ -108,11 +114,9 @@ public class JPAODataGetHandler {
    * @param request
    * @param response
    * @param em
-   * @throws ODataException
    */
   @Deprecated
-  public void process(final HttpServletRequest request, final HttpServletResponse response, final EntityManager em)
-      throws ODataException {
+  public void process(final HttpServletRequest request, final HttpServletResponse response, final EntityManager em) {
     requestContext.setEntityManager(em);
     process(request, response);
   }
@@ -124,18 +128,17 @@ public class JPAODataGetHandler {
    * @param response
    * @param claims
    * @param em
-   * @throws ODataException
    */
   @Deprecated
   public void process(final HttpServletRequest request, final HttpServletResponse response,
-      final JPAODataClaimProvider claims, final EntityManager em) throws ODataException {
+      final JPAODataClaimProvider claims, final EntityManager em) {
     requestContext.setClaimsProvider(claims);
     requestContext.setEntityManager(em);
     process(request, response);
   }
 
   private void processInternal(final HttpServletRequest request, final HttpServletResponse response)
-      throws ODataException {
+      throws ODataJPAException {
 
     final JPAEdmProvider jpaEdm = serviceContext.getEdmProvider() == null
             ? serviceContext.getEdmProvider(requestContext.getEntityManager())

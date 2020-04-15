@@ -22,7 +22,6 @@ import org.apache.olingo.commons.api.edm.provider.CsdlSchema;
 import org.apache.olingo.commons.api.edm.provider.CsdlTerm;
 import org.apache.olingo.commons.api.edm.provider.CsdlTypeDefinition;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
-import org.apache.olingo.commons.api.ex.ODataException;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.metamodel.Metamodel;
@@ -39,14 +38,14 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   public JPAEdmProvider(final String namespace,
                         final EntityManagerFactory emf,
                         final JPAEdmMetadataPostProcessor postProcessor,
-                        final String[] packageName) throws ODataException {
+                        final String[] packageName) throws ODataJPAException {
     this(namespace, emf.getMetamodel(), postProcessor, packageName);
   }
 
   public JPAEdmProvider(final String namespace,
                         final Metamodel jpaMetamodel,
                         final JPAEdmMetadataPostProcessor postProcessor,
-                        final String[] packageName) throws ODataException {
+                        final String[] packageName) throws ODataJPAException {
     nameBuilder = new JPADefaultEdmNameBuilder(namespace);
     // this(jpaMetamodel, postProcessor, packageName, new JPADefaultEdmNameBuilder(namespace));
     serviceDocument =
@@ -55,20 +54,20 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
 
 /*  public JPAEdmProvider(final EntityManagerFactory emf,
       final JPAEdmMetadataPostProcessor postProcessor, final String[] packageName, final JPAEdmNameBuilder nameBuilder)
-      throws ODataException {
+      throws ODataJPAException {
     this(emf.getMetamodel(), postProcessor, packageName, nameBuilder);
   }
   public JPAEdmProvider(final Metamodel jpaMetamodel,
                         final JPAEdmMetadataPostProcessor postProcessor,
                         final String[] packageName,
-                        final JPAEdmNameBuilder nameBuilder) throws ODataException {
+                        final JPAEdmNameBuilder nameBuilder) throws ODataJPAException {
     this.nameBuilder = nameBuilder;
     this.serviceDocument =
             new JPAServiceDocumentFactory(nameBuilder.getNamespace(), jpaMetamodel, postProcessor, packageName).getServiceDocument();
   }*/
 
   @Override
-  public CsdlComplexType getComplexType(final FullQualifiedName complexTypeName) throws ODataException {
+  public CsdlComplexType getComplexType(final FullQualifiedName complexTypeName) throws ODataJPAException {
     for (final CsdlSchema schema : serviceDocument.getAllSchemas()) {
       if (schema.getNamespace().equals(complexTypeName.getNamespace())
           || schema.getAlias() != null && schema.getAlias().equals(complexTypeName.getNamespace())) {
@@ -79,7 +78,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public CsdlEntityContainer getEntityContainer() throws ODataException {
+  public CsdlEntityContainer getEntityContainer() throws ODataJPAException {
     return serviceDocument.getEdmEntityContainer();
   }
 
@@ -98,7 +97,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
 
   @Override
   public CsdlEntitySet getEntitySet(final FullQualifiedName entityContainerFQN, final String entitySetName)
-      throws ODataException {
+      throws ODataJPAException {
     final CsdlEntityContainer container = serviceDocument.getEdmEntityContainer();
     if (entityContainerFQN.equals(buildFQN(container.getName()))) {
       return container.getEntitySet(entitySetName);
@@ -107,7 +106,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public CsdlEntityType getEntityType(final FullQualifiedName entityTypeName) throws ODataException {
+  public CsdlEntityType getEntityType(final FullQualifiedName entityTypeName) throws ODataJPAException {
 
     for (final CsdlSchema schema : serviceDocument.getEdmSchemas()) {
       if (schema.getNamespace().equals(entityTypeName.getNamespace())) {
@@ -119,7 +118,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
 
   @Override
   public CsdlFunctionImport getFunctionImport(final FullQualifiedName entityContainerFQN,
-      final String functionImportName) throws ODataException {
+      final String functionImportName) throws ODataJPAException {
     final CsdlEntityContainer container = serviceDocument.getEdmEntityContainer();
     if (entityContainerFQN.equals(buildFQN(container.getName()))) {
       return container.getFunctionImport(functionImportName);
@@ -128,7 +127,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public List<CsdlFunction> getFunctions(final FullQualifiedName functionName) throws ODataException {
+  public List<CsdlFunction> getFunctions(final FullQualifiedName functionName) throws ODataJPAException {
     for (final CsdlSchema schema : serviceDocument.getEdmSchemas()) {
       if (schema.getNamespace().equals(functionName.getNamespace())) {
         return schema.getFunctions(functionName.getName());
@@ -138,7 +137,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public List<CsdlAction> getActions(final FullQualifiedName actionName) throws ODataException {
+  public List<CsdlAction> getActions(final FullQualifiedName actionName) throws ODataJPAException {
     for (final CsdlSchema schema : serviceDocument.getEdmSchemas()) {
       if (schema.getNamespace().equals(actionName.getNamespace())) {
         return schema.getActions(actionName.getName());
@@ -149,7 +148,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
 
   @Override
   public CsdlActionImport getActionImport(final FullQualifiedName entityContainerFQN, final String actionImportName)
-      throws ODataException {
+      throws ODataJPAException {
     final CsdlEntityContainer container = serviceDocument.getEdmEntityContainer();
     if (entityContainerFQN.equals(buildFQN(container.getName()))) {
       return container.getActionImport(actionImportName);
@@ -158,7 +157,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public CsdlEnumType getEnumType(final FullQualifiedName enumTypeNameFQN) throws ODataException {
+  public CsdlEnumType getEnumType(final FullQualifiedName enumTypeNameFQN) throws ODataJPAException {
 
     for (final CsdlSchema schema : serviceDocument.getEdmSchemas()) {
       if (schema.getNamespace().equals(enumTypeNameFQN.getNamespace())) {
@@ -179,7 +178,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public CsdlTypeDefinition getTypeDefinition(final FullQualifiedName typeDefinitionName) throws ODataException {
+  public CsdlTypeDefinition getTypeDefinition(final FullQualifiedName typeDefinitionName) throws ODataJPAException {
     for (final CsdlSchema schema : serviceDocument.getAllSchemas()) {
       if (schema.getNamespace().equals(typeDefinitionName.getNamespace())) {
         return schema.getTypeDefinition(typeDefinitionName.getName());
@@ -189,7 +188,7 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   }
 
   @Override
-  public List<CsdlSchema> getSchemas() throws ODataException {
+  public List<CsdlSchema> getSchemas() throws ODataJPAException {
     return serviceDocument.getEdmSchemas();
   }
 

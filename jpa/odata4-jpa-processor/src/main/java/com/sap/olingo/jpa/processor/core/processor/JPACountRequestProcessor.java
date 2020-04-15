@@ -1,17 +1,19 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.query.JPAJoinQuery;
 import org.apache.olingo.commons.api.data.EntityCollection;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
+import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
+import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
@@ -24,13 +26,13 @@ import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 public final class JPACountRequestProcessor extends JPAAbstractGetRequestProcessor {
 
   public JPACountRequestProcessor(final OData odata, final JPAODataCRUDContextAccess context,
-      final JPAODataRequestContextAccess requestContext) throws ODataException {
+      final JPAODataRequestContextAccess requestContext) throws ODataJPAException {
     super(odata, context, requestContext);
   }
 
   @Override
   public void retrieveData(final ODataRequest request, final ODataResponse response, final ContentType responseFormat)
-      throws ODataException {
+          throws ODataJPAException, SerializerException, ODataApplicationException {
     final UriResource uriResource = uriInfo.getUriResourceParts().get(0);
 
     if (uriResource instanceof UriResourceEntitySet) {
@@ -43,7 +45,7 @@ public final class JPACountRequestProcessor extends JPAAbstractGetRequestProcess
   }
 
   protected final EntityCollection countEntities(final ODataRequest request, final UriInfoResource uriInfo)
-      throws ODataException {
+          throws ODataJPAException, ODataApplicationException {
 
     JPAJoinQuery query;
     try {

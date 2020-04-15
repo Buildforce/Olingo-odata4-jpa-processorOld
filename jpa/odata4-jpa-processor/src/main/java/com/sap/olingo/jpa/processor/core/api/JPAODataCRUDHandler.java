@@ -1,6 +1,6 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import org.apache.olingo.commons.api.ex.ODataException;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 
 import javax.sql.DataSource;
 
@@ -10,13 +10,13 @@ public final class JPAODataCRUDHandler extends JPAODataGetHandler {
    * setting the CUD handler has been mode there.
    */
   @Deprecated
-  public JPAODataCRUDHandler(String pUnit) throws ODataException {
+  public JPAODataCRUDHandler(String pUnit) throws ODataJPAFilterException {
     super(pUnit);
     getJPAODataContext().setCUDRequestHandler(new JPADefaultCUDRequestHandler());
   }
 
   @Deprecated
-  public JPAODataCRUDHandler(final String pUnit, final DataSource ds) throws ODataException {
+  public JPAODataCRUDHandler(final String pUnit, final DataSource ds) throws ODataJPAFilterException {
     super(pUnit, ds);
     getJPAODataContext().setCUDRequestHandler(new JPADefaultCUDRequestHandler());
   }

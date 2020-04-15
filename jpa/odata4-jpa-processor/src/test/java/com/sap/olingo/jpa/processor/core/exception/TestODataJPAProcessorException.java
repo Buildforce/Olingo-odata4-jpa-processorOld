@@ -56,7 +56,6 @@ public class TestODataJPAProcessorException {
   }
 
 //  private class TestException extends ODataJPAProcessException {
-//    private static final long serialVersionUID = 1L;
 //
 //    public TestException(Throwable e, final HttpStatusCode statusCode) {
 //      super(e, statusCode);

@@ -2,6 +2,7 @@ package com.sap.olingo.jpa.processor.core.query;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataContextAccessDouble;
@@ -15,7 +16,6 @@ import org.apache.olingo.commons.api.edm.EdmEntitySet;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmProperty;
 import org.apache.olingo.commons.api.edm.EdmType;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.*;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
@@ -37,7 +37,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
     private UriInfo uriInfo;
 
     @BeforeEach
-  public void setup() throws ODataException, JPAIllegalAccessException {
+  public void setup() throws ODataJPAException, JPAIllegalAccessException, ODataApplicationException {
     buildUriInfo("BusinessPartners", "BusinessPartner");
 
     helper = new TestHelper(emf, PUNIT_NAME);
@@ -131,7 +131,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   }
 
   @Test
-  public void checkSelectNavigationComplex() throws ODataException {
+  public void checkSelectNavigationComplex() throws ODataApplicationException {
     List<UriResource> resourcePath = buildUriInfo("BusinessPartners", "BusinessPartner");
     final UriResourceComplexProperty complexResource = mock(UriResourceComplexProperty.class);
     final EdmProperty property = mock(EdmProperty.class);
@@ -144,7 +144,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   }
 
   @Test
-  public void checkSelectNavigationCompexComplex() throws ODataException {
+  public void checkSelectNavigationCompexComplex() throws ODataApplicationException {
     List<UriResource> resourcePath = buildUriInfo("BusinessPartners", "BusinessPartner");
     final UriResourceComplexProperty adminInfoResource = mock(UriResourceComplexProperty.class);
     final EdmProperty adminInfoProperty = mock(EdmProperty.class);
@@ -163,7 +163,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   }
 
   @Test
-  public void checkSelectNavigationCompexComplexProperty() throws ODataException {
+  public void checkSelectNavigationCompexComplexProperty() throws ODataApplicationException {
     List<UriResource> resourcePath = buildUriInfo("BusinessPartners", "BusinessPartner");
     final UriResourceComplexProperty adminInfoResource = mock(UriResourceComplexProperty.class);
     final EdmProperty adminInfoProperty = mock(EdmProperty.class);
@@ -188,7 +188,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   }
 
   @Test
-  public void checkSelectNavigationPropertyValue() throws ODataException {
+  public void checkSelectNavigationPropertyValue() throws ODataApplicationException {
     List<UriResource> resourcePath = buildUriInfo("BusinessPartners", "BusinessPartner");
 
     final UriResourcePrimitiveProperty byResource = mock(UriResourcePrimitiveProperty.class);
@@ -206,7 +206,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   }
 
   @Test
-  public void checkSelectNavigationCompexWithSelectPrimitive() throws ODataException {
+  public void checkSelectNavigationCompexWithSelectPrimitive() throws ODataApplicationException {
     List<UriResource> resourcePath = buildUriInfo("BusinessPartners", "BusinessPartner");
     final UriResourceComplexProperty addressResource = mock(UriResourceComplexProperty.class);
     final EdmProperty addressProperty = mock(EdmProperty.class);

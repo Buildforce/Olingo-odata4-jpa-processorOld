@@ -1,6 +1,7 @@
 package com.sap.olingo.jpa.processor.core.processor;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataPage;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
@@ -26,6 +27,7 @@ import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.*;
+import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
 import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriResource;
@@ -51,7 +53,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
 
   public JPANavigationRequestProcessor(final OData odata, final ServiceMetadata serviceMetadata,
       final JPAODataCRUDContextAccess context, final JPAODataRequestContextAccess requestContext)
-      throws ODataException {
+      throws ODataJPAException {
 
     super(odata, context, requestContext);
     this.serviceMetadata = serviceMetadata;
@@ -62,7 +64,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
 
   @Override
   public <K extends Comparable<K>> void retrieveData(final ODataRequest request, final ODataResponse response,
-      final ContentType responseFormat) throws ODataException {
+      final ContentType responseFormat) throws ODataJPAException, ODataApplicationException, SerializerException {
 
     final int handle = debugger.startRuntimeMeasurement(this, "retrieveData");
     // Create a JPQL Query and execute it
@@ -239,11 +241,11 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
    * @param uriResourceInfo
    * @param parentWhere
    * @return
-   * @throws ODataException
+   * @throws ODataJPAException
    */
   private Map<JPAAssociationPath, JPAExpandResult> readExpandEntities(final Map<String, List<String>> headers,
       final List<JPANavigationPropertyInfo> parentHops, final UriInfoResource uriResourceInfo,
-      final Optional<JPAKeyBoundary> keyBoundary) throws ODataException {
+      final Optional<JPAKeyBoundary> keyBoundary) throws ODataJPAException, ODataApplicationException {
 
     final int handle = debugger.startRuntimeMeasurement(this, "readExpandEntities");
     final Map<JPAAssociationPath, JPAExpandResult> allExpResults =

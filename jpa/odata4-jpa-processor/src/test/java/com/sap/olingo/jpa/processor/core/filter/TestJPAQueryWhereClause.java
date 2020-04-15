@@ -3,6 +3,7 @@ package com.sap.olingo.jpa.processor.core.filter;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAClaimsPair;
 import com.sap.olingo.jpa.processor.core.api.JPAODataClaimsProvider;
 import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
@@ -923,7 +924,7 @@ public class TestJPAQueryWhereClause extends TestBase {
   }
 
   @Test
-  public void testFilterWithAllExpand() throws ODataException, IOException {
+  public void testFilterWithAllExpand() throws ODataJPAException, IOException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$filter=Name1 eq 'Third Org.'&$expand=Roles");

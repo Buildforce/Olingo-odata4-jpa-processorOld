@@ -131,8 +131,6 @@ public class TestODataJPAModelException {
 
   private static class TestException extends ODataJPAException {
 
-    private static final long serialVersionUID = 1L;
-
     public TestException(String id) {
       super(id);
     }

@@ -5,7 +5,6 @@ import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerWithGroups;
 import com.sap.olingo.jpa.processor.core.util.SelectOptionDouble;
 import com.sap.olingo.jpa.processor.core.util.TestGroupBase;
 import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectAllWithOneGroupReturnsAlsoThose() throws ODataException {
+  public void checkSelectAllWithOneGroupReturnsAlsoThose() throws ODataApplicationException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();
@@ -47,7 +46,7 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
   }
 
   @Test
-  public void checkSelectAllWithTwoGroupReturnsAlsoThose() throws ODataException {
+  public void checkSelectAllWithTwoGroupReturnsAlsoThose() throws ODataApplicationException {
     root = emf.getCriteriaBuilder().createTupleQuery().from(BusinessPartnerWithGroups.class);
     fillJoinTable(root);
     final List<String> groups = new ArrayList<>();
