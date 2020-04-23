@@ -3,6 +3,7 @@ package com.sap.olingo.jpa.processor.core.api;
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import org.apache.olingo.commons.api.ex.ODataException;
@@ -90,7 +91,7 @@ public class JPAODataGetHandler {
     return requestContext;
   }
 
-  public void process(final HttpServletRequest request, final HttpServletResponse response) {
+  public void process(final HttpServletRequest request, final HttpServletResponse response) throws ODataJPAModelException {
     try {
       if (emf.isPresent() && requestContext.getEntityManager() == null) {
         final EntityManager em = emf.get().createEntityManager();
@@ -104,7 +105,7 @@ public class JPAODataGetHandler {
         processInternal(request, response);
       }
     } catch (RuntimeException | ODataException e ) {
-      throw new RuntimeException( "ProcessInternal failed", e);
+      throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.PROCESSINTERNAL_FAILED);
     }
   }
 
@@ -116,7 +117,8 @@ public class JPAODataGetHandler {
    * @param em
    */
   @Deprecated
-  public void process(final HttpServletRequest request, final HttpServletResponse response, final EntityManager em) {
+  public void process(final HttpServletRequest request, final HttpServletResponse response, final EntityManager em)
+          throws ODataJPAModelException {
     requestContext.setEntityManager(em);
     process(request, response);
   }
@@ -131,7 +133,7 @@ public class JPAODataGetHandler {
    */
   @Deprecated
   public void process(final HttpServletRequest request, final HttpServletResponse response,
-      final JPAODataClaimProvider claims, final EntityManager em) {
+      final JPAODataClaimProvider claims, final EntityManager em) throws ODataJPAModelException {
     requestContext.setClaimsProvider(claims);
     requestContext.setEntityManager(em);
     process(request, response);

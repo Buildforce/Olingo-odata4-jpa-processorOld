@@ -1,5 +1,6 @@
 package com.sap.olingo.jpa.processor.core.api;
 
+import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import com.sap.olingo.jpa.processor.core.util.HttpServletRequestDouble;
@@ -76,7 +77,7 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testProcessWithoutEntityManager() throws ODataJPAFilterException {
+  public void testProcessWithoutEntityManager() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);
     cut.getJPAODataContext().setTypePackage(enumPackages);
@@ -86,7 +87,7 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testProcessWithEntityManager() throws ODataJPAFilterException {
+  public void testProcessWithEntityManager() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     final EntityManager em = emf.createEntityManager();
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);
@@ -99,7 +100,7 @@ public class TestJPAODataGetHandler extends TestBase {
 
   @Test
   @SuppressWarnings("deprecation")
-  public void testProcessWithClaims() throws ODataJPAFilterException {
+  public void testProcessWithClaims() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     final EntityManager em = emf.createEntityManager();
     final JPAODataClaimProvider claims = new JPAODataClaimsProvider();
@@ -192,7 +193,7 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testProcessWithEm() throws ODataJPAFilterException {
+  public void testProcessWithEm() throws ODataJPAFilterException, ODataJPAModelException {
     cut = new JPAODataGetHandler(PUNIT_NAME);
     cut.getJPAODataContext().setTypePackage(enumPackages);
     cut.process(request, response, emf.createEntityManager());

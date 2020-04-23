@@ -64,7 +64,8 @@ public class ODataJPAModelException extends ODataJPAException {
     ON_LEFT_ATTRIBUTE_NULL,
     ON_RIGHT_ATTRIBUTE_NULL,
     PATH_ELEMENT_NOT_FOUND,
-    FILE_NOT_FOUND;
+    FILE_NOT_FOUND,
+    PROCESSINTERNAL_FAILED;
 
     @Override
     public String getKey() {
