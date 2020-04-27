@@ -19,16 +19,33 @@
 			<version>${odata.version}</version>
 		</dependency>
 
+<!--
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>jakarta.persistence</artifactId>
 			<version>${jakarta.persistence.version}</version>
 		</dependency>
-
-		<!--<dependency>
+-->
+<!--
+		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.jpa</artifactId>
+			<artifactId>eclipselink</artifactId>
+			<version>2.7.6</version>
+			<scope>provided</scope>
+		</dependency>
+-->
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
 			<version>${eclipselink.prstnc.version}</version>
-		</dependency>-->
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.persistence</groupId>
+					<artifactId>javax.persistence</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 </project>

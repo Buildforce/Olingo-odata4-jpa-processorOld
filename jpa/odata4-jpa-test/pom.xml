@@ -87,6 +87,12 @@
 					<groupId>org.eclipse.persistence</groupId>
 					<artifactId>eclipselink</artifactId>
 					<version>${eclipselink.prstnc.version}</version>
+					<exclusions>
+						<exclusion>
+							<groupId>org.eclipse.persistence</groupId>
+							<artifactId>javax.persistence</artifactId>
+						</exclusion>
+					</exclusions>
 				</dependency>
 			</dependencies>
 		</profile>

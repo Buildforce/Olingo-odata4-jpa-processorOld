@@ -15,7 +15,7 @@
         <coveralls.version>4.3.0</coveralls.version>
         <jakarta.persistence.version>2.2.3</jakarta.persistence.version>
         <eclipselink.prstnc.version>2.7.6</eclipselink.prstnc.version>
-        <jackson.version>2.11.0.rc1</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <jpa-processor.version>0.3.8.0</jpa-processor.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <odata.version>4.7.1</odata.version>
