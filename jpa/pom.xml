@@ -13,9 +13,10 @@
 
     <properties>
         <coveralls.version>4.3.0</coveralls.version>
-        <jakarta.persistence.version>2.2.3</jakarta.persistence.version>
         <eclipselink.prstnc.version>2.7.6</eclipselink.prstnc.version>
         <jackson.version>2.11.0</jackson.version>
+        <jacoco.version>0.8.5</jacoco.version>
+        <jakarta.persistence.version>2.2.3</jakarta.persistence.version>
         <jpa-processor.version>0.3.8.0</jpa-processor.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <odata.version>4.7.1</odata.version>
@@ -86,7 +87,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.3</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
