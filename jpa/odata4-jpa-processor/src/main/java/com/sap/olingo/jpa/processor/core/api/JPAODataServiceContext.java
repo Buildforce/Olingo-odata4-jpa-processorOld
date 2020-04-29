@@ -158,15 +158,6 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   }
 
   /**
-   * @deprecated will be removed with 1.0.0;
-   */
-  @Deprecated
-  @Override
-  public void initDebugger(String debugFormat) {
-    // method deprecated
-  }
-
-  /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
@@ -184,16 +175,6 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   @Override
   public void setDatabaseProcessor(final JPAODataDatabaseProcessor databaseProcessor) {
     this.databaseProcessor = databaseProcessor;
-  }
-
-  /**
-   * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
-   * instead
-   */
-  @Deprecated
-  @Override
-  public void setDebugSupport(final DebugSupport jpaDebugSupport) {
-    // this.debugSupport = new JPADebugSupportWrapper(jpaDebugSupport);
   }
 
   /**

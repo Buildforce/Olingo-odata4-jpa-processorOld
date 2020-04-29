@@ -240,12 +240,12 @@ public abstract class JPAAbstractQuery {
     javax.persistence.criteria.Expression<Boolean> attriRestriction = null;
     for (final JPAClaimsPair<?> value : values) { // for each given claim value
       if (value.hasUpperBoundary)
-        if (wildcardsSupported && ((String) value.min).matches(".*[\\*|\\%|\\+|\\_].*"))
+        if (wildcardsSupported && ((String) value.min).matches(".*[*%+_].*"))
           throw new ODataJPAQueryException(WILDCARD_UPPER_NOT_SUPPORTED, HttpStatusCode.INTERNAL_SERVER_ERROR);
         else
           attriRestriction = orWhereClause(attriRestriction, createBetween(value, p));
       else {
-        if (wildcardsSupported && ((String) value.min).matches(".*[\\*|\\%|\\+|\\_].*"))
+        if (wildcardsSupported && ((String) value.min).matches(".*[*%+_].*"))
           attriRestriction = orWhereClause(attriRestriction, cb.like((Path<String>) p,
               ((String) value.min).replace('*', '%').replace('+', '_')));
         else

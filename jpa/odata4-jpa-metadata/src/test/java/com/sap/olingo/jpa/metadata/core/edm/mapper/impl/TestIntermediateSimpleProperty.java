@@ -563,11 +563,13 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     assertEquals("AdministrativeInformation/Created/At", actPath.get(0));
   }
 
+/*
   @Disabled
   @Test
   public void checkGetSRID() {
     // Test for spatial data missing
   }
+*/
 
   private static class PostProcessorSetName extends JPAEdmMetadataPostProcessor {
 

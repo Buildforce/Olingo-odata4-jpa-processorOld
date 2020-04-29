@@ -82,12 +82,12 @@ public class TestQueryBase extends TestBase {
     return odataType;
   }
 
-  protected EdmType buildRequestContext(final String esName, final String etName) throws JPAIllegalAccessException {
+  protected /*EdmType*/ void buildRequestContext(final String esName, final String etName) throws JPAIllegalAccessException {
     final EdmType odataType = buildUriInfo(esName, etName);
     requestContext = new JPAODataRequestContextImpl();
     requestContext.setEntityManager(emf.createEntityManager());
     requestContext.setUriInfo(uriInfo);
-    return odataType;
+    // return odataType;
   }
 
   protected void fillJoinTable(Root<?> joinRoot) {

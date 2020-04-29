@@ -15,7 +15,7 @@
 	<name>odata4-jpa-processor</name>
 	<url>https://github.com/SAP/olingo-jpa-processor-v4</url>
 	<properties>
-		<javax-servlet.version>4.0.1</javax-servlet.version>
+		<javax-servlet.version>4.0.3</javax-servlet.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -52,8 +52,8 @@
 			<version>${eclipse.javax.prstnc.version}</version>
 		</dependency>-->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
 			<version>${javax-servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>

@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestJPAEdmNameBuilder {
   private JPADefaultEdmNameBuilder cut;
 
+/*
   @BeforeEach
   public void setup() {
 
   }
+*/
 
   @Test
   public void CheckBuildContainerNameSimple() {

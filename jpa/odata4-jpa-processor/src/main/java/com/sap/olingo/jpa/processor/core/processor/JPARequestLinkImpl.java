@@ -61,7 +61,7 @@ public final class JPARequestLinkImpl implements JPARequestLink {
     OData odata = OData.newInstance();
 
     // TODO replace by Olingo OData Util
-    final String[] entityTypeAndKey = bindingLink.split("[\\(\\)]");
+    final String[] entityTypeAndKey = bindingLink.split("[()]");
     final String[] keyElements = entityTypeAndKey[1].split("[,=]");
     if (keyElements.length > 1) {
       for (int i = 0; i < keyElements.length; i += 2) {

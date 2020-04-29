@@ -236,10 +236,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
    * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part2-url-conventions/odata-v4.0-errata02-os-part2-url-conventions-complete.html#_Toc406398162"
    * >OData Version 4.0 Part 2 - 5.1.2 System Query Option $expand</a> boundary
    * @param headers
-   * @param naviStartEdmEntitySet
-   * @param parentHops
    * @param uriResourceInfo
-   * @param parentWhere
    * @return
    * @throws ODataJPAException
    */

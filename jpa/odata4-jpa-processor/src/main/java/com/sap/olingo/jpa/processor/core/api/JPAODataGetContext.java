@@ -12,7 +12,7 @@ import java.util.List;
 @Deprecated
 public interface JPAODataGetContext {
 
-  void initDebugger(final String debugFormat);
+//  void initDebugger(final String debugFormat);
 
   /**
    *
@@ -25,7 +25,7 @@ public interface JPAODataGetContext {
   /**
    * @param jpaDebugSupport
    */
-  void setDebugSupport(final DebugSupport jpaDebugSupport);
+  // void setDebugSupport(final DebugSupport jpaDebugSupport);
 
   /**
    * Allows to provide an Olingo error processor. The error processor allows to enrich an error response. See

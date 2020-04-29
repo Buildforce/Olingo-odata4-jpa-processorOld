@@ -261,7 +261,6 @@ public final class Util {
    * The method only supports queries that start with an entity set.
    * @param sd
    * @param resourceParts
-   * @param filterOption
    * @return
    * @throws ODataApplicationException
    */

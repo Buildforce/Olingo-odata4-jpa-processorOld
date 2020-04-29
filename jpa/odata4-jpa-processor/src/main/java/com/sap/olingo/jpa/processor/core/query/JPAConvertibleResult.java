@@ -35,7 +35,6 @@ public interface JPAConvertibleResult {
 
   /**
    * Returns a key pair if the query had $top and/or $skip and the key of the entity implements {@link Comparable}.
-   * @param <T>
    * @param requestContext
    * @param hops
    * @return
