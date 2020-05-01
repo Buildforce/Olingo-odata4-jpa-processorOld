@@ -12,7 +12,6 @@ import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseProcessorFacto
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAFilterException;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
-import org.apache.olingo.server.api.debug.DebugSupport;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 
 import javax.persistence.EntityManager;
@@ -27,7 +26,7 @@ import java.util.Optional;
 /**
  *
  */
-public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODataCRUDContextAccess {
+public final class JPAODataServiceContext implements JPAODataGetContext, JPAODataCRUDContextAccess {
   //@formatter:off
   @Deprecated
   private final       JPAODataGetHandler jpaODataGetHandler;
@@ -67,10 +66,28 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
     }
   }
 
-  private JPAODataServiceContext(final Builder builder) throws ODataJPAException, ODataJPAFilterException {
-
+  public JPAODataServiceContext(final String namespace_pUnit, final DataSource ds, final String... packageName)
+  throws ODataJPAException, ODataJPAFilterException {
     jpaODataGetHandler = null;
-    jpaCUDRequestHandler = null;
+
+    try {
+      databaseProcessor = new JPAODataDatabaseProcessorFactory().create(ds);
+
+    } catch (  PersistenceException | SQLException e) {
+      throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
+    }
+
+    this.packageName = packageName;
+    operationConverter = new JPADefaultDatabaseProcessor();
+    this.namespace_pUnit = namespace_pUnit;
+
+    emf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace_pUnit, ds));
+
+    jpaEdm = new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), null, packageName);;
+  };
+
+  private JPAODataServiceContext(final Builder builder) throws ODataJPAException, ODataJPAFilterException {
+    jpaODataGetHandler = null;
 
     errorProcessor = builder.errorProcessor;
     pagingProvider = builder.pagingProvider;
@@ -90,13 +107,12 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
       throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
 
-    Optional<EntityManagerFactory> conditionalEmf = (!(builder.builderEmf.isPresent() || builder.builderDs == null || namespace_pUnit == null))
-            ? Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace_pUnit, builder.builderDs))
-            : builder.builderEmf;
-    emf = conditionalEmf;
+    emf = (builder.builderEmf.isPresent() || builder.builderDs == null || namespace_pUnit == null)
+            ? builder.builderEmf
+            :Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace_pUnit, builder.builderDs));
 
-    jpaEdm = (conditionalEmf.isPresent()) ?
-            new JPAEdmProvider(namespace_pUnit, conditionalEmf.get().getMetamodel(), postProcessor, packageName)
+    jpaEdm = (emf.isPresent()) ?
+            new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), postProcessor, packageName)
             : jpaEdm;
   }
 
@@ -153,83 +169,81 @@ public final class JPAODataServiceContext implements JPAODataCRUDContext, JPAODa
   }
 
   @Override
-  public String getMappingPath() {
-    return mappingPath;
-  }
+  public String getMappingPath() { return mappingPath; }
 
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+ /* @Deprecated
   @Override
   public void setCUDRequestHandler(JPACUDRequestHandler jpaCUDRequestHandler) {
     this.jpaCUDRequestHandler = jpaCUDRequestHandler;
-  }
+  }*/
 
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+  /*@Deprecated
   @Override
   public void setDatabaseProcessor(final JPAODataDatabaseProcessor databaseProcessor) {
     this.databaseProcessor = databaseProcessor;
-  }
+  }*/
 
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+  /*@Deprecated
   @Override
   public void setErrorProcessor(ErrorProcessor errorProcessor) {
     this.errorProcessor = errorProcessor;
   }
-
+*/
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+/*  @Deprecated
   @Override
   public void setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) throws ODataJPAException {
     if (jpaODataGetHandler.jpaMetamodel != null)
       jpaEdm = new JPAEdmProvider(jpaODataGetHandler.namespace, jpaODataGetHandler.jpaMetamodel, postProcessor, packageName);
     else
       this.postProcessor = postProcessor;
-  }
+  }*/
 
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+  /*@Deprecated
   @Override
   public void setOperationConverter(final JPAODataDatabaseOperations jpaOperationConverter) {
     operationConverter = jpaOperationConverter;
-  }
+  }*/
 
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+  /*@Deprecated
   @Override
   public void setPagingProvider(final JPAODataPagingProvider provider) {
     pagingProvider = provider;
   }
-
+*/
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+  /*@Deprecated
   @Override
   public void setReferences(final List<EdmxReference> references) {
     this.references = references;
   }
-
+*/
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
