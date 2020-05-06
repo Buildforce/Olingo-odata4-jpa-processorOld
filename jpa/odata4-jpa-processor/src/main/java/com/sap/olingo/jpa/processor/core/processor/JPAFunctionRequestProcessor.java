@@ -57,7 +57,7 @@ public final class JPAFunctionRequestProcessor extends JPAOperationRequestProces
 
     final EdmType returnType = uriResourceFunction.getFunction().getReturnType().getType();
     final Annotatable annotatable = convertResult(result, returnType, jpaFunction);
-    serializeResult(returnType, response, responseFormat, annotatable);
+    serializeResult(returnType, response, responseFormat, annotatable, request);
   }
 
   private Object getValue(final EdmFunction edmFunction, final JPAParameter parameter, final String uriValue)

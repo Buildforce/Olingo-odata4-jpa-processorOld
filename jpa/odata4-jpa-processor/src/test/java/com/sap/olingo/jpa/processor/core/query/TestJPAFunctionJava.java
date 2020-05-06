@@ -4,7 +4,6 @@ import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import com.sap.olingo.jpa.processor.core.processor.JPAFunctionRequestProcessor;
 import com.sap.olingo.jpa.processor.core.serializer.JPAOperationSerializer;
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
@@ -15,10 +14,14 @@ import org.apache.olingo.commons.api.edm.EdmParameter;
 import org.apache.olingo.commons.api.edm.EdmReturnType;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.edm.constants.EdmTypeKind;
+import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.core.edm.primitivetype.EdmInt32;
-import org.apache.olingo.server.api.*;
-import org.apache.olingo.server.api.serializer.SerializerException;
+import org.apache.olingo.server.api.OData;
+import org.apache.olingo.server.api.ODataApplicationException;
+import org.apache.olingo.server.api.ODataLibraryException;
+import org.apache.olingo.server.api.ODataRequest;
+import org.apache.olingo.server.api.ODataResponse;
 import org.apache.olingo.server.api.serializer.SerializerResult;
 import org.apache.olingo.server.api.uri.UriInfo;
 import org.apache.olingo.server.api.uri.UriParameter;
@@ -44,17 +47,18 @@ public class TestJPAFunctionJava {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
 
   private JPAFunctionRequestProcessor cut;
+  private List<UriResource> uriResources;
   private ODataRequest request;
   private ODataResponse response;
   private UriResourceFunction uriResource;
   private EdmFunction edmFunction;
 
   @BeforeEach
-  public void setup() throws ODataJPAException, SerializerException, ODataJPASerializerException {
+  public void setup() throws ODataException, ODataJPAException {
     OData odata = mock(OData.class);
     JPAODataCRUDContextAccess context = mock(JPAODataCRUDContextAccess.class);
     JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);
-   EntityManager em = mock(EntityManager.class);
+    EntityManager em = mock(EntityManager.class);
     UriInfo uriInfo = mock(UriInfo.class);
     JPAOperationSerializer serializer = mock(JPAOperationSerializer.class);
     SerializerResult serializerResult = mock(SerializerResult.class);
@@ -70,7 +74,8 @@ public class TestJPAFunctionJava {
     when(requestContext.getUriInfo()).thenReturn(uriInfo);
     when(requestContext.getEntityManager()).thenReturn(em);
     when(requestContext.getSerializer()).thenReturn(serializer);
-    when(serializer.serialize(any(Annotatable.class), any(EdmType.class))).thenReturn(serializerResult);
+    when(serializer.serialize(any(Annotatable.class), any(EdmType.class), any(ODataRequest.class)))
+        .thenReturn(serializerResult);
 
     request = mock(ODataRequest.class);
     response = mock(ODataResponse.class);

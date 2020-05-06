@@ -7,6 +7,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -49,7 +50,7 @@ public class TestJPACustomScalarFunctions {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=com.sap.olingo.jpa.PopulationDensity(Area=$it/Area,Population=$it/Population) gt 1");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
   }
 
   @Test
@@ -57,7 +58,7 @@ public class TestJPACustomScalarFunctions {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=com.sap.olingo.jpa.PopulationDensity(Area=$it/Area,Population=$it/Population)  mul 1000000 gt 1000 and ParentDivisionCode eq 'BE255'&orderBy=DivisionCode)");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(2, orgs.size());
@@ -69,7 +70,7 @@ public class TestJPACustomScalarFunctions {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=com.sap.olingo.jpa.PopulationDensity(Area=Area,Population=Population)  mul 1000000 gt 100");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(59, orgs.size());
@@ -80,7 +81,7 @@ public class TestJPACustomScalarFunctions {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=com.sap.olingo.jpa.PopulationDensity(Area=13079087,Population=$it/Population)  mul 1000000 gt 1000");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(29, orgs.size());
@@ -91,7 +92,7 @@ public class TestJPACustomScalarFunctions {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=com.sap.olingo.jpa.PopulationDensity(Area=Area div 1000000,Population=Population) gt 1000");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(7, orgs.size());
@@ -102,7 +103,7 @@ public class TestJPACustomScalarFunctions {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=com.sap.olingo.jpa.PopulationDensity(Population=Population,Area=Area) mul 1000000 gt 1000");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(7, orgs.size());

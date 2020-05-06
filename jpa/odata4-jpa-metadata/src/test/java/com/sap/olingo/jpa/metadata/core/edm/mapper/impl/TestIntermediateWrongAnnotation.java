@@ -4,7 +4,7 @@ import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.errormodel.CollectionAttributeProtected;
 import com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedNoPath;
-import com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedWrongPath;
+import com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedWrongPath;
 import com.sap.olingo.jpa.processor.core.errormodel.EmbeddedKeyPartOfGroup;
 import com.sap.olingo.jpa.processor.core.errormodel.KeyPartOfGroup;
 import com.sap.olingo.jpa.processor.core.errormodel.MandatoryPartOfGroup;
@@ -101,14 +101,13 @@ public class TestIntermediateWrongAnnotation {
 
   @Test
   public void checkErrorOnProtectedComplexAttributeWrongPath() throws ODataJPAModelException {
-    // ComplextProtectedWrongPath
-    final EntityType<?> jpaEt = helper.getEntityType(ComplextProtectedWrongPath.class);
+    // ComplexProtectedWrongPath
+    final EntityType<?> jpaEt = helper.getEntityType(ComplexProtectedWrongPath.class);
     final IntermediateEntityType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), jpaEt,
         helper.schema);
     et.getEdmItem();
 
-    final ODataJPAModelException act = assertThrows(ODataJPAModelException.class,
-            et::getProtections);
+    final ODataJPAModelException act = assertThrows(ODataJPAModelException.class, et::getProtections);
 
     assertEquals(COMPLEX_PROPERTY_WRONG_PROTECTION_PATH.name(), act.getId());
     assertFalse(act.getMessage().isEmpty());

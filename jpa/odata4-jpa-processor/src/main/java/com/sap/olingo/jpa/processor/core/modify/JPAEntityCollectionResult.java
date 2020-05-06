@@ -12,7 +12,11 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import org.apache.olingo.server.api.ODataApplicationException;
 
 import javax.persistence.Tuple;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 final class JPAEntityCollectionResult extends JPAEntityBasedResult implements JPACollectionResult { // JPACollectionQueryResult
 
@@ -62,4 +66,5 @@ final class JPAEntityCollectionResult extends JPAEntityBasedResult implements JP
   public JPAAssociationPath getAssociation() {
     return path;
   }
+
 }

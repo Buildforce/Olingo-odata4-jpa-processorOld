@@ -5,6 +5,7 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
   public void testOrderByOneProperty() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=Name1");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("Eighth Org.", orgs.get(0).get("Name1").asText());
@@ -28,7 +29,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
   public void testOrderByOneComplexPropertyAsc() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=Address/Region");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("US-CA", orgs.get(0).get("Address").get("Region").asText());
@@ -41,7 +42,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=Address/Region desc");
     if (helper.getStatus() != 200)
       System.out.println(helper.getRawResult());
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("US-UT", orgs.get(0).get("Address").get("Region").asText());
@@ -53,7 +54,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$orderby=Address/Region desc,Name1 asc");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("US-UT", orgs.get(0).get("Address").get("Region").asText());
@@ -66,7 +67,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$orderby=Address/Region desc,Name1 desc");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("US-UT", orgs.get(0).get("Address").get("Region").asText());
@@ -78,7 +79,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
   public void testOrderBy$CountDesc() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=Roles/$count desc");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("3", orgs.get(0).get("ID").asText());
@@ -90,7 +91,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$select=ID,Name1,Name2,Address/CountryName&$orderby=Roles/$count asc");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("3", orgs.get(9).get("ID").asText());
@@ -103,7 +104,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "CollectionDeeps?$orderby=FirstLevel/SecondLevel/Comment/$count asc");
 
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     ArrayNode deeps = helper.getValues();
     assertEquals("501", deeps.get(0).get("ID").asText());
     assertEquals("502", deeps.get(1).get("ID").asText());
@@ -115,7 +116,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "CollectionDeeps?$orderby=FirstLevel/SecondLevel/Comment/$count desc");
 
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     ArrayNode deeps = helper.getValues();
     assertEquals("502", deeps.get(0).get("ID").asText());
     assertEquals("501", deeps.get(1).get("ID").asText());
@@ -126,7 +127,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$orderby=Roles/$count asc");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("3", orgs.get(9).get("ID").asText());
@@ -138,7 +139,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$orderby=Roles/$count desc,Address/Region desc");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals("3", orgs.get(0).get("ID").asText());
@@ -153,7 +154,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=CodeID eq 'NUTS' or CodeID eq '3166-1'&$orderby=CountryCode desc");
 
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(4, orgs.size());
@@ -166,7 +167,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisions?$filter=CodeID eq 'NUTS' or CodeID eq '3166-1'&$orderby=CountryCode desc&$top=1&$skip=2");
 
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(1, orgs.size());
@@ -178,7 +179,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('3')/Roles?$orderby=RoleCategory desc");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ArrayNode orgs = helper.getValues();
     assertEquals(3, orgs.size());
@@ -200,7 +201,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
     groups.addGroup("Person");
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerWithGroupss?$orderby=Country desc", groups);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
   }
 
   @Test
@@ -218,6 +219,6 @@ public class TestJPAQueryOrderByClause extends TestBase {
     groups.addGroup("Company");
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerWithGroupss?$orderby=Address/Country desc", groups);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
   }
 }

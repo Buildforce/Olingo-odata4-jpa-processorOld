@@ -74,13 +74,11 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
         returnType = resource.getAction().getReturnType().getType();
         final Object result = jpaAction.getMethod().invoke(instance, parameter.toArray());
         r = convertResult(result, returnType, jpaAction);
-      } else
-        jpaAction.getMethod().invoke(instance, parameter.toArray());
-      if (serializer != null)
-        serializeResult(returnType, response, serializer.getContentType(), r);
-      else
-        response.setStatusCode(successStatusCode);
+      } else jpaAction.getMethod().invoke(instance, parameter.toArray());
 
+      if (serializer != null)
+        serializeResult(returnType, response, serializer.getContentType(), r, request);
+      else response.setStatusCode(successStatusCode);
     } catch (InstantiationException | IllegalAccessException | IllegalArgumentException e) {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     } catch (InvocationTargetException | ODataException e) {

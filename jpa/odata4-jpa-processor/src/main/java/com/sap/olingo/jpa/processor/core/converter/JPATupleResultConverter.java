@@ -172,7 +172,6 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
         parentRow, buildPath(attribute, prefix), odataEntity);
   }
 
-  @SuppressWarnings("unchecked")
   <T, S> void convertPrimitiveAttribute(final Object value,
                                         final List<Property> properties, final JPAPath jpaPath, final JPAAttribute attribute,
                                         final Entity odataEntity) {

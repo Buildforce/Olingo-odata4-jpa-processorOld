@@ -32,7 +32,6 @@ class JPAVisitor implements JPAExpressionVisitor {
 
   /**
    *
-
    */
   private final JPAFilterCompilerAccess jpaCompiler;
   private final JPAServiceDebugger debugger;

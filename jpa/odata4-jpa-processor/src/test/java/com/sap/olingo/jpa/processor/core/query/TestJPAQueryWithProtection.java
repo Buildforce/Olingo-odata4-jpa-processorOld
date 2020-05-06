@@ -17,6 +17,7 @@ import com.sap.olingo.jpa.processor.core.util.JPAEntityTypeDouble;
 import com.sap.olingo.jpa.processor.core.util.TestQueryBase;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
 import org.eclipse.persistence.internal.jpa.querydef.CompoundExpressionImpl;
@@ -70,7 +71,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     claims.add("UserId", new JPAClaimsPair<>("Willi"));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerProtecteds?$select=ID,Name1,Country", claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode bupa = helper.getValues();
     assertEquals(3, bupa.size());
@@ -83,7 +84,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     claims.add("UserId", new JPAClaimsPair<>(minValue));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerProtecteds?$select=ID,Name1,Country", claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode bupa = helper.getValues();
     assertEquals(3, bupa.size());
@@ -96,7 +97,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     claims.add("UserId", new JPAClaimsPair<>("Marvin"));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerProtecteds?$select=ID,Name1,Country", claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode bupa = helper.getValues();
     assertEquals(13, bupa.size());
@@ -130,7 +131,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     claims.add("RoleCategory", new JPAClaimsPair<>("A", "B"));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerProtecteds('3')/RolesProtected", claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode act = helper.getValues();
     assertEquals(2, act.size());
@@ -144,7 +145,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     claims.add("RoleCategory", new JPAClaimsPair<>("A", "B"));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerProtecteds?$filter=ID eq '3'&$expand=RolesProtected", claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode act = helper.getValues();
     assertEquals(1, act.size());
@@ -205,7 +206,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     claims.add("UserId", new JPAClaimsPair<>("Marvin", "Willi"));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerProtecteds?$select=ID,Name1,Country", claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode bupa = helper.getValues();
     assertEquals(13, bupa.size());
@@ -242,7 +243,7 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     claims.add("UserId", new JPAClaimsPair<>("Willi"));
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerProtecteds('99')/Roles", claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode bupa = helper.getValues();
     assertEquals(2, bupa.size());

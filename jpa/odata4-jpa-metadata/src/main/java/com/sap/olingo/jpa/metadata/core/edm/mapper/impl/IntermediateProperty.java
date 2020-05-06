@@ -59,7 +59,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
     private Class<?> dbType;
     private Class<?> entityType;
     private List<String> fieldGroups;
-    private Map<String, JPAProtectionInfo> externalProtectedPathNames;
+    private final Map<String, JPAProtectionInfo> externalProtectedPathNames;
     private static final String DB_FIELD_NAME_PATTERN = "\"&1\"";
     protected boolean isVersion;
     protected CsdlProperty edmProperty;

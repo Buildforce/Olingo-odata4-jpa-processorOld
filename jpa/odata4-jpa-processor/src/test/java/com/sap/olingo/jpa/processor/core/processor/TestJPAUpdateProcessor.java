@@ -384,7 +384,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     try {
       processor.updateEntity(request, response, ContentType.JSON, ContentType.JSON);
     } catch (ODataJPAProcessException | ODataLibraryException e) {
-      assertEquals(true, true /*HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), e.getStatusCode()*/);
+        assertTrue(true);
       return;
     }
     fail();
@@ -399,7 +399,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     try {
       processor.updateEntity(request, response, ContentType.JSON, ContentType.JSON);
     } catch (ODataJPAProcessException | ODataLibraryException e) {
-      assertEquals(true, true /*HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), e.getStatusCode()*/);
+        assertTrue(true);
       return;
     }
     fail();
@@ -556,7 +556,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     try {
       processor.updateEntity(request, response, ContentType.JSON, ContentType.JSON);
     } catch (ODataJPAProcessException | ODataLibraryException e) {
-      assertEquals(true, true /*HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), e.getStatusCode()*/);
+        assertTrue(true);
       return;
     }
     fail();

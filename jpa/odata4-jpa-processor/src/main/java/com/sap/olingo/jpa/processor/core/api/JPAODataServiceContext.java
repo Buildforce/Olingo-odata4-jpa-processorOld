@@ -30,25 +30,23 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
   //@formatter:off
   @Deprecated
   private final       JPAODataGetHandler jpaODataGetHandler;
-  private           JPACUDRequestHandler jpaCUDRequestHandler;
+  // --Commented out by Inspection (''20-05-01 19:16):private           JPACUDRequestHandler jpaCUDRequestHandler;
 
   private                 ErrorProcessor errorProcessor;
   private    JPAEdmMetadataPostProcessor postProcessor;
   private         JPAODataPagingProvider pagingProvider;
 
-  private      JPAODataDatabaseProcessor databaseProcessor;
+  private final JPAODataDatabaseProcessor databaseProcessor;
   private Optional<EntityManagerFactory> emf;
   private                 JPAEdmProvider jpaEdm;
   private                         String mappingPath;
   private final                   String namespace_pUnit;
-  private     JPAODataDatabaseOperations operationConverter;
+  private final JPAODataDatabaseOperations operationConverter;
   private                       String[] packageName;
   private            List<EdmxReference> references = new ArrayList<>();
   //@formatter:on
 
-  public static Builder with() {
-    return new Builder();
-  }
+  public static Builder with() { return new Builder(); }
 
     /**
      * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
@@ -83,8 +81,8 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
 
     emf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace_pUnit, ds));
 
-    jpaEdm = new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), null, packageName);;
-  };
+    jpaEdm = new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), null, packageName);
+  }
 
   private JPAODataServiceContext(final Builder builder) throws ODataJPAException, ODataJPAFilterException {
     jpaODataGetHandler = null;
@@ -117,9 +115,7 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
   }
 
   @Override
-  public JPACUDRequestHandler getCUDRequestHandler() {
-    return jpaCUDRequestHandler;
-  }
+  public JPACUDRequestHandler getCUDRequestHandler() { return null /*jpaCUDRequestHandler*/; }
 
   @Override
   public JPAODataDatabaseProcessor getDatabaseProcessor() {

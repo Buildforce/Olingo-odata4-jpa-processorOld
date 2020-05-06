@@ -315,8 +315,7 @@ final class IntermediateEntityType extends IntermediateStructuredType implements
     for (final Entry<String, IntermediateProperty> property : propertyList.entrySet()) {
       if (property.getValue().isKey()) {
         if (property.getValue().isComplex()) {
-          final List<JPAAttribute> idAttributes = property.getValue()
-              .getStructuredType().getAttributes();
+          final List<JPAAttribute> idAttributes = property.getValue().getStructuredType().getAttributes();
           for (final JPAAttribute idAttribute : idAttributes) {
             final CsdlPropertyRef keyElement = new CsdlPropertyRef();
             keyElement.setName(idAttribute.getExternalName());

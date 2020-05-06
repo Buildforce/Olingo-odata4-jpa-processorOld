@@ -7,7 +7,7 @@
 	<persistence-unit name="com.sap.olingo.jpa" transaction-type="RESOURCE_LOCAL">
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AccessRightsConverter</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AddressDeepProtected</class>
-		<class>com.sap.olingo.jpa.processor.core.testmodel.AddressDeepThreeProtections</class>
+		<class>com.sap.olingo.jpa.processor.core.testmodel.AddressDeepTreeProtections</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescription</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionDescriptionKey</class>
@@ -33,6 +33,7 @@
 		<class>com.sap.olingo.jpa.processor.core.testmodel.Country</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.CountryKey</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.DateConverter</class>
+        <class>com.sap.olingo.jpa.processor.core.testmodel.DateTimeConverter</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.DeepProtectedExample</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.DummyEmbeddedToIgnore</class>
 		<class>com.sap.olingo.jpa.processor.core.testmodel.DummyToBeIgnored</class>
@@ -77,7 +78,7 @@
 	<persistence-unit name="error">
 		<class>com.sap.olingo.jpa.processor.core.errormodel.CollectionAttributeProtected</class>
 		<class>com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedNoPath</class>
-		<class>com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedWrongPath</class>
+		<class>com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedWrongPath</class>
 		<class>com.sap.olingo.jpa.processor.core.errormodel.EmbeddedKeyPartOfGroup</class>
 		<class>com.sap.olingo.jpa.processor.core.errormodel.KeyPartOfGroup</class>
 		<class>com.sap.olingo.jpa.processor.core.errormodel.MandatoryPartOfGroup</class>

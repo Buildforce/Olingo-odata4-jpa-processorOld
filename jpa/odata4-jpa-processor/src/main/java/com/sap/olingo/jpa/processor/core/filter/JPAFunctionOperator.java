@@ -23,7 +23,6 @@ import java.util.List;
  * Handle OData Functions that are implemented e.g. as user defined database functions. This will be mapped
  * to JPA criteria builder function().
  *
-
  * @author Oliver Grande
  *
  */
@@ -34,6 +33,7 @@ final class JPAFunctionOperator implements JPAOperator {
 
   public JPAFunctionOperator(final JPAVisitor jpaVisitor, final List<UriParameter> uriParams,
       final JPADataBaseFunction jpaFunction) {
+
     this.uriParams = uriParams;
     this.visitor = jpaVisitor;
     this.jpaFunction = jpaFunction;
@@ -121,4 +121,5 @@ final class JPAFunctionOperator implements JPAOperator {
       return null;
     }
   }
+
 }

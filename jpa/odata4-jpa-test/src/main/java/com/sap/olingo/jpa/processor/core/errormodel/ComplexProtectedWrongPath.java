@@ -11,7 +11,7 @@ import javax.persistence.Version;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"BusinessPartner\"")
-public class ComplextProtectedWrongPath {
+public class ComplexProtectedWrongPath {
 
   @Id
   @Column(name = "\"ID\"")
@@ -38,7 +38,7 @@ public class ComplextProtectedWrongPath {
     if (this == obj) return true;
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;
-    ComplextProtectedWrongPath other = (ComplextProtectedWrongPath) obj;
+    ComplexProtectedWrongPath other = (ComplexProtectedWrongPath) obj;
     if (iD == null) {
         return other.iD == null;
     } else return iD.equals(other.iD);

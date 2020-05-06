@@ -25,6 +25,7 @@ public class JPAMemberOperator implements JPAOperator {
   JPAMemberOperator(final JPAEntityType jpaEntityType, final From<?, ?> parent,
       final Member member, final JPAAssociationPath association, final List<String> list)
       throws ODataApplicationException {
+
     this.member = member;
     this.jpaEntityType = jpaEntityType;
     this.root = parent;
@@ -53,9 +54,9 @@ public class JPAMemberOperator implements JPAOperator {
   }
 
   private JPAPath determineAttributePath() throws ODataApplicationException {
-
     final String attributePath = Util.determinePropertyNavigationPath(member.getResourcePath().getUriResourceParts());
     JPAPath selectItemPath;
+
     try {
       selectItemPath = jpaEntityType.getPath(attributePath);
       if (selectItemPath == null && association != null) {
@@ -70,6 +71,7 @@ public class JPAMemberOperator implements JPAOperator {
 
   private Path<?> determineCriteriaPath(final JPAPath selectItemPath) throws ODataJPAFilterException {
     Path<?> p = root;
+
     for (final JPAElement jpaPathElement : selectItemPath.getPath()) {
       if (jpaPathElement instanceof JPADescriptionAttribute) {
         p = determineDescriptionCriteriaPath(selectItemPath, p, jpaPathElement);
@@ -88,8 +90,8 @@ public class JPAMemberOperator implements JPAOperator {
 
   private Path<?> determineDescriptionCriteriaPath(final JPAPath selectItemPath, Path<?> p,
       final JPAElement jpaPathElement) {
-
     final Set<?> allJoins = root.getJoins();
+
     for (Object allJoin : allJoins) {
       Join<?, ?> join = (Join<?, ?>) allJoin;
       if (join.getAlias() != null && join.getAlias().equals(selectItemPath.getAlias())) {
@@ -111,6 +113,7 @@ public class JPAMemberOperator implements JPAOperator {
 
   private void checkGroup(final JPAPath path, final List<String> groups) throws ODataJPAFilterException {
     JPAPath orgPath = path;
+
     if (association != null && association.getPath() != null) {
       final JPAAttribute st = ((JPAAttribute) this.association.getPath().get(0));
       if (st.isComplex()) {
@@ -124,4 +127,5 @@ public class JPAMemberOperator implements JPAOperator {
     if (orgPath != null && !orgPath.isPartOfGroups(groups))
       throw new ODataJPAFilterException(NOT_ALLOWED_MEMBER, HttpStatusCode.FORBIDDEN, orgPath.getAlias());
   }
+
 }

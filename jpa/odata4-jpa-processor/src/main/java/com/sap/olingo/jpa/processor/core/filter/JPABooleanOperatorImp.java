@@ -14,6 +14,7 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
 
   public JPABooleanOperatorImp(final JPAOperationConverter converter, final BinaryOperatorKind operator,
       final JPAExpression left, final JPAExpression right) {
+
     this.converter = converter;
     this.operator = operator;
     this.left = left;
@@ -39,9 +40,7 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
    */
   @SuppressWarnings("unchecked")
   @Override
-  public BinaryOperatorKind getOperator() {
-    return operator;
-  }
+  public BinaryOperatorKind getOperator() { return operator; }
 
   /*
    * (non-Javadoc)
@@ -57,7 +56,6 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPABooleanOperator#getRight()
    */
   @Override
@@ -69,4 +67,5 @@ class JPABooleanOperatorImp implements JPABooleanOperator {
   public String getName() {
     return operator.name();
   }
+
 }

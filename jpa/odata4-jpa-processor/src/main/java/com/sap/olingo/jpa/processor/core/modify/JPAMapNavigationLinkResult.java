@@ -54,4 +54,5 @@ final class JPAMapNavigationLinkResult extends JPACreateResult {
   protected Map<String, Object> entryAsMap(final Object entry) {
     return (Map<String, Object>) entry;
   }
+
 }

@@ -180,8 +180,7 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
     final CsdlReturnType edmResultType = new CsdlReturnType();
     final Class<?> declaredReturnType = javaOperation.getReturnType();
 
-    if (declaredReturnType == void.class)
-      return null;
+    if (declaredReturnType == void.class) return null;
 
     if (IntermediateOperationHelper.isCollection(declaredReturnType)) {
       if (definedReturnType.type() == Object.class)

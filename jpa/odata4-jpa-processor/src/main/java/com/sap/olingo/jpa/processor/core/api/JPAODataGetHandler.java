@@ -23,7 +23,7 @@ import java.util.Optional;
 // import org.apache.olingo.server.core.ODataHttpHandlerImpl.REQUESTMAPPING
 
 public class JPAODataGetHandler {
-  public static final String REQUESTMAPPING = "requestMapping";
+  public static final String REQUESTMAPPING_ATTRIBUTE = "requestMapping";
   public final Optional<EntityManagerFactory> emf;
   private final JPAODataServiceContext serviceContext;
   private final JPAODataRequestContextImpl requestContext;
@@ -119,6 +119,7 @@ public class JPAODataGetHandler {
   @Deprecated
   public void process(final HttpServletRequest request, final HttpServletResponse response, final EntityManager em)
           throws ODataJPAModelException {
+
     requestContext.setEntityManager(em);
     process(request, response);
   }
@@ -134,6 +135,7 @@ public class JPAODataGetHandler {
   @Deprecated
   public void process(final HttpServletRequest request, final HttpServletResponse response,
       final JPAODataClaimProvider claims, final EntityManager em) throws ODataJPAModelException {
+
     requestContext.setClaimsProvider(claims);
     requestContext.setEntityManager(em);
     process(request, response);
@@ -156,6 +158,7 @@ public class JPAODataGetHandler {
     handler.register(new JPAODataBatchProcessor(requestContext));
     handler.register(serviceContext.getEdmProvider().getServiceDocument());
     handler.register(serviceContext.getErrorProcessor());
+    handler.register(new JPAODataServiceDocumentProcessor(serviceContext));
     handler.process(mappedRequest, response);
   }
 
@@ -167,10 +170,11 @@ public class JPAODataGetHandler {
   private HttpServletRequest prepareRequestMapping(final HttpServletRequest req, final String requestPath) {
     if (requestPath != null && !requestPath.isEmpty()) {
       HttpServletRequestWrapper request = new HttpServletRequestWrapper(req);
-      request.setAttribute(REQUESTMAPPING, requestPath);
+      request.setAttribute(REQUESTMAPPING_ATTRIBUTE, requestPath);
       return request;
     } else {
       return req;
     }
   }
+
 }

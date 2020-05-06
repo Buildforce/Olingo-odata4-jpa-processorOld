@@ -9,11 +9,9 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import com.sap.olingo.jpa.processor.core.serializer.JPAOperationSerializer;
 import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivision;
 import com.sap.olingo.jpa.processor.core.testmodel.CommunicationData;
@@ -33,13 +31,13 @@ import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.edm.constants.EdmTypeKind;
 import org.apache.olingo.commons.api.edm.provider.CsdlProperty;
 import org.apache.olingo.commons.api.edm.provider.CsdlReturnType;
+import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.deserializer.DeserializerException;
 import org.apache.olingo.server.api.deserializer.DeserializerResult;
 import org.apache.olingo.server.api.deserializer.ODataDeserializer;
 import org.apache.olingo.server.api.serializer.SerializerException;
@@ -53,6 +51,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import javax.persistence.EntityManager;
@@ -103,7 +102,7 @@ public class TestJPAActionProcessor {
   private UriResourceEntitySet bindingEntity;
 
   @BeforeEach
-  public void setup() throws ODataJPAException, SerializerException, ODataJPASerializerException, DeserializerException {
+  public void setup() throws ODataException {
     MockitoAnnotations.initMocks(this);
 
     uriResources = new ArrayList<>();
@@ -122,14 +121,15 @@ public class TestJPAActionProcessor {
     when(edmProvider.getServiceDocument()).thenReturn(sd);
     when(requestContext.getUriInfo()).thenReturn(uriInfo);
     when(requestContext.getSerializer()).thenReturn(serializer);
-    when(serializer.serialize(any(Annotatable.class), any(EdmType.class))).thenReturn(serializerResult);
+    when(serializer.serialize(any(Annotatable.class), any(EdmType.class), any(ODataRequest.class)))
+        .thenReturn(serializerResult);
     when(serializer.getContentType()).thenReturn(ContentType.APPLICATION_JSON);
 
     when(uriInfo.getUriResourceParts()).thenReturn(uriResources);
     when(resource.getAction()).thenReturn(edmAction);
     when(edmAction.isBound()).thenReturn(Boolean.FALSE);
     when(sd.getAction(edmAction)).thenReturn(action);
-    when(odata.createDeserializer(any())).thenReturn(deserializer);
+    when(odata.createDeserializer((ContentType) any())).thenReturn(deserializer);
 
     when(deserializer.actionParameters(request.getBody(), resource.getAction())).thenReturn(dResult);
     when(dResult.getActionParameters()).thenReturn(actionParameter);
@@ -207,7 +207,7 @@ public class TestJPAActionProcessor {
 
     cut.performAction(request, response, requestFormat);
     verify(response, times(1)).setStatusCode(200);
-    verify(serializer, times(1)).serialize(any(Annotatable.class), eq(type));
+    verify(serializer, times(1)).serialize(any(Annotatable.class), eq(type), any(ODataRequest.class));
   }
 
   @SuppressWarnings("unchecked")
@@ -230,12 +230,12 @@ public class TestJPAActionProcessor {
     when(type.getKind()).thenReturn(EdmTypeKind.COMPLEX);
 
     JPAStructuredType st = mock(JPAStructuredType.class);
-    when(sd.getComplexType(any())).thenReturn(st);
+    when(sd.getComplexType((EdmComplexType) any())).thenReturn(st);
     when(st.getTypeClass()).thenAnswer((Answer<Class<?>>) invocation -> CommunicationData.class);
 
     cut.performAction(request, response, requestFormat);
     verify(response, times(1)).setStatusCode(200);
-    verify(serializer, times(1)).serialize(any(Annotatable.class), eq(type));
+    verify(serializer, times(1)).serialize(any(Annotatable.class), eq(type), any(ODataRequest.class));
   }
 
   @Test

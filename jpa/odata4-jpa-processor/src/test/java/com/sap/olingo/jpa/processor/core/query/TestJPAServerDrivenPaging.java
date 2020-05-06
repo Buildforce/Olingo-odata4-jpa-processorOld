@@ -18,6 +18,7 @@ import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
 import org.apache.olingo.commons.api.edm.constants.EdmTypeKind;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.uri.*;
 import org.apache.olingo.server.api.uri.queryoption.*;
 import org.apache.olingo.server.api.uri.queryoption.expression.Member;
@@ -55,7 +56,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     final JPAODataPagingProvider provider = mock(JPAODataPagingProvider.class);
     when(provider.getFirstPage(any(), any(), any(), any())).thenReturn(null);
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     assertEquals(10, helper.getValues().size());
   }
 
@@ -66,7 +67,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     when(provider.getFirstPage(any(), any(), any(), any())).thenAnswer(i -> new JPAODataPage((UriInfo) i
         .getArguments()[0], 0, 5, "Hugo"));
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     assertEquals(5, helper.getValues().size());
   }
 
@@ -78,7 +79,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
         .getArguments()[0], 0, 5, "Hugo"));
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     assertEquals(5, helper.getValues().size());
     assertEquals("Organizations?$skiptoken='Hugo'", helper.getValue().get("@odata.nextLink").asText());
   }
@@ -91,7 +92,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
         .getArguments()[0], 0, 5, 123456789));
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     assertEquals(5, helper.getValues().size());
     assertEquals("Organizations?$skiptoken=123456789", helper.getValue().get("@odata.nextLink").asText());
   }
@@ -104,7 +105,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     when(provider.getNextPage("xyz")).thenReturn(new JPAODataPage(uriInfo, 5, 5, null));
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$skiptoken=xyz", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     assertEquals(5, helper.getValues().size());
     ObjectNode org = (ObjectNode) helper.getValues().get(4);
     assertEquals("1", org.get("ID").asText());
@@ -118,7 +119,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
         .getArguments()[0], 0, 5, "Hugo"));
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     verify(provider).getFirstPage(any(), any(), any(), isNotNull());
   }
@@ -130,7 +131,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     when(provider.getFirstPage(any(), any(), any(), any())).thenAnswer(i -> new JPAODataPage((UriInfo) i
         .getArguments()[0], 0, 5, "Hugo"));
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     verify(provider).getFirstPage(any(), any(), isNotNull(), any());
   }
@@ -143,7 +144,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     when(provider.getFirstPage(any(), any(), any(), any())).thenAnswer(i -> new JPAODataPage((UriInfo) i
         .getArguments()[0], 0, 5, "Hugo"));
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "BusinessPartnerProtecteds", provider, claims);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     final ArrayNode act = helper.getValues();
     assertEquals(3, act.size());
     verify(provider).getFirstPage(any(), any(), argThat(new CountQueryMatcher(3L)), any());
@@ -162,7 +163,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     headers.put("Prefer", headerValues);
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider, headers);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     verify(provider).getFirstPage(any(), isNotNull(), any(), any());
   }
@@ -178,7 +179,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     headers.put("prefer", headerValues);
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider, headers);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     verify(provider).getFirstPage(any(), isNotNull(), any(), any());
   }
@@ -192,7 +193,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
         .getArguments()[0], 0, 5, "Hugo"));
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc", provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     verify(provider).getFirstPage(isNotNull(), any(), any(), any());
   }
@@ -244,7 +245,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
     when(provider.getNextPage("'Hugo'")).thenReturn(new JPAODataPage(uriInfo, 5, 5, "Willi"));
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$orderby=ID desc&$select=ID",
         provider);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     assertNull(helper.getValues().get(0).get("Country"));
     IntegrationTestHelper act = new IntegrationTestHelper(emf, "Organizations?$skiptoken='Hugo'",
         provider);

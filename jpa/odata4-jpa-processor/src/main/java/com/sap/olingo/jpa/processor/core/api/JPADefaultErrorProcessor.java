@@ -12,19 +12,13 @@ import org.apache.olingo.server.api.processor.ErrorProcessor;
 public final class JPADefaultErrorProcessor implements ErrorProcessor {
   private final ErrorProcessor defaultProcessor;
 
-  JPADefaultErrorProcessor() {
-    defaultProcessor = new DefaultProcessor();
-  }
+  JPADefaultErrorProcessor() { defaultProcessor = new DefaultProcessor(); }
 
   @Override
-  public void init(OData odata, ServiceMetadata serviceMetadata) {
-    defaultProcessor.init(odata, serviceMetadata);
-  }
+  public void init(OData odata, ServiceMetadata serviceMetadata) { defaultProcessor.init(odata, serviceMetadata); }
 
   @Override
   public void processError(ODataRequest request, ODataResponse response, ODataServerError serverError,
-      ContentType responseFormat) {
-    defaultProcessor.processError(request, response, serverError, responseFormat);
-  }
+      ContentType responseFormat) { defaultProcessor.processError(request, response, serverError, responseFormat); }
 
 }

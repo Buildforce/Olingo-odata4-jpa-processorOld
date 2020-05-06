@@ -8,7 +8,6 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateNavigat
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediateReferenceList;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -243,7 +242,7 @@ public class TestIntermediateComplexType extends TestMappingRoot {
       throws ODataJPAModelException {
 
     IntermediateComplexType ct = new IntermediateComplexType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEmbeddableType(
-        "AddressDeepThreeProtections"), schema);
+        "AddressDeepTreeProtections"), schema);
     List<JPAProtectionInfo> act = ct.getProtections();
     assertNotNull(act);
     assertEquals(3, act.size());

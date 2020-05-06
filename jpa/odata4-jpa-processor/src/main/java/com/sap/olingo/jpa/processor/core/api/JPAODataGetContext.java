@@ -52,8 +52,8 @@ public interface JPAODataGetContext {
    */
   // void setReferences(final List<EdmxReference> references);
 
-  /**
-   * Name of the top level package to look for
+
+   /* Name of the top level package to look for
    * <ul>
    * <li> Enumeration Types
    * <li> Java class based Functions
@@ -68,4 +68,5 @@ public interface JPAODataGetContext {
    * @param provider
    */
   // void setPagingProvider(final JPAODataPagingProvider provider);
+
 }

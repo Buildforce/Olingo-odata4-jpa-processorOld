@@ -149,4 +149,5 @@ public abstract class JPAAbstractDatabaseProcessor implements JPAODataDatabasePr
           HttpStatusCode.INTERNAL_SERVER_ERROR, uriValue, parameter.getName());
     }
   }
+
 }

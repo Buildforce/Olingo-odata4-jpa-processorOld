@@ -17,6 +17,7 @@ public final class JPAMethodExpression implements JPAVisitableExpression {
   private final Literal literal;
 
   public JPAMethodExpression(final Member member, final JPALiteralOperator operand, final MethodKind methodCall) {
+
     this.methodCall = methodCall;
     this.member = member;
     this.literal = operand != null ? operand.getLiteral() : null;
@@ -25,6 +26,7 @@ public final class JPAMethodExpression implements JPAVisitableExpression {
   @Override
   public <T> T accept(final ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
     final List<T> parameters = new ArrayList<>(2);
+
     parameters.add(visitor.visitMember(member));
     if (literal != null)
       parameters.add(visitor.visitLiteral(literal));

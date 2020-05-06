@@ -18,7 +18,6 @@ class JPAAggregationOperationImp implements JPAAggregationOperation {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAAggregationOperation#get()
    */
   @Override

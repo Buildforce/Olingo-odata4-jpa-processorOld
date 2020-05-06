@@ -9,7 +9,7 @@ import javax.persistence.Embedded;
 //Only for Unit Tests
 @EdmIgnore
 @Embeddable
-public class AddressDeepThreeProtections {
+public class AddressDeepTreeProtections {
 
   @Column(name = "\"AddressType\"")
   private String type;

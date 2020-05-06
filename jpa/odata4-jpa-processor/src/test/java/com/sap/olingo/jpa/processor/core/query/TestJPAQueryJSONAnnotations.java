@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class TestJPAQueryJSONAnnotations extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('3')?$format=application/json;odata.metadata=full");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     assertNotNull(org.get("Roles@odata.navigationLink"));
@@ -31,7 +32,7 @@ public class TestJPAQueryJSONAnnotations extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('3')?$format=application/json;odata.metadata=minimal");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     assertNull(org.get("Roles@odata.navigationLink"));
@@ -42,7 +43,7 @@ public class TestJPAQueryJSONAnnotations extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('3')?$format=application/json;odata.metadata=none");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     assertNull(org.get("Roles@odata.navigationLink"));
@@ -53,7 +54,7 @@ public class TestJPAQueryJSONAnnotations extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('3')?$expand=Roles&$format=application/json;odata.metadata=full");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     assertNotNull(org.get("Roles@odata.navigationLink"));
@@ -65,7 +66,7 @@ public class TestJPAQueryJSONAnnotations extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('3')?$format=application/json;odata.metadata=full");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     ObjectNode admin = (ObjectNode) org.get("AdministrativeInformation");

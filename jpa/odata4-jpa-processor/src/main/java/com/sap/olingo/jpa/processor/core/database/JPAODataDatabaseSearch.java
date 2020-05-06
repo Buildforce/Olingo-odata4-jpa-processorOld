@@ -30,4 +30,5 @@ public interface JPAODataDatabaseSearch {
   Expression<Boolean> createSearchWhereClause(final CriteriaBuilder cb, final CriteriaQuery<?> cq,
       final From<?, ?> root, final JPAEntityType entityType, final SearchOption searchOption)
       throws ODataApplicationException;
+
 }

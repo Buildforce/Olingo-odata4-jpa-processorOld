@@ -5,12 +5,10 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunctionType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPADataBaseFunction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOperationResultParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataDatabaseProcessor;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import com.sap.olingo.jpa.processor.core.processor.JPAFunctionRequestProcessor;
 import com.sap.olingo.jpa.processor.core.serializer.JPAOperationSerializer;
 import org.apache.olingo.commons.api.data.Annotatable;
@@ -18,6 +16,7 @@ import org.apache.olingo.commons.api.edm.EdmFunction;
 import org.apache.olingo.commons.api.edm.EdmReturnType;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
+import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.core.edm.primitivetype.EdmBoolean;
 import org.apache.olingo.server.api.OData;
@@ -25,13 +24,13 @@ import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ODataLibraryException;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
-import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
 import org.apache.olingo.server.api.uri.UriInfo;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceFunction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import javax.persistence.EntityManager;
@@ -45,36 +44,45 @@ public class TestJPAFunctionDB {
 
   private JPAODataDatabaseProcessor dbProcessor;
 
+  private OData odata;
+  private JPAODataCRUDContextAccess context;
+  private JPAODataRequestContextAccess requestContext;
   private ODataRequest request;
   private ODataResponse response;
   private JPAFunctionRequestProcessor cut;
   private EdmFunction edmFunction;
+  private UriInfo uriInfo;
   private List<UriResource> uriResources;
+  private UriResourceFunction uriResource;
+  private JPAServiceDocument sd;
   private JPADataBaseFunction function;
+  private JPAOperationSerializer serializer;
+  private SerializerResult serializerResult;
   private EntityManager em;
 
   @BeforeEach
-  public void setup() throws ODataJPAException, SerializerException, ODataJPASerializerException {
+  public void setup() throws ODataException {
     final JPAEdmProvider provider = mock(JPAEdmProvider.class);
 
     em = mock(EntityManager.class);
     request = mock(ODataRequest.class);
     response = mock(ODataResponse.class);
-    UriInfo uriInfo = mock(UriInfo.class);
-    OData odata = mock(OData.class);
-    JPAOperationSerializer serializer = mock(JPAOperationSerializer.class);
-    SerializerResult serializerResult = mock(SerializerResult.class);
-    JPAODataCRUDContextAccess context = mock(JPAODataCRUDContextAccess.class);
-    JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);
+    uriInfo = mock(UriInfo.class);
+    odata = mock(OData.class);
+    serializer = mock(JPAOperationSerializer.class);
+    serializerResult = mock(SerializerResult.class);
+    context = mock(JPAODataCRUDContextAccess.class);
+    requestContext = mock(JPAODataRequestContextAccess.class);
     dbProcessor = mock(JPAODataDatabaseProcessor.class);
-    JPAServiceDocument sd = mock(JPAServiceDocument.class);
-    UriResourceFunction uriResource = mock(UriResourceFunction.class);
+    sd = mock(JPAServiceDocument.class);
+    uriResource = mock(UriResourceFunction.class);
     function = mock(JPADataBaseFunction.class);
     uriResources = new ArrayList<>();
     edmFunction = mock(EdmFunction.class);
 
     when(requestContext.getSerializer()).thenReturn(serializer);
-    when(serializer.serialize(any(Annotatable.class), any(EdmType.class))).thenReturn(serializerResult);
+    when(serializer.serialize(any(Annotatable.class), any(EdmType.class), any(ODataRequest.class)))
+        .thenReturn(serializerResult);
     when(requestContext.getUriInfo()).thenReturn(uriInfo);
     when(requestContext.getEntityManager()).thenReturn(em);
     when(uriInfo.getUriResourceParts()).thenReturn(uriResources);
@@ -90,7 +98,7 @@ public class TestJPAFunctionDB {
 
   @Test
   public void testCallsFunctionWithBooleanReturnType() throws ODataApplicationException, ODataLibraryException,
-      ODataJPAModelException {
+          ODataJPAModelException {
 
     EdmReturnType edmReturnType = mock(EdmReturnType.class);
     JPAOperationResultParameter resultParam = mock(JPAOperationResultParameter.class);

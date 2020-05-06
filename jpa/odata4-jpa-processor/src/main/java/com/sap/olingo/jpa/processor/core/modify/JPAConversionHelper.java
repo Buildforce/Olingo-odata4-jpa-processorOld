@@ -148,7 +148,6 @@ public class JPAConversionHelper {
 
   /**
    *
-
    * @param odata
    * @param request
    * @param edmEntitySet
@@ -173,7 +172,6 @@ public class JPAConversionHelper {
    * Creates nested map of attributes and there (new) values. Primitive values are instances of e.g. Integer. Embedded
    * Types are returned as maps.
    *
-
    * @param odata
    * @param st
    * @param odataProperties

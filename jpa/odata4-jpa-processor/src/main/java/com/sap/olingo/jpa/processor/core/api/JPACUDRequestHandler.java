@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 public interface JPACUDRequestHandler {
   /**
    *
-
    * @param requestEntity
    * @param em
    * @throws ODataJPAProcessException

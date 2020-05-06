@@ -129,7 +129,6 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
    * Convert annotations at an annotatable element into OData annotations
    * {@link com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAnnotation}
    *
-
    * @param edmAnnotations
    * @param member
    * @param internalName
@@ -164,8 +163,7 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
           && !(jpaAnnotation.dynamicExpression().path().isEmpty())) {
         throw new ODataJPAModelException(
             ODataJPAModelException.MessageKeys.ODATA_ANNOTATION_TWO_EXPRESSIONS, internalName);
-      } else {
-        jpaAnnotation.constantExpression();
+      } else if (jpaAnnotation.constantExpression() != null) {
         edmAnnotation.setExpression(new CsdlConstantExpression(jpaAnnotation.constantExpression().type(),
             jpaAnnotation.constantExpression().value()));
       }
@@ -177,7 +175,6 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
    * https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
    * @param javaType
    *
-
    * @return
    */
   protected Class<?> boxPrimitive(Class<?> javaType) {// NOSONAR
@@ -196,7 +193,6 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
 
   /**
    *
-
    * @param name
    * @return
    */

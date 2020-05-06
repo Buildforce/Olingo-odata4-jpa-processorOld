@@ -24,13 +24,12 @@ final class JPALambdaAllOperation extends JPALambdaOperation {
   @Override
   public Expression<Boolean> get() throws ODataApplicationException {
     final CriteriaBuilder cb = converter.cb;
+
     return cb.and(cb.exists(getExistsQuery()), cb.not(cb.exists(getNotExistsQuery())));
   }
 
   @Override
-  public String getName() {
-    return "ALL";
-  }
+  public String getName() { return "ALL"; }
 
   private static class NotExpression implements Unary {
     private final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression;
@@ -54,7 +53,6 @@ final class JPALambdaAllOperation extends JPALambdaOperation {
     public UnaryOperatorKind getOperator() {
       return UnaryOperatorKind.NOT;
     }
-
   }
 
 }

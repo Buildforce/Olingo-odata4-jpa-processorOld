@@ -38,14 +38,14 @@ abstract class JPAExistsOperation implements JPAOperator {
   JPAExistsOperation(final JPAFilterCompilerAccess jpaCompiler) {
 
     this.uriResourceParts = jpaCompiler.getUriResourceParts();
-    this.root = jpaCompiler.getParent();
-    this.sd = jpaCompiler.getSd();
-    this.em = jpaCompiler.getEntityManager();
-    this.converter = jpaCompiler.getConverter();
-    this.odata = jpaCompiler.getOdata();
-    this.from = jpaCompiler.getRoot();
-    this.claimsProvider = jpaCompiler.getClaimsProvider();
-    this.groups = jpaCompiler.getGroups();
+    this.root             = jpaCompiler.getParent();
+    this.sd               = jpaCompiler.getSd();
+    this.em               = jpaCompiler.getEntityManager();
+    this.converter        = jpaCompiler.getConverter();
+    this.odata            = jpaCompiler.getOdata();
+    this.from             = jpaCompiler.getRoot();
+    this.claimsProvider   = jpaCompiler.getClaimsProvider();
+    this.groups           = jpaCompiler.getGroups();
   }
 
   @Override
@@ -117,4 +117,5 @@ abstract class JPAExistsOperation implements JPAOperator {
 
     return (resourcePart instanceof UriResourceProperty && ((UriResourceProperty) resourcePart).isCollection());
   }
+
 }

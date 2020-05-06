@@ -1,5 +1,7 @@
 package com.sap.olingo.jpa.processor.core.serializer;
 
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import com.sap.olingo.jpa.processor.core.exception.ODataJPASerializerException;
 import com.sap.olingo.jpa.processor.core.query.Util;
 import org.apache.olingo.commons.api.data.ContextURL;
 import org.apache.olingo.commons.api.data.EntityCollection;
@@ -7,6 +9,7 @@ import org.apache.olingo.commons.api.edm.EdmEntitySet;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.format.ContentType;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ServiceMetadata;
 import org.apache.olingo.server.api.serializer.EntitySerializerOptions;
@@ -28,6 +31,7 @@ import org.apache.olingo.server.api.uri.queryoption.SkipOption;
 import org.apache.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 import org.apache.olingo.server.api.uri.queryoption.TopOption;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,41 +39,46 @@ final class JPASerializeCreate implements JPASerializer {
   private final ServiceMetadata serviceMetadata;
   private final UriInfo uriInfo;
   private final ODataSerializer serializer;
+  private final JPAODataCRUDContextAccess serviceContext;
 
   public JPASerializeCreate(final ServiceMetadata serviceMetadata, final ODataSerializer serializer,
-      final UriInfo uriInfo) {
+      final UriInfo uriInfo, final JPAODataCRUDContextAccess serviceContext) {
     this.uriInfo = uriInfo;
     this.serializer = serializer;
     this.serviceMetadata = serviceMetadata;
-  }
-
-  @Override
-  public SerializerResult serialize(ODataRequest request, EntityCollection result) throws SerializerException {
-
-    final ExpandOption expandOption = new ExpandOptionWrapper(new ExpandItemWrapper());
-
-    final EdmEntitySet targetEdmEntitySet = Util.determineTargetEntitySet(uriInfo.getUriResourceParts());
-
-    final EdmEntityType entityType = targetEdmEntitySet.getEntityType();
-
-    final ContextURL contextUrl = ContextURL.with()
-        .entitySet(targetEdmEntitySet)
-        .build();
-
-    final EntitySerializerOptions options = EntitySerializerOptions.with()
-        .contextURL(contextUrl)
-        .expand(expandOption)
-        .build();
-
-    return serializer.entity(serviceMetadata, entityType, result
-        .getEntities()
-        .get(0),
-        options);
-  }
+    this.serviceContext = serviceContext;
+}
 
   @Override
   public ContentType getContentType() {
     return null;
+  }
+
+  @Override
+  public SerializerResult serialize(ODataRequest request, EntityCollection result)
+          throws SerializerException, SerializerException, ODataJPASerializerException {
+
+    final ExpandOption expandOption = new ExpandOptionWrapper(new ExpandItemWrapper());
+    final EdmEntitySet targetEdmEntitySet = Util.determineTargetEntitySet(uriInfo.getUriResourceParts());
+    final EdmEntityType entityType = targetEdmEntitySet.getEntityType();
+    try {
+      final ContextURL contextUrl = ContextURL.with()
+          .serviceRoot(buildServiceRoot(request, serviceContext))
+          .entitySet(targetEdmEntitySet)
+          .build();
+
+      final EntitySerializerOptions options = EntitySerializerOptions.with()
+          .contextURL(contextUrl)
+          .expand(expandOption)
+          .build();
+
+      return serializer.entity(serviceMetadata, entityType, result
+          .getEntities()
+          .get(0),
+          options);
+    } catch (final URISyntaxException e) {
+      throw new ODataJPASerializerException(e, HttpStatusCode.BAD_REQUEST);
+    }
   }
 
   private static class ExpandOptionWrapper implements ExpandOption {

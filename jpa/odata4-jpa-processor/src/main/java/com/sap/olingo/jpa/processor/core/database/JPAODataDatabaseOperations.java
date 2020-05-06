@@ -28,4 +28,5 @@ public interface JPAODataDatabaseOperations {
   Expression<Boolean> convert(final JPAUnaryBooleanOperator jpaOperator) throws ODataApplicationException;
 
   Expression<Long> convert(final JPAAggregationOperation jpaOperator) throws ODataApplicationException;
+
 }

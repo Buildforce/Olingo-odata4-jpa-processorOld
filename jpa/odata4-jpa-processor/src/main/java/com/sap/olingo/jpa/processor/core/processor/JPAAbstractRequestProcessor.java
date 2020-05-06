@@ -44,11 +44,12 @@ abstract class JPAAbstractRequestProcessor {
     this.requestContext = requestContext;
   }
 
-  protected final void createSuccessResponse(final ODataResponse response, final ContentType responseFormat,
-      final SerializerResult serializerResult) {
+  protected final void createSuccesResponse(final ODataResponse response, final ContentType responseFormat,
+                                            final SerializerResult serializerResult) {
 
     response.setContent(serializerResult.getContent());
     response.setStatusCode(successStatusCode);
     response.setHeader(HttpHeader.CONTENT_TYPE, responseFormat.toContentTypeString());
   }
+
 }

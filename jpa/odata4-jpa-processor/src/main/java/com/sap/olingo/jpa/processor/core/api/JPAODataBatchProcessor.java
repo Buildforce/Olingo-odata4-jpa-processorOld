@@ -27,12 +27,10 @@ import java.util.UUID;
 
 /**
  *
-
  * <a href=
  * "https://docs.oasis-open.org/odata/odata/v4.0/os/part1-protocol/odata-v4.0-os-part1-protocol.html#_Toc372793748">
  * 11.7 Batch Requests </a>
  *
-
  * @author Oliver Grande
  *
  */
@@ -127,7 +125,6 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
             /*
              * In addition the response must be provided as follows:
              *
-
              * OData Version 4.0 Part 1: Protocol Plus Errata 02 11.7.4
              * Responding to a Batch Request
              *
@@ -140,7 +137,6 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
              * set and MUST be formatted according to the Error Handling
              * defined for the particular response format.
              *
-
              * This can be simply done by passing the response of the
              * failed ODataRequest to a new instance of
              * ODataResponsePart and setting the second parameter

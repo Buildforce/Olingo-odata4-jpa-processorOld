@@ -6,7 +6,6 @@ import org.apache.olingo.commons.api.http.HttpStatusCode;
 public class ODataJPAFilterException extends ODataJPAProcessException {
   /**
    *
-
    */
   private static final long serialVersionUID = -7188499882306858747L;
 
@@ -50,8 +49,6 @@ public class ODataJPAFilterException extends ODataJPAProcessException {
   }
 
   @Override
-  protected String getBundleName() {
-    return BUNDLE_NAME;
-  }
+  protected String getBundleName() { return BUNDLE_NAME; }
 
 }

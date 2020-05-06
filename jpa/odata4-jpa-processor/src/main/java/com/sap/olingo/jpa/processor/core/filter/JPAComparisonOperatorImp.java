@@ -15,6 +15,7 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   public JPAComparisonOperatorImp(final JPAOperationConverter converter, final BinaryOperatorKind operator,
       final JPAOperator left,
       final JPAOperator right) {
+
     this.converter = converter;
     this.operator = operator;
     this.left = left;
@@ -24,7 +25,6 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAComparisonOperator#get()
    */
   @Override
@@ -35,7 +35,6 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAComparisonOperator#getOperator()
    */
   @SuppressWarnings("unchecked")
@@ -47,7 +46,6 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAComparisonOperator#getLeft()
    */
   @Override
@@ -61,7 +59,6 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAComparisonOperator#getRight()
    */
   @Override
@@ -74,7 +71,6 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAComparisonOperator#getRightAsComparable()
    */
   @Override
@@ -100,7 +96,6 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAComparisonOperator#getRightAsExpression()
    */
   @Override
@@ -113,4 +108,5 @@ public class JPAComparisonOperatorImp<T extends Comparable<T>> implements JPACom
   public String getName() {
     return operator.name();
   }
+
 }

@@ -27,7 +27,6 @@ import javax.persistence.RollbackException;
 public interface JPAODataTransactionFactory {
   /**
    *
-
    * @return a new transaction
    */
   JPAODataTransaction createTransaction() throws ODataJPATransactionException;

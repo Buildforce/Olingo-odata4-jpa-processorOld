@@ -59,4 +59,5 @@ public abstract class JPAAbstractFilter implements JPAFilterCompiler, JPAFilterC
   public JPAAssociationPath getAssociation() {
     return association;
   }
+
 }

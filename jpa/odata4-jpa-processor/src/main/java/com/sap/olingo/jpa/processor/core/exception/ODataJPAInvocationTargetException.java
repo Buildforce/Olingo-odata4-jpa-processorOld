@@ -31,12 +31,8 @@ public class ODataJPAInvocationTargetException extends ODataJPAProcessException 
   }
 
   @Override
-  protected String getBundleName() {
-    return BUNDLE_NAME;
-  }
+  protected String getBundleName() { return BUNDLE_NAME; }
 
-  public String getPath() {
-    return path;
-  }
+  public String getPath() { return path; }
 
 }

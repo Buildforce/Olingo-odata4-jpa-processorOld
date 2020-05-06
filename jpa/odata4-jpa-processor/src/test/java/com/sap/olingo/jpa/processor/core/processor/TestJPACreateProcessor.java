@@ -190,7 +190,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     try {
       processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
     } catch (ODataApplicationException | ODataLibraryException e) {
-      assertEquals(true, true /*HttpStatusCode.BAD_REQUEST.getStatusCode(), e.getStatusCode()*/);
+        assertTrue(true);
       return;
     }
     fail();
@@ -210,7 +210,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     try {
       processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
     } catch (ODataApplicationException | ODataLibraryException e) {
-      assertEquals(true, true /*HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), e.getStatusCode()*/);
+        assertTrue(true);
       return;
     }
     fail();

@@ -15,4 +15,5 @@ public interface JPACollectionResult extends JPAExpandResult {
   Collection<Object> getPropertyCollection(final String key);
 
   JPAAssociationPath getAssociation();
+
 }

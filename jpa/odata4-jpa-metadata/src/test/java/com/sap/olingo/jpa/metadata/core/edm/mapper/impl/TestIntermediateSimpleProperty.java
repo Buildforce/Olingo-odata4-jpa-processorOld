@@ -307,7 +307,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
     PostProcessorSetName pPDouble = new PostProcessorSetName();
     IntermediateModelElement.setPostProcessor(pPDouble);
 
-    Attribute<?, ?> jpaAttribute = helper.getAttribute(helper.getEntityType(Person.class), "birthDay");
+    Attribute<?, ?> jpaAttribute = helper.getAttribute(helper.getEntityType(BusinessPartner.class), "creationDateTime");
     IntermediateSimpleProperty property = new IntermediateSimpleProperty(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         jpaAttribute,
         helper.schema);

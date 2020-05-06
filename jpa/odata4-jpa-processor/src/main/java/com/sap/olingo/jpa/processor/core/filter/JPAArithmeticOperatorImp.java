@@ -16,6 +16,7 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
 
   public JPAArithmeticOperatorImp(final JPAOperationConverter converter, final BinaryOperatorKind operator,
       final JPAOperator left, final JPAOperator right) {
+
     this.converter = converter;
     this.operator = operator;
     this.left = left;
@@ -25,7 +26,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#get()
    */
   @Override
@@ -36,7 +36,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#getOperator()
    */
   @Override
@@ -47,7 +46,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#getRight()
    */
   @Override
@@ -60,7 +58,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#getLeft(javax.persistence.criteria.
    * CriteriaBuilder)
    */
@@ -79,7 +76,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#getRightAsNumber(javax.persistence.criteria.
    * CriteriaBuilder)
    */
@@ -116,7 +112,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#getRightAsExpression()
    */
   @Override
@@ -128,7 +123,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#getLeftAsIntExpression()
    */
   @Override
@@ -142,7 +136,6 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAArithmeticOperator#getRightAsIntExpression()
    */
   @Override
@@ -155,4 +148,5 @@ class JPAArithmeticOperatorImp implements JPAArithmeticOperator {
   public String getName() {
     return operator.name();
   }
+
 }

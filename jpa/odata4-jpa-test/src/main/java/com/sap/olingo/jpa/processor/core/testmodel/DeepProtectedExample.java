@@ -26,6 +26,6 @@ public class DeepProtectedExample {
   private String type;
 
   @Embedded
-  private AddressDeepThreeProtections postalAddress;
+  private AddressDeepTreeProtections postalAddress;
 
 }

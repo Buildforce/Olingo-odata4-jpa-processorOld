@@ -11,4 +11,5 @@ public interface JPAODataDatabaseTableFunction {
 
   <T> List<T> executeFunctionQuery(final List<UriResource> uriResourceParts, final JPADataBaseFunction jpaFunction,
       final EntityManager em) throws ODataApplicationException;
+
 }

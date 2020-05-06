@@ -10,6 +10,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRoleKey;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRoleProtected;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRoleWithGroup;
+import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerWithGroups;
 import com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation;
 import com.sap.olingo.jpa.processor.core.testmodel.CollectionInnerComplex;
 import com.sap.olingo.jpa.processor.core.testmodel.CollectionNestedComplex;
@@ -86,61 +87,62 @@ public class TestStandardMethodsOfTestModel {
 
   static Stream<Arguments> testModelEntities() {
     return Stream.of(
-        arguments(BusinessPartnerRole.class),
-        arguments(BusinessPartnerRoleWithGroup.class),
-        arguments(BusinessPartnerRoleProtected.class),
-        arguments(BusinessPartnerRoleKey.class),
-        arguments(InstanceRestrictionKey.class),
-        arguments(PostalAddressData.class),
-        arguments(CountryKey.class),
-        arguments(MembershipKey.class),
-        arguments(PostalAddressDataWithGroup.class),
-        arguments(JoinRelationKey.class),
-        arguments(BusinessPartnerProtected.class),
-        arguments(InhouseAddress.class),
-        arguments(InhouseAddressWithGroup.class),
-        arguments(PersonDeepProtected.class),
-        arguments(AdministrativeInformation.class),
-        arguments(Organization.class),
-        arguments(ChangeInformation.class),
-        arguments(InhouseAddressWithProtection.class),
-        arguments(InhouseAddressWithThreeProtections.class),
-        arguments(CommunicationData.class),
-        arguments(InhouseAddressTable.class),
-        arguments(OrganizationImage.class),
-        arguments(CollectionSecondLevelComplex.class),
-        arguments(User.class),
-        arguments(CountryRestriction.class),
-        arguments(CollectionInnerComplex.class),
-        arguments(Collection.class),
-        arguments(CollectionPartOfComplex.class),
-        arguments(PersonImage.class),
-        arguments(Person.class),
+        arguments(AdministrativeDivision.class),
         arguments(AdministrativeDivisionDescription.class),
-        arguments(CollectionNestedComplex.class),
-        arguments(CollectionDeep.class),
-        arguments(CollectionFirstLevelComplex.class),
-        arguments(PersonDeepProtectedHidden.class),
-        arguments(Comment.class),
         arguments(AdministrativeDivisionDescriptionKey.class),
         arguments(AdministrativeDivisionKey.class),
-        arguments(AdministrativeDivision.class));
+        arguments(AdministrativeInformation.class),
+        arguments(BusinessPartnerProtected.class),
+        arguments(BusinessPartnerRole.class),
+        arguments(BusinessPartnerRoleKey.class),
+        arguments(BusinessPartnerRoleProtected.class),
+        arguments(BusinessPartnerRoleWithGroup.class),
+        arguments(BusinessPartnerWithGroups.class),
+        arguments(ChangeInformation.class),
+        arguments(Collection.class),
+        arguments(CollectionDeep.class),
+        arguments(CollectionFirstLevelComplex.class),
+        arguments(CollectionInnerComplex.class),
+        arguments(CollectionNestedComplex.class),
+        arguments(CollectionPartOfComplex.class),
+        arguments(CollectionSecondLevelComplex.class),
+        arguments(Comment.class),
+        arguments(CommunicationData.class),
+        arguments(CountryKey.class),
+        arguments(CountryRestriction.class),
+        arguments(InhouseAddress.class),
+        arguments(InhouseAddressTable.class),
+        arguments(InhouseAddressWithGroup.class),
+        arguments(InhouseAddressWithProtection.class),
+        arguments(InhouseAddressWithThreeProtections.class),
+        arguments(InstanceRestrictionKey.class),
+        arguments(JoinRelationKey.class),
+        arguments(MembershipKey.class),
+        arguments(Organization.class),
+        arguments(OrganizationImage.class),
+        arguments(Person.class),
+        arguments(PersonDeepProtected.class),
+        arguments(PersonDeepProtectedHidden.class),
+        arguments(PersonImage.class),
+        arguments(PostalAddressData.class),
+        arguments(PostalAddressDataWithGroup.class),
+        arguments(User.class));
   }
 
   static Stream<Arguments> testErrorEntities() {
     return Stream.of(
-        arguments(com.sap.olingo.jpa.processor.core.errormodel.Team.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.AdministrativeInformation.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.ChangeInformation.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.CollectionAttributeProtected.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedNoPath.class),
-        arguments(com.sap.olingo.jpa.processor.core.errormodel.ComplextProtectedWrongPath.class),
+        arguments(com.sap.olingo.jpa.processor.core.errormodel.ComplexProtectedWrongPath.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.EmbeddedKeyPartOfGroup.class),
-        arguments(com.sap.olingo.jpa.processor.core.errormodel.NavigationAttributeProtected.class),
-        arguments(com.sap.olingo.jpa.processor.core.errormodel.NavigationPropertyPartOfGroup.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.KeyPartOfGroup.class),
         arguments(com.sap.olingo.jpa.processor.core.errormodel.MandatoryPartOfGroup.class),
-        arguments(com.sap.olingo.jpa.processor.core.errormodel.PersonDeepCollectionProtected.class));
+        arguments(com.sap.olingo.jpa.processor.core.errormodel.NavigationAttributeProtected.class),
+        arguments(com.sap.olingo.jpa.processor.core.errormodel.NavigationPropertyPartOfGroup.class),
+        arguments(com.sap.olingo.jpa.processor.core.errormodel.PersonDeepCollectionProtected.class),
+        arguments(com.sap.olingo.jpa.processor.core.errormodel.Team.class));
   }
 
   @BeforeEach
@@ -199,21 +201,21 @@ public class TestStandardMethodsOfTestModel {
     Integer expInteger = 20;
     String expString = "TestString";
     if (paramType == String.class) return expString;
-    else if (paramType == Integer.class) return expInteger;
-    else if (paramType == int.class) return expInt;
-    else if (paramType == Boolean.class) return expBoolean;
-    else if (paramType == BigInteger.class) return expBigInt;
     else if (paramType == BigDecimal.class) return expDecimal;
+    else if (paramType == BigInteger.class) return expBigInt;
+    else if (paramType == Boolean.class) return expBoolean;
+    else if (paramType == Clob.class) return expClob;
+    else if (paramType == Date.class) return expDate;
+    else if (paramType == expByteArray.getClass()) return expByteArray;
+    else if (paramType == expUtilDate.getClass()) return expUtilDate;
+    else if (paramType == int.class) return expInt;
+    else if (paramType == Integer.class) return expInteger;
     else if (paramType == LocalDate.class) return expLocalDate;
     else if (paramType == Long.class) return expLong;
     else if (paramType == long.class) return expLong;
-    else if (paramType == Clob.class) return expClob;
-    else if (paramType == expByteArray.getClass()) return expByteArray;
-    else if (paramType == Date.class) return expDate;
-    else if (paramType == expUtilDate.getClass()) return expUtilDate;
-    else if (paramType == Timestamp.class) return expTimestamp;
     else if (paramType == Short.class) return expShort;
     else if (paramType == short.class) return expShort;
+    else if (paramType == Timestamp.class) return expTimestamp;
     else return null;
   }
 

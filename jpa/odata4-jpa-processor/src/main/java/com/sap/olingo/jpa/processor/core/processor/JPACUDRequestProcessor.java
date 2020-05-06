@@ -128,6 +128,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     // Create entity
     Object result;
     JPAODataTransaction ownTransaction = null;
+
     final boolean foreignTransaction = requestContext.getTransactionFactory().hasActiveTransaction();
     if (!foreignTransaction)
       ownTransaction = requestContext.getTransactionFactory().createTransaction();
@@ -508,7 +509,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       Entity createdEntity = convertEntity(et, result, request.getAllHeaders());
       EntityCollection entities = new EntityCollection();
       entities.getEntities().add(createdEntity);
-      createSuccessResponse(response, responseFormat, serializer.serialize(request, entities));
+      createSuccesResponse(response, responseFormat, serializer.serialize(request, entities));
       response.setHeader(HttpHeader.LOCATION, location);
     }
   }
@@ -692,7 +693,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       }
       EntityCollection entities = new EntityCollection();
       entities.getEntities().add(updatedEntity);
-      createSuccessResponse(response, responseFormat, serializer.serialize(request, entities));
+      createSuccesResponse(response, responseFormat, serializer.serialize(request, entities));
     }
   }
 
@@ -779,4 +780,5 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       target = (Map<String, Object>) target.get(pathItem.getInternalName());
     return target;
   }
+
 }

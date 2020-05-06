@@ -9,7 +9,6 @@ import org.apache.olingo.commons.api.edm.geo.SRID;
 class IntermediateOperationResultParameter implements JPAOperationResultParameter {
   /**
    *
-
    */
   private final JPAOperation jpaOperation;
   private final ReturnType jpaReturnType;

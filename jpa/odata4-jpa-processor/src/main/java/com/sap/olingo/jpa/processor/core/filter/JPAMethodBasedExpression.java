@@ -18,4 +18,5 @@ final class JPAMethodBasedExpression extends JPAMethodCallImp implements JPAExpr
   public Expression<Boolean> get() throws ODataApplicationException {
     return (Expression<Boolean>) super.get();
   }
+
 }

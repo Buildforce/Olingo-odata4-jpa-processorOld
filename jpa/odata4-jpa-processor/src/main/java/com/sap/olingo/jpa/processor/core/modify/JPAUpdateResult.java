@@ -16,4 +16,5 @@ public final class JPAUpdateResult {
   public Object getModifiedEntity() {
     return modifiedEntity;
   }
+
 }

@@ -80,7 +80,7 @@ final class JPASerializeValue extends JPASerializePrimitiveAbstract {
   }
 
   @Override
-  public SerializerResult serialize(final Annotatable result, final EdmType entityType)
+  public SerializerResult serialize(final Annotatable result, final EdmType entityType, final ODataRequest request)
       throws SerializerException {
 
     final PrimitiveValueSerializerOptions options = PrimitiveValueSerializerOptions.with().build();

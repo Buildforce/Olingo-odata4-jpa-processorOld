@@ -17,6 +17,7 @@ import org.apache.olingo.commons.api.format.ContentType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
+import org.apache.olingo.server.api.ODataRequest;
 import org.apache.olingo.server.api.ODataResponse;
 import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.serializer.SerializerResult;
@@ -66,9 +67,9 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
   }
 
   private List<ComplexValue> createComplexCollection(final EdmComplexType returnType, final Object result)
-      throws ODataApplicationException/*, SerializerException, URISyntaxException*/ {
+      throws ODataApplicationException {
 
-      final List<Object> jpaQueryResult = new ArrayList<>((Collection<?>) result);
+    final List<Object> jpaQueryResult = new ArrayList<>((Collection<?>) result);
     return new JPAComplexResultConverter(sd, jpaQueryResult, returnType).getResult();
   }
 
@@ -102,16 +103,16 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
   }
 
   protected void serializeResult(final EdmType returnType, final ODataResponse response,
-      final ContentType responseFormat, final Annotatable result)
+      final ContentType responseFormat, final Annotatable result, final ODataRequest request)
       throws ODataJPASerializerException, SerializerException {
 
-    if (result != null) {
-      final SerializerResult serializerResult = ((JPAOperationSerializer) serializer).serialize(result, returnType);
-      createSuccessResponse(response, responseFormat, serializerResult);
+    if (result != null
+        && !(result instanceof EntityCollection && ((EntityCollection) result).getEntities().isEmpty())) {
+
+      final SerializerResult serializerResult = ((JPAOperationSerializer) serializer).serialize(result, returnType,
+          request);
+      createSuccesResponse(response, responseFormat, serializerResult);
     } else {
-/*      if (result instanceof EntityCollection) {
-        ((EntityCollection) result).getEntities();
-      }*/
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     }
   }

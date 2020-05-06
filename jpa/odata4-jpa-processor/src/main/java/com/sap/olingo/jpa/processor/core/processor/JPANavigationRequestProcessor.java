@@ -130,7 +130,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       final int serializerHandle = debugger.startRuntimeMeasurement(serializer, "serialize");
       final SerializerResult serializerResult = serializer.serialize(request, entityCollection);
       debugger.stopRuntimeMeasurement(serializerHandle);
-      createSuccessResponse(response, responseFormat, serializerResult);
+      createSuccesResponse(response, responseFormat, serializerResult);
     } else {
       // A request returns 204 No Content if the requested resource has the null value, or if the service applies a
       // return=minimal preference. In this case, the response body MUST be empty.

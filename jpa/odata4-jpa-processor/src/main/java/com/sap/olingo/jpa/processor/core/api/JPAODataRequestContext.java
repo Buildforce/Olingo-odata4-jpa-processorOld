@@ -12,7 +12,7 @@ public interface JPAODataRequestContext {
 
   void setEntityManager(final EntityManager em);
 
-  void setDebugSupport(final DebugSupport debugSupport);
+ // void setDebugSupport(final DebugSupport debugSupport);
 
   void setTransactionFactory(final JPAODataTransactionFactory transactionFactory);
 

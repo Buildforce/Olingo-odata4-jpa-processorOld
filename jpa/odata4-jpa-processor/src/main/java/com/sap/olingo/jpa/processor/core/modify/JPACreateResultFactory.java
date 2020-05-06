@@ -25,4 +25,5 @@ public final class JPACreateResultFactory {
     else
       return new JPAEntityResult(et, result, requestHeaders, converter);
   }
+
 }

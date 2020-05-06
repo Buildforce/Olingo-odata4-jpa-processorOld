@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class TestRetrieveSingleEntity extends TestBase {
   public void testRetrieveWithOneKey() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations('3')");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     assertEquals("3", org.get("ID").asText());
@@ -27,7 +28,7 @@ public class TestRetrieveSingleEntity extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerRoles(BusinessPartnerID='1',RoleCategory='A')");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     assertEquals("1", org.get("BusinessPartnerID").asText());
@@ -39,7 +40,7 @@ public class TestRetrieveSingleEntity extends TestBase {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "AdministrativeDivisionDescriptions(DivisionCode='BE1',CodeID='NUTS1',CodePublisher='Eurostat',Language='en')");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     ObjectNode org = helper.getValue();
     assertEquals("en", org.get("Language").asText());

@@ -22,6 +22,7 @@
         <odata.version>4.7.1</odata.version>
         <project.build.source>1.8</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <derby.version>10.15.2.0</derby.version>
     </properties>
 
     <profiles>

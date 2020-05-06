@@ -12,7 +12,6 @@ import java.util.Optional;
 
 /**
  *
-
  * @author Oliver Grande
  *
  */
@@ -66,4 +65,9 @@ public interface JPAODataCRUDContextAccess {
   default String getMappingPath() {
     return "";
   }
+
+  default boolean useAbsoluteContextURL() {
+    return false;
+  }
+
 }

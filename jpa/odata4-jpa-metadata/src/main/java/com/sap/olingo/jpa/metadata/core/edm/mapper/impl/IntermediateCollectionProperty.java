@@ -39,8 +39,7 @@ import static javax.persistence.metamodel.Type.PersistenceType.EMBEDDABLE;
  *
  */
 
-class IntermediateCollectionProperty extends IntermediateProperty implements JPACollectionAttribute,
-        JPAAssociationAttribute {
+class IntermediateCollectionProperty extends IntermediateProperty implements JPACollectionAttribute, JPAAssociationAttribute {
   private final IntermediateStructuredType sourceType;
   private JPAJoinTable joinTable; // lazy build
   private JPAAssociationPathImpl associationPath; // lazy build

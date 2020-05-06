@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.security.Principal;
 import java.util.*;
 
-import static com.sap.olingo.jpa.processor.core.api.JPAODataGetHandler.REQUESTMAPPING;
+import static com.sap.olingo.jpa.processor.core.api.JPAODataGetHandler.REQUESTMAPPING_ATTRIBUTE;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class HttpServletRequestDouble implements HttpServletRequest {
@@ -87,7 +87,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
 
     @Override
     public Object getAttribute(final String name) {
-        if (!REQUESTMAPPING.equals(name))
+        if (!REQUESTMAPPING_ATTRIBUTE.equals(name))
             fail();
         return null;
     }

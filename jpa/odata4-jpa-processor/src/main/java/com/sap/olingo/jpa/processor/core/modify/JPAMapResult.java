@@ -71,4 +71,5 @@ final class JPAMapResult extends JPAMapBaseResult {
     tupleResult.add(tuple);
     return tupleResult;
   }
+
 }

@@ -34,7 +34,6 @@ public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAPrimitiveTypeOperator#get()
    */
   @Override
@@ -84,4 +83,5 @@ public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
   public String getName() {
     return literal.getText();
   }
+
 }

@@ -4,6 +4,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestHelper;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -51,7 +52,7 @@ public class TestJPAFunction {
     createFunction();
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds,
         "Siblings(DivisionCode='BE25',CodeID='NUTS2',CodePublisher='Eurostat')");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
   }
 
   private void createFunction() {

@@ -9,6 +9,7 @@ import com.sap.olingo.jpa.processor.core.api.JPAODataGroupsProvider;
 import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import org.apache.olingo.commons.api.ex.ODataException;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class TestJPAQueryCollection extends TestBase {
   public void testSelectPropertyAndCollection() throws IOException, ODataException {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations?$select=ID,Comment&orderby=ID");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode orgs = helper.getValues();
     ObjectNode org = (ObjectNode) orgs.get(0);
@@ -36,7 +37,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Persons('99')/InhouseAddress?$select=Building");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ArrayNode buildings = helper.getValues();
     assertEquals(2, buildings.size());
@@ -50,7 +51,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Persons('99')?$select=*");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode person = helper.getValue();
     ArrayNode comment = (ArrayNode) person.get("InhouseAddress");
@@ -62,7 +63,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('1')?$select=*");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode person = helper.getValue();
     ArrayNode comment = (ArrayNode) person.get("Comment");
@@ -74,7 +75,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Collections('504')?$select=Nested");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     ArrayNode nested = (ArrayNode) collection.get("Nested");
@@ -90,7 +91,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Collections('502')?$select=Complex");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final ObjectNode complex = (ObjectNode) collection.get("Complex");
@@ -112,7 +113,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Collections('501')?$select=Complex");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     ObjectNode complex = (ObjectNode) collection.get("Complex");
@@ -129,7 +130,7 @@ public class TestJPAQueryCollection extends TestBase {
   public void testSelectAllWithComplexContainingCollection() throws IOException, ODataException {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Collections('502')");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     ObjectNode complex = (ObjectNode) collection.get("Complex");
@@ -150,7 +151,7 @@ public class TestJPAQueryCollection extends TestBase {
   public void testSelectAllDeepComplexContainingCollection() throws IOException, ODataException {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf, "CollectionDeeps('501')");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     ObjectNode complex = (ObjectNode) collection.get("FirstLevel");
@@ -166,7 +167,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "CollectionDeeps('502')?$select=FirstLevel/SecondLevel/Comment");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final TextNode actId = (TextNode) collection.get("ID");
@@ -183,7 +184,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "CollectionDeeps('501')?$select=FirstLevel/SecondLevel/Number");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final TextNode actId = (TextNode) collection.get("ID");
@@ -200,7 +201,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerWithGroupss('1')?$select=Comment");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final ArrayNode act = (ArrayNode) collection.get("Comment");
@@ -214,7 +215,7 @@ public class TestJPAQueryCollection extends TestBase {
     groups.addGroup("Company");
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "BusinessPartnerWithGroupss('1')?$select=Comment", groups);
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final ArrayNode act = (ArrayNode) collection.get("Comment");
@@ -226,7 +227,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations('1')?$select=Comment");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final ArrayNode act = (ArrayNode) collection.get("Comment");
@@ -238,7 +239,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$select=Comment&$top=2");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final ArrayNode act = ((ArrayNode) collection.get("value"));
@@ -251,7 +252,7 @@ public class TestJPAQueryCollection extends TestBase {
 
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,
         "Organizations?$select=Comment&$top=2&orderby=Name1");
-    helper.assertStatus(200);
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
 
     final ObjectNode collection = helper.getValue();
     final ArrayNode act = ((ArrayNode) collection.get("value"));

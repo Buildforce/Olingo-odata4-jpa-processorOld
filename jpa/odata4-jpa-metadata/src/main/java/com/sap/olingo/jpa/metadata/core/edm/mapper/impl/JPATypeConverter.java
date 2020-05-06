@@ -23,6 +23,9 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -31,7 +34,7 @@ import java.util.UUID;
  */
 public final class JPATypeConverter {
 
-  private JPATypeConverter() {}
+//  private JPATypeConverter() {}
 
     public static EdmPrimitiveTypeKind convertToEdmSimpleType(final Class<?> type) throws ODataJPAModelException {
         return convertToEdmSimpleType(type, null);
@@ -51,58 +54,41 @@ public final class JPATypeConverter {
                                                                   final Attribute<?, ?> currentAttribute) throws ODataJPAModelException {
 
         if (jpaType.equals(String.class) || jpaType.equals(Character.class) || jpaType.equals(char.class) || jpaType.equals(
-                char[].class) || jpaType.equals(Character[].class)) {
-            return EdmPrimitiveTypeKind.String;
-        } else if (jpaType.equals(Long.class) || jpaType.equals(long.class)) {
-            return EdmPrimitiveTypeKind.Int64;
-        } else if (jpaType.equals(Short.class) || jpaType.equals(short.class)) {
-            return EdmPrimitiveTypeKind.Int16;
-        } else if (jpaType.equals(Integer.class) || jpaType.equals(int.class)) {
-            return EdmPrimitiveTypeKind.Int32;
-        } else if (jpaType.equals(Double.class) || jpaType.equals(double.class)) {
-            return EdmPrimitiveTypeKind.Double;
-        } else if (jpaType.equals(Float.class) || jpaType.equals(float.class)) {
-            return EdmPrimitiveTypeKind.Single;
-        } else if (jpaType.equals(BigDecimal.class)) {
-            return EdmPrimitiveTypeKind.Decimal;
-        } else if (jpaType.equals(byte[].class)) {
-            return EdmPrimitiveTypeKind.Binary;
-        } else if (jpaType.equals(Byte.class) || jpaType.equals(byte.class)) {
-            return EdmPrimitiveTypeKind.SByte;
-        } else if (jpaType.equals(Boolean.class) || jpaType.equals(boolean.class)) {
-            return EdmPrimitiveTypeKind.Boolean;
-        } else if (jpaType.equals(java.time.LocalTime.class) || jpaType.equals(java.sql.Time.class)) {
+                char[].class) || jpaType.equals(Character[].class)) return EdmPrimitiveTypeKind.String;
+        else if (jpaType.equals(Long.class) || jpaType.equals(long.class)) return EdmPrimitiveTypeKind.Int64;
+        else if (jpaType.equals(Short.class) || jpaType.equals(short.class)) return EdmPrimitiveTypeKind.Int16;
+        else if (jpaType.equals(Integer.class) || jpaType.equals(int.class)) return EdmPrimitiveTypeKind.Int32;
+        else if (jpaType.equals(Double.class) || jpaType.equals(double.class)) return EdmPrimitiveTypeKind.Double;
+        else if (jpaType.equals(Float.class) || jpaType.equals(float.class)) return EdmPrimitiveTypeKind.Single;
+        else if (jpaType.equals(BigDecimal.class)) return EdmPrimitiveTypeKind.Decimal;
+        else if (jpaType.equals(byte[].class)) return EdmPrimitiveTypeKind.Binary;
+        else if (jpaType.equals(Byte.class) || jpaType.equals(byte.class)) return EdmPrimitiveTypeKind.SByte;
+        else if (jpaType.equals(Boolean.class) || jpaType.equals(boolean.class)) return EdmPrimitiveTypeKind.Boolean;
+        else if (jpaType.equals(java.time.LocalTime.class) || jpaType.equals(java.sql.Time.class))
             return EdmPrimitiveTypeKind.TimeOfDay;
-        } else if (jpaType.equals(java.time.Duration.class)) {
-            return EdmPrimitiveTypeKind.Duration;
-        } else if (jpaType.equals(java.time.LocalDate.class) || jpaType.equals(java.sql.Date.class)) {
+        else if (jpaType.equals(java.time.Duration.class)) return EdmPrimitiveTypeKind.Duration;
+        else if (jpaType.equals(java.time.LocalDate.class) || jpaType.equals(java.sql.Date.class))
             return EdmPrimitiveTypeKind.Date;
-        } else if (jpaType.equals(Calendar.class) || jpaType.equals(Timestamp.class) || jpaType.equals(
-                java.util.Date.class)) {
+        else if (jpaType.equals(Calendar.class) || jpaType.equals(Timestamp.class) || jpaType.equals(java.util.Date.class))
             if ((currentAttribute != null) && (determineTemporalType(currentAttribute) == TemporalType.TIME)) {
                 return EdmPrimitiveTypeKind.TimeOfDay;
-            } else if ((currentAttribute != null) && (determineTemporalType(currentAttribute) == TemporalType.DATE)) {
+            } else if ((currentAttribute != null) && (determineTemporalType(currentAttribute) == TemporalType.DATE))
                 return EdmPrimitiveTypeKind.Date;
-            } else {
+            else return EdmPrimitiveTypeKind.DateTimeOffset;
+        else // Looks like Olingo does not support LocalDateTime or OffsetDateTime, which are supported by JPA 2.2. Olingo only
+            // takes ZonedDateTime.
+            if (jpaType.equals(ZonedDateTime.class) || jpaType.equals(LocalDateTime.class) || jpaType.equals(OffsetDateTime.class))
                 return EdmPrimitiveTypeKind.DateTimeOffset;
-            }
-        } else if (jpaType.equals(UUID.class)) {
-            return EdmPrimitiveTypeKind.Guid;
-        } else if (jpaType.equals(Blob.class) && isBlob(currentAttribute)) {
-            return EdmPrimitiveTypeKind.Binary;
-        } else if (jpaType.equals(Clob.class) && isBlob(currentAttribute)) {
-            return EdmPrimitiveTypeKind.String;
-        } else if (isGeography(currentAttribute)) {
-            return convertGeography(jpaType, currentAttribute);
-        } else if (isGeometry(currentAttribute)) {
-            return convertGeometry(jpaType, currentAttribute);
-        }
+            else if (jpaType.equals(UUID.class)) return EdmPrimitiveTypeKind.Guid;
+            else if (jpaType.equals(Blob.class) && isBlob(currentAttribute)) return EdmPrimitiveTypeKind.Binary;
+            else if (jpaType.equals(Clob.class) && isBlob(currentAttribute)) return EdmPrimitiveTypeKind.String;
+            else if (isGeography(currentAttribute)) return convertGeography(jpaType, currentAttribute);
+            else if (isGeometry(currentAttribute)) return convertGeometry(jpaType, currentAttribute);
         if (currentAttribute != null)
             // Type (%1$s) of attribute (%2$s) is not supported. Mapping not possible
             throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED,
                     jpaType.getName(), currentAttribute.getName());
-        else
-            return null;
+        else return null;
     }
 
     public static EdmPrimitiveTypeKind convertToEdmSimpleType(final JPAAttribute attribute)
@@ -135,6 +121,8 @@ public final class JPATypeConverter {
                 type == java.sql.Time.class ||
                 type == java.time.Duration.class ||
                 type == java.time.LocalDate.class ||
+                type == java.time.OffsetDateTime.class ||
+                type == java.time.ZonedDateTime.class ||
                 type == java.sql.Date.class ||
                 type == Calendar.class ||
                 type == Timestamp.class ||
@@ -143,9 +131,19 @@ public final class JPATypeConverter {
     }
 
     /**
-     * For supported java types see {@link org.apache.olingo.commons.api.edm.EdmPrimitiveType}
-     *
-     * @param type
+     * For supported java types see {@link org.apache.olingo.commons.api.edm.EdmPrimitiveType}. In addition, since 4.7.1,
+     * also some types from the java.time package are supported, see:
+     * <ul>
+     * <li>For EdmDate: LocalDate, see
+     * {@link org.apache.olingo.commons.core.edm.primitivetype.EdmDate#internalValueToString
+     * EdmDate.internalValueToString}</li>
+     * <li>For EdmTimeOfDay: LocalTime, see
+     * {@link org.apache.olingo.commons.core.edm.primitivetype.EdmTimeOfDay#internalValueToString
+     * EdmTimeOfDay.internalValueToString}</li>
+     * <li>For EdmDateTimeOffset: ZonedDateTime, see
+     * {@link org.apache.olingo.commons.core.edm.primitivetype.EdmDateTimeOffset#internalValueToString
+     * EdmDateTimeOffset.internalValueToString}</li>
+     * </ul>     * @param type
      * @return
      */
     public static boolean isSupportedByOlingo(final Class<?> type) {
@@ -162,6 +160,9 @@ public final class JPATypeConverter {
                 type == java.sql.Time.class ||
                 type == java.sql.Timestamp.class ||
                 type == java.util.Calendar.class ||
+                type == java.time.LocalTime.class ||
+                type == java.time.LocalDate.class ||
+                type == java.time.ZonedDateTime.class ||
                 type == java.util.Date.class ||
                 type == java.util.UUID.class ||
                 type == Long.class ||

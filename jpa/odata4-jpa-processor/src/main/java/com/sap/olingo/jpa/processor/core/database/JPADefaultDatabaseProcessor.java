@@ -117,4 +117,5 @@ public class JPADefaultDatabaseProcessor extends JPAAbstractDatabaseProcessor im
   public void setCriterialBuilder(final CriteriaBuilder cb) {
     this.cb = cb;
   }
+
 }

@@ -8,4 +8,5 @@ public interface JPAExpression extends JPAOperator {
 
   @Override
   Expression<Boolean> get() throws ODataApplicationException;
+
 }

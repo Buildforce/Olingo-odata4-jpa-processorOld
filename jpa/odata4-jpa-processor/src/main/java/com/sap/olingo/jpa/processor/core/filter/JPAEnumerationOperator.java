@@ -43,7 +43,6 @@ public final class JPAEnumerationOperator implements JPAEnumerationBasedOperator
   /*
    * (non-Javadoc)
    *
-
    * @see com.sap.olingo.jpa.processor.core.filter.JPAEnumerationBasedOperator#getValue()
    */
   @Override
@@ -59,4 +58,5 @@ public final class JPAEnumerationOperator implements JPAEnumerationBasedOperator
   public String getName() {
     return "";
   }
+
 }

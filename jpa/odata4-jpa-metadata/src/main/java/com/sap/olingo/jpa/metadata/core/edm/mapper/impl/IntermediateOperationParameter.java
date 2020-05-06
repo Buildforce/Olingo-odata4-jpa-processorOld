@@ -60,9 +60,7 @@ class IntermediateOperationParameter extends IntermediateModelElement implements
   protected void lazyBuildEdmItem() {}
 
   @Override
-  CsdlAbstractEdmItem getEdmItem() {
-    return null;
-  }
+  CsdlAbstractEdmItem getEdmItem() { return null; }
 
   @Override
   public SRID getSrid() {

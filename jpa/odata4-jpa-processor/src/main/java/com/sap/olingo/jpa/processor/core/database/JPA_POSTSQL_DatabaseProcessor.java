@@ -60,4 +60,5 @@ class JPA_POSTSQL_DatabaseProcessor extends JPAAbstractDatabaseProcessor { // NO
       return executeQuery(uriResourceParts, jpaFunction, em, SELECT_BASE_PATTERN);
     throw new ODataJPAProcessorException(NOT_SUPPORTED_FUNC_WITH_NAVI, HttpStatusCode.NOT_IMPLEMENTED);
   }
+
 }

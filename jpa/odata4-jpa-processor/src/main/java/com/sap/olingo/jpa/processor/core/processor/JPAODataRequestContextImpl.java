@@ -114,10 +114,12 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
     this.page = Objects.requireNonNull(page);
   }
 
+/*
   @Override
   public void setDebugSupport(final DebugSupport debugSupport) {
     this.debugSupport = new JPADebugSupportWrapper(debugSupport);
   }
+*/
 
   @Override
   public void setJPASerializer(final JPASerializer serializer) {
