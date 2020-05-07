@@ -28,4 +28,5 @@ public class CollectionFirstLevelComplex {
   public CollectionSecondLevelComplex getSecondLevel() {
     return secondLevel;
   }
+
 }

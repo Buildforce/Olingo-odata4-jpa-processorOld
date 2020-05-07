@@ -238,6 +238,7 @@ public class TestIntermediateComplexType extends TestMappingRoot {
       "Floor, Floor",
       "RoomNumber, RoomNumber"
   })
+
   public void checkOneComplexProtectedPropertyDeepWoWildcards(final String externalName, final String claim)
       throws ODataJPAModelException {
 

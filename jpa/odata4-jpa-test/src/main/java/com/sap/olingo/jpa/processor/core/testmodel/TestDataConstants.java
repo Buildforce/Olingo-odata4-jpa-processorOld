@@ -10,4 +10,6 @@ public interface TestDataConstants {
   int NO_DEC_ATTRIBUTES_BUSINESS_PARTNER = 9;
   int NO_ENTITY_TYPES = 20;
   int NO_ENTITY_SETS = 21;
+  int NO_COMPLEXTYPES = 18;
+
 }
