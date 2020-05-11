@@ -171,133 +171,73 @@ public final class JPAODataRequestProcessor
         HttpStatusCode.NOT_IMPLEMENTED);
   }
 
-  @Override
-  public void readComplex(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
-      final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
-
+  private void uniRead(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
+    final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
     try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
+      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(), requestContext);
       p.retrieveData(request, response, responseFormat);
     } catch (ODataApplicationException | ODataLibraryException e) {
       throw e;
     } catch (ODataException e) {
       throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
+              HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
     }
+  };
+
+  @Override
+  public void readComplex(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
+      final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
+
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
   public void readComplexCollection(ODataRequest request, ODataResponse response, UriInfo uriInfo,
       ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
-    try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
-      p.retrieveData(request, response, responseFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
-      throw e;
-    } catch (ODataException e) {
-      throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
-    }
+
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
   public void readEntity(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
 
-    try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
-      p.retrieveData(request, response, responseFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
-      throw e;
-    } catch (ODataException e) {
-      throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
-    }
-
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
   public void readEntityCollection(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
 
-    try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
-      p.retrieveData(request, response, responseFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
-      throw e;
-    } catch (ODataException e) {
-      throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
-    }
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
   public void readPrimitiveCollection(ODataRequest request, ODataResponse response, UriInfo uriInfo,
       ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
-    try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
-      p.retrieveData(request, response, responseFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
-      throw e;
-    } catch (ODataException e) {
-      throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
-    }
 
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
   public void readPrimitive(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
 
-    try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
-      p.retrieveData(request, response, responseFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
-      throw e;
-    } catch (ODataException e) {
-      throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
-    }
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
   public void readPrimitiveValue(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
 
-    try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
-      p.retrieveData(request, response, responseFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
-      throw e;
-    } catch (ODataException e) {
-      throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
-    }
-
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
   public void readMediaEntity(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
 
-    try {
-      final JPARequestProcessor p = factory.createProcessor(uriInfo, responseFormat, request.getAllHeaders(),
-          requestContext);
-      p.retrieveData(request, response, responseFormat);
-    } catch (ODataApplicationException | ODataLibraryException e) {
-      throw e;
-    } catch (ODataException e) {
-      throw new ODataApplicationException(e.getLocalizedMessage(),
-          HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
-    }
+    uniRead(request, response,  uriInfo, responseFormat);
   }
 
   @Override
