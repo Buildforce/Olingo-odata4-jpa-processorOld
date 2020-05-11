@@ -54,7 +54,7 @@ public class TestJPAFunctionJava {
   private EdmFunction edmFunction;
 
   @BeforeEach
-  public void setup() throws ODataException, ODataJPAException {
+  public void setup() throws ODataException {
     OData odata = mock(OData.class);
     JPAODataCRUDContextAccess context = mock(JPAODataCRUDContextAccess.class);
     JPAODataRequestContextAccess requestContext = mock(JPAODataRequestContextAccess.class);

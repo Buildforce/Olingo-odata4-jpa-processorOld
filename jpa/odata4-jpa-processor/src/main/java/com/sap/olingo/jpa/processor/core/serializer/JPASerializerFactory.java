@@ -90,6 +90,14 @@ public final class JPASerializerFactory {
     }
   }
 
+  private JPASerializer createSerializerPrimitivePropertyRequest(final ContentType responseFormat,
+                                                                 final UriInfo uriInfo, final Optional<List<String>> responseVersion) throws SerializerException {
+
+    final ODataSerializer serializer = odata.createSerializer(responseFormat,
+            responseVersion.orElse(Collections.emptyList()));
+    return new JPASerializePrimitive(serviceMetadata, serializer, uriInfo, responseFormat, serviceContext);
+  }
+
   JPASerializer createSerializer(final ContentType responseFormat, final UriInfo uriInfo,
       final UriResourceKind uriResourceKind, boolean isCollection, final Optional<List<String>> responseVersion)
       throws SerializerException, ODataJPASerializerException {
@@ -101,7 +109,7 @@ public final class JPASerializerFactory {
       case complexProperty:
         return createSerializerComplexPropertyRequest(responseFormat, uriInfo, responseVersion);
       case primitiveProperty:
-        return createSerializerPrimitivePropertyRequest(responseFormat, uriInfo, isCollection, responseVersion);
+        return createSerializerPrimitivePropertyRequest(responseFormat, uriInfo, responseVersion);
       case action:
       case function:
         return new JPASerializeFunction(uriInfo, responseFormat, this, responseVersion);
@@ -113,18 +121,6 @@ public final class JPASerializerFactory {
         throw new ODataJPASerializerException(ODataJPASerializerException.MessageKeys.NOT_SUPPORTED_RESOURCE_TYPE,
             HttpStatusCode.NOT_IMPLEMENTED, uriResourceKind.toString());
     }
-  }
-
-  private JPASerializer createSerializerPrimitivePropertyRequest(final ContentType responseFormat,
-      final UriInfo uriInfo, final boolean isCollection, final Optional<List<String>> responseVersion) throws SerializerException {
-
-    final ODataSerializer serializer = odata.createSerializer(responseFormat,
-        responseVersion.orElse(Collections.emptyList()));
-    if (isCollection)
-      return new JPASerializeEntityCollection(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat,
-          serviceContext);
-    else
-      return new JPASerializeEntity(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat, serviceContext);
   }
 
   private JPASerializer createSerializerComplexPropertyRequest(final ContentType responseFormat, final UriInfo uriInfo,

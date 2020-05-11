@@ -870,7 +870,7 @@ public class TestJPAQueryWhereClause extends TestBase {
 
   }
 
-  @Disabled // EclipsLinkProblem see https://bugs.eclipse.org/bugs/show_bug.cgi?id=529565
+  @Disabled // EclipseLink problem see https://bugs.eclipse.org/bugs/show_bug.cgi?id=529565
   @Test
   public void testFilterNavigationPropertyViaJoinTableCountSubType() throws IOException, ODataException {
 
@@ -1130,4 +1130,5 @@ public class TestJPAQueryWhereClause extends TestBase {
         "BusinessPartnerWithGroupss('99')/InhouseAddress?$filter=RoomNumber eq 1", groups);
     helper.assertStatus(HttpStatusCode.OK.getStatusCode());
   }
+
 }

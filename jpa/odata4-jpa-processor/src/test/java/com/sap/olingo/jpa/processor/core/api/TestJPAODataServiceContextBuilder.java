@@ -16,7 +16,6 @@ import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
@@ -179,7 +178,6 @@ public class TestJPAODataServiceContextBuilder {
     assertEquals(processor, cut.getErrorProcessor());
   }
 
-  @Disabled
   @Test
   public void checkThrowsExceptionOnDBConnectionProblem() throws SQLException {
     final DataSource dsSpy = spy(ds);

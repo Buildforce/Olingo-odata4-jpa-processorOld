@@ -12,9 +12,7 @@ public abstract class ODataJPAProcessException extends ODataApplicationException
 
   /**
    *
-
    */
-  private static final long serialVersionUID = -3178033271311091314L;
   private static final String UNKNOWN_MESSAGE = "No message text found";
   private static Enumeration<Locale> locales;
 

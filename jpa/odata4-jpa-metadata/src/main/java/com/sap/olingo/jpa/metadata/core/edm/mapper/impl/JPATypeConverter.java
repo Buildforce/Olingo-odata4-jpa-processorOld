@@ -34,7 +34,7 @@ import java.util.UUID;
  */
 public final class JPATypeConverter {
 
-//  private JPATypeConverter() {}
+    private JPATypeConverter() {}
 
     public static EdmPrimitiveTypeKind convertToEdmSimpleType(final Class<?> type) throws ODataJPAModelException {
         return convertToEdmSimpleType(type, null);

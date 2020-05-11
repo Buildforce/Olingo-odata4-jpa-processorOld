@@ -6,7 +6,6 @@ import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -234,7 +233,6 @@ public class TestJPAQueryNavigation extends TestBase {
     assertNotNull(org.get("Updated"));
   }
 
-  @Disabled // 5 mei
   @Test
   public void testNavigationPrimitiveCollectionProperty() throws IOException, ODataException {
 
@@ -272,8 +270,7 @@ public class TestJPAQueryNavigation extends TestBase {
     helper.assertStatus(HttpStatusCode.OK.getStatusCode());
   }
 
-  @Disabled // 5 mei
-  @Test
+@Test
   public void testNavigationPrimitiveCollectionPropertyTwoHops() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf,

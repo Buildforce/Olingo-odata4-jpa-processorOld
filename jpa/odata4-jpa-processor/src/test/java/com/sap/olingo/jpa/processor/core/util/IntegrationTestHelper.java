@@ -7,7 +7,13 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
-import com.sap.olingo.jpa.processor.core.api.*;
+import com.sap.olingo.jpa.processor.core.api.JPAODataBatchProcessor;
+import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import com.sap.olingo.jpa.processor.core.api.JPAODataClaimsProvider;
+import com.sap.olingo.jpa.processor.core.api.JPAODataContextAccessDouble;
+import com.sap.olingo.jpa.processor.core.api.JPAODataGroupProvider;
+import com.sap.olingo.jpa.processor.core.api.JPAODataPagingProvider;
+import com.sap.olingo.jpa.processor.core.api.JPAODataRequestProcessor;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.olingo.commons.api.ex.ODataException;
@@ -25,14 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.sap.olingo.jpa.processor.core.util.TestBase.PUNIT_NAME;
+import static com.sap.olingo.jpa.processor.core.util.TestBase.uriPrefix;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class IntegrationTestHelper {
-  public final HttpServletRequestDouble req;
-  public final HttpServletResponseDouble resp;
-  private static final String uriPrefix = "http://localhost:8080/Test/Olingo.svc/";
-  private static final String PUNIT_NAME = "com.sap.olingo.jpa";
+  private final HttpServletResponseDouble resp;
 
   public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath) throws ODataJPAException {
     this(localEmf, null, urlPath, null, null, null);
@@ -59,10 +64,6 @@ public class IntegrationTestHelper {
 
   public IntegrationTestHelper(EntityManagerFactory localEmf, DataSource ds, String urlPath, String functionPackage) throws ODataJPAException {
     this(localEmf, ds, urlPath, null, functionPackage, null);
-  }
-
-  public IntegrationTestHelper(EntityManagerFactory localEmf, DataSource ds, String urlPath, StringBuffer requestBody) throws ODataJPAException {
-    this(localEmf, ds, urlPath, requestBody, null, null);
   }
 
   public IntegrationTestHelper(final EntityManagerFactory localEmf, final String urlPath, final JPAODataPagingProvider provider) throws ODataJPAException {
@@ -105,16 +106,16 @@ public class IntegrationTestHelper {
     final OData odata = OData.newInstance();
     String[] packages = TestBase.enumPackages;
     final JPAODataRequestContextImpl requestContext = new JPAODataRequestContextImpl();
-    this.req = new HttpServletRequestDouble(uriPrefix + urlPath, requestBody, headers);
-    this.resp = new HttpServletResponseDouble();
-    if (functionPackage != null)
-      packages = ArrayUtils.add(packages, functionPackage);
+    final HttpServletRequestDouble req = new HttpServletRequestDouble(uriPrefix + urlPath, requestBody, headers);
+    resp = new HttpServletResponseDouble();
+    if (functionPackage != null) packages = ArrayUtils.add(packages, functionPackage);
 
-    final JPAODataCRUDContextAccess sessionContext = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME,
-        localEmf, null, packages), ds, provider, functionPackage);
+    final JPAODataCRUDContextAccess sessionContext = new JPAODataContextAccessDouble(
+            new JPAEdmProvider(PUNIT_NAME, localEmf, null, packages),
+            ds, provider, functionPackage);
 
-    final ODataHttpHandler handler = odata.createHandler(odata.createServiceMetadata(sessionContext.getEdmProvider(),
-            new ArrayList<>()));
+    final ODataHttpHandler handler = odata.createHandler(
+            odata.createServiceMetadata(sessionContext.getEdmProvider(), new ArrayList<>()));
     requestContext.setClaimsProvider(claims);
     requestContext.setGroupsProvider(groups);
     requestContext.setEntityManager(em);
@@ -122,10 +123,6 @@ public class IntegrationTestHelper {
     handler.register(new JPAODataBatchProcessor(requestContext));
     handler.process(req, resp);
 
-  }
-
-  public HttpServletResponseDouble getResponse() {
-    return resp;
   }
 
   public int getStatus() {
@@ -193,7 +190,6 @@ public class IntegrationTestHelper {
 
   public void assertStatus(int exp) throws IOException {
     assertEquals(exp, getStatus(), getRawResult());
-
   }
 
   public int getBatchResultStatus(int i) throws IOException {
@@ -237,4 +233,5 @@ public class IntegrationTestHelper {
     in.read(result);
     return result;
   }
+
 }

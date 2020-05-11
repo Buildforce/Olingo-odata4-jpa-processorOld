@@ -45,7 +45,7 @@ public final class JPAODataRequestProcessor
 
   @Override
   public void init(final OData odata, final ServiceMetadata serviceMetadata) {
-    this.factory = new JPAProcessorFactory(odata, serviceMetadata, sessionContext);
+    factory = new JPAProcessorFactory(odata, serviceMetadata, sessionContext);
   }
 
   @Override

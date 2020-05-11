@@ -6,7 +6,6 @@ import com.sap.olingo.jpa.processor.core.util.TestBase;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpHeader;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -93,8 +92,7 @@ public class TestJPAQueryODataVersionSupport extends TestBase {
     assertNotNull(org.get("@type"));
   }
 
-  @Disabled // 5 mei
-  @Test
+@Test
   public void testPrimitivePropertyWithMetadataFullVersion400() throws IOException, ODataException {
     createHeaders();
     addHeader(HttpHeader.ODATA_MAX_VERSION, "4.00");
@@ -106,8 +104,7 @@ public class TestJPAQueryODataVersionSupport extends TestBase {
     assertNotNull(org.get("@odata.context"));
   }
 
-  @Disabled // 5 mei
-  @Test
+@Test
   public void testPrimitivePropertyWithMetadataFullVersion401() throws IOException, ODataException {
     createHeaders();
     addHeader(HttpHeader.ODATA_MAX_VERSION, "4.01");

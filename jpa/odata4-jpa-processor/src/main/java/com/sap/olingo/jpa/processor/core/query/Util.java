@@ -50,25 +50,20 @@ public final class Util {
     List<UriParameter> targetKeyPredicates = new ArrayList<>();
     StringBuilder naviPropertyName = new StringBuilder();
 
-    for (final UriResource resourceItem : resources) {
+    for (final UriResource resourceItem : resources)
       if (resourceItem.getKind() == UriResourceKind.entitySet) {
         targetEdmEntitySet = ((UriResourceEntitySet) resourceItem).getEntitySet();
         targetKeyPredicates = ((UriResourceEntitySet) resourceItem).getKeyPredicates();
-      }
-      if (resourceItem.getKind() == UriResourceKind.complexProperty) {
+      } else if (resourceItem.getKind() == UriResourceKind.complexProperty) {
         naviPropertyName.append(((UriResourceComplexProperty) resourceItem).getProperty().getName());
         naviPropertyName.append(JPAPath.PATH_SEPARATOR);
-      }
-      if (resourceItem.getKind() == UriResourceKind.navigationProperty) {
+      } else if (resourceItem.getKind() == UriResourceKind.navigationProperty) {
         naviPropertyName.append(((UriResourceNavigation) resourceItem).getProperty().getName());
         targetKeyPredicates = ((UriResourceNavigation) resourceItem).getKeyPredicates();
-        final EdmBindingTarget edmBindingTarget = targetEdmEntitySet.getRelatedBindingTarget(naviPropertyName
-            .toString());
-        if (edmBindingTarget instanceof EdmEntitySet)
-          targetEdmEntitySet = (EdmEntitySet) edmBindingTarget;
+        final EdmBindingTarget edmBindingTarget = targetEdmEntitySet.getRelatedBindingTarget(naviPropertyName.toString());
+        if (edmBindingTarget instanceof EdmEntitySet) targetEdmEntitySet = (EdmEntitySet) edmBindingTarget;
         naviPropertyName = new StringBuilder();
       }
-    }
     return new EdmEntitySetResult(targetEdmEntitySet, targetKeyPredicates, naviPropertyName.toString());
   }
 
@@ -81,11 +76,11 @@ public final class Util {
       if (resourceItem.getKind() == UriResourceKind.entitySet) {
         targetEdmEntitySet = ((UriResourceEntitySet) resourceItem).getEntitySet();
         targetKeyPredicates = ((UriResourceEntitySet) resourceItem).getKeyPredicates();
-      }
+      } else
       if (resourceItem.getKind() == UriResourceKind.complexProperty) {
         naviPropertyName.append(((UriResourceComplexProperty) resourceItem).getProperty().getName());
         naviPropertyName.append(JPAPath.PATH_SEPARATOR);
-      }
+      } else
       if (resourceItem.getKind() == UriResourceKind.navigationProperty) {
         naviPropertyName.append(((UriResourceNavigation) resourceItem).getProperty().getName());
         final List<UriParameter> keyPredicates = ((UriResourceNavigation) resourceItem).getKeyPredicates();

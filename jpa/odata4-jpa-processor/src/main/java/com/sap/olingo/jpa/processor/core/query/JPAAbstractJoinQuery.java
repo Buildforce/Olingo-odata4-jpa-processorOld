@@ -128,7 +128,6 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
    * "http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part1-protocol/odata-v4.0-errata03-os-part1-protocol-complete.html#_Server-Driven_Paging"
    * >OData Version 4.0 Part 1 - 11.2.5.7 Server-Driven Paging</a>
    *
-
    * @throws ODataApplicationException
    */
   protected void addTopSkip(final TypedQuery<Tuple> tq) throws ODataApplicationException {
@@ -138,7 +137,6 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
      * If no unique ordering is imposed through an $orderby query option, the service MUST impose a stable ordering
      * across requests that include $skip.
      *
-
      * URL example: http://localhost:8080/BuPa/BuPa.svc/Organizations?$count=true&$skip=5
      */
 
@@ -283,10 +281,6 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
    * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398305"
    * >OData Version 4.0 Part 1 - 11.2.5.2 System Query Option $orderby</a> <p>
    *
-
-   *
-   *
-
    */
   protected List<Order> createOrderByList(Map<String, From<?, ?>> joinTables, OrderByOption orderByOption)
       throws ODataApplicationException {
@@ -897,4 +891,5 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     }
     return whereCondition;
   }
+
 }

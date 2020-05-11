@@ -85,9 +85,11 @@ public final class JPAProcessorFactory {
     final JPAODataPage page = getPage(header, uriInfo, context);
     JPAODataRequestContextAccess requestContext;
     try {
-      requestContext = new JPAODataRequestContextImpl(page, serializerFactory
-          .createSerializer(responseFormat, page.getUriInfo(), Optional.ofNullable(header.get(
-              HttpHeader.ODATA_MAX_VERSION))), context);
+      requestContext = new JPAODataRequestContextImpl(page,
+              serializerFactory.createSerializer(responseFormat,
+                      page.getUriInfo(),
+                      Optional.ofNullable(header.get(HttpHeader.ODATA_MAX_VERSION))),
+              context);
     } catch (SerializerException | JPAIllegalAccessException | ODataApplicationException e) {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }

@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
  */
 class SelectOptionUtil {
 
+  private SelectOptionUtil() {}
+
   public static JPAPath selectItemAsPath(final JPAStructuredType jpaEntity, final String pathPrefix,
       final SelectItem sItem) throws ODataJPAQueryException {
 

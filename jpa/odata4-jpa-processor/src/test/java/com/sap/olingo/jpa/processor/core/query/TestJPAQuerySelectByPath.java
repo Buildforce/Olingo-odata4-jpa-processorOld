@@ -9,7 +9,6 @@ import com.sap.olingo.jpa.processor.core.util.IntegrationTestHelper;
 import com.sap.olingo.jpa.processor.core.util.TestBase;
 import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,8 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJPAQuerySelectByPath extends TestBase {
 
-  @Disabled // 5 mei
-  @Test
+@Test
   public void testNavigationToOwnPrimitiveProperty() throws IOException, ODataException {
 
     IntegrationTestHelper helper = new IntegrationTestHelper(emf, "Organizations('3')/Name1");
@@ -43,7 +41,6 @@ public class TestJPAQuerySelectByPath extends TestBase {
     helper.assertStatus(404);
   }
 
-  @Disabled // 5 mei
   @Test
   public void testNavigationToOwnPrimitiveDescriptionProperty() throws IOException, ODataException {
 
@@ -82,7 +79,6 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertEquals("98", org.get("By").asText());
   }
 
-  @Disabled // 5 mei
   @Test
   public void testNavigationViaComplexAndNaviPropertyToPrimitive() throws IOException, ODataException {
 
@@ -117,7 +113,6 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertEquals("USA", org.get("Country").asText());
   }
 
-  @Disabled // 5 mei
   @Test
   public void testNavigationToComplexPrimitiveProperty() throws IOException, ODataException {
 
@@ -129,7 +124,6 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertTrue(org.get("@odata.context").asText().endsWith("$metadata#Organizations/Address/Region"));
   }
 
-  @Disabled // 5 mei
   @Test
   public void testNavigationToCollection() throws IOException, ODataException {
 
@@ -137,7 +131,6 @@ public class TestJPAQuerySelectByPath extends TestBase {
     helper.assertStatus(HttpStatusCode.OK.getStatusCode());
   }
 
-  @Disabled // 5 mei
   @Test
   public void testNavigationToCollectionWithoutEntries() throws IOException, ODataException {
 
@@ -178,7 +171,6 @@ public class TestJPAQuerySelectByPath extends TestBase {
     assertTrue(addr.get("RoomNumber").isNull());
   }
 
-  @Disabled // 5 mei
   @Test
   public void testNavigationToCollectionGroupedPropertyNoGroups() throws IOException, ODataException {
 
@@ -304,4 +296,5 @@ public class TestJPAQuerySelectByPath extends TestBase {
       fail();
     }
   }
+
 }

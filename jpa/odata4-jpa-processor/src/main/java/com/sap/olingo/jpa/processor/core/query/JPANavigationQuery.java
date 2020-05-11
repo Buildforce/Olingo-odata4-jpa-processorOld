@@ -32,7 +32,6 @@ import java.util.Locale;
 import java.util.Optional;
 
 public abstract class JPANavigationQuery extends JPAAbstractQuery {
-
   protected From<?, ?> queryJoinTable = null;
   protected Subquery<?> subQuery;
   protected final JPAAbstractQuery parentQuery;
@@ -42,19 +41,27 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
   protected final JPAAssociationPath association;
   protected JPAFilterElementCompiler filterCompiler;
 
-  public JPANavigationQuery(final OData odata, final JPAServiceDocument sd, final EdmEntityType edmEntityType,
-      final EntityManager em, final JPAAbstractQuery parent, From<?, ?> from, final JPAAssociationPath association,
-      final Optional<JPAODataClaimProvider> claimsProvider) {
+  public JPANavigationQuery(final OData odata,
+                            final JPAServiceDocument sd,
+                            final EdmEntityType edmEntityType,
+                            final EntityManager em,
+                            final JPAAbstractQuery parent, From<?, ?> from,
+                            final JPAAssociationPath association,
+                            final Optional<JPAODataClaimProvider> claimsProvider) {
 
     super(odata, sd, edmEntityType, em, claimsProvider);
-    this.parentQuery = parent;
+    parentQuery = parent;
     this.from = from;
     this.association = association;
   }
 
-  public JPANavigationQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntity,
-      final EntityManager em, final JPAAbstractQuery parent, final From<?, ?> from,
-      final JPAAssociationPath association) {
+  public JPANavigationQuery(final OData odata,
+                            final JPAServiceDocument sd,
+                            final JPAEntityType jpaEntity,
+                            final EntityManager em,
+                            final JPAAbstractQuery parent,
+                            final From<?, ?> from,
+                            final JPAAssociationPath association) {
 
     super(odata, sd, jpaEntity, em, Optional.empty());
     this.parentQuery = parent;
@@ -273,4 +280,5 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
     }
     return null;
   }
+
 }

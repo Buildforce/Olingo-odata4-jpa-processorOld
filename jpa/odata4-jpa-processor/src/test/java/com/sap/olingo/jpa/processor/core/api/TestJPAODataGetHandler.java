@@ -38,8 +38,7 @@ public class TestJPAODataGetHandler extends TestBase {
 
   @BeforeEach
   public void setup() {
-    request = new HttpServletRequestDouble("http://localhost:8080/Test/Olingo.svc/Organizations", new StringBuffer(),
-        headers);
+    request = new HttpServletRequestDouble(uriPrefix + "Organizations", new StringBuffer(), headers);
     response = new HttpServletResponseDouble();
   }
 
@@ -247,7 +246,8 @@ public class TestJPAODataGetHandler extends TestBase {
   public static class HttpRequestMatcher implements ArgumentMatcher<HttpServletRequest> {
     @Override
     public boolean matches(final HttpServletRequest argument) {
-      return argument instanceof HttpServletRequest && !(argument instanceof HttpServletRequestWrapper);
+      return argument != null && !(argument instanceof HttpServletRequestWrapper);
     }
   }
+
 }

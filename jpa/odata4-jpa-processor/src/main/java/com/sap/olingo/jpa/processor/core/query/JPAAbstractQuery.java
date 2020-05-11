@@ -47,18 +47,15 @@ import static com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException
 import static com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException.MessageKeys.WILDCARD_UPPER_NOT_SUPPORTED;
 
 public abstract class JPAAbstractQuery {
-
-  protected static final String SELECT_ITEM_SEPARATOR = ",";
-  protected static final String SELECT_ALL = "*";
-  protected final EntityManager em;
+  protected Locale locale;
   protected final CriteriaBuilder cb;
+  protected final EntityManager em;
   protected final JPAEntityType jpaEntity;
   protected final JPAServiceDocument sd;
-  protected final JPAServiceDebugger debugger;
   protected final OData odata;
-  protected Locale locale;
   protected final Optional<JPAODataClaimProvider> claimsProvider;
-  protected final List<String> groups;
+  protected JPAServiceDebugger debugger = new EmptyDebugger();
+  protected List<String> groups = Collections.emptyList();
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
       final EntityManager em, final Optional<JPAODataClaimProvider> claimsProvider) {
@@ -66,10 +63,8 @@ public abstract class JPAAbstractQuery {
     this.cb = em.getCriteriaBuilder();
     this.sd = sd;
     this.jpaEntity = jpaEntityType;
-    this.debugger = new EmptyDebugger();
     this.odata = odata;
     this.claimsProvider = claimsProvider;
-    this.groups = Collections.emptyList();
   }
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
@@ -81,7 +76,6 @@ public abstract class JPAAbstractQuery {
     this.debugger = debugger;
     this.odata = odata;
     this.claimsProvider = claimsProvider;
-    this.groups = Collections.emptyList();
   }
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final EdmEntityType edmEntityType,
@@ -90,23 +84,24 @@ public abstract class JPAAbstractQuery {
     this.cb = em.getCriteriaBuilder();
     this.sd = sd;
     this.jpaEntity = sd.getEntity(edmEntityType);
-    this.debugger = new EmptyDebugger();
     this.odata = odata;
     this.claimsProvider = claimsProvider;
-    this.groups = Collections.emptyList();
   }
 
-  public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
-      final JPAODataRequestContextAccess requestContext) {
+  public JPAAbstractQuery(final OData odata,
+                          final JPAServiceDocument sd,
+                          final JPAEntityType jpaEntityType,
+                          final JPAODataRequestContextAccess requestContext) {
     final Optional<JPAODataGroupProvider> groupsProvider = requestContext.getGroupsProvider();
-    this.em = requestContext.getEntityManager();
-    this.cb = em.getCriteriaBuilder();
-    this.sd = sd;
-    this.jpaEntity = jpaEntityType;
-    this.debugger = requestContext.getDebugger();
-    this.odata = odata;
-    this.claimsProvider = requestContext.getClaimsProvider();
-    this.groups = groupsProvider.isPresent() ? groupsProvider.get().getGroups() : Collections.emptyList();
+
+      this.jpaEntity = jpaEntityType;
+      this.odata = odata;
+      this.sd = sd;
+    em = requestContext.getEntityManager();
+    cb = em.getCriteriaBuilder();
+    debugger = requestContext.getDebugger();
+    claimsProvider = requestContext.getClaimsProvider();
+    groups = groupsProvider.isPresent() ? groupsProvider.get().getGroups() : Collections.emptyList();
   }
 
   protected javax.persistence.criteria.Expression<Boolean> createWhereByKey(final From<?, ?> root,
@@ -164,10 +159,7 @@ public abstract class JPAAbstractQuery {
     Join<T, S> join = null;
     JoinType jt;
     for (int i = 0; i < pathList.size(); i++) {
-      if (i == pathList.size() - 1)
-        jt = finalJoinType;
-      else
-        jt = JoinType.INNER;
+      if (i == pathList.size() - 1) jt = finalJoinType; else jt = JoinType.INNER;
       if (i == 0) {
         join = root.join(pathList.get(i).getInternalName(), jt);
         join.alias(alias);
@@ -296,4 +288,5 @@ public abstract class JPAAbstractQuery {
     }
 
   }
+
 }

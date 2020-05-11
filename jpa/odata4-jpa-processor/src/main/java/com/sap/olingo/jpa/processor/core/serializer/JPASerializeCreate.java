@@ -56,7 +56,7 @@ final class JPASerializeCreate implements JPASerializer {
 
   @Override
   public SerializerResult serialize(ODataRequest request, EntityCollection result)
-          throws SerializerException, SerializerException, ODataJPASerializerException {
+          throws SerializerException, ODataJPASerializerException {
 
     final ExpandOption expandOption = new ExpandOptionWrapper(new ExpandItemWrapper());
     final EdmEntitySet targetEdmEntitySet = Util.determineTargetEntitySet(uriInfo.getUriResourceParts());

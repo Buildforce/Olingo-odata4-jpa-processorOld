@@ -67,7 +67,7 @@ public class TestCriteriaBuilder {
     tq.getResultList();
   }
 
-  @Disabled // To time consuming
+  @Disabled // It's too time consuming
   @Test
   public void testSubSelect() {
     // https://stackoverflow.com/questions/29719321/combining-conditional-expressions-with-and-and-or-predicates-using-the-jpa-c

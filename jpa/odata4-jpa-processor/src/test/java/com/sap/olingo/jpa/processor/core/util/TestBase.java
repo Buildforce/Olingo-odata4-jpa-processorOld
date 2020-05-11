@@ -15,6 +15,8 @@ import java.util.Map;
 
 public class TestBase {
 
+  protected static final String uriPrefix = "http://localhost:8080/Test/Olingo.svc/";
+
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
   public static final String[] enumPackages = { "com.sap.olingo.jpa.processor.core.testmodel" };
   protected static EntityManagerFactory emf;
@@ -42,4 +44,5 @@ public class TestBase {
     newHeader.add(value);
     headers.put(header, newHeader);
   }
+
 }
