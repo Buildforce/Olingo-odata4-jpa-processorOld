@@ -1,8 +1,6 @@
 package com.sap.olingo.jpa.processor.core.util;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunctions;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAssociationPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
@@ -10,9 +8,15 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.metamodel.*;
-import java.lang.reflect.AnnotatedElement;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.EmbeddableType;
+import jakarta.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.ManagedType;
+import jakarta.persistence.metamodel.Metamodel;
+// import jakarta.persistence.metamodel.SingularAttribute;
+
+// import java.lang.reflect.AnnotatedElement;
 
 public class TestHelper {
   final private Metamodel jpaMetamodel;
@@ -45,14 +49,10 @@ public class TestHelper {
     return jpaEntity.getAssociationPath(attributeExtName);
   }
 
+/*
   public JPAAttribute getJPAAssociation(String entitySetName, String attributeIntName) throws ODataJPAModelException {
     JPAEntityType jpaEntity = sd.getEntity(entitySetName);
     return jpaEntity.getAssociation(attributeIntName);
-  }
-
-  public JPAAttribute getJPAAttribute(String entitySetName, String attributeIntName) throws ODataJPAModelException {
-    JPAEntityType jpaEntity = sd.getEntity(entitySetName);
-    return jpaEntity.getAttribute(attributeIntName);
   }
 
   public EdmFunction getStoredProcedure(EntityType<?> jpaEntityType, String string) {
@@ -91,6 +91,12 @@ public class TestHelper {
         return attribute;
     }
     return null;
+  }
+  */
+
+  public JPAAttribute getJPAAttribute(String entitySetName, String attributeIntName) throws ODataJPAModelException {
+    JPAEntityType jpaEntity = sd.getEntity(entitySetName);
+    return jpaEntity.getAttribute(attributeIntName);
   }
 
 }

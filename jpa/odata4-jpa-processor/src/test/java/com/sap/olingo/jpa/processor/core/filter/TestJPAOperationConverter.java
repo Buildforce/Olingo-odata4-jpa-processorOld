@@ -7,9 +7,9 @@ import org.apache.olingo.server.api.uri.queryoption.expression.BinaryOperatorKin
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Path;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -169,4 +169,5 @@ public class TestJPAOperationConverter {
     }
     fail("Exception expected.");
   }
+
 }

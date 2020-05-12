@@ -1,11 +1,11 @@
 package com.sap.olingo.jpa.processor.core.errormodel;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -50,4 +50,5 @@ public class AdministrativeInformation {
   void onUpdate() {
     updated = new ChangeInformation("99", new Timestamp(new Date().getTime()));
   }
+
 }

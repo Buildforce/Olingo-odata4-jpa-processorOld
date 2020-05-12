@@ -10,7 +10,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
-import javax.persistence.metamodel.Attribute.PersistentAttributeType;
+import jakarta.persistence.metamodel.Attribute.PersistentAttributeType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -274,4 +274,5 @@ private String buildNaviPropertyBindingName(final JPAAssociationPath association
     }
     return name.toString();
   }
+
 }

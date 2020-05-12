@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
@@ -44,4 +44,5 @@ public class InstanceRestrictionKey implements Serializable {
         return other.username == null;
     } else return username.equals(other.username);
   }
+
 }

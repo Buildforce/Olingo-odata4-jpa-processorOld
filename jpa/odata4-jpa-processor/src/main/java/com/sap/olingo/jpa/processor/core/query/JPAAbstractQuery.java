@@ -21,15 +21,15 @@ import org.apache.olingo.server.api.debug.RuntimeMeasurement;
 import org.apache.olingo.server.api.uri.UriParameter;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.AbstractQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.AbstractQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -104,16 +104,16 @@ public abstract class JPAAbstractQuery {
     groups = groupsProvider.isPresent() ? groupsProvider.get().getGroups() : Collections.emptyList();
   }
 
-  protected javax.persistence.criteria.Expression<Boolean> createWhereByKey(final From<?, ?> root,
-      final javax.persistence.criteria.Expression<Boolean> whereCondition, final List<UriParameter> keyPredicates,
+  protected Expression<Boolean> createWhereByKey(final From<?, ?> root,
+      final Expression<Boolean> whereCondition, final List<UriParameter> keyPredicates,
       JPAEntityType et) throws ODataApplicationException {
     // .../Organizations('3')
     // .../BusinessPartnerRoles(BusinessPartnerID='6',RoleCategory='C')
-    javax.persistence.criteria.Expression<Boolean> compoundCondition = whereCondition;
+    Expression<Boolean> compoundCondition = whereCondition;
 
     if (keyPredicates != null) {
       for (final UriParameter keyPredicate : keyPredicates) {
-        javax.persistence.criteria.Expression<Boolean> equalCondition;
+        Expression<Boolean> equalCondition;
         try {
           equalCondition = ExpressionUtil.createEQExpression(odata, cb, root, et, keyPredicate);
         } catch (ODataJPAModelException e) {
@@ -182,7 +182,7 @@ public abstract class JPAAbstractQuery {
     return result;
   }
 
-  private javax.persistence.criteria.Expression<?> determineLocalePath(final Join<?, ?> join,
+  private Expression<?> determineLocalePath(final Join<?, ?> join,
       final JPAPath jpaPath) {
     Path<?> p = join;
     for (final JPAElement pathElement : jpaPath.getPath()) {
@@ -193,9 +193,9 @@ public abstract class JPAAbstractQuery {
 
   abstract JPAODataCRUDContextAccess getContext();
 
-  protected javax.persistence.criteria.Expression<Boolean> addWhereClause(
-      javax.persistence.criteria.Expression<Boolean> whereCondition,
-      final javax.persistence.criteria.Expression<Boolean> additionalExpression) {
+  protected Expression<Boolean> addWhereClause(
+      Expression<Boolean> whereCondition,
+      final Expression<Boolean> additionalExpression) {
 
     if (additionalExpression != null) {
       if (whereCondition == null)
@@ -206,9 +206,9 @@ public abstract class JPAAbstractQuery {
     return whereCondition;
   }
 
-  protected javax.persistence.criteria.Expression<Boolean> orWhereClause(
-      javax.persistence.criteria.Expression<Boolean> whereCondition,
-      final javax.persistence.criteria.Expression<Boolean> additionalExpression) {
+  protected Expression<Boolean> orWhereClause(
+      Expression<Boolean> whereCondition,
+      final Expression<Boolean> additionalExpression) {
 
     if (additionalExpression != null) {
       if (whereCondition == null)
@@ -221,15 +221,15 @@ public abstract class JPAAbstractQuery {
 
   @SuppressWarnings({ "unchecked" })
   private <Y extends Comparable<? super Y>> Predicate createBetween(final JPAClaimsPair<?> value, final Path<?> p) {
-    return cb.between((javax.persistence.criteria.Expression<? extends Y>) p, (Y) value.min, (Y) value.max);
+    return cb.between((Expression<? extends Y>) p, (Y) value.min, (Y) value.max);
   }
 
   @SuppressWarnings("unchecked")
-  private javax.persistence.criteria.Expression<Boolean> createProtectionWhereForAttribute(
+  private Expression<Boolean> createProtectionWhereForAttribute(
       final List<JPAClaimsPair<?>> values, final Path<?> p, final boolean wildcardsSupported)
       throws ODataJPAQueryException {
 
-    javax.persistence.criteria.Expression<Boolean> attriRestriction = null;
+    Expression<Boolean> attriRestriction = null;
     for (final JPAClaimsPair<?> value : values) { // for each given claim value
       if (value.hasUpperBoundary)
         if (wildcardsSupported && ((String) value.min).matches(".*[*%+_].*"))
@@ -247,11 +247,11 @@ public abstract class JPAAbstractQuery {
     return attriRestriction;
   }
 
-  protected javax.persistence.criteria.Expression<Boolean> createProtectionWhereForEntityType(
+  protected Expression<Boolean> createProtectionWhereForEntityType(
       final Optional<JPAODataClaimProvider> claimsProvider, final JPAEntityType et, final From<?, ?> from)
       throws ODataJPAQueryException {
     try {
-      javax.persistence.criteria.Expression<Boolean> restriction = null;
+      Expression<Boolean> restriction = null;
       final Map<String, From<?, ?>> dummyJoinTables = new HashMap<>(1);
       for (final JPAProtectionInfo protection : et.getProtections()) { // look for protected attributes
         final List<JPAClaimsPair<?>> values = claimsProvider.get().get(protection.getClaimName()); // NOSONAR

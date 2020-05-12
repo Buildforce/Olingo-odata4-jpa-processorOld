@@ -19,18 +19,19 @@ import org.apache.olingo.commons.api.edm.provider.CsdlOnDelete;
 import org.apache.olingo.commons.api.edm.provider.CsdlOnDeleteAction;
 import org.apache.olingo.commons.api.edm.provider.CsdlReferentialConstraint;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AttributeConverter;
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.metamodel.Attribute;
-import javax.persistence.metamodel.Attribute.PersistentAttributeType;
-import javax.persistence.metamodel.PluralAttribute;
+import jakarta.persistence.AssociationOverride;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.Attribute.PersistentAttributeType;
+import jakarta.persistence.metamodel.PluralAttribute;
 import java.lang.reflect.AnnotatedElement;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -342,8 +343,8 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
       if (jpaIgnore != null) {
         this.setIgnore(true);
       }
-      final javax.persistence.JoinTable jpaJoinTable = ((AnnotatedElement) this.jpaAttribute.getJavaMember())
-          .getAnnotation(javax.persistence.JoinTable.class);
+      final JoinTable jpaJoinTable = ((AnnotatedElement) this.jpaAttribute.getJavaMember())
+          .getAnnotation(JoinTable.class);
       joinTable = jpaJoinTable != null ? new IntermediateJoinTable(this, jpaJoinTable, schema) : null;
     }
 
@@ -462,4 +463,5 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
     }
     return null;
   }
+
 }

@@ -10,10 +10,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.metamodel.Attribute;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.metamodel.Attribute;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Member;
 import java.math.BigDecimal;
@@ -326,4 +326,5 @@ public class TestJPATypeConverter {
     assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildDimensionAttribute(Dimension.GEOMETRY)));
   }
+
 }

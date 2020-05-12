@@ -18,9 +18,14 @@ import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceCount;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Order;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Selection;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -294,7 +299,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
       count.alias("$count");
       selectionPath.add(count);
       countQuery.multiselect(selectionPath);
-      final javax.persistence.criteria.Expression<Boolean> whereClause = createWhere();
+      final Expression<Boolean> whereClause = createWhere();
       if (whereClause != null)
         cq.where(whereClause);
       countQuery.groupBy(buildExpandCountGroupBy());
@@ -339,7 +344,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
     // TODO handle Join Column is ignored
     cq.multiselect(createSelectClause(joinTables, selectionPath, target, groups));
     cq.distinct(true);
-    final javax.persistence.criteria.Expression<Boolean> whereClause = createWhere();
+    final Expression<Boolean> whereClause = createWhere();
     if (whereClause != null)
       cq.where(whereClause);
 
@@ -357,7 +362,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
 
     final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
 
-    javax.persistence.criteria.Expression<Boolean> whereCondition;
+    Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
     try {
       whereCondition = createKeyWhere(navigationInfo);
@@ -372,9 +377,9 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
     return whereCondition;
   }
 
-  private javax.persistence.criteria.Expression<Boolean> createExpandWhere() throws ODataApplicationException {
+  private Expression<Boolean> createExpandWhere() throws ODataApplicationException {
 
-    javax.persistence.criteria.Expression<Boolean> whereCondition = null;
+    Expression<Boolean> whereCondition = null;
     for (JPANavigationPropertyInfo info : this.navigationInfo) {
       if (info.getFilterCompiler() != null) {
         try {

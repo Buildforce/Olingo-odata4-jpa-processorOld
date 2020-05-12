@@ -14,10 +14,10 @@ import org.locationtech.jts.geom.MultiLineString;
 import org.locationtech.jts.geom.MultiPoint;
 import org.locationtech.jts.geom.Point;
 
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.metamodel.Attribute;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.metamodel.Attribute;
 import java.lang.reflect.AnnotatedElement;
 import java.math.BigDecimal;
 import java.sql.Blob;
@@ -269,4 +269,5 @@ public final class JPATypeConverter {
     private static boolean isGeometry(final Attribute<?, ?> currentAttribute) {
         return currentAttribute != null && getDimension(currentAttribute) == Dimension.GEOMETRY;
     }
+
 }

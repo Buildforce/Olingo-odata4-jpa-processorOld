@@ -3,13 +3,13 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmDescriptionAssociation;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import java.util.Collection;
 
 @Embeddable
@@ -28,10 +28,10 @@ public class PostalAddressData {
   private String country;
   @EdmIgnore
   @Column(name = "\"Address.RegionCodePublisher\"", length = 10)
-  private String regionCodePublisher = "ISO";
+  private final String regionCodePublisher = "ISO";
   @EdmIgnore
   @Column(name = "\"Address.RegionCodeID\"", length = 10)
-  private String regionCodeID = "3166-2";
+  private final String regionCodeID = "3166-2";
   @Column(name = "\"Address.Region\"")
   private String region;
 

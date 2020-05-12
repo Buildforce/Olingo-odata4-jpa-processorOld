@@ -25,8 +25,8 @@ import org.apache.olingo.server.api.processor.PrimitiveCollectionProcessor;
 import org.apache.olingo.server.api.processor.PrimitiveValueProcessor;
 import org.apache.olingo.server.api.uri.UriInfo;
 
-import javax.persistence.OptimisticLockException;
-import javax.persistence.RollbackException;
+import jakarta.persistence.OptimisticLockException;
+import jakarta.persistence.RollbackException;
 
 public final class JPAODataRequestProcessor
     implements PrimitiveValueProcessor, PrimitiveCollectionProcessor, ComplexProcessor, ComplexCollectionProcessor,
@@ -182,9 +182,9 @@ public final class JPAODataRequestProcessor
       throw new ODataApplicationException(e.getLocalizedMessage(),
               HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
     }
-  };
+  }
 
-  @Override
+    @Override
   public void readComplex(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
       final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
 
@@ -377,7 +377,6 @@ public final class JPAODataRequestProcessor
       throw new ODataApplicationException(e.getLocalizedMessage(),
           HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode(), null, e);
     }
-
   }
 
 }

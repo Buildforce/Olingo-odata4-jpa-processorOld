@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.metadata.core.edm.annotation;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Enumerated;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Enumerated;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -58,4 +58,5 @@ public @interface EdmEnumeration {
     }
 
   }
+
 }

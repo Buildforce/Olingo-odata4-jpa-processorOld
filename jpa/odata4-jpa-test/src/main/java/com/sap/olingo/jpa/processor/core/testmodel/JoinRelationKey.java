@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
@@ -41,4 +41,5 @@ public class JoinRelationKey implements Serializable {
         return other.targetID == null;
     } else return targetID.equals(other.targetID);
   }
+
 }

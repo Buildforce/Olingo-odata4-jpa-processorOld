@@ -28,8 +28,13 @@ import org.apache.olingo.server.api.uri.UriResourceValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManager;
-import java.util.*;
+import jakarta.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -556,4 +561,5 @@ public class TestJPAClearProcessor extends TestJPAModifyProcessor {
       noValidateCalls++;
     }
   }
+
 }

@@ -30,7 +30,7 @@ import org.apache.olingo.server.api.uri.queryoption.ExpandOption;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.criteria.Selection;
+import jakarta.persistence.criteria.Selection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -472,6 +472,6 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
       fail();
       return null;
     }
-
   }
+
 }

@@ -1,12 +1,12 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OrderColumn;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OrderColumn;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,4 +55,5 @@ public class CollectionSecondLevelComplex {
   public void addInhouseAddress(InhouseAddress address) {
     this.address.add(address);
   }
+
 }

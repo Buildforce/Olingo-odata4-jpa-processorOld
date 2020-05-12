@@ -1,13 +1,13 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
-import javax.persistence.JoinColumn;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import jakarta.persistence.AssociationOverride;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -58,4 +58,5 @@ public class AdministrativeInformation {
   void onUpdate() {
     updated = new ChangeInformation("99", Date.valueOf(LocalDate.now()));
   }
+
 }

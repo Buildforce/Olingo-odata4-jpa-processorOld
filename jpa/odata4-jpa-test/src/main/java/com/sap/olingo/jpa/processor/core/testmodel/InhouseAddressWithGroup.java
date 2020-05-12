@@ -2,8 +2,8 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmVisibleFor;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class InhouseAddressWithGroup {

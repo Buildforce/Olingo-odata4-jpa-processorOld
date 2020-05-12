@@ -13,8 +13,8 @@ import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TupleElement;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -288,4 +288,5 @@ public abstract class TestJPACreateResult extends TestBase {
 
   protected abstract void createCutGetResultEntityWithComplexWithCollection() throws ODataJPAModelException,
       ODataApplicationException;
+
 }

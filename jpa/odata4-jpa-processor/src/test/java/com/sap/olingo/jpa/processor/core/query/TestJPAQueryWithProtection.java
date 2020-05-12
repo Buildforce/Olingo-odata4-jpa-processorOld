@@ -28,9 +28,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Predicate.BooleanOperator;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Predicate.BooleanOperator;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -548,4 +548,5 @@ public class TestJPAQueryWithProtection extends TestQueryBase {
     cut = new JPAJoinQuery(null, contextSpy, headers, requestContext);
     cut.createFromClause(new ArrayList<>(1), new ArrayList<>(), cut.cq, null);
   }
+
 }

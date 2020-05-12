@@ -6,15 +6,16 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
+import jakarta.persistence.metamodel.Type;
 import org.apache.olingo.commons.api.edm.provider.CsdlAnnotation;
 import org.apache.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 
-import javax.persistence.metamodel.ManagedType;
-import javax.persistence.metamodel.PluralAttribute;
-import javax.persistence.metamodel.Type.PersistenceType;
+import jakarta.persistence.metamodel.ManagedType;
+import jakarta.persistence.metamodel.PluralAttribute;
+import jakarta.persistence.metamodel.Type.PersistenceType;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,7 +43,7 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
   public void checkSimpleCollectionPropertyType() throws ODataJPAModelException {
     when(jpaAttribute.getName()).thenReturn("Text");
     @SuppressWarnings("rawtypes")
-    javax.persistence.metamodel.Type type = mock(javax.persistence.metamodel.Type.class);
+    Type type = mock(Type.class);
     when(type.getPersistenceType()).thenReturn(PersistenceType.BASIC);
     when(type.getJavaType()).thenAnswer((Answer<Class<?>>) invocation -> String.class);
     when(jpaAttribute.getElementType()).thenReturn(type);
@@ -144,4 +145,5 @@ public class TestIntermediateCollectionProperty extends TestMappingRoot {
     assertEquals("Address for inhouse Mail", annotations.get(0).getExpression().asConstant().getValue());
     assertEquals("Address", annotations.get(0).getQualifier());
   }
+
 }

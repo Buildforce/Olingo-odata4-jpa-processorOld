@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.metadata.api;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,4 +49,5 @@ public class JPAEntityManagerFactory {
     properties.put(NON_JTA_DATASOURCE, ds);
     return getEntityManagerFactory(pUnit, properties);
   }
+
 }

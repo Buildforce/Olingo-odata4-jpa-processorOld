@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.processor.core.converter;
 
-import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TupleElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,6 +84,6 @@ public final class JPATuple implements Tuple {
     public Class<? extends X> getJavaType() {
       return javaType;
     }
-
   }
+
 }

@@ -21,8 +21,8 @@ import org.apache.olingo.server.api.uri.UriResourceNavigation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.Expression;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.Expression;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -263,7 +263,6 @@ public class TestJPAExpandJoinQuery extends TestBase {
     simpleKey.put(et.getKey().get(1), key2);
     simpleKey.put(et.getKey().get(2), key1);
     adminPair.setValue(simpleKey);
-
   }
 
 }

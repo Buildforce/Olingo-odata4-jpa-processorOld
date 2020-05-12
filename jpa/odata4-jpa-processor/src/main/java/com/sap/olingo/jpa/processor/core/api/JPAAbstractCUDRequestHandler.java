@@ -7,7 +7,7 @@ import com.sap.olingo.jpa.processor.core.processor.JPARequestEntity;
 import org.apache.olingo.commons.api.http.HttpMethod;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public abstract class JPAAbstractCUDRequestHandler implements JPACUDRequestHandler {
 
@@ -40,4 +40,5 @@ public abstract class JPAAbstractCUDRequestHandler implements JPACUDRequestHandl
   public void validateChanges(final EntityManager em) throws ODataJPAProcessException {
     // Do nothing. If needed override method.
   }
+
 }

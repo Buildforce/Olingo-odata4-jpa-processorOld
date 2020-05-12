@@ -9,7 +9,7 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import com.sap.olingo.jpa.processor.core.processor.JPARequestEntity;
 import org.apache.olingo.server.api.ODataApplicationException;
 
-import javax.persistence.Tuple;
+import jakarta.persistence.Tuple;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

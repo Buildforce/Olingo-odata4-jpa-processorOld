@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.stubbing.Answer;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -836,4 +836,5 @@ public class TestJPACUDRequestHelper {
     when(edmPropertyName.getType()).thenReturn(edmTypeName);
     return request;
   }
+
 }

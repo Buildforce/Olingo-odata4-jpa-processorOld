@@ -22,6 +22,17 @@ import com.sap.olingo.jpa.processor.core.filter.JPAFilterCompiler;
 import com.sap.olingo.jpa.processor.core.filter.JPAFilterCrossCompiler;
 import com.sap.olingo.jpa.processor.core.filter.JPAOperationConverter;
 import com.sap.olingo.jpa.processor.core.processor.JPAODataRequestContextImpl;
+import jakarta.persistence.criteria.AbstractQuery;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Order;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Selection;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TypedQuery;
 import org.apache.olingo.commons.api.edm.EdmType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
@@ -42,13 +53,10 @@ import org.apache.olingo.server.api.uri.queryoption.SelectItem;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 import org.apache.olingo.server.api.uri.queryoption.SkipOption;
 import org.apache.olingo.server.api.uri.queryoption.TopOption;
-import org.apache.olingo.server.api.uri.queryoption.expression.Expression;
+//import org.apache.olingo.server.api.uri.queryoption.expression.Expression;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 import org.apache.olingo.server.api.uri.queryoption.expression.Member;
 
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -258,10 +266,10 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     return joinTables;
   }
 
-  protected final javax.persistence.criteria.Expression<Boolean> createKeyWhere(
+  protected final Expression<Boolean> createKeyWhere(
       final List<JPANavigationPropertyInfo> info) throws ODataApplicationException {
 
-    javax.persistence.criteria.Expression<Boolean> whereCondition = null;
+    jakarta.persistence.criteria.Expression<Boolean> whereCondition = null;
     // Given key: Organizations('1')/Roles(...)
     for (JPANavigationPropertyInfo naviInfo : info) {
       if (naviInfo.getKeyPredicates() != null) {
@@ -305,7 +313,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     if (orderByOption != null) {
       try {
         for (final OrderByItem orderByItem : orderByOption.getOrders()) {
-          final Expression expression = orderByItem.getExpression();
+          final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression = orderByItem.getExpression();
           if (expression instanceof Member) {
             final UriInfoResource resourcePath = ((Member) expression).getResourcePath();
             JPAStructuredType type = jpaEntity;
@@ -353,10 +361,10 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     return orders;
   }
 
-  protected javax.persistence.criteria.Expression<Boolean> createProtectionWhere(
+  protected jakarta.persistence.criteria.Expression<Boolean> createProtectionWhere(
       final Optional<JPAODataClaimProvider> claimsProvider) throws ODataJPAQueryException {
 
-    javax.persistence.criteria.Expression<Boolean> restriction = null;
+    jakarta.persistence.criteria.Expression<Boolean> restriction = null;
     for (final JPANavigationPropertyInfo navi : navigationInfo) { // for all participating entity types/tables
       final JPAEntityType et = navi.getEntityType();
       final From<?, ?> from = navi.getFromClause();
@@ -406,11 +414,11 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     return selections;
   }
 
-  protected javax.persistence.criteria.Expression<Boolean> createWhere(final UriInfoResource uriInfo,
+  protected jakarta.persistence.criteria.Expression<Boolean> createWhere(final UriInfoResource uriInfo,
       final List<JPANavigationPropertyInfo> navigationInfo) throws ODataApplicationException {
 
     final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
-    javax.persistence.criteria.Expression<Boolean> whereCondition;
+    jakarta.persistence.criteria.Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
     try {
       whereCondition = createKeyWhere(navigationInfo);
@@ -536,7 +544,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
   }
 
   private void addOrderByExpression(final List<Order> orders, final OrderByItem orderByItem,
-      javax.persistence.criteria.Expression<?> expression) {
+      jakarta.persistence.criteria.Expression<?> expression) {
 
     if (orderByItem.isDescending())
       orders.add(cb.desc(expression));
@@ -816,7 +824,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     return collection;
   }
 
-  protected <Y extends Comparable<? super Y>> javax.persistence.criteria.Expression<Boolean> createBoundary(
+  protected <Y extends Comparable<? super Y>> jakarta.persistence.criteria.Expression<Boolean> createBoundary(
       final List<JPANavigationPropertyInfo> info, final Optional<JPAKeyBoundary> keyBoundary)
       throws ODataJPAQueryException {
 
@@ -841,14 +849,14 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
   }
 
   @SuppressWarnings("unchecked")
-  private <Y extends Comparable<? super Y>> javax.persistence.criteria.Expression<Boolean> createBoundaryWithUpper(
+  private <Y extends Comparable<? super Y>> jakarta.persistence.criteria.Expression<Boolean> createBoundaryWithUpper(
       final JPAEntityType et,
       final From<?, ?> f, final JPAKeyPair jpaKeyPair)
       throws ODataJPAModelException {
 
     final List<JPAAttribute> keyElements = et.getKey();
-    javax.persistence.criteria.Expression<Boolean> lowerExpression = null;
-    javax.persistence.criteria.Expression<Boolean> upperExpression = null;
+    jakarta.persistence.criteria.Expression<Boolean> lowerExpression = null;
+    jakarta.persistence.criteria.Expression<Boolean> upperExpression = null;
     for (int primaryIndex = 0; primaryIndex < keyElements.size(); primaryIndex++) {
       for (int secondaryIndex = primaryIndex; secondaryIndex < keyElements.size(); secondaryIndex++) {
         final JPAAttribute keyElement = keyElements.get(secondaryIndex);
@@ -875,14 +883,14 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
   }
 
   @SuppressWarnings("unchecked")
-  private <Y extends Comparable<? super Y>> javax.persistence.criteria.Expression<Boolean> createBoundaryEquals(
+  private <Y extends Comparable<? super Y>> jakarta.persistence.criteria.Expression<Boolean> createBoundaryEquals(
       final JPAEntityType et, final From<?, ?> f, final JPAKeyPair jpaKeyPair) throws ODataJPAModelException {
 
-    javax.persistence.criteria.Expression<Boolean> whereCondition = null;
+    jakarta.persistence.criteria.Expression<Boolean> whereCondition = null;
     for (final JPAAttribute keyElement : et.getKey()) {
       final Path<Y> keyPath = (Path<Y>) ExpressionUtil.convertToCriteriaPath(f, et.getPath(keyElement.getExternalName())
           .getPath());
-      final javax.persistence.criteria.Expression<Boolean> eqFragment = cb.equal(keyPath, jpaKeyPair.getMin().get(
+      final Expression<Boolean> eqFragment = cb.equal(keyPath, jpaKeyPair.getMin().get(
           keyElement));
       if (whereCondition == null)
         whereCondition = eqFragment;

@@ -146,7 +146,7 @@ package tutorial.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

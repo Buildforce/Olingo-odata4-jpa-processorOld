@@ -23,9 +23,9 @@ import org.apache.olingo.server.api.uri.queryoption.expression.Member;
 import org.apache.olingo.server.api.uri.queryoption.expression.MethodKind;
 import org.apache.olingo.server.api.uri.queryoption.expression.UnaryOperatorKind;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Predicate;
 import java.util.List;
 
 class JPAVisitor implements JPAExpressionVisitor {
@@ -270,4 +270,5 @@ class JPAVisitor implements JPAExpressionVisitor {
     return (!resourcePath.getUriResourceParts().isEmpty()
         && resourcePath.getUriResourceParts().get(0) instanceof UriResourceFunction);
   }
+
 }

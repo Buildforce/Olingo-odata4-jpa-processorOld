@@ -6,7 +6,7 @@ import com.sap.olingo.jpa.processor.core.database.JPAODataDatabaseOperations;
 import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.Optional;
 

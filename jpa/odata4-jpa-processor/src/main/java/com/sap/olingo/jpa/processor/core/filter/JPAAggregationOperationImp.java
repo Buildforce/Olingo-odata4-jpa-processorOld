@@ -2,8 +2,8 @@ package com.sap.olingo.jpa.processor.core.filter;
 
 import org.apache.olingo.server.api.ODataApplicationException;
 
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.From;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.From;
 
 class JPAAggregationOperationImp implements JPAAggregationOperation {
 

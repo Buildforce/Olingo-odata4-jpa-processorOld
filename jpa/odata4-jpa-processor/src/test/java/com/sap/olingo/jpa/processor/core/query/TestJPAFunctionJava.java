@@ -1,7 +1,6 @@
 package com.sap.olingo.jpa.processor.core.query;
 
 import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAException;
 import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
 import com.sap.olingo.jpa.processor.core.api.JPAODataRequestContextAccess;
 import com.sap.olingo.jpa.processor.core.processor.JPAFunctionRequestProcessor;
@@ -31,11 +30,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javax.sql.DataSource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,7 +50,7 @@ public class TestJPAFunctionJava {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
 
   private JPAFunctionRequestProcessor cut;
-  private List<UriResource> uriResources;
+  // private List<UriResource> uriResources;
   private ODataRequest request;
   private ODataResponse response;
   private UriResourceFunction uriResource;
@@ -150,4 +153,5 @@ public class TestJPAFunctionJava {
     when(param2.getText()).thenReturn("7");
     return Arrays.asList(param1, param2);
   }
+
 }

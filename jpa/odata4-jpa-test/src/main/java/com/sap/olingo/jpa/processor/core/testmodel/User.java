@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"User\"")
@@ -50,4 +50,5 @@ public class User {
   public void setUsername(String username) {
     this.username = username;
   }
+
 }

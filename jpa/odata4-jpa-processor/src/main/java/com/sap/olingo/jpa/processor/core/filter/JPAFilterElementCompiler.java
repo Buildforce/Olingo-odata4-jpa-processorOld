@@ -13,9 +13,9 @@ import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitEx
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
 import org.apache.olingo.server.api.uri.queryoption.expression.VisitableExpression;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.From;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.From;
 import java.util.List;
 import java.util.Optional;
 
@@ -126,4 +126,5 @@ public final class JPAFilterElementCompiler extends JPAAbstractFilter {
   public List<String> getGroups() {
     return groups;
   }
+
 }

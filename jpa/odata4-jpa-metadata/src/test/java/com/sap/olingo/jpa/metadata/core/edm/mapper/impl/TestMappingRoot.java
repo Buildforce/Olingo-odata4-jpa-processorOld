@@ -4,7 +4,7 @@ import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import org.junit.jupiter.api.BeforeAll;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 
 public class TestMappingRoot {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
@@ -21,4 +21,5 @@ public class TestMappingRoot {
     emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, DataSourceHelper.createDataSource(
         DataSourceHelper.DB_HSQLDB));
   }
+
 }

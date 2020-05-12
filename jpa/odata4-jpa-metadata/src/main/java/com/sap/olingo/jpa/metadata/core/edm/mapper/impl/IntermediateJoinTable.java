@@ -5,8 +5,8 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAJoinTable;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOnConditionItem;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +16,7 @@ class IntermediateJoinTable implements JPAJoinTable {
   private final IntermediateStructuredType sourceType;
   private List<IntermediateJoinColumn> joinColumns = null;
   private List<IntermediateJoinColumn> inverseJoinColumns = null;
-  private JPAEntityType jpaEntityType;
+  private final JPAEntityType jpaEntityType;
 
   IntermediateJoinTable(final IntermediateNavigationProperty intermediateProperty, final JoinTable jpaJoinTable,
       final IntermediateSchema schema) {
@@ -156,4 +156,5 @@ class IntermediateJoinTable implements JPAJoinTable {
   IntermediateJoinTable asMapped(final IntermediateNavigationProperty mappedBy) throws ODataJPAModelException {
     return new IntermediateJoinTable(this, mappedBy);
   }
+
 }

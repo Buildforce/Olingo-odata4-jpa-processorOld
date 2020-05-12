@@ -2,14 +2,14 @@ package com.sap.olingo.jpa.processor.core.errormodel;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Version;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Version;
 import java.util.List;
 
 @Entity(name = "NavigationAttributeProtected")
@@ -49,4 +49,5 @@ public class NavigationAttributeProtected {
         return other.iD == null;
     } else return iD.equals(other.iD);
   }
+
 }

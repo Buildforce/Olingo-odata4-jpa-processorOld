@@ -19,10 +19,10 @@ import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourcePartTyped;
 import org.apache.olingo.server.api.uri.queryoption.expression.VisitableExpression;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.Subquery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Subquery;
 import java.util.*;
 
 public final class JPANavigationFilterQuery extends JPANavigationQuery {
@@ -78,7 +78,6 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
   /*
    * (non-Javadoc)
    *
-
    * @see
    * com.sap.olingo.jpa.processor.core.query.JPANavigationQuery#getSubQueryExists(javax.persistence.criteria.Subquery)
    */
@@ -150,4 +149,5 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
           HttpStatusCode.INTERNAL_SERVER_ERROR, e, association.getAlias());
     }
   }
+
 }

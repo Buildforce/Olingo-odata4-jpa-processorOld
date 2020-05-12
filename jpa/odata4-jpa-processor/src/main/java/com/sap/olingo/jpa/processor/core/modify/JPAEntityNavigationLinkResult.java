@@ -11,7 +11,7 @@ import com.sap.olingo.jpa.processor.core.query.JPAConvertibleResult;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.server.api.ODataApplicationException;
 
-import javax.persistence.Tuple;
+import jakarta.persistence.Tuple;
 import java.util.*;
 
 final class JPAEntityNavigationLinkResult extends JPACreateResult implements JPAConvertibleResult {

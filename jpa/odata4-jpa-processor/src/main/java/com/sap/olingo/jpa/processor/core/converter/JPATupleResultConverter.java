@@ -24,8 +24,8 @@ import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.ServiceMetadata;
 import org.apache.olingo.server.api.uri.UriHelper;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Tuple;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Tuple;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

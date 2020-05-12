@@ -2,12 +2,12 @@ package com.sap.olingo.jpa.processor.core.errormodel;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"BusinessPartner\"")
@@ -23,7 +23,7 @@ public class ComplexProtectedWrongPath {
 
   @Embedded
   @EdmProtectedBy(name = "UserId", path = "created/wrong")
-  private AdministrativeInformation administrativeInformation = new AdministrativeInformation();
+  private final AdministrativeInformation administrativeInformation = new AdministrativeInformation();
 
   @Override
   public int hashCode() {

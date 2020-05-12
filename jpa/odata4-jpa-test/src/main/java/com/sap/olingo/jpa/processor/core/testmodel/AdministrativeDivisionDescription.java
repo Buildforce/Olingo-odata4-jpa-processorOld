@@ -2,10 +2,10 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmSearchable;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"AdministrativeDivisionDescription\"")
@@ -34,4 +34,5 @@ public class AdministrativeDivisionDescription implements KeyAccess {
   public void setKey(AdministrativeDivisionDescriptionKey key) {
     this.key = key;
   }
+
 }

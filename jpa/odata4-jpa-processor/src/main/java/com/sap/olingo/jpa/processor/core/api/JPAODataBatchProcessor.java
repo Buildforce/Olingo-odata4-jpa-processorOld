@@ -18,8 +18,8 @@ import org.apache.olingo.server.api.deserializer.batch.BatchRequestPart;
 import org.apache.olingo.server.api.deserializer.batch.ODataResponsePart;
 import org.apache.olingo.server.api.processor.BatchProcessor;
 
-import javax.persistence.OptimisticLockException;
-import javax.persistence.RollbackException;
+import jakarta.persistence.OptimisticLockException;
+import jakarta.persistence.RollbackException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -169,4 +169,5 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
       throw new ODataJPAProcessorException(e, HttpStatusCode.NOT_IMPLEMENTED);
     }
   }
+
 }

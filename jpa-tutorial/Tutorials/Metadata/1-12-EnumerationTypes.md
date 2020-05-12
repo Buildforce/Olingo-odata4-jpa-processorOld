@@ -38,7 +38,7 @@ package tutorial.model;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.util.Objects;
@@ -86,12 +86,12 @@ The EdmEnumeration annotation has been enriched, so the JPA processor knows that
 ```Java
 package tutorial.model;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(/*autoApply = false*/)
@@ -135,7 +135,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import java.sql.Date;
 import java.util.Objects;
 

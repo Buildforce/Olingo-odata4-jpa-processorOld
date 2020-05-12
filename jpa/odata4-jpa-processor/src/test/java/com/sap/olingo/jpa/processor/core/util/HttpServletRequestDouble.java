@@ -3,8 +3,20 @@ package com.sap.olingo.jpa.processor.core.util;
 import org.apache.olingo.commons.api.http.HttpMethod;
 import org.apache.olingo.server.api.debug.DebugSupport;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.AsyncContext;
+import javax.servlet.DispatcherType;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpUpgradeHandler;
+import javax.servlet.http.Part;
+
 import java.io.BufferedReader;
 import java.security.Principal;
 import java.util.*;

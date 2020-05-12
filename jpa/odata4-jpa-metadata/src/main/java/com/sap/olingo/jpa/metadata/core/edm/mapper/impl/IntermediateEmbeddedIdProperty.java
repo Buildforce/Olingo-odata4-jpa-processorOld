@@ -3,7 +3,7 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
-import javax.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.Attribute;
 
 final class IntermediateEmbeddedIdProperty extends IntermediateSimpleProperty {
   private final Attribute<?, ?> embeddable;
@@ -28,4 +28,5 @@ final class IntermediateEmbeddedIdProperty extends IntermediateSimpleProperty {
   Attribute<?, ?> getEmbeddable() {
     return embeddable;
   }
+
 }

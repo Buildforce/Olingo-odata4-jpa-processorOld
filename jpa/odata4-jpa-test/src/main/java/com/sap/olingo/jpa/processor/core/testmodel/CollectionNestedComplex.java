@@ -1,8 +1,8 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 
 @Embeddable
 public class CollectionNestedComplex {
@@ -28,4 +28,5 @@ public class CollectionNestedComplex {
   public void setInner(CollectionInnerComplex inner) {
     this.inner = inner;
   }
+
 }

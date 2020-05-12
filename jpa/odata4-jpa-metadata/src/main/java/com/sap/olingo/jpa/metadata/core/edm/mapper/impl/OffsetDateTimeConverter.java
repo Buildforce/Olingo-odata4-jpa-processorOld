@@ -3,7 +3,7 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 
 /**
  * Default converter to convert from {@link java.time.OffsetDateTime} to {@link java.time.ZonedDateTime}. This is

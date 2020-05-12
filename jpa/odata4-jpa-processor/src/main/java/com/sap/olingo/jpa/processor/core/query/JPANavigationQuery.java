@@ -13,6 +13,13 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPAQueryException;
 import com.sap.olingo.jpa.processor.core.filter.JPAFilterElementCompiler;
 import com.sap.olingo.jpa.processor.core.filter.JPAFilterExpression;
 import com.sap.olingo.jpa.processor.core.filter.JPAMemberOperator;
+
+import jakarta.persistence.criteria.AbstractQuery;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.Subquery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Path;
+
 import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.OData;
@@ -24,8 +31,8 @@ import org.apache.olingo.server.api.uri.queryoption.expression.Binary;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 import org.apache.olingo.server.api.uri.queryoption.expression.VisitableExpression;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.From;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -215,7 +222,7 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
   }
 
   protected void handleAggregation(final Subquery<?> subQuery, final From<?, ?> subRoot,
-      final List<JPAOnConditionItem> conditionItems) throws ODataApplicationException {
+                                   final List<JPAOnConditionItem> conditionItems) throws ODataApplicationException {
 
     final List<Expression<?>> groupByLIst = new ArrayList<>();
     if (filterCompiler != null && this.aggregationType != null) {

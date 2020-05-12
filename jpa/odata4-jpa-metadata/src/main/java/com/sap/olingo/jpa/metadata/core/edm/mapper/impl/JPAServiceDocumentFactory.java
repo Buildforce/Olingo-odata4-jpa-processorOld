@@ -4,7 +4,7 @@ import com.sap.olingo.jpa.metadata.api.JPAEdmMetadataPostProcessor;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAServiceDocument;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
-import javax.persistence.metamodel.Metamodel;
+import jakarta.persistence.metamodel.Metamodel;
 
 public final class JPAServiceDocumentFactory {
 
@@ -24,4 +24,5 @@ public final class JPAServiceDocumentFactory {
   public JPAServiceDocument getServiceDocument() throws ODataJPAModelException {
     return new IntermediateServiceDocument(namespace, jpaMetamodel, postProcessor, packageName);
   }
+
 }

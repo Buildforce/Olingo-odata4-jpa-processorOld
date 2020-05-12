@@ -1,10 +1,10 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Embeddable
@@ -18,4 +18,5 @@ public class JoinComplex {
       joinColumns = @JoinColumn(name = "\"SourceID\"", referencedColumnName = "\"SourceKey\""),
       inverseJoinColumns = @JoinColumn(name = "\"TargetID\""))
   private List<JoinTarget> oneToManyComplex;
+
 }

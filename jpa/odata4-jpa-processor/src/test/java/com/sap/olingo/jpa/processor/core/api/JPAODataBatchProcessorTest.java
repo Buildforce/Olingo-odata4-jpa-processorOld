@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import javax.persistence.EntityManager;
-import javax.persistence.OptimisticLockException;
-import javax.persistence.RollbackException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.OptimisticLockException;
+import jakarta.persistence.RollbackException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -186,4 +186,5 @@ public class JPAODataBatchProcessorTest {
     assertEquals(HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), act.getStatusCode());
     verify(facade, never()).handleODataRequest(any());
   }
+
 }

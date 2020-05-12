@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.processor.core.util;
 
-import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TupleElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

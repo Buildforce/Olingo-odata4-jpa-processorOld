@@ -11,7 +11,7 @@ package tutorial.model;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Date;
 import java.util.Objects;
@@ -83,7 +83,7 @@ package tutorial.model;
 import javax.persistence.Column;
 import javax.persistence.Basic;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Objects;
 

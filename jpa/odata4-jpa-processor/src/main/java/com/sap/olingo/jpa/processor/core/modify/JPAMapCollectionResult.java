@@ -11,8 +11,12 @@ import com.sap.olingo.jpa.processor.core.converter.JPATupleChildConverter;
 import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessorException;
 import org.apache.olingo.server.api.ODataApplicationException;
 
-import javax.persistence.Tuple;
-import java.util.*;
+import jakarta.persistence.Tuple;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 class JPAMapCollectionResult extends JPAMapBaseResult implements JPACollectionResult {
   private Map<String, List<Object>> converted;

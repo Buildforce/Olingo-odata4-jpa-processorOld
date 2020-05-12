@@ -5,8 +5,8 @@ import com.sap.olingo.jpa.processor.core.exception.ODataJPATransactionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -175,4 +175,5 @@ public class JPAODataDefaultTransactionFactoryTest {
     final JPAODataTransaction act = cut.createTransaction();
     assertThrows(ODataJPATransactionException.class, act::rollbackOnly);
   }
+
 }

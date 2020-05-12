@@ -2,11 +2,11 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Lob;
 
 import java.sql.Blob;
 import java.sql.Clob;
@@ -24,4 +24,5 @@ public class DummyEmbeddedToIgnore {
   @Column(name = "\"LargeBytes\"")
   @Basic(fetch = FetchType.LAZY)
   private Blob largeBytes;
+
 }

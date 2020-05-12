@@ -23,11 +23,15 @@ import org.apache.olingo.server.api.ServiceMetadata;
 import org.apache.olingo.server.api.serializer.SerializerException;
 import org.apache.olingo.server.api.uri.UriHelper;
 
-import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TupleElement;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /**
@@ -52,14 +56,14 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
   }
 
   public Map<String, List<Object>> getCollectionResult(final JPACollectionResult jpaResult,
-      final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
+                                                       final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
 
     return new JPATupleCollectionConverter(sd, uriHelper, serviceMetadata).getResult(jpaResult, requestedSelection);
   }
 
   @Override
   public Map<String, EntityCollection> getResult(final JPAExpandResult jpaResult,
-      final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
+                                                 final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
 
     jpaQueryResult = jpaResult;
     this.setName = determineSetName(jpaQueryResult, sd);
@@ -176,8 +180,8 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
 
   private void addCollection(final Tuple row, List<Property> result, final JPACollectionAttribute collection,
       final JPAExpandResult child) throws ODataJPAModelException {
-    final Collection<Object> collectionResult = ((JPACollectionResult) child).getPropertyCollection(
-        buildConcatenatedKey(row, collection.asAssociation().getLeftColumnsList()));
+    final Collection<Object> collectionResult = ((JPACollectionResult) child)
+            .getPropertyCollection(buildConcatenatedKey(row, collection.asAssociation().getLeftColumnsList()));
 
     result.add(new Property(
         null,
@@ -304,4 +308,5 @@ public class JPATupleChildConverter extends JPATupleResultConverter {
       throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
   }
+
 }

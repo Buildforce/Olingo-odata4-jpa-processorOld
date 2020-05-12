@@ -16,7 +16,7 @@ import org.apache.olingo.commons.api.http.HttpMethod;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -505,4 +505,5 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     assertEquals(1, parent.getChildren().size());
     assertEquals("DE51", parent.getChildren().get(0).getDivisionCode());
   }
+
 }

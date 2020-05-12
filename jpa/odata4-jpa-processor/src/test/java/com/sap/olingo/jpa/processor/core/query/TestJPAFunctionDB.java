@@ -32,11 +32,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class TestJPAFunctionDB {
   protected static final String PUNIT_NAME = "com.sap.olingo.jpa";
@@ -128,4 +133,5 @@ public class TestJPAFunctionDB {
     cut.retrieveData(request, response, ContentType.JSON);
     verify(dbProcessor, times(1)).executeFunctionQuery(eq(uriResources), eq(function), eq(em));
   }
+
 }

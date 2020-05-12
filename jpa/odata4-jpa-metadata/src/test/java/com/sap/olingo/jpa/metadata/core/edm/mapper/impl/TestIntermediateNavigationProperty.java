@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 import org.reflections.Reflections;
 
-import javax.persistence.metamodel.Attribute;
-import javax.persistence.metamodel.EmbeddableType;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.ManagedType;
+import jakarta.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.EmbeddableType;
+import jakarta.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.ManagedType;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Member;
 import java.util.Collections;
@@ -567,4 +567,5 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     @Override
     public void provideReferences(IntermediateReferenceList references) {}
   }
+
 }

@@ -15,7 +15,7 @@ import org.apache.olingo.server.api.uri.UriResourceProperty;
 import org.apache.olingo.server.api.uri.queryoption.expression.Expression;
 import org.apache.olingo.server.api.uri.queryoption.expression.Member;
 
-import javax.persistence.criteria.Subquery;
+import jakarta.persistence.criteria.Subquery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,4 +79,5 @@ abstract class JPALambdaOperation extends JPAExistsOperation {
     }
     return null;
   }
+
 }

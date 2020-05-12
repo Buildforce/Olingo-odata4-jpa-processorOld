@@ -8,7 +8,7 @@ import com.sap.olingo.jpa.processor.core.util.UriInfoDouble;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.criteria.Selection;
+import jakarta.persistence.criteria.Selection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -124,4 +124,5 @@ public class TestJPAQuerySelectWithGroupClause extends TestGroupBase {
         fail(alias + " was found, but was not expected");
     }
   }
+
 }

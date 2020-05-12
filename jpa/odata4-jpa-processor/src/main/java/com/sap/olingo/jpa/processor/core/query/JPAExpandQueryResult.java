@@ -16,7 +16,7 @@ import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.queryoption.SelectItem;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 
-import javax.persistence.Tuple;
+import jakarta.persistence.Tuple;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -237,4 +237,5 @@ public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertib
         }
         return keyMap;
     }
+
 }

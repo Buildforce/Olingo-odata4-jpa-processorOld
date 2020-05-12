@@ -1,14 +1,13 @@
 /**
  *
-
  */
 package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
 import org.apache.olingo.commons.api.edm.provider.CsdlEntityType;
 
-import javax.persistence.metamodel.Attribute;
-import javax.persistence.metamodel.EmbeddableType;
-import javax.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.EmbeddableType;
+import jakarta.persistence.metamodel.EntityType;
 
 /**
  * A name builder creates, based on information from the JPA entity model names, the names of the corresponding element
@@ -92,4 +91,5 @@ String buildPropertyName(final String jpaAttributeName);
    * @return name space to a schema
    */
 String getNamespace();
+
 }

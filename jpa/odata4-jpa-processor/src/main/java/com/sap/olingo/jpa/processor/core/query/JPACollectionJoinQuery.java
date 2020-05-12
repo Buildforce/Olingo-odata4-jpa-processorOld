@@ -20,14 +20,14 @@ import org.apache.olingo.server.api.uri.queryoption.SelectItem;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 import org.apache.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.Order;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Selection;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Order;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Selection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -268,7 +268,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     // TODO handle Join Column is ignored
     cq.multiselect(createSelectClause(joinTables, selectionPath, target, groups));
     cq.distinct(true);
-    final javax.persistence.criteria.Expression<Boolean> whereClause = createWhere();
+    final Expression<Boolean> whereClause = createWhere();
     if (whereClause != null)
       cq.where(whereClause);
 
@@ -285,7 +285,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
 
     final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
 
-    javax.persistence.criteria.Expression<Boolean> whereCondition;
+    Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
     try {
       whereCondition = createKeyWhere(navigationInfo);
@@ -342,4 +342,5 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     }
     return false;
   }
+
 }

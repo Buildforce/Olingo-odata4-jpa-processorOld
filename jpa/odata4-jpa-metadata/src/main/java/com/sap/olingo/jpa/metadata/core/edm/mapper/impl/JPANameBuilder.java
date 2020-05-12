@@ -6,7 +6,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
 
-import javax.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.Attribute;
 
 /**
  * Build the internal name for Intermediate Model Elements
@@ -43,4 +43,5 @@ final class JPANameBuilder {
   protected final FullQualifiedName buildFQN(final String name, final JPAEdmNameBuilder nameBuilder) {
     return new FullQualifiedName(nameBuilder.getNamespace(), name);
   }
+
 }

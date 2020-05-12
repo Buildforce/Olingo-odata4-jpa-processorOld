@@ -5,7 +5,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public class TestFunctionParameter implements ODataFunction {
   public static int calls;
@@ -24,4 +24,5 @@ public class TestFunctionParameter implements ODataFunction {
     param2 = b;
     return a + b;
   }
+
 }

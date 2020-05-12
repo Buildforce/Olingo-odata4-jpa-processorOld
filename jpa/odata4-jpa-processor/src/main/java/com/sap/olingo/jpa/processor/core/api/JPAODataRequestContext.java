@@ -1,6 +1,6 @@
 package com.sap.olingo.jpa.processor.core.api;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public interface JPAODataRequestContext {
 

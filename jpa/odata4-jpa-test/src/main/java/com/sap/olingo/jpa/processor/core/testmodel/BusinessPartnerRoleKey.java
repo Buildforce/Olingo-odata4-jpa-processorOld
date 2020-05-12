@@ -1,13 +1,12 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.Id;
+import jakarta.persistence.Id;
 import java.io.Serializable;
 
 public class BusinessPartnerRoleKey implements Serializable {
 
   /**
    *
-
    */
   private static final long serialVersionUID = -2350388598203342905L;
 
@@ -54,4 +53,5 @@ public class BusinessPartnerRoleKey implements Serializable {
   public void setRoleCategory(String roleCategory) {
     this.roleCategory = roleCategory;
   }
+
 }

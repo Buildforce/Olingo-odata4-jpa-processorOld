@@ -1,7 +1,7 @@
 package com.sap.olingo.jpa.processor.core.testmodel;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
@@ -40,4 +40,5 @@ public class CountryKey implements Serializable {
     result = prime * result + ((language == null) ? 0 : language.hashCode());
     return result;
   }
+
 }

@@ -4,11 +4,11 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
 import java.time.LocalDate;
 
 @EdmIgnore // Only
@@ -33,7 +33,7 @@ public class PersonDeepProtectedHidden extends BusinessPartnerProtected {// #NOS
       @EdmProtectedBy(name = "Creator", path = "created/by"),
       @EdmProtectedBy(name = "Updater", path = "updated/by")
   })
-  private AdministrativeInformation protectedAdminInfo = new AdministrativeInformation();
+  private final AdministrativeInformation protectedAdminInfo = new AdministrativeInformation();
 
   public PersonDeepProtectedHidden() {
     type = "1";

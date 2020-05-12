@@ -1,6 +1,6 @@
 package com.sap.olingo.jpa.processor.core.util;
 
-import javax.persistence.TupleElement;
+import jakarta.persistence.TupleElement;
 
 public class TupleElementDouble implements TupleElement<Object> {
   // alias

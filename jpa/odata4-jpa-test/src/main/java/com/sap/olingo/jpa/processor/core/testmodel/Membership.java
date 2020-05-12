@@ -2,7 +2,7 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @EdmIgnore
 @Entity
@@ -15,4 +15,5 @@ public class Membership {
   @Id
   @Column(name = "\"TeamID\"", length = 32)
   private String teamID;
+
 }

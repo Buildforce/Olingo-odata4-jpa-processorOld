@@ -15,9 +15,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -100,4 +100,5 @@ public class TestJPADefaultDatabaseProcessor extends TestJPA_XXX_DatabaseProcess
   public void testNotSupportedSearch() {
     assertThrows(ODataJPADBAdaptorException.class, () -> cut.createSearchWhereClause(null, null, null, null, null));
   }
+
 }

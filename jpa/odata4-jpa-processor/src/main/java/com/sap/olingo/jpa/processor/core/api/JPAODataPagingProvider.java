@@ -4,11 +4,10 @@ import com.sap.olingo.jpa.processor.core.query.JPACountQuery;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.UriInfo;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 /**
  *
-
  * @author Oliver Grande
  *
  */
@@ -29,6 +28,5 @@ public interface JPAODataPagingProvider {
    */
   JPAODataPage getFirstPage(final UriInfo uriInfo, final Integer preferredPageSize, final JPACountQuery countQuery,
       final EntityManager em) throws ODataApplicationException;
-
 
 }

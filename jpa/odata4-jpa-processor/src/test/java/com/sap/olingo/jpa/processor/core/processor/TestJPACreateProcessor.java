@@ -20,7 +20,6 @@ import com.sap.olingo.jpa.processor.core.testmodel.AdministrativeDivisionKey;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
 import com.sap.olingo.jpa.processor.core.testmodel.Organization;
 import org.apache.olingo.commons.api.data.EntityCollection;
-//import org.apache.olingo.commons.api.edm.*;
 
 import org.apache.olingo.commons.api.edm.EdmEntityContainer;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
@@ -45,10 +44,16 @@ import org.apache.olingo.server.api.uri.UriResourceNavigation;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 import java.util.Map.Entry;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -9,7 +9,7 @@ import org.apache.olingo.server.api.uri.UriInfoResource;
 import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResourcePartTyped;
 
-import javax.persistence.criteria.From;
+import jakarta.persistence.criteria.From;
 import java.util.Collections;
 import java.util.List;
 
@@ -111,4 +111,5 @@ public final class JPANavigationPropertyInfo {
   private JPAServiceDocument getServiceDocument() {
     return sd;
   }
+
 }

@@ -10,8 +10,8 @@ import org.apache.olingo.server.api.uri.UriResourceFunction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Expression;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Expression;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,4 +88,5 @@ public class TestJPAFunctionOperator {
     }
     fail("Function provided not checked");
   }
+
 }

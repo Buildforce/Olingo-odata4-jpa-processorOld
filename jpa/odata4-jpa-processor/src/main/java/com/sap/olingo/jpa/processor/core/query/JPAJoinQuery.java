@@ -19,15 +19,21 @@ import org.apache.olingo.server.api.uri.UriResourceNavigation;
 import org.apache.olingo.server.api.uri.UriResourceProperty;
 import org.apache.olingo.server.api.uri.queryoption.OrderByItem;
 import org.apache.olingo.server.api.uri.queryoption.OrderByOption;
-import org.apache.olingo.server.api.uri.queryoption.expression.Expression;
 import org.apache.olingo.server.api.uri.queryoption.expression.Member;
 
-import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.AbstractQuery;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.From;
-import java.util.*;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.AbstractQuery;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Expression;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import static com.sap.olingo.jpa.processor.core.converter.JPAExpandResult.ROOT_RESULT_KEY;
 
@@ -48,7 +54,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
   }
 
   public JPAJoinQuery(final OData odata, final JPAODataCRUDContextAccess sessionContext,
-      final Map<String, List<String>> requestHeaders, final JPAODataRequestContextAccess requestContext)
+                      final Map<String, List<String>> requestHeaders, final JPAODataRequestContextAccess requestContext)
           throws ODataJPAException, ODataApplicationException {
 
     super(odata, sessionContext, determineTargetEntityType(sessionContext, requestContext),
@@ -76,7 +82,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
     try {
       createFromClause(Collections.emptyList(), Collections.emptyList(), countQuery, lastInfo);
 
-      final javax.persistence.criteria.Expression<Boolean> whereClause = createWhere();
+      final Expression<Boolean> whereClause = createWhere();
       if (whereClause != null)
         countQuery.where(whereClause);
       countQuery.select(cb.countDistinct(target));
@@ -100,7 +106,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
       cq.multiselect(createSelectClause(joinTables, selectionPath, target, groups)).distinct(
           determineDistinct());
 
-      final javax.persistence.criteria.Expression<Boolean> whereClause = createWhere();
+      final Expression<Boolean> whereClause = createWhere();
       if (whereClause != null)
         cq.where(whereClause);
 
@@ -136,11 +142,11 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
     return cq;
   }
 
-  private List<javax.persistence.criteria.Expression<?>> createGroupBy(final Map<String, From<?, ?>> joinTables,
+  private List<Expression<?>> createGroupBy(final Map<String, From<?, ?>> joinTables,
       final Collection<JPAPath> selectionPathList) {
     final int handle = debugger.startRuntimeMeasurement(this, "createGroupBy");
 
-    final List<javax.persistence.criteria.Expression<?>> groupBy =
+    final List<Expression<?>> groupBy =
         new ArrayList<>();
 
     for (final JPAPath jpaPath : selectionPathList) {
@@ -151,7 +157,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
     return groupBy;
   }
 
-  private javax.persistence.criteria.Expression<Boolean> createWhere() throws ODataApplicationException {
+  private Expression<Boolean> createWhere() throws ODataApplicationException {
     return addWhereClause(super.createWhere(uriResource, navigationInfo), createProtectionWhere(claimsProvider));
   }
 
@@ -170,7 +176,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
     final OrderByOption orderBy = uriResource.getOrderByOption();
     if (orderBy != null) {
       for (final OrderByItem orderByItem : orderBy.getOrders()) {
-        final Expression expression = orderByItem.getExpression();
+        final org.apache.olingo.server.api.uri.queryoption.expression.Expression expression = orderByItem.getExpression();
         if (expression instanceof Member) {
           final UriInfoResource resourcePath = ((Member) expression).getResourcePath();
           final StringBuilder pathString = new StringBuilder();
@@ -214,4 +220,5 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
       return new JPACollectionQueryResult(result, null, jpaEntity, lastInfo.getAssociationPath(), selectionPath);
     return new JPAExpandQueryResult(result, null, jpaEntity, selectionPath);
   }
+
 }

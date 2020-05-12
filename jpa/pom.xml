@@ -13,7 +13,8 @@
 
     <properties>
         <coveralls.version>4.3.0</coveralls.version>
-        <eclipselink.prstnc.version>2.7.6</eclipselink.prstnc.version>
+        <eclipselink.prstnc.version>3.0.0-M1</eclipselink.prstnc.version>
+        <jakarta.persistence.api>3.0.0-RC2</jakarta.persistence.api>
         <jackson.version>2.11.0</jackson.version>
         <jacoco.version>0.8.5</jacoco.version>
         <jakarta.persistence.version>2.2.3</jakarta.persistence.version>

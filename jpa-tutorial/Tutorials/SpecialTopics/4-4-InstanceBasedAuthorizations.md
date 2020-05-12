@@ -76,9 +76,9 @@ package tutorial.model;
 
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
+import jakarta.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -218,9 +218,9 @@ package tutorial.model;
 
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
+import jakarta.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;

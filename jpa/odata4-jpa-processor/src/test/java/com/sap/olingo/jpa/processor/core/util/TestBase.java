@@ -6,7 +6,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder
 import com.sap.olingo.jpa.processor.core.testmodel.DataSourceHelper;
 import org.junit.jupiter.api.BeforeAll;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.HashMap;

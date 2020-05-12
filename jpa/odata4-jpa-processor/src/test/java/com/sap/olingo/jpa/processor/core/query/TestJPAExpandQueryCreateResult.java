@@ -19,7 +19,7 @@ import org.apache.olingo.server.api.ODataApplicationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.Tuple;
+import jakarta.persistence.Tuple;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -248,4 +248,5 @@ public class TestJPAExpandQueryCreateResult extends TestBase {
     assertEquals(1, act.get("2").size());
     assertEquals("97", act.get("2").get(0).get("ID"));
   }
+
 }

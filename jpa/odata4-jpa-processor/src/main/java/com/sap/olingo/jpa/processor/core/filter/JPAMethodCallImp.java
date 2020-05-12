@@ -3,7 +3,7 @@ package com.sap.olingo.jpa.processor.core.filter;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.queryoption.expression.MethodKind;
 
-import javax.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Expression;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

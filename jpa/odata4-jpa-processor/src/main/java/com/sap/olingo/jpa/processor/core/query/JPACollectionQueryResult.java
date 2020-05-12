@@ -13,7 +13,7 @@ import org.apache.olingo.commons.api.data.Property;
 import org.apache.olingo.commons.api.data.ValueType;
 import org.apache.olingo.server.api.ODataApplicationException;
 
-import javax.persistence.Tuple;
+import jakarta.persistence.Tuple;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -145,4 +145,5 @@ public class JPACollectionQueryResult implements JPACollectionResult, JPAConvert
   public void putChildren(final Map<JPAAssociationPath, JPAExpandResult> childResults) {
     // Not needed yet. Collections with navigation properties not supported
   }
+
 }

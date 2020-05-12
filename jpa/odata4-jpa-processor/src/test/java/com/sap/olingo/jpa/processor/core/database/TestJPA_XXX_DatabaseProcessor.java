@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.Equals;
 import org.mockito.stubbing.Answer;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

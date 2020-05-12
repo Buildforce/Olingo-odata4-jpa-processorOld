@@ -3,12 +3,12 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.sql.Timestamp;
 
 @Entity(name = "PersonProtected")
@@ -44,7 +44,7 @@ public class PersonDeepProtected {// #NOSONAR use equal method from BusinessPart
       @EdmProtectedBy(name = "Creator", path = "created/by"),
       @EdmProtectedBy(name = "Updater", path = "updated/by")
   })
-  private AdministrativeInformation protectedAdminInfo = new AdministrativeInformation();
+  private final AdministrativeInformation protectedAdminInfo = new AdministrativeInformation();
 
   @Override
   public int hashCode() {

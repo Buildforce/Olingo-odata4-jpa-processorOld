@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 
 {package}.config;
 
@@ -30,4 +30,5 @@ public class ProcessorConfiguration {
         .setRequestMappingPath("${punit}/v1")
         .build();
   }
+
 }

@@ -7,7 +7,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataAction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public class ExampleJavaPrivateConstructor implements ODataFunction, ODataAction {
 
@@ -23,4 +23,5 @@ public class ExampleJavaPrivateConstructor implements ODataFunction, ODataAction
   @EdmAction()
   public void mul(
       @EdmParameter(name = "A") short a, @EdmParameter(name = "B") int b) {}
+
 }

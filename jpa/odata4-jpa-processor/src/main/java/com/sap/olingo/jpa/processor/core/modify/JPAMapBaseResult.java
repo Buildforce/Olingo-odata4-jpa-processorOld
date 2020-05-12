@@ -4,7 +4,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAPath;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
-import javax.persistence.Tuple;
+import jakarta.persistence.Tuple;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,4 +48,5 @@ public abstract class JPAMapBaseResult extends JPACreateResult {
   protected Map<String, Object> entryAsMap(final Object entry) {
     return (Map<String, Object>) entry;
   }
+
 }

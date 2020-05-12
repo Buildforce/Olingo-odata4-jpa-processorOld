@@ -5,7 +5,7 @@ import com.sap.olingo.jpa.processor.core.modify.JPAUpdateResult;
 import com.sap.olingo.jpa.processor.core.processor.JPARequestEntity;
 import org.apache.olingo.commons.api.http.HttpMethod;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public interface JPACUDRequestHandler {
   /**
@@ -69,4 +69,5 @@ public interface JPACUDRequestHandler {
    * @throws ODataJPAProcessException
    */
   void validateChanges(final EntityManager em) throws ODataJPAProcessException;
+
 }

@@ -43,9 +43,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.ArgumentMatchers;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import javax.sql.DataSource;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -247,4 +247,5 @@ public abstract class TestJPAModifyProcessor {
         ets), ArgumentMatchers.any(JPAEntityType.class), ArgumentMatchers.any())).thenReturn(LOCATION_HEADER);
     return request;
   }
+
 }

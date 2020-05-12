@@ -9,8 +9,8 @@ import com.sap.olingo.jpa.processor.core.query.JPAAbstractQuery;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.uri.UriResource;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.From;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.From;
 import java.util.List;
 import java.util.Optional;
 

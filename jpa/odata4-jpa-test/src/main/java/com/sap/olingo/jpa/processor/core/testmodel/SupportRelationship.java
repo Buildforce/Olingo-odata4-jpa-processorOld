@@ -2,10 +2,10 @@ package com.sap.olingo.jpa.processor.core.testmodel;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @EdmIgnore
 @Entity
@@ -20,4 +20,5 @@ public class SupportRelationship {
 
   @Column(name = "\"PersonID\"", length = 32)
   private String personID;
+
 }

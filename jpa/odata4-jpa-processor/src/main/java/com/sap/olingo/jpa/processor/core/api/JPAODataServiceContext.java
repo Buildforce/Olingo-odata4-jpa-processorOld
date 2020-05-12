@@ -14,9 +14,9 @@ import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.processor.ErrorProcessor;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceException;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -443,7 +443,6 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
     *//*
      * (non-Javadoc)
      *
-
      * @see org.apache.olingo.server.api.debug.DebugSupport#isUserAuthorized()
      *//*
     @Override
@@ -472,4 +471,5 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
       }
     }
   }*/
+
 }
