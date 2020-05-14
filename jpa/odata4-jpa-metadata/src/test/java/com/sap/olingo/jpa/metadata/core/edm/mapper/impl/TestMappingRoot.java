@@ -18,8 +18,7 @@ public class TestMappingRoot {
 
   @BeforeAll
   public static void setupClass() {
-    emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, DataSourceHelper.createDataSource(
-        DataSourceHelper.DB_HSQLDB));
+    emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB));
   }
 
 }
