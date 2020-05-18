@@ -20,10 +20,35 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
-			<artifactId>odata4-jpa-test</artifactId>
-			<scope>test</scope>
-			<version>${project.version}</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>${javax-servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-server-api</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-server-core</artifactId>
+			<version>${odata.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.olingo</groupId>
@@ -35,43 +60,11 @@
 			<artifactId>odata4-jpa-metadata</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>odata-server-core</artifactId>
-			<version>${odata.version}</version>
+			<groupId>com.sap.olingo</groupId>
+			<artifactId>odata4-jpa-test</artifactId>
+			<scope>test</scope>
+			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>odata-server-api</artifactId>
-			<version>${odata.version}</version>
-		</dependency>
-		<!--<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
-			<version>${eclipse.javax.prstnc.version}</version>
-		</dependency>-->
-		<dependency>
-			<groupId>jakarta.servlet</groupId>
-			<artifactId>jakarta.servlet-api</artifactId>
-			<version>${javax-servlet.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-        <dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
-			<scope>provided</scope>
-        </dependency>
-    </dependencies>
+	</dependencies>
 </project>

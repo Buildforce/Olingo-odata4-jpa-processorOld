@@ -24,12 +24,6 @@
 			<artifactId>org.eclipse.persistence.jpa</artifactId>
 			<version>${eclipselink.prstnc.version}</version>
 			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.eclipse.persistence</groupId>
-					<artifactId>javax.persistence</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 </project>

@@ -8,12 +8,14 @@ import com.sap.olingo.jpa.processor.core.query.ExpressionUtil;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveType;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeException;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
+import org.apache.olingo.commons.core.edm.primitivetype.EdmDateTimeOffset;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataApplicationException;
 import org.apache.olingo.server.api.uri.queryoption.expression.Literal;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.time.ZonedDateTime;
 
 public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
   private final Literal literal;
@@ -39,13 +41,17 @@ public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
   @Override
   public Object get() throws ODataApplicationException {
     final EdmPrimitiveType edmType = ((EdmPrimitiveType) literal.getType());
-    try {
 
-      final Class<?> defaultType = edmType.getDefaultType();
-      final Constructor<?> c = defaultType.getConstructor(String.class);
-      return c.newInstance(edmType.fromUriLiteral(literalText));
+    try {
+      if (edmType instanceof EdmDateTimeOffset) {
+        return ZonedDateTime.parse(literal.getText());
+      } else {
+        final Class<?> defaultType = edmType.getDefaultType();
+        final Constructor<?> c = defaultType.getConstructor(String.class);
+        return c.newInstance(edmType.fromUriLiteral(literalText));
+      }
     } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-        | EdmPrimitiveTypeException | InstantiationException | NoSuchMethodException | SecurityException e) {
+            | EdmPrimitiveTypeException | InstantiationException | NoSuchMethodException | SecurityException e) {
       throw new ODataJPAFilterException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
   }

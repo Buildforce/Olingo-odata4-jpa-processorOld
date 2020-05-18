@@ -92,12 +92,6 @@
 					<groupId>org.eclipse.persistence</groupId>
 					<artifactId>eclipselink</artifactId>
 					<version>${eclipselink.prstnc.version}</version>
-					<exclusions>
-						<exclusion>
-							<groupId>org.eclipse.persistence</groupId>
-							<artifactId>javax.persistence</artifactId>
-						</exclusion>
-					</exclusions>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -107,11 +101,6 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<dependencies>
-			<!--<dependency>
-				<groupId>org.apache.openjpa</groupId>
-				<artifactId>openjpa-all</artifactId>
-				<version>3.1.0</version>
-			</dependency>-->
 			</dependencies>
 		</profile>
 		<profile>

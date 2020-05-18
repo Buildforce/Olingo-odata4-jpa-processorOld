@@ -6,7 +6,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -52,7 +56,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     @Override
     public void setContentType(String type) {
         fail();
-
     }
 
     @Override
@@ -74,7 +77,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
 
     @Override
     public void setContentLengthLong(long len) {
-
     }
 
     @Override
@@ -85,26 +87,22 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     @Override
     public void setBufferSize(int size) {
         fail();
-
     }
 
     @Override
     public void flushBuffer() {
         fail();
-
     }
 
     @Override
     public void resetBuffer() {
         fail();
-
     }
 
 /*
   @Override
   public Enumeration<?> getHeaderNames() {
     fail();
-
   }
 */
 
@@ -117,7 +115,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     @Override
     public void reset() {
         fail();
-
     }
 
     @Override
@@ -129,7 +126,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     @Override
     public void setLocale(Locale loc) {
         fail();
-
     }
 
     @Override
@@ -206,7 +202,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
 
     @Override
     public void addHeader(String name, String value) {
-        // TODO
     }
 
     @Override
@@ -237,7 +232,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
     }
 
     public InputStream getInputStream() {
-
         return new ResultStream((OutPutStream) this.outputStream);
     }
 
@@ -268,7 +262,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
         }
     }
 
-    //
     static class ResultStream extends InputStream {
         private final Iterator<Integer> bufferExcess;
 
@@ -282,6 +275,6 @@ public class HttpServletResponseDouble implements HttpServletResponse {
             if (bufferExcess.hasNext()) return bufferExcess.next();
             return -1;
         }
-
     }
+
 }

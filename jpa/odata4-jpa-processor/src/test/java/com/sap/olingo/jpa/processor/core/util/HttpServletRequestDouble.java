@@ -19,7 +19,12 @@ import javax.servlet.http.Part;
 
 import java.io.BufferedReader;
 import java.security.Principal;
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import static com.sap.olingo.jpa.processor.core.api.JPAODataGetHandler.REQUESTMAPPING_ATTRIBUTE;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -32,13 +37,11 @@ public class HttpServletRequestDouble implements HttpServletRequest {
     private final Map<String, Object> attributes;
     private String debugFormat;
 
-    public HttpServletRequestDouble(final String uri) {
-        this(uri, null);
-    }
-
+/*
     public HttpServletRequestDouble(final String uri, final StringBuffer body) {
         this(uri, body, null);
     }
+*/
 
   public HttpServletRequestDouble(
             final String uri,
@@ -56,6 +59,7 @@ public class HttpServletRequestDouble implements HttpServletRequest {
         attributes = new HashMap<>();
     }
 
+    @Override
     public Collection<Part> getParts() {
         fail();
         return null;
@@ -87,13 +91,13 @@ public class HttpServletRequestDouble implements HttpServletRequest {
 
     }
 
-  public Part getPart(String var1) {
+    public Part getPart(String var1) {
         fail();
         return null;
     }
 
     @Override
-    public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) {
+    public <T extends HttpUpgradeHandler> T upgrade(Class<T> aClass) {
         return null;
     }
 
