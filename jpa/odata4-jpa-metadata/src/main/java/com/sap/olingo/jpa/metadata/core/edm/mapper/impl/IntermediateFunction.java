@@ -8,7 +8,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAFunction;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 import org.apache.olingo.commons.api.edm.provider.CsdlFunction;
 import org.apache.olingo.commons.api.edm.provider.CsdlParameter;
 import org.apache.olingo.commons.api.edm.provider.CsdlReturnType;
@@ -139,10 +139,10 @@ abstract class IntermediateFunction extends IntermediateOperation implements JPA
       return determineParameterType(type, jpaParameter);
     }
 
-    @Override
+    /*@Override
     public SRID getSrid() {
       // TODO Auto-generated method stub
       return null;
-    }
+    }*/
   }
 }

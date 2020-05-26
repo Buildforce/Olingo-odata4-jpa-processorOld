@@ -12,7 +12,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 import org.apache.olingo.commons.api.edm.provider.CsdlParameter;
 import org.apache.olingo.commons.api.edm.provider.CsdlReturnType;
 
@@ -97,11 +97,11 @@ class IntermediateDataBaseFunction extends IntermediateFunction implements JPADa
         edmInputParameter.setPrecision(jpaParameter.precision());
       if (jpaParameter.scale() >= 0)
         edmInputParameter.setScale(jpaParameter.scale());
-      if (jpaParameter.srid() != null && !jpaParameter.srid().srid().isEmpty()) {
+     /* if (jpaParameter.srid() != null && !jpaParameter.srid().srid().isEmpty()) {
         final SRID srid = SRID.valueOf(jpaParameter.srid().srid());
         srid.setDimension(jpaParameter.srid().dimension());
         edmInputParameter.setSrid(srid);
-      }
+      }*/
       edmInputParameterList.add(edmInputParameter);
     }
     return edmInputParameterList;
@@ -121,11 +121,11 @@ class IntermediateDataBaseFunction extends IntermediateFunction implements JPADa
       edmResultType.setPrecision(returnType.precision());
     if (returnType.scale() >= 0)
       edmResultType.setScale(returnType.scale());
-    if (returnType.srid() != null && !returnType.srid().srid().isEmpty()) {
+    /*if (returnType.srid() != null && !returnType.srid().srid().isEmpty()) {
       final SRID srid = SRID.valueOf(returnType.srid().srid());
       srid.setDimension(returnType.srid().dimension());
       edmResultType.setSrid(srid);
-    }
+    }*/
     return edmResultType;
   }
 

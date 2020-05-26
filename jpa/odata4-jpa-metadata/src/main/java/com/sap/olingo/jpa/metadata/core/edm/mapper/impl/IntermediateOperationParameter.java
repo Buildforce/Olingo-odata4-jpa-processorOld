@@ -5,7 +5,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 import org.apache.olingo.commons.api.edm.provider.CsdlAbstractEdmItem;
 
 class IntermediateOperationParameter extends IntermediateModelElement implements JPAParameter {
@@ -62,7 +62,7 @@ class IntermediateOperationParameter extends IntermediateModelElement implements
   @Override
   CsdlAbstractEdmItem getEdmItem() { return null; }
 
-  @Override
+  /*@Override
   public SRID getSrid() {
     if (jpaParameter.srid() != null && !jpaParameter.srid().srid().isEmpty()) {
       final SRID srid = SRID.valueOf(jpaParameter.srid().srid());
@@ -70,5 +70,5 @@ class IntermediateOperationParameter extends IntermediateModelElement implements
       return srid;
     } else
       return null;
-  }
+  }*/
 }

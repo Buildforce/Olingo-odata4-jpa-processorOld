@@ -28,7 +28,7 @@ public @interface EdmParameter {
 
   int scale() default -1;
 
-  EdmGeospatial srid() default @EdmGeospatial();
+  // EdmGeospatial srid() default @EdmGeospatial();
 
   /**
    * Define the parameter type in case of stored procedure or user defined function.<p>

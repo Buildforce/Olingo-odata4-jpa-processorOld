@@ -15,7 +15,7 @@ import org.apache.olingo.server.api.uri.queryoption.expression.Literal;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
   private final Literal literal;
@@ -44,7 +44,7 @@ public class JPALiteralOperator implements JPAPrimitiveTypeOperator {
 
     try {
       if (edmType instanceof EdmDateTimeOffset) {
-        return ZonedDateTime.parse(literal.getText());
+        return OffsetDateTime.parse(literal.getText());
       } else {
         final Class<?> defaultType = edmType.getDefaultType();
         final Constructor<?> c = defaultType.getConstructor(String.class);

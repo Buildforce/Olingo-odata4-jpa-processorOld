@@ -12,7 +12,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 import org.apache.olingo.commons.api.edm.provider.CsdlParameter;
 import org.apache.olingo.commons.api.edm.provider.CsdlReturnType;
 
@@ -143,12 +143,12 @@ class IntermediateJavaFunction extends IntermediateFunction implements JPAJavaFu
       edmResultType.setPrecision(definedReturnType.precision());
     if (definedReturnType.scale() >= 0)
       edmResultType.setScale(definedReturnType.scale());
-    definedReturnType.srid();
+    /*definedReturnType.srid();
     if (!definedReturnType.srid().srid().isEmpty()) {
       final SRID srid = SRID.valueOf(definedReturnType.srid().srid());
       srid.setDimension(definedReturnType.srid().dimension());
       edmResultType.setSrid(srid);
-    }
+    }*/
 
     return edmResultType;
   }

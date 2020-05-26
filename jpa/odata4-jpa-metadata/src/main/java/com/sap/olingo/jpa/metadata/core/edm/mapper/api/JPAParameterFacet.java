@@ -2,7 +2,7 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.api;
 
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 
 public interface JPAParameterFacet {
 
@@ -12,7 +12,7 @@ public interface JPAParameterFacet {
 
   Integer getScale();
 
-  SRID getSrid();
+  //SRID getSrid();
 
   Class<?> getType();
 

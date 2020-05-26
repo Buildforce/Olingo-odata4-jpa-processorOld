@@ -2,13 +2,13 @@ package com.sap.olingo.jpa.processor.core.testobjects;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
+// import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataAction;
 import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
 import com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
-import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
+// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 
 import jakarta.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -75,13 +75,13 @@ public class TestJavaActions implements ODataAction {
     return Collections.singletonList(new ChangeInformation());
   }
 
-  @EdmAction(returnType = @ReturnType(maxLength = 60,
+  /*@EdmAction(returnType = @ReturnType(maxLength = 60,
       srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")))
   public String calculateLocation(
       @EdmParameter(name = "String", maxLength = 100,
           srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")) String a) {
     return "";
-  }
+  }*/
 
   @EdmAction()
   public void unboundWithOutParameter() {

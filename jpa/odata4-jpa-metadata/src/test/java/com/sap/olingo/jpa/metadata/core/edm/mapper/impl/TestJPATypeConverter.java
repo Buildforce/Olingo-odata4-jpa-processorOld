@@ -1,9 +1,9 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
+// import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
-import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
+// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -93,7 +93,7 @@ public class TestJPATypeConverter {
         arguments(UUID.class, EdmPrimitiveTypeKind.Guid));
   }
 
-  static Stream<Arguments> mappingJavaGeographyToOData() {
+/*  static Stream<Arguments> mappingJavaGeographyToOData() {
     return Stream.of(
         arguments(org.apache.olingo.commons.api.edm.geo.Point.class, buildDimensionAttribute(Dimension.GEOGRAPHY),
             EdmPrimitiveTypeKind.GeographyPoint),
@@ -137,7 +137,7 @@ public class TestJPATypeConverter {
             EdmPrimitiveTypeKind.GeometryCollection)
 
     );
-  }
+  }*/
 
   static Stream<Arguments> scalarJavaTypes() {
     return Stream.of(
@@ -215,7 +215,7 @@ public class TestJPATypeConverter {
     return a;
   }
 
-  private static Attribute<?, ?> buildDimensionAttribute(final Dimension dimension) {
+  /*private static Attribute<?, ?> buildDimensionAttribute(final Dimension dimension) {
     final Attribute<?, ?> a = mock(Attribute.class);
     final AnnotatedElement e = mock(AnnotatedElement.class, Mockito.withSettings().extraInterfaces(Member.class));
     final EdmGeospatial g = mock(EdmGeospatial.class);
@@ -236,7 +236,7 @@ public class TestJPATypeConverter {
     final ODataJPAModelException act = assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(javaType, buildTimeAttribute(TemporalType.TIME)));
     assertEquals(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED.getKey(), act.getId());
-  }
+  }*/
 
   @ParameterizedTest
   @MethodSource("mappingJavaGeometryToOData")
@@ -313,7 +313,7 @@ public class TestJPATypeConverter {
         () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildTimeAttribute(TemporalType.TIME)));
   }
 
-  @Test
+  /*@Test
   public void checkThrowsExceptionOnUnknownGeographyType() {
 
     assertThrows(ODataJPAModelException.class,
@@ -325,6 +325,6 @@ public class TestJPATypeConverter {
 
     assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildDimensionAttribute(Dimension.GEOMETRY)));
-  }
+  }*/
 
 }

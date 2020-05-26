@@ -1,18 +1,19 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
+//import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAAttribute;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
-import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
+/*import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryCollection;
-import org.locationtech.jts.geom.MultiPolygon;
-import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.MultiLineString;
 import org.locationtech.jts.geom.MultiPoint;
+import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
+*/
 
 import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
@@ -82,8 +83,8 @@ public final class JPATypeConverter {
             else if (jpaType.equals(UUID.class)) return EdmPrimitiveTypeKind.Guid;
             else if (jpaType.equals(Blob.class) && isBlob(currentAttribute)) return EdmPrimitiveTypeKind.Binary;
             else if (jpaType.equals(Clob.class) && isBlob(currentAttribute)) return EdmPrimitiveTypeKind.String;
-            else if (isGeography(currentAttribute)) return convertGeography(jpaType, currentAttribute);
-            else if (isGeometry(currentAttribute)) return convertGeometry(jpaType, currentAttribute);
+            /*else if (isGeography(currentAttribute)) return convertGeography(jpaType, currentAttribute);
+            else if (isGeometry(currentAttribute)) return convertGeometry(jpaType, currentAttribute);*/
         if (currentAttribute != null)
             // Type (%1$s) of attribute (%2$s) is not supported. Mapping not possible
             throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED,
@@ -102,8 +103,8 @@ public final class JPATypeConverter {
                 || type.equals(Byte[].class)
                 || type.equals(Blob.class)
                 || type.equals(Clob.class)
-                || isGeography(currentAttribute)
-                || isGeometry(currentAttribute));
+                /*|| isGeography(currentAttribute)
+                || isGeometry(currentAttribute)*/);
     }
 
     public static boolean isScalarType(final Class<?> type) {
@@ -170,7 +171,7 @@ public final class JPATypeConverter {
                 type == String.class);
     }
 
-    private static EdmPrimitiveTypeKind convertGeography(final Class<?> jpaType, final Attribute<?, ?> currentAttribute)
+    /*private static EdmPrimitiveTypeKind convertGeography(final Class<?> jpaType, final Attribute<?, ?> currentAttribute)
             throws ODataJPAModelException {
         if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.Point.class)) {
             return EdmPrimitiveTypeKind.GeographyPoint;
@@ -231,7 +232,7 @@ public final class JPATypeConverter {
         // Type (%1$s) of attribute (%2$s) is not supported. Mapping not possible
         throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED,
                 jpaType.getName(), currentAttribute.getName());
-    }
+    }*/
 
     private static TemporalType determineTemporalType(final Attribute<?, ?> currentAttribute) {
         if (currentAttribute != null) {
@@ -244,7 +245,7 @@ public final class JPATypeConverter {
 
     }
 
-    private static Dimension getDimension(final Attribute<?, ?> currentAttribute) {
+/*    private static Dimension getDimension(final Attribute<?, ?> currentAttribute) {
         if (currentAttribute.getJavaMember() instanceof AnnotatedElement) {
             final AnnotatedElement annotatedElement = (AnnotatedElement) currentAttribute.getJavaMember();
             final EdmGeospatial spatialDetails = annotatedElement.getAnnotation(EdmGeospatial.class);
@@ -252,7 +253,7 @@ public final class JPATypeConverter {
                 return spatialDetails.dimension();
         }
         return null;
-    }
+    }*/
 
     private static boolean isBlob(final Attribute<?, ?> currentAttribute) {
         if (currentAttribute != null) {
@@ -262,12 +263,12 @@ public final class JPATypeConverter {
         return false;
     }
 
-    private static boolean isGeography(final Attribute<?, ?> currentAttribute) {
+    /*private static boolean isGeography(final Attribute<?, ?> currentAttribute) {
         return currentAttribute != null && getDimension(currentAttribute) == Dimension.GEOGRAPHY;
     }
 
     private static boolean isGeometry(final Attribute<?, ?> currentAttribute) {
         return currentAttribute != null && getDimension(currentAttribute) == Dimension.GEOMETRY;
-    }
+    }*/
 
 }

@@ -5,7 +5,7 @@ import org.apache.olingo.commons.api.edm.EdmMapping;
 import org.apache.olingo.commons.api.edm.EdmProperty;
 import org.apache.olingo.commons.api.edm.EdmTerm;
 import org.apache.olingo.commons.api.edm.EdmType;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 
 import java.util.List;
 
@@ -90,11 +90,11 @@ public class EdmPropertyDouble implements EdmProperty {
     return null;
   }
 
-  @Override
+  /*@Override
   public SRID getSrid() {
     fail();
     return null;
-  }
+  }*/
 
   @Override
   public boolean isUnicode() {
@@ -108,10 +108,10 @@ public class EdmPropertyDouble implements EdmProperty {
     return null;
   }
 
-  @Override
+  /*@Override
   public EdmType getTypeWithAnnotations() {
     fail();
     return null;
-  }
+  }*/
 
 }

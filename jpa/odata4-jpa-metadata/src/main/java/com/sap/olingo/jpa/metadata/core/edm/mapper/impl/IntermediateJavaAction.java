@@ -11,7 +11,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException.MessageKeys;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 import org.apache.olingo.commons.api.edm.provider.CsdlAction;
 import org.apache.olingo.commons.api.edm.provider.CsdlParameter;
 import org.apache.olingo.commons.api.edm.provider.CsdlReturnType;
@@ -113,7 +113,7 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
       parameter.setPrecision(nullIfNotSet(jpaParameter.getPrecision()));
       parameter.setScale(nullIfNotSet(jpaParameter.getScale()));
       parameter.setMaxLength(nullIfNotSet(jpaParameter.getMaxLength()));
-      parameter.setSrid(jpaParameter.getSrid());
+      //parameter.setSrid(jpaParameter.getSrid());
       parameters.add(parameter);
     }
     if (jpaAction.isBound() && bindingPosition.getPos() != 1)
@@ -199,12 +199,12 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
     edmResultType.setPrecision(nullIfNotSet(definedReturnType.precision()));
     edmResultType.setScale(nullIfNotSet(definedReturnType.scale()));
     edmResultType.setMaxLength(nullIfNotSet(definedReturnType.maxLength()));
-    definedReturnType.srid();
+    /*definedReturnType.srid();
     if (!definedReturnType.srid().srid().isEmpty()) {
       final SRID srid = SRID.valueOf(definedReturnType.srid().srid());
       srid.setDimension(definedReturnType.srid().dimension());
       edmResultType.setSrid(srid);
-    }
+    }*/
     return edmResultType;
   }
 

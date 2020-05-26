@@ -2,7 +2,7 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmAction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
+// import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataAction;
 import com.sap.olingo.jpa.processor.core.testmodel.AbcClassification;
@@ -11,7 +11,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.BusinessPartnerRole;
 import com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
 import com.sap.olingo.jpa.processor.core.testmodel.PostalAddressData;
-import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
+// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -75,12 +75,12 @@ public class ExampleJavaActions implements ODataAction {
     return new ArrayList<>();
   }
 
-  @EdmAction(
+/*  @EdmAction(
           returnType = @ReturnType(maxLength = 60, srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")))
   public String calculateLocation(
       @EdmParameter(name = "String", maxLength = 100, srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")) String a) {
     return "";
-  }
+  }*/
 
   @EdmAction()
   public Integer errorNonPrimitiveParameter(

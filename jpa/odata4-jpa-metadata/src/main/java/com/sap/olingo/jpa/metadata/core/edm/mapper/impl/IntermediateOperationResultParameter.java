@@ -4,7 +4,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOperation;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAOperationResultParameter;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 
 class IntermediateOperationResultParameter implements JPAOperationResultParameter {
   /**
@@ -72,10 +72,10 @@ class IntermediateOperationResultParameter implements JPAOperationResultParamete
     return isCollection;
   }
 
-  @Override
+  /*@Override
   public SRID getSrid() {
     // TODO Auto-generated method stub
     return null;
-  }
+  }*/
 
 }

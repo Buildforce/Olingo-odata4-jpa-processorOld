@@ -38,7 +38,7 @@ public @interface EdmFunction {
 
     int scale() default -1;
 
-    EdmGeospatial srid() default @EdmGeospatial();
+    // EdmGeospatial srid() default @EdmGeospatial();
 
     /**
      * Define the return type for the function import.<p>

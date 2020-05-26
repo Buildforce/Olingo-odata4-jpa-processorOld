@@ -2,7 +2,7 @@ package com.sap.olingo.jpa.metadata.core.edm.mapper.testobjects;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
+// import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmParameter;
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 import com.sap.olingo.jpa.processor.core.testmodel.AbcClassification;
@@ -10,7 +10,7 @@ import com.sap.olingo.jpa.processor.core.testmodel.AccessRights;
 import com.sap.olingo.jpa.processor.core.testmodel.ChangeInformation;
 import com.sap.olingo.jpa.processor.core.testmodel.Person;
 import com.sap.olingo.jpa.processor.core.testmodel.PostalAddressData;
-import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
+// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -47,11 +47,11 @@ public class ExampleJavaFunctions implements ODataFunction {
     return Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
   }
 
-  @EdmFunction(returnType = @ReturnType(maxLength = 60, srid = @EdmGeospatial(
+ /* @EdmFunction(returnType = @ReturnType(maxLength = 60, srid = @EdmGeospatial(
       dimension = Dimension.GEOGRAPHY, srid = "4326")))
   public String determineLocation() {
     return "";
-  }
+  }*/
 
   @EdmFunction(returnType = @ReturnType(type = String.class))
   public List<String> returnCollection() {

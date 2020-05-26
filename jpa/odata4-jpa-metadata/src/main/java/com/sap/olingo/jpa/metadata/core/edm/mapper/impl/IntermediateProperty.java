@@ -1,6 +1,6 @@
 package com.sap.olingo.jpa.metadata.core.edm.mapper.impl;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
+// import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmGeospatial;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtections;
@@ -15,7 +15,7 @@ import com.sap.olingo.jpa.metadata.core.edm.mapper.exception.ODataJPAModelExcept
 import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import org.apache.olingo.commons.api.edm.FullQualifiedName;
-import org.apache.olingo.commons.api.edm.geo.SRID;
+// import org.apache.olingo.commons.api.edm.geo.SRID;
 import org.apache.olingo.commons.api.edm.provider.CsdlAnnotation;
 import org.apache.olingo.commons.api.edm.provider.CsdlMapping;
 import org.apache.olingo.commons.api.edm.provider.CsdlProperty;
@@ -234,7 +234,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
         return JPATypeConverter.convertToEdmSimpleType(javaType, jpaAttribute).getFullQualifiedName();
     }
 
-    SRID getSRID() {
+    /*SRID getSRID() {
         SRID result = null;
         if (jpaAttribute.getJavaMember() instanceof AnnotatedElement) {
             final AnnotatedElement annotatedElement = (AnnotatedElement) jpaAttribute.getJavaMember();
@@ -250,7 +250,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
             }
         }
         return result;
-    }
+    }*/
 
     boolean isPartOfGroup() { return !fieldGroups.isEmpty(); }
 
@@ -278,7 +278,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
                 final int precision = jpaColumn.precision();
 
                 edmProperty.setNullable(jpaColumn.nullable());
-                edmProperty.setSrid(getSRID());
+                // edmProperty.setSrid(getSRID());
                 edmProperty.setDefaultValue(getDefaultValue());
                 // TODO Attribute Unicode
                 // For a decimal property the value of this attribute specifies the maximum number of digits allowed in the
