@@ -5,7 +5,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.sap.olingo</groupId>
+        <groupId>nl.buildforce.sequoia</groupId>
         <artifactId>odata4-jpa</artifactId>
         <version>0.3.8.0</version>
     </parent>
@@ -20,13 +20,13 @@
     <dependencies>
         <!-- Testing -->
         <dependency>
-            <groupId>com.sap.olingo</groupId>
+            <groupId>nl.buildforce.sequoia</groupId>
             <artifactId>odata4-jpa-test</artifactId>
             <scope>test</scope>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.sap.olingo</groupId>
+            <groupId>nl.buildforce.sequoia</groupId>
             <artifactId>odata4-jpa-annotation</artifactId>
             <version>${project.version}</version>
         </dependency>

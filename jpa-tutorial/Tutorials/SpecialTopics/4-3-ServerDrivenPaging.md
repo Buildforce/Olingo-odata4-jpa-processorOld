@@ -8,9 +8,9 @@ OData describes that a server can restrict the number of returned records e.g. t
 - Number of parallel processed request on a server instance
 - ...
 
-This makes a general implementation impossible. Instead of that a hook implementation can be provided. This hook has to implement interface [`com.sap.olingo.jpa.processor.core.api.JPAODataPagingProvider`](https://github.com/SAP/olingo-jpa-processor-v4/blob/develop/jpa/odata-jpa-processor/src/main/java/com/sap/olingo/jpa/processor/core/api/JPAODataPagingProvider.java), which contains two methods `getFirstPage` and `getNextPage`. `getFirstPage` is called in case a query does not contain a `$skiptoken`. It either returns an instance of `JPAODataPage`, so only a subset of the requested entities will be returned, or null and all entities are returned. If a request has a `$skiptoken` method `getNextPage` is called. If this method does not return a `JPAODataPage` instance, a _410, "Gone"_, exception is raised.
+This makes a general implementation impossible. Instead of that a hook implementation can be provided. This hook has to implement interface [`nl.buildforce.sequoia.jpa.processor.core.api.JPAODataPagingProvider`](https://github.com/SAP/olingo-jpa-processor-v4/blob/develop/jpa/odata-jpa-processor/src/main/java/com/sap/olingo/jpa/processor/core/api/JPAODataPagingProvider.java), which contains two methods `getFirstPage` and `getNextPage`. `getFirstPage` is called in case a query does not contain a `$skiptoken`. It either returns an instance of `JPAODataPage`, so only a subset of the requested entities will be returned, or null and all entities are returned. If a request has a `$skiptoken` method `getNextPage` is called. If this method does not return a `JPAODataPage` instance, a _410, "Gone"_, exception is raised.
 
-To get started we want to use `com.sap.olingo.jpa.processor.core.api.example.JPAExamplePagingProvider` as our paging provider. As all requests would need to share the same provider instance we have to add it to the service context, which means we have to adopt the `Listener` implementation.
+To get started we want to use `nl.buildforce.sequoia.jpa.processor.core.api.example.JPAExamplePagingProvider` as our paging provider. As all requests would need to share the same provider instance we have to add it to the service context, which means we have to adopt the `Listener` implementation.
 
 The constructor of `JPAExamplePagingProvider` takes two parameter. On the one hand the buffer size, which describes how many pages a cache inside the paging provider holds, and on the other hand a map that holds the page size for some chosen entity sets. First of all we want to create a constant for the buffer size:
 ```Java
@@ -23,8 +23,8 @@ import javax.sql.DataSource;
 
 import org.apache.olingo.commons.api.ex.ODataException;
 
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataServiceContext;
 
 public class Listener implements ServletContextListener {
   private static final String PUNIT_NAME = "Tutorial";

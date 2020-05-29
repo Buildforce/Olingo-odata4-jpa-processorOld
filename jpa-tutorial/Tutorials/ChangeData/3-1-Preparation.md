@@ -8,8 +8,8 @@ When we make changes, we need also some logic, therefore we want to create a new
 ```Java
 package tutorial.service;
 
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataCRUDHandler;
 import org.apache.olingo.commons.api.ex.ODataException;
 import tutorial.modify.CUDRequestHandler;
 

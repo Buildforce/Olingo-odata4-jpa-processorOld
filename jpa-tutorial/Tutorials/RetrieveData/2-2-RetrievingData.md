@@ -6,8 +6,8 @@ In the tutorial the service context will not change. So it will be put it into t
 ```Java
 package tutorial.service;
 
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataServiceContext;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataServiceContext;
 import org.apache.olingo.commons.api.ex.ODataException;
 
 import javax.servlet.ServletContextEvent;
@@ -56,8 +56,8 @@ Now we have all the peaces to build a service responding to GET requests.
 ```Java
 package tutorial.service;
 
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDContextAccess;
-import com.sap.olingo.jpa.processor.core.api.JPAODataCRUDHandler;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAODataCRUDHandler;
 import org.apache.olingo.commons.api.ex.ODataException;
 import tutorial.modify.CUDRequestHandler;
 

@@ -56,7 +56,7 @@ You can delete the index.jsp if it creates an error, we will not use it. Next st
 
     <dependencies>
         <dependency>
-            <groupId>com.sap.olingo</groupId>
+            <groupId>nl.buildforce.sequoia</groupId>
             <artifactId>odata4-jpa-processor</artifactId>
             <version>0.3.8</version>
         </dependency>

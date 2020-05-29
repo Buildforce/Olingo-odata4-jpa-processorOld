@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sap.olingo</groupId>
+    <groupId>nl.buildforce.sequoia</groupId>
     <artifactId>odata4-jpa</artifactId>
     <version>0.3.8.0</version>
     <packaging>pom</packaging>
@@ -51,7 +51,6 @@
         <module>odata4-jpa-coverage</module>
         <module>odata4-jpa-metadata</module>
         <module>odata4-jpa-processor</module>
-        <module>odata4-jpa-spring-support</module>
         <module>odata4-jpa-test</module>
     </modules>
     <build>

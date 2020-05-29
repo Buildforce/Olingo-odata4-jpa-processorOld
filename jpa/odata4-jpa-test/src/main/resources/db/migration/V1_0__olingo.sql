@@ -370,7 +370,7 @@ CREATE TABLE "BusinessPartnerRole" (
 	"BusinessPartnerID" VARCHAR(32) NOT NULL,
 	"BusinessPartnerRole" VARCHAR(10) NOT NULL,
 	"Details"  VARCHAR(256),
-     PRIMARY KEY ("BusinessPartnerID","BusinessPartnerRole"));
+     PRIMARY KEY ("BusinessPartnerID", "BusinessPartnerRole"));
 
 insert into "BusinessPartnerRole" values ('1',  'A', null);
 insert into "BusinessPartnerRole" values ('3',  'A', 'Test');

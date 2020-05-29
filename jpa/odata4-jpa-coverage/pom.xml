@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.sap.olingo</groupId>
+		<groupId>nl.buildforce.sequoia</groupId>
 		<artifactId>odata4-jpa</artifactId>
 		<version>0.3.8.0</version>
 	</parent>
@@ -18,17 +18,17 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>nl.buildforce.sequoia</groupId>
 			<artifactId>odata4-jpa-annotation</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>nl.buildforce.sequoia</groupId>
 			<artifactId>odata4-jpa-metadata</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>nl.buildforce.sequoia</groupId>
 			<artifactId>odata4-jpa-processor</artifactId>
 			<version>${project.version}</version>
 		</dependency>

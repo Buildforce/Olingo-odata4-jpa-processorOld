@@ -29,11 +29,11 @@ import java.util.Map;
 
 import jakarta.persistence.EntityManager;
 
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAEntityType;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
-import com.sap.olingo.jpa.processor.core.api.JPAAbstractCUDRequestHandler;
-import com.sap.olingo.jpa.processor.core.exception.ODataJPAProcessException;
-import com.sap.olingo.jpa.processor.core.processor.JPARequestEntity;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.api.JPAStructuredType;
+import nl.buildforce.sequoia.jpa.processor.core.api.JPAAbstractCUDRequestHandler;
+import nl.buildforce.sequoia.jpa.processor.core.exception.ODataJPAProcessException;
+import nl.buildforce.sequoia.jpa.processor.core.processor.JPARequestEntity;
 import org.apache.olingo.commons.api.http.HttpStatusCode;
 
 import jakarta.persistence.EntityManager;

@@ -98,10 +98,10 @@ The first example shall be a very simple function that is able to sum two intege
 ```JAVA
 package tutorial.operations;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmFunctionParameter;
-import com.sap.olingo.jpa.metadata.core.edm.mapper.extension.ODataFunction;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmFunction;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmFunction.ReturnType;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmFunctionParameter;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.extension.ODataFunction;
 
 public class JavaFunctions implements ODataFunction {
 

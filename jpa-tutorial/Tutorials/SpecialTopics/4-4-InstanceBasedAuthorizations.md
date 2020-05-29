@@ -86,8 +86,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmIgnore;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"CompanyProtectedByCountry\"")
@@ -228,8 +228,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmProtectedBy;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmIgnore;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmProtectedBy;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"CompanyProtectedByRole\"")

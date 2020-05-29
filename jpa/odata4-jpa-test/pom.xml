@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.sap.olingo</groupId>
+		<groupId>nl.buildforce.sequoia</groupId>
 		<artifactId>odata4-jpa</artifactId>
 		<version>0.3.8.0</version>
 	</parent>
@@ -26,7 +26,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.sap.olingo</groupId>
+			<groupId>nl.buildforce.sequoia</groupId>
 			<artifactId>odata4-jpa-annotation</artifactId>
 			<version>${jpa-processor.version}</version>
 		</dependency>
@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>6.4.1</version>
+			<version>6.4.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>

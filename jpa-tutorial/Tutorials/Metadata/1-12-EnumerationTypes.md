@@ -11,7 +11,7 @@ We want to assume that our Companies shall be classified using an ABC-Classifica
 ```Java
 package tutorial.model;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration()
 public enum ABCClassification {
@@ -61,7 +61,7 @@ Here we take over the example given in [Schema Definition Language Documentation
 ```Java
 package tutorial.model;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmEnumeration;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmEnumeration;
 
 @EdmEnumeration(isFlags = true, converter = AccessRightsConverter.class)
 public enum AccessRights {

@@ -21,7 +21,7 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmVisibleFor;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmVisibleFor;
 
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"BusinessPartner\"")

@@ -154,8 +154,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.olingo.commons.api.ex.ODataException;
-import com.sap.olingo.jpa.metadata.api.JPAEdmProvider;
-import com.sap.olingo.jpa.metadata.api.JPAEntityManagerFactory;
+import nl.buildforce.sequoia.jpa.metadata.api.JPAEdmProvider;
+import nl.buildforce.sequoia.jpa.metadata.api.JPAEntityManagerFactory;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataHttpHandler;
 import org.apache.olingo.server.api.ServiceMetadata;

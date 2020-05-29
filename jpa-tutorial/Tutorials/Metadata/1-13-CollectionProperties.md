@@ -47,7 +47,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+import nl.buildforce.sequoia.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @EdmIgnore
 @Entity
