@@ -21,8 +21,7 @@ class IntermediateActionFactory extends IntermediateOperationFactory {
   <F extends IntermediateJavaAction> Map<String, F> create(final JPAEdmNameBuilder nameBuilder,
       final Reflections reflections, final IntermediateSchema schema) throws ODataJPAModelException {
 
-    return (Map<String, F>) createOperationMap(nameBuilder, reflections,
-        schema, ODataAction.class, EdmAction.class);
+    return (Map<String, F>) createOperationMap(nameBuilder, reflections, schema, ODataAction.class, EdmAction.class);
   }
 
 }

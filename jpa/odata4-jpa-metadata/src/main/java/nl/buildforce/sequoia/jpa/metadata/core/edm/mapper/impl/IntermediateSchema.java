@@ -132,8 +132,7 @@ final class IntermediateSchema extends IntermediateModelElement {
 
   @Override
   CsdlSchema getEdmItem() throws ODataJPAModelException {
-    if (edmSchema == null)
-      lazyBuildEdmItem();
+    if (edmSchema == null) lazyBuildEdmItem();
     return edmSchema;
   }
 
@@ -149,7 +148,6 @@ final class IntermediateSchema extends IntermediateModelElement {
     }
     return null;
   }
-
   JPAEntityType getEntityType(final String dbCatalog, final String dbSchema, final String dbTableName) {
     for (final Entry<String, IntermediateEntityType> et : entityTypeListInternalKey.entrySet()) {
       if (et.getValue().dbEquals(dbCatalog, dbSchema, dbTableName))

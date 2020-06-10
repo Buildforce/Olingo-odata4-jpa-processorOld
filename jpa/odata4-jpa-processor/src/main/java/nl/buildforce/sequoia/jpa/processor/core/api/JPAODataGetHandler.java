@@ -6,7 +6,6 @@ import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.exception.ODataJPAExce
 import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.jpa.processor.core.exception.ODataJPAFilterException;
 import nl.buildforce.sequoia.jpa.processor.core.processor.JPAODataRequestContextImpl;
-import org.apache.olingo.commons.api.ex.ODataException;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataHttpHandler;
 import org.apache.olingo.server.api.debug.DebugSupport;
@@ -104,7 +103,7 @@ public class JPAODataGetHandler {
       } else {
         processInternal(request, response);
       }
-    } catch (RuntimeException | ODataException e ) {
+    } catch (RuntimeException | ODataJPAException e ) {
       throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.PROCESSINTERNAL_FAILED);
     }
   }

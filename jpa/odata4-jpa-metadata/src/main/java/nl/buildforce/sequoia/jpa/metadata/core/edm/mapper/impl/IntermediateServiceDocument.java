@@ -268,8 +268,7 @@ class IntermediateServiceDocument implements JPAServiceDocument {
     return false;
   }
 
-  private void buildIntermediateSchemas()
-      throws ODataJPAModelException {
+  private void buildIntermediateSchemas() throws ODataJPAModelException {
     final IntermediateSchema schema = new IntermediateSchema(nameBuilder, jpaMetamodel, reflections);
     schemaListInternalKey.put(schema.internalName, schema);
   }

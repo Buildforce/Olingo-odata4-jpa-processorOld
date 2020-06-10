@@ -25,8 +25,8 @@ import static nl.buildforce.sequoia.jpa.processor.core.converter.JPAExpandResult
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestJPATupleChildConverterCompoundKey extends TestBase {
-  public static final int NO_POSTAL_ADDRESS_FIELDS = 8;
-  public static final int NO_ADMIN_INFO_FIELDS = 2;
+  /*public static final int NO_POSTAL_ADDRESS_FIELDS = 8;
+  public static final int NO_ADMIN_INFO_FIELDS = 2;*/
   private JPATupleChildConverter cut;
   private List<Tuple> jpaQueryResult;
   private UriHelperDouble uriHelper;

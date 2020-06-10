@@ -48,10 +48,7 @@ final class IntermediateDescriptionProperty extends IntermediateSimpleProperty i
           if (jpaMember instanceof Field) {
             final Field jpaField = (Field) jpaMember;
             final ParameterizedType jpaTargetEntityType = (ParameterizedType) jpaField.getGenericType();
-            if (jpaTargetEntityType != null)
-              targetEntity = schema.getEntityType((Class<?>) jpaTargetEntityType.getActualTypeArguments()[0]);
-            else
-              targetEntity = schema.getEntityType(jpaAttribute.getJavaType());
+            targetEntity = schema.getEntityType((Class<?>) jpaTargetEntityType.getActualTypeArguments()[0]);
           } else
             targetEntity = schema.getEntityType(jpaAttribute.getJavaType());
 
